@@ -12,6 +12,11 @@
 #' val_ovv <- load_validation_overview(data_dir = val_ovv_location)
 #'
 load_validation_overview <- function(data_dir) {
+
+  last_four <- substr(data_dir, start = (nchar(data_dir) - 3), stop = nchar(data_dir))
+  if (! last_four == "xlsx") {
+    stop("Your Validation Overview file does not appear to be an *.xlsx. Please supply an *.xlsx.")
+  }
   # init
   full_val_rep <- c()
   # load sheet names

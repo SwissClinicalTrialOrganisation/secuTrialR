@@ -8,3 +8,9 @@ test_that("Validation Overview loaded correctly.", {
   expect_equal(dim(val_ovv), c(5, 12))
   expect_equal(unique(val_ovv$Column), c("bmd", "grouping", "age"))
 })
+
+# test exception
+not_xlsx <- "a_file.xls"
+test_that("xls exception correctly triggered.", {
+  expect_error(load_validation_overview(data_dir = not_xlsx))
+})
