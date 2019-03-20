@@ -20,15 +20,17 @@ Authors@R:
              role = c("aut"),
              email = "patrick.wright@usb.ch"))
 Description: Handling of data from the clinical data management system secuTrial
+Depends:
+    tidyverse,
+    readxl
 License: GPL-2 
 Encoding: UTF-8
+LazyData: true
 Suggests: 
-    tidyverse,
     knitr,
     rmarkdown,
     testthat,
     lintr
 VignetteBuilder: 
     knitr
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
