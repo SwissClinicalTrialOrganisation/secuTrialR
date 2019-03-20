@@ -1,0 +1,34 @@
+Type: Package
+Package: secuTrialR
+Title: Handling of data from the clinical data management system secuTrial 
+Version: 0.1.0
+Authors@R:
+    c(person(given = "Pascal",
+             family = "Benkert",
+             role = c("cre", "aut"),
+             email = "pascal.benkert@usb.ch"),
+      person(given = "Alan",
+             family = "Haynes",
+             role = c("aut"),
+             email = "alan.haynes@ctu.unibe.ch"),
+      person(given = "Constantin",
+             family = "Sluka",
+             role = c("aut"),
+             email = "constantin.sluka@usb.ch"),
+      person(given = "Patrick R.",
+             family = "Wright",
+             role = c("aut"),
+             email = "patrick.wright@usb.ch"))
+Description: Handling of data from the clinical data management system secuTrial
+License: GPL-2 
+Encoding: UTF-8
+Suggests: 
+    tidyverse,
+    knitr,
+    rmarkdown,
+    testthat,
+    lintr
+VignetteBuilder: 
+    knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
