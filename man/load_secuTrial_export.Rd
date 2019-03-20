@@ -19,7 +19,7 @@ been changed in the AdminTool Design setting.}
 }
 \value{
 This is a list of data.frames with all the data loaded from the secuTrial export.
-The minimum list will always contain the patient, centre and export_options data.frames.
+        The minimum list will always contain the patient, centre and export_options data.frames.
 }
 \description{
 This function will always load the casenodes/cn table as patient and
