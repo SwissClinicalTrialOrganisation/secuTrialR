@@ -41,15 +41,15 @@ patient <- load_export_table(data_dir = system.file("extdata",
                              export_options = export_options)
 
 # ---- test .move_column_to_pos
-test_that("pat.id moved to index 2.", {
+test_that("pat_id moved to index 2.", {
   expect_equal(names(secuTrialR:::.move_column_to_pos(df = patient, col_idx = 1, new_col_idx = 2))[2],
-               "pat.id")
+               "pat_id")
 })
 
 # ---- test .move_column_after
-test_that("pat.id moved after mnpaid column.", {
+test_that("pat_id moved after mnpaid column.", {
   expect_equal(names(secuTrialR:::.move_column_after(df = patient,
-                                                     col_name = "pat.id",
+                                                     col_name = "pat_id",
                                                      col_name_after = "mnpaid"))[which(names(patient) == "mnpaid")],
-               "pat.id")
+               "pat_id")
 })

@@ -2,12 +2,12 @@
 % Please edit documentation in R/id_conversions.R
 \name{add_pat_id_col}
 \alias{add_pat_id_col}
-\title{Adds a mapped pat.id column to a table given the patient table}
+\title{Adds a mapped pat_id column to a table given the patient table}
 \usage{
-add_pat_id_col(table, id = "pat.id", patient_table)
+add_pat_id_col(table, id = "pat_id", patient_table)
 }
 \arguments{
-\item{table}{data.frame with a column mnppid to be translated to pat.id (mnpaid).}
+\item{table}{data.frame with a column mnppid to be translated to pat_id (mnpaid).}
 
 \item{id}{string This specifies the name of the new id column.}
 
@@ -17,12 +17,12 @@ add_pat_id_col(table, id = "pat.id", patient_table)
 Returns a data.frame with a new first column containing the translated ids.
 }
 \description{
-Adds a mapped pat.id column to a table given the patient table
+Adds a mapped pat_id column to a table given the patient table
 }
 \examples{
 \donttest{
 bmd_with_patid <- add_pat_id_col(table = bmd,
-                                 id = "pat.id",
+                                 id = "pat_id",
                                  patient_table = patient)
 }
 

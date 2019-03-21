@@ -15,7 +15,7 @@ load_export_table(data_dir, file_name, export_options, add_pat_id = TRUE,
 
 \item{export_options}{list This can be generated with load_export_options.}
 
-\item{add_pat_id}{boolean If TRUE this will add the pat.id to the table.}
+\item{add_pat_id}{boolean If TRUE this will add the pat_id to the table.}
 
 \item{add_centre}{boolean If TRUE this will add the centre name to the table.}
 

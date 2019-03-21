@@ -37,15 +37,15 @@ add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
   } else {
     stop("There is no mnpvisid column in your input table.")
   }
-  if ("pat.id" %in% names(table)) {
-    table <- .move_column_after(table, id, "pat.id")
+  if ("pat_id" %in% names(table)) {
+    table <- .move_column_after(table, id, "pat_id")
   }
   return(table)
 }
 
-#' Adds a mapped pat.id column to a table given the patient table
+#' Adds a mapped pat_id column to a table given the patient table
 #'
-#' @param table data.frame with a column mnppid to be translated to pat.id (mnpaid).
+#' @param table data.frame with a column mnppid to be translated to pat_id (mnpaid).
 #' @param id string This specifies the name of the new id column.
 #' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #'
@@ -54,11 +54,11 @@ add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
 #' @examples
 #' \donttest{
 #' bmd_with_patid <- add_pat_id_col(table = bmd,
-#'                                  id = "pat.id",
+#'                                  id = "pat_id",
 #'                                  patient_table = patient)
 #' }
 #'
-add_pat_id_col <- function(table, id = "pat.id", patient_table) {
+add_pat_id_col <- function(table, id = "pat_id", patient_table) {
   # check for mnppid in table
   if ("mnppid" %in% names(table)) {
     table[[id]] <- mnppid2mnpaid(table$mnppid, patient_table)
@@ -108,8 +108,8 @@ add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_ta
                                remove_ctag = remove_ctag,
                                patient_table = patient_table,
                                centre_table = centre_table)
-  if ("pat.id" %in% names(table)) {
-    table <- .move_column_after(table, id, "pat.id")
+  if ("pat_id" %in% names(table)) {
+    table <- .move_column_after(table, id, "pat_id")
   } else {
     table <- .move_column_after(table, id, "mnppid")
   }

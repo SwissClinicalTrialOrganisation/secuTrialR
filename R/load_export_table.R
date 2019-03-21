@@ -9,7 +9,7 @@
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #' @param file_name string The file_name specifies which file to load.
 #' @param export_options list This can be generated with load_export_options.
-#' @param add_pat_id boolean If TRUE this will add the pat.id to the table.
+#' @param add_pat_id boolean If TRUE this will add the pat_id to the table.
 #' @param add_centre boolean If TRUE this will add the centre name to the table.
 #' @param add_visitname boolean If TRUE this will add visit names to the table.
 #' @param patient_table data.frame This data.frame must be created with this function
@@ -90,7 +90,7 @@ load_export_table <- function(data_dir, file_name, export_options,
     loaded_table <- loaded_table[, -ncol(loaded_table)]
   }
 
-  # adding pat.id
+  # adding pat_id
   if (add_pat_id & ("mnppid" %in% names(loaded_table))) {
     # In order to be able to translate mnppid to mnpaid the casenode (patient) table is required.
     # This table should be loaded first to enable the translations of the other tables.
@@ -98,12 +98,12 @@ load_export_table <- function(data_dir, file_name, export_options,
     # The casenode (patient) table or any other table that already has an mnpaid must not invoke add_pat_id_col().
     if (! "mnpaid" %in% names(loaded_table)) {
       loaded_table <- add_pat_id_col(table = loaded_table,
-                                     id = "pat.id",
+                                     id = "pat_id",
                                      patient_table = patient_table)
     # this will happen for the casenodes/cn table
     } else {
-      loaded_table$pat.id <- loaded_table$mnpaid
-      loaded_table <- .move_column_after(loaded_table, "pat.id", "first")
+      loaded_table$pat_id <- loaded_table$mnpaid
+      loaded_table <- .move_column_after(loaded_table, "pat_id", "first")
     }
   }
 
@@ -119,7 +119,7 @@ load_export_table <- function(data_dir, file_name, export_options,
       # The centre-metadate-id is missing in some tables
       stopifnot("mnpctrname" %in% names(loaded_table))
       loaded_table$centre <- as.factor(loaded_table$mnpctrname)
-      loaded_table <- .move_column_after(loaded_table, "centre", "pat.id")
+      loaded_table <- .move_column_after(loaded_table, "centre", "pat_id")
       loaded_table$centre <- as.factor(unlist(lapply(loaded_table$centre, remove_trailing_bracket)))
     }
   }

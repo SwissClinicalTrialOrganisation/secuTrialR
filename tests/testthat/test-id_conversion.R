@@ -39,9 +39,9 @@ test_that("mnpaids properly created.", {
 })
 
 # ---- test add_pat_id_col / using "sum" for simplicity here
-bmd_with_patid <- add_pat_id_col(table = bmd, id = "pat.id", patient_table = patient)
-test_that("pat.id column properly created.", {
-  expect_equal(sum(bmd_with_patid$pat.id), 135338)
+bmd_with_patid <- add_pat_id_col(table = bmd, id = "pat_id", patient_table = patient)
+test_that("pat_id column properly created.", {
+  expect_equal(sum(bmd_with_patid$pat_id), 135338)
 })
 
 # ---- test mnppid2centre
