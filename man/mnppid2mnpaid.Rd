@@ -4,7 +4,7 @@
 \alias{mnppid2mnpaid}
 \title{Find the mnpaid related to an mnppid}
 \usage{
-mnppid2mnpaid(mnppid, patient_table = patient)
+mnppid2mnpaid(mnppid, patient_table)
 }
 \arguments{
 \item{mnppid}{The mnppid for which the mnpaid should be retrieved.}
@@ -19,7 +19,7 @@ Find the mnpaid related to an mnppid
 }
 \examples{
 \donttest{
-mnppid2mnpaid(1780)
+mnppid2mnpaid(mnppid = 1780, patient_table = patient)
 [1] 103
 }
 

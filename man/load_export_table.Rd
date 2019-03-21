@@ -5,7 +5,8 @@
 \title{Load an individual file/table from a secuTrial export archive}
 \usage{
 load_export_table(data_dir, file_name, export_options, add_pat_id = TRUE,
-  add_centre = TRUE, patient_table = patient, centre_table = centre)
+  add_centre = TRUE, add_visitname = TRUE, patient_table, centre_table,
+  visitplan_table)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
@@ -18,12 +19,18 @@ load_export_table(data_dir, file_name, export_options, add_pat_id = TRUE,
 
 \item{add_centre}{boolean If TRUE this will add the centre name to the table.}
 
+\item{add_visitname}{boolean If TRUE this will add visit names to the table.}
+
 \item{patient_table}{data.frame This data.frame must be created with this function
-before any other secuTrial tables are read (exception centre_table).
+before any other secuTrial tables are read (exceptions centre_table, visitplan_table).
 While creating it this argument is obsolete. (see examples)}
 
-\item{centre_table}{data.frame his data.frame must be created with this function
-before any other secuTrial tables are read (exception patient_table).
+\item{centre_table}{data.frame This data.frame must be created with this function
+before any other secuTrial tables are read (exceptions patient_table, visitplan_table).
+While creating it this argument is obsolete. (see examples)}
+
+\item{visitplan_table}{data.frame This data.frame must be created with this function
+before any other secuTrial tables are read (exceptions patient_table, centre_table)
 While creating it this argument is obsolete. (see examples)}
 }
 \value{
@@ -31,34 +38,42 @@ The function returns a data.frame for the data in file_name.
 }
 \description{
 This function can load individual tables from a secuTrial data
-export. Before loading any other tables the casenodes/cn
-and centres/ctr tables need to be loaded with this function.
+export. Before loading any other tables the casenodes/cn,
+centres/ctr and visitplan/vp tables need to be loaded with this function.
 Also export_options needs to be generated with load_export_options.
 }
 \examples{
 \donttest{
 # load patient (casenodes/cn) table
-patient <- load_export_table(data_dir = system.file("extdata",
-                                                    "s_export_CSV-xls_BMD.zip",
-                                                    package = "secuTrialR"),
-                             file_name = "cn.xls",
-                             export_options=export_options)
+patient <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+                                                                 "s_export_CSV-xls_BMD.zip",
+                                                                 package = "secuTrialR"),
+                                          file_name = "cn.xls",
+                                          export_options = export_options)
 
 # load centre (centres/ctr) table
-centre <- load_export_table(data_dir = system.file("extdata",
-                                                   "s_export_CSV-xls_BMD.zip",
-                                                   package = "secuTrialR"),
-                            file_name = "ctr.xls",
-                            export_options=export_options)
+centre <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+                                                                "s_export_CSV-xls_BMD.zip",
+                                                                package = "secuTrialR"),
+                                         file_name = "ctr.xls",
+                                         export_options = export_options)
+
+# load visitplan (visitplan/vp) table
+visitplan <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+                                                                   "s_export_CSV-xls_BMD.zip",
+                                                                   package = "secuTrialR"),
+                                            file_name = "vp.xls",
+                                            export_options = export_options)
 
 # load bone mineral denisty form data
-bmd <- load_export_table(data_dir = system.file("extdata",
-                                                "s_export_CSV-xls_BMD.zip",
-                                                package = "secuTrialR"),
-                         file_name = "bmd.xls",
-                         export_options = export_options,
-                         patient_table = patient,
-                         centre_table = centre)
+bmd <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+                                                             "s_export_CSV-xls_BMD.zip",
+                                                             package = "secuTrialR"),
+                                      file_name = "bmd.xls",
+                                      export_options = export_options,
+                                      patient_table = patient,
+                                      centre_table = centre,
+                                      visitplan_table = visitplan)
 }
 
 }

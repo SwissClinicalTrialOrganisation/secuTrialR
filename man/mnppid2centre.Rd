@@ -4,8 +4,7 @@
 \alias{mnppid2centre}
 \title{Find the centre related to an mnppid}
 \usage{
-mnppid2centre(mnppid, remove_ctag = FALSE, patient_table = patient,
-  centre_table = centre)
+mnppid2centre(mnppid, remove_ctag = FALSE, patient_table, centre_table)
 }
 \arguments{
 \item{mnppid}{The mnppid for which the centre should be retrieved.}
@@ -24,7 +23,7 @@ Find the centre related to an mnppid
 }
 \examples{
 \donttest{
-mnppid2centre(1780)
+mnppid2centre(mnppid = 1780, patient_table = patient, centre_table = centre)
 [1] Hospital (BMD)
 Levels: Hospital (BMD)
 }

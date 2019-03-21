@@ -5,7 +5,7 @@
 \title{Adds a mapped centre column to a table given the patient and centre tables}
 \usage{
 add_centre_col(table, id = "centre", remove_ctag = FALSE,
-  patient_table = patient, centre_table = centre)
+  patient_table, centre_table)
 }
 \arguments{
 \item{table}{data.frame A data.frame with a column mnppid.}

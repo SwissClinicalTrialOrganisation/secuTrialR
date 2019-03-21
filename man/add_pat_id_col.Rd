@@ -4,10 +4,10 @@
 \alias{add_pat_id_col}
 \title{Adds a mapped pat.id column to a table given the patient table}
 \usage{
-add_pat_id_col(table, id = "pat.id", patient_table = patient)
+add_pat_id_col(table, id = "pat.id", patient_table)
 }
 \arguments{
-\item{table}{data.frame A data.frame with a column mnppid to be translated to pat.id (mnpaid).}
+\item{table}{data.frame with a column mnppid to be translated to pat.id (mnpaid).}
 
 \item{id}{string This specifies the name of the new id column.}
 
