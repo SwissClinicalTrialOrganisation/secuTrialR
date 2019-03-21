@@ -1,5 +1,5 @@
 #'
-#' This function loads a multipage secuTrial 'Validation Overview' report into an R tibble.
+#' This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.
 #'
 #' @export load_validation_overview
 #'

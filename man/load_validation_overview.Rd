@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_validation_overview.R
 \name{load_validation_overview}
 \alias{load_validation_overview}
-\title{This function loads a multipage secuTrial 'Validation Overview' report into an R tibble.}
+\title{This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.}
 \usage{
 load_validation_overview(data_dir)
 }
@@ -13,7 +13,7 @@ load_validation_overview(data_dir)
 tibble with the 'Validation Overview' data.
 }
 \description{
-This function loads a multipage secuTrial 'Validation Overview' report into an R tibble.
+This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.
 }
 \examples{
 val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
