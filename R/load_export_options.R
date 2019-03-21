@@ -162,7 +162,7 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
     w <- which(datanames %in% c("cn", "casenodes"))
     datanames[w] <- "patient"
   }
-  if("vp" %in% datanames) {
+  if ("vp" %in% datanames) {
     w <- which(datanames == "vp")
     datanames[w] <- "visitplan"
   }
