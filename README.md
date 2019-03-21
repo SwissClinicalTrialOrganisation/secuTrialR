@@ -8,7 +8,7 @@ An R package to handle data from the clinical data management system (CDMS) [sec
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
-## Testing with devtools 
+## Testing with devtools
 
 ``` R
 # run tests
@@ -20,11 +20,11 @@ devtools::spell_check("secuTrialR")
 ## Linting with lintr
 
 ```r
-# lint file id_conversions.R assuming the secuTrialR directory is in your home
-lintr::lint("~/secuTrialR/R/id_conversions.R")
-# following lint returns can be ignored
-# lines should not be more than 80 characters
-# Variable and function names should be all lowercase
+# lint the package
+library(lintr)
+lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
+                                                   object_usage_linter = NULL,
+                                                   line_length_linter(125)))
 ```
 
 ## Guidelines for contributers
@@ -38,4 +38,3 @@ added/changed. New functionalities must be thoroughly documented, have examples
 and should be accompanied by at least one [test](tests/testthat/) to ensure longterm 
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
-
