@@ -18,13 +18,20 @@ centre <- load_export_table(data_dir = system.file("extdata",
                             file_name = "ctr.xls",
                             export_options = export_options)
 
+visitplan <- load_export_table(data_dir = system.file("extdata",
+                                                      "s_export_CSV-xls_BMD.zip",
+                                                      package = "secuTrialR"),
+                               file_name = "vp.xls",
+                               export_options = export_options)
+
 bmd <- load_export_table(data_dir = system.file("extdata",
                                                 "s_export_CSV-xls_BMD.zip",
                                                 package = "secuTrialR"),
                          file_name = "bmd.xls",
                          export_options = export_options,
                          add_pat_id = FALSE,
-                         add_centre = FALSE)
+                         add_centre = FALSE,
+                         add_visitname = FALSE)
 
 # ---- test mnppid2mnpaid / using "sum" for simplicity here
 test_that("mnpaids properly created.", {
@@ -45,6 +52,16 @@ test_that("centre properly mapped.", {
 # ---- test add_centre_col
 test_that("centre column properly created.", {
   expect_equal(as.numeric(table(add_centre_col(bmd, patient_table = patient, centre_table = centre)$centre)), 504)
+})
+
+# ---- test mnpvisid2mnpvislabel
+test_that("visitlabel properly mapped.", {
+  expect_equal(as.numeric(table(mnpvisid2mnpvislabel(bmd$mnpvisid, visitplan_table = visitplan))), 504)
+})
+
+# ---- test add_visitname_col
+test_that("visit_name column properly created.", {
+  expect_equal(as.numeric(table(add_visitname_col(bmd, visitplan_table = visitplan)$visit_name)), 504)
 })
 
 # ---- test remove_trailing_bracket

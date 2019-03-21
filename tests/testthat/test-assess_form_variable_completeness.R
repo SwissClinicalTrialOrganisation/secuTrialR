@@ -39,10 +39,10 @@ completeness_bmd_long <- assess_form_variable_completeness(form = sT_export_long
 # test outputs allforms
 test_that("Variable completeness allforms working.", {
   expect_equal(completeness_bmd_short, completeness_bmd_long)
-  expect_equal(dim(completeness_bmd_short), c(6, 4))
-  expect_equal(sum(completeness_bmd_long$timesentered), 3019)
-  expect_equal(sum(completeness_bmd_long$timesmissing), 371)
-  expect_equal(round(completeness_bmd_long$completeness, digits = 3), c( 0.890, 0.888, 0.892, 0.888, 0.892, 0.892))
+  expect_equal(dim(completeness_bmd_short), c(7, 4))
+  expect_equal(sum(completeness_bmd_long$timesentered), 3523)
+  expect_equal(sum(completeness_bmd_long$timesmissing), 432)
+  expect_equal(round(completeness_bmd_long$completeness, digits = 3), c( 0.890, 0.888, 0.892, 0.888, 0.892, 0.892, 0.892))
 })
 
 # bmd completeness savedforms short and long

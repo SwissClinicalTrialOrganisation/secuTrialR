@@ -21,7 +21,7 @@ test_that("All data tables loaded.", {
 test_that("Data dimensions are correct.", {
   # dim bone mineral density
   expect_equal(dim(sT_export_short$bmd), dim(sT_export_long$dem00bmd))
-  expect_equal(dim(sT_export_long$dem00bmd), c(504, 26))
+  expect_equal(dim(sT_export_long$dem00bmd), c(504, 27))
   # dim centre
   expect_equal(dim(sT_export_long$centre), dim(sT_export_short$centre))
   expect_equal(dim(sT_export_short$centre), c(1, 3))
