@@ -48,7 +48,7 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   audit_trail <- any(grepl("[aA]udit [tT]rail", parsed_export))
   # language not english
   lang_not_en <- any(grepl("Export Optionen", parsed_export))
-  # Add-ID
+  # Add ID
   add_id_selections <- c("Add-ID", "Zus-ID", "Patient-ID", add_id_name)
   if (length(grep(paste(add_id_selections, collapse = "|"), parsed_export ))) {
     add_id <- TRUE
