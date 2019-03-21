@@ -31,7 +31,9 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 
 In order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the tests and lint your code as 
-indicated above. If all tests pass and linting confirms that your coding style
+indicated above. If all
+[tests](README.md#testing-with-devtools)
+pass and linting confirms that your coding style
 conforms you can send a pull request (PR).  
 The PR should have a description to help the reviewer understand what has been 
 added/changed. New functionalities must be thoroughly documented, have examples 
