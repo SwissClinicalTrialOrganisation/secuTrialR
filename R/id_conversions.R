@@ -1,8 +1,51 @@
 # collection of smaller functions for ID conversions
 
+#' Find the mnpvislabel related to an mnpvisid
+#'
+#' @param mnpvisid The mnpvisid for which the mnpvislabel should be retrieved.
+#' @param visitplan_table data.frame This is the loaded reference table to make the translation (i.e. visitplan/vp in export archive).
+#'
+#' @return mnpvislabel related to the entered mnpvisid.
+#'
+#' @examples
+#' \donttest{
+#' mnpvisid2mnpvislabel(mnpvisid = 13920, visitplan_table = visitplan)
+#' [1] "#. visit"
+#' }
+mnpvisid2mnpvislabel <- function(mnpvisid, visitplan_table) {
+  as.character(visitplan_table$mnpvislabel[match(mnpvisid, visitplan_table$mnpvisid)])
+}
+
+#' Adds a mapped visit_name column to a table given the visitplan table
+#'
+#' @param table data.frame with a column mnpvisid to be translated to visit names.
+#' @param id string This specifies the name of the new id column.
+#' @param visitplan_table data.frame This is the loaded reference table to make the translation (i.e. visitplan/vp in export archive).
+#'
+#' @return Returns a data.frame with a new column containing the translated visit names.
+#' @examples
+#' \donttest{
+#' bmd_with_visit_name <- add_pat_id_col(table = bmd,
+#'                                       id = "visit_name",
+#'                                       visitplan_table = visitplan)
+#' }
+#'
+add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
+  # check for mnpvisid in table
+  if ("mnpvisid" %in% names(table)) {
+    table[[id]] <- mnpvisid2mnpvislabel(table$mnpvisid, visitplan_table)
+  } else {
+    stop("There is no mnpvisid column in your input table.")
+  }
+  if ("pat.id" %in% names(table)) {
+    table <- .move_column_after(table, id, "pat.id")
+  }
+  return(table)
+}
+
 #' Adds a mapped pat.id column to a table given the patient table
 #'
-#' @param table data.frame A data.frame with a column mnppid to be translated to pat.id (mnpaid).
+#' @param table data.frame with a column mnppid to be translated to pat.id (mnpaid).
 #' @param id string This specifies the name of the new id column.
 #' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #'
@@ -15,14 +58,14 @@
 #'                                  patient_table = patient)
 #' }
 #'
-add_pat_id_col <- function(table, id = "pat.id", patient_table = patient) {
+add_pat_id_col <- function(table, id = "pat.id", patient_table) {
   # check for mnppid in table
   if ("mnppid" %in% names(table)) {
     table[[id]] <- mnppid2mnpaid(table$mnppid, patient_table)
     table <- .move_column_after(table, id, "first")
     return(table)
   } else {
-    stop("Error: There is no mnppid column in your input table.")
+    stop("There is no mnppid column in your input table.")
   }
 }
 
@@ -35,11 +78,11 @@ add_pat_id_col <- function(table, id = "pat.id", patient_table = patient) {
 #'
 #' @examples
 #' \donttest{
-#' mnppid2mnpaid(1780)
+#' mnppid2mnpaid(mnppid = 1780, patient_table = patient)
 #' [1] 103
 #' }
 #'
-mnppid2mnpaid <- function(mnppid, patient_table = patient) {
+mnppid2mnpaid <- function(mnppid, patient_table) {
   patient_table$mnpaid[match(mnppid, patient_table$mnppid)]
 }
 
@@ -60,7 +103,7 @@ mnppid2mnpaid <- function(mnppid, patient_table = patient) {
 #'                                   centre_table = centre)
 #' }
 #'
-add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_table = patient, centre_table = centre) {
+add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_table, centre_table) {
   table[[id]] <- mnppid2centre(mnppid = table$mnppid,
                                remove_ctag = remove_ctag,
                                patient_table = patient_table,
@@ -84,12 +127,12 @@ add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_ta
 #'
 #' @examples
 #' \donttest{
-#' mnppid2centre(1780)
+#' mnppid2centre(mnppid = 1780, patient_table = patient, centre_table = centre)
 #' [1] Hospital (BMD)
 #' Levels: Hospital (BMD)
 #' }
 #'
-mnppid2centre <- function(mnppid, remove_ctag = FALSE, patient_table = patient, centre_table = centre) {
+mnppid2centre <- function(mnppid, remove_ctag = FALSE, patient_table, centre_table) {
   # convert mnppid to mnpctrid
   mnpctrid <- patient_table$mnpctrid[match(mnppid, patient_table$mnppid)]
   if (remove_ctag == TRUE) {
