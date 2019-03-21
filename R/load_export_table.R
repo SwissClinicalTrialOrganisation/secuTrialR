@@ -2,8 +2,8 @@
 #'
 #' @description
 #' This function can load individual tables from a secuTrial data
-#' export. Before loading any other tables the casenodes/cn
-#' and centres/ctr tables need to be loaded with this function.
+#' export. Before loading any other tables the casenodes/cn,
+#' centres/ctr and visitplan/vp tables need to be loaded with this function.
 #' Also export_options needs to be generated with load_export_options.
 #'
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
@@ -11,11 +11,15 @@
 #' @param export_options list This can be generated with load_export_options.
 #' @param add_pat_id boolean If TRUE this will add the pat.id to the table.
 #' @param add_centre boolean If TRUE this will add the centre name to the table.
+#' @param add_visitname boolean If TRUE this will add visit names to the table.
 #' @param patient_table data.frame This data.frame must be created with this function
-#'                      before any other secuTrial tables are read (exception centre_table).
+#'                      before any other secuTrial tables are read (exceptions centre_table, visitplan_table).
 #'                      While creating it this argument is obsolete. (see examples)
-#' @param centre_table data.frame his data.frame must be created with this function
-#'                      before any other secuTrial tables are read (exception patient_table).
+#' @param centre_table data.frame This data.frame must be created with this function
+#'                      before any other secuTrial tables are read (exceptions patient_table, visitplan_table).
+#'                      While creating it this argument is obsolete. (see examples)
+#' @param visitplan_table data.frame This data.frame must be created with this function
+#'                      before any other secuTrial tables are read (exceptions patient_table, centre_table)
 #'                      While creating it this argument is obsolete. (see examples)
 #'
 #' @return The function returns a data.frame for the data in file_name.
@@ -25,31 +29,40 @@
 #' @examples
 #' \donttest{
 #' # load patient (casenodes/cn) table
-#' patient <- load_export_table(data_dir = system.file("extdata",
-#'                                                     "s_export_CSV-xls_BMD.zip",
-#'                                                     package = "secuTrialR"),
-#'                              file_name = "cn.xls",
-#'                              export_options=export_options)
+#' patient <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+#'                                                                  "s_export_CSV-xls_BMD.zip",
+#'                                                                  package = "secuTrialR"),
+#'                                           file_name = "cn.xls",
+#'                                           export_options = export_options)
 #'
 #' # load centre (centres/ctr) table
-#' centre <- load_export_table(data_dir = system.file("extdata",
-#'                                                    "s_export_CSV-xls_BMD.zip",
-#'                                                    package = "secuTrialR"),
-#'                             file_name = "ctr.xls",
-#'                             export_options=export_options)
+#' centre <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+#'                                                                 "s_export_CSV-xls_BMD.zip",
+#'                                                                 package = "secuTrialR"),
+#'                                          file_name = "ctr.xls",
+#'                                          export_options = export_options)
+#'
+#' # load visitplan (visitplan/vp) table
+#' visitplan <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+#'                                                                    "s_export_CSV-xls_BMD.zip",
+#'                                                                    package = "secuTrialR"),
+#'                                             file_name = "vp.xls",
+#'                                             export_options = export_options)
 #'
 #' # load bone mineral denisty form data
-#' bmd <- load_export_table(data_dir = system.file("extdata",
-#'                                                 "s_export_CSV-xls_BMD.zip",
-#'                                                 package = "secuTrialR"),
-#'                          file_name = "bmd.xls",
-#'                          export_options = export_options,
-#'                          patient_table = patient,
-#'                          centre_table = centre)
+#' bmd <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+#'                                                              "s_export_CSV-xls_BMD.zip",
+#'                                                              package = "secuTrialR"),
+#'                                       file_name = "bmd.xls",
+#'                                       export_options = export_options,
+#'                                       patient_table = patient,
+#'                                       centre_table = centre,
+#'                                       visitplan_table = visitplan)
 #' }
 #'
-load_export_table <- function(data_dir, file_name, export_options, add_pat_id=TRUE, add_centre=TRUE,
-                              patient_table = patient, centre_table = centre) {
+load_export_table <- function(data_dir, file_name, export_options,
+                              add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
+                              patient_table, centre_table, visitplan_table) {
 
   # confirm export_options presence
   if (!exists("export_options")) stop("export_options have not been specified. Run load_export_options to create.")
@@ -108,6 +121,14 @@ load_export_table <- function(data_dir, file_name, export_options, add_pat_id=TR
       loaded_table$centre <- as.factor(loaded_table$mnpctrname)
       loaded_table <- .move_column_after(loaded_table, "centre", "pat.id")
       loaded_table$centre <- as.factor(unlist(lapply(loaded_table$centre, remove_trailing_bracket)))
+    }
+  }
+
+  # adding visit names
+  if (add_visitname & "mnpvisid" %in% names(loaded_table))  {
+    if (! ("mnpvislabel" %in% names(loaded_table))) {
+      loaded_table <- add_visitname_col(table = loaded_table, id = "visit_name",
+                                        visitplan_table = visitplan_table)
     }
   }
   return(loaded_table)
