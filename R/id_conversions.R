@@ -43,11 +43,11 @@ add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
   return(table)
 }
 
-#' Adds a mapped pat_id column to a table given the patient table
+#' Adds a mapped pat_id column to a table given the casenodes table
 #'
 #' @param table data.frame with a column mnppid to be translated to pat_id (mnpaid).
 #' @param id string This specifies the name of the new id column.
-#' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+#' @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #'
 #' @return Returns a data.frame with a new first column containing the translated ids.
 #'
@@ -55,13 +55,13 @@ add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
 #' \donttest{
 #' bmd_with_patid <- add_pat_id_col(table = bmd,
 #'                                  id = "pat_id",
-#'                                  patient_table = patient)
+#'                                  casenodes_table = casenodes)
 #' }
 #'
-add_pat_id_col <- function(table, id = "pat_id", patient_table) {
+add_pat_id_col <- function(table, id = "pat_id", casenodes_table) {
   # check for mnppid in table
   if ("mnppid" %in% names(table)) {
-    table[[id]] <- mnppid2mnpaid(table$mnppid, patient_table)
+    table[[id]] <- mnppid2mnpaid(table$mnppid, casenodes_table)
     table <- .move_column_after(table, id, "first")
     return(table)
   } else {
@@ -72,26 +72,26 @@ add_pat_id_col <- function(table, id = "pat_id", patient_table) {
 #' Find the mnpaid related to an mnppid
 #'
 #' @param mnppid The mnppid for which the mnpaid should be retrieved.
-#' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+#' @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #'
 #' @return mnpaid related to the entered mnppid.
 #'
 #' @examples
 #' \donttest{
-#' mnppid2mnpaid(mnppid = 1780, patient_table = patient)
+#' mnppid2mnpaid(mnppid = 1780, casenodes_table = casenodes)
 #' [1] 103
 #' }
 #'
-mnppid2mnpaid <- function(mnppid, patient_table) {
-  patient_table$mnpaid[match(mnppid, patient_table$mnppid)]
+mnppid2mnpaid <- function(mnppid, casenodes_table) {
+  casenodes_table$mnpaid[match(mnppid, casenodes_table$mnppid)]
 }
 
-#' Adds a mapped centre column to a table given the patient and centre tables
+#' Adds a mapped centre column to a table given the casenodes and centre tables
 #'
 #' @param table data.frame A data.frame with a column mnppid.
 #' @param id string This specifies the name of the new centre column.
 #' @param remove_ctag boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.
-#' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+#' @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #' @param centre_table data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).
 #'
 #' @return Returns a data.frame with a new column containing the centres.
@@ -99,14 +99,14 @@ mnppid2mnpaid <- function(mnppid, patient_table) {
 #' @examples
 #' \donttest{
 #' bmd_with_centre <- add_centre_col(table = bmd,
-#'                                   patient_table = patient,
+#'                                   casenodes_table = casenodes,
 #'                                   centre_table = centre)
 #' }
 #'
-add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_table, centre_table) {
+add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, casenodes_table, centre_table) {
   table[[id]] <- mnppid2centre(mnppid = table$mnppid,
                                remove_ctag = remove_ctag,
-                               patient_table = patient_table,
+                               casenodes_table = casenodes_table,
                                centre_table = centre_table)
   if ("pat_id" %in% names(table)) {
     table <- .move_column_after(table, id, "pat_id")
@@ -120,21 +120,21 @@ add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, patient_ta
 #'
 #' @param mnppid The mnppid for which the centre should be retrieved.
 #' @param remove_ctag boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.
-#' @param patient_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+#' @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
 #' @param centre_table data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).
 #'
 #' @return centre related to the entered mnppid.
 #'
 #' @examples
 #' \donttest{
-#' mnppid2centre(mnppid = 1780, patient_table = patient, centre_table = centre)
+#' mnppid2centre(mnppid = 1780, casenodes_table = casenodes, centre_table = centre)
 #' [1] Hospital (BMD)
 #' Levels: Hospital (BMD)
 #' }
 #'
-mnppid2centre <- function(mnppid, remove_ctag = FALSE, patient_table, centre_table) {
+mnppid2centre <- function(mnppid, remove_ctag = FALSE, casenodes_table, centre_table) {
   # convert mnppid to mnpctrid
-  mnpctrid <- patient_table$mnpctrid[match(mnppid, patient_table$mnppid)]
+  mnpctrid <- casenodes_table$mnpctrid[match(mnppid, casenodes_table$mnppid)]
   if (remove_ctag == TRUE) {
     # convert centre id to centre and remove centre tag
     as.factor(unlist(lapply(centre_table$mnpctrname[match(mnpctrid, centre_table$mnpctrid)],
