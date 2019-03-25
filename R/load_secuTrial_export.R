@@ -2,8 +2,7 @@
 #' This function loads a secuTrial export
 #'
 #' @description
-#' This function will always load the casenodes/cn table as patient,
-#' centres/ctr table as centre and visitplan/vp as visitplan.
+#' This function will always load the full set of meta tables first.
 #' Further tables to load can be specified. The standard is to load
 #' the entire export. The export options are also loaded and written
 #' into export_options.
@@ -15,11 +14,11 @@
 #'                    been changed in the AdminTool Design setting.
 #' @param tables vector containing the names of the files to be loaded. Default
 #'                      behavior load all tables. "none" can also be
-#'                      specified if only patient, centre and export_options
+#'                      specified if only meta tables and export_options
 #'                      shall be loaded.
 #'
 #' @return This is a list of data.frames with all the data loaded from the secuTrial export.
-#'         The minimum list will always contain the patient, centre, visitplan and
+#'         The minimum list will always contain the meta tables and
 #'         export_options data.frames.
 #'
 #' @examples
@@ -39,6 +38,11 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     stop("Your export language is not English and can not be processed.")
   }
 
+  # check if it is a rectangular export
+  if (export_options$is_rectangular) {
+    stop("Your export is rectangular. It can not be loaded with this function.")
+  }
+
   # check for column names in export_options
   if (! export_options$column_names) {
     stop(paste0("The specified secuTrial export does not include 'Column names'. ",
@@ -54,33 +58,29 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
                 ))
   }
 
-  # load patient table
-  casenode_file_name <- names(which(export_options$data_names == "patient"))
-
-  patient <- load_export_table(data_dir = data_dir,
-                               file_name = casenode_file_name,
-                               export_options = export_options)
-
-
-  # load centre table
-  centre_file_name <- names(which(export_options$data_names == "centres"))
-
-  centre <- load_export_table(data_dir = data_dir,
-                              file_name = centre_file_name,
-                              export_options = export_options)
-
-  # load visitplan table
-  visitplan_file_name <- names(which(export_options$data_names == "visitplan"))
-
-  visitplan <- load_export_table(data_dir = data_dir,
-                                 file_name = visitplan_file_name,
-                                 export_options = export_options)
-
   # init return list
-  return_list <- list(export_options = export_options,
-                      patient = patient,
-                      centre = centre,
-                      visitplan = visitplan)
+  return_list <- list(export_options = export_options)
+
+  # load meta tables
+  meta_names <- as.vector(unlist(export_options$meta_names))
+  # meta table names reference for exclusion from later loading
+  meta_files <- c()
+  for (name in meta_names) {
+    # file name
+    file <- names(which(export_options$data_names == name))
+    meta_files <- c(meta_files, file)
+    # skip loading if file does not exist
+    if (length(file) == 0) {
+      next
+    }
+    loaded_table <- load_export_table(data_dir = data_dir,
+                                      file_name = file,
+                                      export_options = export_options,
+                                      is_meta_table = TRUE)
+    # update name
+    loaded_table <- setNames(list(loaded_table), name)
+    return_list <- c(return_list, loaded_table)
+  }
 
   # check if tables is "none" then stop here
   if (tables == "none") {
@@ -95,19 +95,28 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     load_list <- tables
   }
 
-  # exclude patient and centre tables since they have already been loaded
-  load_list <- load_list[! load_list %in% c(centre_file_name, casenode_file_name, visitplan_file_name)]
+  # exclude meta tables since they have already been loaded
+  load_list <- load_list[! load_list %in% meta_files]
 
   for (file in load_list) {
     # get table name from export options
     table_name <- export_options$data_names[file]
     # load table
-    loaded_table <- load_export_table(data_dir = data_dir,
-                                      file_name = file,
-                                      export_options = export_options,
-                                      patient_table = patient,
-                                      centre_table = centre,
-                                      visitplan_table = visitplan)
+    if (! export_options$short_names) {
+      loaded_table <- load_export_table(data_dir = data_dir,
+                                        file_name = file,
+                                        export_options = export_options,
+                                        casenodes_table = return_list$casenodes,
+                                        centre_table = return_list$centres,
+                                        visitplan_table = return_list$visitplan)
+    } else {
+      loaded_table <- load_export_table(data_dir = data_dir,
+                                        file_name = file,
+                                        export_options = export_options,
+                                        casenodes_table = return_list$cn,
+                                        centre_table = return_list$ctr,
+                                        visitplan_table = return_list$vp)
+    }
     # update name
     loaded_table <- setNames(list(loaded_table), table_name[[1]])
     return_list <- c(return_list, loaded_table)
