@@ -5,24 +5,27 @@ export_options <- load_export_options(data_dir = system.file("extdata",
                                                              "s_export_CSV-xls_BMD.zip",
                                                              package = "secuTrialR"))
 
-# load patient, centre and bmd table
-patient <- load_export_table(data_dir = system.file("extdata",
+# load casenodes, centre and bmd table
+casenodes <- load_export_table(data_dir = system.file("extdata",
                                                     "s_export_CSV-xls_BMD.zip",
                                                     package = "secuTrialR"),
                              file_name = "cn.xls",
-                             export_options = export_options)
+                             export_options = export_options,
+                             is_meta_table = TRUE)
 
 centre <- load_export_table(data_dir = system.file("extdata",
                                                    "s_export_CSV-xls_BMD.zip",
                                                    package = "secuTrialR"),
                             file_name = "ctr.xls",
-                            export_options = export_options)
+                            export_options = export_options,
+                            is_meta_table = TRUE)
 
 visitplan <- load_export_table(data_dir = system.file("extdata",
                                                       "s_export_CSV-xls_BMD.zip",
                                                       package = "secuTrialR"),
                                file_name = "vp.xls",
-                               export_options = export_options)
+                               export_options = export_options,
+                               is_meta_table = TRUE)
 
 bmd <- load_export_table(data_dir = system.file("extdata",
                                                 "s_export_CSV-xls_BMD.zip",
@@ -35,23 +38,23 @@ bmd <- load_export_table(data_dir = system.file("extdata",
 
 # ---- test mnppid2mnpaid / using "sum" for simplicity here
 test_that("mnpaids properly created.", {
-  expect_equal(sum(mnppid2mnpaid(bmd$mnppid, patient_table = patient)), 135338)
+  expect_equal(sum(mnppid2mnpaid(bmd$mnppid, casenodes_table = casenodes)), 135338)
 })
 
 # ---- test add_pat_id_col / using "sum" for simplicity here
-bmd_with_patid <- add_pat_id_col(table = bmd, id = "pat_id", patient_table = patient)
+bmd_with_patid <- add_pat_id_col(table = bmd, id = "pat_id", casenodes_table = casenodes)
 test_that("pat_id column properly created.", {
   expect_equal(sum(bmd_with_patid$pat_id), 135338)
 })
 
 # ---- test mnppid2centre
 test_that("centre properly mapped.", {
-  expect_equal(as.numeric(table(mnppid2centre(bmd$mnppid, patient_table = patient, centre_table = centre))), 504)
+  expect_equal(as.numeric(table(mnppid2centre(bmd$mnppid, casenodes_table = casenodes, centre_table = centre))), 504)
 })
 
 # ---- test add_centre_col
 test_that("centre column properly created.", {
-  expect_equal(as.numeric(table(add_centre_col(bmd, patient_table = patient, centre_table = centre)$centre)), 504)
+  expect_equal(as.numeric(table(add_centre_col(bmd, casenodes_table = casenodes, centre_table = centre)$centre)), 504)
 })
 
 # ---- test mnpvisid2mnpvislabel

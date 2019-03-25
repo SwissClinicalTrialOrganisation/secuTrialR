@@ -40,3 +40,16 @@ test_that("Rectangular/regular export identified.", {
   expect_false(export_options_regular_short$is_rectangular)
   expect_false(export_options_regular_long$is_rectangular)
 })
+
+# test meta names
+test_that("Meta names available.", {
+  expect_equal(as.vector(unlist(export_options_regular_short$meta_names)), c("fs", "cn", "ctr", "is",
+                                                                             "qs", "qac",  "vp", "vpfs",
+                                                                             "atcn", "atcvp", "cts", "miv", "cl"))
+  expect_equal(as.vector(unlist(export_options_regular_long$meta_names)), c("forms", "casenodes",
+                                                                            "centres", "items",
+                                                                            "questions", "queries",
+                                                                            "visitplan", "visitplanforms",
+                                                                            "atcasenodes", "atcasevisitplans",
+                                                                            "comments", "miv", "cl"))
+})

@@ -25,13 +25,13 @@ test_that("Exceptions correctly triggered.", {
 
 # bmd completeness allforms short and long
 completeness_bmd_short <- assess_form_variable_completeness(form = sT_export_short$bmd,
-                                                            patient_table = sT_export_short$patient,
+                                                            casenodes_table = sT_export_short$cn,
                                                             validation_overview = val_ovv,
                                                             completeness = "allforms",
                                                             occ_in_vp = 5)
 
 completeness_bmd_long <- assess_form_variable_completeness(form = sT_export_long$dem00bmd,
-                                                           patient_table = sT_export_long$patient,
+                                                           casenodes_table = sT_export_long$casenodes,
                                                            validation_overview = val_ovv,
                                                            completeness = "allforms",
                                                            occ_in_vp = 5)
@@ -47,12 +47,12 @@ test_that("Variable completeness allforms working.", {
 
 # bmd completeness savedforms short and long
 completeness_bmd_short_saved <- assess_form_variable_completeness(form = sT_export_short$bmd,
-                                                                  patient_table = sT_export_short$patient,
+                                                                  casenodes_table = sT_export_short$cn,
                                                                   validation_overview = val_ovv,
                                                                   completeness = "savedforms")
 
 completeness_bmd_long_saved <- assess_form_variable_completeness(form = sT_export_long$dem00bmd,
-                                                                 patient_table = sT_export_long$patient,
+                                                                 casenodes_table = sT_export_long$cn,
                                                                  validation_overview = val_ovv,
                                                                  completeness = "savedforms")
 
