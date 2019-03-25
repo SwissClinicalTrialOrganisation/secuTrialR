@@ -13,14 +13,14 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ``` R
 # run tests
 devtools::test("secuTrialR")
-# spell check
+# spell check -> will contain some R and secuTrial specific words which is fine
 devtools::spell_check("secuTrialR")
 ```
 
 ## Linting with lintr
 
 ```r
-# lint the package
+# lint the package -> should be clean
 library(lintr)
 lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
                                                    object_usage_linter = NULL,
