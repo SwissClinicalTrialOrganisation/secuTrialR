@@ -1,7 +1,7 @@
 # internal helper functions
 
 # construct names of metadata
-.constructmetaname <- function(x, meta_names, file_tag, file_extension) {
+.construct_metaname <- function(x, meta_names, file_tag, file_extension) {
   paste0(meta_names[x],
          file_tag,
          ".",
