@@ -4,12 +4,12 @@
 \alias{mnppid2mnpaid}
 \title{Find the mnpaid related to an mnppid}
 \usage{
-mnppid2mnpaid(mnppid, patient_table)
+mnppid2mnpaid(mnppid, casenodes_table)
 }
 \arguments{
 \item{mnppid}{The mnppid for which the mnpaid should be retrieved.}
 
-\item{patient_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
+\item{casenodes_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
 }
 \value{
 mnpaid related to the entered mnppid.
@@ -19,7 +19,7 @@ Find the mnpaid related to an mnppid
 }
 \examples{
 \donttest{
-mnppid2mnpaid(mnppid = 1780, patient_table = patient)
+mnppid2mnpaid(mnppid = 1780, casenodes_table = casenodes)
 [1] 103
 }
 

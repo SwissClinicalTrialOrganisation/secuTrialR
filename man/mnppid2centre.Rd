@@ -4,14 +4,14 @@
 \alias{mnppid2centre}
 \title{Find the centre related to an mnppid}
 \usage{
-mnppid2centre(mnppid, remove_ctag = FALSE, patient_table, centre_table)
+mnppid2centre(mnppid, remove_ctag = FALSE, casenodes_table, centre_table)
 }
 \arguments{
 \item{mnppid}{The mnppid for which the centre should be retrieved.}
 
 \item{remove_ctag}{boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.}
 
-\item{patient_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
+\item{casenodes_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
 
 \item{centre_table}{data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).}
 }
@@ -23,7 +23,7 @@ Find the centre related to an mnppid
 }
 \examples{
 \donttest{
-mnppid2centre(mnppid = 1780, patient_table = patient, centre_table = centre)
+mnppid2centre(mnppid = 1780, casenodes_table = casenodes, centre_table = centre)
 [1] Hospital (BMD)
 Levels: Hospital (BMD)
 }

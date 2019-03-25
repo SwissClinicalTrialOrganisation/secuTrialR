@@ -11,7 +11,7 @@ load_secuTrial_export(data_dir, tables = "all", add_id_name = NULL)
 
 \item{tables}{vector containing the names of the files to be loaded. Default
 behavior load all tables. "none" can also be
-specified if only patient, centre and export_options
+specified if only meta tables and export_options
 shall be loaded.}
 
 \item{add_id_name}{string This needs to be specified if your Add-ID name has
@@ -19,12 +19,11 @@ been changed in the AdminTool Design setting.}
 }
 \value{
 This is a list of data.frames with all the data loaded from the secuTrial export.
-        The minimum list will always contain the patient, centre, visitplan and
+        The minimum list will always contain the meta tables and
         export_options data.frames.
 }
 \description{
-This function will always load the casenodes/cn table as patient,
-centres/ctr table as centre and visitplan/vp as visitplan.
+This function will always load the full set of meta tables first.
 Further tables to load can be specified. The standard is to load
 the entire export. The export options are also loaded and written
 into export_options.

@@ -2,10 +2,10 @@
 % Please edit documentation in R/id_conversions.R
 \name{add_centre_col}
 \alias{add_centre_col}
-\title{Adds a mapped centre column to a table given the patient and centre tables}
+\title{Adds a mapped centre column to a table given the casenodes and centre tables}
 \usage{
 add_centre_col(table, id = "centre", remove_ctag = FALSE,
-  patient_table, centre_table)
+  casenodes_table, centre_table)
 }
 \arguments{
 \item{table}{data.frame A data.frame with a column mnppid.}
@@ -14,7 +14,7 @@ add_centre_col(table, id = "centre", remove_ctag = FALSE,
 
 \item{remove_ctag}{boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.}
 
-\item{patient_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
+\item{casenodes_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
 
 \item{centre_table}{data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).}
 }
@@ -22,12 +22,12 @@ add_centre_col(table, id = "centre", remove_ctag = FALSE,
 Returns a data.frame with a new column containing the centres.
 }
 \description{
-Adds a mapped centre column to a table given the patient and centre tables
+Adds a mapped centre column to a table given the casenodes and centre tables
 }
 \examples{
 \donttest{
 bmd_with_centre <- add_centre_col(table = bmd,
-                                  patient_table = patient,
+                                  casenodes_table = casenodes,
                                   centre_table = centre)
 }
 

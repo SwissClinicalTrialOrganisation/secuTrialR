@@ -2,28 +2,28 @@
 % Please edit documentation in R/id_conversions.R
 \name{add_pat_id_col}
 \alias{add_pat_id_col}
-\title{Adds a mapped pat_id column to a table given the patient table}
+\title{Adds a mapped pat_id column to a table given the casenodes table}
 \usage{
-add_pat_id_col(table, id = "pat_id", patient_table)
+add_pat_id_col(table, id = "pat_id", casenodes_table)
 }
 \arguments{
 \item{table}{data.frame with a column mnppid to be translated to pat_id (mnpaid).}
 
 \item{id}{string This specifies the name of the new id column.}
 
-\item{patient_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
+\item{casenodes_table}{data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).}
 }
 \value{
 Returns a data.frame with a new first column containing the translated ids.
 }
 \description{
-Adds a mapped pat_id column to a table given the patient table
+Adds a mapped pat_id column to a table given the casenodes table
 }
 \examples{
 \donttest{
 bmd_with_patid <- add_pat_id_col(table = bmd,
                                  id = "pat_id",
-                                 patient_table = patient)
+                                 casenodes_table = casenodes)
 }
 
 }

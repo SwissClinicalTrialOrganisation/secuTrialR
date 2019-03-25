@@ -4,15 +4,16 @@
 \alias{assess_form_variable_completeness}
 \title{Asses completeness of data for each variable in a secuTrial export}
 \usage{
-assess_form_variable_completeness(form, patient_table, validation_overview,
-  completeness = "allforms", occ_in_vp = 1, omit.mnp = TRUE)
+assess_form_variable_completeness(form, casenodes_table,
+  validation_overview, completeness = "allforms", occ_in_vp = 1,
+  omit.mnp = TRUE)
 }
 \arguments{
 \item{form}{data.frame Form for which to assess variable completeness
 (i.e. a list element returned by load_secuTrial_export).}
 
-\item{patient_table}{data.frame The central patient record file
-(i.e. 'patient' from the list returned by load_secuTrial_export).}
+\item{casenodes_table}{data.frame The central casenodes record file
+(i.e. 'casenodes' from the list returned by load_secuTrial_export).}
 
 \item{validation_overview}{tibble returned by load_validation_overview.}
 
@@ -43,7 +44,7 @@ always be considered as 100 percent complete if only 'savedforms' are assessed.
 }
 \examples{
 \donttest{
-assess_form_variable_completeness(form = sT_export$bmd, patient_table = sT_export$patient,
+assess_form_variable_completeness(form = sT_export$bmd, casenodes_table = sT_export$cn,
                                   validation_overview = val_ovv, completeness = "allforms",
                                   occ_in_vp = 5)
 }

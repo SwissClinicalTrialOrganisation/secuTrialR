@@ -17,6 +17,8 @@ The function returns a list with the data export options.
 \description{
 The load_export_options reads the secuTrial data export and
 determines specific options needed to handle the data properly.
+
+This is an internal function which is wrapped by load_secuTrial_export
 }
 \examples{
 \donttest{
