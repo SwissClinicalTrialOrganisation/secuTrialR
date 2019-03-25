@@ -4,6 +4,8 @@
 #' The load_export_options reads the secuTrial data export and
 #' determines specific options needed to handle the data properly.
 #'
+#' This is an internal function which is wrapped by load_secuTrial_export
+#'
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #' @param add_id_name string This option needs to be specified if your Add-ID name has been changed in the AdminTool Design setting.
 #'
@@ -66,19 +68,27 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
     meta_names$centres <- "ctr"
     meta_names$items <- "is"
     meta_names$questions <- "qs"
+    meta_names$queries <- "qac"
     meta_names$visitplan <- "vp"
     meta_names$visitplanforms <- "vpfs"
+    meta_names$atcasenodes <- "atcn"
+    meta_names$atcasevisitplans <- "atcvp"
+    meta_names$comments <- "cts"
   } else if (short_names == FALSE) {
     meta_names$forms <- "forms"
     meta_names$casenodes <- "casenodes"
     meta_names$centres <- "centres"
     meta_names$items <- "items"
     meta_names$questions <- "questions"
+    meta_names$queries <- "queries"
     meta_names$visitplan <- "visitplan"
     meta_names$visitplanforms <- "visitplanforms"
+    meta_names$atcasenodes <- "atcasenodes"
+    meta_names$atcasevisitplans <- "atcasevisitplans"
+    meta_names$comments <- "comments"
   }
-
-  # always cl
+  # no difference long/short
+  meta_names$miv <- "miv"
   meta_names$cl <- "cl"
 
   # retrieve project specific file tags
@@ -98,8 +108,9 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   file_extension <- file_extension[file_extension == "xls"]
 
   meta_available <- list()
-  for (entry in c("forms", "casenodes", "centres", "items", "questions", "visitplan", "visitplanforms", "cl")) {
-    meta_available[entry] <- .constructmetaname(entry, meta_names, file_tag, file_extension) %in% files$Name
+  for (entry in c("forms", "casenodes", "centres", "items", "questions", "queries", "visitplan",
+                  "visitplanforms", "atcasenodes", "atcasevisitplans", "comments", "miv", "cl")) {
+    meta_available[entry] <- .construct_metaname(entry, meta_names, file_tag, file_extension) %in% files$Name
   }
 
   # find form data separator ----
@@ -154,18 +165,6 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   # long names
   datanames <- gsub(pattern = "^mnp", "", datanames)
   names(datanames) <- datafiles
-  if ("ctr" %in% datanames) {
-    w <- which(datanames == "ctr")
-    datanames[w] <- "centres"
-  }
-  if (any(c("cn", "casenodes") %in% datanames)) {
-    w <- which(datanames %in% c("cn", "casenodes"))
-    datanames[w] <- "patient"
-  }
-  if ("vp" %in% datanames) {
-    w <- which(datanames == "vp")
-    datanames[w] <- "visitplan"
-  }
 
   # return object ----
   study.options <- list(sep = sep,
