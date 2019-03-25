@@ -19,8 +19,8 @@
 #'
 #' @param form data.frame Form for which to assess variable completeness
 #'             (i.e. a list element returned by load_secuTrial_export).
-#' @param patient_table data.frame The central patient record file
-#'                      (i.e. 'patient' from the list returned by load_secuTrial_export).
+#' @param casenodes_table data.frame The central casenodes record file
+#'                      (i.e. 'casenodes' from the list returned by load_secuTrial_export).
 #' @param validation_overview tibble returned by load_validation_overview.
 #' @param completeness string Specifies if completeness is assessed for all forms ('allforms')
 #'                     or only for saved forms ('savedforms').
@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' \donttest{
-#' assess_form_variable_completeness(form = sT_export$bmd, patient_table = sT_export$patient,
+#' assess_form_variable_completeness(form = sT_export$bmd, casenodes_table = sT_export$cn,
 #'                                   validation_overview = val_ovv, completeness = "allforms",
 #'                                   occ_in_vp = 5)
 #' }
@@ -39,7 +39,7 @@
 #' @seealso load_validation_overview, load_secuTrial_export
 #'
 assess_form_variable_completeness <- function(form,
-                                              patient_table,
+                                              casenodes_table,
                                               validation_overview,
                                               completeness = "allforms",
                                               occ_in_vp = 1,
@@ -61,7 +61,7 @@ assess_form_variable_completeness <- function(form,
 
   if (completeness == "allforms") {
     # count cases (all registered ids)
-    forms_per_case_count <- length(patient_table[, 1])
+    forms_per_case_count <- length(casenodes_table[, 1])
     # multiply forms_per_case_count with form occurence in
     # visit plan to adjust for repeating forms
     forms_per_case_count <- forms_per_case_count * occ_in_vp
