@@ -2,9 +2,11 @@
 #'
 #' @description
 #' This function can load individual tables from a secuTrial data
-#' export. Before loading any other tables the casenodes/cn,
-#' centres/ctr and visitplan/vp tables need to be loaded with this function.
-#' Also export_options needs to be generated with load_export_options.
+#' export. If id translations for data tables shall be performed, the casenodes/cn,
+#' centres/ctr and visitplan/vp meta tables need to be loaded with this function first.
+#' Also export options need to be generated with load_export_options beforehand.
+#'
+#' This is an internal function which is wrapped by load_secuTrial_export
 #'
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #' @param file_name string The file_name specifies which file to load.
@@ -12,15 +14,16 @@
 #' @param add_pat_id boolean If TRUE this will add the pat_id to the table.
 #' @param add_centre boolean If TRUE this will add the centre name to the table.
 #' @param add_visitname boolean If TRUE this will add visit names to the table.
-#' @param patient_table data.frame This data.frame must be created with this function
-#'                      before any other secuTrial tables are read (exceptions centre_table, visitplan_table).
-#'                      While creating it this argument is obsolete. (see examples)
+#' @param casenodes_table data.frame This data.frame must be created with this function
+#'                      before any secuTrial data tables are read.
+#'                      Is obsolete if is_meta_table == FALSE. (see examples)
 #' @param centre_table data.frame This data.frame must be created with this function
-#'                      before any other secuTrial tables are read (exceptions patient_table, visitplan_table).
-#'                      While creating it this argument is obsolete. (see examples)
+#'                      before any other secuTrial data tables are read.
+#'                      Is obsolete if is_meta_table == FALSE. (see examples)
 #' @param visitplan_table data.frame This data.frame must be created with this function
-#'                      before any other secuTrial tables are read (exceptions patient_table, centre_table)
-#'                      While creating it this argument is obsolete. (see examples)
+#'                      before any other secuTrial data tables are read.
+#'                      Is obsolete if is_meta_table == FALSE. (see examples)
+#' @param is_meta_table boolean If TRUE the table is treated as a meta data table (e.g. id translations are ignored).
 #'
 #' @return The function returns a data.frame for the data in file_name.
 #'
@@ -28,26 +31,29 @@
 #'
 #' @examples
 #' \donttest{
-#' # load patient (casenodes/cn) table
-#' patient <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+#' # load casenodes (casenodes/cn) table
+#' casenodes <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
 #'                                                                  "s_export_CSV-xls_BMD.zip",
 #'                                                                  package = "secuTrialR"),
 #'                                           file_name = "cn.xls",
-#'                                           export_options = export_options)
+#'                                           export_options = export_options,
+#'                                           is_meta_table = TRUE)
 #'
 #' # load centre (centres/ctr) table
 #' centre <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
 #'                                                                 "s_export_CSV-xls_BMD.zip",
 #'                                                                 package = "secuTrialR"),
 #'                                          file_name = "ctr.xls",
-#'                                          export_options = export_options)
+#'                                          export_options = export_options,
+#'                                          is_meta_table = TRUE)
 #'
 #' # load visitplan (visitplan/vp) table
 #' visitplan <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
 #'                                                                    "s_export_CSV-xls_BMD.zip",
 #'                                                                    package = "secuTrialR"),
 #'                                             file_name = "vp.xls",
-#'                                             export_options = export_options)
+#'                                             export_options = export_options,
+#'                                             is_meta_table = TRUE)
 #'
 #' # load bone mineral denisty form data
 #' bmd <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
@@ -55,14 +61,15 @@
 #'                                                              package = "secuTrialR"),
 #'                                       file_name = "bmd.xls",
 #'                                       export_options = export_options,
-#'                                       patient_table = patient,
+#'                                       casenodes_table = casenodes,
 #'                                       centre_table = centre,
 #'                                       visitplan_table = visitplan)
 #' }
 #'
 load_export_table <- function(data_dir, file_name, export_options,
                               add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
-                              patient_table, centre_table, visitplan_table) {
+                              casenodes_table, centre_table, visitplan_table,
+                              is_meta_table = FALSE) {
 
   # confirm export_options presence
   if (!exists("export_options")) stop("export_options have not been specified. Run load_export_options to create.")
@@ -90,46 +97,30 @@ load_export_table <- function(data_dir, file_name, export_options,
     loaded_table <- loaded_table[, -ncol(loaded_table)]
   }
 
+  # do not manipulate meta tables
+  if (is_meta_table) {
+    return(loaded_table)
+  }
+
   # adding pat_id
   if (add_pat_id & ("mnppid" %in% names(loaded_table))) {
-    # In order to be able to translate mnppid to mnpaid the casenode (patient) table is required.
-    # This table should be loaded first to enable the translations of the other tables.
-    # If not already loaded there will be an error since the "patient"=casenode table is missing.
-    # The casenode (patient) table or any other table that already has an mnpaid must not invoke add_pat_id_col().
-    if (! "mnpaid" %in% names(loaded_table)) {
-      loaded_table <- add_pat_id_col(table = loaded_table,
-                                     id = "pat_id",
-                                     patient_table = patient_table)
-    # this will happen for the casenodes/cn table
-    } else {
-      loaded_table$pat_id <- loaded_table$mnpaid
-      loaded_table <- .move_column_after(loaded_table, "pat_id", "first")
-    }
+    loaded_table <- add_pat_id_col(table = loaded_table,
+                                   id = "pat_id",
+                                   casenodes_table = casenodes_table)
   }
 
   # adding centres
   if (add_centre & "mnppid" %in% names(loaded_table))  {
-    if (! ("mnpaid" %in% names(loaded_table))) {
-      loaded_table <- add_centre_col(table = loaded_table, id = "centre",
-                                     remove_ctag = FALSE, patient_table = patient_table,
-                                     centre_table = centre_table)
-    # this will happen for the centres/ctr table
-    } else if ("mnpctrname" %in% names(loaded_table))  {
-      # Since the introduction of the flag "Duplicate form meta data into all tables"
-      # The centre-metadate-id is missing in some tables
-      stopifnot("mnpctrname" %in% names(loaded_table))
-      loaded_table$centre <- as.factor(loaded_table$mnpctrname)
-      loaded_table <- .move_column_after(loaded_table, "centre", "pat_id")
-      loaded_table$centre <- as.factor(unlist(lapply(loaded_table$centre, remove_trailing_bracket)))
-    }
+    loaded_table <- add_centre_col(table = loaded_table, id = "centre",
+                                   remove_ctag = FALSE, casenodes_table = casenodes_table,
+                                   centre_table = centre_table)
   }
 
   # adding visit names
   if (add_visitname & "mnpvisid" %in% names(loaded_table))  {
-    if (! ("mnpvislabel" %in% names(loaded_table))) {
-      loaded_table <- add_visitname_col(table = loaded_table, id = "visit_name",
-                                        visitplan_table = visitplan_table)
-    }
+    loaded_table <- add_visitname_col(table = loaded_table, id = "visit_name",
+                                      visitplan_table = visitplan_table)
   }
+
   return(loaded_table)
 }
