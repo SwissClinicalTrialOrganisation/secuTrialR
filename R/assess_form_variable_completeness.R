@@ -14,6 +14,8 @@
 #' Variable completeness is considered based on rules in the secuTrial setup. Thus,
 #' if a variable is not marked as necessary for completeness, this variable will
 #' always be considered as 100 percent complete if only 'savedforms' are assessed.
+#' Please note that variable completeness for repetition forms should only be
+#' assessed for saved forms.
 #'
 #' @export assess_form_variable_completeness
 #'
@@ -57,6 +59,11 @@ assess_form_variable_completeness <- function(form,
   if (! all(c("Completion status", "Column") %in% names(validation_overview))) {
     stop(paste("'Completion status' and 'Column' are not available in the supplied validation overview but are needed.",
                "Reexport your validation overview in secuTrial with these two columns displayed.'"))
+  }
+  # check for "allforms" and a position column in the form
+  if (any("position" %in% names(form)) & completeness == "allforms") {
+    stop(paste("The 'position' column in your form indicates a repetition form.",
+         "You should set the completeness parameter to 'savedforms'."))
   }
 
   if (completeness == "allforms") {
@@ -133,5 +140,14 @@ assess_form_variable_completeness <- function(form,
         table_missing_counts <- table_missing_counts[-mnp_idx, ]
     }
   }
+  # for "allforms" remove "centre", "pat_id", "sigstatus", "visit_name"
+  if (completeness == "allforms") {
+    omit_idx <- which(table_missing_counts$variable %in% c("centre", "pat_id", "sigstatus", "visit_name"))
+    table_missing_counts <- table_missing_counts[-omit_idx, ]
+  }
+  # sort
+  table_missing_counts$variable <- as.character(table_missing_counts$variable)
+  table_missing_counts <- table_missing_counts[order(table_missing_counts$variable), ]
+  row.names(table_missing_counts) <- NULL
   return(table_missing_counts)
 }

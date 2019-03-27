@@ -45,7 +45,7 @@ unique(length(bmd_data$patid))
 
 As you can see there are 504 unique patients grouped into "Calcium" and "Placebo". The patient with
 id 999 was subsequently added to the original dataset. This record has some missing values.
-These values are missing on purpose, since missing values are needed to demonstrate some donwstream 
+These values are missing on purpose, since missing values are needed to demonstrate some downstream 
 functionalities of the package. 
 
 The central files this vignette will be using are part of the package. Since the paths end up being a little
@@ -121,7 +121,7 @@ validation overview and a loaded secuTrial export. Both the validation
 overview and the data export should be from the same time (not more than minutes
 apart if possible) to ensure data integrity.
 
-The secuTrial export has aleady been loaded above. The code below shows how to load the validation overview.
+The secuTrial export has already been loaded above. The code below shows how to load the validation overview.
 The validation overview contains a line for every variable with a missing or erroneous value. As explained 
 earlier, patient 999 was added with missing values. As you can see the validation report only contains entries
 for "Patient" 999.
@@ -133,7 +133,7 @@ val_ovv[,c("Patient", "Completion status", "Column")]
 ```
 
 First we will asses the completeness only for "savedforms". Below you see
-that "age" is missing once while "grouping" and "bmd" are bith missing twice
+that "age" is missing once while "grouping" and "bmd" are both missing twice
 just as reported in the validation overview.
 
 ```{r}
@@ -148,7 +148,7 @@ which have not been saved, then you need to set the completeness parameter to "a
 Note that the occ_in_vp parameter has also been set to five. This is because the patients
 in the study were followed up, up to five times (i.e. five visits). Thus, if a patient 
 was followed up less then five times his or her data is not complete. To set this parameter 
-correctly, knowledge of the study design is necessary. As expecteted the completeness is 
+correctly, knowledge of the study design is necessary. As expected the completeness is 
 reduced when regarding all forms.
 
 ```{r}

@@ -41,6 +41,8 @@ apart if possible) to ensure data integrity.
 Variable completeness is considered based on rules in the secuTrial setup. Thus,
 if a variable is not marked as necessary for completeness, this variable will
 always be considered as 100 percent complete if only 'savedforms' are assessed.
+Please note that variable completeness for repetition forms should only be
+assessed for saved forms.
 }
 \examples{
 \donttest{
