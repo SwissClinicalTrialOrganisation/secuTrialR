@@ -41,3 +41,5 @@ added/changed. New functionalities must be thoroughly documented, have examples
 and should be accompanied by at least one [test](tests/testthat/) to ensure longterm 
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
+
+A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).
