@@ -6,7 +6,7 @@
 \usage{
 assess_form_variable_completeness(form, casenodes_table,
   validation_overview, completeness = "allforms", occ_in_vp = 1,
-  omit.mnp = TRUE)
+  omit_mnp = TRUE)
 }
 \arguments{
 \item{form}{data.frame Form for which to assess variable completeness
@@ -23,7 +23,7 @@ or only for saved forms ('savedforms').}
 \item{occ_in_vp}{integer Specifies how often the form occurs in the visit plan
 (only relevant if completeness = 'allforms' is set).}
 
-\item{omit.mnp}{boolean Removes variable names from the result table that start with mnp.}
+\item{omit_mnp}{boolean Removes variable names from the result table that start with mnp.}
 }
 \value{
 data.frame showing percent completeness per variable.

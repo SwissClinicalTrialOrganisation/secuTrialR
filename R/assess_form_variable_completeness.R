@@ -28,7 +28,7 @@
 #'                     or only for saved forms ('savedforms').
 #' @param occ_in_vp integer Specifies how often the form occurs in the visit plan
 #'                  (only relevant if completeness = 'allforms' is set).
-#' @param omit.mnp boolean Removes variable names from the result table that start with mnp.
+#' @param omit_mnp boolean Removes variable names from the result table that start with mnp.
 #' @return data.frame showing percent completeness per variable.
 #'
 #' @examples
@@ -45,7 +45,7 @@ assess_form_variable_completeness <- function(form,
                                               validation_overview,
                                               completeness = "allforms",
                                               occ_in_vp = 1,
-                                              omit.mnp = TRUE) {
+                                              omit_mnp = TRUE) {
   # form must appear at least once in visit plan
   if (occ_in_vp < 1) {
     stop(paste("occ_in_vp is set to", occ_in_vp, "but can not be smaller than 1."))
@@ -134,7 +134,7 @@ assess_form_variable_completeness <- function(form,
   }
 
   # remove variables starting with mnp
-  if (omit.mnp) {
+  if (omit_mnp) {
     mnp_idx <- grep("^mnp", table_missing_counts$variable)
     if (length(mnp_idx) > 1) {
         table_missing_counts <- table_missing_counts[-mnp_idx, ]
