@@ -15,7 +15,10 @@ knitr::opts_chunk$set(
 ```
 
 This R package provides functions for handling data from the clinical data management system (CDMS) secuTrial. The most important components are
-related to loading data exports from secuTrial into R. For this vignette and also to test your installation of the secuTrialR package
+related to loading data exports from secuTrial into R. In brief, the package aims to allow swift execution of repetitive tasks in order
+to allow spending more time on the unique aspects of a dataset.
+
+For this vignette and also to test your installation of the secuTrialR package
 some example export data is delivered with the package. The data (*calcium*) was retrieved from the **lava** package and and extended
 with some made up data (ID 999). Subsequently the dataset was prepared for import into a secuTrial electronic case report form (eCRF).
 After import, the data was again exported and added to the secuTrialR package. The exports processed in the following are non-rectangular.
