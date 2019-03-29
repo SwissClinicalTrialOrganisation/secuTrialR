@@ -55,9 +55,8 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
   # check if add_id is available
   if (! export_options$add_id) {
     stop(paste0("The specified secuTrial export does not include an Add-ID. ",
-                "Maybe you can specifty a custom add_id_name which has been ",
-                "set in the AdminTool 'Design' setting?"
-                ))
+                "Maybe you can specify a custom add_id_name which has been ",
+                "set in the AdminTool 'Design' setting?"))
   }
 
   # init return list
