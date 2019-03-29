@@ -30,6 +30,7 @@ print.secuTrialdata <- function(x){
   })
   tab <- do.call("rbind", tab)
   tab$original_name <- rownames(tab)
+  rownames(tab) <- NULL
   print(tab, row.names = FALSE)
 
 }
