@@ -18,9 +18,11 @@ shall be loaded.}
 been changed in the AdminTool Design setting.}
 }
 \value{
-This is a list of data.frames with all the data loaded from the secuTrial export.
-        The minimum list will always contain the meta tables and
-        export_options data.frames.
+This is a list of class secuTrialdata containing a list of
+        export options and data.frames with all the data loaded from
+        the secuTrial export.
+        The list will contain at least the metadata data.frames and
+        export_options list.
 }
 \description{
 This function will always load the full set of meta tables first.
