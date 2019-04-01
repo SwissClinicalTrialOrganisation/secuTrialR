@@ -8,7 +8,22 @@ An R package to handle data from the clinical data management system (CDMS) [sec
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
-## Testing with devtools
+## Basic usage
+
+``` r
+# prepare path to example export
+export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+                               package = "secuTrialR")
+# load all export data
+sT_export <- load_secuTrial_export(data_dir = export_location)
+# basic info on the dataset
+sT_export
+
+```
+
+
+## For contributors
+### Testing with devtools
 
 ``` R
 # run tests
@@ -17,7 +32,7 @@ devtools::test("secuTrialR")
 devtools::spell_check("secuTrialR")
 ```
 
-## Linting with lintr
+### Linting with lintr
 
 ```r
 # lint the package -> should be clean
@@ -27,7 +42,7 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
                                                    line_length_linter(125)))
 ```
 
-## Guidelines for contributers
+### Guidelines for contributers
 
 In order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the 
