@@ -17,9 +17,11 @@
 #'                      specified if only meta tables and export_options
 #'                      shall be loaded.
 #'
-#' @return This is a list of data.frames with all the data loaded from the secuTrial export.
-#'         The minimum list will always contain the meta tables and
-#'         export_options data.frames.
+#' @return This is a list of class secuTrialdata containing a list of
+#'         export options and data.frames with all the data loaded from
+#'         the secuTrial export.
+#'         The list will contain at least the metadata data.frames and
+#'         export_options list.
 #'
 #' @examples
 #' # prepare path to example export
@@ -53,9 +55,8 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
   # check if add_id is available
   if (! export_options$add_id) {
     stop(paste0("The specified secuTrial export does not include an Add-ID. ",
-                "Maybe you can specifty a custom add_id_name which has been ",
-                "set in the AdminTool 'Design' setting?"
-                ))
+                "Maybe you can specify a custom add_id_name which has been ",
+                "set in the AdminTool 'Design' setting?"))
   }
 
   # init return list
@@ -121,6 +122,6 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     loaded_table <- setNames(list(loaded_table), table_name[[1]])
     return_list <- c(return_list, loaded_table)
   }
-
+  class(return_list) <- "secuTrialdata"
   return(return_list)
 }
