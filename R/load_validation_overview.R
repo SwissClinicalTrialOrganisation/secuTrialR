@@ -1,16 +1,16 @@
-#'
-#' This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.
-#'
-#' @export load_validation_overview
-#'
-#' @param data_dir Path to the Validation Overview (must be an *.xlsx file).
-#'
-#' @return tibble with the 'Validation Overview' data.
-#'
-#' @examples
-#' val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
-#' val_ovv <- load_validation_overview(data_dir = val_ovv_location)
-#'
+#
+# This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.
+#
+# @export load_validation_overview
+#
+# @param data_dir Path to the Validation Overview (must be an *.xlsx file).
+#
+# @return tibble with the 'Validation Overview' data.
+#
+# @examples
+# val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
+# val_ovv <- load_validation_overview(data_dir = val_ovv_location)
+#
 load_validation_overview <- function(data_dir) {
 
   last_four <- substr(data_dir, start = (nchar(data_dir) - 3), stop = nchar(data_dir))
