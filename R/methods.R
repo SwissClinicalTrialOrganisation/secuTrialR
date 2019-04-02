@@ -63,7 +63,18 @@ plot.secuTrialdata <- function(x){
   r <- reshape(u, direct = "wide",
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
-  r <- r[,]
+  # column order
+  tmpl <- split(x$visitplan, x$visitplan$mnpvsno)[[1]]
+  tmpl$r <- 1:nrow(tmpl)
+  neworder <- c(1, tmpl$r[match(tmpl$mnpvislabel, gsub("tmpvar.", "", names(r)[2:ncol(r)]))]+1)
+  r <- r[, neworder]
+  # row order
+  tmpl <- split(x$forms, x$forms$mnpvslbl)[[1]]
+  f <- as.character(tmpl$formname)
+  neworder <- na.exclude((1:length(f))[match(f, r$formname)])
+  neworder <- max(neworder)+1-neworder
+  r <- r[neworder, ]
+  # construct the figure
   z <- !is.na(as.matrix(r[, grepl("tmpvar", names(r))]))
   names <- gsub("tmpvar.", "", names(r[, grepl("tmpvar", names(r))]))
   paropts <- par()
@@ -72,6 +83,6 @@ plot.secuTrialdata <- function(x){
   layout(matrix(c(0,1,0,0), 2, 2, byrow = TRUE))
   image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))
   axis(2, r$formname, at = 0:(nrow(r)-1)/(nrow(r)-1), las = 1)
-  axis(1, names, at = 0:(ncol(r)-2)/(ncol(r)-2), las = 2)
+  axis(1, names, at = 0:(length(names)-1)/(length(names)-1), las = 2)
 }
 
