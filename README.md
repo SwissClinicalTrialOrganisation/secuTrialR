@@ -2,6 +2,13 @@
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
+## Installing from github with devtools
+
+``` r
+devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
+```
+
+
 ## Basic usage
 
 ``` r
@@ -28,11 +35,6 @@ plot(sT_export)
 ```
 
 
-## Installing from github with devtools
-
-``` r
-devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
-```
 
 ## Information for contributers
 ### Testing with devtools
