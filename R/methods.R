@@ -75,7 +75,7 @@ visit_structure <- function(x){
   names <- gsub("tmpvar.", "", names(ro[, grepl("tmpvar", names(ro))]))
   names(ro)[2:ncol(ro)] <- names
 
-  class(ro) <- "secuTrialvisit"
+  class(ro) <- c("secuTrialvisit", "data.frame")
   return(ro)
 }
 
