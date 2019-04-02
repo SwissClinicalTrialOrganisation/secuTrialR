@@ -34,7 +34,8 @@ plot(sT_export)
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
-## Testing with devtools
+## Information for contributers
+### Testing with devtools
 
 ``` R
 # run tests
@@ -43,7 +44,7 @@ devtools::test("secuTrialR")
 devtools::spell_check("secuTrialR")
 ```
 
-## Linting with lintr
+### Linting with lintr
 
 ```r
 # lint the package -> should be clean
@@ -53,7 +54,7 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
                                                    line_length_linter(125)))
 ```
 
-## Guidelines for contributers
+### Guidelines for contributers
 
 In order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the 
