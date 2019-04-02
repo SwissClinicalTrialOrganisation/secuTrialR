@@ -72,8 +72,50 @@ plot.secuTrialdata <- function(x){
   tmpl <- split(x$forms, x$forms$mnpvslbl)[[1]]
   f <- as.character(tmpl$formname)
   neworder <- na.exclude((1:length(f))[match(f, r$formname)])
-  neworder <- max(neworder)+1-neworder
-  r <- r[neworder, ]
+  neworder2 <- max(neworder)+1-neworder
+  ro <- r[neworder, ]
+  r <- r[neworder2, ]
+  # construct the figure
+  z <- !is.na(as.matrix(r[, grepl("tmpvar", names(r))]))
+  names <- gsub("tmpvar.", "", names(r[, grepl("tmpvar", names(r))]))
+  paropts <- par()
+  on.exit(paropts)
+  par(mai = c(0,0,0.1,0.1))
+  layout(matrix(c(0,1,0,0), 2, 2, byrow = TRUE))
+  image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))
+  axis(2, r$formname, at = 0:(nrow(r)-1)/(nrow(r)-1), las = 1)
+  axis(1, names, at = 0:(length(names)-1)/(length(names)-1), las = 2)
+  names(r)[2:ncol(r)] <- names
+  return(ro)
+}
+
+
+visit_structure <- function(x){
+  tmp <- merge(x$visitplan, x$visitplanforms)
+  tmp <- merge(tmp, x$forms)
+  u <- unique(tmp[, c("mnpvislabel", "formname")])
+  u$tmpvar <- 1
+  r <- reshape(u, direct = "wide",
+               timevar = "mnpvislabel",
+               idvar = "formname", v.names = "tmpvar")
+  # column order
+  tmpl <- split(x$visitplan, x$visitplan$mnpvsno)[[1]]
+  tmpl$r <- 1:nrow(tmpl)
+  neworder <- c(1, tmpl$r[match(tmpl$mnpvislabel, gsub("tmpvar.", "", names(r)[2:ncol(r)]))]+1)
+  r <- r[, neworder]
+  # row order
+  tmpl <- split(x$forms, x$forms$mnpvslbl)[[1]]
+  f <- as.character(tmpl$formname)
+  neworder <- na.exclude((1:length(f))[match(f, r$formname)])
+  ro <- r[neworder, ]
+  names <- gsub("tmpvar.", "", names(ro[, grepl("tmpvar", names(ro))]))
+  names(ro)[2:ncol(ro)] <- names
+
+  class(ro) <- "secuTrialvisit"
+  return(ro)
+}
+
+plot.secuTrialvisit <- function(x){
   # construct the figure
   z <- !is.na(as.matrix(r[, grepl("tmpvar", names(r))]))
   names <- gsub("tmpvar.", "", names(r[, grepl("tmpvar", names(r))]))
@@ -86,3 +128,7 @@ plot.secuTrialdata <- function(x){
   axis(1, names, at = 0:(length(names)-1)/(length(names)-1), las = 2)
 }
 
+plot.secuTrialdata(x){
+  vs <- visitstructure(x)
+  plot(vs)
+}
