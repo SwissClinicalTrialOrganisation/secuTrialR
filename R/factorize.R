@@ -7,16 +7,18 @@ factorize_secuTrial.secuTrialdata <- function(object){
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
   obs <- lapply(x, function(obj){
-    print(obj)
+    # print(obj)
     tmp <- object[[obj]]
-    tmp <- factorize_secuTrial(tmp, object$cl)
+    tmp <- factorize_secuTrial(tmp, object$cl, form = obj)
     tmp
   })
   obs
+  object[x] <- obs
+  object
 }
 
 # data.frame method
-factorize_secuTrial.data.frame <- function(data, cl){
+factorize_secuTrial.data.frame <- function(data, cl, form){
   if(!is.character(cl$column)) cl$column <- as.character(cl$column)
 
   str <- strsplit(cl$column, ".", fixed = TRUE)
@@ -24,13 +26,8 @@ factorize_secuTrial.data.frame <- function(data, cl){
   cl$var <- str
 
   for(i in names(data)[names(data) %in% cl$var]){
-    print(i)
-    lookup <- cl[grepl(paste0(obj, ".", i, "$"), cl$column), ]
-    # lookup <- cl[which(cl$var == i), c("code", "value")]
-    # if(is.logical(data[, i])){
-    #   warning(paste0("converting", i, "to integer"))
-    #   data[, i] <- as.integer(data[, i])
-    # }
+    # print(i)
+    lookup <- cl[grepl(paste0(form, ".", i, "$"), cl$column), ]
     data[, paste0(i, ".factor")] <- factorize_secuTrial(data[, i], lookup)
   }
   return(data)
@@ -39,7 +36,7 @@ factorize_secuTrial.data.frame <- function(data, cl){
 # integer method
 factorize_secuTrial.integer <- function(data, lookup){
   lookup <- unique(lookup)
-  print(lookup)
+  # print(lookup)
   factor(data, lookup$code, lookup$value)
 }
 
