@@ -8,7 +8,8 @@
 #' into export_options.
 #'
 #' @export load_secuTrial_export
-#'
+#' @name secuTrialdata
+#' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #' @param add_id_name string This needs to be specified if your Add-ID name has
 #'                    been changed in the AdminTool Design setting.
