@@ -22,17 +22,6 @@ sT_export
 
 ```
 
-For data bases with multiple visits, the visit structure can also be viewed.
-
-``` r
-# visit structure (as data.frame)
-(vs <- visit_structure(sT_export))
-# visit structure (as figure)
-plot(vs)
-# or, simply
-plot(sT_export)
-```
-
 
 
 ## For contributors
