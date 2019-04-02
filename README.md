@@ -2,6 +2,32 @@
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
+## Basic usage
+
+``` r
+# prepare path to example export
+export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+                               package = "secuTrialR")
+# load all export data
+sT_export <- load_secuTrial_export(data_dir = export_location)
+# basic info on the dataset
+sT_export
+
+
+```
+
+For data bases with multiple visits, the visit structure can also be viewed.
+
+``` r
+# visit structure (as data.frame)
+(vs <- visit_structure(sT_export))
+# visit structure (as figure)
+plot(vs)
+# or, simply
+plot(sT_export)
+```
+
+
 ## Installing from github with devtools
 
 ``` r
