@@ -3,6 +3,7 @@ factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 
 # secuTrialdata method
 factorize_secuTrial.secuTrialdata <- function(object){
+  if(!object$export_options$refvals_separate) stop("Reference values not available. Save reference values to seperate table in export")
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
