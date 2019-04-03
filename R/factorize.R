@@ -1,18 +1,20 @@
 #' Add factors to secuTrialdata objects
-#'
-#' @rdname factor
-#' @name factor
+#' SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
+#' @rdname factorize
+#' @name factorize
 #' @param x a \code{secuTrialdata} object
-#' @return
 #' @export
+#' @details factorize_secuTrial will return an error if the appropriate codebook is not available.
 #'
 #' @examples
+#' # TODO - NO SUITABLE EXPORT AVAILABLE IN THE PACKAGE
 
 # create factors
 factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 
 #' Method for secuTrialdata objects
-#' @rdname factor
+#' These objects include all relevant data (assuming that reference values are saved to a separate table, \link[see here for info]{https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/})
+#' @rdname factorize
 #' @param object a \code{secuTrialdata} object
 #'
 #' @return object with extra variables in forms for factors (names are appended with \code{.factor})
@@ -35,8 +37,8 @@ factorize_secuTrial.secuTrialdata <- function(object){
   object
 }
 
-#' Method for data.frame objects
-#' @rdname factor
+#' The data.frame method is used on the individual datasets within the \code{secuTrialdata} object, and relies on \code{cl}
+#' @rdname factorize
 #' @param data a \code{data.frame}, usually from within a \code{secuTrialdata} object
 #' @param cl a \code{data.frame}, usually taken from a \code{secuTrialdata} object, containing at least three variables - 1) \code{column} containing information on which form and variable is to be factorized (formatted as form.variable); 2) \code{code} containing the options that the variable can take as a number; 3) \code{value} contains the text relating to the \code{code} number
 #' @param form which form you are currently working on (used for filtering \code{cl})
@@ -60,8 +62,8 @@ factorize_secuTrial.data.frame <- function(data, cl, form){
   return(data)
 }
 
-#' Method for integer objects
-#' @rdname factor
+#' Methods for individual variables rely on a lookup table with variables code and value. They are basically just wrappers for \code{factor(...)}.
+#' @rdname factorize
 #' @param var a variable
 #' @param lookup a restricted version of cl (filtered based on \code{form}), containing only the rows relevant for \code{var}
 #'
@@ -74,8 +76,7 @@ factorize_secuTrial.integer <- function(var, lookup){
   factor(var, lookup$code, lookup$value)
 }
 
-#' Method for logical objects
-#' @rdname factor
+#' @rdname factorize
 factorize_secuTrial.logical <- function(var, lookup){
   var <- as.numeric(var)
   factor(var, lookup$code, lookup$value)
