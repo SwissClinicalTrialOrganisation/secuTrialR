@@ -121,6 +121,6 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     loaded_table <- setNames(list(loaded_table), table_name[[1]])
     return_list <- c(return_list, loaded_table)
   }
-
+  class(return_list) <- "secuTrialdata"
   return(return_list)
 }
