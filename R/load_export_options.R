@@ -141,7 +141,7 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   # TODO : custom formats? parsed from ExportOptions?
 
   # reference values
-  refvals_seperate <- grepl("separate table", parsed_export)
+  refvals_seperate <- any(grepl("separate table", parsed_export))
 
   # dates ----
   # date format
