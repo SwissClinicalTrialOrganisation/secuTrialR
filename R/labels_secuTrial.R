@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #' Get variable labels for secuTrialdata objects
 #'
 #' @param object \code{secuTrialdata} object
