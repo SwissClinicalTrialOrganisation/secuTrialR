@@ -34,9 +34,11 @@ dates_secuTrial.secuTrialdata <- function(object){
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
-    itqu <- itqu[grepl("checked date", itqu$itemtype, ignore.case = TRUE), ]
+    itqu <- itqu[grepl("date", itqu$itemtype, ignore.case = TRUE), ]
     # remove year
     itqu <- itqu[!grepl("\\(yyyy\\)", itqu$itemtype, ignore.case = TRUE), ]
+    itqu <- itqu[!grepl("interval", itqu$itemtype, ignore.case = TRUE), ]
+    itqu <- itqu[!grepl("h:m", itqu$itemtype, ignore.case = TRUE), ]
     datevars <- unique(itqu$ffcolname)
     # date format
     format <- object$export_options$date.format
