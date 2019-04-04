@@ -51,17 +51,12 @@ dates_secuTrial.secuTrialdata <- function(object){
 dates_secuTrial.data.frame <- function(data, datevars, format){
   datevars <- datevars[datevars %in% names(data)]
   # print(datevars)
-  if(length(datevars)==1){
-    newdatecol <- dates_secuTrial(data[, datevars], format)
-    # print(head(newdatecol))
-    data[, paste0(datevars, ".date")] <- newdatecol
-  }
-  if(length(datevars) > 1){
-    newdatecols <- lapply(data[, datevars], function(x) dates_secuTrial(x, format))
-    newdatecols <- do.call("cbind", newdatecols)
-    colnames(newdatecols) <- paste0(datevars, ".date")
-    # print(head(newdatecols))
-    data <- cbind(data, newdatecols)
+  if(length(datevars) > 0) {
+    for(x in datevars){
+      newdatecol <- dates_secuTrial(data[, x], format)
+      # print(head(newdatecol))
+      data[, paste0(x, ".date")] <- newdatecol
+    }
   }
   # print(head(data))
   data
