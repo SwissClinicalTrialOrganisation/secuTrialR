@@ -55,11 +55,11 @@ links_secuTrial <- function(object, forms = NULL){
 
   vs <- vs[!duplicated(vs), ]
 
-  g <- graph_from_data_frame(fqid[, c("form", "var")],
+  g <- igraph::graph_from_data_frame(fqid[, c("form", "var")],
                              directed = FALSE,
                              vertices = vs)
-  V(g)$color <- ifelse(V(g)$y == 0, "blue", "red")
-  tkplot(g, layout = layout_as_tree)
+  igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, "blue", "red")
+  igraph::tkplot(g, layout = layout_as_tree)
 
 }
 
