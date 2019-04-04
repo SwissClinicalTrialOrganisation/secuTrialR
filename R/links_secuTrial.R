@@ -4,8 +4,8 @@
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
-#'
-#' @return a tikz plot window. We recommend to resize the window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue.
+#' @details We recommend to resize the tikz window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
+#' @return a tikz plot window.
 #' @export
 #'
 #' @examples
@@ -29,6 +29,10 @@ links_secuTrial <- function(object, forms = NULL){
     data.frame(form = rx, var = names(obj[[x]]), stringsAsFactors = FALSE)
     })
   x <- do.call("rbind", x)
+  if(any(x$form %in% x$var)){
+    w <- which(x$form %in% x$var)
+    x$form[w] <- paste0(x$form[w], "_form")
+  }
   sx <- split(x, x$var)
   sxid <- mapply(function(x, y){
     x$q_id <- y

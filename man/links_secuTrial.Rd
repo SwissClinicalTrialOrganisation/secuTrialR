@@ -12,10 +12,13 @@ links_secuTrial(object, forms = NULL)
 \item{forms}{a regular expression for which forms should be included}
 }
 \value{
-a tikz plot window. We recommend to resize the window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue.
+a tikz plot window.
 }
 \description{
 SecuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
+}
+\details{
+We recommend to resize the tikz window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 }
 \examples{
 # prepare path to example export
