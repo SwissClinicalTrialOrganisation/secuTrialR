@@ -7,7 +7,14 @@
 #' @return same as the original object with date variables converted to Dates.
 #' @export
 #' @examples
-#' # TODO
+#' # prepare path to example export
+#' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+#'                                package = "secuTrialR")
+#' # load all export data
+#' sT_export <- load_secuTrial_export(data_dir = export_location)
+#' # prepare dates
+#' dates <- dates_secuTrial(sT_export)
+
 dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 
 #' @rdname dates_secuTrial
@@ -47,7 +54,7 @@ dates_secuTrial.secuTrialdata <- function(object){
 #' @rdname dates_secuTrial
 #' @param data data.frame
 #' @param datevars string consisting of variables with dates
-#' @param format format of dates (taken from \code{object$export_options$date.format})
+#' @param format format of dates (typically taken from \code{object$export_options$date.format})
 dates_secuTrial.data.frame <- function(data, datevars, format){
   datevars <- datevars[datevars %in% names(data)]
   # print(datevars)
@@ -64,28 +71,37 @@ dates_secuTrial.data.frame <- function(data, datevars, format){
 
 #' @rdname dates_secuTrial
 #' @param var date variable to be converted
-#' @param format date format
 dates_secuTrial.character <- function(var, format){
   # some export types probably return strings
   as.Date(var, format = format)
 }
+#' @rdname dates_secuTrial
 dates_secuTrial.factor <- function(var, format){
   # depending on options, strings might be converted to factors
   # convert to string
   dates_secuTrial(as.character(var), format)
 }
+#' @rdname dates_secuTrial
 dates_secuTrial.integer <- function(var, format){
   # this is the default type
   # convert to string
   dates_secuTrial(as.character(var), format)
 }
+#' @rdname dates_secuTrial
 dates_secuTrial.numeric <- function(var, format){
   # this is the default type
   # convert to string
   dates_secuTrial(as.character(var), format)
 }
+#' @rdname dates_secuTrial
 dates_secuTrial.logical <- function(var, format){
   # this happens when the variable is empty
+  var
+}
+#' @rdname dates_secuTrial
+dates_secuTrial.Date <- function(var, format){
+  # in case a variable is already a date
+  warning(var, " is already a Date")
   var
 }
 
