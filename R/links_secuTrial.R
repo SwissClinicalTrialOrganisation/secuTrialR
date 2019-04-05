@@ -4,7 +4,7 @@
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
-#' @details We recommend to resize the tikz window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
+#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 #' @return a tikz plot window.
 #' @export
 #'
@@ -19,7 +19,7 @@
 #' links_secuTrial(sT_export)
 #' }
 links_secuTrial <- function(object, forms = NULL){
-  if(!class(object) == "secuTrialdata") stop("object of class secuTrialdata expect")
+  if(!class(object) == "secuTrialdata") stop("object of class secuTrialdata expected")
   obj <- object[2:length(object)]
 
   names <- lapply(obj, names)
