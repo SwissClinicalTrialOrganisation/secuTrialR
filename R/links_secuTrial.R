@@ -4,8 +4,9 @@
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
-#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
-#' @return a tikz plot window.
+#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue.
+#' @note Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
+#' @return a tcltk plot window.
 #' @export
 #'
 #' @examples
