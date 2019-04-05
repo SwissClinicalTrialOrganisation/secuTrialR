@@ -25,17 +25,17 @@ Description: This R package is intended to standardize and simplify working with
     data export the package works with is a standard non-rectangular export.
 Depends:
     R (>= 3.0.2),
-    tidyverse,
-    readxl,
     igraph,
-    tcltk
+    readxl,
+    tcltk,
+    tidyverse
 License: GPL-2 
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
+    lintr,
     rmarkdown,
-    testthat,
-    lintr
+    testthat
 VignetteBuilder: knitr
