@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 #'                                package = "secuTrialR")
@@ -16,6 +17,7 @@
 #' sT_export <- load_secuTrial_export(data_dir = export_location)
 #' # get labels
 #' links_secuTrial(sT_export)
+#' }
 links_secuTrial <- function(object, forms = NULL){
   if(!class(object) == "secuTrialdata") stop("object of class secuTrialdata expect")
   obj <- object[2:length(object)]

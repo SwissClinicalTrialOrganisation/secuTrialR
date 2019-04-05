@@ -21,6 +21,7 @@ SecuTrial creates a large number of files and identifiers with which to link fil
 We recommend to resize the tikz window and and click view::fit to screen to improve readability. Forms are coloured red, variables are coloured blue. Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 }
 \examples{
+\dontrun{
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
@@ -28,4 +29,5 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 sT_export <- load_secuTrial_export(data_dir = export_location)
 # get labels
 links_secuTrial(sT_export)
+}
 }
