@@ -14,6 +14,7 @@
 #' sT_export <- load_secuTrial_export(data_dir = export_location)
 #' # get labels
 #' labels <- labels_secuTrial(sT_export)
+#' labels[["age"]]
 labels_secuTrial <- function(object, form = NULL){
   it <- object[[object$export_options$meta_names$items]]
   if(!is.null(form)){
