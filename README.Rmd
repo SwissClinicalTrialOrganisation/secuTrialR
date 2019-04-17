@@ -15,26 +15,35 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
 ## Basic usage
+Load the package
 ```{r, echo = TRUE, warning=FALSE, message=FALSE}
 library(secuTrialR)
 ```
-
+### Load the dataset
 ```{r}
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-
-
+names(sT_export)
 ```
+`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. SecuTrialR automatically strips file names of dates. The new file names can be seen via `sT_export$export_options$data_names`.
+<!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
+
+### Variable labels
 For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
 ```{r}
 labs <- labels_secuTrial(sT_export)
 labs[["age"]]
 
 ```
-
+### Prepare dates
+Dates are a very common data type. They cannot be easily used though in their export format. This is also easily done in secuTrialR:
+```{r}
+dates <- dates_secuTrial(sT_export)
+```
+There are no date variables in this dataset, hence the warnings.
 
 ## For contributors
 ### Testing with devtools

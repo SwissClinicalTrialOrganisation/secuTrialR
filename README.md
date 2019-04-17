@@ -14,9 +14,13 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 
 ## Basic usage
 
+Load the package
+
 ``` r
 library(secuTrialR)
 ```
+
+### Load the dataset
 
 ``` r
 # prepare path to example export
@@ -25,6 +29,8 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
 ```
+
+### Variable labels
 
 For creating tables, it is often useful to have access to variable
 labels. This is simple in secuTrialR.
@@ -35,6 +41,24 @@ labs[["age"]]
 ```
 
     ## [1] "Age"
+
+### Prepare dates
+
+Dates are a very common data type. They cannot be easily used though in
+their export format. This is also easily done in
+    secuTrialR:
+
+``` r
+dates <- dates_secuTrial(sT_export)
+```
+
+    ## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
+    ## detected in bmd
+
+    ## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
+    ## detected in atbmd
+
+There are no date variables in this dataset, hence the warnings.
 
 ## For contributors
 
