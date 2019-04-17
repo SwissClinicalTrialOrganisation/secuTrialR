@@ -36,6 +36,31 @@ labs[["age"]]
 
     ## [1] "Age"
 
+### Prepare factors
+
+It is often useful to have categorical variables as factors (R knows how
+to handle factors). SecuTrialR can prepare factors
+    easily.
+
+``` r
+factors <- factorize_secuTrial(sT_export)
+```
+
+    ## Error in factorize_secuTrial.secuTrialdata(sT_export): Categorical variables are probably factors already (options()$stringsAsFactors == TRUE)
+    ## Recommend saving reference values to seperate table in export
+
+This functions loops through each table of the dataset, creating new
+factor variables where necessary. The new variables are the same as the
+original but with `.factor` appended (i.e. a new variable called
+`sex.factor` would be added to the relevant form).
+<!-- REFERENCE VALUES NOT EXPORTED FROM THE DATASET -->
+
+For this function to work, reference values must be saved to a seperate
+form. An error will be returned with a message suggesting to change the
+export. There is an option for this in the secuTrial export. See
+[here](https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/)
+for info.
+
 ## For contributors
 
 ### Testing with devtools

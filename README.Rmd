@@ -25,16 +25,23 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-
-
 ```
+### Variable labels
 For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
 ```{r}
 labs <- labels_secuTrial(sT_export)
 labs[["age"]]
 
 ```
+### Prepare factors
+It is often useful to have categorical variables as factors (R knows how to handle factors). SecuTrialR can prepare factors easily.
+```{r, error=TRUE}
+factors <- factorize_secuTrial(sT_export)
+```
+This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
+<!-- REFERENCE VALUES NOT EXPORTED FROM THE DATASET -->
 
+For this function to work, reference values should be saved to a seperate form. An error will be returned with a message suggesting to change the export. There is an option for this in the secuTrial export. See [here](https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/) for info. The advantage of using factors defined by secuTrialR, rather than those from the import (if `options()$stringsAsFactors == TRUE`) is that the latter may not have all the possible levels of the variable associated. The former will, as it is defined using all possible values.
 
 ## For contributors
 ### Testing with devtools
