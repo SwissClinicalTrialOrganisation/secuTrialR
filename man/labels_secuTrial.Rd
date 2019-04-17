@@ -28,4 +28,5 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 sT_export <- load_secuTrial_export(data_dir = export_location)
 # get labels
 labels <- labels_secuTrial(sT_export)
+labels[["age"]]
 }
