@@ -35,7 +35,7 @@ dates_secuTrial.secuTrialdata <- function(object){
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
     itqu <- itqu[grepl("date", itqu$itemtype, ignore.case = TRUE), ]
-    # remove year
+    # remove year, interval and time
     itqu <- itqu[!grepl("\\(yyyy\\)", itqu$itemtype, ignore.case = TRUE), ]
     itqu <- itqu[!grepl("interval", itqu$itemtype, ignore.case = TRUE), ]
     itqu <- itqu[!grepl("h:m", itqu$itemtype, ignore.case = TRUE), ]
@@ -66,6 +66,8 @@ dates_secuTrial.data.frame <- function(data, datevars, format){
       # print(head(newdatecol))
       data[, paste0(x, ".date")] <- newdatecol
     }
+  } else {
+    warning("no dates detected")
   }
   # print(head(data))
   data
