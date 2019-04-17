@@ -25,9 +25,13 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-
-
 ```
+Printing the object gives some useful information about the objects within the objects, such as the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
+```{r}
+sT_export
+```
+
+
 For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
 ```{r}
 labs <- labels_secuTrial(sT_export)

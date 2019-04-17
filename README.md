@@ -13,6 +13,7 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
 ## Basic usage
+
 ``` r
 library(secuTrialR)
 ```
@@ -23,34 +24,33 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-# basic info on the dataset
+```
+
+Printing the object gives some useful information about the objects
+within the objects, such as the original file name in the datafile, it’s
+name in the `secuTrialdata` object, together with the number of rows and
+columns and a column indicating whether the object is metadata or
+    not:
+
+``` r
 sT_export
-
-
 ```
 
-For data bases with multiple visits, the visit structure can also be viewed.
-
-``` r
-# visit structure (as data.frame)
-(vs <- visit_structure(sT_export))
-# visit structure (as figure)
-plot(vs)
-# or, simply
-plot(sT_export)
-```
-
-
-
-
-
-``` r
-# prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
-                               package = "secuTrialR")
-# load all export data
-sT_export <- load_secuTrial_export(data_dir = export_location)
-```
+    ## SecuTrial data imported from C:/R/R-3.4.2/library/secuTrialR/extdata/s_export_CSV-xls_BMD.zip 
+    ##  table nrow ncol  meta original_name
+    ##     vp    1   10  TRUE        vp.xls
+    ##   vpfs    1    2  TRUE      vpfs.xls
+    ##     fs    1    7  TRUE        fs.xls
+    ##     qs    1    7  TRUE        qs.xls
+    ##     is    3    8  TRUE        is.xls
+    ##    ctr    1    3  TRUE       ctr.xls
+    ##     cn  113   13  TRUE        cn.xls
+    ##   atcn    0    6  TRUE      atcn.xls
+    ##  atcvp    0   11  TRUE     atcvp.xls
+    ##    qac    0   10  TRUE       qac.xls
+    ##    cts    0    8  TRUE       cts.xls
+    ##    bmd  504   27 FALSE       bmd.xls
+    ##  atbmd    0   28 FALSE     atbmd.xls
 
 For creating tables, it is often useful to have access to variable
 labels. This is simple in secuTrialR.
@@ -98,7 +98,6 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
                                                    line_length_linter(125)))
 ```
 
-
 ### Generating the README file
 
 The README file contains both standard text and interpreted R code. It
@@ -123,4 +122,3 @@ PR should not be the one merging it.
 
 A depiction of the core functionalities for loading can be found
 [here](inst/extdata/secuTrialR.png).
-
