@@ -56,9 +56,8 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
   # check if add_id is available
   if (! export_options$add_id) {
     stop(paste0("The specified secuTrial export does not include an Add-ID. ",
-                "Maybe you can specifty a custom add_id_name which has been ",
-                "set in the AdminTool 'Design' setting?"
-                ))
+                "Maybe you can specify a custom add_id_name which has been ",
+                "set in the AdminTool 'Design' setting?"))
   }
 
   # init return list
@@ -105,21 +104,13 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     # get table name from export options
     table_name <- export_options$data_names[file]
     # load table
-    if (! export_options$short_names) {
-      loaded_table <- load_export_table(data_dir = data_dir,
-                                        file_name = file,
-                                        export_options = export_options,
-                                        casenodes_table = return_list$casenodes,
-                                        centre_table = return_list$centres,
-                                        visitplan_table = return_list$visitplan)
-    } else {
-      loaded_table <- load_export_table(data_dir = data_dir,
-                                        file_name = file,
-                                        export_options = export_options,
-                                        casenodes_table = return_list$cn,
-                                        centre_table = return_list$ctr,
-                                        visitplan_table = return_list$vp)
-    }
+    loaded_table <- load_export_table(data_dir = data_dir,
+                                      file_name = file,
+                                      export_options = export_options,
+                                      casenodes_table = return_list[[export_options$meta_names$casenodes]],
+                                      centre_table = return_list[[export_options$meta_names$centres]],
+                                      visitplan_table = return_list[[export_options$meta_names$visitplan]])
+
     # update name
     loaded_table <- setNames(list(loaded_table), table_name[[1]])
     return_list <- c(return_list, loaded_table)

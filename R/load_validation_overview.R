@@ -6,7 +6,7 @@
 #' @param data_dir Path to the Validation Overview (must be an *.xlsx file).
 #'
 #' @return tibble with the 'Validation Overview' data.
-#'
+#' @export load_validation_overview
 #' @examples
 #' val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
 #' val_ovv <- load_validation_overview(data_dir = val_ovv_location)
