@@ -1,5 +1,5 @@
 #' Add factors to secuTrialdata objects
-#' SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
+#' @description SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
 #' @rdname factorize
 #' @name factorize
 #' @param x a \code{secuTrialdata} object
@@ -17,12 +17,17 @@ factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 #' @rdname factorize
 #' @param object a \code{secuTrialdata} object
 #'
-#' @return object with extra variables in forms for factors (names are appended with \code{.factor})
+#' @return \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 #' @export
 #'
 #' @examples
 factorize_secuTrial.secuTrialdata <- function(object){
-  if(!object$export_options$refvals_separate) stop("Reference values not available. Save reference values to seperate table in export")
+  if(!object$export_options$refvals_separate) {
+    ifelse(options()$stringsAsFactors,
+           saf <- "\nCategorical variables are probably factors already (options()$stringsAsFactors == TRUE)\n",
+           saf <- "\nCategorical variables are probably strings (options()$stringsAsFactors == FALSE)\n")
+    stop(saf, "Recommend saving reference values to seperate table in export")
+  }
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
