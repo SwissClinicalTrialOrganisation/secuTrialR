@@ -39,7 +39,15 @@ labs <- labels_secuTrial(sT_export)
 labs[["age"]]
 
 ```
+### Visit plan
+secuTrialR can provide a depiction of the visit structure:
+```{r, eval = FALSE}
+vs <- visit_structure(sT_export)
+plot(vs)
+```
+<!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 
+### Linkage amongst secuTrial forms
 Linkages amongst forms can be explored with the `links_secuTrial` function. This relies on the `igraph` package to create a network. The network is plotted using `tikz`, which allows one to interact with the network (e.g. move nodes around in order to read the label better). The device ID is returned to the console, but can be ignored. Forms are plotted in red, variables in blue.
 ```{r, eval=FALSE}
 links_secuTrial(sT_export)
