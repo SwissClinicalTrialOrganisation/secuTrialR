@@ -55,10 +55,10 @@ visit_structure <- function(x){
 #'   # or, equivalently
 #'   plot(sT_export)
 
-plot.secuTrialvisit <- function(x){
+plot.secuTrialvisit <- function(r){
   # construct the figure
-  z <- !is.na(as.matrix(r[, grepl("tmpvar", names(r))]))
-  names <- gsub("tmpvar.", "", names(r[, grepl("tmpvar", names(r))]))
+  z <- !is.na(as.matrix(r[, -1]))
+  names <- gsub("tmpvar.", "", names(r[, -1]))
   paropts <- par()
   on.exit(paropts)
   par(mai = c(0,0,0.1,0.1))
