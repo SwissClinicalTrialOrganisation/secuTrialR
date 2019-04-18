@@ -6,6 +6,15 @@ output:
   pdf_document: default
 ---
 
+<!-- 
+add to jaml header so that the vignette is properly recognised
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+also, consider doing the html/md one so that it can open in the help pane
+-->
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
