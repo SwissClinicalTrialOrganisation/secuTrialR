@@ -9,7 +9,9 @@
 #
 # @examples
 # \donttest{
+# nolint start
 # mnpvisid2mnpvislabel(mnpvisid = 13920, visitplan_table = visitplan)
+# nolint end
 # [1] "#. visit"
 # }
 mnpvisid2mnpvislabel <- function(mnpvisid, visitplan_table) {
@@ -78,7 +80,9 @@ add_pat_id_col <- function(table, id = "pat_id", casenodes_table) {
 #
 # @examples
 # \donttest{
+# nolint start
 # mnppid2mnpaid(mnppid = 1780, casenodes_table = casenodes)
+# nolint end
 # [1] 103
 # }
 #
@@ -127,7 +131,9 @@ add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, casenodes_
 #
 # @examples
 # \donttest{
+# nolint start
 # mnppid2centre(mnppid = 1780, casenodes_table = casenodes, centre_table = centre)
+# nolint end
 # [1] Hospital (BMD)
 # Levels: Hospital (BMD)
 # }
@@ -152,7 +158,9 @@ mnppid2centre <- function(mnppid, remove_ctag = FALSE, casenodes_table, centre_t
 #
 # @examples
 # \donttest{
+# nolint start
 # remove_trailing_bracket("Hospital (Test Study)")
+# nolint end
 # }
 #
 remove_trailing_bracket <- function(x) {

@@ -31,6 +31,7 @@
 #
 # @examples
 # \donttest{
+# nolint start
 # # load casenodes (casenodes/cn) table
 # casenodes <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
 #                                                                  "s_export_CSV-xls_BMD.zip",
@@ -65,6 +66,7 @@
 #                                       centre_table = centre,
 #                                       visitplan_table = visitplan)
 # }
+# nolint end
 #
 load_export_table <- function(data_dir, file_name, export_options,
                               add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
