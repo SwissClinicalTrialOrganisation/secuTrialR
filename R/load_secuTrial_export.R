@@ -128,7 +128,7 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
 #'         contains the name, number of rows and columns, an indicator for
 #'         whether the table is a metadata table and the files original name.
 #' @export
-#' @usage plot(x)
+#' @usage print(x)
 #'
 #' @examples
 #' # Print method
@@ -143,7 +143,6 @@ print.secuTrialdata <- function(x){
   tab <- lapply(x$export_options$data_names, function(y){
     tmp <- x[[y]]
     tmp
-    # print(paste(length(y), nrow(tmp), ncol(tmp)))
     data.frame(table = y,
                nrow = nrow(tmp),
                ncol = ncol(tmp),
@@ -162,5 +161,3 @@ plot.secuTrialdata <- function(x){
   vs <- visitstructure(x)
   plot(vs)
 }
-
-

@@ -26,7 +26,6 @@ dates_secuTrial.secuTrialdata <- function(object){
   x <- x[!x %in% object$export_options$meta_names]
 
   obs <- lapply(x, function(obj){
-    # print(obj)
     # find date variables
     it <- object[[object$export_options$meta_names$items]]
     qu <- object[[object$export_options$meta_names$questions]]
@@ -42,12 +41,10 @@ dates_secuTrial.secuTrialdata <- function(object){
     datevars <- unique(itqu$ffcolname)
     # date format
     format <- object$export_options$date.format
-    # print(obj)
     tmp <- object[[obj]]
     tmp <- dates_secuTrial(tmp, datevars, format)
     tmp
   })
-  # print(obs)
   object[x] <- obs
   object
 
@@ -59,15 +56,12 @@ dates_secuTrial.secuTrialdata <- function(object){
 #' @param format format of dates (typically taken from \code{object$export_options$date.format})
 dates_secuTrial.data.frame <- function(data, datevars, format){
   datevars <- datevars[datevars %in% names(data)]
-  # print(datevars)
-  if(length(datevars) > 0) {
-    for(x in datevars){
+  if (length(datevars) > 0) {
+    for (x in datevars) {
       newdatecol <- dates_secuTrial(data[, x], format)
-      # print(head(newdatecol))
       data[, paste0(x, ".date")] <- newdatecol
     }
   }
-  # print(head(data))
   data
 }
 
@@ -106,16 +100,3 @@ dates_secuTrial.Date <- function(var, format){
   warning(var, " is already a Date")
   var
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
