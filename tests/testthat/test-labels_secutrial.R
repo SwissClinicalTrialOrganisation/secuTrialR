@@ -24,12 +24,16 @@ test_that("Correct label returned", {
 
 # test for non-existent form name
 # i.e. named character(0)
-empty_labels_short <- labels_secuTrial(sT_export_short, form="notaforname")
-empty_labels_long <- labels_secuTrial(sT_export_long, form="notaforname")
+empty_labels_short <- labels_secuTrial(sT_export_short, form = "notaforname")
+empty_labels_long <- labels_secuTrial(sT_export_long, form = "notaforname")
 
 test_that("Non-existent form", {
-  expect_true(is.character(empty_labels_short) && length(empty_labels_short) == 0 && !is.null(attr(empty_labels_short, "name")))
-  expect_true(is.character(empty_labels_long) && length(empty_labels_long) == 0 && !is.null(attr(empty_labels_long, "name")))
+  expect_true(is.character(empty_labels_short) &&
+                length(empty_labels_short) == 0 &&
+                !is.null(attr(empty_labels_short, "name")))
+  expect_true(is.character(empty_labels_long) &&
+                length(empty_labels_long) == 0 &&
+                !is.null(attr(empty_labels_long, "name")))
 })
 
 # cannot further test form option without more complex CDMA

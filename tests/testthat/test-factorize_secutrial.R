@@ -37,4 +37,3 @@ names(w)[w]
 test_that("number of factors in AE form", expect_equal(sum(w), 8))
 
 options(stringsAsFactors = sAF)
-
