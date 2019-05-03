@@ -1,0 +1,18 @@
+context("print method")
+
+short_export_location <- system.file("extdata",
+                                     "s_export_CSV-xls_BMD.zip",
+                                     package = "secuTrialR")
+
+long_export_location <- system.file("extdata",
+                                    "s_export_CSV-xls_longnames_BMD.zip",
+                                    package = "secuTrialR")
+
+sT_export_short <- load_secuTrial_export(data_dir = short_export_location)
+sT_export_long <- load_secuTrial_export(data_dir = long_export_location)
+
+p <- print(sT_export_short)
+d <- dim(p)
+test_that("number of rows", expect_equal(d[1], 13))
+test_that("number of columns", expect_equal(d[2], 5))
+
