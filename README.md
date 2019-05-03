@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<!--
 # secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)
+-->
 
 An R package to handle data from the clinical data management system
 (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -52,6 +54,8 @@ sT_export
     ##    bmd  504   27 FALSE       bmd.xls
     ##  atbmd    0   28 FALSE     atbmd.xls
 
+### Variable labels
+
 For creating tables, it is often useful to have access to variable
 labels. This is simple in secuTrialR.
 
@@ -62,6 +66,19 @@ labs[["age"]]
 ```
 
     ## [1] "Age"
+
+### Visit plan
+
+secuTrialR can provide a depiction of the visit structure:
+
+``` r
+vs <- visit_structure(sT_export)
+plot(vs)
+```
+
+<!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
+
+### Linkage amongst secuTrial forms
 
 Linkages amongst forms can be explored with the `links_secuTrial`
 function. This relies on the `igraph` package to create a network. The

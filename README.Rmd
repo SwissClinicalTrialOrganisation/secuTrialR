@@ -3,9 +3,9 @@ output: github_document
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
+<!--
 # secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)
-
+-->
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
 ## Installing from github with devtools
@@ -26,12 +26,16 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
 ```
-Printing the object gives some useful information about the objects within the objects, such as the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
+`sT_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `sT_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
 ```{r}
 sT_export
 ```
 
+Indidual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
+<!-- accessor function? -->
+<!-- print method for secuTrialoptions (metadata)? -->
 
+### Variable labels
 For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
 ```{r}
 labs <- labels_secuTrial(sT_export)
