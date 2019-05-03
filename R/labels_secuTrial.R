@@ -17,7 +17,7 @@
 #' labels[["age"]]
 labels_secuTrial <- function(object, form = NULL){
   it <- object[[object$export_options$meta_names$items]]
-  if(!is.null(form)){
+  if (!is.null(form)) {
     qs <- object[[object$export_options$meta_names$questions]]
     itqs <- merge(it, qs, by = "fgid")
     it <- itqs[grepl(paste0(form, "$"), itqs$formtablename), ]
