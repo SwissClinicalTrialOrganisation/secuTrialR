@@ -7,8 +7,8 @@
 \alias{factorize_secuTrial.data.frame}
 \alias{factorize_secuTrial.integer}
 \alias{factorize_secuTrial.logical}
-\title{Add factors to secuTrialdata objects
-SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.}
+\alias{factorize_secuTrial.character}
+\title{Add factors to secuTrialdata objects}
 \usage{
 factorize_secuTrial(x, ...)
 
@@ -19,6 +19,8 @@ factorize_secuTrial(x, ...)
 \method{factorize_secuTrial}{integer}(var, lookup)
 
 \method{factorize_secuTrial}{logical}(var, lookup)
+
+\method{factorize_secuTrial}{character}(var, lookup)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
@@ -36,18 +38,10 @@ factorize_secuTrial(x, ...)
 \item{lookup}{a restricted version of cl (filtered based on \code{form}), containing only the rows relevant for \code{var}}
 }
 \value{
-object with extra variables in forms for factors (names are appended with \code{.factor})
+\code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 }
 \description{
-Add factors to secuTrialdata objects
 SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
-
-Method for secuTrialdata objects
-These objects include all relevant data (assuming that reference values are saved to a separate table, \link[see here for info]{https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/})
-
-The data.frame method is used on the individual datasets within the \code{secuTrialdata} object, and relies on \code{cl}
-
-Methods for individual variables rely on a lookup table with variables code and value. They are basically just wrappers for \code{factor(...)}.
 }
 \details{
 factorize_secuTrial will return an error if the appropriate codebook is not available.

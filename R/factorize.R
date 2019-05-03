@@ -86,3 +86,8 @@ factorize_secuTrial.logical <- function(var, lookup){
   var <- as.numeric(var)
   factor(var, lookup$code, lookup$value)
 }
+
+#' @rdname factorize
+factorize_secuTrial.character <- function(var, lookup){
+  factor(var, lookup$value, lookup$value)
+}
