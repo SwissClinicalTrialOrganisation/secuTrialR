@@ -61,7 +61,7 @@ dates_secuTrial.data.frame <- function(data, datevars, format){
   datevars <- datevars[datevars %in% names(data)]
   # print(datevars)
   if(length(datevars) > 0) {
-    for(x in datevars){
+    for(x in datevars) {
       newdatecol <- dates_secuTrial(data[, x], format)
       # print(head(newdatecol))
       data[, paste0(x, ".date")] <- newdatecol
@@ -100,7 +100,8 @@ dates_secuTrial.numeric <- function(var, format){
 #' @rdname dates_secuTrial
 dates_secuTrial.logical <- function(var, format){
   # this happens when the variable is empty
-  var
+  # convert to string to get (empty) Date object
+  dates_secuTrial(as.character(var), format)
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.Date <- function(var, format){
@@ -108,16 +109,3 @@ dates_secuTrial.Date <- function(var, format){
   warning(var, " is already a Date")
   var
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
