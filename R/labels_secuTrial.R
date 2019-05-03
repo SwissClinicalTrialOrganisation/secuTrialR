@@ -29,22 +29,3 @@ labels_secuTrial <- function(object, form = NULL){
   names(it2) <- it$ffcolname
   it2
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
