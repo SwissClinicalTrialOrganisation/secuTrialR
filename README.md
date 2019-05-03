@@ -37,10 +37,12 @@ labels. This is simple in secuTrialR.
 
 ``` r
 labs <- labels_secuTrial(sT_export)
+# query the list with the variable name of interest
 labs[["age"]]
 ```
 
     ## [1] "Age"
+
 
 ### Prepare dates
 
@@ -59,6 +61,23 @@ dates <- dates_secuTrial(sT_export)
     ## detected in atbmd
 
 There are no date variables in this dataset, hence the warnings.
+
+### Linkages amongst forms
+
+Linkages amongst forms can be explored with the `links_secuTrial`
+function. This relies on the `igraph` package to create a network. The
+network is plotted using `tikz`, which allows one to interact with the
+network (e.g. move nodes around in order to read the label better). The
+device ID is returned to the console, but can be ignored. Forms are
+plotted in red, variables in blue.
+
+``` r
+links_secuTrial(sT_export)
+```
+
+![](inst/extdata/map.png)
+<!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
+
 
 ## For contributors
 
