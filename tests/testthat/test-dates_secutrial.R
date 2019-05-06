@@ -35,5 +35,6 @@ f <- suppressWarnings(dates_secuTrial(dat))
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y) == "Date")))))
 test_that("number of variables", expect_equal(n, 12))
 
-
+# test for any .date at end of names
+test_that("dates detected", expect_true(any(grep("\\.date$", names(f$ctu05baseline)))))
 
