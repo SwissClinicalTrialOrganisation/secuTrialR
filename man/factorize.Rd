@@ -4,38 +4,16 @@
 \alias{factorize}
 \alias{factorize_secuTrial}
 \alias{factorize_secuTrial.secuTrialdata}
-\alias{factorize_secuTrial.data.frame}
-\alias{factorize_secuTrial.integer}
-\alias{factorize_secuTrial.logical}
-\alias{factorize_secuTrial.character}
 \title{Add factors to secuTrialdata objects}
 \usage{
 factorize_secuTrial(x, ...)
 
 \method{factorize_secuTrial}{secuTrialdata}(object)
-
-\method{factorize_secuTrial}{data.frame}(data, cl, form)
-
-\method{factorize_secuTrial}{integer}(var, lookup)
-
-\method{factorize_secuTrial}{logical}(var, lookup)
-
-\method{factorize_secuTrial}{character}(var, lookup)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
 
 \item{object}{a \code{secuTrialdata} object}
-
-\item{data}{a \code{data.frame}, usually from within a \code{secuTrialdata} object}
-
-\item{cl}{a \code{data.frame}, usually taken from a \code{secuTrialdata} object, containing at least three variables - 1) \code{column} containing information on which form and variable is to be factorized (formatted as form.variable); 2) \code{code} containing the options that the variable can take as a number; 3) \code{value} contains the text relating to the \code{code} number}
-
-\item{form}{which form you are currently working on (used for filtering \code{cl})}
-
-\item{var}{a variable}
-
-\item{lookup}{a restricted version of cl (filtered based on \code{form}), containing only the rows relevant for \code{var}}
 }
 \value{
 \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
@@ -47,5 +25,8 @@ SecuTrial can return a codebook of codes and labels for categorical variables, i
 factorize_secuTrial will return an error if the appropriate codebook is not available.
 }
 \examples{
-# TODO - NO SUITABLE EXPORT AVAILABLE IN THE PACKAGE
+# load secuTrial export with separate reference table
+sT_export <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR"))
+# factorize the secuTrialdata object
+sT_export_factorized <- factorize_secuTrial(sT_export)
 }
