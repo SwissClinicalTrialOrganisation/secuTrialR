@@ -1,4 +1,4 @@
-#' Methods to handle dates in SecuTrial exports
+#' Methods to handle dates in secuTrial exports
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
@@ -8,12 +8,12 @@
 #' @export
 #' @examples
 #' # prepare path to example export
-#' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+#' export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
 #' sT_export <- load_secuTrial_export(data_dir = export_location)
 #' # prepare dates
-#' dates <- dates_secuTrial(sT_export)
+#' sT_export_dates <- dates_secuTrial(sT_export)
 
 dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 
