@@ -158,6 +158,6 @@ print.secuTrialdata <- function(x){
 #' @rdname secuTrialdata
 #' @usage plot(x)
 plot.secuTrialdata <- function(x){
-  vs <- visitstructure(x)
+  vs <- visit_structure(x)
   plot(vs)
 }
