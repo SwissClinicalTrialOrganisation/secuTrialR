@@ -36,4 +36,23 @@ names(w)[w]
 
 test_that("number of factors in AE form", expect_equal(sum(w), 8))
 
+test_that("Levels in liver cirrhosis", {
+  expect_equal(levels(f$ctu05baseline$liver_cirrh_type.factor), c("C", "B", "A"))
+})
+
+test_that("Levels in follow-up", {
+  expect_equal(as.vector(table(f$ctu05outcome$follow_up.factor)), c(5, 5, 2))
+  expect_equal(levels(f$ctu05outcome$follow_up.factor), c("unknown", "ongoing consultation", "death"))
+})
+
+test_that("Levels in SAE", {
+  expect_equal(levels(f$ctu05sae$sae_drug_relation.factor), c("not assessable",
+                                                              "possible",
+                                                              "unlikely",
+                                                              "probable",
+                                                              "unrelated",
+                                                              "definitely"))
+  expect_equal(as.vector(table(f$ctu05sae$sae_drug_relation.factor)), c(1, 1, 0, 0, 0, 0))
+})
+
 options(stringsAsFactors = sAF)
