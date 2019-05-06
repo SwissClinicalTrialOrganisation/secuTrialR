@@ -10,7 +10,7 @@
 \alias{dates_secuTrial.numeric}
 \alias{dates_secuTrial.logical}
 \alias{dates_secuTrial.Date}
-\title{Methods to handle dates in SecuTrial exports}
+\title{Methods to handle dates in secuTrial exports}
 \usage{
 dates_secuTrial(x, ...)
 
@@ -45,7 +45,7 @@ dates_secuTrial(x, ...)
 same as the original object with date variables converted to Dates.
 }
 \description{
-Methods to handle dates in SecuTrial exports
+Methods to handle dates in secuTrial exports
 }
 \details{
 New variables are created appended with \code{.date}. This is a safety mechanism incase NAs are inadvertantly introduced.
@@ -53,10 +53,10 @@ Methods exist for secuTrialdata objects, data.frames, character, factor, integer
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
 # prepare dates
-dates <- dates_secuTrial(sT_export)
+sT_export_dates <- dates_secuTrial(sT_export)
 }
