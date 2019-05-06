@@ -1,7 +1,7 @@
 #' Get the visit structure of secuTrialdata objects
 #'
 #' @param x secuTrialdata object
-#' @note Requires a fixed visit structure - an error will be returned for projects without a visit structure or one with flexible visits#'
+#' @note Requires a fixed visit structure - an error will be returned for projects without a visit structure or one with flexible visits
 #' @return data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
 #' @export
 #'
@@ -18,7 +18,9 @@
 #'
 visit_structure <- function(x){
   vp <- x[[x$export_options$meta_names$visitplan]]
-  if (any(is.na(vp$mnpvsno))) stop("Visits do not appear to be a part of this database or only flexible visits defined\nvisit_structure requires a fixed structure")
+  if (any(is.na(vp$mnpvsno))) stop(paste("Visits do not appear to be a part of this database or",
+                                         "only flexible visits defined\nvisit_structure requires",
+                                         "a fixed structure"))
   vpf <- x[[x$export_options$meta_names$visitplanforms]]
   f <- x[[x$export_options$meta_names$forms]]
   tmp <- merge(vp, vpf, by = "mnpvisid")
@@ -44,7 +46,6 @@ visit_structure <- function(x){
   class(ro) <- c("secuTrialvisit", "data.frame")
   return(ro)
 }
-
 
 #' @rdname visit_structure
 #' @usage plot(x)
