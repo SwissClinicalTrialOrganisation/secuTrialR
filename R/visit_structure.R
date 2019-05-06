@@ -18,7 +18,7 @@
 #'
 visit_structure <- function(x){
   vp <- x[[x$export_options$meta_names$visitplan]]
-  if (any(is.na(vp$mnpvsno))) stop(""Visits do not appear to be a part of this database or only flexible visits defined\nvisit_structure requires a fixed structure"")
+  if (any(is.na(vp$mnpvsno))) stop("Visits do not appear to be a part of this database or only flexible visits defined\nvisit_structure requires a fixed structure")
   vpf <- x[[x$export_options$meta_names$visitplanforms]]
   f <- x[[x$export_options$meta_names$forms]]
   tmp <- merge(vp, vpf, by = "mnpvisid")
