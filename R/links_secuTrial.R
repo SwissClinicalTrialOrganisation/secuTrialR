@@ -19,13 +19,13 @@
 #' # get labels
 #' links_secuTrial(sT_export)
 #' }
-links_secuTrial <- function(object, forms = NULL){
+links_secuTrial <- function(object, forms = NULL) {
   if (!class(object) == "secuTrialdata") stop("object of class secuTrialdata expected")
   obj <- object[2:length(object)]
 
   names <- lapply(obj, names)
 
-  x <- lapply(names(names), function(x){
+  x <- lapply(names(names), function(x) {
     l <- ncol(obj[[x]])
     rx <- rep(x, l)
     data.frame(form = rx, var = names(obj[[x]]), stringsAsFactors = FALSE)
@@ -44,7 +44,7 @@ links_secuTrial <- function(object, forms = NULL){
   , sx, 1:length(unique(x$var)), SIMPLIFY = FALSE)
   qid <- do.call("rbind", sxid)
   sx <- split(qid, qid$form)
-  sxid <- mapply(function(x, y){
+  sxid <- mapply(function(x, y) {
     x$f_id <- y
     x
   }
