@@ -3,6 +3,7 @@ output: github_document
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
 # secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -15,13 +16,11 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
 ## Basic usage
-
 Load the package
 
-``` r
+```r
 library(secuTrialR)
 ```
-
 ### Load the dataset
 
 ```r
@@ -30,7 +29,19 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
+
+names(sT_export)
 ```
+
+```
+##  [1] "export_options" "fs"             "cn"             "ctr"           
+##  [5] "is"             "qs"             "qac"            "vp"            
+##  [9] "vpfs"           "atcn"           "atcvp"          "cts"           
+## [13] "bmd"            "atbmd"
+```
+
+`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `sT_export$export_options$data_names`.
+<!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
 `sT_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `sT_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
 
@@ -56,10 +67,9 @@ sT_export
 ##  atbmd    0   28 FALSE     atbmd.xls
 ```
 
-Indidual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
+Indiviual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
 <!-- print method for secuTrialoptions (metadata)? -->
-
 
 ### Variable labels
 For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
@@ -84,7 +94,7 @@ plot(vs)
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
  
 ### Prepare factors
-It is often useful to have categorical variables as factors (R knows how to handle factors). SecuTrialR can prepare factors easily.
+It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 
 ```r
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
@@ -92,12 +102,8 @@ export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_
 dat <- load_secuTrial_export(export_location)
 factors <- factorize_secuTrial(dat)
 ```
-
-```
-## Error in factorize_secuTrial(dat): could not find function "factorize_secuTrial"
-```
 This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
-<!-- REFERENCE VALUES NOT EXPORTED FROM THE DATASET -->
+
 
 ```r
 # original variable
@@ -105,7 +111,7 @@ str(factors$ctu05baseline$gender)
 ```
 
 ```
-## Error in str(factors$ctu05baseline$gender): object 'factors' not found
+##  int [1:17] 1 NA NA 2 1 2 1 NA NA 1 ...
 ```
 
 ```r
@@ -114,7 +120,7 @@ str(factors$ctu05baseline$gender.factor)
 ```
 
 ```
-## Error in str(factors$ctu05baseline$gender.factor): object 'factors' not found
+##  Factor w/ 2 levels "male","female": 1 NA NA 2 1 2 1 NA NA 1 ...
 ```
 
 ```r
@@ -123,33 +129,22 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
 ```
 
 ```
-## Error in table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$gender.factor): object 'factors' not found
+##         factor
+## original male female
+##        1    5      0
+##        2    0      5
 ```
 
-
-For this function to work, reference values should be saved to a seperate form. An error will be returned with a message suggesting to change the export. There is an option for this in the secuTrial export. See [here](https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/) for info. The advantage of using factors defined by secuTrialR, rather than those from the import (if `options()$stringsAsFactors == TRUE`) is that the latter may not have all the possible levels of the variable associated. The former will, as it is defined using all possible values.
-
-
-```r
-# sT_export was exported without the separate reference value table
-factorize_secuTrial(sT_export)
-```
-
-```
-## Error in factorize_secuTrial(sT_export): could not find function "factorize_secuTrial"
-```
 
 ### Prepare dates
-
-Dates are a very common data type. They cannot be easily used though in
-their export format. This is also easily rectified in secuTrialR:
-
-``` r
-dates <- dates_secuTrial(dat)
-```
+Dates are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
 
 Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
+
+```r
+dates <- dates_secuTrial(dat)
+```
 
 ### Linking different forms
 
@@ -161,6 +156,7 @@ links_secuTrial(sT_export)
 ```
 ![](inst/extdata/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
+
 
 ## For contributors
 ### Testing with devtools
@@ -188,7 +184,13 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 
 The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
 
-### Guidelines for contributers
+
+```r
+library("knitr")
+knit("README.Rmd")
+```
+
+### Guidelines for contributors
 
 In order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the 
@@ -199,7 +201,7 @@ indicated above. If all tests pass and linting confirms that your
 coding style conforms you can send a pull request (PR).  
 The PR should have a description to help the reviewer understand what has been 
 added/changed. New functionalities must be thoroughly documented, have examples 
-and should be accompanied by at least one [test](tests/testthat/) to ensure longterm 
+and should be accompanied by at least one [test](tests/testthat/) to ensure long term 
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
 

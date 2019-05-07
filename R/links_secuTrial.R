@@ -1,6 +1,6 @@
 #' Show links between forms
 #'
-#' SecuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
+#' secuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
