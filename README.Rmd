@@ -3,9 +3,9 @@ output: github_document
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<!--
+
 # secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)
--->
+
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
 ## Installing from github with devtools
@@ -81,10 +81,6 @@ For this function to work, reference values should be saved to a seperate form. 
 factorize_secuTrial(sT_export)
 ```
 
-# TODO - I can't see if its tikz or rgl
-
-### Linkage amongst secuTrial forms
-Linkages amongst forms can be explored with the `links_secuTrial` function. This relies on the `igraph` package to create a network. The network is plotted using `tikz`, which allows one to interact with the network (e.g. move nodes around in order to read the label better). The device ID is returned to the console, but can be ignored. Forms are plotted in red, variables in blue.
 
 ### Linking different forms
 
