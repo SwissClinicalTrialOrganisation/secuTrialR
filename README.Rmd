@@ -38,7 +38,7 @@ names(sT_export)
 sT_export
 ```
 
-Indiviual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
+Individual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
 <!-- print method for secuTrialoptions (metadata)? -->
 
