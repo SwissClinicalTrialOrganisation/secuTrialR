@@ -8,7 +8,8 @@
 #' into export_options.
 #'
 #' @export load_secuTrial_export
-#'
+#' @name secuTrialdata
+#' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #' @param add_id_name string This needs to be specified if your Add-ID name has
 #'                    been changed in the AdminTool Design setting.
@@ -116,4 +117,47 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
   }
   class(return_list) <- "secuTrialdata"
   return(return_list)
+}
+
+
+
+#' @rdname secuTrialdata
+#' @param x secuTrialdata object as returned by \code{load_secuTrial_export}
+#'
+#' @return data.frame with a row for each table in the export. For each table it
+#'         contains the name, number of rows and columns, an indicator for
+#'         whether the table is a metadata table and the files original name.
+#' @export
+#' @usage print(x)
+#'
+#' @examples
+#' # Print method
+#' print(sT_export)
+#' # or
+#' sT_export
+
+print.secuTrialdata <- function(x){
+
+  cat(paste("SecuTrial data imported from", x$export_options$data_dir, "\n"))
+
+  tab <- lapply(x$export_options$data_names, function(y){
+    tmp <- x[[y]]
+    tmp
+    data.frame(table = y,
+               nrow = nrow(tmp),
+               ncol = ncol(tmp),
+               meta = y %in% x$export_options$meta_names)
+  })
+  tab <- do.call("rbind", tab)
+  tab$original_name <- rownames(tab)
+  rownames(tab) <- NULL
+  print(tab, row.names = FALSE)
+
+}
+
+#' @rdname secuTrialdata
+#' @usage plot(x)
+plot.secuTrialdata <- function(x){
+  vs <- visit_structure(x)
+  plot(vs)
 }
