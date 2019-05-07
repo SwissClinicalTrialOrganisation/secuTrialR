@@ -30,7 +30,7 @@ sT_export <- load_secuTrial_export(data_dir = export_location)
 names(sT_export)
 ```
 
-`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. SecuTrialR automatically strips file names of dates. The new file names can be seen via `sT_export$export_options$data_names`.
+`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `sT_export$export_options$data_names`.
 <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
 `sT_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `sT_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
@@ -38,7 +38,7 @@ names(sT_export)
 sT_export
 ```
 
-Indidual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
+Indiviual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
 <!-- print method for secuTrialoptions (metadata)? -->
 
@@ -60,7 +60,7 @@ plot(vs)
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
  
 ### Prepare factors
-It is often useful to have categorical variables as factors (R knows how to handle factors). SecuTrialR can prepare factors easily.
+It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 ```{r, error=TRUE}
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
@@ -123,7 +123,7 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 
 The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
 
-### Guidelines for contributers
+### Guidelines for contributors
 
 In order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the 
@@ -134,7 +134,7 @@ indicated above. If all tests pass and linting confirms that your
 coding style conforms you can send a pull request (PR).  
 The PR should have a description to help the reviewer understand what has been 
 added/changed. New functionalities must be thoroughly documented, have examples 
-and should be accompanied by at least one [test](tests/testthat/) to ensure longterm 
+and should be accompanied by at least one [test](tests/testthat/) to ensure long term 
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
 

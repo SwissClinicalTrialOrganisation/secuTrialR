@@ -22,6 +22,7 @@ test_that("outcome variable is date (longnames_sep_ref)", expect_equal(class(f$c
 
 f <- suppressWarnings(dates_secuTrial(dat))
 
+# nolint start
 # check that the correct number of variables are there
 # c("Checked Date (dd.mm.yyyy hh:mm)", "Checked Date (dd.mm.yyyy)", "Checked Date (yyyy)", "Checked Time (hh:mm)", "Date (dd.mm.yyyy)")
 
@@ -32,10 +33,10 @@ f <- suppressWarnings(dates_secuTrial(dat))
 # names(n) <- NULL
 # gsub("\\.date$", "", n) %in% as.character(l$ffcolname)
 # as.character(l$ffcolname) %in% gsub("\\.date$", "", n)
+# nolint end
 
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y) == "Date")))))
 test_that("number of variables", expect_equal(n, 12))
 
 # test for any .date at end of names
 test_that("dates detected", expect_true(any(grep("\\.date$", names(f$ctu05baseline)))))
-

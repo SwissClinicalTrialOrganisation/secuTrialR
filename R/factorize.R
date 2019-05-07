@@ -1,5 +1,5 @@
 #' Add factors to secuTrialdata objects
-#' @description SecuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
+#' @description secuTrial can return a codebook of codes and labels for categorical variables, if this option is selected in the export tool. This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
 #' @rdname factorize
 #' @name factorize
 #' @param x a \code{secuTrialdata} object
@@ -44,6 +44,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
   object
 }
 
+# nolint start
 # #' The data.frame method is used on the individual datasets within the \code{secuTrialdata} object, and relies on \code{cl}
 # #' @rdname factorize
 # #' @param data a \code{data.frame}, usually from within a \code{secuTrialdata} object
@@ -52,6 +53,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
 # #'
 # #' @examples
 # # data.frame method
+# nolint end
 factorize_secuTrial.data.frame <- function(data, cl, form) {
   if (!is.character(cl$column)) cl$column <- as.character(cl$column)
 
@@ -66,15 +68,16 @@ factorize_secuTrial.data.frame <- function(data, cl, form) {
   return(data)
 }
 
+# nolint start
 # #' Methods for individual variables rely on a lookup table with variables code and value. They are basically just wrappers for \code{factor(...)}.
 # #' @rdname factorize
 # #' @param var a variable
 # #' @param lookup a restricted version of cl (filtered based on \code{form}), containing only the rows relevant for \code{var}
 # #'
 # #' @examples
+# nolint end
 factorize_secuTrial.integer <- function(var, lookup) {
   lookup <- unique(lookup)
-  # print(lookup)
   factor(var, lookup$code, lookup$value)
 }
 
