@@ -139,81 +139,12 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
 ### Prepare dates
 Dates are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
 
+Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
+
 
 ```r
 dates <- dates_secuTrial(dat)
 ```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmiv
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05baseline
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05outcome
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in ctu05treatment
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05treatment
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in ctu05allmedi
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05allmedi
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in ctu05studyterminat
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05studyterminat
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05ae
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atmnpctu05sae
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in emnpctu05surgeries
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atemnpctu05surgeries
-```
-
-```
-## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-## detected in atadverseevents
-```
-Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
 ### Linking different forms
 
@@ -252,6 +183,12 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 ### Generating the README file
 
 The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
+
+
+```r
+library("knitr")
+knit("README.Rmd")
+```
 
 ### Guidelines for contributors
 
