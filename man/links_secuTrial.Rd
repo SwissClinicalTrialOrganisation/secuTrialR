@@ -4,12 +4,17 @@
 \alias{links_secuTrial}
 \title{Show links between forms}
 \usage{
-links_secuTrial(object, forms = NULL)
+links_secuTrial(object, forms = NULL, formcol = "lightgreen",
+  varcol = "yellow")
 }
 \arguments{
 \item{object}{secuTrialdata object}
 
 \item{forms}{a regular expression for which forms should be included}
+
+\item{formcol}{color for form name circles}
+
+\item{varcol}{color for variable name circles}
 }
 \value{
 a tcltk plot window.
@@ -25,12 +30,23 @@ Note that where a form name is also a variable name, it is appended by \code{_fo
 }
 \examples{
 \dontrun{
+# ex. 1
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-# get labels
+# plot links
 links_secuTrial(sT_export)
+
+# ex. 2
+# prepare path to example export
+export_location <- system.file("extdata",
+                               "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                               package = "secuTrialR")
+# load all export data
+sT_export <- load_secuTrial_export(data_dir = export_location)
+# plot links for form names starting with "ctu05"
+links_secuTrial(sT_export, forms = "^ctu05")
 }
 }

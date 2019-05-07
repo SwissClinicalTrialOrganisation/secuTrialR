@@ -4,6 +4,8 @@
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
+#' @param formcol color for form name circles
+#' @param varcol color for variable name circles
 #' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue.
 #' @note Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
@@ -11,15 +13,26 @@
 #'
 #' @examples
 #' \dontrun{
+#' # ex. 1
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
 #' sT_export <- load_secuTrial_export(data_dir = export_location)
-#' # get labels
+#' # plot links
 #' links_secuTrial(sT_export)
+#'
+#' # ex. 2
+#' # prepare path to example export
+#' export_location <- system.file("extdata",
+#'                                "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+#'                                package = "secuTrialR")
+#' # load all export data
+#' sT_export <- load_secuTrial_export(data_dir = export_location)
+#' # plot links for form names starting with "ctu05"
+#' links_secuTrial(sT_export, forms = "^ctu05")
 #' }
-links_secuTrial <- function(object, forms = NULL) {
+links_secuTrial <- function(object, forms = NULL, formcol = "lightgreen", varcol = "yellow") {
   if (!class(object) == "secuTrialdata") stop("object of class secuTrialdata expected")
   obj <- object[2:length(object)]
 
@@ -62,7 +75,7 @@ links_secuTrial <- function(object, forms = NULL) {
   g <- igraph::graph_from_data_frame(fqid[, c("form", "var")],
                              directed = FALSE,
                              vertices = vs)
-  igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, "blue", "red")
+  igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, varcol, formcol)
   igraph::tkplot(g, layout = layout_as_tree)
 
 }
