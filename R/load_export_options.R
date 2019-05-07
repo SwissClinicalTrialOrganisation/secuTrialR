@@ -140,6 +140,9 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   na.strings <- c("NA", "")
   # TODO : custom formats? parsed from ExportOptions?
 
+  # reference values
+  refvals_seperate <- any(grepl("separate table", parsed_export))
+
   # dates ----
   # date format
   date.format.meta <- "%Y-%m-%d"
@@ -181,6 +184,7 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
                         audit_trail = audit_trail,
                         column_names = column_names,
                         lang_not_en = lang_not_en,
+                        refvals_separate = refvals_seperate,
                         add_id = add_id,
                         meta_names = meta_names,
                         meta_available = meta_available,

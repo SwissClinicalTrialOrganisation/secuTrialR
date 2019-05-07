@@ -1,5 +1,6 @@
 context("dates")
 
+
 # check individual variables
 dat <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_shortnames.zip",
                                          package = "secuTrialR"))

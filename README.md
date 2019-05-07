@@ -43,30 +43,85 @@ labs[["age"]]
 
     ## [1] "Age"
 
+### Prepare factors
+
+It is often useful to have categorical variables as factors (R knows how
+to handle factors). SecuTrialR can prepare factors
+easily.
+
+``` r
+export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                               package = "secuTrialR")
+dat <- load_secuTrial_export(export_location)
+factors <- factorize_secuTrial(dat)
+```
+
+This functions loops through each table of the dataset, creating new
+factor variables where necessary. The new variables are the same as the
+original but with `.factor` appended (i.e. a new variable called
+`sex.factor` would be added to the relevant form).
+<!-- REFERENCE VALUES NOT EXPORTED FROM THE DATASET -->
+
+``` r
+# original variable
+str(factors$ctu05baseline$gender)
+```
+
+    ##  int [1:17] 1 NA NA 2 1 2 1 NA NA 1 ...
+
+``` r
+# factor
+str(factors$ctu05baseline$gender.factor)
+```
+
+    ##  Factor w/ 2 levels "male","female": 1 NA NA 2 1 2 1 NA NA 1 ...
+
+``` r
+# cross tabulation
+table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$gender.factor)
+```
+
+    ##         factor
+    ## original male female
+    ##        1    5      0
+    ##        2    0      5
+
+For this function to work, reference values should be saved to a
+seperate form. An error will be returned with a message suggesting to
+change the export. There is an option for this in the secuTrial export.
+See
+[here](https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/)
+for info. The advantage of using factors defined by secuTrialR, rather
+than those from the import (if `options()$stringsAsFactors == TRUE`) is
+that the latter may not have all the possible levels of the variable
+associated. The former will, as it is defined using all possible values.
+
+``` r
+# sT_export was exported without the separate reference value table
+factorize_secuTrial(sT_export)
+```
+
+    ## Error in factorize_secuTrial.secuTrialdata(sT_export): 
+    ## Categorical variables are probably factors already (options()$stringsAsFactors == TRUE)
+    ## Recommend saving reference values to seperate table in export
 
 ### Prepare dates
 
 Dates are a very common data type. They cannot be easily used though in
-their export format. This is also easily done in
-    secuTrialR:
+their export format. This is also easily rectified in secuTrialR:
 
 ``` r
-dates <- dates_secuTrial(sT_export)
+dates <- dates_secuTrial(dat)
 ```
 
-    ## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-    ## detected in bmd
+Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
-    ## Warning in dates_secuTrial.data.frame(tmp, datevars, format): no dates
-    ## detected in atbmd
 
-There are no date variables in this dataset, hence the warnings.
-
-### Linkages amongst forms
+### Linking different forms
 
 Linkages amongst forms can be explored with the `links_secuTrial`
 function. This relies on the `igraph` package to create a network. The
-network is plotted using `tikz`, which allows one to interact with the
+network is plotted using `rgl`, which allows one to interact with the
 network (e.g. move nodes around in order to read the label better). The
 device ID is returned to the console, but can be ignored. Forms are
 plotted in red, variables in blue.
@@ -103,7 +158,7 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 ### Generating the README file
 
 The README file contains both standard text and interpreted R code. It
-must therefore be compiled. Changes should be made in the README.Rmd
+must therefore be compiled. Changes should be made in the `README.Rmd`
 file and the file “knited” with R. This is easiest with RStudio, but
 other methods are available.
 
