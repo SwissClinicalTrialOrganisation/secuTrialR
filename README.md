@@ -16,10 +16,13 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 
 ## Basic usage
 
-```r
+Load the package
+
+``` r
 library(secuTrialR)
 ```
 
+### Load the dataset
 
 ```r
 # prepare path to example export
@@ -136,6 +139,18 @@ factorize_secuTrial(sT_export)
 ## Error in factorize_secuTrial(sT_export): could not find function "factorize_secuTrial"
 ```
 
+### Prepare dates
+
+Dates are a very common data type. They cannot be easily used though in
+their export format. This is also easily rectified in secuTrialR:
+
+``` r
+dates <- dates_secuTrial(dat)
+```
+
+Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
+
+
 ### Linking different forms
 
 Linkages amongst forms can be explored with the `links_secuTrial` function. This relies on the `igraph` package to create a network. The network is plotted using `rgl`, which allows one to interact with the network (e.g. move nodes around in order to read the label better). The device ID is returned to the console, but can be ignored. Forms are plotted in red, variables in blue.
@@ -146,7 +161,6 @@ links_secuTrial(sT_export)
 ```
 ![](inst/extdata/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
-
 
 ## For contributors
 ### Testing with devtools
