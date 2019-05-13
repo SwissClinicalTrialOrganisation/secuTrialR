@@ -34,7 +34,7 @@ labels_secuTrial <- function(object, form = NULL) {
 
 
 #' Add labels to variables in secuTrialdata objects
-#' @description
+#' @description blablabla
 #' @param x a \code{secuTrialdata} object
 #' @export
 #' @details
@@ -52,15 +52,18 @@ label_secuTrial.secuTrialdata <- function(object) {
   }
 
   it <- object[[object$export_options$meta_names$items]]
-  w <- sapply(it, class) == "factor"
-  if(any(w)) it[, w] <- sapply(it[, w], as.character)
   qs <- object[[object$export_options$meta_names$questions]]
-  itqs <- merge(it, qs, by = "fgid")
-  it <- itqs
+  it <- merge(it, qs, by = "fgid")
+  it$ffcolname <- as.character(it$ffcolname)
+  it$fflabel <- as.character(it$fflabel)
+  it$formtablename <- as.character(it$formtablename)
+  it$formname <- as.character(it$formname)
+  it$unit <- as.character(it$unit)
+
   it <- it[!grepl("Dummy", as.character(it$itemtype)), ]
   # it <- it[, c("ffcolname", "fflabel", "formtablename")]
   it$formtablename <- as.character(it$formtablename)
-  it$formname <- gsub(pattern = "^mnp", "", it$formtablename)
+  it$fname <- gsub(pattern = "^mnp", "", it$formtablename)
   it <- it[!duplicated(it[, c("ffcolname", "fflabel", "formtablename")]), ]
   # some variables are still duplicated - fflabel can differ
   # - retain longest
@@ -71,11 +74,11 @@ label_secuTrial.secuTrialdata <- function(object) {
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
-  x <- x[x %in% it$formname]
+  x <- x[x %in% it$fname]
   # note that the basic form for extended forms might have no variables
   obs <- lapply(x, function(obj){
     tmp <- object[[obj]]
-    tmp <- label_secuTrial(tmp, it[it$formname == obj, ])
+    tmp <- label_secuTrial(tmp, it[it$fname == obj, ])
     tmp
   })
   obs
@@ -98,15 +101,30 @@ label_secuTrial.data.frame <- function(data, it) {
   # print(it)
   for (i in names(data)[names(data) %in% it$ffcolname]) {
     x <- it$fflabel[it$ffcolname == i]
+    u <- it$unit[it$ffcolname == i]
     # print(paste(i, "label", x))
-    Hmisc::label(data[, i]) <- x
+    label(data[, i]) <- x
+    if(!is.na(u)) units(data[, i]) <- u
   }
+  label(data) <- it$formname[1]
 
   return(data)
 }
 
+#' @export
+label <- function(x) attr(x, "label")
 
+#' @export
+units <- function(x) attr(x, "units")
 
+#' @export
+"label<-" <- function(x, value){
+  attr(x, "label") <- value
+  return(x)
+}
 
-
-
+#' @export
+"units<-" <- function(x, value){
+  attr(x, "units") <- value
+  return(x)
+}
