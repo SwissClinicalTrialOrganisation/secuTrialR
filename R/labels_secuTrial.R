@@ -1,8 +1,12 @@
 #' Get variable labels for secuTrialdata objects
 #'
+#' @rdname labels_secuTrial
+#' @name labels_secuTrial
+#' @description Variable labels are important for understanding the contents of a variable. \code{secuTrialR} offers two main methods to get those labels. \code{labels_secuTrial} returns a named list of labels. \code{label_secuTrial} adds labels and units to variables (and data.frames) which can then be queried via \code{label} or \code{units}.
 #' @param object \code{secuTrialdata} object
 #' @param form which form (string)
 #' @details regular expressions are used with \code{form} (specifically, it is appended with \code{$} to identify the form). Consequently, if \code{form} matches multiple forms (because the beginning is different), multiple forms may be returned. You could be more specific with the regular expression, remembering that it is appended by \code{$}.
+#' @note The \code{label_secuTrial}/\code{label} syntax is similar to that used in Hmisc, with the advantage that it does not change data types (Hmisc coerces everything to labelled integer). Similar to Hmisc, however, most operations will remove the labels.
 #' @return named vector
 #' @export
 #'
@@ -33,18 +37,21 @@ labels_secuTrial <- function(object, form = NULL) {
 
 
 
-#' Add labels to variables in secuTrialdata objects
-#' @description blablabla
-#' @param x a \code{secuTrialdata} object
+#' @rdname labels_secuTrial
 #' @export
-#' @details
-#'
 #' @examples
+#' # ALTERNATIVE APPROACH
 #' # load secuTrial export with separate reference table
 #' sT_export <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR"))
 #' # label the secuTrialdata object
-#' sT_export_factorized <- label_secuTrial(sT_export)
-label_secuTrial <- function(x, ...) UseMethod("label_secuTrial", x)
+#' sT_export_labelled <- label_secuTrial(sT_export)
+#' # form label
+#' label(sT_export_labelled$ctu05baseline)
+#' # variable label
+#' label(sT_export_labelled$ctu05baseline$visit_date)
+#' # sampling units
+#' units(sT_export_labelled$ctu05baseline$height)
+label_secuTrial <- function(object, ...) UseMethod("label_secuTrial", object)
 #' @export
 label_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$meta_available$items) {
@@ -86,16 +93,6 @@ label_secuTrial.secuTrialdata <- function(object) {
   object
 }
 
-# nolint start
-# #' The data.frame method is used on the individual datasets within the \code{secuTrialdata} object, and relies on \code{cl}
-# #' @rdname factorize
-# #' @param data a \code{data.frame}, usually from within a \code{secuTrialdata} object
-# #' @param cl a \code{data.frame}, usually taken from a \code{secuTrialdata} object, containing at least three variables - 1) \code{column} containing information on which form and variable is to be factorized (formatted as form.variable); 2) \code{code} containing the options that the variable can take as a number; 3) \code{value} contains the text relating to the \code{code} number
-# #' @param form which form you are currently working on (used for filtering \code{cl})
-# #'
-# #' @examples
-# # data.frame method
-# nolint end
 label_secuTrial.data.frame <- function(data, it) {
   it <- it[it$ffcolname %in% names(data), ]
   # print(it)
@@ -111,6 +108,8 @@ label_secuTrial.data.frame <- function(data, it) {
   return(data)
 }
 
+#' @rdname labels_secuTrial
+#' @param x any object
 #' @export
 label <- function(x) attr(x, "label")
 
