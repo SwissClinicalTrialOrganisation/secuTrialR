@@ -24,7 +24,7 @@ labels_secuTrial <- function(object, form = NULL) {
   if (!is.null(form)) {
     qs <- object[[object$export_options$meta_names$questions]]
     itqs <- merge(it, qs, by = "fgid")
-    it <- itqs[grepl(paste0(form, "$"), itqs$formtablename), ]
+    it <- itqs[grepl(paste0("(", paste0(form, collapse = "|"), ")$"), itqs$formtablename), ]
   }
   it <- it[!grepl("Dummy", as.character(it$itemtype)), ]
   it <- it[, c("ffcolname", "fflabel")]
