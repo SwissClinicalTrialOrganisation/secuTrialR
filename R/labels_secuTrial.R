@@ -72,11 +72,11 @@ label_secuTrial.secuTrialdata <- function(object) {
   it$formtablename <- as.character(it$formtablename)
   it$fname <- gsub(pattern = "^mnp", "", it$formtablename)
   it <- it[!duplicated(it[, c("ffcolname", "fflabel", "formtablename")]), ]
-  # some variables are still duplicated - fflabel can differ
-  # - retain longest
-  it$length <- nchar(it$fflabel)
-  it <- it[order(it$length, decreasing = TRUE), ]
-  it <- it[!duplicated(it[, c("ffcolname", "formtablename")]), ]
+  # # some variables are still duplicated - fflabel can differ
+  # # - retain longest
+  # it$length <- nchar(it$fflabel)
+  # it <- it[order(it$length, decreasing = TRUE), ]
+  # it <- it[!duplicated(it[, c("ffcolname", "formtablename")]), ]
 
   x <- object$export_options$data_names
   names(x) <- NULL
