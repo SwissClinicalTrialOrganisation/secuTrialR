@@ -105,7 +105,6 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
 
   # get data file extension
   file_extension <- unique(sapply(strsplit(files$Name[-study_options_file_idx], ".", fixed = TRUE), function(x) x[2]))
-  # file_extension <- file_extension[file_extension == "xls"]
 
   meta_available <- list()
   for (entry in c("forms", "casenodes", "centres", "items", "questions", "queries", "visitplan",
