@@ -50,6 +50,33 @@ test_that("labelling object works",
 sl <- label_secuTrial(sT_export_short)
 ll <- label_secuTrial(sT_export_long)
 
-test_that("age label", expect_equal(label(sl$bmd$age), "Age"))
+test_that("age label", {
+  expect_equal(label(sl$bmd$age), "Age")
+  expect_equal(label(ll$dem00bmd$age), "Age")
+})
 
 
+sdat <- load_secuTrial_export(system.file("extdata",
+                                         "s_export_CSV-xls_CTU05_shortnames.zip",
+                                         package = "secuTrialR"))
+sdat <- label_secuTrial(sdat)
+ldat <- load_secuTrial_export(system.file("extdata",
+                                         "s_export_CSV-xls_CTU05_longnames.zip",
+                                         package = "secuTrialR"))
+ldat <- label_secuTrial(ldat)
+test_that("aspirin label", {
+  expect_equal(units(sdat$baseline$aspirin), "Aspirin")
+  expect_equal(units(ldat$ctu05baseline$aspirin), "Aspirin")
+})
+
+
+
+# forms in labels_secuTrial
+test_that("multiple forms", {
+  expect_equal(length(labels_secuTrial(sdat, c("outcome", "treatment"))), 4)
+  expect_equal(length(labels_secuTrial(ldat, c("outcome", "treatment"))), 4)
+})
+test_that("single form", {
+  expect_equal(length(labels_secuTrial(sdat, c("outcome"))), 3)
+  expect_equal(length(labels_secuTrial(ldat, c("outcome"))), 3)
+})
