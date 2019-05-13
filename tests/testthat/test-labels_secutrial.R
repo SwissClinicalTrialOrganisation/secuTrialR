@@ -11,6 +11,8 @@ long_export_location <- system.file("extdata",
 sT_export_short <- load_secuTrial_export(data_dir = short_export_location)
 sT_export_long <- load_secuTrial_export(data_dir = long_export_location)
 
+
+# labels_secuTrial
 # test number of labels
 test_that("Number of labels is correct.", {
   expect_equal(length(labels_secuTrial(sT_export_short)), 3)
@@ -37,3 +39,17 @@ test_that("Non-existent form", {
 })
 
 # cannot further test form option without more complex CDMA
+
+# label_secuTrial
+
+test_that("labelling object works",
+          expect_warning({label_secuTrial(sT_export_short)
+                          label_secuTrial(sT_export_long)
+  }, regexp = NA))
+
+sl <- label_secuTrial(sT_export_short)
+ll <- label_secuTrial(sT_export_long)
+
+test_that("age label", expect_equal(label(sl$bmd$age), "Age"))
+
+
