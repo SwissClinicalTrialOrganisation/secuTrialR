@@ -32,7 +32,7 @@
 #' # plot links for form names starting with "ctu05"
 #' links_secuTrial(sT_export, forms = "^ctu05")
 #' }
-links_secuTrial <- function(object, forms = NULL, formcol = "lightgreen", varcol = "yellow") {
+links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = "#e5f5f9") {
   if (!class(object) == "secuTrialdata") stop("object of class secuTrialdata expected")
   obj <- object[2:length(object)]
 
