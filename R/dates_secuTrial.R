@@ -75,6 +75,7 @@ dates_secuTrial.character <- function(var, format){
   # some export types probably return strings
   d <- as.Date(var, format = format)
   if (!is.null(label(var))) label(d) <- label(var)
+  if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 #' @rdname dates_secuTrial
@@ -83,6 +84,7 @@ dates_secuTrial.factor <- function(var, format){
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
+  if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 #' @rdname dates_secuTrial
@@ -91,6 +93,7 @@ dates_secuTrial.integer <- function(var, format){
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
+  if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 #' @rdname dates_secuTrial
@@ -99,6 +102,7 @@ dates_secuTrial.numeric <- function(var, format){
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
+  if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 #' @rdname dates_secuTrial
@@ -107,6 +111,7 @@ dates_secuTrial.logical <- function(var, format){
   # convert to string to get (empty) Date object
   d <- dates_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
+  if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 #' @rdname dates_secuTrial

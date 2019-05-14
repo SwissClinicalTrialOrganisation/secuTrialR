@@ -81,6 +81,7 @@ factorize_secuTrial.integer <- function(var, lookup) {
   lookup <- unique(lookup)
   f <- factor(var, lookup$code, lookup$value)
   if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
   f
 }
 
@@ -89,6 +90,7 @@ factorize_secuTrial.logical <- function(var, lookup) {
   var <- as.numeric(var)
   f <- factor(var, lookup$code, lookup$value)
   if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
   f
 }
 
@@ -96,5 +98,6 @@ factorize_secuTrial.logical <- function(var, lookup) {
 factorize_secuTrial.character <- function(var, lookup) {
   f <- factor(var, lookup$value, lookup$value)
   if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
   f
 }
