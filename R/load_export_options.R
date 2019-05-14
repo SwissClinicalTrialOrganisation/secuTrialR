@@ -105,7 +105,6 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
 
   # get data file extension
   file_extension <- unique(sapply(strsplit(files$Name[-study_options_file_idx], ".", fixed = TRUE), function(x) x[2]))
-  # file_extension <- file_extension[file_extension == "xls"]
 
   meta_available <- list()
   for (entry in c("forms", "casenodes", "centres", "items", "questions", "queries", "visitplan",
@@ -205,8 +204,8 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
 
 print.secutrialoptions <- function(x){
   cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
-  if(x$short_names) cat("Exported with short names \n")
-  if(!x$short_names) cat(paste("File names appended with:", x$file.end, "\n"))
+  if (x$short_names) cat("Exported with short names \n")
+  if (!x$short_names) cat(paste("File names appended with:", x$file.end, "\n"))
   cat(paste("File extension:", x$extension, "\n"))
   cat(paste0("Seperator: '", x$sep, "'\n"))
   cat(paste(length(x$all_files), "files exported\n"))

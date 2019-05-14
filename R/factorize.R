@@ -29,7 +29,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
            saf <- "\nCategorical variables are probably strings (options()$stringsAsFactors == FALSE)\n")
     stop(saf, "Recommend saving reference values to seperate table in export")
   }
-  if(object$export_options$factorized) warning("already factorized - any changes will be lost")
+  if (object$export_options$factorized) warning("already factorized - any changes will be lost")
 
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -79,16 +79,22 @@ factorize_secuTrial.data.frame <- function(data, cl, form) {
 # nolint end
 factorize_secuTrial.integer <- function(var, lookup) {
   lookup <- unique(lookup)
-  factor(var, lookup$code, lookup$value)
+  f <- factor(var, lookup$code, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  f
 }
 
 # #' @rdname factorize
 factorize_secuTrial.logical <- function(var, lookup) {
   var <- as.numeric(var)
-  factor(var, lookup$code, lookup$value)
+  f <- factor(var, lookup$code, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  f
 }
 
 # #' @rdname factorize
 factorize_secuTrial.character <- function(var, lookup) {
-  factor(var, lookup$value, lookup$value)
+  f <- factor(var, lookup$value, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  f
 }

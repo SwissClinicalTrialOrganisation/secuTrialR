@@ -60,7 +60,7 @@ label_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$meta_available$items) {
     stop("'items' metadata not available")
   }
-  if(object$export_options$factorized) warning("already labelled - any changes will be lost")
+  if (object$export_options$factorized) warning("already labelled - any changes will be lost")
 
 
   it <- object[[object$export_options$meta_names$items]]
@@ -82,17 +82,18 @@ label_secuTrial.secuTrialdata <- function(object) {
   # it$length <- nchar(it$fflabel)
   # it <- it[order(it$length, decreasing = TRUE), ]
   # it <- it[!duplicated(it[, c("ffcolname", "formtablename")]), ]
-  if(any(duplicated(it[, c("ffcolname", "formtablename")]))) warning("some variable names appear to be duplicated - labels attribute may be longer that 1")
-
+  if (any(duplicated(it[, c("ffcolname", "formtablename")]))) {
+    warning("some variable names appear to be duplicated - labels attribute may be longer that 1")
+  }
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
-  if(!object$export_options$short_names) x <- x[x %in% it$fname]
+  if (!object$export_options$short_names) x <- x[x %in% it$fname]
   # note that the basic form for extended forms might have no variables
   obs <- lapply(x, function(obj){
     tmp <- object[[obj]]
-    if(object$export_options$short_names) tmp <- label_secuTrial(tmp, it)
-    if(!object$export_options$short_names) tmp <- label_secuTrial(tmp, it[it$fname == obj, ])
+    if (object$export_options$short_names) tmp <- label_secuTrial(tmp, it)
+    if (!object$export_options$short_names) tmp <- label_secuTrial(tmp, it[it$fname == obj, ])
     tmp
   })
   obs
@@ -103,13 +104,11 @@ label_secuTrial.secuTrialdata <- function(object) {
 
 label_secuTrial.data.frame <- function(data, it) {
   it <- it[it$ffcolname %in% names(data), ]
-  # print(it)
   for (i in names(data)[names(data) %in% it$ffcolname]) {
     x <- it$fflabel[it$ffcolname == i]
     u <- it$unit[it$ffcolname == i]
-    # print(paste(i, "label", x))
     label(data[, i]) <- x
-    if(any(!is.na(u))) units(data[, i]) <- u
+    if (any(!is.na(u))) units(data[, i]) <- u
   }
   label(data) <- it$formname[1]
 

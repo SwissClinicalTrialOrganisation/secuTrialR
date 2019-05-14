@@ -43,8 +43,9 @@ test_that("Non-existent form", {
 # label_secuTrial
 
 test_that("labelling object works",
-          expect_warning({label_secuTrial(sT_export_short)
-                          label_secuTrial(sT_export_long)
+          expect_warning({
+            label_secuTrial(sT_export_short)
+            label_secuTrial(sT_export_long)
   }, regexp = NA))
 
 sl <- label_secuTrial(sT_export_short)

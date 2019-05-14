@@ -20,7 +20,7 @@ dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 #' @rdname dates_secuTrial
 #' @export
 dates_secuTrial.secuTrialdata <- function(object){
-  if(object$export_options$dated) warning("dates already added")
+  if (object$export_options$dated) warning("dates already added")
 
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -73,31 +73,41 @@ dates_secuTrial.data.frame <- function(data, datevars, format){
 #' @param var date variable to be converted
 dates_secuTrial.character <- function(var, format){
   # some export types probably return strings
-  as.Date(var, format = format)
+  d <- as.Date(var, format = format)
+  if (!is.null(label(var))) label(d) <- label(var)
+  d
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.factor <- function(var, format){
   # depending on options, strings might be converted to factors
   # convert to string
-  dates_secuTrial(as.character(var), format)
+  d <- dates_secuTrial(as.character(var), format)
+  if (!is.null(label(var))) label(d) <- label(var)
+  d
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.integer <- function(var, format){
   # this is the default type
   # convert to string
-  dates_secuTrial(as.character(var), format)
+  d <- dates_secuTrial(as.character(var), format)
+  if (!is.null(label(var))) label(d) <- label(var)
+  d
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.numeric <- function(var, format){
   # this is the default type
   # convert to string
-  dates_secuTrial(as.character(var), format)
+  d <- dates_secuTrial(as.character(var), format)
+  if (!is.null(label(var))) label(d) <- label(var)
+  d
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.logical <- function(var, format){
   # this happens when the variable is empty
   # convert to string to get (empty) Date object
-  dates_secuTrial(as.character(var), format)
+  d <- dates_secuTrial(as.character(var), format)
+  if (!is.null(label(var))) label(d) <- label(var)
+  d
 }
 #' @rdname dates_secuTrial
 dates_secuTrial.Date <- function(var, format){
