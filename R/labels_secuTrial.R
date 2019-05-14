@@ -5,9 +5,11 @@
 #' @description Variable labels are important for understanding the contents of a variable. \code{secuTrialR} offers two main methods to get those labels. \code{labels_secuTrial} returns a named list of labels. \code{label_secuTrial} adds labels and units to variables (and data.frames) which can then be queried via \code{label} or \code{units}.
 #' @param object \code{secuTrialdata} object
 #' @param form which form (string)
-#' @details regular expressions are used with \code{form} (specifically, it is appended with \code{$} to identify the form). Consequently, if \code{form} matches multiple forms (because the beginning is different), multiple forms may be returned. You could be more specific with the regular expression, remembering that it is appended by \code{$}.
+#' @details For \code{labels_secuTrial}, regular expressions are used with \code{form} (specifically, it is inserted between \code{(} and \code{)$} to identify the form). Consequently, if \code{form} matches multiple forms (because the beginning is different), multiple forms may be returned. You could be more specific with the regular expression, remembering that it is inserted between \code{(} and \code{)$}.
 #' @note The \code{label_secuTrial}/\code{label} syntax is similar to that used in Hmisc, with the advantage that it does not change data types (Hmisc coerces everything to labelled integer). Similar to Hmisc, however, most operations will remove the labels.
-#' @return named vector
+#' @return \code{labels_secuTrial} returns a named vector
+#' \code{label_secuTrial} returns the same object as \code{object}, but with labels added to variables and data.frames
+#' \code{label} and \code{units} return strings with the appropriate labels
 #' @export
 #'
 #' @examples
@@ -40,6 +42,7 @@ labels_secuTrial <- function(object, form = NULL) {
 #' @rdname labels_secuTrial
 #' @export
 #' @examples
+#'
 #' # ALTERNATIVE APPROACH
 #' # load secuTrial export with separate reference table
 #' sT_export <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR"))
@@ -57,6 +60,8 @@ label_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$meta_available$items) {
     stop("'items' metadata not available")
   }
+  if(object$export_options$factorized) warning("already labelled - any changes will be lost")
+
 
   it <- object[[object$export_options$meta_names$items]]
   qs <- object[[object$export_options$meta_names$questions]]
@@ -92,6 +97,7 @@ label_secuTrial.secuTrialdata <- function(object) {
   })
   obs
   object[x] <- obs
+  object$export_options$labelled <- TRUE
   object
 }
 

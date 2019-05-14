@@ -20,6 +20,7 @@ dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 #' @rdname dates_secuTrial
 #' @export
 dates_secuTrial.secuTrialdata <- function(object){
+  if(object$export_options$dated) warning("dates already added")
 
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -46,6 +47,7 @@ dates_secuTrial.secuTrialdata <- function(object){
     tmp
   })
   object[x] <- obs
+  object$export_options$dated <- TRUE
   object
 
 }

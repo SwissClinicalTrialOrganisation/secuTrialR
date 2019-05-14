@@ -22,8 +22,6 @@ factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 #'
 #' @return \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 #' @export
-#'
-#' @examples
 factorize_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$refvals_separate) {
     ifelse(options()$stringsAsFactors,
@@ -31,6 +29,8 @@ factorize_secuTrial.secuTrialdata <- function(object) {
            saf <- "\nCategorical variables are probably strings (options()$stringsAsFactors == FALSE)\n")
     stop(saf, "Recommend saving reference values to seperate table in export")
   }
+  if(object$export_options$factorized) warning("already factorized - any changes will be lost")
+
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
@@ -41,6 +41,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
   })
   obs
   object[x] <- obs
+  object$export_options$factorized <- TRUE
   object
 }
 

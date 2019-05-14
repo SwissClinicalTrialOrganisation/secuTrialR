@@ -194,7 +194,10 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
                         file_end = file_tag,
                         extension = file_extension,
                         data_dir = data_dir,
-                        secuTrial.version = version)
+                        secuTrial.version = version,
+                        factorized = FALSE,
+                        dated = FALSE,
+                        labelled = FALSE)
   class(study.options) <- "secutrialoptions"
   return(study.options)
 }
