@@ -54,5 +54,3 @@ test_that("labels not present", {
   expect_null(label(ld1_2$ctu05ae$ae_onset_date))
   expect_null(label(ld1_2$ctu05ae$ae_onset_date.date))
 })
-
-

@@ -64,7 +64,7 @@ dates_secuTrial.data.frame <- function(data, datevars, format, warn = FALSE){
       data[, paste0(x, ".date")] <- newdatecol
     }
   } else {
-    if(warn) warning(paste("no dates detected in", get("obj", envir = parent.frame())))
+    if (warn) warning(paste("no dates detected in", get("obj", envir = parent.frame())))
   }
   data
 }
