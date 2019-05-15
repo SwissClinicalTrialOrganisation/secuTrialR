@@ -26,17 +26,24 @@ test_that("labels present", {
   expect_equal(label(ld1$ctu05ae$ae_onset_date.date), "Onset of AE")
   })
 
-test_that("post processing indicators", {
+test_that("post processing indicators (all true)", {
   expect_true(ld1$export_options$factorized)
   expect_true(ld1$export_options$dated)
   expect_true(ld1$export_options$labelled)
 })
 
 ld1_2 <- load_secuTrial(l1, FALSE)
-test_that("post processing indicators", {
-  expect_true(ld1$export_options$factorized)
-  expect_true(ld1$export_options$dated)
-  expect_false(ld1$export_options$labelled)
+test_that("post processing indicators (no label)", {
+  expect_true(ld1_2$export_options$factorized)
+  expect_true(ld1_2$export_options$dated)
+  expect_false(ld1_2$export_options$labelled)
+})
+
+ld1_3 <- load_secuTrial(l1, FALSE, FALSE)
+test_that("post processing indicators (no label/factor)", {
+  expect_false(ld1_3$export_options$factorized)
+  expect_true(ld1_3$export_options$dated)
+  expect_false(ld1_3$export_options$labelled)
 })
 
 test_that("labels not present", {

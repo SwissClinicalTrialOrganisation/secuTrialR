@@ -27,8 +27,10 @@ test_that("outcome variable is date (longnames)", expect_equal(class(f$ctu05outc
 dat <- load_secuTrial_export(system.file("extdata",
                                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                          package = "secuTrialR"))
-test_that("loading data: CTU05_longnames_sep_ref",
-          expect_warning(f <- dates_secuTrial(dat)))
+test_that("loading data: CTU05_longnames_sep_ref (warn)",
+          expect_warning(f <- dates_secuTrial(dat, warn = TRUE)))
+test_that("loading data: CTU05_longnames_sep_ref (no warn)",
+          expect_warning(f <- dates_secuTrial(dat), regexp = NA))
 f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (longnames_sep_ref)",
           expect_equal(class(f$ctu05outcome$death_date.date), "Date"))
