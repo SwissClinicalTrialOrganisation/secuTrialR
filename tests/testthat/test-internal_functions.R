@@ -52,6 +52,31 @@ test_that("pat_id moved to index 2.", {
                "mnppid")
 })
 
+test_that("not a data.frame error",
+          expect_error(secuTrialR:::.move_column_to_pos(c(1:3), 1, 2)))
+test_that("not an integer error",{
+          expect_error(secuTrialR:::.move_column_to_pos(
+            data.frame(a = 1:3,
+                       b = letters[1:3],
+                       c = LETTERS[1:3]), 1.1, 2))
+          expect_error(secuTrialR:::.move_column_to_pos(
+            data.frame(a = 1:3,
+                       b = letters[1:3],
+                       c = LETTERS[1:3]), 1, 2.1))
+  })
+test_that("out of bounds error",{
+          expect_error(secuTrialR:::.move_column_to_pos(
+            data.frame(a = 1:3,
+                       b = letters[1:3],
+                       c = LETTERS[1:3]), 1, 5))
+  })
+test_that("move to end",{
+          expect_equal(names(secuTrialR:::.move_column_to_pos(
+            data.frame(a = 1:3,
+                       b = letters[1:3],
+                       c = LETTERS[1:3]), 1, 3)), c("b", "c", "a"))
+  })
+
 # ---- test .move_column_after
 test_that("pat_id moved after mnpaid column.", {
   expect_equal(names(secuTrialR:::.move_column_after(df = casenodes,
@@ -59,3 +84,17 @@ test_that("pat_id moved after mnpaid column.", {
                                                      col_name_after = "mnpaid"))[which(names(casenodes) == "mnpaid")],
                "mnppid")
 })
+test_that("unknown column error",{
+  expect_error(secuTrialR:::.move_column_after(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), "d", "a"))
+})
+test_that("reference column error",{
+  expect_error(secuTrialR:::.move_column_after(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), "a", "a"))
+})
+test_that("not a data.frame error",
+          expect_error(secuTrialR:::.move_column_after(c(1:3), "1", "2")))
