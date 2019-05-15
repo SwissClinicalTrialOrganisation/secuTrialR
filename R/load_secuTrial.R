@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata", "s_export_CSV-xls_BMD.zip", package = "secuTrialR")
+#' path <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR")
 #' d <- load_secuTrial(path)
 load_secuTrial <- function(data_dir,
                            labels = TRUE,
