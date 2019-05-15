@@ -55,4 +55,8 @@ test_that("Levels in SAE", {
   expect_equal(as.vector(table(f$ctu05sae$sae_drug_relation.factor)), c(1, 1, 0, 0, 0, 0))
 })
 
+# warnings for trying to refactorize
+test_that("refactorize warning",
+          expect_warning(factorize_secuTrial(f)))
+
 options(stringsAsFactors = sAF)

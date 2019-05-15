@@ -81,3 +81,24 @@ test_that("single form", {
   expect_equal(length(labels_secuTrial(sdat, c("outcome"))), 3)
   expect_equal(length(labels_secuTrial(ldat, c("outcome"))), 3)
 })
+
+
+# labels get propogated to factors/dates
+ldat <- load_secuTrial_export(system.file("extdata",
+                                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                          package = "secuTrialR"))
+ldat <- label_secuTrial(ldat)
+
+fl <- factorize_secuTrial(ldat)
+dl <- dates_secuTrial(ldat)
+dfl <- dates_secuTrial(fl)
+test_that("label propogated to factor", {
+  expect_equal(label(fl$ctu05outcome$follow_up.factor), label(fl$ctu05outcome$follow_up))
+})
+test_that("label propogated to date", {
+  expect_equal(label(dl$ctu05outcome$death_date.date), label(dl$ctu05outcome$death_date))
+})
+test_that("label propogated to factor and date", {
+  expect_equal(label(dfl$ctu05outcome$follow_up.factor), label(dfl$ctu05outcome$follow_up))
+  expect_equal(label(dfl$ctu05outcome$death_date.date), label(dfl$ctu05outcome$death_date))
+})
