@@ -14,9 +14,10 @@
 \usage{
 dates_secuTrial(x, ...)
 
-\method{dates_secuTrial}{secuTrialdata}(object)
+\method{dates_secuTrial}{secuTrialdata}(object, ...)
 
-\method{dates_secuTrial}{data.frame}(data, datevars, format)
+\method{dates_secuTrial}{data.frame}(data, datevars, format,
+  warn = FALSE)
 
 \method{dates_secuTrial}{character}(var, format)
 
