@@ -42,10 +42,11 @@ test_that("number of variables", expect_equal(n, 12))
 test_that("dates detected", expect_true(any(grep("\\.date$", names(f$ctu05baseline)))))
 
 # warnings for trying to run dates again
-d <- dates_secuTrial(f)
-w <- warnings()
+# d <- suppressWarnings(dates_secuTrial(f))
+# w <- warnings()
+# n <- names(w)
 test_that("second dates warning",
-          expect_equal(names(w[1]), "dates already added"))
+          expect_warning(dates_secuTrial(f), "dates already added"))
 
 # test dates methods
 

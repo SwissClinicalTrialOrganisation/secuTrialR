@@ -90,8 +90,8 @@ ldat <- load_secuTrial_export(system.file("extdata",
 ldat <- label_secuTrial(ldat)
 
 fl <- factorize_secuTrial(ldat)
-dl <- dates_secuTrial(ldat)
-dfl <- dates_secuTrial(fl)
+dl <- suppressWarnings(dates_secuTrial(ldat))
+dfl <- suppressWarnings(dates_secuTrial(fl))
 test_that("label propogated to factor", {
   expect_equal(label(fl$ctu05outcome$follow_up.factor), label(fl$ctu05outcome$follow_up))
 })
