@@ -25,47 +25,63 @@ library(secuTrialR)
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- load_secuTrial_export(data_dir = export_location)
+bmd_export <- load_secuTrial_export(data_dir = export_location)
 
-names(sT_export)
+# load a second dataset
+export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                               package = "secuTrialR")
+ctu05 <- load_secuTrial_export(export_location)
+
+# View names of the bmd_export object
+names(bmd_export)
 ```
 
-`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `sT_export$export_options$data_names`.
+`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`.
 <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
-`sT_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `sT_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
+`bmd_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `bmd_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
 ```{r}
-sT_export
+bmd_export
 ```
 
-Individual tables can be extracted from the `sT_export` object via `tab <- sT_export$tab`, where `tab` is the table of interest.
+Individual tables can be extracted from the `bmd_export` object via `tab <- bmd_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
-<!-- print method for secuTrialoptions (metadata)? -->
 
 ### Variable labels
-For creating tables, it is often useful to have access to variable labels. This is simple in secuTrialR.
+For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.
 ```{r}
-labs <- labels_secuTrial(sT_export)
+labs <- labels_secuTrial(bmd_export)
 # query the list with the variable name of interest
 labs[["age"]]
 
 ```
 
-### Visit plan
-secuTrialR can provide a depiction of the visit structure:
-```{r, eval = FALSE}
-vs <- visit_structure(sT_export)
-plot(vs)
+The attribute based approach adds labels as an attribute to a variable, which can then be accessed via `label(var)`.
+```{r}
+labelled <- label_secuTrial(bmd_export)
+label(labelled$bmd$age)
 ```
-<!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
+Labels can be added to new variables or changed via 
+```{r}
+label(labelled$bmd$age) <- "Age (years)"
+label(labelled$bmd$age)
+```
+Where units have been defined in the SecuTrial database, they can be accessed or changed analogously (here, age had no unit assigned, but we can add one).
+```{r}
+units(labelled$bmd$age)
+units(labelled$bmd$age) <- "years"
+units(labelled$bmd$age)
+```
+There is a drawback to the attribute based approach - labels will not be propogated if variables are derived and may be lost if variables are edited.
+
+Currently, `label_secuTrial` should be used prior to `dates_secuTrial` or `factorize_secuTrial` so that labels and units are propogated to factor and date variables.
+
+
  
 ### Prepare factors
 It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 ```{r, error=TRUE}
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
-                               package = "secuTrialR")
-dat <- load_secuTrial_export(export_location)
-factors <- factorize_secuTrial(dat)
+factors <- factorize_secuTrial(ctu05)
 ```
 This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
 
@@ -85,16 +101,48 @@ Dates are a very common data type. They cannot be easily used though in their ex
 Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
 ```{r, eval=FALSE}
-dates <- dates_secuTrial(dat)
+dates <- dates_secuTrial(ctu05)
 ```
 
-### Linking different forms
+### Recommended approach
+
+```{r, eval=FALSE}
+f <- "PATH_TO_FILE"
+d <- load_secuTrial_export(f)
+l <- label_secuTrial(d)
+fa <- factorize_secuTrial(l)
+dat <- dates_secuTrial(fa)
+
+# or, if you like pipes
+library(magrittr)
+f <- "PATH_TO_FILE"
+d <- load_secuTrial_export(f)
+dat <- d %>% 
+  label_secuTrial() %>%
+  factorize_secuTrial() %>%
+  dates_secuTrial()
+```
+
+
+
+### Exploratory helpers
+`secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
+
+#### Visit plan
+secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:
+```{r, eval = FALSE}
+vs <- visit_structure(ctu05)
+plot(vs)
+```
+<!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
+
+
+#### Linking different forms
 
 Linkages amongst forms can be explored with the `links_secuTrial` function. This relies on the `igraph` package to create a network. The network is plotted using `rgl`, which allows one to interact with the network (e.g. move nodes around in order to read the label better). The device ID is returned to the console, but can be ignored. Forms are plotted in red, variables in blue.
 
 ```{r, eval=FALSE}
-links_secuTrial(sT_export)
-
+links_secuTrial(bmd_export)
 ```
 ![](inst/extdata/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->

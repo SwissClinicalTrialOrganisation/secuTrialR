@@ -8,7 +8,9 @@
 #'
 #' @examples
 #' # load secuTrial export with separate reference table
-#' sT_export <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR"))
+#' sT_export <- load_secuTrial_export(system.file("extdata",
+#'                                                "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+#'                                                package = "secuTrialR"))
 #' # factorize the secuTrialdata object
 #' sT_export_factorized <- factorize_secuTrial(sT_export)
 
@@ -22,8 +24,6 @@ factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 #'
 #' @return \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 #' @export
-#'
-#' @examples
 factorize_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$refvals_separate) {
     ifelse(options()$stringsAsFactors,
@@ -31,6 +31,8 @@ factorize_secuTrial.secuTrialdata <- function(object) {
            saf <- "\nCategorical variables are probably strings (options()$stringsAsFactors == FALSE)\n")
     stop(saf, "Recommend saving reference values to seperate table in export")
   }
+  if (object$export_options$factorized) warning("already factorized - any changes will be lost")
+
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
@@ -41,6 +43,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
   })
   obs
   object[x] <- obs
+  object$export_options$factorized <- TRUE
   object
 }
 
@@ -78,16 +81,25 @@ factorize_secuTrial.data.frame <- function(data, cl, form) {
 # nolint end
 factorize_secuTrial.integer <- function(var, lookup) {
   lookup <- unique(lookup)
-  factor(var, lookup$code, lookup$value)
+  f <- factor(var, lookup$code, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
+  f
 }
 
 # #' @rdname factorize
 factorize_secuTrial.logical <- function(var, lookup) {
   var <- as.numeric(var)
-  factor(var, lookup$code, lookup$value)
+  f <- factor(var, lookup$code, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
+  f
 }
 
 # #' @rdname factorize
 factorize_secuTrial.character <- function(var, lookup) {
-  factor(var, lookup$value, lookup$value)
+  f <- factor(var, lookup$value, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
+  f
 }

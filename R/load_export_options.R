@@ -193,7 +193,31 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
                         file_end = file_tag,
                         extension = file_extension,
                         data_dir = data_dir,
-                        secuTrial.version = version)
+                        secuTrial.version = version,
+                        factorized = FALSE,
+                        dated = FALSE,
+                        labelled = FALSE)
   class(study.options) <- "secutrialoptions"
   return(study.options)
+}
+
+#' @export
+print.secutrialoptions <- function(x){
+  cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
+  if (x$short_names) cat("Exported with short names \n")
+  if (!x$short_names) cat(paste("File names appended with:", x$file_end, "\n"))
+  cat(paste("File extension:", x$extension, "\n"))
+  cat(paste0("Seperator: '", x$sep, "'\n"))
+  cat(paste(length(x$all_files), "files exported\n"))
+  cat(paste("  including", sum(unlist(x$meta_available)), "metadata elements\n"))
+  cat(paste("Reference values",
+            ifelse(x$refvals_separate,
+                   "exported - factorize possible\n",
+                   "not exported - factorize not possible\n")))
+  cat("Metadata elements:\n")
+  df <- data.frame(type = names(x$meta_available),
+                   exportname = unlist(x$meta_names),
+                   available = unlist(x$meta_available))
+  print(df, row.names = FALSE)
+
 }

@@ -23,6 +23,13 @@ visit_structure <- function(x){
                                          "a fixed structure"))
   vpf <- x[[x$export_options$meta_names$visitplanforms]]
   f <- x[[x$export_options$meta_names$forms]]
+  for (j in c("vp", "f", "vpf")) {
+    tmp <- get(j)
+    for (i in names(tmp)[sapply(tmp, is.factor)]) {
+      tmp[, i] <- as.character(tmp[, i])
+    }
+    assign(j, tmp)
+  }
   tmp <- merge(vp, vpf, by = "mnpvisid")
   tmp <- merge(tmp, f, by = "formid")
   u <- unique(tmp[, c("mnpvislabel", "formname")])
@@ -31,12 +38,17 @@ visit_structure <- function(x){
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
   # column order
-  tmpl <- split(vp, vp$mnpvsno)[[1]]
+  tmpl <- split(vp, vp$mnpvsno)
+  w <- which(sapply(tmpl, function(x) all(unique(u$mnpvislabel) %in% x$mnpvislabel)))[1]
+  tmpl <- tmpl[[w]]
+  tmpl <- tmpl[!duplicated(tmpl$mnpvislabel), ]
   tmpl$r <- 1:nrow(tmpl)
   neworder <- c(1, tmpl$r[match(tmpl$mnpvislabel, gsub("tmpvar.", "", names(r)[2:ncol(r)]))] + 1)
   r <- r[, neworder]
   # row order
-  tmpl <- split(f, f$mnpvslbl)[[1]]
+  tmpl <- split(f, f$mnpvslbl)
+  w <- which(sapply(tmpl, function(x) all(unique(u$formname) %in% x$formname)))[1]
+  tmpl <- tmpl[[1]]
   f <- as.character(tmpl$formname)
   neworder <- na.exclude( (1:length(f))[match(f, r$formname)])
   ro <- r[neworder, ]

@@ -40,3 +40,27 @@ test_that("number of variables", expect_equal(n, 12))
 
 # test for any .date at end of names
 test_that("dates detected", expect_true(any(grep("\\.date$", names(f$ctu05baseline)))))
+
+# warnings for trying to run dates again
+# d <- suppressWarnings(dates_secuTrial(f))
+# w <- warnings()
+# n <- names(w)
+test_that("second dates warning",
+          expect_warning(dates_secuTrial(f), "dates already added"))
+
+# test dates methods
+
+d <- c("2010-10-15", "2019-05-15")
+x <- secuTrialR:::dates_secuTrial(as.factor(d))
+test_that("factor dates",
+          expect_equal(x, as.Date(d)))
+x <- secuTrialR:::dates_secuTrial(as.numeric(gsub("-", "", d)), format = "%Y%m%d")
+test_that("numeric dates",
+          expect_equal(x, as.Date(d)))
+x <- secuTrialR:::dates_secuTrial(d)
+test_that("character dates",
+          expect_equal(x, as.Date(d)))
+d <- c(NA, NA)
+x <- secuTrialR:::dates_secuTrial(d)
+test_that("logical dates",
+          expect_equal(x, as.Date(d)))
