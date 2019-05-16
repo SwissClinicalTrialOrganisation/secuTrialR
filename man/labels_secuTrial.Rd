@@ -34,18 +34,32 @@ For \code{labels_secuTrial}, regular expressions are used with \code{form} (spec
 The \code{label_secuTrial}/\code{label} syntax is similar to that used in Hmisc, with the advantage that it does not change data types (Hmisc coerces everything to labelled integer). Similar to Hmisc, however, most operations will remove the labels.
 }
 \examples{
+# APPROACH 1: labels_secuTrial
+# ex. 1
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- load_secuTrial_export(data_dir = export_location)
-# get labels
+# get all labels
 labels <- labels_secuTrial(sT_export)
 labels[["age"]]
 
-# ALTERNATIVE APPROACH
+# ex. 2
+# load export
+sT_export <- load_secuTrial_export(system.file("extdata",
+                                               "s_export_CSV-xls_CTU05_longnames.zip",
+                                               package = "secuTrialR"))
+
+# get labels for sae, treatment and surgeries forms
+labels <- labels_secuTrial(sT_export, form = c("sae", "treatment", "surgeries"))
+
+
+# APPROACH 2: label_secuTrial
 # load secuTrial export with separate reference table
-sT_export <- load_secuTrial_export(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR"))
+sT_export <- load_secuTrial_export(system.file("extdata",
+                                               "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                               package = "secuTrialR"))
 # label the secuTrialdata object
 sT_export_labelled <- label_secuTrial(sT_export)
 # form label
