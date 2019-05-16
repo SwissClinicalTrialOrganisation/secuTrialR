@@ -11,10 +11,6 @@ l2 <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames.zip",
 s1 <- system.file("extdata", "s_export_CSV-xls_CTU05_shortnames.zip",
                   package = "secuTrialR")
 
-test_that("sep ref error", {
-  expect_error(load_secuTrial(l2))
-  expect_error(load_secuTrial(s1))
-})
 
 ld1 <- load_secuTrial(l1)
 test_that("labels present", {

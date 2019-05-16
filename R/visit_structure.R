@@ -14,8 +14,9 @@
 #'                                package = "secuTrialR")
 #' # load all export data
 #' sT_export <- load_secuTrial_export(data_dir = export_location)
+#' \dontrun{
 #' visit_structure(sT_export)
-#'
+#' }
 visit_structure <- function(x){
   if(class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]

@@ -2,7 +2,7 @@
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
-#' @details New variables are created appended with \code{.date}. This is a safety mechanism incase NAs are inadvertently introduced.
+#' @details New variables are created appended with \code{.date}. This is a safety mechanism in case NAs are inadvertently introduced.
 #' Methods exist for secuTrialdata objects, data.frames, character, factor, integer and logical classes.
 #' @return same as the original object with date variables converted to Dates.
 #' @export

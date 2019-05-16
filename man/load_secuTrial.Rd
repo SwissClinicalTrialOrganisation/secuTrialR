@@ -11,7 +11,7 @@ load_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 
 \item{labels}{logical - add labels to variables and table}
 
-\item{factor}{logical - convert categorical variables to factor variables}
+\item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a seperate table)}
 
 \item{dates}{logical - convert date variables}
 }
