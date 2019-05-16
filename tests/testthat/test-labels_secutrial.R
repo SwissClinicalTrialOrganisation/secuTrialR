@@ -12,7 +12,7 @@ sT_export_short <- load_secuTrial_export(data_dir = short_export_location)
 sT_export_long <- load_secuTrial_export(data_dir = long_export_location)
 
 
-# labels_secuTrial
+# labels_secuTrial testing
 # test number of labels
 test_that("Number of labels is correct.", {
   expect_equal(length(labels_secuTrial(sT_export_short)), 3)
@@ -38,10 +38,22 @@ test_that("Non-existent form", {
                 !is.null(attr(empty_labels_long, "name")))
 })
 
-# cannot further test form option without more complex CDMA
+# more tests for labels_secuTrial with more complex CDMA
+sT_export <- load_secuTrial_export(system.file("extdata",
+                                               "s_export_CSV-xls_CTU05_longnames.zip",
+                                               package = "secuTrialR"))
 
-# label_secuTrial
+one_label <- labels_secuTrial(sT_export, form = "treatment")
+two_labels <- labels_secuTrial(sT_export, form = c("surgeries", "treatment"))
+three_labels <- labels_secuTrial(sT_export, form = c("sae", "treatment", "surgeries"))
+test_that("Form option working correctly", {
+  expect_equal(length(one_label), 1)
+  expect_equal(length(two_labels), 3)
+  expect_equal(length(three_labels), 17)
+  expect_equal(as.vector(two_labels), c("Type", "Organ", "Randomization"))
+})
 
+# label_secuTrial testing
 test_that("labelling object works",
           expect_warning({
             label_secuTrial(sT_export_short)
