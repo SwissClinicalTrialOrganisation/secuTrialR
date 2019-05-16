@@ -23,9 +23,9 @@ visit_structure <- function(x){
                                          "a fixed structure"))
   vpf <- x[[x$export_options$meta_names$visitplanforms]]
   f <- x[[x$export_options$meta_names$forms]]
-  for(j in c("vp", "f", "vpf")){
+  for (j in c("vp", "f", "vpf")) {
     tmp <- get(j)
-    for(i in names(tmp)[sapply(tmp, is.factor)]) {
+    for (i in names(tmp)[sapply(tmp, is.factor)]) {
       tmp[, i] <- as.character(tmp[, i])
     }
     assign(j, tmp)
