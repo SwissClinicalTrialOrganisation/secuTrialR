@@ -56,3 +56,18 @@ test_that("All dimensions as expected.", {
   expect_equal(dim(bmd_all), c(504, 27))
   expect_equal(dim(bmd_no_patid_ctr_vp), c(504, 24))
 })
+
+export_options_wrong_zip <- export_options
+export_options_wrong_zip$is_zip <- "thatsnotit"
+
+# test exceptions
+test_that("Exceptions trigger as expected.", {
+  expect_error(load_export_table(data_dir = system.file("extdata",
+                                                        "s_export_CSV-xls_BMD.zip",
+                                                        package = "secuTrialR"),
+                                 file_name = "bmd.xls",
+                                 export_options = export_options_wrong_zip,
+                                 casenodes_table = casenodes,
+                                 centre_table = centre,
+                                 visitplan_table = visitplan))
+})
