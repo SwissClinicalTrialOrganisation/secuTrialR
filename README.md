@@ -48,10 +48,6 @@ is the table of interest.
 
 <summary>Wrapped functions</summary>
 
-<details>
-
-<summary>Load a dataset</summary>
-
 #### Load the dataset
 
 ``` r
@@ -116,12 +112,6 @@ Individual tables can be extracted from the `bmd_export` object via `tab
 <- bmd_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
 
-</details>
-
-<details>
-
-<summary>Variable labels</summary>
-
 #### Variable labels
 
 For creating tables, it is often useful to have access to variable
@@ -180,12 +170,6 @@ Currently, `label_secuTrial` should be used prior to `dates_secuTrial`
 or `factorize_secuTrial` so that labels and units are propogated to
 factor and date variables.
 
-</details>
-
-<details>
-
-<summary>Prepare factors</summary>
-
 #### Prepare factors
 
 It is often useful to have categorical variables as factors (R knows how
@@ -224,12 +208,6 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
     ##        1    5      0
     ##        2    0      5
 
-</details>
-
-<details>
-
-<summary>Prepare dates</summary>
-
 #### Prepare dates
 
 Dates are a very common data type. They cannot be easily used though in
@@ -241,8 +219,6 @@ are not yet handled.
 ``` r
 dates <- dates_secuTrial(ctu05)
 ```
-
-</details>
 
 #### Recommended approach if not using `load_secuTrial`
 

@@ -31,7 +31,6 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 <details><summary>Wrapped functions</summary>
 
-<details><summary>Load a dataset</summary>
 
 #### Load the dataset
 ```{r}
@@ -61,9 +60,6 @@ bmd_export
 Individual tables can be extracted from the `bmd_export` object via `tab <- bmd_export$tab`, where `tab` is the table of interest.
 <!-- accessor function? -->
 
-</details>
-
-<details><summary>Variable labels</summary>
 
 #### Variable labels
 For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.
@@ -94,9 +90,7 @@ There is a drawback to the attribute based approach - labels will not be propoga
 
 Currently, `label_secuTrial` should be used prior to `dates_secuTrial` or `factorize_secuTrial` so that labels and units are propogated to factor and date variables.
 
-</details>
 
-<details><summary>Prepare factors</summary>
  
 #### Prepare factors
 It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
@@ -115,9 +109,6 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
 ```
 
 
-</details>
-<details><summary>Prepare dates</summary>
-
 #### Prepare dates
 Dates are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
 
@@ -126,8 +117,6 @@ Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not ye
 ```{r, eval=FALSE}
 dates <- dates_secuTrial(ctu05)
 ```
-
-</details>
 
 
 #### Recommended approach if not using `load_secuTrial`
