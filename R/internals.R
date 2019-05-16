@@ -25,7 +25,7 @@
   }
   # check for integer
   if (! ( (col_idx %% 1) == 0)) {
-    stop(paste0("Error: col_idx ", col_idx, " is not an interger."))
+    stop(paste0("Error: col_idx ", col_idx, " is not an integer."))
   }
   # check for integer
   if (! (new_col_idx %% 1) == 0) {
