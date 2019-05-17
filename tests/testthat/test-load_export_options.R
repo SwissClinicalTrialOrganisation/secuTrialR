@@ -53,3 +53,21 @@ test_that("Meta names available.", {
                                                                             "atcasenodes", "atcasevisitplans",
                                                                             "comments", "miv", "cl"))
 })
+
+# prepare path to example export
+export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+                               package = "secuTrialR")
+# load all export data
+sT_export <- load_secuTrial_export(data_dir = export_location)
+
+# capture the print
+captured_print <- capture.output(print(sT_export$export_options))
+
+# test print.secutrialoptions
+test_that("Print export options working.", {
+  expect_equal(length(captured_print), 22)
+  expect_equal(captured_print[1], "SecuTrial version: 5.3.4.6 ")
+  expect_equal(captured_print[4], "Seperator: '\t'")
+  expect_equal(captured_print[5], "14 files exported")
+  expect_equal(captured_print[7], "Reference values not exported - factorize not possible")
+})
