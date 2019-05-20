@@ -201,11 +201,11 @@ load_export_options <- function(data_dir, add_id_name = NULL) {
   return(study.options)
 }
 
-
+#' @export
 print.secutrialoptions <- function(x){
   cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
-  if (!x$short_names) cat(paste("File names appended with:", x$file.end, "\n"))
+  if (!x$short_names) cat(paste("File names appended with:", x$file_end, "\n"))
   cat(paste("File extension:", x$extension, "\n"))
   cat(paste0("Seperator: '", x$sep, "'\n"))
   cat(paste(length(x$all_files), "files exported\n"))
