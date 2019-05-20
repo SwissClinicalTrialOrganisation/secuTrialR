@@ -11,7 +11,7 @@ load_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 
 \item{labels}{logical - add labels to variables and table}
 
-\item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a seperate table)}
+\item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a separate table)}
 
 \item{dates}{logical - convert date variables}
 }
@@ -22,6 +22,8 @@ secuTrialdata object - a list with one data.frame for each file on the export.
 Convenience wrapper for \code{load_secuTrial_export}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
 }
 \examples{
-path <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip", package = "secuTrialR")
+path <- system.file("extdata",
+                    "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                    package = "secuTrialR")
 d <- load_secuTrial(path)
 }

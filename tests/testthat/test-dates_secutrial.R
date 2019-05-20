@@ -79,6 +79,3 @@ d <- c(NA, NA)
 x <- secuTrialR:::dates_secuTrial(d)
 test_that("logical dates",
           expect_equal(x, as.Date(d)))
-
-
-
