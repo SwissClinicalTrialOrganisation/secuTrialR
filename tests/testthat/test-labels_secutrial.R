@@ -58,7 +58,8 @@ test_that("labelling object works",
           expect_warning({
             label_secuTrial(sT_export_short)
             label_secuTrial(sT_export_long)
-  }, regexp = NA))
+  }
+  , regexp = NA))
 
 sl <- label_secuTrial(sT_export_short)
 ll <- label_secuTrial(sT_export_long)

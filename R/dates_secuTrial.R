@@ -2,7 +2,7 @@
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
-#' @details New variables are created appended with \code{.date}. This is a safety mechanism incase NAs are inadvertently introduced.
+#' @details New variables are created appended with \code{.date}. This is a safety mechanism in case NAs are inadvertently introduced.
 #' Methods exist for secuTrialdata objects, data.frames, character, factor, integer and logical classes.
 #' @return same as the original object with date variables converted to Dates.
 #' @export
@@ -20,7 +20,7 @@ dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 
 #' @rdname dates_secuTrial
 #' @export
-dates_secuTrial.secuTrialdata <- function(object){
+dates_secuTrial.secuTrialdata <- function(object, ...){
   if (object$export_options$dated) warning("dates already added")
 
   x <- object$export_options$data_names
@@ -44,7 +44,7 @@ dates_secuTrial.secuTrialdata <- function(object){
     # date format
     format <- object$export_options$date.format
     tmp <- object[[obj]]
-    tmp <- dates_secuTrial(tmp, datevars, format)
+    tmp <- dates_secuTrial(tmp, datevars, format, ...)
     tmp
   })
   object[x] <- obs
@@ -57,7 +57,7 @@ dates_secuTrial.secuTrialdata <- function(object){
 #' @param data data.frame
 #' @param datevars string consisting of variables with dates
 #' @param format format of dates (typically taken from \code{object$export_options$date.format})
-dates_secuTrial.data.frame <- function(data, datevars, format){
+dates_secuTrial.data.frame <- function(data, datevars, format, warn = FALSE){
   datevars <- datevars[datevars %in% names(data)]
   if (length(datevars) > 0) {
     for (x in datevars) {
@@ -65,7 +65,7 @@ dates_secuTrial.data.frame <- function(data, datevars, format){
       data[, paste0(x, ".date")] <- newdatecol
     }
   } else {
-    warning(paste("no dates detected in", get("obj", envir = parent.frame())))
+    if (warn) warning(paste("no dates detected in", get("obj", envir = parent.frame())))
   }
   data
 }
