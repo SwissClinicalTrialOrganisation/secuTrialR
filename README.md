@@ -163,11 +163,11 @@ units(labelled$bmd$age)
     ## [1] "years"
 
 There is a drawback to the attribute based approach - labels will not be
-propogated if variables are derived and may be lost if variables are
+propagated if variables are derived and may be lost if variables are
 edited.
 
 Currently, `label_secuTrial` should be used prior to `dates_secuTrial`
-or `factorize_secuTrial` so that labels and units are propogated to
+or `factorize_secuTrial` so that labels and units are propagated to
 factor and date variables.
 
 #### Prepare factors
