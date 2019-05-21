@@ -2,12 +2,12 @@
 % Please edit documentation in R/load_secuTrial_export.R
 \name{secuTrialdata}
 \alias{secuTrialdata}
-\alias{load_secuTrial_export}
+\alias{read_secuTrial_export}
 \alias{print.secuTrialdata}
 \alias{plot.secuTrialdata}
 \title{This function loads a secuTrial export}
 \usage{
-load_secuTrial_export(data_dir, tables = "all", add_id_name = NULL)
+read_secuTrial_export(data_dir, tables = "all", add_id_name = NULL)
 
 print(x)
 
@@ -24,7 +24,7 @@ shall be loaded.}
 \item{add_id_name}{string This needs to be specified if your Add-ID name has
 been changed in the AdminTool Design setting.}
 
-\item{x}{secuTrialdata object as returned by \code{load_secuTrial_export}}
+\item{x}{secuTrialdata object as returned by \code{read_secuTrial_export}}
 }
 \value{
 This is a list of class secuTrialdata containing a list of
@@ -48,7 +48,7 @@ into export_options.
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- load_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial_export(data_dir = export_location)
 
 # Print method
 print(sT_export)

@@ -1,18 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+=================================================================================================================================================================================================================================================================================================
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
-An R package to handle data from the clinical data management system
-(CDMS) [secuTrial](https://www.secutrial.com/en/).
-
-## Installing from github with devtools
+Installing from github with devtools
+------------------------------------
 
 ``` r
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
-## Basic usage
+Basic usage
+-----------
 
 Load the package
 
@@ -20,33 +21,17 @@ Load the package
 library(secuTrialR)
 ```
 
-Load a
-dataset
+Load a dataset
 
 ``` r
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- load_secuTrial(export_location)
+ctu05 <- read_secuTrial(export_location)
 ```
 
-This will load all sheets from the export into an object of class
-`secuTrialdata`, which is basically a list. It will always contain
-`export_details` (which are parsed from the HTML ExportOptions file that
-secuTrial generates). By default, it will also contain all other files
-in the dataset. secuTrialR automatically strips file names of dates. The
-new file names can be seen via `ctu05$export_options$data_names`. The
-function also adds [labels to variables](#variable-labels) and
-data.frames, converts [categorical variables to
-`factor`s](#prepare-factors) and ensures that [dates are
-`Date`s](#prepare-dates). `load_secuTrial` is a wrapper for the
-functions described below, so it is possible to achieve more flexibility
-by using the individual functions (if necessary). Individual tables can
-be extracted from the `ctu05` object via `tab <- ctu05$tab`, where `tab`
-is the table of interest.
+This will load all sheets from the export into an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `ctu05$export_options$data_names`. The function also adds [labels to variables](#variable-labels) and data.frames, converts [categorical variables to `factor`s](#prepare-factors) and ensures that [dates are `Date`s](#prepare-dates). `read_secuTrial` is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary). Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab`, where `tab` is the table of interest.
 
-<details>
-
-<summary>Wrapped functions</summary>
+<details><summary>Wrapped functions</summary>
 
 #### Load the dataset
 
@@ -55,12 +40,12 @@ is the table of interest.
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-bmd_export <- load_secuTrial_export(data_dir = export_location)
+bmd_export <- read_secuTrial_export(data_dir = export_location)
 
 # load a second dataset
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- load_secuTrial_export(export_location)
+ctu05 <- read_secuTrial_export(export_location)
 
 # View names of the bmd_export object
 names(bmd_export)
@@ -71,28 +56,15 @@ names(bmd_export)
     ##  [9] "vpfs"           "atcn"           "atcvp"          "cts"           
     ## [13] "bmd"            "atbmd"
 
-`load_secuTrial_export` returns an object of class `secuTrialdata`,
-which is basically a list. It will always contain `export_details`
-(which are parsed from the HTML ExportOptions file that secuTrial
-generates). By default, it will also contain all other files in the
-dataset. secuTrialR automatically strips file names of dates. The new
-file names can be seen via `bmd_export$export_options$data_names`.
-<!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
+`read_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`. <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
-`bmd_export` is a list, with class `secuTrialdata`. To prevent it from
-printing all data to the console, a special print method returns some
-useful information about the objects within `bmd_export` instead. The
-information returned includes the original file name in the datafile,
-it’s name in the `secuTrialdata` object, together with the number of
-rows and columns and a column indicating whether the object is metadata
-or
-    not:
+`bmd_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `bmd_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
 
 ``` r
 bmd_export
 ```
 
-    ## SecuTrial data imported from C:/R/R-3.4.2/library/secuTrialR/extdata/s_export_CSV-xls_BMD.zip 
+    ## SecuTrial data imported from /home/wrightp/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/s_export_CSV-xls_BMD.zip 
     ##  table nrow ncol  meta original_name
     ##     vp    1   10  TRUE        vp.xls
     ##   vpfs    1    2  TRUE      vpfs.xls
@@ -108,15 +80,11 @@ bmd_export
     ##    bmd  504   27 FALSE       bmd.xls
     ##  atbmd    0   28 FALSE     atbmd.xls
 
-Individual tables can be extracted from the `bmd_export` object via `tab
-<- bmd_export$tab`, where `tab` is the table of interest.
-<!-- accessor function? -->
+Individual tables can be extracted from the `bmd_export` object via `tab <- bmd_export$tab`, where `tab` is the table of interest. <!-- accessor function? -->
 
 #### Variable labels
 
-For creating tables, it is often useful to have access to variable
-labels. secuTrialR supports two main methods for handling them - a named
-list, or via variable attributes. The list approach works as follows.
+For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.
 
 ``` r
 labs <- labels_secuTrial(bmd_export)
@@ -126,8 +94,7 @@ labs[["age"]]
 
     ## [1] "Age"
 
-The attribute based approach adds labels as an attribute to a variable,
-which can then be accessed via `label(var)`.
+The attribute based approach adds labels as an attribute to a variable, which can then be accessed via `label(var)`.
 
 ``` r
 labelled <- label_secuTrial(bmd_export)
@@ -145,9 +112,7 @@ label(labelled$bmd$age)
 
     ## [1] "Age (years)"
 
-Where units have been defined in the SecuTrial database, they can be
-accessed or changed analogously (here, age had no unit assigned, but we
-can add one).
+Where units have been defined in the SecuTrial database, they can be accessed or changed analogously (here, age had no unit assigned, but we can add one).
 
 ``` r
 units(labelled$bmd$age)
@@ -162,27 +127,19 @@ units(labelled$bmd$age)
 
     ## [1] "years"
 
-There is a drawback to the attribute based approach - labels will not be
-propagated if variables are derived and may be lost if variables are
-edited.
+There is a drawback to the attribute based approach - labels will not be propagated if variables are derived and may be lost if variables are edited.
 
-Currently, `label_secuTrial` should be used prior to `dates_secuTrial`
-or `factorize_secuTrial` so that labels and units are propagated to
-factor and date variables.
+Currently, `label_secuTrial` should be used prior to `dates_secuTrial` or `factorize_secuTrial` so that labels and units are propagated to factor and date variables.
 
 #### Prepare factors
 
-It is often useful to have categorical variables as factors (R knows how
-to handle factors). secuTrialR can prepare factors easily.
+It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 
 ``` r
 factors <- factorize_secuTrial(ctu05)
 ```
 
-This functions loops through each table of the dataset, creating new
-factor variables where necessary. The new variables are the same as the
-original but with `.factor` appended (i.e. a new variable called
-`sex.factor` would be added to the relevant form).
+This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
 
 ``` r
 # original variable
@@ -210,21 +167,19 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
 
 #### Prepare dates
 
-Dates are a very common data type. They cannot be easily used though in
-their export format. This is also easily rectified in secuTrialR:
+Dates are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
 
-Date-time variables (e.g. something of the format `2019-05-07 08:35`)
-are not yet handled.
+Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
 ``` r
 dates <- dates_secuTrial(ctu05)
 ```
 
-#### Recommended approach if not using `load_secuTrial`
+#### Recommended approach if not using `read_secuTrial`
 
 ``` r
 f <- "PATH_TO_FILE"
-d <- load_secuTrial_export(f)
+d <- read_secuTrial_export(f)
 l <- label_secuTrial(d)
 fa <- factorize_secuTrial(l)
 dat <- dates_secuTrial(fa)
@@ -232,7 +187,7 @@ dat <- dates_secuTrial(fa)
 # or, if you like pipes
 library(magrittr)
 f <- "PATH_TO_FILE"
-d <- load_secuTrial_export(f)
+d <- read_secuTrial_export(f)
 dat <- d %>% 
   label_secuTrial() %>%
   factorize_secuTrial() %>%
@@ -243,14 +198,11 @@ dat <- d %>%
 
 ### Exploratory helpers
 
-`secuTrialR` has a couple of functions to help get to grips with a
-secuTrial data export. They are intended to be used in an exploratory
-manner only.
+`secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
 #### Visit plan
 
-secuTrialR can provide a depiction of the visit structure, although only
-where the visit plan is fixed:
+secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:
 
 ``` r
 vs <- visit_structure(ctu05)
@@ -258,24 +210,18 @@ plot(vs)
 ```
 
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
-
 #### Linking different forms
 
-Linkages amongst forms can be explored with the `links_secuTrial`
-function. This relies on the `igraph` package to create a network. It is
-possible to interact with the network, e.g. move nodes around in order
-to read the labels better. The device ID is returned to the console, but
-can be ignored. Forms are plotted in deep yellow, variables in light
-blue.
+Linkages amongst forms can be explored with the `links_secuTrial` function. This relies on the `igraph` package to create a network. It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.
 
 ``` r
 links_secuTrial(bmd_export)
 ```
 
-![](inst/extdata/map.png)
-<!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
+![](inst/extdata/map.png) <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
-## For contributors
+For contributors
+----------------
 
 ### Testing with devtools
 
@@ -298,10 +244,7 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 
 ### Generating the README file
 
-The README file contains both standard text and interpreted R code. It
-must therefore be compiled. Changes should be made in the `README.Rmd`
-file and the file “knited” with R. This is easiest with RStudio, but
-other methods are available.
+The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
 
 ``` r
 library("knitr")
@@ -310,18 +253,7 @@ knit("README.Rmd")
 
 ### Guidelines for contributors
 
-In order to contribute to this R package you should fork the main
-repository. After you have made your changes please run the
-[tests](README.md#testing-with-devtools) and
-[lint](README.md#linting-with-lintr) your code as indicated above. If
-all tests pass and linting confirms that your coding style conforms you
-can send a pull request (PR).  
-The PR should have a description to help the reviewer understand what
-has been added/changed. New functionalities must be thoroughly
-documented, have examples and should be accompanied by at least one
-[test](tests/testthat/) to ensure long term robustness. The PR will only
-be reviewed if all travis checks are successful. The person sending the
-PR should not be the one merging it.
+In order to contribute to this R package you should fork the main repository. After you have made your changes please run the [tests](README.md#testing-with-devtools) and [lint](README.md#linting-with-lintr) your code as indicated above. If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR).
+The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one [test](tests/testthat/) to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found
-[here](inst/extdata/secuTrialR.png).
+A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).

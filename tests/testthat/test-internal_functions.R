@@ -35,11 +35,11 @@ test_that("File name truncated.", {
 })
 
 # load export options
-export_options <- load_export_options(data_dir = system.file("extdata",
+export_options <- read_export_options(data_dir = system.file("extdata",
                                                              "s_export_CSV-xls_BMD.zip",
                                                              package = "secuTrialR"))
 # load casenodes table
-casenodes <- load_export_table(data_dir = system.file("extdata",
+casenodes <- read_export_table(data_dir = system.file("extdata",
                                                     "s_export_CSV-xls_BMD.zip",
                                                     package = "secuTrialR"),
                              file_name = "cn.xls",

@@ -1,10 +1,10 @@
 # Load secuTrial data export options
 #
 # @description
-# The load_export_options reads the secuTrial data export and
+# The read_export_options reads the secuTrial data export and
 # determines specific options needed to handle the data properly.
 #
-# This is an internal function which is wrapped by load_secuTrial_export
+# This is an internal function which is wrapped by read_secuTrial_export
 #
 # @param data_dir string The data_dir specifies the path to the secuTrial data export.
 # @param add_id_name string This option needs to be specified if your Add-ID name has been changed in the AdminTool Design setting.
@@ -13,12 +13,12 @@
 #
 # @examples
 # \donttest{
-# load_export_options(data_dir = system.file("extdata",
+# read_export_options(data_dir = system.file("extdata",
 #                                            "s_export_CSV-xls_BMD.zip",
 #                                            package = "secuTrialR"))
 # }
 #
-load_export_options <- function(data_dir, add_id_name = NULL) {
+read_export_options <- function(data_dir, add_id_name = NULL) {
 
   is_zip <- grepl(".zip$", data_dir)
 

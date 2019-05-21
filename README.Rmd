@@ -23,10 +23,10 @@ Load a dataset
 ```{r}
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- load_secuTrial(export_location)
+ctu05 <- read_secuTrial(export_location)
 ```
 This will load all sheets from the export into an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `ctu05$export_options$data_names`. The function also adds [labels to variables](#variable-labels) and data.frames, converts [categorical variables to `factor`s](#prepare-factors) and ensures that [dates are `Date`s](#prepare-dates).
-`load_secuTrial` is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary).
+`read_secuTrial` is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary).
 Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab`, where `tab` is the table of interest.
 
 <details><summary>Wrapped functions</summary>
@@ -38,18 +38,18 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-bmd_export <- load_secuTrial_export(data_dir = export_location)
+bmd_export <- read_secuTrial_export(data_dir = export_location)
 
 # load a second dataset
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- load_secuTrial_export(export_location)
+ctu05 <- read_secuTrial_export(export_location)
 
 # View names of the bmd_export object
 names(bmd_export)
 ```
 
-`load_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`.
+`read_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`.
 <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
 `bmd_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `bmd_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
@@ -119,11 +119,11 @@ dates <- dates_secuTrial(ctu05)
 ```
 
 
-#### Recommended approach if not using `load_secuTrial`
+#### Recommended approach if not using `read_secuTrial`
 
 ```{r, eval=FALSE}
 f <- "PATH_TO_FILE"
-d <- load_secuTrial_export(f)
+d <- read_secuTrial_export(f)
 l <- label_secuTrial(d)
 fa <- factorize_secuTrial(l)
 dat <- dates_secuTrial(fa)
@@ -131,7 +131,7 @@ dat <- dates_secuTrial(fa)
 # or, if you like pipes
 library(magrittr)
 f <- "PATH_TO_FILE"
-d <- load_secuTrial_export(f)
+d <- read_secuTrial_export(f)
 dat <- d %>% 
   label_secuTrial() %>%
   factorize_secuTrial() %>%

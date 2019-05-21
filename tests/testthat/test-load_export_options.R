@@ -1,19 +1,19 @@
 context("load export options testing")
 
 # shorten table names
-export_options_regular_short <- load_export_options(data_dir = system.file("extdata",
+export_options_regular_short <- read_export_options(data_dir = system.file("extdata",
                                                                            "s_export_CSV-xls_BMD.zip",
                                                                            package = "secuTrialR"))
 # long table names
-export_options_regular_long <- load_export_options(data_dir = system.file("extdata",
+export_options_regular_long <- read_export_options(data_dir = system.file("extdata",
                                                                           "s_export_CSV-xls_longnames_BMD.zip",
                                                                           package = "secuTrialR"))
 # rectangular shorten table names
-export_options_rect_short <- load_export_options(data_dir = system.file("extdata",
+export_options_rect_short <- read_export_options(data_dir = system.file("extdata",
                                                                            "s_export_rt-CSV-xls_BMD.zip",
                                                                            package = "secuTrialR"))
 # rectangular long table names
-export_options_rect_long <- load_export_options(data_dir = system.file("extdata",
+export_options_rect_long <- read_export_options(data_dir = system.file("extdata",
                                                                           "s_export_rt-CSV-xls_longnames_BMD.zip",
                                                                           package = "secuTrialR"))
 
@@ -58,7 +58,7 @@ test_that("Meta names available.", {
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- load_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial_export(data_dir = export_location)
 
 # capture the print
 captured_print <- capture.output(print(sT_export$export_options))
