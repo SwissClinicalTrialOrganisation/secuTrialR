@@ -10,12 +10,12 @@ assess_form_variable_completeness(form, casenodes_table,
 }
 \arguments{
 \item{form}{data.frame Form for which to assess variable completeness
-(i.e. a list element returned by load_secuTrial_export).}
+(i.e. a list element returned by read_secuTrial_export).}
 
 \item{casenodes_table}{data.frame The central casenodes record file
-(i.e. 'casenodes' from the list returned by load_secuTrial_export).}
+(i.e. 'casenodes' from the list returned by read_secuTrial_export).}
 
-\item{validation_overview}{tibble returned by load_validation_overview.}
+\item{validation_overview}{tibble returned by read_validation_overview.}
 
 \item{completeness}{string Specifies if completeness is assessed for all forms ('allforms')
 or only for saved forms ('savedforms').}
@@ -53,5 +53,5 @@ assess_form_variable_completeness(form = sT_export$bmd, casenodes_table = sT_exp
 
 }
 \seealso{
-load_validation_overview, load_secuTrial_export
+read_validation_overview, read_secuTrial_export
 }

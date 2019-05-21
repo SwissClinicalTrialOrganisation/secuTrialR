@@ -4,13 +4,13 @@
 # This function can load individual tables from a secuTrial data
 # export. If id translations for data tables shall be performed, the casenodes/cn,
 # centres/ctr and visitplan/vp meta tables need to be loaded with this function first.
-# Also export options need to be generated with load_export_options beforehand.
+# Also export options need to be generated with read_export_options beforehand.
 #
-# This is an internal function which is wrapped by load_secuTrial_export
+# This is an internal function which is wrapped by read_secuTrial_export
 #
 # @param data_dir string The data_dir specifies the path to the secuTrial data export.
 # @param file_name string The file_name specifies which file to load.
-# @param export_options list This can be generated with load_export_options.
+# @param export_options list This can be generated with read_export_options.
 # @param add_pat_id boolean If TRUE this will add the pat_id to the table.
 # @param add_centre boolean If TRUE this will add the centre name to the table.
 # @param add_visitname boolean If TRUE this will add visit names to the table.
@@ -27,13 +27,13 @@
 #
 # @return The function returns a data.frame for the data in file_name.
 #
-# @seealso load_export_options
+# @seealso read_export_options
 #
 # @examples
 # \donttest{
 # nolint start
 # # load casenodes (casenodes/cn) table
-# casenodes <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+# casenodes <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
 #                                                                  "s_export_CSV-xls_BMD.zip",
 #                                                                  package = "secuTrialR"),
 #                                           file_name = "cn.xls",
@@ -41,7 +41,7 @@
 #                                           is_meta_table = TRUE)
 #
 # # load centre (centres/ctr) table
-# centre <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+# centre <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
 #                                                                 "s_export_CSV-xls_BMD.zip",
 #                                                                 package = "secuTrialR"),
 #                                          file_name = "ctr.xls",
@@ -49,7 +49,7 @@
 #                                          is_meta_table = TRUE)
 #
 # # load visitplan (visitplan/vp) table
-# visitplan <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+# visitplan <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
 #                                                                    "s_export_CSV-xls_BMD.zip",
 #                                                                    package = "secuTrialR"),
 #                                             file_name = "vp.xls",
@@ -57,7 +57,7 @@
 #                                             is_meta_table = TRUE)
 #
 # # load bone mineral denisty form data
-# bmd <- secuTrialR:::load_export_table(data_dir = system.file("extdata",
+# bmd <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
 #                                                              "s_export_CSV-xls_BMD.zip",
 #                                                              package = "secuTrialR"),
 #                                       file_name = "bmd.xls",
@@ -68,13 +68,13 @@
 # }
 # nolint end
 #
-load_export_table <- function(data_dir, file_name, export_options,
+read_export_table <- function(data_dir, file_name, export_options,
                               add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
                               casenodes_table, centre_table, visitplan_table,
                               is_meta_table = FALSE) {
 
   # confirm export_options presence
-  if (!exists("export_options")) stop("export_options have not been specified. Run load_export_options to create.")
+  if (!exists("export_options")) stop("export_options have not been specified. Run read_export_options to create.")
 
   if (export_options$is_zip) {
     archive_con <- unz(data_dir, file_name)

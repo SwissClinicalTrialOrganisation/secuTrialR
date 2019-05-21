@@ -8,15 +8,15 @@ long_export_location <- system.file("extdata",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
-sT_export_short <- load_secuTrial_export(data_dir = short_export_location)
-sT_export_long <- load_secuTrial_export(data_dir = long_export_location)
+sT_export_short <- read_secuTrial_export(data_dir = short_export_location)
+sT_export_long <- read_secuTrial_export(data_dir = long_export_location)
 
 # only load meta tables
-sT_export_short_tables_none <- load_secuTrial_export(data_dir = short_export_location,
+sT_export_short_tables_none <- read_secuTrial_export(data_dir = short_export_location,
                                                      tables = "none")
 
 # meta and atbmd.xls not bmd.xls
-sT_export_short_tables_atbmd <- load_secuTrial_export(data_dir = short_export_location,
+sT_export_short_tables_atbmd <- read_secuTrial_export(data_dir = short_export_location,
                                                      tables = "atbmd.xls")
 
 # test length of list

@@ -2,7 +2,7 @@ context("load secuTrial validation overview")
 
 # load data
 val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
-val_ovv <- load_validation_overview(data_dir = val_ovv_location)
+val_ovv <- read_validation_overview(data_dir = val_ovv_location)
 
 test_that("Validation Overview loaded correctly.", {
   expect_equal(dim(val_ovv), c(5, 12))
@@ -12,5 +12,5 @@ test_that("Validation Overview loaded correctly.", {
 # test exception
 not_xlsx <- "a_file.xls"
 test_that("xls exception correctly triggered.", {
-  expect_error(load_validation_overview(data_dir = not_xlsx))
+  expect_error(read_validation_overview(data_dir = not_xlsx))
 })

@@ -13,9 +13,9 @@ sep_ref_export_loc <- system.file("extdata",
                                   package = "secuTrialR")
 
 
-sT_export_short <- load_secuTrial_export(data_dir = short_export_location)
-sT_export_long <- load_secuTrial_export(data_dir = long_export_location)
-sT_export_sep_ref <- load_secuTrial_export(data_dir = sep_ref_export_loc)
+sT_export_short <- read_secuTrial_export(data_dir = short_export_location)
+sT_export_long <- read_secuTrial_export(data_dir = long_export_location)
+sT_export_sep_ref <- read_secuTrial_export(data_dir = sep_ref_export_loc)
 
 p_short <- print(sT_export_short)
 d_short <- dim(p_short)

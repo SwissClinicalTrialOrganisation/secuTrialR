@@ -7,7 +7,7 @@
 #' the entire export. The export options are also loaded and written
 #' into export_options.
 #'
-#' @export load_secuTrial_export
+#' @export read_secuTrial_export
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
@@ -29,12 +29,12 @@
 #' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
-#' sT_export <- load_secuTrial_export(data_dir = export_location)
+#' sT_export <- read_secuTrial_export(data_dir = export_location)
 #'
-load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) {
+read_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) {
 
   # load export options
-  export_options <- load_export_options(data_dir = data_dir, add_id_name = add_id_name)
+  export_options <- read_export_options(data_dir = data_dir, add_id_name = add_id_name)
 
   # check for language not english
   if (export_options$lang_not_en) {
@@ -75,7 +75,7 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     if (length(file) == 0) {
       next
     }
-    loaded_table <- load_export_table(data_dir = data_dir,
+    loaded_table <- read_export_table(data_dir = data_dir,
                                       file_name = file,
                                       export_options = export_options,
                                       is_meta_table = TRUE)
@@ -104,7 +104,7 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     # get table name from export options
     table_name <- export_options$data_names[file]
     # load table
-    loaded_table <- load_export_table(data_dir = data_dir,
+    loaded_table <- read_export_table(data_dir = data_dir,
                                       file_name = file,
                                       export_options = export_options,
                                       casenodes_table = return_list[[export_options$meta_names$casenodes]],
@@ -122,7 +122,7 @@ load_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
 
 
 #' @rdname secuTrialdata
-#' @param x secuTrialdata object as returned by \code{load_secuTrial_export}
+#' @param x secuTrialdata object as returned by \code{read_secuTrial_export}
 #'
 #' @return data.frame with a row for each table in the export. For each table it
 #'         contains the name, number of rows and columns, an indicator for
