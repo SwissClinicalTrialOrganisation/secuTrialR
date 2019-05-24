@@ -120,7 +120,7 @@ dates <- dates_secuTrial(ctu05)
 Date variables are converted to `Date` class, and datetimes are converted to `POSIXct` class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case `NA`s are accidentally created.
 
 ```{r}
-head(dates$ctu05baseline[, c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")], 7)
+dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
 ```
 
 

@@ -201,17 +201,12 @@ Date variables are converted to `Date` class, and datetimes are converted to `PO
 
 
 ```r
-head(dates$ctu05baseline[, c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")], 7)
+dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
 ```
 
 ```
 ##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
 ## 1            NA               <NA> 201903052356 2019-03-05 23:56:00
-## 2            NA               <NA>           NA                <NA>
-## 3            NA               <NA>           NA                <NA>
-## 4            NA               <NA>           NA                <NA>
-## 5            NA               <NA>           NA                <NA>
-## 6            NA               <NA>           NA                <NA>
 ## 7      20060301         2006-03-01           NA                <NA>
 ```
 
