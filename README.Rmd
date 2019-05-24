@@ -25,7 +25,7 @@ export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
-This will load all sheets from the export into an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `ctu05$export_options$data_names`. The function also adds [labels to variables](#variable-labels) and data.frames, converts [categorical variables to `factor`s](#prepare-factors) and ensures that [dates are `Date`s](#prepare-dates).
+This will load all sheets from the export into an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `ctu05$export_options$data_names`. The function also adds [labels to variables](#variable-labels) and data.frames, converts [categorical variables to `factor`s](#prepare-factors) and ensures that [dates are `Date`s and date-times are `POSIXct`](#prepare-dates).
 `read_secuTrial` is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary).
 Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab`, where `tab` is the table of interest.
 
@@ -110,12 +110,17 @@ table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$ge
 
 
 #### Prepare dates
-Dates are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
+Date(time)s are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:
 
-Date-time variables (e.g. something of the format `2019-05-07 08:35`) are not yet handled.
 
-```{r, eval=FALSE}
+```{r}
 dates <- dates_secuTrial(ctu05)
+```
+
+Date variables are converted to `Date` class, and datetimes are converted to `POSIXct` class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case `NA`s are accidentally created.
+
+```{r}
+dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
 ```
 
 

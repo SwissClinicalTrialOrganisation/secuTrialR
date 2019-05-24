@@ -3,54 +3,23 @@
 \name{dates_secuTrial}
 \alias{dates_secuTrial}
 \alias{dates_secuTrial.secuTrialdata}
-\alias{dates_secuTrial.data.frame}
-\alias{dates_secuTrial.character}
-\alias{dates_secuTrial.factor}
-\alias{dates_secuTrial.integer}
-\alias{dates_secuTrial.numeric}
-\alias{dates_secuTrial.logical}
-\alias{dates_secuTrial.Date}
-\title{Methods to handle dates in secuTrial exports}
+\title{Methods to handle date(times)s in secuTrial exports}
 \usage{
 dates_secuTrial(x, ...)
 
 \method{dates_secuTrial}{secuTrialdata}(object, ...)
-
-\method{dates_secuTrial}{data.frame}(data, datevars, format,
-  warn = FALSE)
-
-\method{dates_secuTrial}{character}(var, format)
-
-\method{dates_secuTrial}{factor}(var, format)
-
-\method{dates_secuTrial}{integer}(var, format)
-
-\method{dates_secuTrial}{numeric}(var, format)
-
-\method{dates_secuTrial}{logical}(var, format)
-
-\method{dates_secuTrial}{Date}(var, format)
 }
 \arguments{
 \item{object}{secuTrialdata object}
-
-\item{data}{data.frame}
-
-\item{datevars}{string consisting of variables with dates}
-
-\item{format}{format of dates (typically taken from \code{object$export_options$date.format})}
-
-\item{var}{date variable to be converted}
 }
 \value{
-same as the original object with date variables converted to Dates.
+same as the original object with date variables converted to \code{Date}s.
 }
 \description{
-Methods to handle dates in secuTrial exports
+Converts dates and datetime variables to \code{Date} or \code{POSIXct} class, as appropriate.
 }
 \details{
-New variables are created appended with \code{.date}. This is a safety mechanism in case NAs are inadvertently introduced.
-Methods exist for secuTrialdata objects, data.frames, character, factor, integer and logical classes.
+New variables are created appended with \code{.date} or \code{.datetime}. This is a safety mechanism in case NAs are inadvertently introduced.
 }
 \examples{
 # prepare path to example export
@@ -61,4 +30,11 @@ export_location <- system.file("extdata",
 sT_export <- read_secuTrial_export(data_dir = export_location)
 # prepare dates
 sT_export_dates <- dates_secuTrial(sT_export)
+
+# show parsed datetime example
+sT_export_dates$ctu05baseline$hiv_date.datetime[1]
+# [1] "2019-03-05 23:56:00 CET"
+# show parsed date example
+sT_export_dates$ctu05baseline$paracetamol_start.date[1]
+# [1] "2019-03-05"
 }

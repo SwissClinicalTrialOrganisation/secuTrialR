@@ -108,10 +108,12 @@ dfl <- suppressWarnings(dates_secuTrial(fl))
 test_that("label propogated to factor", {
   expect_equal(label(fl$ctu05outcome$follow_up.factor), label(fl$ctu05outcome$follow_up))
 })
-test_that("label propogated to date", {
+test_that("label propogated to date(time)", {
   expect_equal(label(dl$ctu05outcome$death_date.date), label(dl$ctu05outcome$death_date))
+  expect_equal(label(dl$ctu05baseline$hiv_date.datetime), label(dl$ctu05baseline$hiv_date))
 })
-test_that("label propogated to factor and date", {
+test_that("label propogated to factor and date(time)", {
   expect_equal(label(dfl$ctu05outcome$follow_up.factor), label(dfl$ctu05outcome$follow_up))
   expect_equal(label(dfl$ctu05outcome$death_date.date), label(dfl$ctu05outcome$death_date))
+  expect_equal(label(dl$ctu05baseline$hiv_date.datetime), label(dl$ctu05baseline$hiv_date))
 })
