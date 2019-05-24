@@ -1,7 +1,5 @@
 context("CDMA linkage plot")
 
-library(tcltk)
-
 # load data
 short_export_location <- system.file("extdata",
                                      "s_export_CSV-xls_BMD.zip",
@@ -28,9 +26,9 @@ test_that("secutrialdata object", {
 # test for structure of igraph
 # this test is quite crude for now but if there is even a minor
 # change from what is expected this should appropriately fail
-len_short <- links_secuTrial(sT_export_short)
-len_long <- links_secuTrial(sT_export_long)
-len_sep_ref <- links_secuTrial(sT_export_sep_ref)
+len_short <- links_secuTrial(sT_export_short, plot = FALSE)
+len_long <- links_secuTrial(sT_export_long, plot = FALSE)
+len_sep_ref <- links_secuTrial(sT_export_sep_ref, plot = FALSE)
 
 test_that("igraph structure", {
   expect_equal(len_short, len_short)

@@ -5,7 +5,7 @@
 \title{Show links between forms}
 \usage{
 links_secuTrial(object, forms = NULL, formcol = "#d8b365",
-  varcol = "#e5f5f9")
+  varcol = "#e5f5f9", plot = TRUE)
 }
 \arguments{
 \item{object}{secuTrialdata object}
@@ -15,6 +15,8 @@ links_secuTrial(object, forms = NULL, formcol = "#d8b365",
 \item{formcol}{color for form name circles}
 
 \item{varcol}{color for variable name circles}
+
+\item{plot}{boolean specifies if the plot should be shown}
 }
 \value{
 a tcltk plot window.

@@ -6,6 +6,7 @@
 #' @param forms a regular expression for which forms should be included
 #' @param formcol color for form name circles
 #' @param varcol color for variable name circles
+#' @param plot boolean specifies if the plot should be shown
 #' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored red, variables are colored blue.
 #' @note Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
@@ -32,7 +33,7 @@
 #' # plot links for form names starting with "ctu05"
 #' links_secuTrial(sT_export, forms = "^ctu05")
 #' }
-links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = "#e5f5f9") {
+links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = "#e5f5f9", plot = TRUE) {
   if (!class(object) == "secuTrialdata") stop("object of class secuTrialdata expected")
   obj <- object[2:length(object)]
 
@@ -76,7 +77,9 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
                              directed = FALSE,
                              vertices = vs)
   igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, varcol, formcol)
-  igraph::tkplot(g, layout = layout_as_tree)
+  if (plot) {
+    igraph::tkplot(g, layout = layout_as_tree)
+  }
   # for testing purposes
   length(unlist(g))
 
