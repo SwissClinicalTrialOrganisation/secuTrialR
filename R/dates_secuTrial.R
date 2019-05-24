@@ -15,6 +15,13 @@
 #' sT_export <- read_secuTrial_export(data_dir = export_location)
 #' # prepare dates
 #' sT_export_dates <- dates_secuTrial(sT_export)
+#'
+#' # show parsed datetime example
+#' sT_export_dates$ctu05baseline$hiv_date.datetime[1]
+#' # [1] "2019-03-05 23:56:00 CET"
+#' # show parsed date example
+#' sT_export_dates$ctu05baseline$paracetamol_start.date[1]
+#' # [1] "2019-03-05"
 
 dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
