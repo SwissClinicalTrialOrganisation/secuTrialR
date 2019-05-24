@@ -1,5 +1,7 @@
 context("CDMA linkage plot")
 
+library(tcltk)
+
 # load data
 short_export_location <- system.file("extdata",
                                      "s_export_CSV-xls_BMD.zip",
