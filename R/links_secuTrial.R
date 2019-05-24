@@ -6,7 +6,7 @@
 #' @param forms a regular expression for which forms should be included
 #' @param formcol color for form name circles
 #' @param varcol color for variable name circles
-#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue.
+#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored red, variables are colored blue.
 #' @note Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
 #' @export

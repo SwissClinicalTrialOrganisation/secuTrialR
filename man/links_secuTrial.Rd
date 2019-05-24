@@ -23,7 +23,7 @@ a tcltk plot window.
 secuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
 }
 \details{
-We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue.
+We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored red, variables are colored blue.
 }
 \note{
 Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
