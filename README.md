@@ -236,11 +236,9 @@ For contributors
 ``` r
 # run tests
 devtools::test("secuTrialR")
-# spell check -> will contain some R and secuTrial specific words which is fine
-ignore_words <- c("AdminTool", "allforms", "casenodes", "CDMS", "codebook",
-                  "codebooks", "datetime" ,"dir" ,"Hmisc" ,"igraph",
-                  "labelled", "mnp", "savedforms", "secutrial", "secuTrial", 
-                  "secuTrialdata", "tcltk", "tibble", "xlsx")
+# spell check -> will contain some technical terms beyond the below list which is fine
+ignore_words <- c("AdminTool", "allforms", "casenodes", "CDMS", "codebook","codebooks", "datetime" ,"dir" ,"Hmisc" ,"igraph",
+                  "labelled", "mnp", "savedforms", "secutrial", "secuTrial", "secuTrialdata", "tcltk", "tibble")
 devtools::spell_check("secuTrialR", ignore = ignore_words)
 ```
 
