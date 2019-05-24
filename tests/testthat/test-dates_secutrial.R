@@ -105,9 +105,13 @@ test_that("character dates", {
           expect_equal(units(x), "bar")
   })
 d <- c(NA, NA)
+label(d) <- "foo"
+units(d) <- "bar"
 x <- secuTrialR:::dates_secuTrial(d)
 test_that("logical dates", {
           expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
   })
 
 
