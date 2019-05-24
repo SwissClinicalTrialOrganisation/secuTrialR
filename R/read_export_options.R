@@ -146,6 +146,7 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
   # date format
   date.format.meta <- "%Y-%m-%d"
   date.format <- "%Y%m%d"
+  datetime.format <- "%Y%m%d%H%M"
   # TODO : custom formats? parsed from ExportOptions?
 
   # unknown date strings
@@ -172,6 +173,7 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
   # return object ----
   study.options <- list(sep = sep,
                         date.format = date.format,
+                        datetime.format = datetime.format,
                         date.format.meta = date.format.meta,
                         na.strings = na.strings, # if blanks mean missing
                         unknown.date.string = unknown_date_string, # incomplete dates
