@@ -77,32 +77,79 @@ test_that("second dates warning",
 # test methods
 
 d <- c("2010-10-15", "2019-05-15")
-x <- secuTrialR:::dates_secuTrial(as.factor(d))
-test_that("factor dates",
-          expect_equal(x, as.Date(d)))
-x <- secuTrialR:::dates_secuTrial(as.numeric(gsub("-", "", d)), format = "%Y%m%d")
-test_that("numeric dates",
-          expect_equal(x, as.Date(d)))
+label(d) <- "foo"
+units(d) <- "bar"
+fd <- as.factor(d)
+label(fd) <- "foo"
+units(fd) <- "bar"
+nd <- as.numeric(gsub("-| |:", "", d))
+label(nd) <- "foo"
+units(nd) <- "bar"
+
+x <- secuTrialR:::dates_secuTrial(fd)
+test_that("factor dates", {
+          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
+x <- secuTrialR:::dates_secuTrial(nd, format = "%Y%m%d")
+test_that("numeric dates", {
+          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
 x <- secuTrialR:::dates_secuTrial(d)
-test_that("character dates",
-          expect_equal(x, as.Date(d)))
+test_that("character dates", {
+          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
 d <- c(NA, NA)
 x <- secuTrialR:::dates_secuTrial(d)
-test_that("logical dates",
-          expect_equal(x, as.Date(d)))
+test_that("logical dates", {
+          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+  })
+
+
 
 d <- c("2010-10-15 12:15", "2019-05-15 12:15")
-x <- secuTrialR:::datetimes_secuTrial(as.factor(d))
-test_that("factor datetimes",
-          expect_equal(x, as.POSIXct(d)))
-x <- secuTrialR:::datetimes_secuTrial(as.numeric(gsub("-| |:", "", d)),
+label(d) <- "foo"
+units(d) <- "bar"
+fd <- as.factor(d)
+label(fd) <- "foo"
+units(fd) <- "bar"
+nd <- as.numeric(gsub("-| |:", "", d))
+label(nd) <- "foo"
+units(nd) <- "bar"
+
+x <- secuTrialR:::datetimes_secuTrial(fd)
+test_that("factor datetimes", {
+          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
+
+x <- secuTrialR:::datetimes_secuTrial(nd,
                                       format = "%Y%m%d%H%M")
-test_that("numeric datetimes",
-          expect_equal(x, as.POSIXct(d)))
+test_that("numeric datetimes", {
+          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
+
 x <- secuTrialR:::datetimes_secuTrial(d)
-test_that("character datetimes",
-          expect_equal(x, as.POSIXct(d)))
+test_that("character datetimes", {
+          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
+  })
 d <- c(NA, NA)
+label(d) <- "foo"
+units(d) <- "bar"
 x <- secuTrialR:::datetimes_secuTrial(d)
-test_that("logical datetimes",
-          expect_equal(x, as.POSIXct(d)))
+test_that("logical datetimes", {
+          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+  })
+
+
+
