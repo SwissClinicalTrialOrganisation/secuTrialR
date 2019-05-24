@@ -1,10 +1,10 @@
-#' Methods to handle dates in secuTrial exports
+#' Methods to handle date(times)s in secuTrial exports
+#' @description Converts dates and datetime variables to \code{Date} or \code{POSIXct} class, as appropriate.
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
-#' @details New variables are created appended with \code{.date}. This is a safety mechanism in case NAs are inadvertently introduced.
-#' Methods exist for secuTrialdata objects, data.frames, character, factor, integer and logical classes.
-#' @return same as the original object with date variables converted to Dates.
+#' @details New variables are created appended with \code{.date} or \code{.datetime}. This is a safety mechanism in case NAs are inadvertently introduced.
+#' @return same as the original object with date variables converted to \code{Date}s.
 #' @export
 #' @examples
 #' # prepare path to example export
@@ -57,10 +57,10 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
 
 }
 
-#' @rdname dates_secuTrial
-#' @param data data.frame
-#' @param datevars string consisting of variables with dates
-#' @param format format of dates (typically taken from \code{object$export_options$date.format})
+# @rdname dates_secuTrial
+# @param data data.frame
+# @param datevars string consisting of variables with dates
+# @param format format of dates (typically taken from \code{object$export_options$date.format})
 dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, warn = FALSE){
   datevars <- datevars[datevars %in% names(data)]
   timevars <- timevars[timevars %in% names(data)]
@@ -84,8 +84,8 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   data
 }
 
-#' @rdname dates_secuTrial
-#' @param var date variable to be converted
+# @rdname dates_secuTrial
+# @param var date variable to be converted
 dates_secuTrial.character <- function(var, format){
   # some export types probably return strings
   d <- as.Date(var, format = format)
@@ -100,7 +100,7 @@ datetimes_secuTrial.character <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-#' @rdname dates_secuTrial
+# @rdname dates_secuTrial
 dates_secuTrial.factor <- function(var, format){
   # depending on options, strings might be converted to factors
   # convert to string
@@ -117,7 +117,7 @@ datetimes_secuTrial.factor <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-#' @rdname dates_secuTrial
+# @rdname dates_secuTrial
 dates_secuTrial.integer <- function(var, format){
   # this is the default type
   # convert to string
@@ -134,7 +134,7 @@ datetimes_secuTrial.integer <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-#' @rdname dates_secuTrial
+# @rdname dates_secuTrial
 dates_secuTrial.numeric <- function(var, format){
   # this is the default type
   # convert to string
@@ -151,7 +151,7 @@ datetimes_secuTrial.numeric <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-#' @rdname dates_secuTrial
+# @rdname dates_secuTrial
 dates_secuTrial.logical <- function(var, format){
   # this happens when the variable is empty
   # convert to string to get (empty) Date object
@@ -168,7 +168,7 @@ datetimes_secuTrial.logical <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-#' @rdname dates_secuTrial
+# @rdname dates_secuTrial
 dates_secuTrial.Date <- function(var, format){
   # in case a variable is already a date
   warning(var, " is already a Date")
