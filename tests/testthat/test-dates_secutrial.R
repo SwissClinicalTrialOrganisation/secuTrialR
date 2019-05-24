@@ -105,9 +105,13 @@ test_that("character dates", {
           expect_equal(units(x), "bar")
   })
 d <- c(NA, NA)
+label(d) <- "foo"
+units(d) <- "bar"
 x <- secuTrialR:::dates_secuTrial(d)
 test_that("logical dates", {
           expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+          expect_equal(label(x), "foo")
+          expect_equal(units(x), "bar")
   })
 
 
@@ -151,5 +155,10 @@ test_that("logical datetimes", {
           expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
   })
 
-
+d <- dates_secuTrial(c("2010-10-15", "2019-05-15"))
+e <- secuTrialR:::datetimes_secuTrial(c("2010-10-15 12:15", "2019-05-15 12:15"))
+test_that("redating creates an error", {
+  expect_warning(dates_secuTrial(d))
+  expect_warning(secuTrialR:::datetimes_secuTrial(e))
+})
 

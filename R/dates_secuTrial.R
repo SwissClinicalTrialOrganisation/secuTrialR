@@ -136,7 +136,7 @@ dates_secuTrial.integer <- function(var, format){
 datetimes_secuTrial.integer <- function(var, format){
   # this is the default type
   # convert to string
-  d <- secuTrialR:::datetimess_secuTrial(as.character(var), format)
+  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
