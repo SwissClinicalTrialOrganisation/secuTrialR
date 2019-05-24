@@ -175,7 +175,11 @@ links_secuTrial(bmd_export)
 # run tests
 devtools::test("secuTrialR")
 # spell check -> will contain some R and secuTrial specific words which is fine
-devtools::spell_check("secuTrialR")
+ignore_words <- c("AdminTool", "allforms", "casenodes", "CDMS", "codebook",
+                  "codebooks", "datetime" ,"dir" ,"Hmisc" ,"igraph",
+                  "labelled", "mnp", "savedforms", "secutrial", "secuTrial", 
+                  "secuTrialdata", "tcltk", "tibble", "xlsx")
+devtools::spell_check("secuTrialR", ignore = ignore_words)
 ```
 
 ### Linting with lintr
