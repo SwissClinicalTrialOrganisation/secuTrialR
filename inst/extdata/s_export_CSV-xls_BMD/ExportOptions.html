@@ -1,0 +1,769 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <title>Export options</title>
+        <style  type="text/css">
+            /* normal font ---------------------------------------------------------------*/
+body                    { font-family:Arial,Helvetica,sans-serif; background-color:white; font-size:10pt; margin-top:0px;}
+body.frameless           { margin:0px; padding:0px; }
+frame, table frame,table {  margin-top:0px;}
+p, li, table, td        { font-family:Arial,Helvetica,sans-serif; font-size:10pt; }
+.normal                 { font-weight:normal; font-size:10pt;}
+.bold                   { font-weight:bold; }
+.italic					{ font-style:italic; }
+.navigation             { position:fixed; top:0px; left:0px; background-color:white; z-index: 1;} /* navigation menu */
+.navigationIE           { background-color:white; } /* navigation for IE 6 */
+.navigationTop          { visibility:hidden; background-color:white; } /* navigation for IE 6 */
+.copyright              { position:relative; bottom:5px; font-size:8pt; text-align:right; vertical-align:baseline; margin-top:10px; margin-right:5px; }
+form                    { margin:0px; }
+table.standard tr td      { text-align:left; vertical-align:top; }
+table.middle tr td      { text-align:left; vertical-align:middle; }
+table.layout            { display:inline-table; padding:0px; spacing:0px;}
+/** PDF Print: add border bottom instead of br and hr elements to avoid page break twice  */
+table.footer            { border-bottom: 1px solid #000; margin-top: 5px; padding-bottom: 5px; }
+div.generalmenubar      { text-align:right; padding-bottom:2px; margin: 5px 0px 5px 0px;  }
+
+/* login page ---------------------------------------------------------------*/
+.logintitle, .maintitle             { font-size:13pt; font-weight:bold;}                    /* welcome-text of DataCapture */
+
+/* href-buttons --------------------------------------------------------------*/
+.menu                   { font-size:9pt; text-align:center; }
+.menulink               { font-size:9pt; text-align:center;}
+.matrixbutton           { font-size:9pt; text-align:center; }
+a					    { text-decoration:none; }
+.underline, a.title    { text-decoration:underline; }/* title-lining in FormBuilder */
+a.standard              { color:blue; text-decoration:underline; }
+a.loginlink             { text-decoration:underline; } /* for  text-lining in login/logout pages */
+.navigationlink         { font-size:9pt; font-weight:normal; margin: 20px 0px 20px 0px; border-left: 2px solid; padding-left:7px; padding-right:4px; }
+.navigationgenerallink  { font-size:9pt; font-weight:normal; margin: 20px 0px 20px 0px; border-left: 1px solid; padding-left:7px; padding-right:4px; }
+.navigationlevellink    { font-size:9pt; font-weight:normal; margin: 20px 5px 20px 0px; }
+.navigationhighlight    { font-size:9pt; font-weight:normal; margin: 20px 5px 20px 0px; border-left: 2px solid; padding-left:4px; padding-right:4px; padding-top:4px; padding-bottom:4px; }
+.logo                   { margin:5px 5px 5px 0px; }
+.pseudolink              { cursor:pointer; }
+
+/* label-links ---------------------------------------------------------------*/
+label                   { cursor:pointer; }
+label.underline:hover   { color:red; }
+label.link:hover        { color:red; }
+
+/* tool styles ---------------------------------------------------------------*/
+.pagetitle              { font-weight:bold; font-size:11pt; line-height:12pt; margin-left:5px; margin-right:5px; text-align:center; } /* headlines in normal pages (no forms), blue2bg */
+.pageheadline           { font-weight:bold; font-size:11pt; line-height:12pt; } /* subheadlines in pages, blue1bg */
+/* the pagebreak-css leads to incomplete printing (firefox bug)! sus 17.01.2007, seems to be fixed, sus 10.10.2008 */
+ .pagebefore             { page-break-before:always; }                         /* mandatory page break in print befor element  */
+ .pageafter              { page-break-after:always; }                          /* mandatory page break in print after element */
+ /* reduced size for status info, sus 10.10.2008*/
+.user, .status, .confirm    {font-size:9pt;             }
+.usertext               { font-size:10pt; }
+.ddetitle              { font-weight:bold; font-style:italic; padding-top:2px; padding-bottom:2px; margin-top:2px;}
+
+/* special coloring in FormBuilder -------------------------------------------*/
+.devbg                  { background-color:#86C2A7; }                           /* background for development projects */
+.probg                  { background-color:#B0C4DE; }                           /* background for productive projects */
+.relbg                  { background-color:#F6A09F; }                           /* background for released projects */
+.archbg                 { background-color:#D2D2D2; }                           /* background for archive projects */
+.specialheadline        { font-size:11pt; font-weight:bold; }                   /* headline in special pages */
+
+/* preview FormBuilder */
+.usermessage	        { font-size:8pt; color:#0000FF; }                    /* errormessages preview */
+.typeinfo		        { font-size:8pt; color:#999999; font-weight:normal; }/* type information */
+.typeborder             { border-style:solid; border-color:#cccccc; border-width:1pt; } /* dummy-component: table border */
+.dbvalue                { font-size:8pt; color:#FF0000; font-weight:normal; }/* db-value or field */
+.errordbvalue           { font-size:8pt; color:#EE00EE; font-weight:normal; }/* non-matching dbfield */
+.sendvalue              { font-size:8pt; color:maroon;  font-weight:normal; }/* send-name */
+.dbtable                { font-size:10pt;   color:#FF0000; font-weight:bold; background-color:white; }  /* form-tablename */
+.errordbtable           { font-size:10pt;   color:#EE00EE; font-weight:bold; background-color:white;}  /* not matching tablename */
+.asterisk               { line-height:12px; font-size:15pt;   color:#FF7700; font-weight:bold; }  /* notice to external form or visit references */
+.errorasterisk          { line-height:12px; font-size:15pt;   color:#EE00EE; font-weight:bold; }  /* notice to external project references */
+.errorasterisk2         { line-height:10px; font-size:12pt;   color:#FF0000; font-weight:bold; }  /* notice to incomplete definition */
+
+
+/* form styles ---------------------------------------------------------------*/
+.formtitle              { font-size:11pt; line-height:12pt; font-weight:bold; }
+.documentid             { font-size:8pt; font-weight:normal; margin-left:10px; padding-left:10px; }  /* document id of forms and version */
+.queryformtitle         { font-size:11pt; line-height:12pt; font-weight:bold; }
+.question 		        { font-size:10pt; font-weight:bold;  }                  /* normal questionlabel */
+.questionmark           { font-size:9pt; font-weight:bold; line-height:13pt; }    /* comment/query-mark/deviation */
+.questionmarkSmall           { font-size:8pt; font-weight:bold;  }    /* comment/query-mark/deviation in small display */
+.questiondescription    { font-size:10pt;  }                    /* question description 1/2 */
+.item			        { font-size:10pt; font-weight:bold;  }    /* item text (fflabel) */
+.headline               { font-size:10pt; line-height:12pt; font-weight:bold; font-style:italic; }/* form subheadline,  blue, italic */
+.subformheadline        { font-size:10pt; line-height:12pt; font-weight:bold; font-style:italic; } /* subformheadline in repetition groups */
+.subformheadline2       { font-size:10pt; line-height:12pt; font-weight:bold; font-style:italic; }  
+.fieldDisplay           { background-color:#FFFFFF; table-layout:auto;          /* print display of input-fields , only for table elements! */
+                          border-color:#000000; border-width:1pt;
+                          border-style:solid; border-collapse:collapse;/* display:inline-table; do not set display style, this class is for table parts only */ }
+.imageCanvas            { table-layout:auto;          /* canvas and background of image-fields */
+                          border-width:1pt;
+                          border-style:solid; border-collapse:collapse; }
+                          
+.formborder            {  border-width:1pt; border-style:solid; border-collapse:collapse; } 
+.uploadinprogress      {  display:none; } /* hide eCRF during imageupload */
+                         
+/** table borders ------------------------------------------------------------ */                                    
+.redborder             {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse; }                                   
+.redborderleftside     {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-right:none; }                          
+.redborderrightside    {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-left:none; }                          
+.redbordertopside      {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-bottom:none; }                          
+.redborderbottomside   {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; }     
+.redbordertopbottom    {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-left:none; border-right:none; }                          
+.redborderleftright    {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-bottom:none; }     
+.redborderleft         {  table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-bottom:none; border-right:none; }    
+.redborderright         { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-bottom:none; border-left:none; }     
+.redbordertop           { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-bottom:none; border-left:none; border-right:none; }      
+.redborderbottom        { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-right:none; border-left:none; }
+.redborderlefttop       { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-bottom:none; border-right:none; }
+.redborderrighttop      { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-bottom:none; border-left:none; }          
+.redborderleftbottom    { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-right:none; }
+.redborderrightbottom   { table-layout:auto;                                    /*  display of hidden fields or groups */
+                          border-color:#FF0000; border-width:1.5pt;
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-left:none; }                                                                                                                                                                      
+.redunderline           { border-color:#FF0000; border-width:1.5pt;				/* markup selection in FB for hide items/groups/forms  */
+                          border-style:dashed; border-collapse:collapse;
+                          border-top:none; border-left:none; border-right:none; }  
+						  
+.queryborder            { table-layout:auto;                                    /* coloring of RecruitmentTool selection for hidden fields*/
+                          border-width:1pt;
+			              border-style:dotted; border-collapse:collapse; }          
+
+.hiddenatblueborder     { border-color:#0000FF; border-width:1pt;               /*  display of hidden item options in Audit Trail */
+                          border-style:dotted;  }        
+.hiddenborder           { table-layout:auto;                                    /* "headline" border coloring of hidden fields*/
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse; } 	
+.hiddenborderleftside   { table-layout:auto;                                    /* "headline" border coloring of hidden fields*/
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-right:none; } 		
+.hiddenborderrightside  { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; } 
+.hiddenborderleft       { table-layout:auto;                                    /* "headline" border coloring of hidden fields*/
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-right:none; border-top:none; border-bottom:none; } 		
+.hiddenborderright      { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none;  border-top:none; border-bottom:none; }                          	
+.hiddenbordermiddle     { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; border-right:none; } 
+.hiddenbordertop        { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; border-right:none; border-bottom:none; } 
+.hiddenborderlefttop    { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-right:none; border-bottom:none;} 
+.hiddenborderrighttop   { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; border-bottom:none; } 
+.hiddenborderleftbottom { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-top:none; border-right:none; } 
+.hiddenborderrightbottom  { table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; border-top:none; } 		
+.hiddenborderbottom  {    table-layout:auto;
+                          border-width:1pt;
+                          border-style:dotted; border-collapse:collapse;
+                          border-left:none; border-top:none; border-right:none; }      
+						  											  
+						  
+.error                  { font-size:10pt; }                      /* general error messages */
+.errortitle             { font-size:11pt; line-height:12pt; font-weight:bold; }  /* general error messages bold */
+.errorheader            { font-size:10pt; font-weight:bold; } /* errorheader for forms */
+.dateformat             { font-size:8pt; }                     /* format description for date fields */
+
+/* status info */
+.userinput              { font-style:italic; }                    /* request for input from the user, eg.query */
+.printrow               { font-size:8pt;  }
+.notice                 { font-size:11pt; line-height:12pt; font-weight:bold; }       /* headlines for "saved" notice */
+.noticetext             { font-size:10pt; font-weight:normal; color:#3333DD; } /* normal text for  */
+
+/* ===================== media styles ======================================= */
+@media print  { .noprint { display:none; }}
+@media screen { .printonly { display:none; }}
+
+/* ============================ title report hover ========================== */
+div.titleReport div.titleReportDetails {
+    display: none;
+}
+
+div.titleReport:hover, div.titleReport.hover { /* fix IE6 bug with :hover */
+    background:transparent none repeat scroll 0%;
+}
+
+div.titleReport:hover div.titleReportDetails, div.titleReport.hover div.titleReportDetails {
+    display: block;
+    position: absolute;
+    background-color: #fFfFeF;
+    border: 1px solid #bFbFbF;   
+    margin-top: 1px;     
+    /* margin-left: 1px; move it across a bit */
+}
+
+div.titleReport div.titleReportDetails table {
+    border: 1px solid;
+    width: 450px; /* fix IE bug with width */
+}
+
+.title                  { font-size:11pt; line-height:12pt; font-weight:bold; }
+
+
+/* ============================ Global ========================== */
+
+.clear {
+    clear: both;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+div.inline {
+	display: inline-block;
+}
+
+.overlayBg,
+.overlayContentBg {
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 10;
+    background-color: rgba(1, 1, 1, 0.25);
+}
+
+.overlayContentBg {
+    z-index: 1;
+}
+
+.overlayBezel {
+    text-align: center; 
+    padding: 1em; 
+	background-color: #fff;  
+	width: 60%;
+	margin-top: 180px; margin-right: auto; margin-bottom: 0; margin-left: auto; 
+	z-index: 11;
+  	border: 2px solid #B0C4DE;
+  	border-radius: 8px;
+  	-webkit-border-radius: 8px;
+  	-moz-border-radius: 8px;  
+  	box-shadow: 0 0 0.6em 0.25em gray; 	
+  	-webkit-box-shadow: 0 0 0.6em 0.25em gray; 	
+  	-moz-box-shadow: 0 0 0.6em 0.25em gray; 
+}
+
+div.overlayBezel.warning {
+	border-color: red;
+}
+
+.overlayBottom {
+    position: absolute;
+    left: 18%;
+    bottom: 150px;
+    margin-top: 0;
+}
+
+ul.default {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+ul.list-simple {
+    margin: 0.5em 0;
+}
+
+ul.list-simple > li {
+    list-style-type: none;
+}
+
+ul.horizontal > li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+table.fullsize { width: 100%; }
+
+tr.selected {
+    outline: 1px solid #B0C4DE;
+    /* background-color: #f5f5f5; */
+}
+
+.st-list-header-row {
+    font-weight: bold;
+    color: #999999;
+}
+
+.st-sortable-handle {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0; 
+    width:16px; 
+    margin-left: -16px; 
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    cursor: move;
+    background-color:#f5f5f5;
+}
+
+tr.ui-sortable-helper {
+    display: table;
+}
+
+input.plain, button.plain {
+	border: 0;
+	background: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	cursor: pointer;
+	padding: 0;
+	font-family: inherit;
+	color: inherit;
+}
+/* ============================ Customer Admintool ========================== */
+
+div.collapsibleCompontent {
+    text-align: left;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+}
+
+/* ============================ DataCapture ========================== */
+
+div#menuPageWrapper {
+    padding: 0 10px 10px 10px;
+    position: relative;
+}
+
+div#navigationMatrix {
+    width: 100%;
+}
+
+/* -- "deprecated" styles, wording wrong --*/
+.blue                   { background-color:blue;  }
+.gray                   { background-color:#f5f5f5; }
+
+/* ============================ Export Search Tool ========================== */
+
+input[type="checkbox"] {
+    cursor:pointer;
+}
+div.collapse-title {
+    margin: 5px;
+}
+.collapse ul {
+    list-style: none; 
+    text-align: left;
+    margin-top: 2px;
+    margin-left: 20px;
+    margin-bottom:2px;
+    padding-left: 0px;
+}
+.collapse li {
+    margin-left:15px; 
+    padding-left:0px;
+    text-indent:-25px;
+}
+
+/* ===== do not add any internal used styles below this line ! =========== */
+/* ===== selectable styles ("selectable" must not be changed!) =========== */
+.bluebg                 { background-color:#F0F8FF; } 
+.blue1bg                { background-color:#E6EDF5; }
+.blue2bg                { background-color:#B0C4DE; } 
+.blue3bg                { background-color:#80A0C4; }
+.blue4bg                { background-color:#6688B4; }
+.blue5bg                { background-color:#446690; }
+.blue6bg                { background-color:#224470; } 
+.blue7bg                { background-color:#113360; }
+.blue8bg                { background-color:#002250; }
+.xxx {}        /* used for separation of selection display */
+.whitebg                { background-color:#FFFFFF; }
+.graybg                 { background-color:#f5f5f5; }
+.yellowbg               { background-color:#fff65c; }
+.lightyellowbg          { background-color:#FFFF99; }
+.greenbg                { background-color:green; }
+.middlegreenbg          { background-color:#00DD00; }
+.lightgreenbg           { background-color:#AAFFAA; }
+.redbg                  { background-color:#EE0000; }
+.middleredbg            { background-color:#FF5555; }
+.lightredbg             { background-color:#FFAAAA; }
+.darkbluebg             { background-color:#00008b; }
+.xxx {}
+/* issue #3309: stylesheet for alignment in reports, sus 23.01.2009 */
+.alignleft              { text-align:left; }
+.aligncenter            { text-align:center; }
+.alignright             { text-align:right; }
+.xxx {}
+.fontred                { color:#EE0000; }
+.fontblue               { color:blue;  }
+.fontgreen              { color:green; }
+.fontgray               { color:#808080; }
+.fontblack              { color:black; }
+.fontwhite              { color:white; }
+
+.font8                  { font-size:8pt;  font-weight:normal; }
+.font8red               { color:#EE0000; font-size:8pt; font-weight:normal; }
+.font8maroon            { color:maroon;  font-size:8pt; font-weight:normal; }
+.font8gray              { color:#808080; font-size:8pt; font-weight:normal; }
+.font8black             { color:#000000; font-size:8pt; font-weight:normal; }
+.font8green             { color:green; font-size:8pt; font-weight:normal; }
+.font8blue              { color:blue; font-size:8pt; font-weight:normal; }
+
+.font9                  { font-size:9pt; }
+
+.font10                 { font-size:10pt;  }
+.font10red              { color:#EE0000; font-size:10pt;  }
+.font10maroon           { color:maroon;  font-size:10pt;  }
+.font10gray             { color:#808080; font-size:10pt;  }
+.font10black            { color:#000000; font-size:10pt;  }
+.font10white            { color:#FFFFFF; font-size:10pt;  }
+.font10green            { color:#006600; font-size:10pt;  }
+.font10pink             { color:#EE00EE; font-size:10pt;  }
+
+.font11                 { font-size:11pt;  }
+.font11red              { color:#EE0000; font-size:11pt;  }
+.font11maroon           { color:maroon;  font-size:11pt;  }
+.font11gray             { color:#808080; font-size:11pt;  }
+.font11black            { color:#000000; font-size:11pt;  }
+
+.font12                 { font-size:12pt;  }
+.font12red              { color:#EE0000; font-size:12pt;  }
+.font12pink             { color:#EE00EE; font-size:12pt;  }
+.font12maroon           { color:#800000; font-size:12pt;  }
+.font12gray             { color:#808080; font-size:12pt;  }
+.font12black            { color:#000000; font-size:12pt;  }
+.font12blue             { color:blue;    font-size:12pt;  }
+.font12green            { color:green;   font-size:12pt;  }
+.font12white            { color:white;   font-size:12pt;  }
+.font12whiteonred       { color:white;   font-size:12pt;  background-color:#dc143c; }
+
+.font13                 { font-size:13pt;  }
+.font13red              { color:#EE0000; font-size:13pt;  }
+.font13maroon           { color:#800000; font-size:13pt;  }
+.font13gray             { color:#808080; font-size:13pt;  }
+.font13black            { color:#000000; font-size:13pt;  }
+.font13blue             { color:blue;    font-size:13pt;  }
+.font13white            { color:white;   font-size:13pt;  }
+.font13whiteonred       { color:white;   font-size:13pt;  background-color:#dc143c; }
+
+.font14                 { font-size:14pt;  }
+.font14red              { color:#EE0000; font-size:14pt;  }
+.font14maroon           { color:#800000; font-size:14pt;  }
+.font14gray             { color:#808080; font-size:14pt;  }
+.font14black            { color:#000000; font-size:14pt;  }
+.font14blue             { color:blue;    font-size:14pt;  }
+.font14white            { color:white;   font-size:14pt;  }
+.font14whiteonred       { color:white;   font-size:14pt;  background-color:#dc143c; }
+
+.font16                 { font-weight:bold; font-size:16pt;  text-decoration:none; }
+.font16red              { color:#EE0000; font-weight:bold; font-size:16pt;  text-decoration:none; }
+.font16white            { color:white;   font-weight:bold; font-size:16pt;  text-decoration:none; }
+
+.font18                 { font-weight:500; font-size:18pt;  }
+.font18red              { color:#EE0000; font-weight:500; font-size:18pt;  }
+.font18white            { color:white;   font-weight:500; font-size:18pt;  }
+
+.deviationError         { border: 1px solid red; background-color: #fee; }
+.alert-warning          { border: 1px solid #faebcc; background-color: #fcf8e3; border-radius: 5px; padding: 10px; color: #8a6d3b; }
+
+.borderGray             { border: 1px solid gray; }
+            body { color:#202020; }
+a { color:#202020; text-decoration:none; }
+a:hover, a.menu:hover, a:active, .pseudolink:hover { color:#ee0000; }
+a.login { color:#202020; }
+.loginbg { background-color:#F0F8FF; }
+.logintext, .logintitle, .loginlink, .maintitle { color:#202020; }
+.imagebg { background-color:#FFFFFF; }
+.warn { color:#800000; }
+.loginerror, .error, .errortitle, .questionmark, .questionmarkSmall { color:#ee0000; }
+.errorheader { color:#FFFFFF; background-color:#ee0000; }
+.menu, .gray, .matrix1bg, .lightgraybg, .matrixbutton, .ddetitle { background-color:#f5f5f5; }
+.menulink { color:#224470; }.matrixbg, .generalbgcolor { background-color:#E8F5FF; }
+.query, .queryborder, .specialmenu, .specialheadline {  background-color:#FFEDED; }
+.formtitle { color:#FFFFFF; background-color:#224470; }
+.pagetitle, .pageheadline, .headline, .subformheadline, .subformheadline2, .queryformtitle { color:#000000; background-color:#B0C4DE; }
+.notice { color:#224470; }
+.highlightbg { background-color:#ffff60; }
+.status, .warning, .copyright { color:#999999; }
+.user, .userinput, .usertext, .printrow, .confirm { color:#800000; }
+.matrix2bg, .warningbg  { background-color:#F9A6AD; }
+.matrix3bg, .warning1bg  { background-color:#F3716D; }
+.hiddenborder, .hiddenborderleft, .hiddenborderright, .hiddenborderleftside { border-color:#B0C4DE; }
+.hiddenborderrightside, .hiddenbordertop, .hiddenborderbottom { border-color:#B0C4DE; }
+.hiddenbordermiddle, .hiddenborderlefttop, .hiddenborderrighttop { border-color:#B0C4DE; }
+.hiddenborderleftbottom, .hiddenborderrightbottom { border-color:#B0C4DE; }
+.queryborder { border-color:#F3716D; }
+.formborder { border-color:#B0C4DE; }
+.imageCanvas { background-color:#FFFFFF;  border-color:#000000; }
+.navigationlink { color:#224470; border-color:#B0C4DE; }
+.navigationgenerallink, .navigationlevellink { color:#999999; border-color:#999999; }
+.navigationhighlight {color:#224470; border-color:#B0C4DE; background-color:#E8F5FF; }
+.forbidden { background-color:#f5f5f5; color:#999999; }
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 10px; }
+.ui-widget .ui-widget { font-size: 10px; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 10px; }
+.ui-widget-content { border: 1px solid #202020; background: #E8F5FF none 50% 50% repeat-x; color: #B0C4DE; }
+.ui-widget-header { border: 1px solid #202020; background: #224470 url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #B0C4DE; font-weight: bold; }
+
+        </style>
+    </head>
+    <body>
+        <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr><td height="5"></td></tr>
+            <tr>
+                <td height="25" class="pagetitle">
+                    Export options
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="padding:5px;" class="generalbgcolor">
+                    <table align="center" border="0" cellspacing="0" cellpadding="1" width="100%">
+      <tr><td width="45%"></td><td width="65%"></td></tr>
+  <tr>
+    <td align="center" height="10" colspan="2"></td>
+  </tr>
+      
+              <tr>
+          <td align="right">Description:</td>
+          <td align="left">
+            <b>calcium_dataset_secuTrial</b>
+          </td>
+        </tr>
+        
+        <tr>
+          <td align="right">Created on:</td>
+          <td align="left">
+            <b>25.02.2019 - 15:14:27 (CET)</b>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Project:</td>
+          <td align="left">
+            <b>BONE MINERAL DENSITY</b>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Version:</td>
+          <td align="left">
+            <b>(25.02.2019 - 13:13:44 (CET))</b>
+          </td>
+        </tr>
+        
+          <tr>
+            <td align="right" valign="top">Centres:</td>
+            <td align="left">
+              <b>Hospital (BMD)  </b>
+            </td>
+          </tr>
+        
+        <tr>
+          <td align="right">Visit:</td>
+          <td align="left">
+            <b>all visits </b> 
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Patients:</td>
+          <td align="left">
+            <b>All patients</b>
+          </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2"></td>
+  </tr>
+  
+        <tr>
+          <td align="right" valign="top">Format:</td>
+          <td align="left" >
+            <b>CSV format for MS Excel</b>
+            <br />
+            
+                   
+            
+            <b>Column names</b><br />
+              Store reference values
+              - 
+              <b>same table</b><br />
+            
+            
+            
+              <b>English number format (decimal sign = &quot;.&quot;)</b><br />
+              
+            
+            
+            
+                <b>Shorten table name</b>
+              
+          </td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;</td>
+          <td align="left">
+            <b>UTF-8</b>
+          </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2"></td>
+  </tr>
+  <tr>
+    
+          <td align="right" valign="top" rowspan="2">Included data:</td>
+          <td align="left" valign="top">
+            <b>
+              Patient-ID<br />
+              
+              
+                Centre information<br />
+              
+              
+                Project setup<br />
+              
+              
+                Queries and Comments<br />
+              
+              
+              
+                Audit Trail<br />
+              
+            </b>
+            
+            
+            <b>
+              
+              
+              
+              
+            </b>
+          </td>
+        </tr>
+
+      
+        <tr align="center">
+          <td align="left" valign="top">
+            <b>all items</b>
+            
+          </td>
+        </tr>
+
+      
+      
+          <tr align="center">
+            <td align="right" valign="top"></td>
+            <td align="left" valign="top">
+              Form meta data:
+              <ul style="margin-top:0px; margin-left:-10px; margin-bottom:2px;">
+                
+                  <li class="collapse">
+                    <b>Structure</b>
+                  </li>
+                
+                  <li class="collapse">
+                    <b>Form status</b>
+                  </li>
+                
+                  <li class="collapse">
+                    <b>Document editing</b>
+                  </li>
+                
+                  <li class="collapse">
+                    <b>Patient status</b>
+                  </li>
+                
+              </ul>
+            </td>
+          </tr>
+      
+
+  
+  <tr>
+    <td align="right" valign="top"> Data handling:</td>
+    <td align="left" valign="top">
+        unselected checkbox as <b>&quot;NULL&quot; value</b><br />
+        date/time values as: <b>string (with spaces)</b><br/>
+        
+    </td>
+  </tr>
+  
+  
+  
+  
+  
+    <tr>
+      <td height="10" colspan="2"></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        You will receive an email to the following address when your export is finished:<br />
+        &quot;<b>patrick.wright@usb.ch</b>&quot;</td>
+    </tr>
+  
+  <tr>
+    <td height="10" colspan="2"></td>
+  </tr>
+</table>
+                </td>
+            </tr>
+            
+            <tr><td align="right" valign="top">
+
+
+<div class="copyright"><a href="http://www.secutrial.de" target="_blank" class="copyright">secuTrial<sup>&reg;</sup> 5.3.4.6, 2019</a></div>
+
+
+</td></tr>
+        </table>
+    </body>
+</html>
