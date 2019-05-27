@@ -4,7 +4,8 @@
 \alias{read_secuTrial}
 \title{Load secutrial export}
 \usage{
-read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
+read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE,
+  add_id_name = NULL)
 }
 \arguments{
 \item{data_dir}{string - location of the export}
@@ -14,6 +15,9 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 \item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a separate table)}
 
 \item{dates}{logical - convert date variables}
+
+\item{add_id_name}{string This needs to be specified if your Add-ID name has
+been changed in the AdminTool Design setting.}
 }
 \value{
 secuTrialdata object - a list with one data.frame for each file on the export.
