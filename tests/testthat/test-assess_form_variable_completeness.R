@@ -21,16 +21,29 @@ val_ovv_empty <- val_ovv[0, ]
 # test error handling
 test_that("Exceptions correctly triggered.", {
   expect_error(assess_form_variable_completeness())
-  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd, validation_overview = val_ovv, occ_in_vp = 0))
-  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd, validation_overview = val_ovv, completeness = "yes"))
-  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd, casenodes_table = sT_export_short$cn,
-                                                 validation_overview = val_ovv, occ_in_vp = 1))
-  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd, casenodes_table = sT_export_short$cn,
-                                                 validation_overview = val_ovv_no_compl_stat, occ_in_vp = 5))
-  expect_warning(assess_form_variable_completeness(form = sT_export_short$bmd, casenodes_table = sT_export_short$cn,
-                                                   validation_overview = val_ovv, occ_in_vp = 5, completeness = "savedforms"))
-  expect_equal(assess_form_variable_completeness(form = sT_export_short$bmd, casenodes_table = sT_export_short$cn,
-                                                 validation_overview = val_ovv_empty, completeness = "savedforms"),
+  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                 validation_overview = val_ovv,
+                                                 occ_in_vp = 0))
+  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                 validation_overview = val_ovv,
+                                                 completeness = "yes"))
+  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                 casenodes_table = sT_export_short$cn,
+                                                 validation_overview = val_ovv,
+                                                 occ_in_vp = 1))
+  expect_error(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                 casenodes_table = sT_export_short$cn,
+                                                 validation_overview = val_ovv_no_compl_stat,
+                                                 occ_in_vp = 5))
+  expect_warning(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                   casenodes_table = sT_export_short$cn,
+                                                   validation_overview = val_ovv,
+                                                   occ_in_vp = 5,
+                                                   completeness = "savedforms"))
+  expect_equal(assess_form_variable_completeness(form = sT_export_short$bmd,
+                                                 casenodes_table = sT_export_short$cn,
+                                                 validation_overview = val_ovv_empty,
+                                                 completeness = "savedforms"),
                "100% completeness. Your Validation overview is empty.")
 })
 
