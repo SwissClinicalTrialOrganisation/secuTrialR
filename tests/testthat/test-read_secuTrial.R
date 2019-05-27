@@ -1,7 +1,7 @@
 context("read_secutrial")
 
 
-
+# zipped
 l1 <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
             package = "secuTrialR")
 
@@ -10,6 +10,13 @@ l2 <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames.zip",
 
 s1 <- system.file("extdata", "s_export_CSV-xls_CTU05_shortnames.zip",
                   package = "secuTrialR")
+
+# zipped
+bmd_zipped_loc <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+                              package = "secuTrialR")
+# unzipped
+bmd_unzipped_loc <- system.file("extdata", "s_export_CSV-xls_BMD",
+                                package = "secuTrialR")
 
 
 ld1 <- read_secuTrial(l1)
@@ -49,4 +56,17 @@ test_that("labels not present", {
   expect_null(label(ld1_2$ctu05ae$ae_outcome.factor))
   expect_null(label(ld1_2$ctu05ae$ae_onset_date))
   expect_null(label(ld1_2$ctu05ae$ae_onset_date.date))
+})
+
+# compare zipped and unzipped
+bmd_zip <- read_secuTrial(bmd_zipped_loc)
+bmd_unzip <- read_secuTrial(bmd_unzipped_loc)
+
+test_that("Zipped and unzipped return the same.", {
+  expect_true(all.equal(bmd_zip$cn, bmd_unzip$cn))
+  expect_true(all.equal(bmd_zip$ctr, bmd_unzip$ctr))
+  expect_true(all.equal(bmd_zip$bmd, bmd_unzip$bmd))
+  expect_true(all.equal(bmd_zip$fs, bmd_unzip$fs))
+  expect_true(all.equal(bmd_zip$vp, bmd_unzip$vp))
+  expect_true(all.equal(bmd_zip$qs, bmd_unzip$qs))
 })
