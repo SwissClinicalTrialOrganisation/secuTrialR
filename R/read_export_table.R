@@ -73,9 +73,6 @@ read_export_table <- function(data_dir, file_name, export_options,
                               casenodes_table, centre_table, visitplan_table,
                               is_meta_table = FALSE) {
 
-  # confirm export_options presence
-  if (!exists("export_options")) stop("export_options have not been specified. Run read_export_options to create.")
-
   if (export_options$is_zip) {
     archive_con <- unz(data_dir, file_name)
     loaded_table <- read.table(file = archive_con,
