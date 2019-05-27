@@ -32,7 +32,7 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
   } else {
     files <- data.frame(Name = list.files(data_dir))
     files$Name <- as.character(files$Name)
-    study_options_file_idx <- grepl("ExportOptions", files$Name)
+    study_options_file_idx <- grep("ExportOptions", files$Name)
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
   # version reference is on the bottom of the page
