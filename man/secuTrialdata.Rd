@@ -21,8 +21,12 @@ behavior load all tables. "none" can also be
 specified if only meta tables and export_options
 shall be loaded.}
 
-\item{add_id_name}{string This needs to be specified if your Add-ID name has
-been changed in the AdminTool Design setting.}
+\item{add_id_name}{string Properly loading a secuTrial export is critically dependent
+on the "Add-ID" being available in the export. Standard formats for
+this ID are "Add-ID", "Zus-ID", "Patient-ID". It is, however, also
+possible to set a custom "Add-ID" in the secuTrial AdminTool "Design"
+setting (e.g. "Hospital case ID"). In such a case you will need to
+set this parameter to what has been defined in the AdminTool.}
 
 \item{x}{secuTrialdata object as returned by \code{read_secuTrial_export}}
 }
