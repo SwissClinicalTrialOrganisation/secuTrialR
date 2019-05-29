@@ -20,11 +20,9 @@
 #'
 return_scores <- function(x) {
   if (class(x) == "secuTrialdata") {
-    curr_items <- data.frame(x[x$export_options$meta_names$items])
-    itemtype_col <- grep("itemtype", names(curr_items))
-    scores <- curr_items[grep("calculated", curr_items[, itemtype_col]), ]
-    relevant_cols <- grep("ffcolname|itemtype|fflabel", names(scores))
-    scores_relevant_col <- scores[, relevant_cols]
+    curr_items <- x[[x$export_options$meta_names$items]]
+    scores <- curr_items[grep("calculated", curr_items$itemtype),]
+    scores_relevant_col <- scores[, c("ffcolname", "itemtype", "fflabel")]
     names(scores_relevant_col) <- c("name", "itemtype", "label")
     rownames(scores_relevant_col) <- NULL
     scores_relevant_col <- unique(scores_relevant_col)
