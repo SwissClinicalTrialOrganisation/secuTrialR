@@ -66,7 +66,7 @@ read_secuTrial_export <- function(data_dir) {
     # update name
     loaded_table <- setNames(list(loaded_table), name)
     # make add_id and lab_id entry in export_options
-    if (name == "casenodes" | name == "cn") {
+    if (name == export_options$meta_names$casenodes) {
       col_names_casenode <- names(loaded_table[[names(loaded_table)]])
       return_list$export_options$add_id <- any(col_names_casenode == "mnpaid")
       return_list$export_options$lab_id <- any(col_names_casenode == "mnplabid")
