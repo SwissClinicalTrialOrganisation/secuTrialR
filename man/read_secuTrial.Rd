@@ -4,8 +4,7 @@
 \alias{read_secuTrial}
 \title{Load secuTrial export}
 \usage{
-read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE,
-  ...)
+read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 }
 \arguments{
 \item{data_dir}{string - location of the export}

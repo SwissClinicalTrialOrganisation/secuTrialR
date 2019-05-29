@@ -7,7 +7,7 @@
 \alias{plot.secuTrialdata}
 \title{This function loads a secuTrial export}
 \usage{
-read_secuTrial_export(data_dir, tables = "all", add_id_name = NULL)
+read_secuTrial_export(data_dir)
 
 print(x)
 
@@ -15,18 +15,6 @@ plot(x)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
-
-\item{tables}{vector containing the names of the files to be loaded. Default
-behavior load all tables. "none" can also be
-specified if only meta tables and export_options
-shall be loaded.}
-
-\item{add_id_name}{string Properly loading a secuTrial export is critically dependent
-on the "Add-ID" being available in the export. Standard formats for
-this ID are "Add-ID", "Zus-ID", "Patient-ID". It is, however, also
-possible to set a custom "Add-ID" in the secuTrial AdminTool "Design"
-setting (e.g. "Hospital case ID"). In such a case you will need to
-set this parameter to what has been defined in the AdminTool.}
 
 \item{x}{secuTrialdata object as returned by \code{read_secuTrial_export}}
 }
@@ -42,10 +30,8 @@ data.frame with a row for each table in the export. For each table it
         whether the table is a metadata table and the files original name.
 }
 \description{
-This function will always load the full set of meta tables first.
-Further tables to load can be specified. The standard is to load
-the entire export. The export options are also loaded and written
-into export_options.
+This function will always load the full set of meta and data tables.
+The export options are also loaded and written into export_options.
 }
 \examples{
 # prepare path to example export
