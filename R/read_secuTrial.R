@@ -20,7 +20,7 @@ read_secuTrial <- function(data_dir,
                            dates = TRUE,
                            ...){
 
-  d <- read_secuTrial_export(data_dir = data_dir, add_id_name = ...)
+  d <- read_secuTrial_export(data_dir = data_dir, ...)
   if (labels) d <- label_secuTrial(d)
   if (factor & d$export_options$refvals_separate) d <- factorize_secuTrial(d)
   if (dates) d <- dates_secuTrial(d)
