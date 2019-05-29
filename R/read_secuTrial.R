@@ -1,4 +1,4 @@
-#' Load secutrial export
+#' Load secuTrial export
 #' @description Convenience wrapper for \code{read_secuTrial_export}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
 #' @param data_dir string - location of the export
 #' @param labels logical - add labels to variables and table
@@ -17,9 +17,9 @@
 read_secuTrial <- function(data_dir,
                            labels = TRUE,
                            factor = TRUE,
-                           dates = TRUE){
+                           dates = TRUE) {
 
-  d <- read_secuTrial_export(data_dir)
+  d <- read_secuTrial_export(data_dir = data_dir)
   if (labels) d <- label_secuTrial(d)
   if (factor & d$export_options$refvals_separate) d <- factorize_secuTrial(d)
   if (dates) d <- dates_secuTrial(d)
