@@ -2,26 +2,13 @@
 #' This function loads a secuTrial export
 #'
 #' @description
-#' This function will always load the full set of meta tables first.
-#' Further tables to load can be specified. The standard is to load
-#' the entire export. The export options are also loaded and written
-#' into export_options.
+#' This function will always load the full set of meta and data tables.
+#' The export options are also loaded and written into export_options.
 #'
 #' @export read_secuTrial_export
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
-#' @param add_id_name string Properly loading a secuTrial export is critically dependent
-#'                    on the "Add-ID" being available in the export. Standard formats for
-#'                    this ID are "Add-ID", "Zus-ID", "Patient-ID". It is, however, also
-#'                    possible to set a custom "Add-ID" in the secuTrial AdminTool "Design"
-#'                    setting (e.g. "Hospital case ID"). In such a case you will need to
-#'                    set this parameter to what has been defined in the AdminTool.
-#' @param tables vector containing the names of the files to be loaded. Default
-#'                      behavior load all tables. "none" can also be
-#'                      specified if only meta tables and export_options
-#'                      shall be loaded.
-#'
 #' @return This is a list of class secuTrialdata containing a list of
 #'         export options and data.frames with all the data loaded from
 #'         the secuTrial export.
@@ -35,10 +22,10 @@
 #' # load all export data
 #' sT_export <- read_secuTrial_export(data_dir = export_location)
 #'
-read_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) {
+read_secuTrial_export <- function(data_dir) {
 
   # load export options
-  export_options <- read_export_options(data_dir = data_dir, add_id_name = add_id_name)
+  export_options <- read_export_options(data_dir = data_dir)
 
   # check for language not english
   if (export_options$lang_not_en) {
@@ -55,13 +42,6 @@ read_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
     stop(paste0("The specified secuTrial export does not include 'Column names'. ",
                 "Rerun your export in the ExportSearchTool with ",
                 "'Column names' activated."))
-  }
-
-  # check if add_id is available
-  if (! export_options$add_id) {
-    warning(paste0("The specified secuTrial export does not seem to include an Add-ID. ",
-                   "Maybe you can specify a custom add_id_name which has been ",
-                   "set in the AdminTool 'Design' setting?"))
   }
 
   # init return list
@@ -85,22 +65,17 @@ read_secuTrial_export <- function(data_dir, tables = "all", add_id_name = NULL) 
                                       is_meta_table = TRUE)
     # update name
     loaded_table <- setNames(list(loaded_table), name)
+    # make add_id and lab_id entry in export_options
+    if (name == "casenodes" | name == "cn") {
+      col_names_casenode <- names(loaded_table[[names(loaded_table)]])
+      return_list$export_options$add_id <- any(col_names_casenode == "mnpaid")
+      return_list$export_options$lab_id <- any(col_names_casenode == "mnplabid")
+    }
     return_list <- c(return_list, loaded_table)
   }
 
-  # check if tables is "none" then stop here
-  if (tables == "none") {
-    class(return_list) <- "secuTrialdata"
-    return(return_list)
-  }
-
-  # load all other specified tables
-  if (all(tables == "all")) {
-    load_list <- names(export_options$data_names)
-  # if a custom list is supplied
-  } else {
-    load_list <- tables
-  }
+  # init load_list
+  load_list <- names(export_options$data_names)
 
   # exclude meta tables since they have already been loaded
   load_list <- load_list[! load_list %in% meta_files]
