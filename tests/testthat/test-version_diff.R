@@ -12,8 +12,8 @@ if (length(return_code) == 0) {
 grep_version <- grep("Version: \\d\\.\\d\\.\\d", return_code)
 
 # should return length 2 if the Version number has changed
+# this will only check if the developer locally runs the tests
+# travis will skip this
 test_that("Version number has been incremented", {
-  if (length(return_code) > 0) {
-    expect_true(length(grep_version) >= 2)
-  }
+  expect_true(length(grep_version) >= 2)
 })
