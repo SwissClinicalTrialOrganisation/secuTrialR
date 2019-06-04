@@ -41,6 +41,13 @@ read_export_options <- function(data_dir) {
                                         text = version_line)
                                )
                     )
+  pversion_line <- parsed_export[max(grep("Version", parsed_export))+2]
+  pversion <- unlist(regmatches(pversion_line,
+                               gregexpr(pattern = "(?<=\\().*(?=\\))",
+                                        text = pversion_line, perl = TRUE)
+  )
+  )
+
   # short names
   short_names <- any(grepl("[sS]horten", parsed_export))
   # rectangular data
@@ -189,6 +196,7 @@ read_export_options <- function(data_dir) {
                         extension = file_extension,
                         data_dir = data_dir,
                         secuTrial.version = version,
+                        project.version = pversion,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
@@ -199,6 +207,7 @@ read_export_options <- function(data_dir) {
 #' @export
 print.secutrialoptions <- function(x){
   cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
+  cat(paste("Project version:", x$project.version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
   if (!x$short_names) cat(paste("File names appended with:", x$file_end, "\n"))
   cat(paste("File extension:", x$extension, "\n"))
