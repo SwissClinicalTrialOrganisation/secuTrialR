@@ -5,7 +5,7 @@
 \title{Show links between forms}
 \usage{
 links_secuTrial(object, forms = NULL, formcol = "#d8b365",
-  varcol = "#e5f5f9")
+  varcol = "#e5f5f9", plot = TRUE)
 }
 \arguments{
 \item{object}{secuTrialdata object}
@@ -15,6 +15,8 @@ links_secuTrial(object, forms = NULL, formcol = "#d8b365",
 \item{formcol}{color for form name circles}
 
 \item{varcol}{color for variable name circles}
+
+\item{plot}{boolean specifies if the plot should be shown}
 }
 \value{
 a tcltk plot window.
@@ -23,7 +25,7 @@ a tcltk plot window.
 secuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
 }
 \details{
-We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are coloured red, variables are coloured blue.
+We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored dull orange, variables are colored light blue.
 }
 \note{
 Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).

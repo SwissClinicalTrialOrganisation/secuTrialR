@@ -7,7 +7,6 @@
 # This is an internal function which is wrapped by read_secuTrial_export
 #
 # @param data_dir string The data_dir specifies the path to the secuTrial data export.
-# @param add_id_name string This option needs to be specified if your Add-ID name has been changed in the AdminTool Design setting.
 #
 # @return The function returns a list with the data export options.
 #
@@ -18,7 +17,7 @@
 #                                            package = "secuTrialR"))
 # }
 #
-read_export_options <- function(data_dir, add_id_name = NULL) {
+read_export_options <- function(data_dir) {
 
   is_zip <- grepl(".zip$", data_dir)
 
@@ -32,7 +31,7 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
   } else {
     files <- data.frame(Name = list.files(data_dir))
     files$Name <- as.character(files$Name)
-    study_options_file_idx <- grepl("ExportOptions", files$Name)
+    study_options_file_idx <- grep("ExportOptions", files$Name)
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
   # version reference is on the bottom of the page
@@ -50,13 +49,6 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
   audit_trail <- any(grepl("[aA]udit [tT]rail", parsed_export))
   # language not english
   lang_not_en <- any(grepl("Export Optionen", parsed_export))
-  # Add ID
-  add_id_selections <- c("Add-ID", "Zus-ID", "Patient-ID", add_id_name)
-  if (length(grep(paste(add_id_selections, collapse = "|"), parsed_export ))) {
-    add_id <- TRUE
-  } else {
-    add_id <- FALSE
-  }
   # Column names
   column_names <- any(grepl("[cC]olumn names", parsed_export))
 
@@ -186,7 +178,8 @@ read_export_options <- function(data_dir, add_id_name = NULL) {
                         column_names = column_names,
                         lang_not_en = lang_not_en,
                         refvals_separate = refvals_seperate,
-                        add_id = add_id,
+                        add_id = NULL, # handled in read_secuTrial_export
+                        lab_id = NULL, # handled in read_secuTrial_export
                         meta_names = meta_names,
                         meta_available = meta_available,
                         all_files = files$Name,

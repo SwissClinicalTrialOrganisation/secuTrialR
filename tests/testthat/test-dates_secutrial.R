@@ -161,4 +161,3 @@ test_that("redating creates an error", {
   expect_warning(dates_secuTrial(d))
   expect_warning(secuTrialR:::datetimes_secuTrial(e))
 })
-

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_secuTrial.R
 \name{read_secuTrial}
 \alias{read_secuTrial}
-\title{Load secutrial export}
+\title{Load secuTrial export}
 \usage{
 read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 }

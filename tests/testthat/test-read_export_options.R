@@ -16,9 +16,14 @@ export_options_rect_short <- read_export_options(data_dir = system.file("extdata
 export_options_rect_long <- read_export_options(data_dir = system.file("extdata",
                                                                           "s_export_rt-CSV-xls_longnames_BMD.zip",
                                                                           package = "secuTrialR"))
+# unzipped
+bmd_unzipped <- read_export_options(data_dir = system.file("extdata",
+                                                           "s_export_CSV-xls_BMD",
+                                                           package = "secuTrialR"))
 
 # test shortened table names
 test_that("Shorten names identified.", {
+  expect_true(bmd_unzipped$short_names)
   expect_true(export_options_regular_short$short_names)
   expect_false(export_options_regular_long$short_names)
   expect_true(export_options_rect_short$short_names)
@@ -27,6 +32,7 @@ test_that("Shorten names identified.", {
 
 # test zip
 test_that("zip archive ending identified.", {
+  expect_false(bmd_unzipped$is_zip)
   expect_true(export_options_regular_short$is_zip)
   expect_true(export_options_regular_long$is_zip)
   expect_true(export_options_rect_short$is_zip)
@@ -38,6 +44,7 @@ test_that("Rectangular/regular export identified.", {
   expect_true(export_options_rect_short$is_rectangular)
   expect_true(export_options_rect_long$is_rectangular)
   expect_false(export_options_regular_short$is_rectangular)
+  expect_false(bmd_unzipped$is_rectangular)
   expect_false(export_options_regular_long$is_rectangular)
 })
 
