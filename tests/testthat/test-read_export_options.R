@@ -89,4 +89,5 @@ test_that("Project version parsing", {
   expect_equal(export_options_regular_short$project.version, "25.02.2019 - 13:13:44 (CET)")
   expect_equal(export_options_regular_long$project.version, "25.02.2019 - 13:13:44 (CET)")
   expect_equal(sT_export2$export_options$project.version, "30.04.2019 - 13:40:52 (CEST)")
+  expect_equal(bmd_unzipped$project.version, "25.02.2019 - 13:13:44 (CET)")
 })
