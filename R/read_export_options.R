@@ -41,7 +41,7 @@ read_export_options <- function(data_dir) {
                                         text = version_line)
                                )
                     )
-  pversion_line <- parsed_export[max(grep("Version", parsed_export))+2]
+  pversion_line <- parsed_export[max(grep("Version", parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
                                gregexpr(pattern = "(?<=\\().*(?=\\))",
                                         text = pversion_line, perl = TRUE)
