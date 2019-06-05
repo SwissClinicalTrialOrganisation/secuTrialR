@@ -44,7 +44,7 @@ read_export_options <- function(data_dir) {
   # short names
   short_names <- any(grepl("[sS]horten", parsed_export))
   # rectangular data
-  rectangular_table <- any(grepl("[rR]ect", parsed_export))
+  rectangular_table <- any(grepl("[rR]ectangular table", parsed_export))
   # audit trail
   audit_trail <- any(grepl("[aA]udit [tT]rail", parsed_export))
   # language not english
