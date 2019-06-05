@@ -43,3 +43,11 @@ test_that("add_id and lab_id correctly determined", {
   expect_false(sT_export_short$export_options$lab_id)
   expect_false(sT_export_long$export_options$lab_id)
 })
+
+# check fail "Column names"
+test_that("No Column names failing", {
+  expect_error(read_secuTrial_export(data_dir = system.file("extdata",
+                                     "s_export_CSV-xls_longnames_ref_val_sep_BMD.zip",
+                                     package = "secuTrialR"))
+              )
+})
