@@ -40,14 +40,15 @@ visit_structure <- function(x){
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
   # column order
-  visits <- aggregate(visitnumber ~ mnpvislabel, vp, min)
+  visits <- aggregate(visitnumber ~ mnpvislabel, vp, median)
   vis_order <- as.character(visits$mnpvislabel[order(visits$visitnumber)])
   # row order
-  ff <- aggregate(formid ~ formname, f, min)
+  ff <- aggregate(formid ~ formname, f, median)
   form_order <- as.character(ff$formname[order(ff$formid)])
+  form_order <- intersect(form_order, r$formname)
 
   # adjust names
-  rownames(r) <- r["formname", ]
+  rownames(r) <- r$formname
   names(r) <- gsub("tmpvar.", "", names(r))
 
   ro <- r[form_order, c("formname", vis_order)]
