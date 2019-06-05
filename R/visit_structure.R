@@ -40,22 +40,17 @@ visit_structure <- function(x){
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
   # column order
-  tmpl <- split(vp, vp$mnpvsno)
-  w <- which(sapply(tmpl, function(x) all(unique(u$mnpvislabel) %in% x$mnpvislabel)))[1]
-  tmpl <- tmpl[[w]]
-  tmpl <- tmpl[!duplicated(tmpl$mnpvislabel), ]
-  tmpl$r <- 1:nrow(tmpl)
-  neworder <- c(1, tmpl$r[match(tmpl$mnpvislabel, gsub("tmpvar.", "", names(r)[2:ncol(r)]))] + 1)
-  r <- r[, neworder]
+  visits <- aggregate(visitnumber ~ mnpvislabel, vp, min)
+  vis_order <- as.character(visits$mnpvislabel[order(visits$visitnumber)])
   # row order
-  tmpl <- split(f, f$mnpvslbl)
-  w <- which(sapply(tmpl, function(x) all(unique(u$formname) %in% x$formname)))[1]
-  tmpl <- tmpl[[1]]
-  f <- as.character(tmpl$formname)
-  neworder <- na.exclude( (1:length(f))[match(f, r$formname)])
-  ro <- r[neworder, ]
-  names <- gsub("tmpvar.", "", names(ro[, grepl("tmpvar", names(ro))]))
-  names(ro)[2:ncol(ro)] <- names
+  ff <- aggregate(formid ~ formname, f, min)
+  form_order <- as.character(ff$formname[order(ff$formid)])
+
+  # adjust names
+  rownames(r) <- r["formname", ]
+  names(r) <- gsub("tmpvar.", "", names(r))
+
+  ro <- r[form_order, c("formname", vis_order)]
 
   class(ro) <- c("secuTrialvisit", "data.frame")
   return(ro)
