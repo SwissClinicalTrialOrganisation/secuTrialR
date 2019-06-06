@@ -21,7 +21,7 @@
 return_scores <- function(x) {
   if (class(x) == "secuTrialdata") {
     curr_items <- x[[x$export_options$meta_names$items]]
-    scores <- curr_items[grep("calculated", curr_items$itemtype),]
+    scores <- curr_items[grep("calculated", curr_items$itemtype), ]
     scores_relevant_col <- scores[, c("ffcolname", "itemtype", "fflabel")]
     names(scores_relevant_col) <- c("name", "itemtype", "label")
     rownames(scores_relevant_col) <- NULL
