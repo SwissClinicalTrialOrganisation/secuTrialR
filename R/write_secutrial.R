@@ -16,10 +16,6 @@
 #' sT_export <- read_secuTrial(data_dir = export_location)
 #' write_secuTrial(sT_export, format = "dta")
 #'
-
-
-
-
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 write_secuTrial.secuTrialdata <- function(object, ...){
 
@@ -36,7 +32,7 @@ write_secuTrial.secuTrialdata <- function(object, ...){
 
 
 write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", ...){
-  df <- convertnames(df, format)
+  df <- secuTrialR:::convertnames(df, format)
   format2 <- format
   if (format == "sas") format2 <- "sas7bdat"
   out <- file.path(path, paste0(filename, ".", format2))
@@ -59,4 +55,4 @@ convertnames <- function(df, format){
   return(df)
 }
 
-write_secuTrial(exp, path = "../export")
+
