@@ -19,7 +19,7 @@
 #' list.files(tdir)
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
-write_secuTrial.secuTrialdata <- function(object, ...){
+write_secuTrial.secuTrialdata <- function(object, format = "dta", ...){
 
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -27,7 +27,7 @@ write_secuTrial.secuTrialdata <- function(object, ...){
 
   lapply(x, function(obs){
     tmp <- object[[obs]]
-    write_secuTrial(tmp, filename = obs, ...)
+    write_secuTrial(tmp, filename = obs, format = format, ...)
   })
 
 }
