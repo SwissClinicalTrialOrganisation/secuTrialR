@@ -29,6 +29,8 @@ export_location <- system.file("extdata",
                                package = "secuTrialR")
 # load all export data
 sT_export <- read_secuTrial(data_dir = export_location)
-write_secuTrial(sT_export, format = "dta")
+tdir <- tempdir()
+write_secuTrial(sT_export, format = "dta", path = tdir)
+list.files(tdir)
 
 }
