@@ -14,7 +14,8 @@
 #'                                package = "secuTrialR")
 #' # load all export data
 #' sT_export <- read_secuTrial(data_dir = export_location)
-#' write_secuTrial(sT_export, format = "dta")
+#' tdir <- tempdir()
+#' write_secuTrial(sT_export, format = "dta", path = tdir)
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 write_secuTrial.secuTrialdata <- function(object, ...){
@@ -41,16 +42,4 @@ write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", 
   if (format == "sas") haven::write_sas(df, out, ...)
   if (format == "xpt") haven::write_xpt(df, out, ...)
   paste("Saved to", out)
-}
-
-
-convertnames <- function(df, format){
-  name <- names(df)
-  # if (format %in% c("dta", "sav")){
-    name <- gsub("\\.datetime", "_dt", name)
-    name <- gsub("\\.date", "_d", name)
-    name <- gsub("\\.factor", "_f", name)
-  # }
-  names(df) <- name
-  return(df)
 }
