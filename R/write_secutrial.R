@@ -54,5 +54,3 @@ convertnames <- function(df, format){
   names(df) <- name
   return(df)
 }
-
-
