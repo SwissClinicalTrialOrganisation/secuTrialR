@@ -16,6 +16,7 @@
 #' sT_export <- read_secuTrial(data_dir = export_location)
 #' tdir <- tempdir()
 #' write_secuTrial(sT_export, format = "dta", path = tdir)
+#' list.files(tdir)
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 write_secuTrial.secuTrialdata <- function(object, ...){
