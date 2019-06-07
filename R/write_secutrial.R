@@ -19,6 +19,7 @@
 #' list.files(tdir)
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
+#' @export
 write_secuTrial.secuTrialdata <- function(object, format = "dta", ...){
 
   x <- object$export_options$data_names
