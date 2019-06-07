@@ -34,7 +34,7 @@ write_secuTrial.secuTrialdata <- function(object, format = "dta", ...){
 
 
 write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", ...){
-  df <- secuTrialR:::convertnames(df, format)
+  df <- convertnames(df, format)
   format2 <- format
   if (format == "sas") format2 <- "sas7bdat"
   out <- file.path(path, paste0(filename, ".", format2))
