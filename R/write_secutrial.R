@@ -20,11 +20,11 @@
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 #' @export
-write_secuTrial.secuTrialdata <- function(object, format = "dta", ...){
+write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FALSE, ...){
 
   x <- object$export_options$data_names
   names(x) <- NULL
-  x <- x[!x %in% object$export_options$meta_names]
+  if(!metadata) x <- x[!x %in% object$export_options$meta_names]
 
   lapply(x, function(obs){
     tmp <- object[[obs]]
