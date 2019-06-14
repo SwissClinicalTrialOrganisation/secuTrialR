@@ -67,6 +67,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form) {
   for (i in names(data)[names(data) %in% cl$var]) {
     lookup <- cl[grepl(paste0(form, ".", i, "$"), cl$column), ]
     data[, paste0(i, ".factor")] <- factorize_secuTrial(data[, i], lookup)
+    data <- .move_column_after(data, paste0(i, ".factor"), i)
   }
   return(data)
 }
