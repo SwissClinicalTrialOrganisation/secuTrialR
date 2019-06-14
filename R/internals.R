@@ -85,7 +85,14 @@
         # position   before or after ref
         new_col_idx <- ref_col_idx + as.numeric(col_idx > ref_col_idx)
       }
+      if (!is.null(label(df))){
+        lab <- label(df)
+        labl <- TRUE
+      } else {
+        labl <- FALSE
+      }
       df <- .move_column_to_pos(df, col_idx, new_col_idx)
+      if (labl) label(df) <- lab
     }
     return(df)
   } else {
