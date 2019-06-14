@@ -116,9 +116,9 @@ read_secuTrial_export <- function(data_dir) {
 #' # or
 #' sT_export
 
-print.secuTrialdata <- function(x){
+print.secuTrialdata <- function(x, print = TRUE){
 
-  cat(paste("SecuTrial data imported from", x$export_options$data_dir, "\n"))
+  if (print) cat(paste("SecuTrial data imported from", x$export_options$data_dir, "\n"))
 
   tab <- lapply(x$export_options$data_names, function(y){
     tmp <- x[[y]]
@@ -131,7 +131,11 @@ print.secuTrialdata <- function(x){
   tab <- do.call("rbind", tab)
   tab$original_name <- rownames(tab)
   rownames(tab) <- NULL
-  print(tab, row.names = FALSE)
+  if (print){
+    print(tab, row.names = FALSE)
+  } else {
+    return(tab)
+  }
 
 }
 
