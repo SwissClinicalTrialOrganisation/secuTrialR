@@ -69,3 +69,19 @@ test_that("files exist", {
   expect_true(file.exists(file.path(tdir, paste0("casenodes", ".sav"))))
   expect_true(file.exists(file.path(tdir, paste0("casenodes", ".xpt"))))
 })
+
+# test file content
+write_secuTrial(sdat, format = "dta", path = tdir)
+write_secuTrial(sdat, format = "sav", path = tdir)
+write_secuTrial(sdat, format = "sas", path = tdir)
+#write_secuTrial(sdat, format = "xpt", path = tdir)
+sdat_dta_bl <- read_dta(paste0(tdir, "/baseline.dta"))
+sdat_sav_bl <- read_sav(paste0(tdir, "/baseline.sav"))
+sdat_sas_bl <- read_sas(paste0(tdir, "/baseline.sas7bdat"))
+#sdat_xpt_bl <- read_xpt(paste0(tdir, "/baseline.xpt"))
+
+test_that("Baseline weight data is equal exist", {
+  expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat_sav_bl$weight)))
+  expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat_sas_bl$weight)))
+  expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat$baseline$weight)))
+})
