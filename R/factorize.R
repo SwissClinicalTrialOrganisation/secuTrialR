@@ -38,7 +38,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
   x <- x[!x %in% object$export_options$meta_names]
   obs <- lapply(x, function(obj){
     tmp <- object[[obj]]
-    tmp <- factorize_secuTrial(tmp, object$cl, form = obj)
+    tmp <- factorize_secuTrial(tmp, object$cl, form = obj, items = object[[object$export_options$meta_names$items]])
     tmp
   })
   obs
@@ -57,15 +57,22 @@ factorize_secuTrial.secuTrialdata <- function(object) {
 # #' @examples
 # # data.frame method
 # nolint end
-factorize_secuTrial.data.frame <- function(data, cl, form) {
+factorize_secuTrial.data.frame <- function(data, cl, form, items) {
   if (!is.character(cl$column)) cl$column <- as.character(cl$column)
+  if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
+  if (!is.character(items$lookuptable)) items$lookuptable <- as.character(items$lookuptable)
+  lookups <- subset(items, !is.na(items$lookuptable))
+  lookups <- unique(lookups[, c("lookuptable", "ffcolname")])
 
   str <- strsplit(cl$column, ".", fixed = TRUE)
   str <- sapply(str, function(x) x[2])
   cl$var <- str
+  w <- cl$column %in% lookups$lookuptable
+  cl$var[w] <- lookups$ffcolname[match(cl$column[w], lookups$lookuptable)]
 
   for (i in names(data)[names(data) %in% cl$var]) {
-    lookup <- cl[grepl(paste0(form, ".", i, "$"), cl$column), ]
+    lookup <- cl[grepl(paste0(form, ".", i, "$"), cl$column) |
+                   (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
     data[, paste0(i, ".factor")] <- factorize_secuTrial(data[, i], lookup)
     data <- .move_column_after(data, paste0(i, ".factor"), i)
   }
@@ -81,6 +88,13 @@ factorize_secuTrial.data.frame <- function(data, cl, form) {
 # #' @examples
 # nolint end
 factorize_secuTrial.integer <- function(var, lookup) {
+  lookup <- unique(lookup)
+  f <- factor(var, lookup$code, lookup$value)
+  if (!is.null(label(var))) label(f) <- label(var)
+  if (!is.null(units(var))) units(f) <- units(var)
+  f
+}
+factorize_secuTrial.numeric <- function(var, lookup) {
   lookup <- unique(lookup)
   f <- factor(var, lookup$code, lookup$value)
   if (!is.null(label(var))) label(f) <- label(var)
