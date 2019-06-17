@@ -29,6 +29,7 @@ durations_secuTrial.secuTrialdata <- function(object){
       itqu$ffcolname <- as.character(itqu$ffcolname)
 
       intervals <- itqu[grepl("calculated only", itqu$itemtype), ] # USE "CALCULATED ONLY"
+      intervals <- itqu[!grepl("Score", itqu$itemtype), ] # filter out scores
       intervals <- unique(intervals[, c("ffcolname",
                                         "itemtype",
                                         "fflabel",
@@ -91,11 +92,13 @@ durations_secuTrial.data.frame <- function(data,
       newcol <- durations_secuTrial(data[, v], f, ...)
       nv <- paste0(v, ".dur")
       data[, nv] <- newcol
-      label(data[, nv]) <- paste0(label(data[, v]), " (smallest unit ", f, ")")
+      label(data[, nv]) <- paste0(label(data[, v]),
+                                  " (smallest unit ", f, ")")
       data <- .move_column_after(data, nv, v)
     }
   } else {
-    if (warn) warning(paste("no durations detected in", get("obj", envir = parent.frame())))
+    if (warn) warning(paste("no durations detected in",
+                            get("obj", envir = parent.frame())))
   }
   if (nrow(timevars) > 0) {
     # print("time")
@@ -110,7 +113,8 @@ durations_secuTrial.data.frame <- function(data,
       data <- .move_column_after(data, nv, v)
     }
   } else {
-    if (warn) warning(paste("no times detected in", get("obj", envir = parent.frame())))
+    if (warn) warning(paste("no times detected in",
+                            get("obj", envir = parent.frame())))
   }
   data
 }
@@ -160,7 +164,9 @@ times_secuTrial <- function(var,
 
 format2length <- function(x, days_in_year = 365){
   days_in_month <- days_in_year / 12
-  fs <- data.frame(format = c("m-s", "h-m-s", "h-m", "d-h-m", "y-m-d-h-m", "y-m-d", "y-m", "y", "hh:mm", "mm:ss"),
+  fs <- data.frame(format = c("m-s", "h-m-s", "h-m", "d-h-m",
+                              "y-m-d-h-m", "y-m-d", "y-m", "y", "hh:mm",
+                              "mm:ss"),
                    length = c(4, 6, 4, 6, 12, 8, 6, 4, 4, 4),
                    cut1 = c(2, 2, 2, 2, 4, 4, 4, 4, 2, 2),
                    stringsAsFactors = FALSE)
@@ -178,7 +184,8 @@ format2length <- function(x, days_in_year = 365){
   if (x == "h-m-s") multiplier <- c(60^2, 60, 1)
   if (x == "h-m") multiplier <- c(60, 1)
   if (x == "d-h-m") multiplier <- c(24*60, 60, 1)
-  if (x == "y-m-d-h-m") multiplier <- c(days_in_year*24*60, days_in_month*24*60, 24*60, 60, 1)
+  if (x == "y-m-d-h-m") multiplier <- c(days_in_year*24*60,
+                                        days_in_month*24*60, 24*60, 60, 1)
   if (x == "y-m-d") multiplier <- c(days_in_year, days_in_month, 1)
   if (x == "y-m") multiplier <- c(12, 1)
   if (x == "y") multiplier <- c(1)
