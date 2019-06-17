@@ -29,7 +29,7 @@ durations_secuTrial.secuTrialdata <- function(object){
       itqu$ffcolname <- as.character(itqu$ffcolname)
 
       intervals <- itqu[grepl("calculated only", itqu$itemtype), ] # USE "CALCULATED ONLY"
-      intervals <- itqu[!grepl("Score", itqu$itemtype), ] # filter out scores
+      intervals <- intervals[!grepl("Score", intervals$itemtype), ] # filter out scores
       intervals <- unique(intervals[, c("ffcolname",
                                         "itemtype",
                                         "fflabel",
