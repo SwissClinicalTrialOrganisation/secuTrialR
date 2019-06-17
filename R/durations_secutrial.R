@@ -19,7 +19,6 @@ durations_secuTrial.secuTrialdata <- function(object){
   x <- x[!x %in% object$export_options$meta_names]
 
   obs <- lapply(x, function(obj){
-    print(obj)
     # find date variables
     it <- object[[object$export_options$meta_names$items]]
     qu <- object[[object$export_options$meta_names$questions]]
@@ -82,14 +81,11 @@ durations_secuTrial.data.frame <- function(data,
                                            times,
                                            warn = FALSE,
                                            ...){
-  # print(df)
   intervalvars <- intervals[intervals$ffcolname %in% names(data), ]
   timevars <- times[times$ffcolname %in% names(data), ]
   if (nrow(intervalvars) > 0) {
-    # print("interval")
     for (x in 1:nrow(intervalvars)) {
       v <- intervalvars$ffcolname[x]
-      print(paste(" ", v))
       l <- intervalvars$length[x]
       f <- intervalvars$format[x]
       newcol <- durations_secuTrial(data[, v], f, ...)
@@ -105,8 +101,6 @@ durations_secuTrial.data.frame <- function(data,
     # print("time")
     for (x in 1:nrow(timevars)) {
       v <- timevars$ffcolname[x]
-      print(paste(" ", v))
-      # print(v)
       l <- timevars$length[x]
       f <- timevars$format[x]
       newcol <- times_secuTrial(data[, v], f)
@@ -129,9 +123,6 @@ durations_secuTrial.numeric <- function(var,
                                         format,
                                         ...){
   f2l <- format2length(format, ...)
-  # print("integer")
-  # print(length)
-  # print(format)
   if (f2l$length > 1){
     # pad
     z <- sprintf(paste0("%0", f2l$length, ".0f"), var)
@@ -151,7 +142,6 @@ durations_secuTrial.numeric <- function(var,
 times_secuTrial <- function(var,
                             format){
   f2l <- format2length(format)
-  # print("times")
   if (length(var) > 0) {
     z <- sprintf(paste0("%0", f2l$length, ".0f"), var)
     z[is.na(var)] <- NA
