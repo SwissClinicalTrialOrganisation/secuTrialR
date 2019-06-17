@@ -64,11 +64,11 @@ test_that("ldat, sdat", {
   expect_equal(as.numeric(ldur$ctu05baseline$age),
                as.numeric(ldur$ctu05baseline$age.dur))
 
-  expect_equal(as.numeric(sdur$ctu05baseline$age),
-               as.numeric(sdur$ctu05baseline$age.dur))
+  expect_equal(as.numeric(sdur$baseline$age),
+               as.numeric(sdur$baseline$age.dur))
 
   expect_equal(as.character(ldur$ctu05sae$sae_end_time.time), c("12:07", "18:06"))
   expect_equal(label(ldur$ctu05sae$sae_end_time.time), "Timepoints (clock time)")
-  expect_equal(as.character(sdur$ctu05sae$sae_end_time.time), c("12:07", "18:06"))
-  expect_equal(label(sdur$ctu05sae$sae_end_time.time), "Timepoints (clock time)")
+  expect_equal(as.character(sdur$sae$sae_end_time.time), c("12:07", "18:06"))
+  expect_equal(label(sdur$sae$sae_end_time.time), "Timepoints (clock time)")
 })
