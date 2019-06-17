@@ -8,7 +8,7 @@
 durations_secuTrial <- function(x, ...) UseMethod("durations_secuTrial", x)
 #' @export
 durations_secuTrial.secuTrialdata <- function(object){
-  if (object$export_options$dated) warning("dates already added")
+  if (object$export_options$durations) warning("durations already added")
 
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -67,7 +67,7 @@ durations_secuTrial.secuTrialdata <- function(object){
     out
   })
   object[x] <- obs
-  object$export_options$dated <- TRUE
+  object$export_options$durations <- TRUE
   object
 
 }

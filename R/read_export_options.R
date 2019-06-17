@@ -199,7 +199,8 @@ read_export_options <- function(data_dir) {
                         project.version = pversion,
                         factorized = FALSE,
                         dated = FALSE,
-                        labelled = FALSE)
+                        labelled = FALSE,
+                        durations = FALSE)
   class(study.options) <- "secutrialoptions"
   return(study.options)
 }
