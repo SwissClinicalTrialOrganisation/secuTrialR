@@ -2,12 +2,8 @@
 #' @description Converts durations to the smallest unit (e.g. minutes for variables recorded as hours:minutes) and formats clock times as HH:MM strings rather than (H)HMM integers, as appropriate.
 #' @param object secuTrialdata object
 #' @param warn logical, return warnings
-#' @param days_in_month numeric, number of days in month for conversion to minutes, defaults to 30.4
 #' @param days_in_year numeric, number of days in year for conversion to minutes, defaults to 365
-
-
-
-
+#' @seealso \code{\link{read_secuTrial}}
 #' @export
 durations_secuTrial <- function(x, ...) UseMethod("durations_secuTrial", x)
 #' @export

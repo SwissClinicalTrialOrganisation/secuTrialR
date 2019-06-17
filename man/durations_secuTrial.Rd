@@ -11,10 +11,11 @@ durations_secuTrial(x, ...)
 
 \item{warn}{logical, return warnings}
 
-\item{days_in_month}{numeric, number of days in month for conversion to minutes, defaults to 30.4}
-
 \item{days_in_year}{numeric, number of days in year for conversion to minutes, defaults to 365}
 }
 \description{
 Converts durations to the smallest unit (e.g. minutes for variables recorded as hours:minutes) and formats clock times as HH:MM strings rather than (H)HMM integers, as appropriate.
+}
+\seealso{
+\code{\link{read_secuTrial}}
 }

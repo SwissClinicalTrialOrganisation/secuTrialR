@@ -4,7 +4,8 @@
 \alias{read_secuTrial}
 \title{Load secuTrial export}
 \usage{
-read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
+read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE,
+  format_durations = TRUE)
 }
 \arguments{
 \item{data_dir}{string - location of the export}
@@ -14,16 +15,21 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 \item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a separate table)}
 
 \item{dates}{logical - convert date variables}
+
+\item{format_durations}{logical - format duration variables}
 }
 \value{
 secuTrialdata object - a list with one data.frame for each file on the export.
 }
 \description{
-Convenience wrapper for \code{read_secuTrial_export}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
+Convenience wrapper for \code{\link{read_secuTrial_export}}, \code{\link{label_secuTrial}}, \code{\link{factorize_secuTrial}}, \code{\link{dates_secuTrial}} and \code{\link{durations_secuTrial}}.
 }
 \examples{
 path <- system.file("extdata",
                     "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                     package = "secuTrialR")
 d <- read_secuTrial(path)
+}
+\seealso{
+\code{\link{read_secuTrial_export}}, \code{\link{label_secuTrial}}, \code{\link{factorize_secuTrial}}, \code{\link{dates_secuTrial}}, \code{\link{durations_secuTrial}}
 }
