@@ -123,6 +123,20 @@ Date variables are converted to `Date` class, and datetimes are converted to `PO
 dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
 ```
 
+#### Prepare durations/intervals and times
+SecuTrial has the strange setting of returning calculated durations in the form of integers concatenated together. For example, 21005 might represent 2 years, 10 months and 5 days, or 306151835 might represent 3 years, 6 months 15 days, 18 hours and 35 minutes. Similarly, clock time (e.g. 16:20) is represented as 1620, while 08:30 would be 830. Such variables are useless analytically. `SecuTrialR` can convert them to something usable/readable though.
+
+```{r}
+durs <- durations_secuTrial(ctu05)
+```
+
+This will add new variables appended with `.dur` for durations or `.time` for clock time variables. The former are converted to integers of the smallest unit (e.g. minutes) while the latter are converted to strings. Additionally, `(smallest unit X)` is appended to labels, where `X` represents the appropriate unit.
+
+```{r}
+durs$ctu05baseline[1:7, c("age", "age.dur")] # not a good example
+durs$ctu05sae[, c("sae_onset_time", "sae_onset_time.time")]
+```
+
 
 #### Recommended approach if not using `read_secuTrial`
 
