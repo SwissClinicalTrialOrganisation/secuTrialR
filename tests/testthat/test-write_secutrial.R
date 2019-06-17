@@ -84,4 +84,5 @@ test_that("Baseline weight data is equal exist", {
   expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat_sav_bl$weight)))
   expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat_sas_bl$weight)))
   expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat$baseline$weight)))
+  expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(ldat$ctu05baseline$weight)))
 })
