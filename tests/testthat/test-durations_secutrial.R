@@ -3,8 +3,8 @@ context("durations")
 # cannot currently test properly, only numeric method
 
 
-secuTrialR::format2length("y-m-d")
-secuTrialR::format2length("y-m-d", 364)
+secuTrialR:::format2length("y-m-d")
+secuTrialR:::format2length("y-m-d", 364)
 
 
 
@@ -43,5 +43,5 @@ test_that("y-m-d-h-m", {
 
 
 v <- c(NA, 1, 1010, 100, 1000, 2236)
-x <- secuTrialR::times_secuTrial(v, "hh:mm")
+x <- secuTrialR:::times_secuTrial(v, "hh:mm")
 test_that("hh:mm", expect_equal(x, c(NA, "00:01", "10:10", "01:00", "10:00", "22:36")))
