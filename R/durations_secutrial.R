@@ -91,7 +91,7 @@ durations_secuTrial.data.frame <- function(data,
       newcol <- durations_secuTrial(data[, v], f, ...)
       nv <- paste0(v, ".dur")
       data[, nv] <- newcol
-      label(data[, nv]) <- paste0(label(data[, x]), " (smallest unit ", f, ")")
+      label(data[, nv]) <- paste0(label(data[, v]), " (smallest unit ", f, ")")
       data <- .move_column_after(data, nv, v)
     }
   } else {
@@ -106,7 +106,7 @@ durations_secuTrial.data.frame <- function(data,
       newcol <- times_secuTrial(data[, v], f)
       nv <- paste0(v, ".time")
       data[, nv] <- newcol
-      label(data[, nv]) <- paste0(label(data[, x]), " (clock time)")
+      label(data[, nv]) <- paste0(label(data[, v]), " (clock time)")
       data <- .move_column_after(data, nv, v)
     }
   } else {
