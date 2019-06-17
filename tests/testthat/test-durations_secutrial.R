@@ -3,8 +3,8 @@ context("durations")
 # cannot currently test properly, only numeric method
 
 
-secuTrialR::format2length("y-m-d")
-secuTrialR::format2length("y-m-d", 364)
+secuTrialR:::format2length("y-m-d")
+secuTrialR:::format2length("y-m-d", 364)
 
 
 
