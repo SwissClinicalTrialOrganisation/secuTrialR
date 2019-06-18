@@ -87,13 +87,6 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
 # #'
 # #' @examples
 # nolint end
-factorize_secuTrial.integer <- function(var, lookup) {
-  lookup <- unique(lookup)
-  f <- factor(var, lookup$code, lookup$value)
-  if (!is.null(label(var))) label(f) <- label(var)
-  if (!is.null(units(var))) units(f) <- units(var)
-  f
-}
 factorize_secuTrial.numeric <- function(var, lookup) {
   lookup <- unique(lookup)
   f <- factor(var, lookup$code, lookup$value)
