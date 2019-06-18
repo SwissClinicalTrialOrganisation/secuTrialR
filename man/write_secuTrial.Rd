@@ -11,7 +11,7 @@ write_secuTrial(object, ...)
 
 \item{path}{directory where the files should be saved}
 
-\item{format}{format in which to save the export (one of "dta", "sas", "sav", "xpt")}
+\item{format}{format in which to save the export (one of "dta", "sas", "sav")}
 }
 \value{
 a list of filenames
