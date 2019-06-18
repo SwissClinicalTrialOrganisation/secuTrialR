@@ -86,3 +86,8 @@ test_that("Baseline weight data is equal exist", {
   expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(sdat$baseline$weight)))
   expect_true(all.equal(as.vector(sdat_dta_bl$weight), as.vector(ldat$ctu05baseline$weight)))
 })
+
+# test error catch for non-included formats
+test_that("Format illegal", {
+  expect_error(write_secuTrial(sdat, format = "thatsnotit", path = tdir))
+})
