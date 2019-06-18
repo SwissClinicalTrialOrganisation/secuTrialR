@@ -72,6 +72,9 @@ read_export_table <- function(data_dir, file_name, export_options,
                               add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
                               casenodes_table, centre_table, visitplan_table,
                               is_meta_table = FALSE) {
+  ops <- options()
+  on.exit(ops)
+  options(stringsAsFactors = FALSE)
 
   if (export_options$is_zip) {
     archive_con <- unz(data_dir, file_name)
