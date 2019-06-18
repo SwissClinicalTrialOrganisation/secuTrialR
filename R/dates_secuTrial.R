@@ -75,6 +75,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
     for (x in datevars) {
       newdatecol <- dates_secuTrial(data[, x], dateformat)
       data[, paste0(x, ".date")] <- newdatecol
+      data <- .move_column_after(data, paste0(x, ".date"), x)
     }
   } else {
     if (warn) warning(paste("no dates detected in", get("obj", envir = parent.frame())))
@@ -84,6 +85,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
     for (x in timevars) {
       newdatecol <- secuTrialR:::datetimes_secuTrial(data[, x], datetimeformat)
       data[, paste0(x, ".datetime")] <- newdatecol
+      data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }
   } else {
     if (warn) warning(paste("no dates detected in", get("obj", envir = parent.frame())))

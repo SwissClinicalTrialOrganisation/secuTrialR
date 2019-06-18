@@ -72,7 +72,7 @@ label_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$meta_available$items) {
     stop("'items' metadata not available")
   }
-  if (object$export_options$factorized) warning("already labelled - any changes will be lost")
+  if (object$export_options$labelled) warning("already labelled - any changes will be lost")
 
 
   it <- object[[object$export_options$meta_names$items]]
