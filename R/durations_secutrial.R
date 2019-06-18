@@ -42,6 +42,7 @@ durations_secuTrial.secuTrialdata <- function(object){
         intervals$format[g(" y-m-d ")] <- "y-m-d"
         intervals$format[g(" y-m ")] <- "y-m"
         intervals$format[g(" y ")] <- "y" # could probably drop them
+        intervals <- intervals[!g(" y "), ] # drop year only variables - can use them as they are
       }
 
       g <- function(x) grep(x, times$itemtype)
