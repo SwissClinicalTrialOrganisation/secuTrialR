@@ -59,7 +59,9 @@ durations_secuTrial.secuTrialdata <- function(object){
       }
 
       tmp <- object[[obj]]
+      lab <- label(tmp)
       tmp <- durations_secuTrial(tmp, intervals = intervals, times = times)
+      label(tmp) <- lab
       out <- tmp
     } else {
       out <- object[[obj]]
