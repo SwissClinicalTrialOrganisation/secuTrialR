@@ -27,11 +27,6 @@ read_secuTrial_export <- function(data_dir) {
   # load export options
   export_options <- read_export_options(data_dir = data_dir)
 
-  # check if "Duplicate form meta data into all tables" has been ticked
-  if (export_options$duplicate_meta) {
-    stop("You have selected to duplicate form meta data into all tables. Change this option in the ExportSearchTool.")
-  }
-
   # check for language not english
   if (export_options$lang_not_en) {
     stop("Your export language is not English and can not be processed.")

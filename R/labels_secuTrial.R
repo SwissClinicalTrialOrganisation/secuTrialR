@@ -36,9 +36,11 @@
 labels_secuTrial <- function(object, form = NULL) {
   it <- object[[object$export_options$meta_names$items]]
   if (!is.null(form)) {
-    qs <- object[[object$export_options$meta_names$questions]]
-    itqs <- merge(it, qs, by = "fgid")
-    it <- itqs[grepl(paste0("(", paste0(form, collapse = "|"), ")$"), itqs$formtablename), ]
+    if(!object$export_options$duplicate_meta) {
+      qs <- object[[object$export_options$meta_names$questions]]
+      it <- merge(it, qs, by = "fgid")
+    }
+    it <- it[grepl(paste0("(", paste0(form, collapse = "|"), ")$"), it$formtablename), ]
   }
   it <- it[!grepl("Dummy", as.character(it$itemtype)), ]
   it <- it[, c("ffcolname", "fflabel")]
@@ -76,8 +78,10 @@ label_secuTrial.secuTrialdata <- function(object) {
 
 
   it <- object[[object$export_options$meta_names$items]]
-  qs <- object[[object$export_options$meta_names$questions]]
-  it <- merge(it, qs, by = "fgid")
+  if(!object$export_options$duplicate_meta) {
+    qs <- object[[object$export_options$meta_names$questions]]
+    it <- merge(it, qs, by = "fgid")
+  }
   it$ffcolname <- as.character(it$ffcolname)
   it$fflabel <- as.character(it$fflabel)
   it$formtablename <- as.character(it$formtablename)

@@ -51,12 +51,3 @@ test_that("No Column names failing", {
                                      package = "secuTrialR"))
               )
 })
-
-# check meta duplication
-dup_meta_export_location <- system.file("extdata",
-                                        "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
-                                        package = "secuTrialR")
-
-test_that("Duplicated meta export option not allowed", {
-  expect_error(read_secuTrial_export(data_dir = dup_meta_export_location))
-})
