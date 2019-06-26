@@ -65,10 +65,12 @@ visit_structure <- function(x){
 #' @usage plot(x)
 #' @export
 #' @examples
+#' \dontrun{
 #'   vs <- visit_structure(sT_export)
 #'   plot(vs)
 #'   # or, equivalently
 #'   plot(sT_export)
+#' }
 
 plot.secuTrialvisit <- function(r){
   # construct the figure

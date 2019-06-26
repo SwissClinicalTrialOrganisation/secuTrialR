@@ -30,8 +30,10 @@ sT_export <- read_secuTrial_export(data_dir = export_location)
 \dontrun{
 visit_structure(sT_export)
 }
+\dontrun{
   vs <- visit_structure(sT_export)
   plot(vs)
   # or, equivalently
   plot(sT_export)
+}
 }
