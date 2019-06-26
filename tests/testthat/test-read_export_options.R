@@ -21,6 +21,13 @@ bmd_unzipped <- read_export_options(data_dir = system.file("extdata",
                                                            "s_export_CSV-xls_BMD",
                                                            package = "secuTrialR"))
 
+# duplicated meta
+dup_meta <- read_export_options(system.file("extdata",
+                                        "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
+                                        package = "secuTrialR"))
+
+
+
 # test shortened table names
 test_that("Shorten names identified.", {
   expect_true(bmd_unzipped$short_names)
@@ -90,4 +97,14 @@ test_that("Project version parsing", {
   expect_equal(export_options_regular_long$project.version, "25.02.2019 - 13:13:44 (CET)")
   expect_equal(sT_export2$export_options$project.version, "30.04.2019 - 13:40:52 (CEST)")
   expect_equal(bmd_unzipped$project.version, "25.02.2019 - 13:13:44 (CET)")
+})
+
+# duplicated meta data
+test_that("Project version parsing", {
+  expect_false(sT_export$export_options$duplicate_meta)
+  expect_false(export_options_regular_short$duplicate_meta)
+  expect_false(export_options_regular_long$duplicate_meta)
+  expect_false(sT_export2$export_options$duplicate_meta)
+  expect_false(bmd_unzipped$duplicate_meta)
+  expect_true(dup_meta$duplicate_meta)
 })
