@@ -36,7 +36,7 @@
 labels_secuTrial <- function(object, form = NULL) {
   it <- object[[object$export_options$meta_names$items]]
   if (!is.null(form)) {
-    if(!object$export_options$duplicate_meta) {
+    if (!object$export_options$duplicate_meta) {
       qs <- object[[object$export_options$meta_names$questions]]
       it <- merge(it, qs, by = "fgid")
     }
@@ -78,7 +78,7 @@ label_secuTrial.secuTrialdata <- function(object) {
 
 
   it <- object[[object$export_options$meta_names$items]]
-  if(!object$export_options$duplicate_meta) {
+  if (!object$export_options$duplicate_meta) {
     qs <- object[[object$export_options$meta_names$questions]]
     it <- merge(it, qs, by = "fgid")
   }
