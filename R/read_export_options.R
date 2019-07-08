@@ -60,8 +60,6 @@ read_export_options <- function(data_dir) {
   column_names <- any(grepl("[cC]olumn names", parsed_export))
   # Duplicate form meta data into all tables
   duplicate_meta <- any(grepl("[dD]uplicate form meta data into all tables", parsed_export))
-  # Form status
-  form_status <- any(grepl("[fF]orm status", parsed_export))
 
   # metadata file names
   meta_names <- list()
@@ -202,7 +200,6 @@ read_export_options <- function(data_dir) {
                         data_dir = data_dir,
                         secuTrial.version = version,
                         project.version = pversion,
-                        form_status = form_status,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
