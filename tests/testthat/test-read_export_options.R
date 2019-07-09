@@ -23,8 +23,8 @@ bmd_unzipped <- read_export_options(data_dir = system.file("extdata",
 
 # duplicated meta
 dup_meta <- read_export_options(system.file("extdata",
-                                        "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
-                                        package = "secuTrialR"))
+                                            "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
+                                            package = "secuTrialR"))
 
 
 
@@ -71,6 +71,7 @@ test_that("Meta names available.", {
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
+
 # load all export data
 sT_export <- read_secuTrial_export(data_dir = export_location)
 
@@ -107,4 +108,36 @@ test_that("Project version parsing", {
   expect_false(sT_export2$export_options$duplicate_meta)
   expect_false(bmd_unzipped$duplicate_meta)
   expect_true(dup_meta$duplicate_meta)
+})
+
+# prepare paths to example exports in different languages
+export_location_en <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                  package = "secuTrialR")
+export_location_de <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_german.zip",
+                                  package = "secuTrialR")
+export_location_it <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_italian.zip",
+                                  package = "secuTrialR")
+export_location_pl <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_polish.zip",
+                                  package = "secuTrialR")
+export_location_fr <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_french.zip",
+                                  package = "secuTrialR")
+export_location_es <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_spanish.zip",
+                                  package = "secuTrialR")
+
+# load example exports in different languages
+sT_export_en <- read_secuTrial_export(data_dir = export_location_en)
+
+## unsupported language error msg
+unsupported_error <- "Your export language is not supported and can not be processed."
+
+test_that("Project language tests", {
+  expect_equal(sT_export_en$export_options$lang, "en")
+})
+
+test_that("Unsuported language loads", {
+  expect_error(read_secuTrial_export(data_dir = export_location_de), unsupported_error, fixed = TRUE)
+  expect_error(read_secuTrial_export(data_dir = export_location_it), unsupported_error, fixed = TRUE)
+  expect_error(read_secuTrial_export(data_dir = export_location_pl), unsupported_error, fixed = TRUE)
+  expect_error(read_secuTrial_export(data_dir = export_location_fr), unsupported_error, fixed = TRUE)
+  expect_error(read_secuTrial_export(data_dir = export_location_es), unsupported_error, fixed = TRUE)
 })

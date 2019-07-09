@@ -18,7 +18,11 @@ Authors@R:
       person(given = "Patrick R.",
              family = "Wright",
              role = c("aut"),
-             email = "patrick.wright@usb.ch"))
+             email = "patrick.wright@usb.ch"),
+      person(given = "Milica",
+             family = "Markovic",
+             role = c("aut"),
+             email = "milica.markovic@usb.ch")))
 Maintainer: Patrick R. Wright <patrick.wright@usb.ch>
 Description: This R package is intended to standardize and simplify working with data
     exported from the clinical data management system (CDMS) secuTrial. The primary

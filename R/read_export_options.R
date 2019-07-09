@@ -35,16 +35,17 @@ read_export_options <- function(data_dir) {
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
   # version reference is on the bottom of the page
+  ## MiM: ist ok für DE
   version_line <- parsed_export[max(grep("secuTrial", parsed_export))]
   version <- unlist(regmatches(version_line,
                                gregexpr(pattern = "[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+",
                                         text = version_line)
-                               )
-                    )
+  )
+  )
   pversion_line <- parsed_export[max(grep("Version", parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
-                               gregexpr(pattern = "(?<=\\().*(?=\\))",
-                                        text = pversion_line, perl = TRUE)
+                                gregexpr(pattern = "(?<=\\().*(?=\\))",
+                                         text = pversion_line, perl = TRUE)
   )
   )
 
@@ -54,12 +55,17 @@ read_export_options <- function(data_dir) {
   rectangular_table <- any(grepl("[rR]ectangular table", parsed_export))
   # audit trail
   audit_trail <- any(grepl("[aA]udit [tT]rail", parsed_export))
-  # language not english
-  lang_not_en <- any(grepl("Export Optionen", parsed_export))
+  # language of the export (2-letter code)
+  lang <- get.export.language(parsed_export)
+  # determine if the languages is one of languages supported by secuTrialR
+  lang_not_supported <- !lang %in% c("en")
   # Column names
   column_names <- any(grepl("[cC]olumn names", parsed_export))
   # Duplicate form meta data into all tables
   duplicate_meta <- any(grepl("[dD]uplicate form meta data into all tables", parsed_export))
+
+
+
 
   # metadata file names
   meta_names <- list()
@@ -100,8 +106,8 @@ read_export_options <- function(data_dir) {
     file_tag <- gsub(meta_name_patterns, "", first_file_trunc)
   } else {
     file_tag <- gsub(pattern = "ExportOptions|.html",
-                replacement = "",
-                files$Name[study_options_file_idx])
+                     replacement = "",
+                     files$Name[study_options_file_idx])
   }
 
   # get data file extension
@@ -185,7 +191,8 @@ read_export_options <- function(data_dir) {
                         is_rectangular = rectangular_table,
                         audit_trail = audit_trail,
                         column_names = column_names,
-                        lang_not_en = lang_not_en,
+                        lang = lang,
+                        lang_not_supported = lang_not_supported,
                         refvals_separate = refvals_seperate,
                         add_id = NULL, # handled in read_secuTrial_export
                         lab_id = NULL, # handled in read_secuTrial_export
@@ -227,4 +234,46 @@ print.secutrialoptions <- function(x){
                    available = unlist(x$meta_available))
   print(df, row.names = FALSE)
 
+}
+
+#' Determines the language of secuTrial export
+#'
+#' @param parsed_export - string containing parsed ExportOptions file
+#' @return string containing iso 639-1 language code of the secuTrial export, or "unknown" if the language was not recognised.
+#'
+get.export.language <- function(parsed_export){
+  # read dictionary of export options
+  dict_file <- system.file("extdata",
+                           "dict_export_options.csv",
+                           package = "secuTrialR")
+  dict <- read.csv(dict_file)
+  # determine export language
+  is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
+  is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))
+  is_it <- all(sapply(dict[which(dict$lang == "it"), ], function(x) any(grepl(x, parsed_export))))
+  is_fr <- all(sapply(dict[which(dict$lang == "fr"), ], function(x) any(grepl(x, parsed_export))))
+  is_pl <- all(sapply(dict[which(dict$lang == "pl"), ], function(x) any(grepl(x, parsed_export))))
+  is_es <- all(sapply(dict[which(dict$lang == "es"), ], function(x) any(grepl(x, parsed_export))))
+  # if export language is none of the known languages, return "unknown"
+  if (sum(is_de, is_en, is_it, is_fr, is_pl, is_es, na.rm = TRUE) != 1){
+    lang <- "unknown"
+    return(lang)
+  }
+  # write export language
+  if (is_en){
+    lang <- "en"
+  } else if (is_de){
+    lang <- "de"
+  } else if (is_it){
+    lang <- "it"
+  } else if (is_fr){
+    lang <- "fr"
+  } else if (is_pl){
+    lang <- "pl"
+  } else if (is_es){
+    lang <- "es"
+  } else {
+    lang <- "unknown"
+  }
+  return(lang)
 }
