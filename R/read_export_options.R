@@ -34,6 +34,11 @@ read_export_options <- function(data_dir) {
     study_options_file_idx <- grep("ExportOptions", files$Name)
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
+
+  # dictionaries for metadata keys and selected export settings
+  dict_keys <- get.export.keys.dict()
+  dict_settings <- get.export.settings.dict()
+
   # version reference is on the bottom of the page
   version_line <- parsed_export[max(grep("secuTrial", parsed_export))]
   version <- unlist(regmatches(version_line,
@@ -41,23 +46,22 @@ read_export_options <- function(data_dir) {
                                         text = version_line)
   )
   )
-  pversion_line <- parsed_export[max(grep("Version", parsed_export)) + 2]
+
+  pversion_line <- parsed_export[max(grep(paste(dict_keys[,"version"], collapse="|"), parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
                                 gregexpr(pattern = "(?<=\\().*(?=\\))",
                                          text = pversion_line, perl = TRUE)
   )
   )
 
-  dict <- get.export.settings.dict()
-
   # short names
-  short_names <- any(sapply(dict[,"shortnames"], function(x) any(grepl(x, parsed_export))))
+  short_names <- any(sapply(dict_settings[,"shortnames"], function(x) any(grepl(x, parsed_export))))
 
   # rectangular data
-  rectangular_table <- any(sapply(dict[,"rectangulartable"], function(x) any(grepl(x, parsed_export))))
+  rectangular_table <- any(sapply(dict_settings[,"rectangulartable"], function(x) any(grepl(x, parsed_export))))
 
   # audit trail
-  audit_trail <- any(sapply(dict[,"audittrail"], function(x) any(grepl(x, parsed_export))))
+  audit_trail <- any(sapply(dict_settings[,"audittrail"], function(x) any(grepl(x, parsed_export))))
 
   # language of the export (2-letter code)
   lang <- get.export.language(parsed_export)
@@ -65,10 +69,10 @@ read_export_options <- function(data_dir) {
   lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es")
 
   # Column names
-  column_names <- any(sapply(dict[,"columnnames"], function(x) any(grepl(x, parsed_export))))
+  column_names <- any(sapply(dict_settings[,"columnnames"], function(x) any(grepl(x, parsed_export))))
 
   # Duplicate form meta data into all tables
-  duplicate_meta <- any(sapply(dict[,"duplicatemeta"], function(x) any(grepl(x, parsed_export))))
+  duplicate_meta <- any(sapply(dict_settings[,"duplicatemeta"], function(x) any(grepl(x, parsed_export))))
 
   # metadata file names
   meta_names <- list()
@@ -150,7 +154,7 @@ read_export_options <- function(data_dir) {
   # TODO : custom formats? parsed from ExportOptions?
 
   # reference values
-  refvals_seperate <- any(sapply(dict[,"separatetable"], function(x) any(grepl(x, parsed_export))))
+  refvals_seperate <- any(sapply(dict_settings[,"separatetable"], function(x) any(grepl(x, parsed_export))))
 
 
   # dates ----
@@ -243,14 +247,27 @@ print.secutrialoptions <- function(x){
 
 #' Returns export settings dictionary
 #'
-#' @param parsed_export - string containing parsed ExportOptions file
 #' @return data frame containing a dictionary of all relevant export option settings
 #'
-get.export.settings.dict <- function(parsed_export){
+get.export.settings.dict <- function(){
   dict_file_settings <- system.file("extdata", "dictionaries",
                                    "dict_export_options_settings.csv",
                                    package = "secuTrialR")
   dict <- read.csv(dict_file_settings)
+  return(dict)
+}
+
+
+#' Returns dictionary of export keys
+#'
+#' @param parsed_export - string containing parsed ExportOptions file
+#' @return data frame containing a dictionary of all relevant export option keys
+#'
+get.export.keys.dict <- function(){
+  dict_file_keys <- system.file("extdata", "dictionaries",
+                                    "dict_export_options_keys.csv",
+                                    package = "secuTrialR")
+  dict <- read.csv(dict_file_keys)
   return(dict)
 }
 
@@ -261,10 +278,7 @@ get.export.settings.dict <- function(parsed_export){
 #'
 get.export.language <- function(parsed_export){
   # read dictionary of export options
-  dict_file <- system.file("extdata", "dictionaries",
-                           "dict_export_options_keys.csv",
-                           package = "secuTrialR")
-  dict <- read.csv(dict_file)
+  dict <- get.export.keys.dict()
   # determine export language
   is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
   is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))

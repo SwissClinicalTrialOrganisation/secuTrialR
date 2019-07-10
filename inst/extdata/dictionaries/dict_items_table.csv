@@ -1,7 +1,7 @@
-lang,date,vollständiges datum,year,interval,time
-en,date,,\\(yyyy\\),interval,h:m
-de,datum,,\\(jjjj\\),intervall,h:m
-it,datum,,\\(aaaa\\),,h:m
-fr,date,datum,\\(aaaa\\),,h:m
-pl,,,,,
-es,fecha,datum,\\(aaaa\\),,h:m
+lang,date,checkeddate,calculatedyears,year,interval,time
+en,date,date,Years y (calculated only),yyyy,interval,h:m
+de,datum,datum,Jahre J (nur berechnet),jjjj,interval,h:m
+it,data,datum,Jahre a (nur berechnet),aaaa,interval,h:m
+fr,date,datum,Année a (nur berechnet),aaaa,interval,h:m
+pl,data,datum,Jahre l (nur berechnet),rrrr,interval,h:m
+es,fecha,datum,Años a (nur berechnet),aaaa,interval,h:m

@@ -34,6 +34,12 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
   x <- object$export_options$data_names
   names(x) <- NULL
   x <- x[!x %in% object$export_options$meta_names]
+  lang <- object$export_options$lang
+  # get internationalization dictionary for items table
+  dict_file <- system.file("extdata", "dictionaries",
+                                "dict_items_table.csv",
+                                package = "secuTrialR")
+  dict <- read.csv(dict_file)
 
   obs <- lapply(x, function(obj){
     # find date variables
@@ -43,12 +49,14 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
-    itqu <- itqu[grepl("date", itqu$itemtype, ignore.case = TRUE), ]
+    date_string <- paste(dict[dict$lang==lang,c("date","checkeddate")], collapse="|")
+    itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
     # remove year, interval and time
-    itqu <- itqu[!grepl("\\(yyyy\\)", itqu$itemtype, ignore.case = TRUE), ]
-    itqu <- itqu[!grepl("interval", itqu$itemtype, ignore.case = TRUE), ]
-    dates <- itqu[!grepl("h:m", itqu$itemtype, ignore.case = TRUE), ]
-    datetimes <- itqu[grepl("h:m", itqu$itemtype, ignore.case = TRUE), ]
+    year_string <- paste0("\\(", dict[dict$lang==lang,c("year")], "\\)")
+    itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
+    itqu <- itqu[!grepl(dict[dict$lang==lang,c("interval")], itqu$itemtype, ignore.case = TRUE), ]
+    dates <- itqu[!grepl(dict[dict$lang==lang,c("time")], itqu$itemtype, ignore.case = TRUE), ]
+    datetimes <- itqu[grepl(dict[dict$lang==lang,c("time")], itqu$itemtype, ignore.case = TRUE), ]
     datevars <- unique(dates$ffcolname)
     timevars <- unique(datetimes$ffcolname)
     # date format
