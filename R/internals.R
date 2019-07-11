@@ -22,6 +22,8 @@ convertnames <- function(df, format){
   name <- gsub("\\.datetime", "_dt", name)
   name <- gsub("\\.date", "_d", name)
   name <- gsub("\\.factor", "_f", name)
+  name <- gsub("\\.time", "_t", name)
+  name <- gsub("\\.dur", "_dur", name)
   # }
   names(df) <- name
   return(df)
