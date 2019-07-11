@@ -109,3 +109,43 @@ test_that("reference column error", {
 })
 test_that("not a data.frame error",
           expect_error(secuTrialR:::.move_column_after(c(1:3), "1", "2")))
+
+
+# ---- test .get_items_dict
+dict_items <- .get_items_dict()
+
+test_that("items table dictionary loaded", {
+  expect_equal(dim(dict_items)[1], 6)
+  expect_equal(dim(dict_items)[2], 8)
+})
+
+
+# ---- test .get_export_keys_dict
+dict_export_keys <- .get_export_keys_dict()
+
+test_that("items table dictionary loaded", {
+  expect_equal(dim(dict_export_keys)[1], 6)
+  expect_equal(dim(dict_export_keys)[2], 13)
+})
+
+
+# ---- test .get_export_settings_dict
+dict_export_settings <- .get_export_settings_dict()
+
+test_that("items table dictionary loaded", {
+  expect_equal(dim(dict_export_settings)[1], 6)
+  expect_equal(dim(dict_export_settings)[2], 7)
+})
+
+# ---- test .get_export_language
+data_dir <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_german.zip",
+                                   package = "secuTrialR")
+files <- unzip(data_dir, list = TRUE)
+study_options_file_idx <- grep("ExportOptions", files$Name)
+file_con <- unz(data_dir, files$Name[study_options_file_idx])
+parsed_export <- readLines(file_con)
+close(file_con)
+
+test_that("items table dictionary loaded", {
+  expect_equal(.get_export_language(parsed_export), "de")
+})
