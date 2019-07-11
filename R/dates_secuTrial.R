@@ -36,7 +36,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
   x <- x[!x %in% object$export_options$meta_names]
   # get language and internationalization dictionary for items table
   lang <- object$export_options$lang
-  dict <- get.items.dict()
+  dict <- .get_items_dict()
 
   obs <- lapply(x, function(obj){
     # find date variables
