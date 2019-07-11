@@ -38,8 +38,11 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
   obs <- lapply(x, function(obj){
     # find date variables
     it <- object[[object$export_options$meta_names$items]]
-    qu <- object[[object$export_options$meta_names$questions]]
-    itqu <- merge(it, qu, by = "fgid")
+    if (!object$export_options$duplicate_meta) {
+      qu <- object[[object$export_options$meta_names$questions]]
+      itqu <- merge(it, qu, by = "fgid")
+    } else itqu <- it
+
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
