@@ -44,15 +44,15 @@ read_export_options <- function(data_dir) {
   version <- unlist(regmatches(version_line,
                                gregexpr(pattern = "[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+",
                                         text = version_line)
-  )
-  )
+                               )
+                    )
 
   pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
                                 gregexpr(pattern = "(?<=\\().*(?=\\))",
                                          text = pversion_line, perl = TRUE)
-  )
-  )
+                                )
+                     )
 
   # short names
   short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
