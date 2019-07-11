@@ -1,7 +1,7 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of data from the clinical data management system secuTrial 
-Version: 0.3.8
+Version: 0.3.10
 Authors@R:
     c(person(given = "Pascal",
              family = "Benkert",
@@ -25,6 +25,7 @@ Description: This R package is intended to standardize and simplify working with
     data export the package works with is a standard non-rectangular export.
 Depends:
     R (>= 3.0.2),
+    haven (>= 2.1.0),
     igraph,
     readxl,
     tcltk,

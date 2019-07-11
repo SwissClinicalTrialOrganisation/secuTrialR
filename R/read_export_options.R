@@ -58,6 +58,8 @@ read_export_options <- function(data_dir) {
   lang_not_en <- any(grepl("Export Optionen", parsed_export))
   # Column names
   column_names <- any(grepl("[cC]olumn names", parsed_export))
+  # Duplicate form meta data into all tables
+  duplicate_meta <- any(grepl("[dD]uplicate form meta data into all tables", parsed_export))
 
   # metadata file names
   meta_names <- list()
@@ -189,6 +191,7 @@ read_export_options <- function(data_dir) {
                         lab_id = NULL, # handled in read_secuTrial_export
                         meta_names = meta_names,
                         meta_available = meta_available,
+                        duplicate_meta = duplicate_meta,
                         all_files = files$Name,
                         data_files = datafiles,
                         data_names = datanames,

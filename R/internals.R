@@ -15,6 +15,18 @@
   x
 }
 
+# convert names (used in write_secutrial)
+convertnames <- function(df, format){
+  name <- names(df)
+  # if (format %in% c("dta", "sav")){
+  name <- gsub("\\.datetime", "_dt", name)
+  name <- gsub("\\.date", "_d", name)
+  name <- gsub("\\.factor", "_f", name)
+  # }
+  names(df) <- name
+  return(df)
+}
+
 # This function moves a given column (defined by the column index)
 # to a specific position in the data frame.
 .move_column_to_pos <- function(df, col_idx, new_col_idx) {
@@ -85,7 +97,14 @@
         # position   before or after ref
         new_col_idx <- ref_col_idx + as.numeric(col_idx > ref_col_idx)
       }
+      if (!is.null(label(df))){
+        lab <- label(df)
+        labl <- TRUE
+      } else {
+        labl <- FALSE
+      }
       df <- .move_column_to_pos(df, col_idx, new_col_idx)
+      if (labl) label(df) <- lab
     }
     return(df)
   } else {
