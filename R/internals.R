@@ -111,3 +111,16 @@ convertnames <- function(df, format){
     stop("Error: Passed object is not a data.frame in .move_column_after")
   }
 }
+
+
+#' Returns items table dictionary
+#'
+#' @return data frame containing a dictionary of items table
+#'
+get.items.dict <- function(){
+  dict_file <- system.file("extdata", "dictionaries",
+                           "dict_items_table.csv",
+                           package = "secuTrialR")
+  dict <- read.csv(dict_file)
+  return(dict)
+}

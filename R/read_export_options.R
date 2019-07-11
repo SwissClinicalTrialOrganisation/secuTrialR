@@ -47,7 +47,7 @@ read_export_options <- function(data_dir) {
   )
   )
 
-  pversion_line <- parsed_export[max(grep(paste(dict_keys[,"version"], collapse="|"), parsed_export)) + 2]
+  pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
                                 gregexpr(pattern = "(?<=\\().*(?=\\))",
                                          text = pversion_line, perl = TRUE)
@@ -55,13 +55,13 @@ read_export_options <- function(data_dir) {
   )
 
   # short names
-  short_names <- any(sapply(dict_settings[,"shortnames"], function(x) any(grepl(x, parsed_export))))
+  short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
 
   # rectangular data
-  rectangular_table <- any(sapply(dict_settings[,"rectangulartable"], function(x) any(grepl(x, parsed_export))))
+  rectangular_table <- any(sapply(dict_settings[, "rectangulartable"], function(x) any(grepl(x, parsed_export))))
 
   # audit trail
-  audit_trail <- any(sapply(dict_settings[,"audittrail"], function(x) any(grepl(x, parsed_export))))
+  audit_trail <- any(sapply(dict_settings[, "audittrail"], function(x) any(grepl(x, parsed_export))))
 
   # language of the export (2-letter code)
   lang <- get.export.language(parsed_export)
@@ -69,10 +69,10 @@ read_export_options <- function(data_dir) {
   lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es")
 
   # Column names
-  column_names <- any(sapply(dict_settings[,"columnnames"], function(x) any(grepl(x, parsed_export))))
+  column_names <- any(sapply(dict_settings[, "columnnames"], function(x) any(grepl(x, parsed_export))))
 
   # Duplicate form meta data into all tables
-  duplicate_meta <- any(sapply(dict_settings[,"duplicatemeta"], function(x) any(grepl(x, parsed_export))))
+  duplicate_meta <- any(sapply(dict_settings[, "duplicatemeta"], function(x) any(grepl(x, parsed_export))))
 
   # metadata file names
   meta_names <- list()
@@ -154,7 +154,7 @@ read_export_options <- function(data_dir) {
   # TODO : custom formats? parsed from ExportOptions?
 
   # reference values
-  refvals_seperate <- any(sapply(dict_settings[,"separatetable"], function(x) any(grepl(x, parsed_export))))
+  refvals_seperate <- any(sapply(dict_settings[, "separatetable"], function(x) any(grepl(x, parsed_export))))
 
 
   # dates ----
