@@ -40,11 +40,11 @@ export_options <- read_export_options(data_dir = system.file("extdata",
                                                              package = "secuTrialR"))
 # load casenodes table
 casenodes <- read_export_table(data_dir = system.file("extdata",
-                                                    "s_export_CSV-xls_BMD.zip",
-                                                    package = "secuTrialR"),
-                             file_name = "cn.xls",
-                             export_options = export_options,
-                             is_meta_table = TRUE)
+                                                      "s_export_CSV-xls_BMD.zip",
+                                                      package = "secuTrialR"),
+                               file_name = "cn.xls",
+                               export_options = export_options,
+                               is_meta_table = TRUE)
 
 # ---- test .move_column_to_pos
 test_that("pat_id moved to index 2.", {
@@ -56,33 +56,33 @@ test_that("not a data.frame error",
           expect_error(secuTrialR:::.move_column_to_pos(c(1:3), 1, 2)))
 
 test_that("not an integer error", {
-          expect_error(secuTrialR:::.move_column_to_pos(
-            data.frame(a = 1:3,
-                       b = letters[1:3],
-                       c = LETTERS[1:3]), 1.1, 2))
-          expect_error(secuTrialR:::.move_column_to_pos(
-            data.frame(a = 1:3,
-                       b = letters[1:3],
-                       c = LETTERS[1:3]), 1, 2.1))
-  })
+  expect_error(secuTrialR:::.move_column_to_pos(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), 1.1, 2))
+  expect_error(secuTrialR:::.move_column_to_pos(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), 1, 2.1))
+})
 
 test_that("out of bounds error", {
-          expect_error(secuTrialR:::.move_column_to_pos(
-            data.frame(a = 1:3,
-                       b = letters[1:3],
-                       c = LETTERS[1:3]), 1, 5))
-          expect_error(secuTrialR:::.move_column_to_pos(
-            data.frame(a = 1:3,
-                       b = letters[1:3],
-                       c = LETTERS[1:3]), 13, 2))
-  })
+  expect_error(secuTrialR:::.move_column_to_pos(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), 1, 5))
+  expect_error(secuTrialR:::.move_column_to_pos(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), 13, 2))
+})
 
 test_that("move to end", {
-          expect_equal(names(secuTrialR:::.move_column_to_pos(
-            data.frame(a = 1:3,
-                       b = letters[1:3],
-                       c = LETTERS[1:3]), 1, 3)), c("b", "c", "a"))
-  })
+  expect_equal(names(secuTrialR:::.move_column_to_pos(
+    data.frame(a = 1:3,
+               b = letters[1:3],
+               c = LETTERS[1:3]), 1, 3)), c("b", "c", "a"))
+})
 
 # ---- test .move_column_after
 test_that("pat_id moved after mnpaid column.", {
@@ -138,14 +138,42 @@ test_that("items table dictionary loaded", {
 })
 
 # ---- test .get_export_language
-data_dir <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_german.zip",
-                                   package = "secuTrialR")
-files <- unzip(data_dir, list = TRUE)
-study_options_file_idx <- grep("ExportOptions", files$Name)
-file_con <- unz(data_dir, files$Name[study_options_file_idx])
-parsed_export <- readLines(file_con)
-close(file_con)
+parse_export_options <- function(data_dir){
+  files <- unzip(data_dir, list = TRUE)
+  study_options_file_idx <- grep("ExportOptions", files$Name)
+  file_con <- unz(data_dir, files$Name[study_options_file_idx])
+  parsed_export <- readLines(file_con)
+  close(file_con)
+  return(parsed_export)
+}
+# load exports in supported languages
+data_dirs_supported <- list(en = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                   package = "secuTrialR"),
+                  de = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_german.zip",
+                                   package = "secuTrialR"),
+                  fr = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_french.zip",
+                                   package = "secuTrialR"),
+                  it = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_italian.zip",
+                                   package = "secuTrialR"),
+                  es = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_spanish.zip",
+                                   package = "secuTrialR"))
+parsed_exports_supported <- lapply(data_dirs_supported, function(x) parse_export_options(x))
 
-test_that("items table dictionary loaded", {
-  expect_equal(.get_export_language(parsed_export), "de")
+test_that("export options language parsed", {
+  expect_equal(.get_export_language(parsed_exports_supported[[1]]), "en")
+  expect_equal(.get_export_language(parsed_exports_supported[[2]]), "de")
+  expect_equal(.get_export_language(parsed_exports_supported[[3]]), "fr")
+  expect_equal(.get_export_language(parsed_exports_supported[[4]]), "it")
+  expect_equal(.get_export_language(parsed_exports_supported[[5]]), "es")
+})
+
+# get polish data export
+data_dir_pl <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_polish.zip",
+                                   package = "secuTrialR")
+parsed_export_pl <- parse_export_options(data_dir_pl)
+# unsupported language error msg
+unsupported_error <- "Your export language is not supported and can not be processed."
+
+test_that("Unsuported language load error", {
+  expect_error(.get_export_language(parsed_export_pl, unsupported_error, fixed = TRUE))
 })
