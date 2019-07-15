@@ -54,6 +54,16 @@ sT_export_short_es <- read_secuTrial_export(data_dir = export_path_short_es)
 # polish long file name
 export_path_long_pl <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_polish.zip",
                                   package = "secuTrialR")
+sT_export_long_pl <- read_secuTrial_export(data_dir = export_path_long_pl)
+# polish short file name
+export_path_short_pl <- system.file("extdata", "examples_short", "s_export_CSV-xls_CTU05_20190710-105752_pl.zip",
+                                    package = "secuTrialR")
+sT_export_short_pl <- read_secuTrial_export(data_dir = export_path_short_pl)
+
+# UNKNOWN
+# unknown language short file name
+export_path_short_unsupported <- system.file("extdata", "examples_short", "s_export_CSV-xls_CTU05_20190710-110208_unsupported",
+                                         package = "secuTrialR")
 
 # unsupported language error msg
 unsupported_error <- "Your export language is not supported and can not be processed."
@@ -66,10 +76,11 @@ test_that("Export language parsing", {
   expect_equal(sT_export_long_fr$export_options$lang, "fr")
   expect_equal(sT_export_long_it$export_options$lang, "it")
   expect_equal(sT_export_long_es$export_options$lang, "es")
+  expect_equal(sT_export_long_pl$export_options$lang, "pl")
 })
 
 test_that("Unsuported language loads", {
-  expect_error(read_secuTrial_export(data_dir = export_path_long_pl), unsupported_error, fixed = TRUE)
+  expect_error(read_secuTrial_export(data_dir = export_path_short_unsupported), unsupported_error, fixed = TRUE)
 })
 
 test_that("Audit trail option parsing", {
@@ -78,6 +89,7 @@ test_that("Audit trail option parsing", {
   expect_true(sT_export_long_it$export_options$audit_trail)
   expect_true(sT_export_long_fr$export_options$audit_trail)
   expect_true(sT_export_long_es$export_options$audit_trail)
+  expect_true(sT_export_long_pl$export_options$audit_trail)
 })
 
 test_that("Short names option parsing", {
@@ -86,11 +98,13 @@ test_that("Short names option parsing", {
   expect_false(sT_export_long_it$export_options$short_names)
   expect_false(sT_export_long_fr$export_options$short_names)
   expect_false(sT_export_long_es$export_options$short_names)
+  expect_false(sT_export_long_pl$export_options$short_names)
   expect_true(sT_export_short_en$export_options$short_names)
   expect_true(sT_export_short_de$export_options$short_names)
   expect_true(sT_export_short_it$export_options$short_names)
   expect_true(sT_export_short_fr$export_options$short_names)
   expect_true(sT_export_short_es$export_options$short_names)
+  expect_true(sT_export_short_pl$export_options$short_names)
 })
 
 
@@ -100,6 +114,7 @@ test_that("Column names option parsing", {
   expect_true(sT_export_long_it$export_options$column_names)
   expect_true(sT_export_long_fr$export_options$column_names)
   expect_true(sT_export_long_es$export_options$column_names)
+  expect_true(sT_export_long_pl$export_options$column_names)
 })
 
 test_that("Duplicate metadata option parsing", {
@@ -108,10 +123,12 @@ test_that("Duplicate metadata option parsing", {
   expect_false(sT_export_long_it$export_options$duplicate_meta)
   expect_false(sT_export_long_fr$export_options$duplicate_meta)
   expect_false(sT_export_long_es$export_options$duplicate_meta)
+  expect_false(sT_export_long_pl$export_options$duplicate_meta)
   expect_true(sT_export_short_de$export_options$duplicate_meta)
   expect_true(sT_export_short_it$export_options$duplicate_meta)
   expect_true(sT_export_short_fr$export_options$duplicate_meta)
   expect_true(sT_export_short_es$export_options$duplicate_meta)
+  expect_true(sT_export_short_pl$export_options$duplicate_meta)
 })
 
 test_that("Separate reference table option parsing", {
@@ -120,4 +137,5 @@ test_that("Separate reference table option parsing", {
   expect_true(sT_export_long_it$export_options$refvals_separate)
   expect_true(sT_export_long_fr$export_options$refvals_separate)
   expect_true(sT_export_long_es$export_options$refvals_separate)
+  expect_true(sT_export_long_pl$export_options$refvals_separate)
 })

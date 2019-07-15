@@ -156,6 +156,8 @@ data_dirs_supported <- list(en = system.file("extdata", "s_export_CSV-xls_CTU05_
                   it = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_italian.zip",
                                    package = "secuTrialR"),
                   es = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_spanish.zip",
+                                   package = "secuTrialR"),
+                  pl = system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_polish.zip",
                                    package = "secuTrialR"))
 parsed_exports_supported <- lapply(data_dirs_supported, function(x) parse_export_options(x))
 
@@ -165,15 +167,15 @@ test_that("export options language parsed", {
   expect_equal(.get_export_language(parsed_exports_supported[[3]]), "fr")
   expect_equal(.get_export_language(parsed_exports_supported[[4]]), "it")
   expect_equal(.get_export_language(parsed_exports_supported[[5]]), "es")
+  expect_equal(.get_export_language(parsed_exports_supported[[6]]), "pl")
 })
 
-# get polish data export
-data_dir_pl <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref_polish.zip",
-                                   package = "secuTrialR")
-parsed_export_pl <- parse_export_options(data_dir_pl)
+# unknown language short file name
+data_dir_unsupported <- system.file("extdata", "examples_short", "s_export_CSV-xls_CTU05_20190710-110208_unsupported",
+                                         package = "secuTrialR")
 # unsupported language error msg
 unsupported_error <- "Your export language is not supported and can not be processed."
 
 test_that("Unsuported language load error", {
-  expect_error(.get_export_language(parsed_export_pl, unsupported_error, fixed = TRUE))
+  expect_error(.get_export_language(parsed_export_unsupported, unsupported_error, fixed = TRUE))
 })

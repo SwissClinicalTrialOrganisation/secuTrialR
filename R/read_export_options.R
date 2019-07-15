@@ -66,7 +66,7 @@ read_export_options <- function(data_dir) {
   # language of the export (2-letter code)
   lang <- .get_export_language(parsed_export)
   # determine if the languages is one of languages supported by secuTrialR
-  lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es")
+  lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es", "pl")
 
   # Column names
   column_names <- any(sapply(dict_settings[, "columnnames"], function(x) any(grepl(x, parsed_export))))
