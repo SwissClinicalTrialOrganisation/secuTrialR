@@ -3,6 +3,7 @@
 #' @param object secuTrialdata object
 #' @param warn logical, return warnings
 #' @param days_in_year numeric, number of days in year for conversion to minutes, defaults to 365
+#' @note Due to months being defined as \code{days_in_year/12} days, calculations involving months can lead to large inaccuracies in the returned values, particularly for variables measuring in minutes. We recommend calculating values instead (using e.g. \code{lubridate}), warnings are produced for such variables.
 #' @seealso \code{\link{read_secuTrial}}
 #' @export
 durations_secuTrial <- function(x, ...) UseMethod("durations_secuTrial", x)
@@ -18,13 +19,16 @@ durations_secuTrial.secuTrialdata <- function(object){
     # find date variables
     it <- object[[object$export_options$meta_names$items]]
     qu <- object[[object$export_options$meta_names$questions]]
-    itqu <- merge(it, qu, by = "fgid")
+    if (!object$export_options$duplicate_meta) {
+      qu <- object[[object$export_options$meta_names$questions]]
+      itqu <- merge(it, qu, by = "fgid")
+    } else itqu <- it
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
     if (nrow(itqu) > 0) { # particularly relevant for audit trail
       itqu$itemtype <- as.character(itqu$itemtype)
       itqu$ffcolname <- as.character(itqu$ffcolname)
 
-      intervals <- itqu[grepl("calculated only", itqu$itemtype), ] # USE "CALCULATED ONLY"
+      intervals <- itqu[grepl("Interval", itqu$itemtype), ] # USE "CALCULATED ONLY"
       intervals <- intervals[!grepl("Score", intervals$itemtype), ] # filter out scores
       intervals <- unique(intervals[, c("ffcolname",
                                         "itemtype",
@@ -42,7 +46,7 @@ durations_secuTrial.secuTrialdata <- function(object){
         intervals$format[g(" y-m-d ")] <- "y-m-d"
         intervals$format[g(" y-m ")] <- "y-m"
         intervals$format[g(" y ")] <- "y" # could probably drop them
-        intervals <- intervals[!g(" y "), ] # drop year only variables - can use them as they are
+        intervals <- intervals[-g(" y "), ] # drop year only variables - can use them as they are
       }
 
       g <- function(x) grep(x, times$itemtype)
@@ -55,6 +59,7 @@ durations_secuTrial.secuTrialdata <- function(object){
       if (nrow(times) > 0) {
         times$format <- NA
         times$format[g("\\(hh:mm\\)")] <- "hh:mm"
+        times$format[g("\\(hh:mm:ss\\)")] <- "hh:mm:ss"
         times$format[g("\\(mm:ss\\)")] <- "mm:ss"
       }
 
@@ -88,6 +93,10 @@ durations_secuTrial.data.frame <- function(data,
       v <- intervalvars$ffcolname[x]
       l <- intervalvars$length[x]
       f <- intervalvars$format[x]
+      if(f %in% c("y-m-d-h-m", "y-m-d")){
+        warning(v, " has format ", f,
+                ": consider calculation instead (due to month lengths)")
+      }
       newcol <- durations_secuTrial(data[, v], f, ...)
       nv <- paste0(v, ".dur")
       data[, nv] <- newcol
@@ -161,13 +170,13 @@ times_secuTrial <- function(var,
 }
 
 
-format2length <- function(x, days_in_year = 365){
+format2length <- function(x, days_in_year = 365.25){
   days_in_month <- days_in_year / 12
   fs <- data.frame(format = c("m-s", "h-m-s", "h-m", "d-h-m",
                               "y-m-d-h-m", "y-m-d", "y-m", "y", "hh:mm",
-                              "mm:ss"),
-                   length = c(4, 6, 4, 6, 12, 8, 6, 4, 4, 4),
-                   cut1 = c(2, 2, 2, 2, 4, 4, 4, 4, 2, 2),
+                              "hh:mm:ss", "mm:ss"),
+                   length = c(4, 6, 4, 6, 12, 8, 6, 4, 4, 6, 4),
+                   cut1 = c(2, 2, 2, 2, 4, 4, 4, 4, 2, 2, 2),
                    stringsAsFactors = FALSE)
   w <- match(x, fs$format)
   fs <- fs[w, ]
@@ -189,6 +198,7 @@ format2length <- function(x, days_in_year = 365){
   if (x == "y-m") multiplier <- c(12, 1)
   if (x == "y") multiplier <- c(1)
   if (x == "hh:mm") multiplier <- NA
+  if (x == "hh:mm:ss") multiplier <- NA
   if (x == "mm:ss") multiplier <- NA
   return(list(format = fs$format,
               length = fs$length,

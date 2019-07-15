@@ -1,8 +1,5 @@
 context("durations")
 
-# cannot currently test properly - not enough suitable variables
-
-
 secuTrialR:::format2length("y-m-d")
 secuTrialR:::format2length("y-m-d", 364)
 
@@ -77,4 +74,50 @@ test_that("ldat, sdat", {
   expect_equal(as.character(sdur$sae$sae_end_time.time), c("12:07", "18:06"))
   expect_equal(label(sdur$sae$sae_end_time.time), "Timepoints (clock time)")
 
+})
+
+
+data_dir <- system.file("extdata", "s_export_CSV-xls_TES05.zip",
+                        package = "secuTrialR")
+dat <- read_secuTrial(data_dir)
+x <- dat$intervals
+x2 <- dat$bl
+fup <- dat$fuvisit
+fup$vis <- ifelse(grepl("One", fup$visit_name), 1,
+                  ifelse(grepl("Two", fup$visit_name), 2,
+                         ifelse(grepl("Three", fup$visit_name), 3, 4)))
+fup <- fup[, !grepl("mnp|centre|visit|sigs", names(fup))]
+fupr <- reshape(fup, direction = "wide",
+                idvar = c("pat_id"),
+                v.names = names(fup)[!names(fup) %in% c("pat_id", "vis")],
+                timevar = "vis")
+fupr$dint <- as.numeric(difftime(fupr$v_date_ddhhyyyy.date.4,
+                                 fupr$v_date_ddhhyyyy.date.1, units = "d"))
+blfup <- merge(dat$bl, fupr, by = "pat_id")
+blfup <- blfup[, !grepl("mnp|centre|visit|sigs", names(blfup))]
+
+
+blfup2 <- within(blfup, {
+  yint <- as.numeric(v_date_ddhhyyyy.date.4 - bl_date_ddhhyyyy.date) / 365
+  ymdhmint <- as.numeric(difftime(v_date_ddhhyyyyhhmm.datetime.3, bl_date_ddhhyyyyhhmm.datetime, units = "mins"))
+  hmsint <- as.numeric(difftime(v_date_ddhhyyyyhhmm.datetime.3, bl_date_ddhhyyyyhhmm.datetime, units = "sec"))
+})
+
+# dat$is[grepl("Interval", dat$is$itemtype), ]
+
+
+test_that("results as expected", {
+  expect_equal(x$ymint.dur[1:3], c(0, 10*12, 4*12+10))
+  expect_equal(x$msint.dur[1:3], c(45*60+2, 0, 14*60+47))
+  expect_equal(x$ymdint.dur[1:3], c(15, 30*365, 17))
+  expect_equal(x$ymint.dur[1:3], c(0, 120, 58))
+
+  dint <- as.numeric(fupr$dint[match(x$pat_id, fupr$pat_id)])
+  expect_equal(as.numeric(x$dint), dint)
+
+  y <- blfup2[match(x$pat_id, blfup2$pat_id), ]
+  expect_equal(x$yint, y$yint)
+
+  expect_equal(x2$bl_time_hhmmss.time[1], c("10:52:43"))
+  expect_equal(x2$bl_time_hhmm.time[1], c("10:52"))
 })
