@@ -16,6 +16,9 @@ durations_secuTrial(x, ...)
 \description{
 Converts durations to the smallest unit (e.g. minutes for variables recorded as hours:minutes) and formats clock times as HH:MM strings rather than (H)HMM integers, as appropriate.
 }
+\note{
+Due to months being defined as \code{days_in_year/12} days, calculations involving months can lead to large inaccuracies in the returned values, particularly for variables measuring in minutes. We recommend calculating values instead (using e.g. \code{lubridate}), warnings are produced for such variables.
+}
 \seealso{
 \code{\link{read_secuTrial}}
 }
