@@ -1,9 +1,9 @@
 # internal helper functions
 
-#' Returns internal dictionary file
-#'
-#' @return data.frame containing a secuTrialR dictionary
-#'
+# Returns internal dictionary file
+#
+# @return data.frame containing a secuTrialR dictionary
+#
 .get_dict <- function(file){
   dict_file <- system.file("extdata", "dictionaries",
                            file,
