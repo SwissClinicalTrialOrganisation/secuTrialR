@@ -111,8 +111,8 @@ test_that("not a data.frame error",
           expect_error(secuTrialR:::.move_column_after(c(1:3), "1", "2")))
 
 
-# ---- test .get_items_dict
-dict_items <- .get_items_dict()
+# ---- test .get_dict for items table dictionary
+dict_items <- .get_dict("dict_items_table.csv")
 
 test_that("items table dictionary loaded", {
   expect_equal(dim(dict_items)[1], 6)
@@ -120,17 +120,30 @@ test_that("items table dictionary loaded", {
 })
 
 
-# ---- test .get_export_keys_dict
-dict_export_keys <- .get_export_keys_dict()
+# ---- test .get_dict for export options keys dictionary
+dict_export_keys <- .get_dict("dict_export_options_keys.csv")
+dict_export_keys_de <- .get_dict("dict_export_options_keys.csv", "de")
+dict_export_keys_en <- .get_dict("dict_export_options_keys.csv", "en")
+dict_export_keys_fr <- .get_dict("dict_export_options_keys.csv", "fr")
+dict_export_keys_it <- .get_dict("dict_export_options_keys.csv", "it")
+dict_export_keys_es <- .get_dict("dict_export_options_keys.csv", "es")
+dict_export_keys_pl <- .get_dict("dict_export_options_keys.csv", "pl")
+dict_export_keys_unknown <- .get_dict("dict_export_options_keys.csv", "un")
 
 test_that("items table dictionary loaded", {
   expect_equal(dim(dict_export_keys)[1], 6)
   expect_equal(dim(dict_export_keys)[2], 13)
+  expect_equal(dict_export_keys_de$lang, "de")
+  expect_equal(dict_export_keys_en$lang, "en")
+  expect_equal(dict_export_keys_fr$lang, "fr")
+  expect_equal(dict_export_keys_it$lang, "it")
+  expect_equal(dict_export_keys_es$lang, "es")
+  expect_equal(dict_export_keys_pl$lang, "pl")
+  expect_equal(dim(dict_export_keys_unknown)[1], 0)
 })
 
-
-# ---- test .get_export_settings_dict
-dict_export_settings <- .get_export_settings_dict()
+# ---- test .get_dict for export options settings dictionary
+dict_export_settings <- .get_dict("dict_export_options_settings.csv")
 
 test_that("items table dictionary loaded", {
   expect_equal(dim(dict_export_settings)[1], 6)

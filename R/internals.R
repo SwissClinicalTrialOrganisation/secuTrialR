@@ -1,5 +1,20 @@
 # internal helper functions
 
+# Returns internal dictionary file
+#
+# @return data.frame containing a secuTrialR dictionary
+#
+.get_dict <- function(file, language = NULL){
+  dict_file <- system.file("extdata", "dictionaries",
+                           file,
+                           package = "secuTrialR")
+  dict <- read.csv(dict_file)
+  if (!is.null(language) & any(grep("lang", names(dict)))){
+    dict <- dict[dict$lang == language, ]
+  }
+  return(dict)
+}
+
 # construct names of metadata
 .construct_metaname <- function(x, meta_names, file_tag, file_extension) {
   paste0(meta_names[x],
@@ -113,52 +128,14 @@ convertnames <- function(df, format){
 }
 
 
-#' Returns items table dictionary
-#'
-#' @return data frame containing a dictionary of items table
-#'
-.get_items_dict <- function(){
-  dict_file <- system.file("extdata", "dictionaries",
-                           "dict_items_table.csv",
-                           package = "secuTrialR")
-  dict <- read.csv(dict_file)
-  return(dict)
-}
-
-#' Returns dictionary of export keys
-#'
-#' @param parsed_export - string containing parsed ExportOptions file
-#' @return data frame containing a dictionary of all relevant export option keys
-#'
-.get_export_keys_dict <- function(){
-  dict_file_keys <- system.file("extdata", "dictionaries",
-                                "dict_export_options_keys.csv",
-                                package = "secuTrialR")
-  dict <- read.csv(dict_file_keys)
-  return(dict)
-}
-
-#' Returns export settings dictionary
-#'
-#' @return data frame containing a dictionary of all relevant export option settings
-#'
-.get_export_settings_dict <- function(){
-  dict_file_settings <- system.file("extdata", "dictionaries",
-                                    "dict_export_options_settings.csv",
-                                    package = "secuTrialR")
-  dict <- read.csv(dict_file_settings)
-  return(dict)
-}
-
-
-#' Determines the language of secuTrial export
-#'
-#' @param parsed_export - string containing parsed ExportOptions file
-#' @return string containing iso 639-1 language code of the secuTrial export, or "unknown" if the language was not recognised.
-#'
+# Determines the language of secuTrial export
+#
+# @param parsed_export - string containing parsed ExportOptions file
+# @return string containing iso 639-1 language code of the secuTrial export, or "unknown" if the language was not recognised.
+#
 .get_export_language <- function(parsed_export){
   # read dictionary of export options
-  dict <- .get_export_keys_dict()
+  dict <- .get_dict("dict_export_options_keys.csv")
   # determine export language
   is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
   is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))

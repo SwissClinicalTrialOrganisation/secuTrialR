@@ -36,9 +36,8 @@ read_export_options <- function(data_dir) {
   }
 
   # dictionaries for metadata keys and selected export settings
-  dict_keys <- .get_export_keys_dict()
-  dict_settings <- .get_export_settings_dict()
-
+  dict_keys <- .get_dict("dict_export_options_keys.csv")
+  dict_settings <- .get_dict("dict_export_options_settings.csv")
   # version reference is on the bottom of the page
   version_line <- parsed_export[max(grep("secuTrial", parsed_export))]
   version <- unlist(regmatches(version_line,
@@ -67,6 +66,9 @@ read_export_options <- function(data_dir) {
   lang <- .get_export_language(parsed_export)
   # determine if the languages is one of languages supported by secuTrialR
   lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es", "pl")
+
+  # items dictionary
+  dict_items <- .get_dict("dict_items_table.csv", lang)
 
   # Column names
   column_names <- any(sapply(dict_settings[, "columnnames"], function(x) any(grepl(x, parsed_export))))
@@ -201,6 +203,7 @@ read_export_options <- function(data_dir) {
                         column_names = column_names,
                         lang = lang,
                         lang_not_supported = lang_not_supported,
+                        dict_items = dict_items,
                         refvals_separate = refvals_seperate,
                         add_id = NULL, # handled in read_secuTrial_export
                         lab_id = NULL, # handled in read_secuTrial_export

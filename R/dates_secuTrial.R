@@ -36,7 +36,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
   x <- x[!x %in% object$export_options$meta_names]
   # get language and internationalization dictionary for items table
   lang <- object$export_options$lang
-  dict <- .get_items_dict()
+  dict <- object$export_options$dict_items
 
   obs <- lapply(x, function(obj){
     # find date variables
@@ -46,14 +46,14 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
-    date_string <- paste(dict[dict$lang == lang, c("date", "checkeddate")], collapse = "|")
+    date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
     itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
     # remove year, interval and time
-    year_string <- paste0("\\(", dict[dict$lang == lang, c("year")], "\\)")
+    year_string <- paste0("\\(", dict[, "year"], "\\)")
     itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
-    itqu <- itqu[!grepl(dict[dict$lang == lang, c("interval")], itqu$itemtype, ignore.case = TRUE), ]
-    dates <- itqu[!grepl(dict[dict$lang == lang, c("time")], itqu$itemtype, ignore.case = TRUE), ]
-    datetimes <- itqu[grepl(dict[dict$lang == lang, c("time")], itqu$itemtype, ignore.case = TRUE), ]
+    itqu <- itqu[!grepl(dict[, "interval"], itqu$itemtype, ignore.case = TRUE), ]
+    dates <- itqu[!grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
+    datetimes <- itqu[grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
     datevars <- unique(dates$ffcolname)
     timevars <- unique(datetimes$ffcolname)
     # date format

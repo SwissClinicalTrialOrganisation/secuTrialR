@@ -43,9 +43,9 @@ labels_secuTrial <- function(object, form = NULL) {
     it <- it[grepl(paste0("(", paste0(form, collapse = "|"), ")$"), it$formtablename), ]
   }
 
-  dict <- .get_items_dict()
+  dict <- object$export_options$dict_items
   lang <- object$export_options$lang
-  it <- it[!grepl(dict[dict$lang == lang, c("dummy")], as.character(it$itemtype)), ]
+  it <- it[!grepl(dict[, c("dummy")], as.character(it$itemtype)), ]
 
   it <- it[, c("ffcolname", "fflabel")]
   it <- unique(it)
@@ -93,9 +93,9 @@ label_secuTrial.secuTrialdata <- function(object) {
   it$unit <- as.character(it$unit)
 
 
-  dict <- .get_items_dict()
+  dict <- object$export_options$dict_items
   lang <- object$export_options$lang
-  it <- it[!grepl(dict[dict$lang == lang, c("dummy")], as.character(it$itemtype)), ]
+  it <- it[!grepl(dict[, c("dummy")], as.character(it$itemtype)), ]
   # it <- it[, c("ffcolname", "fflabel", "formtablename")]
   it$formtablename <- as.character(it$formtablename)
   it$fname <- gsub(pattern = "^mnp", "", it$formtablename)
