@@ -16,7 +16,7 @@
 #' # get form status
 #' form_status_summary(sT_export)
 #'
-form_status_summary <- function(object) {
+form_status_counts <- function(object) {
 
   if (! object$export_options$form_status) {
     stop("Please reexport with the Form status selected for this function to work.")
