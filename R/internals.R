@@ -1,5 +1,17 @@
 # internal helper functions
 
+#' Returns internal dictionary file
+#'
+#' @return data.frame containing a secuTrialR dictionary
+#'
+.get_dict <- function(file){
+  dict_file <- system.file("extdata", "dictionaries",
+                           file,
+                           package = "secuTrialR")
+  dict <- read.csv(dict_file)
+  return(dict)
+}
+
 # construct names of metadata
 .construct_metaname <- function(x, meta_names, file_tag, file_extension) {
   paste0(meta_names[x],
