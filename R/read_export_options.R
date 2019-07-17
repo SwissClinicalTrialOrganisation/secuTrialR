@@ -201,7 +201,6 @@ read_export_options <- function(data_dir) {
                         is_rectangular = rectangular_table,
                         audit_trail = audit_trail,
                         column_names = column_names,
-                        lang = lang,
                         lang_not_supported = lang_not_supported,
                         dict_items = dict_items,
                         refvals_separate = refvals_seperate,

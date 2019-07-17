@@ -62,8 +62,9 @@ sT_export_short_pl <- read_secuTrial_export(data_dir = export_path_short_pl)
 
 # UNKNOWN
 # unknown language short file name
-export_path_short_unsupported <- system.file("extdata", "examples_short", "s_export_CSV-xls_CTU05_20190710-110208_unsupported.zip",
-                                         package = "secuTrialR")
+export_path_short_unsupported <- system.file("extdata", "examples_short",
+                                             "s_export_CSV-xls_CTU05_20190710-110208_unsupported.zip",
+                                             package = "secuTrialR")
 
 # unsupported language error msg
 unsupported_error <- "Your export language is not supported and can not be processed."
@@ -71,12 +72,12 @@ unsupported_error <- "Your export language is not supported and can not be proce
 # TESTS
 
 test_that("Export language parsing", {
-  expect_equal(sT_export_long_en$export_options$lang, "en")
-  expect_equal(sT_export_long_de$export_options$lang, "de")
-  expect_equal(sT_export_long_fr$export_options$lang, "fr")
-  expect_equal(sT_export_long_it$export_options$lang, "it")
-  expect_equal(sT_export_long_es$export_options$lang, "es")
-  expect_equal(sT_export_long_pl$export_options$lang, "pl")
+  expect_equal(sT_export_long_en$export_options$dict_items$lang, "en")
+  expect_equal(sT_export_long_de$export_options$dict_items$lang, "de")
+  expect_equal(sT_export_long_fr$export_options$dict_items$lang, "fr")
+  expect_equal(sT_export_long_it$export_options$dict_items$lang, "it")
+  expect_equal(sT_export_long_es$export_options$dict_items$lang, "es")
+  expect_equal(sT_export_long_pl$export_options$dict_items$lang, "pl")
 })
 
 test_that("Unsuported language loads", {

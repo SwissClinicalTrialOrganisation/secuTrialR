@@ -44,7 +44,6 @@ labels_secuTrial <- function(object, form = NULL) {
   }
 
   dict <- object$export_options$dict_items
-  lang <- object$export_options$lang
   it <- it[!grepl(dict[, c("dummy")], as.character(it$itemtype)), ]
 
   it <- it[, c("ffcolname", "fflabel")]
@@ -94,7 +93,6 @@ label_secuTrial.secuTrialdata <- function(object) {
 
 
   dict <- object$export_options$dict_items
-  lang <- object$export_options$lang
   it <- it[!grepl(dict[, c("dummy")], as.character(it$itemtype)), ]
   # it <- it[, c("ffcolname", "fflabel", "formtablename")]
   it$formtablename <- as.character(it$formtablename)
