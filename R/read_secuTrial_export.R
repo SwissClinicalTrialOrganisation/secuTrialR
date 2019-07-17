@@ -28,8 +28,8 @@ read_secuTrial_export <- function(data_dir) {
   export_options <- read_export_options(data_dir = data_dir)
 
   # check for language not english
-  if (export_options$lang_not_en) {
-    stop("Your export language is not English and can not be processed.")
+  if (export_options$lang_not_supported) {
+    stop("Your export language is not supported and can not be processed.")
   }
 
   # check if it is a rectangular export

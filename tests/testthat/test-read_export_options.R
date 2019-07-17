@@ -23,8 +23,8 @@ bmd_unzipped <- read_export_options(data_dir = system.file("extdata",
 
 # duplicated meta
 dup_meta <- read_export_options(system.file("extdata",
-                                        "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
-                                        package = "secuTrialR"))
+                                            "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
+                                            package = "secuTrialR"))
 
 
 
@@ -71,6 +71,7 @@ test_that("Meta names available.", {
 # prepare path to example export
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
+
 # load all export data
 sT_export <- read_secuTrial_export(data_dir = export_location)
 
