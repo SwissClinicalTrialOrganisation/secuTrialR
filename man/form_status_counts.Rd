@@ -23,7 +23,7 @@ export_location <- system.file("extdata",
 sT_export <- read_secuTrial_export(data_dir = export_location)
 
 # get form status
-form_status_scounts(sT_export)
+form_status_counts(sT_export)
 
 }
 \keyword{completeness}
