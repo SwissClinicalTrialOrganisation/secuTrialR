@@ -8,7 +8,7 @@
   dict_file <- system.file("extdata", "dictionaries",
                            file,
                            package = "secuTrialR")
-  dict <- read.csv(dict_file, stringsAsFactors = FALSE)
+  dict <- read.csv(dict_file, stringsAsFactors = FALSE, fileEncoding = "UTF-8")
   if (!is.null(language) & any(grep("lang", names(dict)))){
     dict <- dict[dict$lang == language, ]
   }

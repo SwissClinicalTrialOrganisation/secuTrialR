@@ -25,7 +25,7 @@ read_export_options <- function(data_dir) {
   if (is_zip) {
     files <- unzip(data_dir, list = TRUE)
     study_options_file_idx <- grep("ExportOptions", files$Name)
-    file_con <- unz(data_dir, files$Name[study_options_file_idx])
+    file_con <- unz(data_dir, files$Name[study_options_file_idx], encoding = "UTF-8")
     parsed_export <- readLines(file_con)
     close(file_con)
   } else {
