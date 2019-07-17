@@ -33,8 +33,7 @@ Depends:
     igraph,
     readxl,
     tcltk,
-    tidyverse,
-    qdap
+    tidyverse
 License: GPL-2 
 Encoding: UTF-8
 LazyData: true
