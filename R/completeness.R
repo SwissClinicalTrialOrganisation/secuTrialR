@@ -20,11 +20,11 @@
 #'
 form_status_counts <- function(object) {
 
-  if (! object$export_options$form_status) {
-    stop("Please reexport with the Form status selected for this function to work.")
-  }
   if (class(object) != "secuTrialdata") {
     stop("return_scores requires objects of the class 'secuTrialdata' as input.")
+  }
+  if (! object$export_options$form_status) {
+    stop("Please reexport with the Form status selected for this function to work.")
   }
 
   # init output
