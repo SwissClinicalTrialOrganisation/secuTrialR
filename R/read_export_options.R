@@ -34,6 +34,10 @@ read_export_options <- function(data_dir) {
     study_options_file_idx <- grep("ExportOptions", files$Name)
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
+
+  # dictionaries for metadata keys and selected export settings
+  dict_keys <- .get_dict("dict_export_options_keys.csv")
+  dict_settings <- .get_dict("dict_export_options_settings.csv")
   # version reference is on the bottom of the page
   version_line <- parsed_export[max(grep("secuTrial", parsed_export))]
   version <- unlist(regmatches(version_line,
@@ -41,25 +45,36 @@ read_export_options <- function(data_dir) {
                                         text = version_line)
                                )
                     )
-  pversion_line <- parsed_export[max(grep("Version", parsed_export)) + 2]
+
+  pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
   pversion <- unlist(regmatches(pversion_line,
-                               gregexpr(pattern = "(?<=\\().*(?=\\))",
-                                        text = pversion_line, perl = TRUE)
-  )
-  )
+                                gregexpr(pattern = "(?<=\\().*(?=\\))",
+                                         text = pversion_line, perl = TRUE)
+                                )
+                     )
 
   # short names
-  short_names <- any(grepl("[sS]horten", parsed_export))
+  short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
+
   # rectangular data
-  rectangular_table <- any(grepl("[rR]ectangular table", parsed_export))
+  rectangular_table <- any(sapply(dict_settings[, "rectangulartable"], function(x) any(grepl(x, parsed_export))))
+
   # audit trail
-  audit_trail <- any(grepl("[aA]udit [tT]rail", parsed_export))
-  # language not english
-  lang_not_en <- any(grepl("Export Optionen", parsed_export))
+  audit_trail <- any(sapply(dict_settings[, "audittrail"], function(x) any(grepl(x, parsed_export))))
+
+  # language of the export (2-letter code)
+  lang <- .get_export_language(parsed_export)
+  # determine if the languages is one of languages supported by secuTrialR
+  lang_not_supported <- !lang %in% c("en", "de", "fr", "it", "es", "pl")
+
+  # items dictionary
+  dict_items <- .get_dict("dict_items_table.csv", lang)
+
   # Column names
-  column_names <- any(grepl("[cC]olumn names", parsed_export))
+  column_names <- any(sapply(dict_settings[, "columnnames"], function(x) any(grepl(x, parsed_export))))
+
   # Duplicate form meta data into all tables
-  duplicate_meta <- any(grepl("[dD]uplicate form meta data into all tables", parsed_export))
+  duplicate_meta <- any(sapply(dict_settings[, "duplicatemeta"], function(x) any(grepl(x, parsed_export))))
 
   # metadata file names
   meta_names <- list()
@@ -100,8 +115,8 @@ read_export_options <- function(data_dir) {
     file_tag <- gsub(meta_name_patterns, "", first_file_trunc)
   } else {
     file_tag <- gsub(pattern = "ExportOptions|.html",
-                replacement = "",
-                files$Name[study_options_file_idx])
+                     replacement = "",
+                     files$Name[study_options_file_idx])
   }
 
   # get data file extension
@@ -141,7 +156,8 @@ read_export_options <- function(data_dir) {
   # TODO : custom formats? parsed from ExportOptions?
 
   # reference values
-  refvals_seperate <- any(grepl("separate table", parsed_export))
+  refvals_seperate <- any(sapply(dict_settings[, "separatetable"], function(x) any(grepl(x, parsed_export))))
+
 
   # dates ----
   # date format
@@ -185,7 +201,8 @@ read_export_options <- function(data_dir) {
                         is_rectangular = rectangular_table,
                         audit_trail = audit_trail,
                         column_names = column_names,
-                        lang_not_en = lang_not_en,
+                        lang_not_supported = lang_not_supported,
+                        dict_items = dict_items,
                         refvals_separate = refvals_seperate,
                         add_id = NULL, # handled in read_secuTrial_export
                         lab_id = NULL, # handled in read_secuTrial_export

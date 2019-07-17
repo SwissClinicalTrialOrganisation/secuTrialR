@@ -1,0 +1,7 @@
+lang,date,checkeddate,calculatedyears,year,interval,time,dummy
+en,date,date,Years y (calculated only),yyyy,interval,h:m,Dummy
+de,datum,datum,Jahre J (nur berechnet),jjjj,interval,h:m,Dummy
+it,data,datum,Jahre a (nur berechnet),aaaa,interval,h:m,Dummy
+fr,date,datum,Année a (nur berechnet),aaaa,interval,h:m,Dummy
+pl,data,datum,Jahre l (nur berechnet),rrrr,interval,h:m,Dummy
+es,fecha,datum,Años a (nur berechnet),aaaa,interval,h:m,Dummy

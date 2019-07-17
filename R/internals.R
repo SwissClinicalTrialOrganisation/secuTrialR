@@ -1,5 +1,20 @@
 # internal helper functions
 
+# Returns internal dictionary file
+#
+# @return data.frame containing a secuTrialR dictionary
+#
+.get_dict <- function(file, language = NULL){
+  dict_file <- system.file("extdata", "dictionaries",
+                           file,
+                           package = "secuTrialR")
+  dict <- read.csv(dict_file, stringsAsFactors = FALSE)
+  if (!is.null(language) & any(grep("lang", names(dict)))){
+    dict <- dict[dict$lang == language, ]
+  }
+  return(dict)
+}
+
 # construct names of metadata
 .construct_metaname <- function(x, meta_names, file_tag, file_extension) {
   paste0(meta_names[x],
@@ -112,4 +127,44 @@ convertnames <- function(df, format){
   } else {
     stop("Error: Passed object is not a data.frame in .move_column_after")
   }
+}
+
+
+# Determines the language of secuTrial export
+#
+# @param parsed_export - string containing parsed ExportOptions file
+# @return string containing iso 639-1 language code of the secuTrial export, or "unknown" if the language was not recognised.
+#
+.get_export_language <- function(parsed_export){
+  # read dictionary of export options
+  dict <- .get_dict("dict_export_options_keys.csv")
+  # determine export language
+  is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
+  is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))
+  is_it <- all(sapply(dict[which(dict$lang == "it"), ], function(x) any(grepl(x, parsed_export))))
+  is_fr <- all(sapply(dict[which(dict$lang == "fr"), ], function(x) any(grepl(x, parsed_export))))
+  is_pl <- all(sapply(dict[which(dict$lang == "pl"), ], function(x) any(grepl(x, parsed_export))))
+  is_es <- all(sapply(dict[which(dict$lang == "es"), ], function(x) any(grepl(x, parsed_export))))
+  # if export language is none of the known languages, return "unknown"
+  if (sum(is_de, is_en, is_it, is_fr, is_pl, is_es, na.rm = TRUE) != 1){
+    lang <- "unknown"
+    return(lang)
+  }
+  # write export language
+  if (is_en){
+    lang <- "en"
+  } else if (is_de){
+    lang <- "de"
+  } else if (is_it){
+    lang <- "it"
+  } else if (is_fr){
+    lang <- "fr"
+  } else if (is_pl){
+    lang <- "pl"
+  } else if (is_es){
+    lang <- "es"
+  } else {
+    lang <- "unknown"
+  }
+  return(lang)
 }
