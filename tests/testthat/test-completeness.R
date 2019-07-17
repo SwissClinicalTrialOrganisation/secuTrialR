@@ -19,6 +19,11 @@ s_bmd <- read_secuTrial(system.file("extdata",
                                     "s_export_CSV-xls_BMD.zip",
                                     package = "secuTrialR"))
 
+# TES05
+#tes05 <- read_secuTrial(system.file("extdata",
+#                                    "s_export_CSV-xls_TES05.zip",
+#                                    package = "secuTrialR"))
+
 test_that("Test fail", {
   expect_error(form_status_counts(1337))
 })
