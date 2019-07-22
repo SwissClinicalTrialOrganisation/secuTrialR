@@ -135,7 +135,7 @@ convertnames <- function(df, format){
 #
 .get_export_language <- function(parsed_export){
   # read dictionary of export options
-  dict <- secuTrialR:::.get_dict("dict_export_options_keys.csv")
+  dict <- .get_dict("dict_export_options_keys.csv")
   # need to omit the "patients" column since this can be manually changed in the
   # AdminTool for some projects and the language will then be wrongly set to "unknown"
   # "email" must also be removed since it is not available for every export
