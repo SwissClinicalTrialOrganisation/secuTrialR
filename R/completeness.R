@@ -119,3 +119,31 @@ form_status_counts <- function(object) {
   form_status_summary_table[is.na(form_status_summary_table)] <- 0
   form_status_summary_table
 }
+
+
+form_status_summary <- function(object) {
+
+  status_counts <- form_status_counts(object)
+  status_summary <- status_counts %>%
+    group_by(form_name) %>%
+    summarise(partly_filled = sum(partly_filled),
+              completely_filled = sum(completely_filled),
+              empty = sum(empty),
+              with_warnings = sum(with_warnings),
+              with_errors = sum(with_errors))
+  # the sum of partly_filled, completely_filled, empty is the total count of
+  # registered forms for each form type (form_name)
+  form_count <- rowSums(subset(ulu, select = c(partly_filled,
+                                               completely_filled,
+                                               empty)))
+  # omit form_name and divide all count columns by form_count
+  percentage <- status_summary[, 2:ncol(status_summary)] %>%
+                  mutate_all(funs(. / form_count))
+  # label the percent columns
+  names(percentage) <- paste0(names(percentage), ".percent")
+  # append all columns together
+  status_summary_return <- cbind(status_summary, percentage)
+  status_summary_return$form_count <- form_count
+
+  return(status_summary_return)
+}
