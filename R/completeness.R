@@ -18,11 +18,11 @@
 #' # get form status
 #' form_status_counts(sT_export)
 #'
-form_status_counts <- function(object) {
+form_status_counts <- function(x, ...) UseMethod("form_status_counts", x)
 
-  if (class(object) != "secuTrialdata") {
-    stop("return_scores requires objects of the class 'secuTrialdata' as input.")
-  }
+#' @export
+form_status_counts.secuTrialdata <- function(object) {
+
   if (! object$export_options$form_status) {
     stop("Please reexport with the Form status selected for this function to work.")
   }
@@ -120,8 +120,29 @@ form_status_counts <- function(object) {
   form_status_summary_table
 }
 
+#' A function to show summary statistics for form statuses
+#'
+#' This function warps form_status_counts and returns a
+#' data.frame summarizing the statuses for each form.
+#'
+#' @param object secuTrialdata object
+#' @keywords form status, completeness
+#' @export
+#' @examples
+#' # prepare path to example export
+#' export_location <- system.file("extdata",
+#'                                "s_export_CSV-xls_BMD.zip",
+#'                                package = "secuTrialR")
+#' # load all export data
+#' sT_export <- read_secuTrial_export(data_dir = export_location)
+#'
+#' # get form status
+#' form_status_summary(sT_export)
+#'
+form_status_summary <- function(x, ...) UseMethod("form_status_summary", x)
 
-form_status_summary <- function(object) {
+#' @export
+form_status_summary.secuTrialdata <- function(object) {
 
   status_counts <- form_status_counts(object)
   status_summary <- status_counts %>%
@@ -133,7 +154,7 @@ form_status_summary <- function(object) {
               with_errors = sum(with_errors))
   # the sum of partly_filled, completely_filled, empty is the total count of
   # registered forms for each form type (form_name)
-  form_count <- rowSums(subset(ulu, select = c(partly_filled,
+  form_count <- rowSums(subset(status_summary, select = c(partly_filled,
                                                completely_filled,
                                                empty)))
   # omit form_name and divide all count columns by form_count
