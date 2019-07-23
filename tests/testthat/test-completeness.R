@@ -35,6 +35,17 @@ test_that("Test output equality for different export options", {
   expect_equal(form_status_counts(s_ctu05)[, cols], form_status_counts(l_ctu05)[, cols])
   expect_equal(form_status_counts(l_bmd)[, cols], form_status_counts(s_bmd)[, cols])
   expect_equal(form_status_counts(s_ctu05), form_status_counts(s_ctu05_sep_ref))
+  expect_equal(form_status_summary(s_ctu05), form_status_summary(s_ctu05_sep_ref))
 })
+
+test_that("Test that partly, completely and empty percentages add up to 1 i.e. 100%", {
+  # the vector is made up of ones subtracting one from all of them and summing should always return 0
+  expect_equal(sum(rowSums(subset(form_status_summary(s_ctu05),
+                                  select = c(partly_filled.percent,
+                                             completely_filled.percent,
+                                             empty.percent))) - 1),
+               0)
+})
+
 
 # TODO add tests with warnings and errors and empty data
