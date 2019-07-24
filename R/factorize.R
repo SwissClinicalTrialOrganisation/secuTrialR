@@ -81,7 +81,8 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
   meta_var_names <- unique(cl$column[! grepl(".", cl$column, fixed = TRUE)])
 
   str <- strsplit(cl$column, ".", fixed = TRUE)
-  # filters for all which were split by "." the rest is "NA"
+  # split by "." have two entries and the second is needed
+  # the rest has one entry i.e. length(x)
   str <- sapply(str, function(x) x[length(x)])
   cl$var <- str
   w <- cl$column %in% lookups$lookuptable
@@ -92,7 +93,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
     lookup <- cl[grepl(paste0(form, ".", name, "$"), cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
     # exception for meta variables (for non meta variables the lookup should never be empty)
-    if (length(lookup$column) == 0 & name %in% meta_var_names) {
+    if (nrow(lookup) == 0 & name %in% meta_var_names) {
       # meta variables do not need to be tied to a form thus the
       # formname does not need to be part of the regex
       lookup <- cl[grepl(paste0("^", name, "$"), cl$column), ]
