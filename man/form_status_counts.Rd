@@ -17,10 +17,10 @@ form type and patient id. The numbers are occurence counts.
 \examples{
 # prepare path to example export
 export_location <- system.file("extdata",
-                               "s_export_CSV-xls_BMD.zip",
+                               "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- read_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial(data_dir = export_location)
 
 # get form status
 form_status_counts(sT_export)
