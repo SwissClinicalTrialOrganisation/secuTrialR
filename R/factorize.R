@@ -100,13 +100,12 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
     }
     # exception for non-unique entries in the value column of the lookup table
     # e.g. decoding of mnpptnid to user names can be non-unique
-    # needs to be while since something can duplicated more than once
     # for now it is restricted to mnpptnid
-    idx <- 2
-    while (any(duplicated(lookup$value)) & name == "mnpptnid") {
+    if (any(duplicated(lookup$value)) & name == "mnpptnid") {
+      # concat the value with the code for duplication after first
       lookup$value[which(duplicated(lookup$value))] <-
-        paste(lookup$value[which(duplicated(lookup$value))], idx)
-      idx <- idx + 1
+        paste(lookup$value[which(duplicated(lookup$value))],
+              lookup$code[which(duplicated(lookup$value))])
     }
 
     data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
