@@ -1,5 +1,9 @@
 #' Add factors to secuTrialdata objects
-#' @description secuTrial can return a codebook of codes and labels for categorical variables, including lookup type variables, if this option is selected in the export tool ('reference values as separate table'). This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects, \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be used by users. The other methods could be used with customized codebooks.
+#' @description secuTrial can return a codebook of codes and labels for categorical variables, including lookup
+#'              type variables, if this option is selected in the export tool ('reference values as separate table').
+#'              This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects,
+#'              \code{data.frames}, \code{integer}s and \code{logical}s, but the intent is that only the former be
+#'              used by users. The other methods could be used with customized codebooks.
 #' @rdname factorize
 #' @name factorize
 #' @param x a \code{secuTrialdata} object
@@ -18,7 +22,9 @@
 factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 
 #' Method for secuTrialdata objects
-#' These objects include all relevant data (assuming that reference values are saved to a separate table, \link[see here for info]{https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/})
+#' These objects include all relevant data (assuming that reference values are saved to a separate table,
+#' \link[see here for info]{https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/})
+#'
 #' @rdname factorize
 #' @param object a \code{secuTrialdata} object
 #'
@@ -35,14 +41,20 @@ factorize_secuTrial.secuTrialdata <- function(object) {
 
   x <- object$export_options$data_names
   names(x) <- NULL
+  # not for meta tables
   x <- x[!x %in% object$export_options$meta_names]
-  obs <- lapply(x, function(obj){
-    tmp <- object[[obj]]
-    tmp <- factorize_secuTrial(tmp, object$cl, form = obj, items = object[[object$export_options$meta_names$items]])
-    tmp
+  # factorize for every data table in the export
+  factorized_tables <- lapply(x, function(form_name) {
+    curr_form_data <- object[[form_name]]
+    # passes to factorize_secuTrial.data.frame
+    curr_form_data <- factorize_secuTrial(curr_form_data,
+                                          cl = object$cl,
+                                          form = form_name,
+                                          items = object[[object$export_options$meta_names$items]])
+    curr_form_data
   })
-  obs
-  object[x] <- obs
+  # override with factorized output
+  object[x] <- factorized_tables
   object$export_options$factorized <- TRUE
   object
 }
@@ -58,23 +70,36 @@ factorize_secuTrial.secuTrialdata <- function(object) {
 # # data.frame method
 # nolint end
 factorize_secuTrial.data.frame <- function(data, cl, form, items) {
+  # character reformatting
   if (!is.character(cl$column)) cl$column <- as.character(cl$column)
   if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
   if (!is.character(items$lookuptable)) items$lookuptable <- as.character(items$lookuptable)
   lookups <- subset(items, !is.na(items$lookuptable))
   lookups <- unique(lookups[, c("lookuptable", "ffcolname")])
 
+  # needed for the meta variable exception check below
+  meta_var_names <- unique(cl$column[! grepl(".", cl$column, fixed = TRUE)])
+
   str <- strsplit(cl$column, ".", fixed = TRUE)
-  str <- sapply(str, function(x) x[2])
+  # split by "." have two entries and the second is needed
+  # the rest has one entry i.e. length(x)
+  str <- sapply(str, function(x) x[length(x)])
   cl$var <- str
   w <- cl$column %in% lookups$lookuptable
   cl$var[w] <- lookups$ffcolname[match(cl$column[w], lookups$lookuptable)]
 
-  for (i in names(data)[names(data) %in% cl$var]) {
-    lookup <- cl[grepl(paste0(form, ".", i, "$"), cl$column) |
+  for (name in names(data)[names(data) %in% cl$var]) {
+    # lookup for non-meta variables
+    lookup <- cl[grepl(paste0(form, ".", name, "$"), cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
-    data[, paste0(i, ".factor")] <- factorize_secuTrial(data[, i], lookup)
-    data <- .move_column_after(data, paste0(i, ".factor"), i)
+    # exception for meta variables (for non meta variables the lookup should never be empty)
+    if (nrow(lookup) == 0 & name %in% meta_var_names) {
+      # meta variables do not need to be tied to a form thus the
+      # formname does not need to be part of the regex
+      lookup <- cl[grepl(paste0("^", name, "$"), cl$column), ]
+    }
+    data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
+    data <- .move_column_after(data, paste0(name, ".factor"), name)
   }
   return(data)
 }
