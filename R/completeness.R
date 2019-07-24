@@ -10,10 +10,10 @@
 #' @examples
 #' # prepare path to example export
 #' export_location <- system.file("extdata",
-#'                                "s_export_CSV-xls_BMD.zip",
+#'                                "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
-#' sT_export <- read_secuTrial_export(data_dir = export_location)
+#' sT_export <- read_secuTrial(data_dir = export_location)
 #'
 #' # get form status
 #' form_status_counts(sT_export)
@@ -25,6 +25,16 @@ form_status_counts.secuTrialdata <- function(object) {
 
   if (! object$export_options$form_status) {
     stop("Please reexport with the Form status selected for this function to work.")
+  }
+
+  # the function only works with factorized exports
+  if (! object$export_options$factorized) {
+    stop("Please use a factorized (see factorize_secuTrial()) secuTrialdata object for this function to work.")
+  }
+
+  # check for add_if
+  if (! object$export_options$add_id) {
+    stop("Please reexport with the Add-ID selected for this function to work.")
   }
 
   # init output
@@ -45,61 +55,44 @@ form_status_counts.secuTrialdata <- function(object) {
     # if there are no mnpfcs varibles then form status can not be assessed
     # condition 2
     # some files may be empty and must be skipped (e.g. audit trail (at))
+    # condition 3
+    # there must be a pat_id
     if (length(grep("mnpfcs", names(curr_form))) & nrow(curr_form) & ("pat_id" %in% names(curr_form))) {
 
-      # do something with the data
-      form_status_table <- curr_form[, c("pat_id", "mnpfcs0", "mnpfcs1", "mnpfcs2")]
+      # select relevant columns
+      form_status_table <- curr_form[, c("pat_id",
+                                         "mnpfcs0.factor",
+                                         "mnpfcs1.factor",
+                                         "mnpfcs2.factor")]
 
-      # translate to number encoding
-      if (! object$export_options$refvals_separate) {
-        lang <- object$export_options$dict_items$lang
-        dict <- .get_dict("dict_form_status_mnpfcs.csv")[, c("vname", "code", lang)]
-        for (name in c("mnpfcs0", "mnpfcs1", "mnpfcs2")) {
-          # mgsub is from the qdap package - potentially a spot for a different solution
-          form_status_table[, name] <- mgsub(form_status_table[, name],
-                                            pattern = dict[which(dict$vname == name), ][, lang],
-                                            replacement = dict[which(dict$vname == name), ][, "code"])
-        }
-      }
+      # the warnings here are uninformative
+      status_summary0 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs0.factor))
+      status_summary1 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs1.factor))
+      status_summary2 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs2.factor))
 
-      status_summary0 <- form_status_table %>% count(pat_id, mnpfcs0)
-      status_summary1 <- form_status_table %>% count(pat_id, mnpfcs1)
-      status_summary2 <- form_status_table %>% count(pat_id, mnpfcs2)
-
-      spread_summary0 <- spread(status_summary0, key = mnpfcs0, value = n)
+      spread_summary0 <- spread(status_summary0, key = mnpfcs0.factor, value = n)
       # catch exceptions
-      if (! "0" %in% names(spread_summary0)) {
-        spread_summary0$"0" <- NA
+      if (! "empty" %in% names(spread_summary0)) {
+        spread_summary0$"empty" <- NA
       }
-      if (! "2" %in% names(spread_summary0)) {
-        spread_summary0$"2" <- NA
+      if (! "partly filled" %in% names(spread_summary0)) {
+        spread_summary0$"partly filled" <- NA
       }
-      if (! "4" %in% names(spread_summary0)) {
-        spread_summary0$"4" <- NA
+      if (! "completely filled" %in% names(spread_summary0)) {
+        spread_summary0$"completely filled" <- NA
       }
 
-      spread_summary1 <- spread(status_summary1, key = mnpfcs1, value = n)
+      spread_summary1 <- spread(status_summary1, key = mnpfcs1.factor, value = n)
       # catch exceptions
-      if (! "1" %in% names(spread_summary1)) {
-        spread_summary1$"1" <- NA
+      if (! "with errors" %in% names(spread_summary1)) {
+        spread_summary1$"with errors" <- NA
       }
 
-      spread_summary2 <- spread(status_summary2, key = mnpfcs2, value = n)
+      spread_summary2 <- spread(status_summary2, key = mnpfcs2.factor, value = n)
       # catch exceptions
-      if (! "1" %in% names(spread_summary2)) {
-        spread_summary2$"1" <- NA
+      if (! "with warnings" %in% names(spread_summary2)) {
+        spread_summary2$"with warnings" <- NA
       }
-
-      # col names
-      names(spread_summary0) <- mgsub(names(spread_summary0),
-                                      pattern = c("0", "2", "4"),
-                                      replacement = c("empty", "partly_filled", "completely_filled"))
-      names(spread_summary1) <- gsub(names(spread_summary1),
-                                     pattern = "1",
-                                     replacement = "with_errors")
-      names(spread_summary2) <- gsub(names(spread_summary2),
-                                     pattern = "1",
-                                     replacement = "with_warnings")
 
       # merge the tables on pat_id
       status_summary_table <- merge(spread_summary0, spread_summary1, by = "pat_id") %>%
@@ -110,8 +103,8 @@ form_status_counts.secuTrialdata <- function(object) {
       # only retain relevant columns
       form_status_summary_table <- rbind(
         form_status_summary_table,
-        subset(status_summary_table, select = c("pat_id", "form_name", "completely_filled", "partly_filled",
-                                                "empty", "with_warnings", "with_errors"))
+        subset(status_summary_table, select = c("pat_id", "form_name", "completely filled", "partly filled",
+                                                "empty", "with warnings", "with errors"))
       )
     }
   }
@@ -131,10 +124,10 @@ form_status_counts.secuTrialdata <- function(object) {
 #' @examples
 #' # prepare path to example export
 #' export_location <- system.file("extdata",
-#'                                "s_export_CSV-xls_BMD.zip",
+#'                                "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
-#' sT_export <- read_secuTrial_export(data_dir = export_location)
+#' sT_export <- read_secuTrial(data_dir = export_location)
 #'
 #' # get form status
 #' form_status_summary(sT_export)
@@ -147,19 +140,19 @@ form_status_summary.secuTrialdata <- function(object) {
   status_counts <- form_status_counts(object)
   status_summary <- status_counts %>%
     group_by(form_name) %>%
-    summarise(partly_filled = sum(partly_filled),
-              completely_filled = sum(completely_filled),
-              empty = sum(empty),
-              with_warnings = sum(with_warnings),
-              with_errors = sum(with_errors))
-  # the sum of partly_filled, completely_filled, empty is the total count of
+    summarise("partly filled" = sum(`partly filled`),
+              "completely filled" = sum(`completely filled`),
+              "empty" = sum(`empty`),
+              "with warnings" = sum(`with warnings`),
+              "with errors" = sum(`with errors`))
+  # the sum of "partly filled", "completely filled", "empty" is the total count of
   # registered forms for each form type (form_name)
-  form_count <- rowSums(subset(status_summary, select = c(partly_filled,
-                                               completely_filled,
+  form_count <- rowSums(subset(status_summary, select = c(`partly filled`,
+                                               `completely filled`,
                                                empty)))
   # omit form_name and divide all count columns by form_count
   percentage <- status_summary[, 2:ncol(status_summary)] %>%
-                  mutate_all(funs(. / form_count))
+                  mutate_all(list(~. / form_count))
   # label the percent columns
   names(percentage) <- paste0(names(percentage), ".percent")
   # append all columns together
