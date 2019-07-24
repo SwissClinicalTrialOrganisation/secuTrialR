@@ -98,6 +98,17 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
       # formname does not need to be part of the regex
       lookup <- cl[grepl(paste0("^", name, "$"), cl$column), ]
     }
+    # exception for non-unique entries in the value column of the lookup table
+    # e.g. decoding of mnpptnid to user names can be non-unique
+    # needs to be while since something can duplicated more than once
+    # for now it is restricted to mnpptnid
+    idx <- 2
+    while (any(duplicated(lookup$value)) & name == "mnpptnid") {
+      lookup$value[which(duplicated(lookup$value))] <-
+        paste(lookup$value[which(duplicated(lookup$value))], idx)
+      idx <- idx + 1
+    }
+
     data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
     data <- .move_column_after(data, paste0(name, ".factor"), name)
   }
