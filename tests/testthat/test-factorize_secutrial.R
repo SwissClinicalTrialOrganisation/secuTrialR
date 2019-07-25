@@ -70,8 +70,7 @@ duplicate_2$code <- 2019
 dat$cl <- rbind(dat$cl, duplicate_1, duplicate_2)
 
 test_that("Exception for duplicated factor levels in mnpptnid working.", {
-  # this tests for lack of errors, i.e. correct execution
-  expect_error(factorize_secuTrial(dat), NA)
+  expect_warning(factorize_secuTrial(dat))
 })
 
 options(stringsAsFactors = sAF)

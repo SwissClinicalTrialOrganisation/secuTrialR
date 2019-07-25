@@ -102,6 +102,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
     # e.g. decoding of mnpptnid to user names can be non-unique
     # for now it is restricted to mnpptnid
     if (any(duplicated(lookup$value)) & name == "mnpptnid") {
+      warning("Duplicate user names found in factorization of mnpptnid.")
       # concat the value with the code for duplication after first
       lookup$value[which(duplicated(lookup$value))] <-
         paste(lookup$value[which(duplicated(lookup$value))],
