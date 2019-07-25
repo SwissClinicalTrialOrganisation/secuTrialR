@@ -61,4 +61,16 @@ test_that("refactorize warning", {
           expect_warning(factorize_secuTrial(fact_dat))
 })
 
+# manually adding duplicate factor levels to cl table for mnpptnid
+reference_line <- as.vector(dat$cl[158,])
+duplicate_1 <- reference_line
+duplicate_2 <- reference_line
+duplicate_1$code <- 1987
+duplicate_2$code <- 2019
+dat$cl <- rbind(dat$cl, duplicate_1, duplicate_2)
+
+test_that("Exception for duplicated factor levels in mnpptnid working.", {
+  expect_warning(factorize_secuTrial(dat))
+})
+
 options(stringsAsFactors = sAF)
