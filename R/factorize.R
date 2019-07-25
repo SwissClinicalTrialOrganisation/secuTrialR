@@ -39,12 +39,12 @@ factorize_secuTrial.secuTrialdata <- function(object) {
   }
   if (object$export_options$factorized) warning("already factorized - any changes will be lost")
 
-  x <- object$export_options$data_names
-  names(x) <- NULL
+  table_names <- object$export_options$data_names
+  names(table_names) <- NULL
   # not for meta tables
-  x <- x[!x %in% object$export_options$meta_names]
+  table_names <- table_names[!table_names %in% object$export_options$meta_names]
   # factorize for every data table in the export
-  factorized_tables <- lapply(x, function(form_name) {
+  factorized_tables <- lapply(table_names, function(form_name) {
     curr_form_data <- object[[form_name]]
     # passes to factorize_secuTrial.data.frame
     curr_form_data <- factorize_secuTrial(curr_form_data,
@@ -55,7 +55,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
     curr_form_data
   })
   # override with factorized output
-  object[x] <- factorized_tables
+  object[table_names] <- factorized_tables
   object$export_options$factorized <- TRUE
   object
 }
@@ -75,6 +75,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
   if (!is.character(cl$column)) cl$column <- as.character(cl$column)
   if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
   if (!is.character(items$lookuptable)) items$lookuptable <- as.character(items$lookuptable)
+  # lookups are similar to catalogues
   lookups <- subset(items, !is.na(items$lookuptable))
   lookups <- unique(lookups[, c("lookuptable", "ffcolname")])
 
@@ -102,17 +103,22 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     # lookup for non-meta variables
     lookup <- cl[grepl(regex_cl, cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
+
     # exception for meta variables (for non meta variables the lookup should never be empty)
     if (nrow(lookup) == 0 & name %in% meta_var_names) {
       # meta variables do not need to be tied to a form thus the
       # formname does not need to be part of the regex
       lookup <- cl[grepl(paste0("^", name, "$"), cl$column), ]
     }
+
+    # subset lookup rows for only current var name (relevant for lookup tables)
+    lookup <- lookup[which(lookup$var == name), ]
+
     # exception for non-unique entries in the value column of the lookup table
     # e.g. decoding of mnpptnid to user names can be non-unique
-    # for now it is restricted to mnpptnid
-    if (any(duplicated(lookup$value)) & name == "mnpptnid") {
-      warning("Duplicate user names found in factorization of mnpptnid.")
+    # e.g. lookuptables can show this behaviour too
+    if (any(duplicated(lookup$value))) { #} & name == "mnpptnid") {
+      warning(paste0("Duplicate values found during factorization of ", name))
       # concat the value with the code for duplication after first
       lookup$value[which(duplicated(lookup$value))] <-
         paste(lookup$value[which(duplicated(lookup$value))],
