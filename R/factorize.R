@@ -50,7 +50,8 @@ factorize_secuTrial.secuTrialdata <- function(object) {
     curr_form_data <- factorize_secuTrial(curr_form_data,
                                           cl = object$cl,
                                           form = form_name,
-                                          items = object[[object$export_options$meta_names$items]])
+                                          items = object[[object$export_options$meta_names$items]],
+                                          short_names = object$export_options$short_names)
     curr_form_data
   })
   # override with factorized output
@@ -69,7 +70,7 @@ factorize_secuTrial.secuTrialdata <- function(object) {
 # #' @examples
 # # data.frame method
 # nolint end
-factorize_secuTrial.data.frame <- function(data, cl, form, items) {
+factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
   # character reformatting
   if (!is.character(cl$column)) cl$column <- as.character(cl$column)
   if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
@@ -89,8 +90,17 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items) {
   cl$var[w] <- lookups$ffcolname[match(cl$column[w], lookups$lookuptable)]
 
   for (name in names(data)[names(data) %in% cl$var]) {
+    # construct search regex
+    # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
+    # condition 2: this is only appropriate if short_names == TRUE
+    if ("mnpsubdocid" %in% names(data) & short_names) {
+      adjusted_form <- gsub(form, pattern = "^e", replacement = "^e.+")
+      regex_cl <- paste0(adjusted_form, ".", name, "$")
+    } else { # non-repetitions (regular case)
+      regex_cl <- paste0(form, ".", name, "$")
+    }
     # lookup for non-meta variables
-    lookup <- cl[grepl(paste0(form, ".", name, "$"), cl$column) |
+    lookup <- cl[grepl(regex_cl, cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
     # exception for meta variables (for non meta variables the lookup should never be empty)
     if (nrow(lookup) == 0 & name %in% meta_var_names) {
