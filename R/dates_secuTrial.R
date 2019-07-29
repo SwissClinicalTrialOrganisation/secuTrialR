@@ -3,7 +3,8 @@
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
-#' @details New variables are created appended with \code{.date} or \code{.datetime}. This is a safety mechanism in case NAs are inadvertently introduced.
+#' @details New variables are created appended with \code{.date} or \code{.datetime}.
+#'          This is a safety mechanism in case NAs are inadvertently introduced.
 #' @return same as the original object with date variables converted to \code{Date}s.
 #' @export
 #' @examples
@@ -28,21 +29,38 @@ datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
 
 #' @rdname dates_secuTrial
 #' @export
-dates_secuTrial.secuTrialdata <- function(object, ...){
+dates_secuTrial.secuTrialdata <- function(object, ...) {
   if (object$export_options$dated) warning("dates already added")
 
-  x <- object$export_options$data_names
-  names(x) <- NULL
-  x <- x[!x %in% object$export_options$meta_names]
+  table_names <- object$export_options$data_names
+  names(table_names) <- NULL
+  # not for meta tables
+  table_names <- table_names[!table_names %in% object$export_options$meta_names]
   # get language and internationalization dictionary for items table
   dict <- object$export_options$dict_items
 
-  obs <- lapply(x, function(obj){
+  obs <- lapply(table_names, function(obj) {
+
     # find date variables
     it <- object[[object$export_options$meta_names$items]]
     qu <- object[[object$export_options$meta_names$questions]]
+    # if meta data is duplicated then the additional "formtablename"
+    # in the items table creates a problem and is thus removed here
+    if(object$export_options$duplicate_meta) {
+      it <- subset(it, select = -c(formtablename))
+    }
     itqu <- merge(it, qu, by = "fgid")
-    itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
+
+    # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
+    # condition 2: this is only appropriate if short_names == TRUE
+    if ("mnpsubdocid" %in% names(object[[obj]]) & object$export_options$short_names) {
+      regex <- gsub(obj, pattern = "^e", replacement = "^e.+")
+      # grep with custom regex
+      itqu <- itqu[grepl(regex, as.character(itqu$formtablename)), ]
+    } else {
+      itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
+    }
+
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
     date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
@@ -60,9 +78,8 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
     datetimeformat <- object$export_options$datetime.format
     tmp <- object[[obj]]
     tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, ...)
-    tmp
   })
-  object[x] <- obs
+  object[table_names] <- obs
   object$export_options$dated <- TRUE
   object
 
@@ -72,7 +89,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...){
 # @param data data.frame
 # @param datevars string consisting of variables with dates
 # @param format format of dates (typically taken from \code{object$export_options$date.format})
-dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, warn = FALSE){
+dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, warn = FALSE) {
   datevars <- datevars[datevars %in% names(data)]
   timevars <- timevars[timevars %in% names(data)]
   if (length(datevars) > 0) {
@@ -87,7 +104,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   data
   if (length(timevars) > 0) {
     for (x in timevars) {
-      newdatecol <- secuTrialR:::datetimes_secuTrial(data[, x], datetimeformat)
+      newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
       data[, paste0(x, ".datetime")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }
@@ -99,14 +116,14 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
 
 # @rdname dates_secuTrial
 # @param var date variable to be converted
-dates_secuTrial.character <- function(var, format){
+dates_secuTrial.character <- function(var, format) {
   # some export types probably return strings
   d <- as.Date(var, format = format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-datetimes_secuTrial.character <- function(var, format){
+datetimes_secuTrial.character <- function(var, format) {
   # some export types probably return strings
   d <- as.POSIXct(var, format = format)
   if (!is.null(label(var))) label(d) <- label(var)
@@ -114,7 +131,7 @@ datetimes_secuTrial.character <- function(var, format){
   d
 }
 # @rdname dates_secuTrial
-dates_secuTrial.factor <- function(var, format){
+dates_secuTrial.factor <- function(var, format) {
   # depending on options, strings might be converted to factors
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
@@ -122,16 +139,16 @@ dates_secuTrial.factor <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-datetimes_secuTrial.factor <- function(var, format){
+datetimes_secuTrial.factor <- function(var, format) {
   # depending on options, strings might be converted to factors
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 # @rdname dates_secuTrial
-dates_secuTrial.integer <- function(var, format){
+dates_secuTrial.integer <- function(var, format) {
   # this is the default type
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
@@ -139,16 +156,16 @@ dates_secuTrial.integer <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-datetimes_secuTrial.integer <- function(var, format){
+datetimes_secuTrial.integer <- function(var, format) {
   # this is the default type
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 # @rdname dates_secuTrial
-dates_secuTrial.numeric <- function(var, format){
+dates_secuTrial.numeric <- function(var, format) {
   # this is the default type
   # convert to string
   d <- dates_secuTrial(as.character(var), format)
@@ -156,16 +173,16 @@ dates_secuTrial.numeric <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-datetimes_secuTrial.numeric <- function(var, format){
+datetimes_secuTrial.numeric <- function(var, format) {
   # this is the default type
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 # @rdname dates_secuTrial
-dates_secuTrial.logical <- function(var, format){
+dates_secuTrial.logical <- function(var, format) {
   # this happens when the variable is empty
   # convert to string to get (empty) Date object
   d <- dates_secuTrial(as.character(var), format)
@@ -173,21 +190,21 @@ dates_secuTrial.logical <- function(var, format){
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
-datetimes_secuTrial.logical <- function(var, format){
+datetimes_secuTrial.logical <- function(var, format) {
   # this happens when the variable is empty
   # convert to string to get (empty) Date object
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
 }
 # @rdname dates_secuTrial
-dates_secuTrial.Date <- function(var, format){
+dates_secuTrial.Date <- function(var, format) {
   # in case a variable is already a date
   warning(var, " is already a Date")
   var
 }
-datetimes_secuTrial.POSIXct <- function(var, format){
+datetimes_secuTrial.POSIXct <- function(var, format) {
   # in case a variable is already a date
   warning(var, " is already a POSIXct")
   var

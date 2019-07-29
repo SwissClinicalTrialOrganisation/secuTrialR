@@ -19,7 +19,8 @@ same as the original object with date variables converted to \code{Date}s.
 Converts dates and datetime variables to \code{Date} or \code{POSIXct} class, as appropriate.
 }
 \details{
-New variables are created appended with \code{.date} or \code{.datetime}. This is a safety mechanism in case NAs are inadvertently introduced.
+New variables are created appended with \code{.date} or \code{.datetime}.
+         This is a safety mechanism in case NAs are inadvertently introduced.
 }
 \examples{
 # prepare path to example export
