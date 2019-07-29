@@ -104,7 +104,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   data
   if (length(timevars) > 0) {
     for (x in timevars) {
-      newdatecol <- secuTrialR:::datetimes_secuTrial(data[, x], datetimeformat)
+      newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
       data[, paste0(x, ".datetime")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }
@@ -142,7 +142,7 @@ dates_secuTrial.factor <- function(var, format) {
 datetimes_secuTrial.factor <- function(var, format) {
   # depending on options, strings might be converted to factors
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
@@ -159,7 +159,7 @@ dates_secuTrial.integer <- function(var, format) {
 datetimes_secuTrial.integer <- function(var, format) {
   # this is the default type
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
@@ -176,7 +176,7 @@ dates_secuTrial.numeric <- function(var, format) {
 datetimes_secuTrial.numeric <- function(var, format) {
   # this is the default type
   # convert to string
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
@@ -193,7 +193,7 @@ dates_secuTrial.logical <- function(var, format) {
 datetimes_secuTrial.logical <- function(var, format) {
   # this happens when the variable is empty
   # convert to string to get (empty) Date object
-  d <- secuTrialR:::datetimes_secuTrial(as.character(var), format)
+  d <- datetimes_secuTrial(as.character(var), format)
   if (!is.null(label(var))) label(d) <- label(var)
   if (!is.null(units(var))) units(d) <- units(var)
   d
