@@ -110,6 +110,7 @@ form_status_counts.secuTrialdata <- function(object) {
   }
   # NA values here are really 0 counts
   form_status_summary_table[is.na(form_status_summary_table)] <- 0
+  names(form_status_summary_table) <- gsub(names(form_status_summary_table), pattern = " ", replacement = "_")
   form_status_summary_table
 }
 
@@ -140,15 +141,15 @@ form_status_summary.secuTrialdata <- function(object) {
   status_counts <- form_status_counts(object)
   status_summary <- status_counts %>%
     group_by(form_name) %>%
-    summarise("partly filled" = sum(`partly filled`),
-              "completely filled" = sum(`completely filled`),
-              "empty" = sum(`empty`),
-              "with warnings" = sum(`with warnings`),
-              "with errors" = sum(`with errors`))
+    summarise("partly_filled" = sum(partly_filled),
+              "completely_filled" = sum(completely_filled),
+              "empty" = sum(empty),
+              "with_warnings" = sum(with_warnings),
+              "with_errors" = sum(with_errors))
   # the sum of "partly filled", "completely filled", "empty" is the total count of
   # registered forms for each form type (form_name)
-  form_count <- rowSums(subset(status_summary, select = c(`partly filled`,
-                                               `completely filled`,
+  form_count <- rowSums(subset(status_summary, select = c(partly_filled,
+                                               completely_filled,
                                                empty)))
   # omit form_name and divide all count columns by form_count
   percentage <- status_summary[, 2:ncol(status_summary)] %>%

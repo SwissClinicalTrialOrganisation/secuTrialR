@@ -23,7 +23,7 @@ test_that("Test fail", {
 })
 
 # long and short cannot match on form_names, so we just check the data columns
-cols_counts <- c("pat_id", "completely filled", "partly filled", "empty", "with warnings", "with errors")
+cols_counts <- c("pat_id", "completely_filled", "partly_filled", "empty", "with_warnings", "with_errors")
 
 test_that("Test output equality for different export options", {
   expect_equal(form_status_counts(s_ctu05)[, cols_counts], form_status_counts(l_ctu05)[, cols_counts])
@@ -51,36 +51,36 @@ test_that("Individual entries", {
   #                    1x fu visit partly filled,
   #                    1x intervals completely filled
   expect_equal(counts_for_custom_tests[which(counts_for_custom_tests$pat_id == "RPACKRIG-USZ-4" &
-                                               counts_for_custom_tests$form_name == "bl"), ]$`completely filled`,
+                                               counts_for_custom_tests$form_name == "bl"), ]$completely_filled,
                1)
   expect_equal(counts_for_custom_tests[which(counts_for_custom_tests$pat_id == "RPACKRIG-USZ-4" &
-                                               counts_for_custom_tests$form_name == "fuvisit"), ]$`completely filled`,
+                                               counts_for_custom_tests$form_name == "fuvisit"), ]$completely_filled,
                3)
   expect_equal(counts_for_custom_tests[which(counts_for_custom_tests$pat_id == "RPACKRIG-USZ-4" &
-                                               counts_for_custom_tests$form_name == "fuvisit"), ]$`partly filled`,
+                                               counts_for_custom_tests$form_name == "fuvisit"), ]$partly_filled,
                1)
   expect_equal(counts_for_custom_tests[which(counts_for_custom_tests$pat_id == "RPACKRIG-USZ-4" &
-                                               counts_for_custom_tests$form_name == "intervals"), ]$`completely filled`,
+                                               counts_for_custom_tests$form_name == "intervals"), ]$completely_filled,
                1)
 })
 
 test_that("Test that partly, completely and empty percentages add up to 1 i.e. 100%", {
   # the vector is made up of ones subtracting one from all of them and summing should always return 0
   expect_equal(sum(rowSums(subset(form_status_summary(s_ctu05),
-                                  select = c("partly filled.percent",
-                                             "completely filled.percent",
+                                  select = c("partly_filled.percent",
+                                             "completely_filled.percent",
                                              "empty.percent"))) - 1),
                0)
   expect_equal(sum(rowSums(subset(form_status_summary(l_tes05_utf),
-                                  select = c("partly filled.percent",
-                                             "completely filled.percent",
+                                  select = c("partly_filled.percent",
+                                             "completely_filled.percent",
                                              "empty.percent"))) - 1),
                0)
 })
 
-cols_summary <- c("partly filled", "completely filled", "empty", "with warnings",
-                  "with errors", "partly filled.percent", "completely filled.percent",
-                  "empty.percent", "with warnings.percent", "with errors.percent", "form_count")
+cols_summary <- c("partly_filled", "completely_filled", "empty", "with_warnings",
+                  "with_errors", "partly_filled.percent", "completely_filled.percent",
+                  "empty.percent", "with_warnings.percent", "with_errors.percent", "form_count")
 
 test_that("Test column sums", {
   expect_equal(colSums(form_status_summary(s_ctu05)[, cols_summary]),
