@@ -40,6 +40,7 @@ test_that("number of factors in AE form", {
   expect_equal(sum(w_s), 21)
 })
 
+# TODO: check levels in lookup table related variables
 test_that("Levels in liver cirrhosis", {
   expect_equal(levels(fact_ctu05_l$ctu05baseline$liver_cirrh_type.factor), c("C", "B", "A"))
   expect_equal(levels(fact_ctu05_s$baseline$liver_cirrh_type.factor), c("C", "B", "A"))

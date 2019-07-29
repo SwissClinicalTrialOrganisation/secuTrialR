@@ -112,6 +112,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     }
 
     # subset lookup rows for only current var name (relevant for lookup tables)
+    # if this is not done then additional wrong levels may be set
     lookup <- lookup[which(lookup$var == name), ]
 
     # exception for non-unique entries in the value column of the lookup table
