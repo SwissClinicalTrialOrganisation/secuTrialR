@@ -50,12 +50,22 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
       it <- subset(it, select = -c(formtablename))
     }
     itqu <- merge(it, qu, by = "fgid")
-    itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
+
+    # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
+    # condition 2: this is only appropriate if short_names == TRUE
+    if ("mnpsubdocid" %in% names(object[[obj]]) & object$export_options$short_names) {
+      regex <- gsub(obj, pattern = "^e", replacement = "^e.+")
+      # grep with custom regex
+      itqu <- itqu[grepl(regex, as.character(itqu$formtablename)), ]
+    } else {
+      itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
+    }
+
     itqu$itemtype <- as.character(itqu$itemtype)
     itqu$ffcolname <- as.character(itqu$ffcolname)
     date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
     itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
-   # remove year, interval and time
+    # remove year, interval and time
     year_string <- paste0("\\(", dict[, "year"], "\\)")
     itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
     itqu <- itqu[!grepl(dict[, "interval"], itqu$itemtype, ignore.case = TRUE), ]
