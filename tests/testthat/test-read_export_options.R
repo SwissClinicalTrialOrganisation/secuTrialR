@@ -109,3 +109,11 @@ test_that("Project version parsing", {
   expect_false(bmd_unzipped$duplicate_meta)
   expect_true(dup_meta$duplicate_meta)
 })
+
+# test time of export
+# manually checked all of there in the respective ExportOptions.html files
+test_that("Time of export", {
+  expect_equal(sT_export$export_options$time_of_export, "25.02.2019 - 15:14:27 (CET)")
+  expect_equal(export_options_regular_long$time_of_export, "18.03.2019 - 10:47:03 (CET)")
+  expect_equal(sT_export2$export_options$time_of_export, "30.04.2019 - 15:29:45 (CEST)")
+})
