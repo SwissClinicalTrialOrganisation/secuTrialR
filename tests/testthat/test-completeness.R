@@ -7,6 +7,10 @@ l_ctu05 <- read_secuTrial(system.file("extdata",
 s_ctu05 <- read_secuTrial(system.file("extdata",
                                       "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
                                       package = "secuTrialR"))
+# polish
+s_ctu05_pl <- read_secuTrial(system.file("extdata", "examples_short",
+                                         "s_export_CSV-xls_CTU05_20190710-105752_pl.zip",
+                                         package = "secuTrialR"))
 
 # TES05
 s_tes05_iso <- read_secuTrial(system.file("extdata",
@@ -28,6 +32,8 @@ cols_counts <- c("pat_id", "completely_filled", "partly_filled", "empty", "with_
 test_that("Test output equality for different export options", {
   expect_equal(form_status_counts(s_ctu05)[, cols_counts], form_status_counts(l_ctu05)[, cols_counts])
   expect_equal(form_status_counts(s_tes05_iso)[, cols_counts], form_status_counts(l_tes05_utf)[, cols_counts])
+  # polish vs. english should be the same
+  expect_equal(form_status_counts(s_ctu05_pl)[, cols_counts], form_status_counts(l_ctu05)[, cols_counts])
 })
 
 test_that("Test column sums", {
@@ -92,6 +98,9 @@ test_that("Test column sums", {
   expect_equal(round(as.vector(colSums(form_status_summary(s_tes05_iso)[, cols_summary])), digits = 4),
                c(12, 21, 4, 0, 0, 2.9774, 2.6798, 0.3429, 0, 0, 37)
                )
+  # polish vs. english should be the same
+  expect_equal(colSums(form_status_summary(s_ctu05_pl)[, cols_summary]),
+               colSums(form_status_summary(l_ctu05)[, cols_summary]))
 })
 
 # TODO add more tests with warnings and errors and empty data
