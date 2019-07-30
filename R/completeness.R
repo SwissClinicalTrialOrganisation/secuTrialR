@@ -37,6 +37,10 @@ form_status_counts.secuTrialdata <- function(object) {
     stop("Please reexport with the Add-ID selected for this function to work.")
   }
 
+  # get dict
+  mnpfcs_dict <- .get_dict("dict_form_status_mnpfcs.csv")
+  curr_lang_and_en_dict <- mnpfcs_dict[, c("en", object$export_options$dict_items$lang)]
+
   # init output
   form_status_summary_table <- data.frame(pat_id = character(),
                                           form_name = character(),
@@ -47,9 +51,9 @@ form_status_counts.secuTrialdata <- function(object) {
                                           with_errors = integer())
 
   all_forms <- as.vector(object$export_options$data_names)
+
   for (form in all_forms) {
     curr_form <- object[[form]]
-
     # condition 1
     # mnpfcs0/1/2 contain the vital information
     # if there are no mnpfcs varibles then form status can not be assessed
@@ -58,6 +62,16 @@ form_status_counts.secuTrialdata <- function(object) {
     # condition 3
     # there must be a pat_id
     if (length(grep("mnpfcs", names(curr_form))) & nrow(curr_form) & ("pat_id" %in% names(curr_form))) {
+
+      # override to english if language differs from en
+      if (object$export_options$dict_items$lang != "en") {
+        curr_form$mnpfcs0.factor <- recode(curr_form$mnpfcs0.factor, !!! setNames(curr_lang_and_en_dict[, 1],
+                                                                                  curr_lang_and_en_dict[, 2]))
+        curr_form$mnpfcs1.factor <- recode(curr_form$mnpfcs1.factor, !!! setNames(curr_lang_and_en_dict[, 1],
+                                                                                  curr_lang_and_en_dict[, 2]))
+        curr_form$mnpfcs2.factor <- recode(curr_form$mnpfcs2.factor, !!! setNames(curr_lang_and_en_dict[, 1],
+                                                                                  curr_lang_and_en_dict[, 2]))
+      }
 
       # select relevant columns
       form_status_table <- curr_form[, c("pat_id",
