@@ -1,6 +1,6 @@
 #' A function to assess the status of forms
 #'
-#' This function returns a data.frame informing on the status of
+#' This function returns a data.frame informing on the status of saved
 #' forms per patient. There is a line for every combination of
 #' form type and patient id. The numbers are occurence counts.
 #'
@@ -132,6 +132,7 @@ form_status_counts.secuTrialdata <- function(object) {
 #'
 #' This function warps form_status_counts and returns a
 #' data.frame summarizing the statuses for each form.
+#' Only saved forms are considered for the statistic.
 #'
 #' @param object secuTrialdata object
 #' @keywords form status, completeness
