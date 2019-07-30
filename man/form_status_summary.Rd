@@ -12,6 +12,7 @@ form_status_summary(x, ...)
 \description{
 This function warps form_status_counts and returns a
 data.frame summarizing the statuses for each form.
+Only saved forms are considered for the statistic.
 }
 \examples{
 # prepare path to example export
