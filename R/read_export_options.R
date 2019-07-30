@@ -158,6 +158,16 @@ read_export_options <- function(data_dir) {
   # reference values
   refvals_seperate <- any(sapply(dict_settings[, "separatetable"], function(x) any(grepl(x, parsed_export))))
 
+  # this should only match once
+  created_idx <- unique(unlist(sapply(dict_keys[, "created"], function(x) grep(x, parsed_export))))
+  # should never happen
+  if (length(created_idx) > 1) {
+    warning("Export creation date parsing matching unexpectedly more than once and may thus be wrong.")
+  }
+  # time of export is two lines below the Created pattern
+  time_of_export <- parsed_export[created_idx + 2] %>%
+    trimws() %>%
+    gsub(pattern = "^<b>|</b>$", replacement = "")
 
   # dates ----
   # date format
@@ -217,6 +227,7 @@ read_export_options <- function(data_dir) {
                         data_dir = data_dir,
                         secuTrial.version = version,
                         project.version = pversion,
+                        time_of_export = time_of_export,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
