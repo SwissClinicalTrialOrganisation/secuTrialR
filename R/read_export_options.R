@@ -236,8 +236,9 @@ read_export_options <- function(data_dir) {
 }
 
 #' @export
-print.secutrialoptions <- function(x){
+print.secutrialoptions <- function(x) {
   cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
+  cat(paste("Time of export on server:", x$time_of_export, "\n"))
   cat(paste("Project version:", x$project.version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
   if (!x$short_names) cat(paste("File names appended with:", x$file_end, "\n"))
