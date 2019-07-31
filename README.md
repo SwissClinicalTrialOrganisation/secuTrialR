@@ -47,7 +47,7 @@ bmd_export <- read_secuTrial_export(data_dir = export_location)
 # load a second dataset
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- read_secuTrial_export(export_location)
+ctu05_raw <- read_secuTrial_export(export_location)
 
 # View names of the bmd_export object
 names(bmd_export)
@@ -152,7 +152,7 @@ Currently, `label_secuTrial` should be used prior to `dates_secuTrial` or `facto
 It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 
 ```r
-factors <- factorize_secuTrial(ctu05)
+factors <- factorize_secuTrial(ctu05_raw)
 ```
 This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
 
@@ -194,7 +194,7 @@ Date(time)s are a very common data type. They cannot be easily used though in th
 
 
 ```r
-dates <- dates_secuTrial(ctu05)
+dates <- dates_secuTrial(ctu05_raw)
 ```
 
 Date variables are converted to `Date` class, and datetimes are converted to `POSIXct` class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case `NA`s are accidentally created.
@@ -246,7 +246,50 @@ form_status_summary(ctu05)
 ```
 
 ```
-## Error in form_status_counts.secuTrialdata(object): Please use a factorized (see factorize_secuTrial()) secuTrialdata object for this function to work.
+##                  form_name partly_filled completely_filled empty
+## 1        atmnpctu05allmedi             0                 2     0
+## 2        atmnpctu05outcome             0                 5     0
+## 3  atmnpctu05studyterminat             0                 1     0
+## 4                  ctu05ae             0                 1     0
+## 5             ctu05allmedi             1                16     0
+## 6            ctu05baseline             3                14     0
+## 7             ctu05outcome             1                12     0
+## 8                 ctu05sae             0                 2     0
+## 9       ctu05studyterminat             0                10     0
+## 10          ctu05treatment             0                11     0
+##    with_warnings with_errors partly_filled.percent
+## 1              0           0            0.00000000
+## 2              0           0            0.00000000
+## 3              0           0            0.00000000
+## 4              0           0            0.00000000
+## 5              0           0            0.05882353
+## 6              0           0            0.17647059
+## 7              0           0            0.07692308
+## 8              0           0            0.00000000
+## 9              0           0            0.00000000
+## 10             0           0            0.00000000
+##    completely_filled.percent empty.percent with_warnings.percent
+## 1                  1.0000000             0                     0
+## 2                  1.0000000             0                     0
+## 3                  1.0000000             0                     0
+## 4                  1.0000000             0                     0
+## 5                  0.9411765             0                     0
+## 6                  0.8235294             0                     0
+## 7                  0.9230769             0                     0
+## 8                  1.0000000             0                     0
+## 9                  1.0000000             0                     0
+## 10                 1.0000000             0                     0
+##    with_errors.percent form_count
+## 1                    0          2
+## 2                    0          5
+## 3                    0          1
+## 4                    0          1
+## 5                    0         17
+## 6                    0         17
+## 7                    0         13
+## 8                    0          2
+## 9                    0         10
+## 10                   0         11
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
@@ -255,10 +298,6 @@ For a more patient id centered statistic you can perform the following.
 
 ```r
 form_status_counts(ctu05)
-```
-
-```
-## Error in form_status_counts.secuTrialdata(ctu05): Please use a factorized (see factorize_secuTrial()) secuTrialdata object for this function to work.
 ```
 
 This will give you a count based overview per patient id and form. Please note that both `form_status_summary` 
