@@ -242,54 +242,32 @@ have been filled.
 
 
 ```r
-form_status_summary(ctu05)
+count_summary <- form_status_summary(ctu05)
+tail(count_summary)
 ```
 
 ```
-##                  form_name partly_filled completely_filled empty
-## 1        atmnpctu05allmedi             0                 2     0
-## 2        atmnpctu05outcome             0                 5     0
-## 3  atmnpctu05studyterminat             0                 1     0
-## 4                  ctu05ae             0                 1     0
-## 5             ctu05allmedi             1                16     0
-## 6            ctu05baseline             3                14     0
-## 7             ctu05outcome             1                12     0
-## 8                 ctu05sae             0                 2     0
-## 9       ctu05studyterminat             0                10     0
-## 10          ctu05treatment             0                11     0
-##    with_warnings with_errors partly_filled.percent
-## 1              0           0            0.00000000
-## 2              0           0            0.00000000
-## 3              0           0            0.00000000
-## 4              0           0            0.00000000
-## 5              0           0            0.05882353
-## 6              0           0            0.17647059
-## 7              0           0            0.07692308
-## 8              0           0            0.00000000
-## 9              0           0            0.00000000
-## 10             0           0            0.00000000
-##    completely_filled.percent empty.percent with_warnings.percent
-## 1                  1.0000000             0                     0
-## 2                  1.0000000             0                     0
-## 3                  1.0000000             0                     0
-## 4                  1.0000000             0                     0
-## 5                  0.9411765             0                     0
-## 6                  0.8235294             0                     0
-## 7                  0.9230769             0                     0
-## 8                  1.0000000             0                     0
-## 9                  1.0000000             0                     0
-## 10                 1.0000000             0                     0
-##    with_errors.percent form_count
-## 1                    0          2
-## 2                    0          5
-## 3                    0          1
-## 4                    0          1
-## 5                    0         17
-## 6                    0         17
-## 7                    0         13
-## 8                    0          2
-## 9                    0         10
-## 10                   0         11
+##             form_name partly_filled completely_filled empty with_warnings
+## 5        ctu05allmedi             1                16     0             0
+## 6       ctu05baseline             3                14     0             0
+## 7        ctu05outcome             1                12     0             0
+## 8            ctu05sae             0                 2     0             0
+## 9  ctu05studyterminat             0                10     0             0
+## 10     ctu05treatment             0                11     0             0
+##    with_errors partly_filled.percent completely_filled.percent
+## 5            0            0.05882353                 0.9411765
+## 6            0            0.17647059                 0.8235294
+## 7            0            0.07692308                 0.9230769
+## 8            0            0.00000000                 1.0000000
+## 9            0            0.00000000                 1.0000000
+## 10           0            0.00000000                 1.0000000
+##    empty.percent with_warnings.percent with_errors.percent form_count
+## 5              0                     0                   0         17
+## 6              0                     0                   0         17
+## 7              0                     0                   0         13
+## 8              0                     0                   0          2
+## 9              0                     0                   0         10
+## 10             0                     0                   0         11
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.

@@ -153,7 +153,8 @@ If you are not sure about how complete the data in you export is, it may be usef
 have been filled.
 
 ```{r, eval = TRUE}
-form_status_summary(ctu05)
+count_summary <- form_status_summary(ctu05)
+tail(count_summary)
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
