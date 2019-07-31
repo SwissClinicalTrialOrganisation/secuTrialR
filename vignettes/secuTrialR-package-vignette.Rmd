@@ -149,7 +149,7 @@ that "age" is missing once while "grouping" and "bmd" are both missing twice
 just as reported in the validation overview.
 
 ```{r}
-assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
+secuTrialR:::assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
                                   casenodes_table = sT_export_longtnames$casenodes,
                                   validation_overview = val_ovv, 
                                   completeness = "savedforms")
@@ -164,7 +164,7 @@ correctly, knowledge of the study design is necessary. As expected the completen
 reduced when regarding all forms.
 
 ```{r}
-assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
+secuTrialR:::assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
                                   casenodes_table = sT_export_longtnames$casenodes,
                                   validation_overview = val_ovv,
                                   completeness = "allforms",

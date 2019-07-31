@@ -2,6 +2,13 @@
 #' Asses completeness of data for each variable in a secuTrial export
 #'
 #' @description
+#'
+#' NOTE: This is not exported currently since it is not generic enough.
+#'       It can still be used but in depth knowlege of the function is required
+#'       to evaluate if the result is correct.
+#'       As a rule of thumb: rigid CDMA setups with low complexity are likely
+#'                           work as expected.
+#'
 #' Variable completeness is defined as percentage of data entered for a variable
 #' when considering all occurrences of the variable throughout the visit plan and
 #' all patients/cases registered in the secuTrial data base. The completeness can
@@ -17,7 +24,7 @@
 #' Please note that variable completeness for repetition forms should only be
 #' assessed for saved forms.
 #'
-#' @export assess_form_variable_completeness
+# #' @export assess_form_variable_completeness
 #'
 #' @param form data.frame Form for which to assess variable completeness
 #'             (i.e. a list element returned by read_secuTrial_export).

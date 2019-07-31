@@ -1,0 +1,7 @@
+vname,code,en,de,it,fr,pl,es
+mnpfcs0,0,empty,leer,vuoto,vide,pusty,vacío
+mnpfcs0,2,partly filled,teilweise ausgefüllt,parzialmente riempito,partiellement rempli,częściowo wypełnione,parcialmente completo
+mnpfcs0,4,completely filled,ganz ausgefüllt,completamente riempito,complètement rempli,całkowicie wypełnione,totalmente completo
+mnpfcs1,1,with errors,mit Fehlern,con errori,avec erreurs,z błędami,con errores
+mnpfcs2,1,with warnings,mit Warnungen,con avvertimenti,avec avertissements,z ostrzeżeniami,con advertencias
+mnpfcs3,1,data entry complete,Datenerfassung abgeschlossen,immissione dati completata.,collecte des données terminée,ukończenie wprowadzania danych,ingreso de datos completo

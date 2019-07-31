@@ -1,7 +1,7 @@
-lang,shortnames,rectangulartable,audittrail,columnnames,duplicatemeta,separatetable
-en,[sS]horten,[rR]ectangular table,[aA]udit [tT]rail,[cC]olumn names,[dD]uplicate form meta data into all tables,separate table
-de,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle
-it,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle
-fr,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Nom de la colonne,Dupliziere Formular-Metadaten in alle Tabellen,Tableau séparé
-pl,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle
-es,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Nombres de columnas,Dupliziere Formular-Metadaten in alle Tabellen,tabla separada
+lang,shortnames,rectangulartable,audittrail,columnnames,duplicatemeta,separatetable,formstatus
+en,[sS]horten,[rR]ectangular table,[aA]udit [tT]rail,[cC]olumn names,[dD]uplicate form meta data into all tables,separate table,[fF]orm status
+de,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status
+it,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status
+fr,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Nom de la colonne,Dupliziere Formular-Metadaten in alle Tabellen,Tableau séparé,Formular-Status
+pl,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status
+es,Tabellenamen kürzen,Rechtecktabelle,Audit Trail,Nombres de columnas,Dupliziere Formular-Metadaten in alle Tabellen,tabla separada,Formular-Status

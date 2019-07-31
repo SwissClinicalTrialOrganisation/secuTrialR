@@ -29,6 +29,12 @@ or only for saved forms ('savedforms').}
 data.frame showing percent completeness per variable.
 }
 \description{
+NOTE: This is not exported currently since it is not generic enough.
+      It can still be used but in depth knowlege of the function is required
+      to evaluate if the result is correct.
+      As a rule of thumb: rigid CDMA setups with low complexity are likely
+                          work as expected.
+
 Variable completeness is defined as percentage of data entered for a variable
 when considering all occurrences of the variable throughout the visit plan and
 all patients/cases registered in the secuTrial data base. The completeness can
