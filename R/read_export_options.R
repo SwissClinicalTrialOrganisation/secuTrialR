@@ -76,6 +76,9 @@ read_export_options <- function(data_dir) {
   # Duplicate form meta data into all tables
   duplicate_meta <- any(sapply(dict_settings[, "duplicatemeta"], function(x) any(grepl(x, parsed_export))))
 
+  # Form status
+  form_status <- any(sapply(dict_settings[, "formstatus"], function(x) any(grepl(x, parsed_export))))
+
   # metadata file names
   meta_names <- list()
   if (short_names == TRUE) {
@@ -230,6 +233,7 @@ read_export_options <- function(data_dir) {
                         secuTrial_version = version,
                         project_version = pversion,
                         time_of_export = time_of_export,
+                        form_status = form_status,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)

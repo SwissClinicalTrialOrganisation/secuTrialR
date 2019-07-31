@@ -38,6 +38,7 @@ read_secuTrial_export <- function(data_dir) {
   }
 
   # check for column names in export_options
+  # if column names is not selected then the tables in the export have no header
   if (! export_options$column_names) {
     stop(paste0("The specified secuTrial export does not include 'Column names'. ",
                 "Rerun your export in the ExportSearchTool with ",

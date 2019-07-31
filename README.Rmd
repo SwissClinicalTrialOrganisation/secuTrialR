@@ -43,7 +43,7 @@ bmd_export <- read_secuTrial_export(data_dir = export_location)
 # load a second dataset
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05 <- read_secuTrial_export(export_location)
+ctu05_raw <- read_secuTrial_export(export_location)
 
 # View names of the bmd_export object
 names(bmd_export)
@@ -95,7 +95,7 @@ Currently, `label_secuTrial` should be used prior to `dates_secuTrial` or `facto
 #### Prepare factors
 It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.
 ```{r, error=TRUE}
-factors <- factorize_secuTrial(ctu05)
+factors <- factorize_secuTrial(ctu05_raw)
 ```
 This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with `.factor` appended (i.e. a new variable called `sex.factor` would be added to the relevant form).
 
@@ -114,7 +114,7 @@ Date(time)s are a very common data type. They cannot be easily used though in th
 
 
 ```{r}
-dates <- dates_secuTrial(ctu05)
+dates <- dates_secuTrial(ctu05_raw)
 ```
 
 Date variables are converted to `Date` class, and datetimes are converted to `POSIXct` class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case `NA`s are accidentally created.
@@ -147,6 +147,25 @@ dat <- d %>%
 
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
+
+#### Form status summary statistics
+If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms
+have been filled.
+
+```{r, eval = TRUE}
+count_summary <- form_status_summary(ctu05)
+tail(count_summary)
+```
+
+As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
+For a more patient id centered statistic you can perform the following.
+
+```{r, eval = FALSE}
+form_status_counts(ctu05)
+```
+
+This will give you a count based overview per patient id and form. Please note that both `form_status_summary` 
+and `form_status_counts` only work with saved forms since unsaved form data is not available in secuTrial exports.
 
 #### Visit plan
 secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:
