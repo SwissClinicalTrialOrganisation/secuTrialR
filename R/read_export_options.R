@@ -237,6 +237,10 @@ read_export_options <- function(data_dir) {
   if (encoding == "MacRoman") {
     stop("Your export has been produced with MacRoman encoding. Please reexport with UTF-8.")
   }
+  # this is because the unz() function can not make a propper connection to BOM encoding
+  if (encoding == "UTF-8 + BOM") {
+    stop("Your export has been produced with UTF-8 + BOM encoding. Please reexport with UTF-8.")
+  }
 
   # return object ----
   study_options <- list(sep = sep,
