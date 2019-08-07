@@ -201,7 +201,7 @@ read_export_options <- function(data_dir) {
   names(datanames) <- datafiles
 
   # retrieve export encoding
-  # Note: We are aware that this may match in someone enters a matching expression
+  # Note: We are aware that this may match if someone enters a matching expression
   #       in the Description
 
   # it is important to check for UTF-8 + BOM first
