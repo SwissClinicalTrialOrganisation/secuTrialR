@@ -80,7 +80,7 @@ test_that("Export language parsing", {
   expect_equal(sT_export_long_pl$export_options$dict_items$lang, "pl")
 })
 
-test_that("Unsuported language loads", {
+test_that("Unsupported language loads", {
   expect_error(read_secuTrial_export(data_dir = export_path_short_unsupported), unsupported_error, fixed = TRUE)
 })
 

@@ -80,11 +80,12 @@ captured_print <- capture.output(print(sT_export$export_options))
 
 # test print.secutrialoptions
 test_that("Print export options working.", {
-  expect_equal(length(captured_print), 23)
+  expect_equal(length(captured_print), 24)
   expect_equal(captured_print[1], "SecuTrial version: 5.3.4.6 ")
-  expect_equal(captured_print[5], "Seperator: '\t'")
-  expect_equal(captured_print[6], "14 files exported")
-  expect_equal(captured_print[8], "Reference values not exported - factorize not possible")
+  expect_equal(captured_print[2], "Time of export on server: 25.02.2019 - 15:14:27 (CET) ")
+  expect_equal(captured_print[6], "Seperator: '\t'")
+  expect_equal(captured_print[7], "14 files exported")
+  expect_equal(captured_print[9], "Reference values not exported - factorize not possible")
 })
 
 
@@ -93,11 +94,11 @@ sT_export2 <- read_secuTrial_export(data_dir = system.file("extdata",
                                                            package = "secuTrialR"))
 # project version
 test_that("Project version parsing", {
-  expect_equal(sT_export$export_options$project.version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(export_options_regular_short$project.version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(export_options_regular_long$project.version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(sT_export2$export_options$project.version, "30.04.2019 - 13:40:52 (CEST)")
-  expect_equal(bmd_unzipped$project.version, "25.02.2019 - 13:13:44 (CET)")
+  expect_equal(sT_export$export_options$project_version, "25.02.2019 - 13:13:44 (CET)")
+  expect_equal(export_options_regular_short$project_version, "25.02.2019 - 13:13:44 (CET)")
+  expect_equal(export_options_regular_long$project_version, "25.02.2019 - 13:13:44 (CET)")
+  expect_equal(sT_export2$export_options$project_version, "30.04.2019 - 13:40:52 (CEST)")
+  expect_equal(bmd_unzipped$project_version, "25.02.2019 - 13:13:44 (CET)")
 })
 
 # duplicated meta data
@@ -108,4 +109,12 @@ test_that("Project version parsing", {
   expect_false(sT_export2$export_options$duplicate_meta)
   expect_false(bmd_unzipped$duplicate_meta)
   expect_true(dup_meta$duplicate_meta)
+})
+
+# test time of export
+# manually checked all of these in the respective ExportOptions.html files
+test_that("Time of export", {
+  expect_equal(sT_export$export_options$time_of_export, "25.02.2019 - 15:14:27 (CET)")
+  expect_equal(export_options_regular_long$time_of_export, "18.03.2019 - 10:47:03 (CET)")
+  expect_equal(sT_export2$export_options$time_of_export, "30.04.2019 - 15:29:45 (CEST)")
 })

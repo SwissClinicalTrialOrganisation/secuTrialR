@@ -161,12 +161,22 @@ read_export_options <- function(data_dir) {
   # reference values
   refvals_seperate <- any(sapply(dict_settings[, "separatetable"], function(x) any(grepl(x, parsed_export))))
 
+  # this should only match once
+  created_idx <- unique(unlist(sapply(dict_keys[, "created"], function(x) grep(x, parsed_export))))
+  # should never happen
+  if (length(created_idx) > 1) {
+    warning("Export creation date parsing matching unexpectedly more than once and may thus be wrong.")
+  }
+  # time of export is two lines below the Created pattern
+  time_of_export <- parsed_export[created_idx + 2] %>%
+    trimws() %>%
+    gsub(pattern = "^<b>|</b>$", replacement = "")
 
   # dates ----
   # date format
-  date.format.meta <- "%Y-%m-%d"
-  date.format <- "%Y%m%d"
-  datetime.format <- "%Y%m%d%H%M"
+  date_format_meta <- "%Y-%m-%d"
+  date_format <- "%Y%m%d"
+  datetime_format <- "%Y%m%d%H%M"
   # TODO : custom formats? parsed from ExportOptions?
 
   # unknown date strings
@@ -191,14 +201,16 @@ read_export_options <- function(data_dir) {
   names(datanames) <- datafiles
 
   # return object ----
-  study.options <- list(sep = sep,
-                        date.format = date.format,
-                        datetime.format = datetime.format,
-                        date.format.meta = date.format.meta,
+  study_options <- list(sep = sep,
+                        date_format = date_format,
+                        datetime_format = datetime_format,
+                        date_format_meta = date_format_meta,
+                        # this stays with a "." to keep consistency
+                        # with read.table "na.strings" parameter
                         na.strings = na.strings, # if blanks mean missing
-                        unknown.date.string = unknown_date_string, # incomplete dates
-                        partial.date.string = partial_date_string,
-                        partial.date.handling = partial_date_handling,
+                        unknown_date_string = unknown_date_string, # incomplete dates
+                        partial_date_string = partial_date_string,
+                        partial_date_handling = partial_date_handling,
                         short_names = short_names,
                         is_zip = is_zip,
                         is_rectangular = rectangular_table,
@@ -218,20 +230,22 @@ read_export_options <- function(data_dir) {
                         file_end = file_tag,
                         extension = file_extension,
                         data_dir = data_dir,
-                        secuTrial.version = version,
-                        project.version = pversion,
+                        secuTrial_version = version,
+                        project_version = pversion,
+                        time_of_export = time_of_export,
                         form_status = form_status,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
-  class(study.options) <- "secutrialoptions"
-  return(study.options)
+  class(study_options) <- "secutrialoptions"
+  return(study_options)
 }
 
 #' @export
-print.secutrialoptions <- function(x){
-  cat(paste("SecuTrial version:", x$secuTrial.version, "\n"))
-  cat(paste("Project version:", x$project.version, "\n"))
+print.secutrialoptions <- function(x) {
+  cat(paste("SecuTrial version:", x$secuTrial_version, "\n"))
+  cat(paste("Time of export on server:", x$time_of_export, "\n"))
+  cat(paste("Project version:", x$project_version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
   if (!x$short_names) cat(paste("File names appended with:", x$file_end, "\n"))
   cat(paste("File extension:", x$extension, "\n"))

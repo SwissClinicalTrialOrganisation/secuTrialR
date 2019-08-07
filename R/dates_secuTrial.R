@@ -74,8 +74,8 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
     datevars <- unique(dates$ffcolname)
     timevars <- unique(datetimes$ffcolname)
     # date format
-    dateformat <- object$export_options$date.format
-    datetimeformat <- object$export_options$datetime.format
+    dateformat <- object$export_options$date_format
+    datetimeformat <- object$export_options$datetime_format
     tmp <- object[[obj]]
     tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, ...)
   })
@@ -88,7 +88,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
 # @rdname dates_secuTrial
 # @param data data.frame
 # @param datevars string consisting of variables with dates
-# @param format format of dates (typically taken from \code{object$export_options$date.format})
+# @param format format of dates (typically taken from \code{object$export_options$date_format})
 dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, warn = FALSE) {
   datevars <- datevars[datevars %in% names(data)]
   timevars <- timevars[timevars %in% names(data)]
