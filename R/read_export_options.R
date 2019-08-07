@@ -200,6 +200,30 @@ read_export_options <- function(data_dir) {
   datanames <- gsub(pattern = "^mnp", "", datanames)
   names(datanames) <- datafiles
 
+  # retrieve export encoding
+  # Note: We are aware that this may match in someone enters a matching expression
+  #       in the Description
+
+  # it is important to check for UTF-8 + BOM first
+  # since UTF-8 will also match UTF-8 + BOM
+  if (length(grep("UTF-8 + BOM", parsed_export))) {
+    encoding <- "UTF-8 + BOM"
+  } else if (length(grep("UTF-8", parsed_export))) {
+    encoding <- "UTF-8"
+  # it is important to check for ISO-8859-15 first
+  # since ISO-8859-1 will also match ISO-8859-15
+  } else if (length(grep("ISO-8859-15", parsed_export))) {
+    encoding <- "ISO-8859-15"
+  } else if (length(grep("ISO-8859-1", parsed_export))) {
+    encoding <- "ISO-8859-1"
+  } else if (length(grep("MacRoman", parsed_export))) {
+    encoding <- "MacRoman"
+  } else if (length(grep("UTF-16", parsed_export))) {
+    encoding <- "UTF-16"
+  } else {
+    stop("Unexpectedly not found a character encoding in the ExportOptions.")
+  }
+
   # return object ----
   study_options <- list(sep = sep,
                         date_format = date_format,
@@ -233,6 +257,7 @@ read_export_options <- function(data_dir) {
                         secuTrial_version = version,
                         project_version = pversion,
                         time_of_export = time_of_export,
+                        encoding = encoding,
                         form_status = form_status,
                         factorized = FALSE,
                         dated = FALSE,
