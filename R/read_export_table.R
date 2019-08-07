@@ -82,13 +82,15 @@ read_export_table <- function(data_dir, file_name, export_options,
                                header = TRUE,
                                na.strings = export_options$na.strings,
                                sep = export_options$sep,
-                               fill = TRUE)
+                               fill = TRUE,
+                               encoding = export_options$encoding)
   } else if (export_options$is_zip == FALSE) {
     loaded_table <- read.table(file = paste0(data_dir, "/", file_name),
                                header = TRUE,
                                na.strings = export_options$na.strings,
                                sep = export_options$sep,
-                               fill = TRUE)
+                               fill = TRUE,
+                               encoding = export_options$encoding)
   } else {
     stop(paste0("Could not load table ", file_name))
   }
