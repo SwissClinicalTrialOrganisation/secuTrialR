@@ -24,10 +24,11 @@ plot_recruitment <- function(x, return_data = FALSE) {
     dates <- sort(as.Date(cn$mnpvisstartdate))
     dates_df <- data.frame(dates, 1:length(dates))
     names(dates_df) <- c("date", "case_count")
-    plot(dates_df$date, dates_df$case_count, type = "l", lwd = 2, col = "steelblue",
-         main = "Recruitment over time", xlab = "Date", ylab = "Count")
     if (return_data) {
       return(dates_df)
+    } else {
+      plot(dates_df$date, dates_df$case_count, type = "l", lwd = 2, col = "steelblue",
+           main = "Recruitment over time", xlab = "Date", ylab = "Count")
     }
   } else {
     stop("plot_recruitment requires objects of the class 'secuTrialdata' as input.")
