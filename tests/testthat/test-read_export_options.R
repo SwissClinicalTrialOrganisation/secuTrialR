@@ -26,7 +26,17 @@ dup_meta <- read_export_options(system.file("extdata",
                                             "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
                                             package = "secuTrialR"))
 
+# ISO-8859-15
+exp_opt_tes05_iso <- read_export_options(system.file("extdata",
+                                                     "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
+                                                     package = "secuTrialR"))
 
+# test encoding
+test_that("Encoding parsed as expected.", {
+  expect_equal(export_options_regular_short$encoding, "UTF-8")
+  expect_equal(bmd_unzipped$encoding, "UTF-8")
+  expect_equal(exp_opt_tes05_iso$encoding, "ISO-8859-15")
+})
 
 # test shortened table names
 test_that("Shorten names identified.", {

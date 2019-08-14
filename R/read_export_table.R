@@ -76,19 +76,27 @@ read_export_table <- function(data_dir, file_name, export_options,
   on.exit(ops)
   options(stringsAsFactors = FALSE)
 
+  # ISO encoding must be names "latin1"
+  curr_encoding <- export_options$encoding
+  if (curr_encoding == "ISO-8859-1" | curr_encoding == "ISO-8859-15") {
+    curr_encoding <- "latin1"
+  }
+
   if (export_options$is_zip) {
     archive_con <- unz(data_dir, file_name)
     loaded_table <- read.table(file = archive_con,
                                header = TRUE,
                                na.strings = export_options$na.strings,
                                sep = export_options$sep,
-                               fill = TRUE)
+                               fill = TRUE,
+                               encoding = curr_encoding)
   } else if (export_options$is_zip == FALSE) {
     loaded_table <- read.table(file = paste0(data_dir, "/", file_name),
                                header = TRUE,
                                na.strings = export_options$na.strings,
                                sep = export_options$sep,
-                               fill = TRUE)
+                               fill = TRUE,
+                               encoding = curr_encoding)
   } else {
     stop(paste0("Could not load table ", file_name))
   }
