@@ -1,6 +1,3 @@
----
-output: github_document
----
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -235,6 +232,38 @@ dat <- d %>%
 
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
+
+#### Recruitment over time
+Recruitment is an important cornerstone for every clinical trial. secuTrialR allows for straigt forward visualizion of recuitment
+over time for a given export file.
+
+
+```r
+# show plot
+plot_recruitment(ctu05)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+
+```r
+# return the plot data
+plot_recruitment(ctu05, return_data = TRUE)
+```
+
+```
+##          date case_count
+## 1  2018-05-01          1
+## 2  2019-04-01          2
+## 3  2019-04-02          3
+## 4  2019-04-03          4
+## 5  2019-04-04          5
+## 6  2019-04-05          6
+## 7  2019-04-11          7
+## 8  2019-04-12          8
+## 9  2019-04-13          9
+## 10 2019-04-14         10
+## 11 2019-04-15         11
+```
 
 #### Form status summary statistics
 If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms

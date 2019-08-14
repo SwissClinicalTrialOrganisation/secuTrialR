@@ -3,7 +3,7 @@
 #'              registered at which point in time. This function makes use of this property
 #'              to plot recruitment over time.
 #' @param x a \code{secuTrialdata} object
-#' @param return_data logical - return the data used to produce the plot
+#' @param return_data logical - return the data used to produce the plot instead of the plot
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'

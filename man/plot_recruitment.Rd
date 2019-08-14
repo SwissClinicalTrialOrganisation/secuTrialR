@@ -4,10 +4,12 @@
 \alias{plot_recruitment}
 \title{Plots the recruitment over time for secuTrialdata objects}
 \usage{
-plot_recruitment(x)
+plot_recruitment(x, return_data = FALSE)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
+
+\item{return_data}{logical - return the data used to produce the plot instead of the plot}
 }
 \description{
 secuTrial exports inherently contain the information on which case was
