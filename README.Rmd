@@ -149,7 +149,7 @@ dat <- d %>%
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
 #### Recruitment over time
-Recruitment is an important cornerstone for every clinical trial. secuTrialR allows for straigt forward visualizion of recuitment
+Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
 over time for a given export file.
 
 ```{r, eval = TRUE}
