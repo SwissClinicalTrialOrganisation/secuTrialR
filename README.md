@@ -241,9 +241,9 @@ over time for a given export file.
 
 ```r
 # show plot
-# note that there is no line for Universitätsspital Basel because only one case 
-# is registered for this centre
-plot_recruitment(ctu05, cex = 1.1)
+# note that there is no line for Universitätsspital 
+# Basel because only one case is registered for this centre
+plot_recruitment(ctu05, cex = 1.5)
 ```
 
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)

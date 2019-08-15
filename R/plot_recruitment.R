@@ -1,7 +1,8 @@
 #' Plots the recruitment over time for secuTrialdata objects
 #' @description secuTrial exports inherently contain the information on which case was
 #'              registered at which point in time. This function makes use of this property
-#'              to plot recruitment over time.
+#'              to plot recruitment over time. Centers indicated with a black line in the
+#'              legend did not recruit at all.
 #' @param x a \code{secuTrialdata} object
 #' @param return_data logical - return the data used to produce the plot instead of the plot
 #' @param show_centres logical - subset the data into centres
@@ -59,7 +60,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
       # legend plots last
       if (! return_data) {
         legend("topleft", col = c("steelblue", cols),
-               legend = c("All", ctr$mnpctrname), lty = 1, cex = cex)
+               legend = c("All", ctr$mnpctrname), lty = 1, cex = cex, bty = "n")
       }
       if (return_data) {
         return(plot_data)

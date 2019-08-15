@@ -19,7 +19,8 @@ plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
 \description{
 secuTrial exports inherently contain the information on which case was
              registered at which point in time. This function makes use of this property
-             to plot recruitment over time.
+             to plot recruitment over time. Centers indicated with a black line in the
+             legend did not recruit at all.
 }
 \details{
 plot_recruitment will return a simple line plot showing recruitment over time
