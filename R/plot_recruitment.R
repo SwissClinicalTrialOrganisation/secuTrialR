@@ -4,8 +4,10 @@
 #'              to plot recruitment over time.
 #' @param x a \code{secuTrialdata} object
 #' @param return_data logical - return the data used to produce the plot instead of the plot
+#' @param show_centres logical - subset the data into centres
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
+#'          or a list of data.frames if return_data is set to TRUE
 #'
 #' @examples
 #' # export location
@@ -18,19 +20,75 @@
 #' # plot recruitment
 #' plot_recruitment(sT_export)
 #'
-plot_recruitment <- function(x, return_data = FALSE) {
+plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE) {
   if (class(x) == "secuTrialdata") {
+    ctr <- x[[x$export_options$meta_names$centres]]
     cn <- x[[x$export_options$meta_names$casenodes]]
-    dates <- sort(as.Date(cn$mnpvisstartdate))
-    dates_df <- data.frame(dates, 1:length(dates))
-    names(dates_df) <- c("date", "case_count")
-    if (return_data) {
-      return(dates_df)
-    } else {
-      plot(dates_df$date, dates_df$case_count, type = "l", lwd = 2, col = "steelblue",
+    dates_centre_ids <- .prep_line_data(cn = cn, ctr = ctr)
+    # for return_data
+    plot_data <- list(dates_centre_ids)
+    if (return_data & (! show_centres)) {
+      return(plot_data)
+    } else if (! return_data) {
+      plot(dates_centre_ids$date, dates_centre_ids$case_count, type = "l", lwd = 2, col = "steelblue",
            main = "Recruitment over time", xlab = "Date", ylab = "Count")
+    }
+    # centre recruitment
+    if (show_centres) {
+      # create uniqe colors for each centre
+      cols <-  rainbow(length(ctr$mnpctrid))
+      col_idx <- 1
+      for (centre_id in ctr$mnpctrid) {
+        curr_ctr_cn <- subset(cn, mnpctrid == centre_id)
+        if (! length(curr_ctr_cn$mnppid)) {
+          # centres with 0 entries are labelled black in the legend
+          cols[col_idx] <- "black"
+          col_idx <- col_idx + 1
+          next
+        }
+        dates_centre_ids_curr_ctr <- .prep_line_data(cn = curr_ctr_cn, ctr = ctr)
+        # append to return data
+        plot_data[[length(plot_data) + 1]] <- dates_centre_ids_curr_ctr
+        if (! return_data) {
+          lines(dates_centre_ids_curr_ctr$date, dates_centre_ids_curr_ctr$case_count,
+                lwd = 2, col = cols[col_idx], lty = 2)
+        }
+        col_idx <- col_idx + 1
+      }
+      # legend plots last
+      if (! return_data) {
+        legend("topleft", col = c("steelblue", cols),
+               legend = c("All", ctr$mnpctrname), lty = 1, cex = 0.6)
+      }
+      if (return_data) {
+        return(plot_data)
+      }
     }
   } else {
     stop("plot_recruitment requires objects of the class 'secuTrialdata' as input.")
   }
+}
+
+# helper function to prep the data for the line plot
+# take a casenodes (cn) and centres (ctr) data frame from the
+# secuTrial export
+.prep_line_data <- function(cn, ctr) {
+  dates_centre_ids <- cn[, c("mnpvisstartdate", "mnpctrid")]
+  # set to "Date" class
+  dates_centre_ids$mnpvisstartdate <- as.Date(dates_centre_ids$mnpvisstartdate)
+  # sort
+  dates_centre_ids <- dates_centre_ids[order(dates_centre_ids$mnpvisstartdate), ]
+  # add count column
+  dates_centre_ids$case_count <- 1:nrow(dates_centre_ids)
+  names(dates_centre_ids) <- c("date", "centre_id", "case_count")
+  # translate centre names
+  dates_centre_ids$centre_name <- dates_centre_ids$centre_id
+  for (i in 1:nrow(ctr)) {
+    curr_line <- ctr[i, ]
+    dates_centre_ids$centre_name <- gsub(dates_centre_ids$centre_name,
+                                         # force full length match with "^ $" to avoid substring match
+                                         pattern = paste0("^", curr_line$mnpctrid, "$"),
+                                         replacement = curr_line$mnpctrname)
+  }
+  return(dates_centre_ids)
 }

@@ -12,7 +12,15 @@ test_that("Test fail", {
 })
 
 test_that("Test output", {
-  expect_equal(plot_recruitment(sdat, return_data = TRUE),
-               plot_recruitment(ldat, return_data = TRUE))
-  expect_equal(dim(plot_recruitment(ldat, return_data = TRUE)), c(11, 2))
+  expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = FALSE),
+               plot_recruitment(ldat, return_data = TRUE, show_centres = FALSE))
+  expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE),
+               plot_recruitment(ldat, return_data = TRUE, show_centres = TRUE))
+  expect_equal(dim(plot_recruitment(ldat, return_data = TRUE, show_centres = FALSE)[[1]]), c(11, 4))
+  # [[1]] has all data, row count in all other entries summed up should be equal to it
+  expect_equal(nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[1]]),
+               nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[2]]) +
+               nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[3]]) +
+               nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[4]])
+               )
 })
