@@ -8,11 +8,14 @@
   dict_file <- system.file("extdata", "dictionaries",
                            file,
                            package = "secuTrialR")
-  dict <- read.csv(dict_file, stringsAsFactors = FALSE)
+  # read_csv (unlike read.csv) implies UTF-8
+  # col_types = cols() explicitly uses the default guessing behavior
+  # -> which suppresses the printing
+  dict <- read_csv(dict_file, col_types = cols())
   if (!is.null(language) & any(grep("lang", names(dict)))){
     dict <- dict[dict$lang == language, ]
   }
-  return(dict)
+  return(as.data.frame(dict))
 }
 
 # construct names of metadata

@@ -35,6 +35,16 @@ read_export_options <- function(data_dir) {
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
 
+  # recode if there is ISO encoding
+  if(length(grep(">ISO-8859-", parsed_export))) {
+    Encoding(parsed_export) <- "latin1"
+  }
+
+  # utf16 exception
+  if (! length(parsed_export)) {
+    stop("Likely you have exported with UTF-16 encoding which is not compatible. Please reexport with UTF-8.")
+  }
+
   # dictionaries for metadata keys and selected export settings
   dict_keys <- .get_dict("dict_export_options_keys.csv")
   dict_settings <- .get_dict("dict_export_options_settings.csv")
@@ -200,6 +210,38 @@ read_export_options <- function(data_dir) {
   datanames <- gsub(pattern = "^mnp", "", datanames)
   names(datanames) <- datafiles
 
+  # retrieve export encoding
+  # Note: We are aware that this may match if someone enters a matching expression
+  #       in the Description
+
+  # it is important to check for UTF-8 + BOM first
+  # since UTF-8 will also match UTF-8 + BOM
+  if (length(grep(">UTF-8 \\+ BOM", parsed_export))) {
+    encoding <- "UTF-8 + BOM"
+  } else if (length(grep("UTF-8", parsed_export))) {
+    encoding <- "UTF-8"
+  # it is important to check for ISO-8859-15 first
+  # since ISO-8859-1 will also match ISO-8859-15
+  } else if (length(grep(">ISO-8859-15", parsed_export))) {
+    encoding <- "ISO-8859-15"
+  } else if (length(grep(">ISO-8859-1", parsed_export))) {
+    encoding <- "ISO-8859-1"
+  } else if (length(grep(">MacRoman", parsed_export))) {
+    encoding <- "MacRoman"
+  } else if (length(grep(">UTF-16", parsed_export))) {
+    encoding <- "UTF-16"
+  } else {
+    stop("Unexpectedly not found a character encoding in the ExportOptions.")
+  }
+
+  if (encoding == "MacRoman") {
+    stop("Your export has been produced with MacRoman encoding. Please reexport with UTF-8.")
+  }
+  # this is because the unz() function can not make a propper connection to BOM encoding
+  if (encoding == "UTF-8 + BOM") {
+    stop("Your export has been produced with UTF-8 + BOM encoding. Please reexport with UTF-8.")
+  }
+
   # return object ----
   study_options <- list(sep = sep,
                         date_format = date_format,
@@ -233,6 +275,7 @@ read_export_options <- function(data_dir) {
                         secuTrial_version = version,
                         project_version = pversion,
                         time_of_export = time_of_export,
+                        encoding = encoding,
                         form_status = form_status,
                         factorized = FALSE,
                         dated = FALSE,
