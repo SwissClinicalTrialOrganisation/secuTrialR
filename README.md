@@ -1,6 +1,4 @@
----
-output: github_document
----
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -243,6 +241,8 @@ over time for a given export file.
 
 ```r
 # show plot
+# note that there is no line for Universitätsspital Basel because only one case 
+# is registered for this centre
 plot_recruitment(ctu05, cex = 1.1)
 ```
 
