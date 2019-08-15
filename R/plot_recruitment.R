@@ -5,6 +5,7 @@
 #' @param x a \code{secuTrialdata} object
 #' @param return_data logical - return the data used to produce the plot instead of the plot
 #' @param show_centres logical - subset the data into centres
+#' @param cex double - specifies font size in legend
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'          or a list of data.frames if return_data is set to TRUE
@@ -20,7 +21,7 @@
 #' # plot recruitment
 #' plot_recruitment(sT_export)
 #'
-plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE) {
+plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1) {
   if (class(x) == "secuTrialdata") {
     ctr <- x[[x$export_options$meta_names$centres]]
     cn <- x[[x$export_options$meta_names$casenodes]]
@@ -58,7 +59,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE) {
       # legend plots last
       if (! return_data) {
         legend("topleft", col = c("steelblue", cols),
-               legend = c("All", ctr$mnpctrname), lty = 1, cex = 0.6)
+               legend = c("All", ctr$mnpctrname), lty = 1, cex = cex)
       }
       if (return_data) {
         return(plot_data)

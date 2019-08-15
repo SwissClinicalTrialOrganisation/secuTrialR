@@ -154,7 +154,7 @@ over time for a given export file.
 
 ```{r, eval = TRUE}
 # show plot
-plot_recruitment(ctu05)
+plot_recruitment(ctu05, cex = 1.1)
 # return the plot data
 plot_recruitment(ctu05, return_data = TRUE)
 ```

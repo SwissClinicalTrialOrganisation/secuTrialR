@@ -4,12 +4,17 @@
 \alias{plot_recruitment}
 \title{Plots the recruitment over time for secuTrialdata objects}
 \usage{
-plot_recruitment(x, return_data = FALSE)
+plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
+  cex = 1)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
 
 \item{return_data}{logical - return the data used to produce the plot instead of the plot}
+
+\item{show_centres}{logical - subset the data into centres}
+
+\item{cex}{double - specifies font size in legend}
 }
 \description{
 secuTrial exports inherently contain the information on which case was
@@ -18,6 +23,7 @@ secuTrial exports inherently contain the information on which case was
 }
 \details{
 plot_recruitment will return a simple line plot showing recruitment over time
+         or a list of data.frames if return_data is set to TRUE
 }
 \examples{
 # export location

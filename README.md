@@ -1,4 +1,6 @@
-
+---
+output: github_document
+---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -235,13 +237,13 @@ dat <- d %>%
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
 #### Recruitment over time
-Recruitment is an important cornerstone for every clinical trial. secuTrialR allows for straigt forward visualizion of recuitment
+Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
 over time for a given export file.
 
 
 ```r
 # show plot
-plot_recruitment(ctu05)
+plot_recruitment(ctu05, cex = 1.1)
 ```
 
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
