@@ -29,11 +29,13 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
     dates_centre_ids <- .prep_line_data(cn = cn, ctr = ctr)
     # for return_data
     plot_data <- list(dates_centre_ids)
+    # legend
+    legend_names <- paste0("All (n=", nrow(plot_data[[1]]), ")")
     if (return_data & (! show_centres)) {
       return(plot_data)
     } else if (! return_data) {
       plot(dates_centre_ids$date, dates_centre_ids$case_count, type = "l", lwd = 2, col = "steelblue",
-           main = "Recruitment over time", xlab = "Date", ylab = "Count")
+           main = "Recruitment over time", xlab = "Date of enrollment", ylab = "Case count")
     }
     # centre recruitment
     if (show_centres) {
@@ -45,10 +47,16 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
         if (! length(curr_ctr_cn$mnppid)) {
           # centres with 0 entries are labelled black in the legend
           cols[col_idx] <- "black"
+          legend_names <- c(legend_names, paste0(remove_trailing_bracket(ctr$mnpctrname[which(ctr$mnpctrid == centre_id)])
+                                                 , " (n=0)"))
           col_idx <- col_idx + 1
           next
         }
         dates_centre_ids_curr_ctr <- .prep_line_data(cn = curr_ctr_cn, ctr = ctr)
+        legend_names <- c(legend_names, paste0(remove_trailing_bracket(unique(dates_centre_ids_curr_ctr$centre_name)),
+                                               " (n=",
+                                               nrow(dates_centre_ids_curr_ctr),
+                                               ")"))
         # append to return data
         plot_data[[length(plot_data) + 1]] <- dates_centre_ids_curr_ctr
         if (! return_data) {
@@ -60,7 +68,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
       # legend plots last
       if (! return_data) {
         legend("topleft", col = c("steelblue", cols),
-               legend = c("All", ctr$mnpctrname), lty = 1, cex = cex, bty = "n")
+               legend = legend_names, lty = 1, cex = cex, bty = "n")
       }
       if (return_data) {
         return(plot_data)
