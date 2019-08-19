@@ -243,7 +243,7 @@ over time for a given export file.
 # show plot
 # note that there is no line for Universitätsspital 
 # Basel because only one case is registered for this centre
-plot_recruitment(ctu05, cex = 1.5)
+plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
 ```
 
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)

@@ -5,7 +5,7 @@
 \title{Plots the recruitment over time for secuTrialdata objects}
 \usage{
 plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
-  cex = 1)
+  cex = 1, rm_regex = "")
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
@@ -15,6 +15,9 @@ plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
 \item{show_centres}{logical - subset the data into centres}
 
 \item{cex}{double - specifies font size in legend}
+
+\item{rm_regex}{character - specifies a regular expression to be removed from the centre names in the legend.
+e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.}
 }
 \description{
 secuTrial exports inherently contain the information on which case was

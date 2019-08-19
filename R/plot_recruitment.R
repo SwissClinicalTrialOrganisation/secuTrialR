@@ -7,6 +7,8 @@
 #' @param return_data logical - return the data used to produce the plot instead of the plot
 #' @param show_centres logical - subset the data into centres
 #' @param cex double - specifies font size in legend
+#' @param rm_regex character - specifies a regular expression to be removed from the centre names in the legend.
+#'                             e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'          or a list of data.frames if return_data is set to TRUE
@@ -22,7 +24,7 @@
 #' # plot recruitment
 #' plot_recruitment(sT_export)
 #'
-plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1) {
+plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1, rm_regex = "") {
   if (class(x) == "secuTrialdata") {
     ctr <- x[[x$export_options$meta_names$centres]]
     cn <- x[[x$export_options$meta_names$casenodes]]
@@ -47,13 +49,15 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
         if (! length(curr_ctr_cn$mnppid)) {
           # centres with 0 entries are labelled black in the legend
           cols[col_idx] <- "black"
-          legend_names <- c(legend_names, paste0(remove_trailing_bracket(ctr$mnpctrname[which(ctr$mnpctrid == centre_id)])
+          legend_names <- c(legend_names, paste0(gsub(ctr$mnpctrname[which(ctr$mnpctrid == centre_id)],
+                                                                         pattern = rm_regex, replacement = "")
                                                  , " (n=0)"))
           col_idx <- col_idx + 1
           next
         }
         dates_centre_ids_curr_ctr <- .prep_line_data(cn = curr_ctr_cn, ctr = ctr)
-        legend_names <- c(legend_names, paste0(remove_trailing_bracket(unique(dates_centre_ids_curr_ctr$centre_name)),
+        legend_names <- c(legend_names, paste0(gsub(unique(dates_centre_ids_curr_ctr$centre_name),
+                                                    pattern = rm_regex, replacement = ""),
                                                " (n=",
                                                nrow(dates_centre_ids_curr_ctr),
                                                ")"))
