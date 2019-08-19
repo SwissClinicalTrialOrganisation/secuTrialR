@@ -1,6 +1,4 @@
----
-output: github_document
----
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -235,6 +233,61 @@ dat <- d %>%
 
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
+
+#### Recruitment over time
+Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
+over time for a given export file.
+
+
+```r
+# show plot
+# note that there is no line for Universitätsspital 
+# Basel because only one case is registered for this centre
+plot_recruitment(ctu05, cex = 1.5)
+```
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png)
+
+```r
+# return the plot data
+plot_recruitment(ctu05, return_data = TRUE)
+```
+
+```
+## [[1]]
+##          date centre_id case_count                      centre_name
+## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
+## 1  2019-04-01       462          2           Charité Berlin (RPACK)
+## 2  2019-04-02       462          3           Charité Berlin (RPACK)
+## 3  2019-04-03       462          4           Charité Berlin (RPACK)
+## 4  2019-04-04       462          5           Charité Berlin (RPACK)
+## 5  2019-04-05       462          6           Charité Berlin (RPACK)
+## 6  2019-04-11       461          7         Inselspital Bern (RPACK)
+## 7  2019-04-12       461          8         Inselspital Bern (RPACK)
+## 8  2019-04-13       461          9         Inselspital Bern (RPACK)
+## 9  2019-04-14       461         10         Inselspital Bern (RPACK)
+## 10 2019-04-15       461         11         Inselspital Bern (RPACK)
+## 
+## [[2]]
+##         date centre_id case_count            centre_name
+## 1 2019-04-01       462          1 Charité Berlin (RPACK)
+## 2 2019-04-02       462          2 Charité Berlin (RPACK)
+## 3 2019-04-03       462          3 Charité Berlin (RPACK)
+## 4 2019-04-04       462          4 Charité Berlin (RPACK)
+## 5 2019-04-05       462          5 Charité Berlin (RPACK)
+## 
+## [[3]]
+##          date centre_id case_count              centre_name
+## 6  2019-04-11       461          1 Inselspital Bern (RPACK)
+## 7  2019-04-12       461          2 Inselspital Bern (RPACK)
+## 8  2019-04-13       461          3 Inselspital Bern (RPACK)
+## 9  2019-04-14       461          4 Inselspital Bern (RPACK)
+## 10 2019-04-15       461          5 Inselspital Bern (RPACK)
+## 
+## [[4]]
+##          date centre_id case_count                      centre_name
+## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
+```
 
 #### Form status summary statistics
 If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms
