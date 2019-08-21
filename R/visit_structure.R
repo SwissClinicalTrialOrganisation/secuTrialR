@@ -20,7 +20,7 @@
 visit_structure <- function(x){
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]
-  if (any(is.na(vp$mnpvsno))) stop(paste("Visits do not appear to be a part of this database or",
+  if (any(is.na(vp$mnpvisid))) stop(paste("Visits do not appear to be a part of this database or",
                                          "only flexible visits defined\nvisit_structure requires",
                                          "a fixed structure"))
   vpf <- x[[x$export_options$meta_names$visitplanforms]]
