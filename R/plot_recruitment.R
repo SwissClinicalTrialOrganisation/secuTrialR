@@ -36,7 +36,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
     if (return_data & (! show_centres)) {
       return(plot_data)
     } else if (! return_data) {
-      plot(dates_centre_ids$date, dates_centre_ids$case_count, type = "l", lwd = 2, col = "steelblue",
+      plot(dates_centre_ids$date, dates_centre_ids$case_count, type = "S", lwd = 2, col = "steelblue",
            main = "Recruitment over time", xlab = "Date of enrollment", ylab = "Case count")
     }
     # centre recruitment
