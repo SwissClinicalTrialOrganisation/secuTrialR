@@ -32,6 +32,6 @@ len_sep_ref <- links_secuTrial(sT_export_sep_ref, plot = FALSE)
 
 test_that("igraph structure", {
   expect_equal(len_short, len_short)
-  expect_equal(len_short, 668)
-  expect_equal(len_sep_ref, 3261)
+  expect_equal(len_short, 310)
+  expect_equal(len_sep_ref, 1266)
 })
