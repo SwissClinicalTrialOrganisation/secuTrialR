@@ -40,7 +40,7 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
 
   if (object$export_options$audit_trail) {
     names <- names(obj)
-    names <- names[!names %in% object$export_options$meta_names]
+    # names <- names[!names %in% object$export_options$meta_names]
     names2 <- gsub("^at", "", names)
     names <- names[!names %in% unique(names2)]
     obj <- obj[-which(names(obj) %in% names)]
