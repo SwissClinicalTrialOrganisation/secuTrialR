@@ -44,6 +44,7 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
     names2 <- gsub("^at", "", names)
     names <- names[!names %in% unique(names2)]
     obj <- obj[-which(names(obj) %in% names)]
+    rm(names)
   }
 
   names <- lapply(obj, names)
