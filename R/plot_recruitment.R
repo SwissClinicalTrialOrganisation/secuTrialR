@@ -65,7 +65,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
         plot_data[[length(plot_data) + 1]] <- dates_centre_ids_curr_ctr
         if (! return_data) {
           lines(dates_centre_ids_curr_ctr$date, dates_centre_ids_curr_ctr$case_count,
-                lwd = 2, col = cols[col_idx], lty = 2)
+                lwd = 2, col = cols[col_idx], lty = 2, type = "S")
         }
         col_idx <- col_idx + 1
       }
