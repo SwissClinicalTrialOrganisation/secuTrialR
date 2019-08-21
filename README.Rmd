@@ -240,7 +240,7 @@ After you have made your changes please run the
 [tests](README.md#testing-with-devtools)
 and 
 [lint](README.md#linting-with-lintr) your code as 
-indicated above. If all tests pass and linting confirms that your 
+indicated above. Please also increment the version number and recompile the `README.md` to increment the dev-version badge (requires installing the package after editing the `DESCRIPTION` file). If all tests pass and linting confirms that your 
 coding style conforms you can send a pull request (PR).  
 The PR should have a description to help the reviewer understand what has been 
 added/changed. New functionalities must be thoroughly documented, have examples 
