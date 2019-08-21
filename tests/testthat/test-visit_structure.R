@@ -16,8 +16,8 @@ sT_export_short <- read_secuTrial_export(data_dir = short_export_location)
 sT_export_long <- read_secuTrial_export(data_dir = long_export_location)
 
 test_that("failure on bmd data", {
-  expect_error(visit_structure(sT_export_short))
-  expect_error(visit_structure(sT_export_long))
+  expect_error(visit_structure(sT_export_short), regexp = NA)
+  expect_error(visit_structure(sT_export_long), regexp = NA)
   })
 
 
@@ -29,8 +29,8 @@ ldat <- read_secuTrial_export(system.file("extdata",
                                           package = "secuTrialR"))
 
 test_that("failure on CTU05 data", {
-  expect_error(visit_structure(sdat))
-  expect_error(visit_structure(ldat))
+  expect_error(visit_structure(sdat), regexp = NA)
+  expect_error(visit_structure(ldat), regexp = NA)
 })
 
 dat <- read_secuTrial(system.file("extdata",
