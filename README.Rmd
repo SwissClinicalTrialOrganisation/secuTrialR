@@ -148,6 +148,19 @@ dat <- d %>%
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
+#### as.data.frame
+Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice.
+
+```{r}
+ls()
+names(ctu05)
+as.data.frame(ctu05)
+ls()
+```
+
+There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
+
+
 #### Recruitment over time
 Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
 over time for a given export file.

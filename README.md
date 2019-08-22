@@ -234,6 +234,95 @@ dat <- d %>%
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
+#### as.data.frame
+Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice.
+
+
+```r
+ls()
+```
+
+```
+##  [1] "atcasenodes"      "atcasevisitplans" "atmnpdbmd"       
+##  [4] "atmnpdebmd"       "atmnpdem00bmd"    "bmd"             
+##  [7] "bmd_export"       "casenodes"        "ccsenodes"       
+## [10] "centres"          "comments"         "count_summary"   
+## [13] "csenodes"         "ctccsenodes"      "ctccsevisitplcns"
+## [16] "ctmnpdem00bmd"    "ctu05"            "ctu05_raw"       
+## [19] "dates"            "dbmd"             "debmd"           
+## [22] "dem00bmd"         "export_location"  "factors"         
+## [25] "foobmd"           "forms"            "items"           
+## [28] "labelled"         "labs"             "queries"         
+## [31] "questions"        "tcsenodes"        "tcsevisitplns"   
+## [34] "tmnpdem00bmd"     "visitplan"        "visitplanforms"  
+## [37] "visitplcn"        "visitplcnforms"   "visitpln"        
+## [40] "visitplnforms"
+```
+
+```r
+names(ctu05)
+```
+
+```
+##  [1] "export_options"          "forms"                  
+##  [3] "casenodes"               "centres"                
+##  [5] "items"                   "questions"              
+##  [7] "queries"                 "visitplan"              
+##  [9] "visitplanforms"          "atcasenodes"            
+## [11] "atcasevisitplans"        "comments"               
+## [13] "miv"                     "cl"                     
+## [15] "atmiv"                   "ctu05baseline"          
+## [17] "atmnpctu05baseline"      "ctu05outcome"           
+## [19] "atmnpctu05outcome"       "ctu05treatment"         
+## [21] "atmnpctu05treatment"     "ctu05allmedi"           
+## [23] "atmnpctu05allmedi"       "ctu05studyterminat"     
+## [25] "atmnpctu05studyterminat" "ctu05ae"                
+## [27] "atmnpctu05ae"            "ctu05sae"               
+## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
+## [31] "atemnpctu05surgeries"    "atadverseevents"
+```
+
+```r
+as.data.frame(ctu05)
+ls()
+```
+
+```
+##  [1] "atadverseevents"         "atcasenodes"            
+##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
+##  [5] "atmiv"                   "atmnpctu05ae"           
+##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
+## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [13] "atmnpdbmd"               "atmnpdebmd"             
+## [15] "atmnpdem00bmd"           "bmd"                    
+## [17] "bmd_export"              "casenodes"              
+## [19] "ccsenodes"               "centres"                
+## [21] "cl"                      "comments"               
+## [23] "count_summary"           "csenodes"               
+## [25] "ctccsenodes"             "ctccsevisitplcns"       
+## [27] "ctmnpdem00bmd"           "ctu05"                  
+## [29] "ctu05_raw"               "ctu05ae"                
+## [31] "ctu05allmedi"            "ctu05baseline"          
+## [33] "ctu05outcome"            "ctu05sae"               
+## [35] "ctu05studyterminat"      "ctu05treatment"         
+## [37] "dates"                   "dbmd"                   
+## [39] "debmd"                   "dem00bmd"               
+## [41] "emnpctu05surgeries"      "export_location"        
+## [43] "factors"                 "foobmd"                 
+## [45] "forms"                   "items"                  
+## [47] "labelled"                "labs"                   
+## [49] "miv"                     "queries"                
+## [51] "questions"               "tcsenodes"              
+## [53] "tcsevisitplns"           "tmnpdem00bmd"           
+## [55] "visitplan"               "visitplanforms"         
+## [57] "visitplcn"               "visitplcnforms"         
+## [59] "visitpln"                "visitplnforms"
+```
+
+There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
+
+
 #### Recruitment over time
 Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
 over time for a given export file.
