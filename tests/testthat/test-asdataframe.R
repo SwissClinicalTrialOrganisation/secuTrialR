@@ -11,18 +11,22 @@ test_that("bmd", {
 
   expect_error(as.data.frame(bmd, meta = FALSE), regexp = NA)
   expect_true(exists("dem00bmd"))
+  expect_equal(dem00bmd, bmd$dem00bmd)
   expect_false(any(sapply(c("forms", "casenodes", "centres", "items"), exists)))
 
   expect_error(as.data.frame(bmd, meta = FALSE, regex = "em00"), regexp = NA)
+  expect_equal(dbmd, bmd$dem00bmd)
   expect_true(exists("dbmd"))
 
   expect_error(as.data.frame(bmd, regex = "m00"), regexp = NA)
+  expect_equal(debmd, bmd$dem00bmd)
   expect_true(exists("debmd"))
   expect_true(all(sapply(c("forms", "casenodes", "centres", "items"), exists)))
 
 
   expect_error(as.data.frame(bmd, regex = "dem00", rep = "foo",
                              data.frames = c("dem00bmd")), regexp = NA)
+  expect_equal(foobmd, bmd$dem00bmd)
   expect_true(exists("foobmd"))
   expect_false(exists("atmnpfoobmd"))
 
