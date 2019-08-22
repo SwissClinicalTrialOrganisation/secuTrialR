@@ -27,6 +27,7 @@ each data.frame on the secuTrialdata object is saved to it's own data.frame in t
 as.data.frame method for secuTrialdata objects
 }
 \examples{
+# prepare path to example export
 export_location <- system.file("extdata",
                                "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
@@ -35,5 +36,5 @@ sT_export <- read_secuTrial_export(data_dir = export_location)
 # add files to global environment
 as.data.frame(sT_export)
 # add files to global environment, removing the project name from the file names
-as.data.frame(sT_export, rm_regex = "ctu05")
+as.data.frame(sT_export, regex = "ctu05")
 }
