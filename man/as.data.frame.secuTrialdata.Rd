@@ -4,15 +4,19 @@
 \alias{as.data.frame.secuTrialdata}
 \title{as.data.frame method for secuTrialdata objects}
 \usage{
-\method{as.data.frame}{secuTrialdata}(object, meta = TRUE,
-  rm_regex = NULL, envir = .GlobalEnv)
+\method{as.data.frame}{secuTrialdata}(object, data.frames = NULL,
+  meta = TRUE, regex = NULL, rep = "", envir = .GlobalEnv)
 }
 \arguments{
 \item{object}{secuTrialdata object}
 
+\item{data.frames}{character vector of data.frame names to turn into data.frames}
+
 \item{meta}{logical should metadata be returned}
 
-\item{rm_regex}{regex syntax to remove from names}
+\item{regex}{regex syntax to remove from names}
+
+\item{rep}{replacement for regex}
 
 \item{envir}{environment in which to put the data}
 }
