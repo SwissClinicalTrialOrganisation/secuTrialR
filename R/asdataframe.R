@@ -34,7 +34,7 @@ as.data.frame.secuTrialdata <- function(object,
 
   datanames <- object$export_options$data_names
   datanames <- as.character(datanames)
-  if (!all(data.frames %in% data.names)) stop("unrecognised data.frame specified")
+  if (!all(data.frames %in% datanames)) stop("unrecognised data.frame specified")
   if (!meta) {
     datanames <- datanames[!datanames %in% unlist(object$export_options$meta_names)]
   }
