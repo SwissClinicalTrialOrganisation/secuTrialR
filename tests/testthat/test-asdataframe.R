@@ -33,3 +33,24 @@ test_that("bmd", {
 
 })
 
+test_that("errors", {
+  expect_error(as.data.frame(bmd, data.frames = "foo"),
+               regexp = "unrecognised data.frame specified")
+
+  expect_error(as.data.frame(bmd, regex = TRUE),
+               regexp = "regex should be either NULL or character")
+
+  expect_warning(as.data.frame(bmd, regex = c("a", "b")),
+               regexp = "argument 'pattern' has length > 1")
+
+  expect_error(as.data.frame(bmd, rep = TRUE),
+               regexp = "rep should be character")
+
+  expect_warning(as.data.frame(bmd, regex = c("a", "b"), rep = c("c", "d")),
+               regexp = "argument 'replacement' has length > 1")
+
+  expect_error(as.data.frame(bmd, envir = TRUE),
+               regexp = "envir should be an environment")
+
+
+})
