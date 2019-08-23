@@ -9,16 +9,16 @@ test_that("bmd", {
   test <- new.env()
 
 
-  expect_error(as.data.frame(bmd, meta = FALSE), regexp = NA)
+  expect_error(as.data.frame(bmd), regexp = NA)
   expect_true(exists("dem00bmd"))
   expect_equal(dem00bmd, bmd$dem00bmd)
   expect_false(any(sapply(c("forms", "casenodes", "centres", "items"), exists)))
 
-  expect_error(as.data.frame(bmd, meta = FALSE, regex = "em00"), regexp = NA)
+  expect_error(as.data.frame(bmd, regex = "em00"), regexp = NA)
   expect_equal(dbmd, bmd$dem00bmd)
   expect_true(exists("dbmd"))
 
-  expect_error(as.data.frame(bmd, regex = "m00"), regexp = NA)
+  expect_error(as.data.frame(bmd, regex = "m00", meta = TRUE), regexp = NA)
   expect_equal(debmd, bmd$dem00bmd)
   expect_true(exists("debmd"))
   expect_true(all(sapply(c("forms", "casenodes", "centres", "items"), exists)))
@@ -31,7 +31,7 @@ test_that("bmd", {
   expect_false(exists("atmnpfoobmd"))
 
 
-  expect_error(as.data.frame(bmd, meta = FALSE, envir = test,
+  expect_error(as.data.frame(bmd, envir = test,
                              data.frames = c("dem00bmd")), regexp = NA)
   expect_true(exists("dem00bmd", envir = test))
 

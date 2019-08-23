@@ -23,7 +23,7 @@
 #' as.data.frame(sT_export, regex = "ctu05")
 as.data.frame.secuTrialdata <- function(object,
                                         data.frames = NULL,
-                                        meta = TRUE,
+                                        meta = FALSE,
                                         regex = NULL,
                                         rep = "",
                                         envir = .GlobalEnv) {
