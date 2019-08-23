@@ -30,7 +30,7 @@ data.frame showing percent completeness per variable.
 }
 \description{
 NOTE: This is not exported currently since it is not generic enough.
-      It can still be used but in depth knowlege of the function is required
+      It can still be used but in depth knowledge of the function is required
       to evaluate if the result is correct.
       As a rule of thumb: rigid CDMA setups with low complexity are likely
                           work as expected.
