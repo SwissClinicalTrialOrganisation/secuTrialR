@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.4.13-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.4.14-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -233,6 +233,74 @@ dat <- d %>%
 
 ### Exploratory helpers
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
+
+#### as.data.frame
+Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice.
+
+
+```r
+ls()
+```
+
+```
+## [1] "bmd_export"      "count_summary"   "ctu05"           "ctu05_raw"      
+## [5] "dates"           "export_location" "factors"         "labelled"       
+## [9] "labs"
+```
+
+```r
+names(ctu05)
+```
+
+```
+##  [1] "export_options"          "forms"                  
+##  [3] "casenodes"               "centres"                
+##  [5] "items"                   "questions"              
+##  [7] "queries"                 "visitplan"              
+##  [9] "visitplanforms"          "atcasenodes"            
+## [11] "atcasevisitplans"        "comments"               
+## [13] "miv"                     "cl"                     
+## [15] "atmiv"                   "ctu05baseline"          
+## [17] "atmnpctu05baseline"      "ctu05outcome"           
+## [19] "atmnpctu05outcome"       "ctu05treatment"         
+## [21] "atmnpctu05treatment"     "ctu05allmedi"           
+## [23] "atmnpctu05allmedi"       "ctu05studyterminat"     
+## [25] "atmnpctu05studyterminat" "ctu05ae"                
+## [27] "atmnpctu05ae"            "ctu05sae"               
+## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
+## [31] "atemnpctu05surgeries"    "atadverseevents"
+```
+
+```r
+as.data.frame(ctu05)
+ls()
+```
+
+```
+##  [1] "atadverseevents"         "atcasenodes"            
+##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
+##  [5] "atmiv"                   "atmnpctu05ae"           
+##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
+## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [13] "bmd_export"              "casenodes"              
+## [15] "centres"                 "cl"                     
+## [17] "comments"                "count_summary"          
+## [19] "ctu05"                   "ctu05_raw"              
+## [21] "ctu05ae"                 "ctu05allmedi"           
+## [23] "ctu05baseline"           "ctu05outcome"           
+## [25] "ctu05sae"                "ctu05studyterminat"     
+## [27] "ctu05treatment"          "dates"                  
+## [29] "emnpctu05surgeries"      "export_location"        
+## [31] "factors"                 "forms"                  
+## [33] "items"                   "labelled"               
+## [35] "labs"                    "miv"                    
+## [37] "queries"                 "questions"              
+## [39] "visitplan"               "visitplanforms"
+```
+
+There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
+
 
 #### Recruitment over time
 Recruitment is an important cornerstone for every clinical trial. `secuTrialR` allows for straigt forward visualizion of recuitment
