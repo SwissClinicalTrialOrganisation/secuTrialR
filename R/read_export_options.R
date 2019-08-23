@@ -36,7 +36,7 @@ read_export_options <- function(data_dir) {
   }
 
   # recode if there is ISO encoding
-  if(length(grep(">ISO-8859-", parsed_export))) {
+  if (length(grep(">ISO-8859-", parsed_export))) {
     Encoding(parsed_export) <- "latin1"
   }
 

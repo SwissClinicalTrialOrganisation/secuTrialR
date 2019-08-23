@@ -28,7 +28,7 @@ write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FAL
   }
   x <- object$export_options$data_names
   names(x) <- NULL
-  if(!metadata) x <- x[!x %in% object$export_options$meta_names]
+  if (!metadata) x <- x[!x %in% object$export_options$meta_names]
 
   lapply(x, function(obs) {
     tmp <- object[[obs]]

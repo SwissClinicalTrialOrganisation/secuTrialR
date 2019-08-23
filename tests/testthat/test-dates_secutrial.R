@@ -68,9 +68,11 @@ test_that("datetime correctly parsed",
           )
 
 # warnings for trying to run dates again
+# nolint start
 # d <- suppressWarnings(dates_secuTrial(f))
 # w <- warnings()
 # n <- names(w)
+# nolint end
 test_that("second dates warning",
           expect_warning(dates_secuTrial(f), "dates already added"))
 
