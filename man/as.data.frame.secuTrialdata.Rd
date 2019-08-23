@@ -5,7 +5,7 @@
 \title{as.data.frame method for secuTrialdata objects}
 \usage{
 \method{as.data.frame}{secuTrialdata}(object, data.frames = NULL,
-  meta = TRUE, regex = NULL, rep = "", envir = .GlobalEnv)
+  meta = FALSE, regex = NULL, rep = "", envir = .GlobalEnv)
 }
 \arguments{
 \item{object}{secuTrialdata object}
