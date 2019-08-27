@@ -2,7 +2,7 @@
 #'
 #' This function returns a data.frame informing on the status of saved
 #' forms per patient. There is a line for every combination of
-#' form type and patient id. The numbers are occurence counts.
+#' form type and patient id. The numbers are occurrence counts.
 #'
 #' @param object secuTrialdata object
 #' @keywords form status, completeness

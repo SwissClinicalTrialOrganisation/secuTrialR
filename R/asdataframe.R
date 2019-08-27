@@ -51,4 +51,3 @@ as.data.frame.secuTrialdata <- function(object,
   )
 
 }
-

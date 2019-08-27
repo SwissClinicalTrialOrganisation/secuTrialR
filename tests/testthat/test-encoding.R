@@ -4,6 +4,8 @@ context("character encoding")
 
 # functional encodings
 
+
+# nolint start
 # file locations
 # utf8
 exp_opt_ctu05_utf8_loc <- system.file("extdata", "encoding_examples",
@@ -17,8 +19,6 @@ exp_opt_ctu05_iso15_loc <- system.file("extdata", "encoding_examples",
 exp_opt_ctu05_iso1_loc <- system.file("extdata", "encoding_examples",
                                       "s_export_CSV-xls_CTU05_20190807-143436_fr_ISO-8859-1.zip",
                                       package = "secuTrialR")
-
-
 # export options
 # utf8
 exp_opt_ctu05_utf8_eo <- read_export_options(exp_opt_ctu05_utf8_loc)
@@ -55,6 +55,8 @@ exp_opt_ctu05_iso15_export <- read_secuTrial_export(exp_opt_ctu05_iso15_loc)
 # ISO-8859-1
 exp_opt_ctu05_iso1_export <- read_secuTrial_export(exp_opt_ctu05_iso1_loc)
 
+# nolint end
+
 # test for table equality
 test_that("table outputs are equal", {
   # differences expected in export_options so export_options (index 1) are removed for this test
@@ -90,4 +92,3 @@ test_that("UTF-16 is not supported", {
                                                package = "secuTrialR"))
   )
 })
-

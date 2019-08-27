@@ -37,8 +37,8 @@ test_that("Test output equality for different export options", {
 })
 
 test_that("Test column sums", {
-  expect_equal(as.vector(colSums(form_status_counts(l_ctu05)[,3:7])), c(74, 5, 0, 0, 0))
-  expect_equal(as.vector(colSums(form_status_counts(s_tes05_iso)[,3:7])), c(21, 12, 4, 0, 0))
+  expect_equal(as.vector(colSums(form_status_counts(l_ctu05)[, 3:7])), c(74, 5, 0, 0, 0))
+  expect_equal(as.vector(colSums(form_status_counts(s_tes05_iso)[, 3:7])), c(21, 12, 4, 0, 0))
 })
 
 # custom count checks

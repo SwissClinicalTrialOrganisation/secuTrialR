@@ -92,7 +92,7 @@ test_that("refactorize warning", {
 })
 
 # manually adding duplicate factor levels to cl table for mnpptnid
-reference_line <- as.vector(ctu05_l$cl[158,])
+reference_line <- as.vector(ctu05_l$cl[158, ])
 duplicate_1 <- reference_line
 duplicate_2 <- reference_line
 duplicate_1$code <- 1987

@@ -46,7 +46,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
     qu <- object[[object$export_options$meta_names$questions]]
     # if meta data is duplicated then the additional "formtablename"
     # in the items table creates a problem and is thus removed here
-    if(object$export_options$duplicate_meta) {
+    if (object$export_options$duplicate_meta) {
       it <- subset(it, select = -c(formtablename))
     }
     itqu <- merge(it, qu, by = "fgid")
