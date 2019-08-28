@@ -59,6 +59,13 @@ annual_recruitment <- function(x, rm_regex = "") {
     }
     # adjust names
     names(recruitment_table) <- header
+    # add rows for missing centres
+    ctr <- x[[x$export_options$meta_names$centres]]
+    missing_centers <- ctr$mnpctrname[which(! ctr$mnpctrname %in% recruitment_table$Center)]
+    for (centre in missing_centers) {
+      recruitment_table <- rbind(recruitment_table,
+                                 c(centre, rep(0, length(recruitment_table[1,]) - 1)))
+    }
     # apply rm_regex
     recruitment_table$Center <- trimws(gsub(recruitment_table$Center, pattern = rm_regex, replacement = ""))
     # remove duplicate lines (this will happen if there is only one center)
