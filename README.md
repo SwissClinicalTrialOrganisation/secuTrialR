@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.4.15-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.4.16-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -348,6 +348,22 @@ plot_recruitment(ctu05, return_data = TRUE)
 ##          date centre_id case_count                      centre_name
 ## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
 ```
+
+Furthermore, recruitment per year and center can be returned.
+
+
+```r
+annual_recruitment(ctu05, rm_regex = "\\(.*\\)$")
+```
+
+```
+##                     Center Total 2018 2019
+## 1                      All    11    1   10
+## 2           Charité Berlin     5    0    5
+## 3         Inselspital Bern     5    0    5
+## 4 Universitätsspital Basel     1    1    0
+```
+
 
 #### Form status summary statistics
 If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms
