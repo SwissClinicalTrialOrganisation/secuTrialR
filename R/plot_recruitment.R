@@ -9,7 +9,7 @@
 #' @param cex double - specifies font size in legend
 #' @param rm_regex character - specifies a regular expression to be removed from the centre names in the legend.
 #                                              # this is escaped three times here to
-#                                              # show up propperly in the help file
+#                                              # show up properly in the help file
 #'                             e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
