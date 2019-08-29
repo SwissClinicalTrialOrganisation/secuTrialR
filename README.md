@@ -449,8 +449,7 @@ devtools::spell_check("secuTrialR", ignore = ignore_words)
 
 ### Linting with lintr
 
-
-```r
+``` r
 # lint the package -> should be clean
 library(lintr)
 lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
@@ -470,17 +469,20 @@ knit("README.Rmd")
 
 ### Guidelines for contributors
 
-In order to contribute to this R package you should fork the main repository.
-After you have made your changes please run the 
-[tests](README.md#testing-with-devtools)
-and 
-[lint](README.md#linting-with-lintr) your code as 
-indicated above. Please also increment the version number and recompile the `README.md` to increment the dev-version badge (requires installing the package after editing the `DESCRIPTION` file). If all tests pass and linting confirms that your 
-coding style conforms you can send a pull request (PR).  
-The PR should have a description to help the reviewer understand what has been 
-added/changed. New functionalities must be thoroughly documented, have examples 
-and should be accompanied by at least one [test](tests/testthat/) to ensure long term 
-robustness. The PR will only be reviewed if all travis checks are successful. 
-The person sending the PR should not be the one merging it.
+In order to contribute to this R package you should fork the main
+repository. After you have made your changes please run the
+[tests](README.md#testing-with-devtools) and
+[lint](README.md#linting-with-lintr) your code as indicated above.
+Please also increment the version number and recompile the `README.md`
+to increment the dev-version badge (requires installing the package
+after editing the `DESCRIPTION` file). If all tests pass and linting
+confirms that your coding style conforms you can send a pull request
+(PR). Changes should also be mentioned in the `NEWS` file. The PR should
+have a description to help the reviewer understand what has been
+added/changed. New functionalities must be thoroughly documented, have
+examples and should be accompanied by at least one
+[test](tests/testthat/) to ensure long term robustness. The PR will only
+be reviewed if all travis checks are successful. The person sending the
+PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).
+A depiction of the core functionalities for loading can be found
