@@ -8,7 +8,9 @@
 #' @param show_centres logical - subset the data into centres
 #' @param cex double - specifies font size in legend
 #' @param rm_regex character - specifies a regular expression to be removed from the centre names in the legend.
-#'                             e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.
+#                                              # this is escaped three times here to
+#                                              # show up properly in the help file
+#'                             e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.
 #' @export
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'          or a list of data.frames if return_data is set to TRUE
@@ -23,6 +25,9 @@
 #'
 #' # plot recruitment
 #' plot_recruitment(sT_export)
+#'
+#' # plot without trailing bracket
+#' plot_recruitment(sT_export, rm_regex = "\\(.*\\)$")
 #'
 plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1, rm_regex = "") {
   if (class(x) == "secuTrialdata") {

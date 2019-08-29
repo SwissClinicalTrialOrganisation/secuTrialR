@@ -17,7 +17,7 @@ plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
 \item{cex}{double - specifies font size in legend}
 
 \item{rm_regex}{character - specifies a regular expression to be removed from the centre names in the legend.
-e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.}
+e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.}
 }
 \description{
 secuTrial exports inherently contain the information on which case was
@@ -39,5 +39,8 @@ sT_export <- read_secuTrial(expot_loc)
 
 # plot recruitment
 plot_recruitment(sT_export)
+
+# plot without trailing bracket
+plot_recruitment(sT_export, rm_regex = "\\\\(.*\\\\)$")
 
 }
