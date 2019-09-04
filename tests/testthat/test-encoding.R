@@ -47,13 +47,13 @@ test_that("all export options outputs are equal", {
                expected_output)
 })
 
-# read_secuTrial_export
+# read_secuTrial_raw
 # utf8
-exp_opt_ctu05_utf8_export <- read_secuTrial_export(exp_opt_ctu05_utf8_loc)
+exp_opt_ctu05_utf8_export <- read_secuTrial_raw(exp_opt_ctu05_utf8_loc)
 # ISO-8859-15
-exp_opt_ctu05_iso15_export <- read_secuTrial_export(exp_opt_ctu05_iso15_loc)
+exp_opt_ctu05_iso15_export <- read_secuTrial_raw(exp_opt_ctu05_iso15_loc)
 # ISO-8859-1
-exp_opt_ctu05_iso1_export <- read_secuTrial_export(exp_opt_ctu05_iso1_loc)
+exp_opt_ctu05_iso1_export <- read_secuTrial_raw(exp_opt_ctu05_iso1_loc)
 
 # nolint end
 

@@ -9,8 +9,8 @@ long_export_location <- system.file("extdata",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
-sT_export_short <- read_secuTrial_export(data_dir = short_export_location)
-sT_export_long <- read_secuTrial_export(data_dir = long_export_location)
+sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
+sT_export_long <- read_secuTrial_raw(data_dir = long_export_location)
 
 # load validation overview
 val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")

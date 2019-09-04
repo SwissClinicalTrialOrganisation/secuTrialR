@@ -26,7 +26,7 @@ Requires a fixed visit structure - an error will be returned for projects withou
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- read_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial_raw(data_dir = export_location)
 \dontrun{
 visit_structure(sT_export)
 }

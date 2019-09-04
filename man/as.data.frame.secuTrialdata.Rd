@@ -32,7 +32,7 @@ export_location <- system.file("extdata",
                                "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
 # load all export data
-sT_export <- read_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial_raw(data_dir = export_location)
 # add files to global environment
 as.data.frame(sT_export)
 # add files to global environment, removing the project name from the file names

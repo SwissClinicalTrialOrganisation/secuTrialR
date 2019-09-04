@@ -2,7 +2,7 @@ context("dates")
 
 
 # check individual variables
-dat <- read_secuTrial_export(system.file("extdata",
+dat <- read_secuTrial_raw(system.file("extdata",
                                          "s_export_CSV-xls_CTU05_shortnames.zip",
                                          package = "secuTrialR"))
 test_that("loading data: CTU05_shortnames (warn)",
@@ -13,7 +13,7 @@ f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (shortnames)",
           expect_equal(class(f$outcome$death_date.date), "Date"))
 
-dat <- read_secuTrial_export(system.file("extdata",
+dat <- read_secuTrial_raw(system.file("extdata",
                                          "s_export_CSV-xls_CTU05_longnames.zip",
                                          package = "secuTrialR"))
 test_that("loading data: CTU05_longnames (warn)",
@@ -24,7 +24,7 @@ test_that("loading data: CTU05_longnames (no warn)",
 f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (longnames)", expect_equal(class(f$ctu05outcome$death_date.date), "Date"))
 
-dat <- read_secuTrial_export(system.file("extdata",
+dat <- read_secuTrial_raw(system.file("extdata",
                                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                          package = "secuTrialR"))
 test_that("loading data: CTU05_longnames_sep_ref (warn)",

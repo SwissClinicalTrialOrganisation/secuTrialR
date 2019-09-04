@@ -5,7 +5,7 @@
 #' This function will always load the full set of meta and data tables.
 #' The export options are also loaded and written into export_options.
 #'
-#' @export read_secuTrial_export
+#' @export read_secuTrial_raw
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
@@ -20,9 +20,9 @@
 #' export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
-#' sT_export <- read_secuTrial_export(data_dir = export_location)
+#' sT_export <- read_secuTrial_raw(data_dir = export_location)
 #'
-read_secuTrial_export <- function(data_dir) {
+read_secuTrial_raw <- function(data_dir) {
 
   # load export options
   export_options <- read_export_options(data_dir = data_dir)
@@ -103,7 +103,7 @@ read_secuTrial_export <- function(data_dir) {
 
 
 #' @rdname secuTrialdata
-#' @param x secuTrialdata object as returned by \code{read_secuTrial_export}
+#' @param x secuTrialdata object as returned by \code{read_secuTrial_raw}
 #'
 #' @return data.frame with a row for each table in the export. For each table it
 #'         contains the name, number of rows and columns, an indicator for
