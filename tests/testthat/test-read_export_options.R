@@ -83,7 +83,7 @@ export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 
 # load all export data
-sT_export <- read_secuTrial_export(data_dir = export_location)
+sT_export <- read_secuTrial_raw(data_dir = export_location)
 
 # capture the print
 captured_print <- capture.output(print(sT_export$export_options))
@@ -99,7 +99,7 @@ test_that("Print export options working.", {
 })
 
 
-sT_export2 <- read_secuTrial_export(data_dir = system.file("extdata",
+sT_export2 <- read_secuTrial_raw(data_dir = system.file("extdata",
                                                            "s_export_CSV-xls_CTU05_shortnames.zip",
                                                            package = "secuTrialR"))
 # project version

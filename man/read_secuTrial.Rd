@@ -19,7 +19,7 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 secuTrialdata object - a list with one data.frame for each file on the export.
 }
 \description{
-Convenience wrapper for \code{read_secuTrial_export}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
+Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
 }
 \examples{
 path <- system.file("extdata",

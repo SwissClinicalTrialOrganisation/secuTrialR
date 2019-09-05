@@ -1,8 +1,10 @@
-
+---
+output: github_document
+---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.4.16-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -40,12 +42,12 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
-bmd_export <- read_secuTrial_export(data_dir = export_location)
+bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
 export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
-ctu05_raw <- read_secuTrial_export(export_location)
+ctu05_raw <- read_secuTrial_raw(export_location)
 
 # View names of the bmd_export object
 names(bmd_export)
@@ -58,7 +60,7 @@ names(bmd_export)
 ## [13] "bmd"            "atbmd"
 ```
 
-`read_secuTrial_export` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`.
+`read_secuTrial_raw` returns an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `bmd_export$export_options$data_names`.
 <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
 `bmd_export` is a list, with class `secuTrialdata`. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within `bmd_export` instead. The information returned includes the original file name in the datafile, it's name in the `secuTrialdata` object, together with the number of rows and columns and a column indicating whether the object is metadata or not:
@@ -214,7 +216,7 @@ dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date",
 
 ```r
 f <- "PATH_TO_FILE"
-d <- read_secuTrial_export(f)
+d <- read_secuTrial_raw(f)
 l <- label_secuTrial(d)
 fa <- factorize_secuTrial(l)
 dat <- dates_secuTrial(fa)
@@ -222,7 +224,7 @@ dat <- dates_secuTrial(fa)
 # or, if you like pipes
 library(magrittr)
 f <- "PATH_TO_FILE"
-d <- read_secuTrial_export(f)
+d <- read_secuTrial_raw(f)
 dat <- d %>% 
   label_secuTrial() %>%
   factorize_secuTrial() %>%
@@ -449,7 +451,8 @@ devtools::spell_check("secuTrialR", ignore = ignore_words)
 
 ### Linting with lintr
 
-``` r
+
+```r
 # lint the package -> should be clean
 library(lintr)
 lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
@@ -469,20 +472,17 @@ knit("README.Rmd")
 
 ### Guidelines for contributors
 
-In order to contribute to this R package you should fork the main
-repository. After you have made your changes please run the
-[tests](README.md#testing-with-devtools) and
-[lint](README.md#linting-with-lintr) your code as indicated above.
-Please also increment the version number and recompile the `README.md`
-to increment the dev-version badge (requires installing the package
-after editing the `DESCRIPTION` file). If all tests pass and linting
-confirms that your coding style conforms you can send a pull request
-(PR). Changes should also be mentioned in the `NEWS` file. The PR should
-have a description to help the reviewer understand what has been
-added/changed. New functionalities must be thoroughly documented, have
-examples and should be accompanied by at least one
-[test](tests/testthat/) to ensure long term robustness. The PR will only
-be reviewed if all travis checks are successful. The person sending the
-PR should not be the one merging it.
+In order to contribute to this R package you should fork the main repository.
+After you have made your changes please run the 
+[tests](README.md#testing-with-devtools)
+and 
+[lint](README.md#linting-with-lintr) your code as 
+indicated above. Please also increment the version number and recompile the `README.md` to increment the dev-version badge (requires installing the package after editing the `DESCRIPTION` file). If all tests pass and linting confirms that your 
+coding style conforms you can send a pull request (PR).  Changes should also be mentioned in the `NEWS` file.
+The PR should have a description to help the reviewer understand what has been 
+added/changed. New functionalities must be thoroughly documented, have examples 
+and should be accompanied by at least one [test](tests/testthat/) to ensure long term 
+robustness. The PR will only be reviewed if all travis checks are successful. 
+The person sending the PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found
+A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).

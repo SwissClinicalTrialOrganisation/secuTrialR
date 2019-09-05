@@ -30,9 +30,9 @@ factorize_secuTrial will return an error if the appropriate codebook is not avai
 }
 \examples{
 # load secuTrial export with separate reference table
-sT_export <- read_secuTrial_export(system.file("extdata",
-                                               "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
-                                               package = "secuTrialR"))
+sT_export <- read_secuTrial_raw(system.file("extdata",
+                                            "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                            package = "secuTrialR"))
 # factorize the secuTrialdata object
 sT_export_factorized <- factorize_secuTrial(sT_export)
 }

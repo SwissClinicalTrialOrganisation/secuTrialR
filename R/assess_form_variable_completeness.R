@@ -27,9 +27,9 @@
 # #' @export assess_form_variable_completeness
 #'
 #' @param form data.frame Form for which to assess variable completeness
-#'             (i.e. a list element returned by read_secuTrial_export).
+#'             (i.e. a list element returned by read_secuTrial_raw).
 #' @param casenodes_table data.frame The central casenodes record file
-#'                      (i.e. 'casenodes' from the list returned by read_secuTrial_export).
+#'                      (i.e. 'casenodes' from the list returned by read_secuTrial_raw).
 #' @param validation_overview tibble returned by read_validation_overview.
 #' @param completeness string Specifies if completeness is assessed for all forms ('allforms')
 #'                     or only for saved forms ('savedforms').
@@ -45,7 +45,7 @@
 #'                                   occ_in_vp = 5)
 #' }
 #'
-#' @seealso read_validation_overview, read_secuTrial_export
+#' @seealso read_validation_overview, read_secuTrial_raw
 #'
 assess_form_variable_completeness <- function(form,
                                               casenodes_table,

@@ -6,7 +6,7 @@
 # centres/ctr and visitplan/vp meta tables need to be loaded with this function first.
 # Also export options need to be generated with read_export_options beforehand.
 #
-# This is an internal function which is wrapped by read_secuTrial_export
+# This is an internal function which is wrapped by read_secuTrial_raw
 #
 # @param data_dir string The data_dir specifies the path to the secuTrial data export.
 # @param file_name string The file_name specifies which file to load.

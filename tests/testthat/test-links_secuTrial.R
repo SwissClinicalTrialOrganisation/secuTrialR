@@ -13,9 +13,9 @@ sep_ref_export_loc <- system.file("extdata",
                                   "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                   package = "secuTrialR")
 
-sT_export_short <- read_secuTrial_export(data_dir = short_export_location)
-sT_export_long <- read_secuTrial_export(data_dir = long_export_location)
-sT_export_sep_ref <- read_secuTrial_export(data_dir = sep_ref_export_loc)
+sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
+sT_export_long <- read_secuTrial_raw(data_dir = long_export_location)
+sT_export_sep_ref <- read_secuTrial_raw(data_dir = sep_ref_export_loc)
 
 
 # test exception

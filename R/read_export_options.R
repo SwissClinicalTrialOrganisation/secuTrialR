@@ -4,7 +4,7 @@
 # The read_export_options reads the secuTrial data export and
 # determines specific options needed to handle the data properly.
 #
-# This is an internal function which is wrapped by read_secuTrial_export
+# This is an internal function which is wrapped by read_secuTrial_raw
 #
 # @param data_dir string The data_dir specifies the path to the secuTrial data export.
 #
@@ -261,8 +261,8 @@ read_export_options <- function(data_dir) {
                         lang_not_supported = lang_not_supported,
                         dict_items = dict_items,
                         refvals_separate = refvals_seperate,
-                        add_id = NULL, # handled in read_secuTrial_export
-                        lab_id = NULL, # handled in read_secuTrial_export
+                        add_id = NULL, # handled in read_secuTrial_raw
+                        lab_id = NULL, # handled in read_secuTrial_raw
                         meta_names = meta_names,
                         meta_available = meta_available,
                         duplicate_meta = duplicate_meta,
