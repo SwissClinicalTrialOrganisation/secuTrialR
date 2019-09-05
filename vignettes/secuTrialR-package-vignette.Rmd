@@ -78,13 +78,13 @@ export_location_longnames <- system.file("extdata",
 
 ### Loading an export
 
-The code below shows how to load a secuTrial export. The output of read_secuTrial_export is a list. 
+The code below shows how to load a secuTrial export. The output of read_secuTrial_raw is a list. 
 
 ```{r}
 
-sT_export_shortnames <- read_secuTrial_export(data_dir = export_location_shortnames)
+sT_export_shortnames <- read_secuTrial_raw(data_dir = export_location_shortnames)
 typeof(sT_export_shortnames)
-sT_export_longtnames <- read_secuTrial_export(data_dir = export_location_longnames)
+sT_export_longtnames <- read_secuTrial_raw(data_dir = export_location_longnames)
 typeof(sT_export_longtnames)
 
 ```
