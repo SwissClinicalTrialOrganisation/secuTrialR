@@ -33,7 +33,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
   if (class(x) == "secuTrialdata") {
     ctr <- x[[x$export_options$meta_names$centres]]
     cn <- x[[x$export_options$meta_names$casenodes]]
-    dates_centre_ids <- .prep_line_data(cn = cn, ctr = ctr)
+    dates_centre_ids <- .prep_line_data(cn = cn, ctr = ctr, encoding = x$export_options$encoding)
     # for return_data
     plot_data <- list(dates_centre_ids)
     # legend
@@ -60,7 +60,8 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
           col_idx <- col_idx + 1
           next
         }
-        dates_centre_ids_curr_ctr <- .prep_line_data(cn = curr_ctr_cn, ctr = ctr)
+        dates_centre_ids_curr_ctr <- .prep_line_data(cn = curr_ctr_cn, ctr = ctr,
+                                                     encoding = x$export_options$encoding)
         legend_names <- c(legend_names, paste0(gsub(unique(dates_centre_ids_curr_ctr$centre_name),
                                                     pattern = rm_regex, replacement = ""),
                                                " (n=",
@@ -91,7 +92,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
 # helper function to prep the data for the line plot
 # take a casenodes (cn) and centres (ctr) data frame from the
 # secuTrial export
-.prep_line_data <- function(cn, ctr) {
+.prep_line_data <- function(cn, ctr, encoding = "UTF-8") {
   dates_centre_ids <- cn[, c("mnpvisstartdate", "mnpctrid")]
   # set to "Date" class
   dates_centre_ids$mnpvisstartdate <- as.Date(dates_centre_ids$mnpvisstartdate)
@@ -107,7 +108,11 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
     dates_centre_ids$centre_name <- gsub(dates_centre_ids$centre_name,
                                          # force full length match with "^ $" to avoid substring match
                                          pattern = paste0("^", curr_line$mnpctrid, "$"),
-                                         replacement = curr_line$mnpctrname)
+                                         replacement = curr_line$mnpctrname,
+                                         useBytes = TRUE)
+  }
+  if (encoding != "UTF-8") {
+    Encoding(dates_centre_ids$centre_name) <- "latin1"
   }
   return(dates_centre_ids)
 }

@@ -7,15 +7,32 @@ ldat <- read_secuTrial(system.file("extdata",
                                   "s_export_CSV-xls_CTU05_longnames.zip",
                                   package = "secuTrialR"))
 
+ctu05_utf8_french <- read_secuTrial(system.file("extdata", "encoding_examples",
+                                                "s_export_CSV-xls_CTU05_20190807-143033_fr_utf8.zip",
+                                                package = "secuTrialR"))
+ctu05_iso15_french <- read_secuTrial(system.file("extdata", "encoding_examples",
+                                                 "s_export_CSV-xls_CTU05_20190807-143345_fr_ISO-8859-15.zip",
+                                                 package = "secuTrialR"))
+
 test_that("Test fail", {
   expect_error(plot_recruitment(1337))
 })
 
 test_that("Test output", {
+  # show_centres = FALSE
   expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = FALSE),
                plot_recruitment(ldat, return_data = TRUE, show_centres = FALSE))
+  expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = FALSE),
+               plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = FALSE))
+  expect_equal(plot_recruitment(ctu05_utf8_french, return_data = TRUE, show_centres = FALSE),
+               plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = FALSE))
+  # show_centres = TRUE
   expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE),
                plot_recruitment(ldat, return_data = TRUE, show_centres = TRUE))
+  expect_equal(plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = TRUE),
+               plot_recruitment(ldat, return_data = TRUE, show_centres = TRUE))
+  expect_equal(plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = TRUE),
+               plot_recruitment(ctu05_utf8_french, return_data = TRUE, show_centres = TRUE))
   expect_equal(dim(plot_recruitment(ldat, return_data = TRUE, show_centres = FALSE)[[1]]), c(11, 4))
   # [[1]] has all data, row count in all other entries summed up should be equal to it
   expect_equal(nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[1]]),
