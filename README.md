@@ -22,7 +22,7 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
@@ -37,13 +37,14 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata",  "sT_exports", "BMD", 
+                               "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -68,7 +69,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.4/secuTrialR/extdata/s_export_CSV-xls_BMD.zip 
+## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.4/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls

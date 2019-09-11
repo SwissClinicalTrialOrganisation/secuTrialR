@@ -1,9 +1,9 @@
 context("return scores")
 
-sdat <- read_secuTrial(system.file("extdata",
+sdat <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                    "s_export_CSV-xls_CTU05_shortnames.zip",
                                    package = "secuTrialR"))
-ldat <- read_secuTrial(system.file("extdata",
+ldat <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
                                   "s_export_CSV-xls_CTU05_longnames.zip",
                                   package = "secuTrialR"))
 

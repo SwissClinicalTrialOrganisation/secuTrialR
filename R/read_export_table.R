@@ -33,7 +33,7 @@
 # \donttest{
 # nolint start
 # # load casenodes (casenodes/cn) table
-# casenodes <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
+# casenodes <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
 #                                                                  "s_export_CSV-xls_BMD.zip",
 #                                                                  package = "secuTrialR"),
 #                                           file_name = "cn.xls",
@@ -41,7 +41,7 @@
 #                                           is_meta_table = TRUE)
 #
 # # load centre (centres/ctr) table
-# centre <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
+# centre <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
 #                                                                 "s_export_CSV-xls_BMD.zip",
 #                                                                 package = "secuTrialR"),
 #                                          file_name = "ctr.xls",
@@ -49,7 +49,7 @@
 #                                          is_meta_table = TRUE)
 #
 # # load visitplan (visitplan/vp) table
-# visitplan <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
+# visitplan <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
 #                                                                    "s_export_CSV-xls_BMD.zip",
 #                                                                    package = "secuTrialR"),
 #                                             file_name = "vp.xls",
@@ -57,7 +57,7 @@
 #                                             is_meta_table = TRUE)
 #
 # # load bone mineral denisty form data
-# bmd <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
+# bmd <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
 #                                                              "s_export_CSV-xls_BMD.zip",
 #                                                              package = "secuTrialR"),
 #                                       file_name = "bmd.xls",

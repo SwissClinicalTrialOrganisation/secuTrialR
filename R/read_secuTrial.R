@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata",
+#' path <- system.file("extdata", "sT_exports", "longnames",
 #'                     "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
 #'                     package = "secuTrialR")
 #' d <- read_secuTrial(path)

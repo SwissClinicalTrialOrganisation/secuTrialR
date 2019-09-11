@@ -1,14 +1,16 @@
 context("annual recruitment")
 
-sdat_ctu05 <- read_secuTrial(system.file("extdata",
+sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                          "s_export_CSV-xls_CTU05_shortnames.zip",
                                          package = "secuTrialR"))
-ldat_ctu05 <- read_secuTrial(system.file("extdata",
+ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                          "s_export_CSV-xls_CTU05_longnames.zip",
                                          package = "secuTrialR"))
-bmd <- read_secuTrial(system.file("extdata", "s_export_CSV-xls_BMD.zip",
+bmd <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+                                  "s_export_CSV-xls_BMD.zip",
                                   package = "secuTrialR"))
-tes05 <- read_secuTrial(system.file("extdata", "s_export_CSV-xls_TES05_long_UTF-8.zip",
+tes05 <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+                                    "s_export_CSV-xls_TES05_long_UTF-8.zip",
                                     package = "secuTrialR"))
 
 test_that("Test fail", {

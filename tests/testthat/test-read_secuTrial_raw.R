@@ -1,10 +1,10 @@
 context("load full secuTrial export testing")
 
-short_export_location <- system.file("extdata",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
@@ -46,7 +46,7 @@ test_that("add_id and lab_id correctly determined", {
 
 # check fail "Column names"
 test_that("No Column names failing", {
-  expect_error(read_secuTrial_raw(data_dir = system.file("extdata",
+  expect_error(read_secuTrial_raw(data_dir = system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_longnames_ref_val_sep_BMD.zip",
                                      package = "secuTrialR"))
               )

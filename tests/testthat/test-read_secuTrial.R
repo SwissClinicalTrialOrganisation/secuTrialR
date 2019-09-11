@@ -2,20 +2,20 @@ context("read_secutrial")
 
 
 # zipped
-l1 <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+l1 <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
             package = "secuTrialR")
 
-l2 <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames.zip",
+l2 <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames.zip",
                   package = "secuTrialR")
 
-s1 <- system.file("extdata", "s_export_CSV-xls_CTU05_shortnames.zip",
+s1 <- system.file("extdata", "sT_exports", "shortnames", "s_export_CSV-xls_CTU05_shortnames.zip",
                   package = "secuTrialR")
 
 # zipped
-bmd_zipped_loc <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+bmd_zipped_loc <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD.zip",
                               package = "secuTrialR")
 # unzipped
-bmd_unzipped_loc <- system.file("extdata", "s_export_CSV-xls_BMD",
+bmd_unzipped_loc <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD",
                                 package = "secuTrialR")
 
 

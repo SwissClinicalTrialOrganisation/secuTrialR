@@ -4,11 +4,11 @@ test_that("secutrialdata object", expect_error(visit_structure(c(1:3))))
 
 
 
-short_export_location <- system.file("extdata",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
@@ -21,10 +21,10 @@ test_that("failure on bmd data", {
   })
 
 
-sdat <- read_secuTrial_raw(system.file("extdata",
+sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
                                           "s_export_CSV-xls_CTU05_shortnames.zip",
                                           package = "secuTrialR"))
-ldat <- read_secuTrial_raw(system.file("extdata",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                           "s_export_CSV-xls_CTU05_longnames.zip",
                                           package = "secuTrialR"))
 
@@ -33,7 +33,7 @@ test_that("failure on CTU05 data", {
   expect_error(visit_structure(ldat), regexp = NA)
 })
 
-dat <- read_secuTrial(system.file("extdata",
+dat <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                   "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
                                   package = "secuTrialR"))
 

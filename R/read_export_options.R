@@ -12,7 +12,7 @@
 #
 # @examples
 # \donttest{
-# read_export_options(data_dir = system.file("extdata",
+# read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
 #                                            "s_export_CSV-xls_BMD.zip",
 #                                            package = "secuTrialR"))
 # }

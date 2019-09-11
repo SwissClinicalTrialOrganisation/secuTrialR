@@ -1,11 +1,11 @@
 context("factorize")
 
 # BMD
-short_export_location <- system.file("extdata",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
@@ -18,10 +18,12 @@ test_that("separate table warning", {
 })
 
 # CTU05
-ctu05_l <- read_secuTrial_raw(system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+ctu05_l <- read_secuTrial_raw(system.file("extdata",  "sT_exports", "longnames",
+                                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                          package = "secuTrialR"))
 
-ctu05_s <- read_secuTrial_raw(system.file("extdata", "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
+ctu05_s <- read_secuTrial_raw(system.file("extdata",  "sT_exports", "shortnames",
+                                          "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
                                            package = "secuTrialR"))
 
 test_that("error on factorize", expect_warning(factorize_secuTrial(ctu05_l), regexp = NA))

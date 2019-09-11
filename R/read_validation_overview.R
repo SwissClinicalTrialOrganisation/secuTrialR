@@ -8,7 +8,9 @@
 #' @return tibble with the 'Validation Overview' data.
 #' @export read_validation_overview
 #' @examples
-#' val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
+#' val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
+#'                                 "bmd_validation_overview.xlsx",
+#'                                 package = "secuTrialR")
 #' val_ovv <- read_validation_overview(data_dir = val_ovv_location)
 #'
 read_validation_overview <- function(data_dir) {

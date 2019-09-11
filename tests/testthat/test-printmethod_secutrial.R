@@ -1,14 +1,14 @@
 context("print method")
 
-short_export_location <- system.file("extdata",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
-sep_ref_export_loc <- system.file("extdata",
+sep_ref_export_loc <- system.file("extdata", "sT_exports", "longnames",
                                   "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                   package = "secuTrialR")
 

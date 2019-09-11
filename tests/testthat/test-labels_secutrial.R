@@ -1,10 +1,10 @@
 context("labels")
 
-short_export_location <- system.file("extdata",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_longnames_BMD.zip",
                                     package = "secuTrialR")
 
@@ -39,7 +39,7 @@ test_that("Non-existent form", {
 })
 
 # more tests for labels_secuTrial with more complex CDMA
-sT_export <- read_secuTrial_raw(system.file("extdata",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                                "s_export_CSV-xls_CTU05_longnames.zip",
                                                package = "secuTrialR"))
 
@@ -70,11 +70,11 @@ test_that("age label", {
 })
 
 
-sdat <- read_secuTrial_raw(system.file("extdata",
+sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
                                          "s_export_CSV-xls_CTU05_shortnames.zip",
                                          package = "secuTrialR"))
 sdat <- label_secuTrial(sdat)
-ldat <- read_secuTrial_raw(system.file("extdata",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                          "s_export_CSV-xls_CTU05_longnames.zip",
                                          package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
@@ -97,7 +97,7 @@ test_that("single form", {
 
 
 # labels get propogated to factors/dates
-ldat <- read_secuTrial_raw(system.file("extdata",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                           "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                           package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
