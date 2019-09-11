@@ -7,10 +7,10 @@ ldat <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
                                   "s_export_CSV-xls_CTU05_longnames.zip",
                                   package = "secuTrialR"))
 
-ctu05_utf8_french <- read_secuTrial(system.file("extdata", "encodings",
+ctu05_utf8_french <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                                 "s_export_CSV-xls_CTU05_20190807-143033_fr_utf8.zip",
                                                 package = "secuTrialR"))
-ctu05_iso15_french <- read_secuTrial(system.file("extdata", "encodings",
+ctu05_iso15_french <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                                  "s_export_CSV-xls_CTU05_20190807-143345_fr_ISO-8859-15.zip",
                                                  package = "secuTrialR"))
 

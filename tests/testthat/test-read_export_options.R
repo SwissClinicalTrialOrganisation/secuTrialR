@@ -27,7 +27,7 @@ dup_meta <- read_export_options(system.file("extdata", "sT_exports", "longnames"
                                             package = "secuTrialR"))
 
 # ISO-8859-15
-exp_opt_tes05_iso <- read_export_options(system.file("extdata", "sT_exports", "endodings",
+exp_opt_tes05_iso <- read_export_options(system.file("extdata", "sT_exports", "encodings",
                                                      "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
                                                      package = "secuTrialR"))
 

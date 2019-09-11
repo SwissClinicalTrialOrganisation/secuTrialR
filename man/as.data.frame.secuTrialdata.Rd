@@ -28,7 +28,7 @@ as.data.frame method for secuTrialdata objects
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata",
+export_location <- system.file("extdata", "sT_exports", "longnames",
                                "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                package = "secuTrialR")
 # load all export data

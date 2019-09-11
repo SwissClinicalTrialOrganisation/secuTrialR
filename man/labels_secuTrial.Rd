@@ -37,7 +37,8 @@ The \code{label_secuTrial}/\code{label} syntax is similar to that used in Hmisc,
 # APPROACH 1: labels_secuTrial
 # ex. 1
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata",  "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
@@ -47,7 +48,7 @@ labels[["age"]]
 
 # ex. 2
 # load export
-sT_export <- read_secuTrial_raw(system.file("extdata",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                             "s_export_CSV-xls_CTU05_longnames.zip",
                                             package = "secuTrialR"))
 
@@ -57,7 +58,7 @@ labels <- labels_secuTrial(sT_export, form = c("sae", "treatment", "surgeries"))
 
 # APPROACH 2: label_secuTrial
 # load secuTrial export with separate reference table
-sT_export <- read_secuTrial_raw(system.file("extdata",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                             "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                             package = "secuTrialR"))
 # label the secuTrialdata object

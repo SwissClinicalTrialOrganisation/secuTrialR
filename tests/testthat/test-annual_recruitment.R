@@ -3,10 +3,10 @@ context("annual recruitment")
 sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                          "s_export_CSV-xls_CTU05_shortnames.zip",
                                          package = "secuTrialR"))
-ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
                                          "s_export_CSV-xls_CTU05_longnames.zip",
                                          package = "secuTrialR"))
-bmd <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+bmd <- read_secuTrial(system.file("extdata", "sT_exports", "BMD",
                                   "s_export_CSV-xls_BMD.zip",
                                   package = "secuTrialR"))
 tes05 <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",

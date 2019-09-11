@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -37,8 +37,7 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata",  "sT_exports", "BMD", 
-                               "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
@@ -69,7 +68,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.4/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD.zip 
+## SecuTrial data imported from /home/mm/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls

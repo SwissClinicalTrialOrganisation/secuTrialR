@@ -16,7 +16,7 @@ form type and patient id. The numbers are occurrence counts.
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata",
+export_location <- system.file("extdata", "sT_exports", "shortnames",
                                "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
                                package = "secuTrialR")
 # load all export data

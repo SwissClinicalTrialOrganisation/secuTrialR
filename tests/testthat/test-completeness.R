@@ -1,22 +1,22 @@
 context("completeness")
 
 # CTU05
-l_ctu05 <- read_secuTrial(system.file("extdata",
+l_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
                                       "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                                       package = "secuTrialR"))
-s_ctu05 <- read_secuTrial(system.file("extdata",
+s_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                       "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
                                       package = "secuTrialR"))
 # polish
-s_ctu05_pl <- read_secuTrial(system.file("extdata", "examples_short",
+s_ctu05_pl <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                          "s_export_CSV-xls_CTU05_20190710-105752_pl.zip",
                                          package = "secuTrialR"))
 
 # TES05
-s_tes05_iso <- read_secuTrial(system.file("extdata",
+s_tes05_iso <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                           "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
                                           package = "secuTrialR"))
-l_tes05_utf <- read_secuTrial(system.file("extdata",
+l_tes05_utf <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                           "s_export_CSV-xls_TES05_long_UTF-8.zip",
                                           package = "secuTrialR"))
 

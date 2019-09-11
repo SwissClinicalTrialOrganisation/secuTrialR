@@ -25,7 +25,7 @@ This function wraps plot_recruitment to retrieve the data.
 }
 \examples{
 # export location
-expot_loc <- system.file("extdata",
+expot_loc <- system.file("extdata", "sT_exports", "longnames",
                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
                          package = "secuTrialR")
 # read export

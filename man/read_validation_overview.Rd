@@ -16,7 +16,9 @@ tibble with the 'Validation Overview' data.
 This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.
 }
 \examples{
-val_ovv_location <- system.file("extdata", "bmd_validation_overview.xlsx", package = "secuTrialR")
+val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
+                                "bmd_validation_overview.xlsx",
+                                package = "secuTrialR")
 val_ovv <- read_validation_overview(data_dir = val_ovv_location)
 
 }
