@@ -1,6 +1,6 @@
 #' Compose a secuTrial URL
 #'
-#' Given a Secutrial server URL, and optionally instance, customer, project id, document id and subdoc id,
+#' Given a secuTrial server URL, and optionally instance, customer, project id, document id and subdoc id,
 #' this function composes a URL to a specific secuTrial instance, customer, form or subform.
 #'
 #' If only server URL is provided, the output will point to the secutrial Server

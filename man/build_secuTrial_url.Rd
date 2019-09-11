@@ -22,7 +22,7 @@ build_secuTrial_url(server, instance = NA, customer = NA,
 string containing a URL to desired secuTrial page. Currently we provide no guarantee that the returned URL is valid.
 }
 \description{
-Given a Secutrial server URL, and optionally instance, customer, project id, document id and subdoc id,
+Given a secuTrial server URL, and optionally instance, customer, project id, document id and subdoc id,
 this function composes a URL to a specific secuTrial instance, customer, form or subform.
 }
 \details{
