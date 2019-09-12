@@ -16,13 +16,13 @@ sT_url_customer <- "https://server.secutrial.com/apps/WebObjects/INSTANCE-01.woa
 test_that("All urls built correctly", {
   expect_equal(build_secuTrial_url(server, instance, customer, projid, docid), sT_url_full)
   expect_equal(build_secuTrial_url(server2, instance, customer, projid, docid), sT_url_full)
-  expect_equal(build_secuTrial_url(server2, instance, customer, docid = docid), sT_url_customer)
+  expect_equal(suppressWarnings(build_secuTrial_url(server2, instance, customer, docid = docid)), sT_url_customer)
 })
 
 # warning when parameter list incomplete
-warn_docid <- "A valid link to a secuTrial form always requires server, instance, customer, projid and docid parameters."
-warn_projid <- "A valid link to a secuTrial project page always requires server, instance, customer and projid parameters."
-warn_customer <- "A valid link to a secuTrial customer page always requires server, instance and customer parameters."
+warn_docid <- "'projid', 'customer' and 'instance' must all be provided with 'docid'"
+warn_projid <- "'customer' and 'instance' must all be provided with 'projid'"
+warn_customer <- "'instance' must be provided with 'customer'"
 
 test_that("Warn incomplete parameters", {
   expect_warning(build_secuTrial_url(server, instance = instance, projid = projid, docid = docid), warn_docid)

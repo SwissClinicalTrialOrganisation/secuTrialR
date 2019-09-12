@@ -67,11 +67,11 @@
 #'
 build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = NA, docid = NA){
   if (!is.na(docid) & (is.na(projid) | is.na(customer) | is.na(instance))) {
-    warning("A valid link to a secuTrial form always requires server, instance, customer, projid and docid parameters.")
+    warning("'projid', 'customer' and 'instance' must all be provided with 'docid'")
   } else if (!is.na(projid) & (is.na(customer) | is.na(instance))) {
-    warning("A valid link to a secuTrial project page always requires server, instance, customer and projid parameters.")
+    warning("'customer' and 'instance' must all be provided with 'projid'")
   } else if (!is.na(customer) & is.na(instance)) {
-    warning("A valid link to a secuTrial customer page always requires server, instance and customer parameters.")
+    warning("'instance' must be provided with 'customer'")
   }
   # check completeness of server url
   if (!grepl("^https://", server)){
