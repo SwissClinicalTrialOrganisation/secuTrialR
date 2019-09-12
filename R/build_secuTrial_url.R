@@ -6,14 +6,18 @@
 #' To find the server and instance of a secuTrial database, simply extract the information from the URL that
 #' you usually use to log in. For example in:
 #'
-#' \emph{https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture}
+#' \emph{https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES}
 #'
 #' \itemize{
 #' \item server id is: \strong{server.secutrial.com}
 #' \item instance id is: \strong{ST21-setup-DataCapture}
-#' \item you can find the customer id in the CustomerAdminTool -> Value in DB column of table on login page.
+#' \item you can find the customer id at the end of the link i.e \strong{TES}
+#'
+#'       Alternatively it can be found in the CustomerAdminTool -> click "Kunden" -> Value in DB column of table on login page.
 #' \item you can find the project id in the AdminTool -> Projects -> left side ID column in the table.
 #' \item you can find docids in secuTrial exports as values in the "mnpdocid" column.
+#'
+#'       Alternatively they are noted in the form footers of the DataCapture.
 #' }
 #'
 #' Also note that only the server address has to be provided, the other arguments are optional.
