@@ -3,7 +3,7 @@
 #' Given a secuTrial server URL, and optionally instance, customer, project id and document id,
 #' this function composes a URL to a specific secuTrial instance, customer or form.
 #'
-#' To find the server and sinstance of a secuTrial database, simply extract the information from the URL that
+#' To find the server and instance of a secuTrial database, simply extract the information from the URL that
 #' you usually use to log in. For example in:
 #'
 #' \emph{https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture}
@@ -16,7 +16,8 @@
 #' \item you can find docids in secuTrial exports as values in the "mnpdocid" column.
 #' }
 #'
-#' Also note that only server address has to be provided, the other arguments are optional. Thus, there are different scenarios:
+#' Also note that only the server address has to be provided, the other arguments are optional.
+#' Thus, there are different scenarios:
 #' \itemize{
 #' \item if only server address is provided, the output will point to the secuTrial server
 #' \item if secuTrial server and instance are provided, the output will point to the secuTrial instance.
@@ -34,7 +35,7 @@
 #'
 #' @examples
 #'
-#' # In this example, we will build pseudo-urls that do not point to an actual secuTrial instance.
+#' # This example, builds pseudo-urls that do not point to an active secuTrial instance.
 #'
 #' server <- "server.secutrial.com"
 #' instance <- "ST21-setup-DataCapture"
@@ -48,6 +49,18 @@
 #' build_secuTrial_url(server, instance, customer, project)
 #' build_secuTrial_url(server, instance, customer, project, docid)
 #'
+#' # examples of docids (mnpdocid)
+#' path <- system.file("extdata",
+#'                     "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+#'                     package = "secuTrialR")
+#' sT_export <- read_secuTrial(path)
+#'
+#' # return docids
+#' docids <- sT_export$ctu05baseline$mnpdocid
+#'
+#' # make several links with all docids
+#' build_secuTrial_url(server, instance, customer, project, docids)
+#'
 build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = NA, docid = NA){
   if (!grepl("^https://", server)){
     server <- paste0("https://", server)
@@ -58,13 +71,13 @@ build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = N
   # start building the secuTrial url
   sT_url <- server
   # check what info is availalbe and compose with what you have
-  if (!is.na(instance)){
+  if (!is.na(instance)) {
     sT_url <- paste0(sT_url, "apps/WebObjects/", instance)
-    if (!is.na(customer)){
+    if (!is.na(customer)) {
       sT_url <- paste0(sT_url, ".woa/wa/choose?customer=", customer)
-      if (!is.na(projid)){
+      if (!is.na(projid)) {
         sT_url <- paste0(sT_url, "&projectid=", projid)
-        if (!is.na(docid)){
+        if (all(!is.na(docid))) {
           sT_url <- paste0(sT_url, "&docid=", docid)
         }
       }
