@@ -54,8 +54,8 @@
 #' build_secuTrial_url(server, instance, customer, project, docid)
 #'
 #' # examples of docids (mnpdocid)
-#' path <- system.file("extdata",
-#'                     "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+#' path <- system.file("extdata", "sT_exports", "longnames",
+#'                     "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                     package = "secuTrialR")
 #' sT_export <- read_secuTrial(path)
 #'
@@ -66,7 +66,7 @@
 #' build_secuTrial_url(server, instance, customer, project, docids)
 #'
 build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = NA, docid = NA){
-  if (!is.na(docid) & (is.na(projid) | is.na(customer) | is.na(instance))) {
+  if (all(!is.na(docid)) & (is.na(projid) | is.na(customer) | is.na(instance))) {
     warning("'projid', 'customer' and 'instance' must all be provided with 'docid'")
   } else if (!is.na(projid) & (is.na(customer) | is.na(instance))) {
     warning("'customer' and 'instance' must all be provided with 'projid'")
