@@ -13,7 +13,7 @@
 #' @examples
 #' # load secuTrial export with separate reference table
 #' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-#'                                             "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+#'                                             "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                             package = "secuTrialR"))
 #' # factorize the secuTrialdata object
 #' sT_export_factorized <- factorize_secuTrial(sT_export)

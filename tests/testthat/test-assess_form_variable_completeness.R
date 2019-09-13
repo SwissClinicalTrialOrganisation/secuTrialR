@@ -2,11 +2,11 @@ context("assess variable completeness")
 
 # load exports
 short_export_location <- system.file("extdata", "sT_exports", "BMD",
-                                     "s_export_CSV-xls_BMD.zip",
+                                     "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                      package = "secuTrialR")
 
 long_export_location <- system.file("extdata", "sT_exports", "BMD",
-                                    "s_export_CSV-xls_longnames_BMD.zip",
+                                    "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
 sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)

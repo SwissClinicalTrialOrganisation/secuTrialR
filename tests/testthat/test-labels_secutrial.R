@@ -1,11 +1,11 @@
 context("labels")
 
 short_export_location <- system.file("extdata", "sT_exports", "BMD",
-                                     "s_export_CSV-xls_BMD.zip",
+                                     "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                      package = "secuTrialR")
 
 long_export_location <- system.file("extdata", "sT_exports", "BMD",
-                                    "s_export_CSV-xls_longnames_BMD.zip",
+                                    "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
 sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
@@ -40,7 +40,7 @@ test_that("Non-existent form", {
 
 # more tests for labels_secuTrial with more complex CDMA
 sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-                                               "s_export_CSV-xls_CTU05_longnames.zip",
+                                               "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                                package = "secuTrialR"))
 
 one_label <- labels_secuTrial(sT_export, form = "treatment")
@@ -71,11 +71,11 @@ test_that("age label", {
 
 
 sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
-                                         "s_export_CSV-xls_CTU05_shortnames.zip",
+                                         "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 sdat <- label_secuTrial(sdat)
 ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-                                         "s_export_CSV-xls_CTU05_longnames.zip",
+                                         "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
 test_that("aspirin label", {
@@ -98,7 +98,7 @@ test_that("single form", {
 
 # labels get propogated to factors/dates
 ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-                                          "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+                                          "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                           package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
 

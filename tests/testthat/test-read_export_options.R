@@ -2,33 +2,33 @@ context("load export options testing")
 
 # shorten table names
 export_options_regular_short <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                           "s_export_CSV-xls_BMD.zip",
+                                                                           "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                                            package = "secuTrialR"))
 # long table names
 export_options_regular_long <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                          "s_export_CSV-xls_longnames_BMD.zip",
+                                                                          "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                                                           package = "secuTrialR"))
 # rectangular shorten table names
 export_options_rect_short <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                        "s_export_rt-CSV-xls_BMD.zip",
+                                                                        "s_export_CSV-xls_BMD_rt_short_en_utf8.zip",
                                                                         package = "secuTrialR"))
 # rectangular long table names
 export_options_rect_long <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                       "s_export_rt-CSV-xls_longnames_BMD.zip",
+                                                                       "s_export_CSV-xls_BMD_rt_long_en_utf8.zip",
                                                                        package = "secuTrialR"))
 # unzipped
 bmd_unzipped <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                           "s_export_CSV-xls_BMD",
+                                                           "s_export_CSV-xls_BMD_short_en_utf8",
                                                            package = "secuTrialR"))
 
 # duplicated meta
 dup_meta <- read_export_options(system.file("extdata", "sT_exports", "longnames",
-                                            "s_export_CSV-xls_CTU05_longnames_sep_ref_meta_dup.zip",
+                                            "s_export_CSV-xls_CTU05_long_meta_ref_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 
 # ISO-8859-15
 exp_opt_tes05_iso <- read_export_options(system.file("extdata", "sT_exports", "encodings",
-                                                     "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
+                                                     "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                                                      package = "secuTrialR"))
 
 # test encoding
@@ -79,7 +79,8 @@ test_that("Meta names available.", {
 })
 
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 
 # load all export data
@@ -100,7 +101,7 @@ test_that("Print export options working.", {
 
 
 sT_export2 <- read_secuTrial_raw(data_dir = system.file("extdata", "sT_exports", "shortnames",
-                                                           "s_export_CSV-xls_CTU05_shortnames.zip",
+                                                           "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                                            package = "secuTrialR"))
 # project version
 test_that("Project version parsing", {

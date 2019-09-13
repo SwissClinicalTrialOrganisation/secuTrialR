@@ -2,31 +2,31 @@ context("load export table testing")
 
 # load export options
 export_options <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                             "s_export_CSV-xls_BMD.zip",
+                                                             "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                              package = "secuTrialR"))
 
 # load export options unzipped
 export_options_unzipped <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                      "s_export_CSV-xls_BMD",
+                                                                      "s_export_CSV-xls_BMD_short_en_utf8",
                                                                       package = "secuTrialR"))
 
 # load casenodes, centre, visitplan and bmd table
 casenodes <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                    "s_export_CSV-xls_BMD.zip",
+                                                    "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                     package = "secuTrialR"),
                              file_name = "cn.xls",
                              export_options = export_options,
                              is_meta_table = TRUE)
 # unzipped
 casenodes_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                               "s_export_CSV-xls_BMD",
+                                                               "s_export_CSV-xls_BMD_short_en_utf8",
                                                                package = "secuTrialR"),
                                         file_name = "cn.xls",
                                         export_options = export_options_unzipped,
                                         is_meta_table = TRUE)
 
 centre <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                   "s_export_CSV-xls_BMD.zip",
+                                                   "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                    package = "secuTrialR"),
                             file_name = "ctr.xls",
                             export_options = export_options,
@@ -34,7 +34,7 @@ centre <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD
 
 # unzipped
 centre_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                            "s_export_CSV-xls_BMD",
+                                                            "s_export_CSV-xls_BMD_short_en_utf8",
                                                             package = "secuTrialR"),
                                      file_name = "ctr.xls",
                                      export_options = export_options_unzipped,
@@ -42,7 +42,7 @@ centre_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_expor
 
 
 visitplan <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                      "s_export_CSV-xls_BMD.zip",
+                                                      "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                       package = "secuTrialR"),
                                file_name = "vp.xls",
                                export_options = export_options,
@@ -50,14 +50,14 @@ visitplan <- read_export_table(data_dir = system.file("extdata", "sT_exports", "
 
 # unzipped
 visitplan_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                               "s_export_CSV-xls_BMD",
+                                                               "s_export_CSV-xls_BMD_short_en_utf8",
                                                                package = "secuTrialR"),
                                         file_name = "vp.xls",
                                         export_options = export_options_unzipped,
                                         is_meta_table = TRUE)
 
 bmd_all <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                    "s_export_CSV-xls_BMD.zip",
+                                                    "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                      package = "secuTrialR"),
                              file_name = "bmd.xls",
                              export_options = export_options,
@@ -67,7 +67,7 @@ bmd_all <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BM
 
 # unzipped
 bmd_all_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                             "s_export_CSV-xls_BMD",
+                                                             "s_export_CSV-xls_BMD_short_en_utf8",
                                                              package = "secuTrialR"),
                                       file_name = "bmd.xls",
                                       export_options = export_options_unzipped,
@@ -76,7 +76,7 @@ bmd_all_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_expo
                                       visitplan_table = visitplan_unzipped)
 
 bmd_no_patid_ctr_vp <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                                "s_export_CSV-xls_BMD.zip",
+                                                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                                 package = "secuTrialR"),
                                          file_name = "bmd.xls",
                                          export_options = export_options,
@@ -111,7 +111,7 @@ test_that("Zipped and unzipped return the same.", {
 # test exceptions
 test_that("Exceptions trigger as expected.", {
   expect_error(read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                        "s_export_CSV-xls_BMD.zip",
+                                                        "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                         package = "secuTrialR"),
                                  file_name = "bmd.xls",
                                  export_options = export_options_wrong_zip,

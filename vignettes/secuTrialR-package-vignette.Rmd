@@ -67,11 +67,11 @@ above.
 ```{r}
 
 export_location_shortnames <- system.file("extdata", "sT_exports", "BMD",
-                                         "s_export_CSV-xls_BMD.zip",
+                                         "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                           package = "secuTrialR")
 
 export_location_longnames <- system.file("extdata", "sT_exports", "BMD",
-                                          "s_export_CSV-xls_longnames_BMD.zip",
+                                          "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                           package = "secuTrialR")
 
 ```

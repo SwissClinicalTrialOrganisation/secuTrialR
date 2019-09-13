@@ -22,7 +22,7 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
@@ -37,13 +37,15 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD", 
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", 
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -68,7 +70,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/mm/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD.zip 
+## SecuTrial data imported from /home/markovicm/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -243,8 +245,20 @@ ls()
 ```
 
 ```
-## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"
+##  [1] "atadverseevents"         "atemnpctu05surgeries"   
+##  [3] "atmiv"                   "atmnpctu05ae"           
+##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
+##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [11] "bmd_export"              "count_summary"          
+## [13] "ctu05"                   "ctu05_raw"              
+## [15] "ctu05ae"                 "ctu05allmedi"           
+## [17] "ctu05baseline"           "ctu05outcome"           
+## [19] "ctu05sae"                "ctu05studyterminat"     
+## [21] "ctu05treatment"          "dates"                  
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "labelled"               
+## [27] "labs"
 ```
 
 ```r
@@ -281,14 +295,15 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"
+## [11] "bmd_export"              "count_summary"          
+## [13] "ctu05"                   "ctu05_raw"              
+## [15] "ctu05ae"                 "ctu05allmedi"           
+## [17] "ctu05baseline"           "ctu05outcome"           
+## [19] "ctu05sae"                "ctu05studyterminat"     
+## [21] "ctu05treatment"          "dates"                  
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "labelled"               
+## [27] "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
@@ -428,7 +443,7 @@ Linkages amongst forms can be explored with the `links_secuTrial` function. This
 ```r
 links_secuTrial(bmd_export)
 ```
-![](inst/extdata/map.png)
+![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
 
@@ -483,4 +498,4 @@ and should be accompanied by at least one [test](tests/testthat/) to ensure long
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).
+A depiction of the core functionalities for loading can be found [here](inst/extdata/graphics/secuTrialR.png).

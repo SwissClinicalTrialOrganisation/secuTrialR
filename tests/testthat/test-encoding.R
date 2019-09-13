@@ -9,15 +9,15 @@ context("character encoding")
 # file locations
 # utf8
 exp_opt_ctu05_utf8_loc <- system.file("extdata", "sT_exports", "encodings",
-                                      "s_export_CSV-xls_CTU05_20190807-143033_fr_utf8.zip",
+                                      "s_export_CSV-xls_CTU05_short_ref_miss_fr_utf8.zip",
                                       package = "secuTrialR")
 # ISO-8859-15
 exp_opt_ctu05_iso15_loc <- system.file("extdata", "sT_exports", "encodings",
-                                       "s_export_CSV-xls_CTU05_20190807-143345_fr_ISO-8859-15.zip",
+                                       "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-15.zip",
                                        package = "secuTrialR")
 # ISO-8859-1
 exp_opt_ctu05_iso1_loc <- system.file("extdata", "sT_exports", "encodings",
-                                      "s_export_CSV-xls_CTU05_20190807-143436_fr_ISO-8859-1.zip",
+                                      "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-1.zip",
                                       package = "secuTrialR")
 # export options
 # utf8
@@ -70,7 +70,7 @@ test_that("table outputs are equal", {
 # utf8 + bom (because of unz() function)
 test_that("UTF-8 + BOM is not supported", {
   expect_error(read_export_options(system.file("extdata", "sT_exports", "encodings",
-                                               "s_export_CSV-xls_CTU05_20190807-143146_fr_utf8bom.zip",
+                                               "s_export_CSV-xls_CTU05_short_ref_miss_fr_utf8bom.zip",
                                                 package = "secuTrialR"))
   )
 })
@@ -79,7 +79,7 @@ test_that("UTF-8 + BOM is not supported", {
 # the parsed options are incorrect thus we disallow MacRoman
 test_that("MacRoman is not supported", {
   expect_error(read_export_options(system.file("extdata", "sT_exports", "encodings",
-                                               "s_export_CSV-xls_CTU05_20190807-143308_fr_macroman.zip",
+                                               "s_export_CSV-xls_CTU05_short_ref_miss_fr_macroman.zip",
                                                package = "secuTrialR"))
   )
 })
@@ -88,7 +88,7 @@ test_that("MacRoman is not supported", {
 # readLines can not propperly handle utf16
 test_that("UTF-16 is not supported", {
   expect_error(read_export_options(system.file("extdata", "sT_exports", "encodings",
-                                               "s_export_CSV-xls_CTU05_20190807-143224_fr_utf16.zip",
+                                               "s_export_CSV-xls_CTU05_short_ref_miss_fr_utf16.zip",
                                                package = "secuTrialR"))
   )
 })

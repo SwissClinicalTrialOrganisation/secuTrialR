@@ -2,33 +2,33 @@ context("id conversion testing")
 
 # load export options
 export_options <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                             "s_export_CSV-xls_BMD.zip",
+                                                             "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                              package = "secuTrialR"))
 
 # load casenodes, centre and bmd table
 casenodes <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                    "s_export_CSV-xls_BMD.zip",
+                                                    "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                     package = "secuTrialR"),
                              file_name = "cn.xls",
                              export_options = export_options,
                              is_meta_table = TRUE)
 
 centre <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                   "s_export_CSV-xls_BMD.zip",
+                                                   "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                    package = "secuTrialR"),
                             file_name = "ctr.xls",
                             export_options = export_options,
                             is_meta_table = TRUE)
 
 visitplan <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                      "s_export_CSV-xls_BMD.zip",
+                                                      "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                       package = "secuTrialR"),
                                file_name = "vp.xls",
                                export_options = export_options,
                                is_meta_table = TRUE)
 
 bmd <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
-                                                "s_export_CSV-xls_BMD.zip",
+                                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                 package = "secuTrialR"),
                          file_name = "bmd.xls",
                          export_options = export_options,
