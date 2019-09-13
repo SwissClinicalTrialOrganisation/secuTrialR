@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -37,15 +37,13 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "BMD", 
-                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "sT_exports", "longnames", 
-                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -245,20 +243,8 @@ ls()
 ```
 
 ```
-##  [1] "atadverseevents"         "atemnpctu05surgeries"   
-##  [3] "atmiv"                   "atmnpctu05ae"           
-##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
-##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "count_summary"          
-## [13] "ctu05"                   "ctu05_raw"              
-## [15] "ctu05ae"                 "ctu05allmedi"           
-## [17] "ctu05baseline"           "ctu05outcome"           
-## [19] "ctu05sae"                "ctu05studyterminat"     
-## [21] "ctu05treatment"          "dates"                  
-## [23] "emnpctu05surgeries"      "export_location"        
-## [25] "factors"                 "labelled"               
-## [27] "labs"
+## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
+## [5] "export_location" "factors"         "labelled"        "labs"
 ```
 
 ```r
@@ -295,15 +281,14 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "count_summary"          
-## [13] "ctu05"                   "ctu05_raw"              
-## [15] "ctu05ae"                 "ctu05allmedi"           
-## [17] "ctu05baseline"           "ctu05outcome"           
-## [19] "ctu05sae"                "ctu05studyterminat"     
-## [21] "ctu05treatment"          "dates"                  
-## [23] "emnpctu05surgeries"      "export_location"        
-## [25] "factors"                 "labelled"               
-## [27] "labs"
+## [11] "bmd_export"              "ctu05"                  
+## [13] "ctu05_raw"               "ctu05ae"                
+## [15] "ctu05allmedi"            "ctu05baseline"          
+## [17] "ctu05outcome"            "ctu05sae"               
+## [19] "ctu05studyterminat"      "ctu05treatment"         
+## [21] "dates"                   "emnpctu05surgeries"     
+## [23] "export_location"         "factors"                
+## [25] "labelled"                "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
