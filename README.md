@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.5.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -22,7 +22,7 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
@@ -37,13 +37,13 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -68,7 +68,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/mm/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/s_export_CSV-xls_BMD.zip 
+## SecuTrial data imported from /home/markovicm/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -428,7 +428,7 @@ Linkages amongst forms can be explored with the `links_secuTrial` function. This
 ```r
 links_secuTrial(bmd_export)
 ```
-![](inst/extdata/map.png)
+![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
 
@@ -483,4 +483,4 @@ and should be accompanied by at least one [test](tests/testthat/) to ensure long
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).
+A depiction of the core functionalities for loading can be found [here](inst/extdata/graphics/secuTrialR.png).

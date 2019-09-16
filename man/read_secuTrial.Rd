@@ -22,8 +22,8 @@ secuTrialdata object - a list with one data.frame for each file on the export.
 Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
 }
 \examples{
-path <- system.file("extdata",
-                    "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+path <- system.file("extdata", "sT_exports", "longnames",
+                    "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                     package = "secuTrialR")
 d <- read_secuTrial(path)
 }

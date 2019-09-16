@@ -1,23 +1,23 @@
 context("completeness")
 
 # CTU05
-l_ctu05 <- read_secuTrial(system.file("extdata",
-                                      "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+l_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
+                                      "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                       package = "secuTrialR"))
-s_ctu05 <- read_secuTrial(system.file("extdata",
-                                      "s_export_CSV-xls_CTU05_shortnames_sep_ref.zip",
+s_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+                                      "s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip",
                                       package = "secuTrialR"))
 # polish
-s_ctu05_pl <- read_secuTrial(system.file("extdata", "examples_short",
-                                         "s_export_CSV-xls_CTU05_20190710-105752_pl.zip",
+s_ctu05_pl <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+                                         "s_export_CSV-xls_CTU05_short_meta_ref_miss_pl_utf8.zip",
                                          package = "secuTrialR"))
 
 # TES05
-s_tes05_iso <- read_secuTrial(system.file("extdata",
-                                          "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
+s_tes05_iso <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+                                          "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                                           package = "secuTrialR"))
-l_tes05_utf <- read_secuTrial(system.file("extdata",
-                                          "s_export_CSV-xls_TES05_long_UTF-8.zip",
+l_tes05_utf <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+                                          "s_export_CSV-xls_TES05_long_ref_en_utf8.zip",
                                           package = "secuTrialR"))
 
 

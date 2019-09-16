@@ -4,12 +4,12 @@ test_that("secutrialdata object", expect_error(visit_structure(c(1:3))))
 
 
 
-short_export_location <- system.file("extdata",
-                                     "s_export_CSV-xls_BMD.zip",
+short_export_location <- system.file("extdata", "sT_exports", "BMD",
+                                     "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                      package = "secuTrialR")
 
-long_export_location <- system.file("extdata",
-                                    "s_export_CSV-xls_longnames_BMD.zip",
+long_export_location <- system.file("extdata", "sT_exports", "BMD",
+                                    "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
 sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
@@ -21,11 +21,11 @@ test_that("failure on bmd data", {
   })
 
 
-sdat <- read_secuTrial_raw(system.file("extdata",
-                                          "s_export_CSV-xls_CTU05_shortnames.zip",
+sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
+                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                           package = "secuTrialR"))
-ldat <- read_secuTrial_raw(system.file("extdata",
-                                          "s_export_CSV-xls_CTU05_longnames.zip",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+                                          "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                           package = "secuTrialR"))
 
 test_that("failure on CTU05 data", {
@@ -33,8 +33,8 @@ test_that("failure on CTU05 data", {
   expect_error(visit_structure(ldat), regexp = NA)
 })
 
-dat <- read_secuTrial(system.file("extdata",
-                                  "s_export_CSV-xls_TES05_short_ISO-8859-15.zip",
+dat <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+                                  "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                                   package = "secuTrialR"))
 
 test_that("no fail with TES05", {

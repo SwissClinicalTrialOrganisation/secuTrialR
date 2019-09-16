@@ -43,7 +43,7 @@ library(secuTrialR)
 To give you a brief impression of the dataset it will be briefly shown here.
 
 ```{r}
-bone_mineral_dinsity_loc <- system.file("extdata", 
+bone_mineral_dinsity_loc <- system.file("extdata", "sT_exports", "BMD",
                                         "calcium_secuTrial.csv", 
                                         package = "secuTrialR")
 
@@ -66,12 +66,12 @@ above.
 
 ```{r}
 
-export_location_shortnames <- system.file("extdata",
-                                         "s_export_CSV-xls_BMD.zip",
+export_location_shortnames <- system.file("extdata", "sT_exports", "BMD",
+                                         "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                           package = "secuTrialR")
 
-export_location_longnames <- system.file("extdata",
-                                          "s_export_CSV-xls_longnames_BMD.zip",
+export_location_longnames <- system.file("extdata", "sT_exports", "BMD",
+                                          "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                           package = "secuTrialR")
 
 ```
@@ -123,7 +123,7 @@ validation overview in secuTrial and export it as an *.xlsx file. Remember to se
 The validation overview for this vignette is also part of this package.
 
 ```{r}
-val_ovv_location <- system.file("extdata", 
+val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
                                 "bmd_validation_overview.xlsx", 
                                 package = "secuTrialR")
 ```

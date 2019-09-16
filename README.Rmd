@@ -19,7 +19,7 @@ library(secuTrialR)
 ```
 Load a dataset 
 ```{r}
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
@@ -33,13 +33,13 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 #### Load the dataset
 ```{r}
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -214,7 +214,7 @@ Linkages amongst forms can be explored with the `links_secuTrial` function. This
 ```{r, eval=FALSE}
 links_secuTrial(bmd_export)
 ```
-![](inst/extdata/map.png)
+![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
 
@@ -266,4 +266,4 @@ and should be accompanied by at least one [test](tests/testthat/) to ensure long
 robustness. The PR will only be reviewed if all travis checks are successful. 
 The person sending the PR should not be the one merging it.
 
-A depiction of the core functionalities for loading can be found [here](inst/extdata/secuTrialR.png).
+A depiction of the core functionalities for loading can be found [here](inst/extdata/graphics/secuTrialR.png).

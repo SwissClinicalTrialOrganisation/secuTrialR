@@ -33,32 +33,32 @@
 # \donttest{
 # nolint start
 # # load casenodes (casenodes/cn) table
-# casenodes <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
-#                                                                  "s_export_CSV-xls_BMD.zip",
+# casenodes <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
+#                                                                  "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #                                                                  package = "secuTrialR"),
 #                                           file_name = "cn.xls",
 #                                           export_options = export_options,
 #                                           is_meta_table = TRUE)
 #
 # # load centre (centres/ctr) table
-# centre <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
-#                                                                 "s_export_CSV-xls_BMD.zip",
+# centre <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
+#                                                                 "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #                                                                 package = "secuTrialR"),
 #                                          file_name = "ctr.xls",
 #                                          export_options = export_options,
 #                                          is_meta_table = TRUE)
 #
 # # load visitplan (visitplan/vp) table
-# visitplan <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
-#                                                                    "s_export_CSV-xls_BMD.zip",
+# visitplan <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
+#                                                                    "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #                                                                    package = "secuTrialR"),
 #                                             file_name = "vp.xls",
 #                                             export_options = export_options,
 #                                             is_meta_table = TRUE)
 #
 # # load bone mineral denisty form data
-# bmd <- secuTrialR:::read_export_table(data_dir = system.file("extdata",
-#                                                              "s_export_CSV-xls_BMD.zip",
+# bmd <- secuTrialR:::read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
+#                                                              "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #                                                              package = "secuTrialR"),
 #                                       file_name = "bmd.xls",
 #                                       export_options = export_options,

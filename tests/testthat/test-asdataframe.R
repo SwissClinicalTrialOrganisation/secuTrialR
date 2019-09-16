@@ -2,8 +2,8 @@ context("as.data.frame")
 
 
 bmd <- read_secuTrial(data_dir =
-                           system.file("extdata",
-                                       "s_export_CSV-xls_longnames_BMD.zip",
+                           system.file("extdata", "sT_exports", "BMD",
+                                       "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                        package = "secuTrialR"))
 test_that("bmd", {
   test <- new.env()

@@ -37,7 +37,8 @@ The \code{label_secuTrial}/\code{label} syntax is similar to that used in Hmisc,
 # APPROACH 1: labels_secuTrial
 # ex. 1
 # prepare path to example export
-export_location <- system.file("extdata", "s_export_CSV-xls_BMD.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
@@ -47,8 +48,8 @@ labels[["age"]]
 
 # ex. 2
 # load export
-sT_export <- read_secuTrial_raw(system.file("extdata",
-                                            "s_export_CSV-xls_CTU05_longnames.zip",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+                                            "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 
 # get labels for sae, treatment and surgeries forms
@@ -57,8 +58,8 @@ labels <- labels_secuTrial(sT_export, form = c("sae", "treatment", "surgeries"))
 
 # APPROACH 2: label_secuTrial
 # load secuTrial export with separate reference table
-sT_export <- read_secuTrial_raw(system.file("extdata",
-                                            "s_export_CSV-xls_CTU05_longnames_sep_ref.zip",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+                                            "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 # label the secuTrialdata object
 sT_export_labelled <- label_secuTrial(sT_export)
