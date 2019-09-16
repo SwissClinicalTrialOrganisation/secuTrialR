@@ -4,7 +4,7 @@ This readme file contains information about file structure and naming convention
 
 ## File structure
 
-- **sT_exports** - contains all secuTrial exports delivered with this package, inlcuding all exports used for tests and examples
+- **sT_exports** - contains all secuTrial exports delivered with this package, including all exports used for tests and examples
   - see extdata/sT_exports/README.md for detailed description of directory contents and naming conventions
 - **dictionaries** - contains .csv files with dictionary tables used for example for internationalization of the package
   - *dict_items_table.csv* - contains a table translating the secuTrial items table into different languages
