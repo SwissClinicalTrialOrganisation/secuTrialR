@@ -13,7 +13,7 @@ sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
 sT_export_long <- read_secuTrial_raw(data_dir = long_export_location)
 
 # load validation overview
-val_ovv_location <- system.file("extdata",  "sT_exports", "BMD",
+val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
                                 "bmd_validation_overview.xlsx", package = "secuTrialR")
 val_ovv <- read_validation_overview(data_dir = val_ovv_location)
 val_ovv_no_compl_stat <- val_ovv[, -7]

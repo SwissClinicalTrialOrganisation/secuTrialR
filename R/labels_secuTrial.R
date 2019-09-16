@@ -16,7 +16,7 @@
 #' # APPROACH 1: labels_secuTrial
 #' # ex. 1
 #' # prepare path to example export
-#' export_location <- system.file("extdata",  "sT_exports", "BMD",
+#' export_location <- system.file("extdata", "sT_exports", "BMD",
 #'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #'                                package = "secuTrialR")
 #' # load all export data

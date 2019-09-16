@@ -1,7 +1,7 @@
 context("load secuTrial validation overview")
 
 # load data
-val_ovv_location <- system.file("extdata",  "sT_exports", "BMD", "bmd_validation_overview.xlsx", package = "secuTrialR")
+val_ovv_location <- system.file("extdata", "sT_exports", "BMD", "bmd_validation_overview.xlsx", package = "secuTrialR")
 val_ovv <- read_validation_overview(data_dir = val_ovv_location)
 
 test_that("Validation Overview loaded correctly.", {

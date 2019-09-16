@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' # export location
-#' expot_loc <- system.file("extdata",  "sT_exports", "longnames",
+#' expot_loc <- system.file("extdata", "sT_exports", "longnames",
 #'                          "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                          package = "secuTrialR")
 #' # read export
