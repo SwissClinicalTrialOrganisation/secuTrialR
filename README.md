@@ -22,7 +22,8 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "longnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
 ```
