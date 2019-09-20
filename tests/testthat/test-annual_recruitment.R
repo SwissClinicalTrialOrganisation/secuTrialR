@@ -9,9 +9,12 @@ ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
 bmd <- read_secuTrial(system.file("extdata", "sT_exports", "BMD",
                                   "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                   package = "secuTrialR"))
+# warning can be suppressed (it is expected)
+suppressWarnings(
 tes05 <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                     "s_export_CSV-xls_TES05_long_ref_en_utf8.zip",
                                     package = "secuTrialR"))
+)
 
 test_that("Test fail", {
   expect_error(annual_recruitment(1337))

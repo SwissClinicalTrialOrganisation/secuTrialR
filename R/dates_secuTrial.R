@@ -95,6 +95,11 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   if (length(datevars) > 0) {
     for (x in datevars) {
       newdatecol <- dates_secuTrial(data[, x], dateformat)
+      # check for conversion of all else warn
+      if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
+        warning(paste0("Not all dates were converted for the variable: '", x, "'. ",
+                       "\n  This is likely due to incomplete date entries."))
+      }
       data[, paste0(x, ".date")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".date"), x)
     }
@@ -105,6 +110,11 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   if (length(timevars) > 0) {
     for (x in timevars) {
       newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
+      # check for conversion of all else warn
+      if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
+        warning(paste0("Not all dates were converted for the variable: '", x, "'.",
+                       "\n  This is likely due to incomplete date entries."))
+      }
       data[, paste0(x, ".datetime")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }

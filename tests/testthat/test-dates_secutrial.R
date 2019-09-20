@@ -164,5 +164,16 @@ test_that("redating creates an error", {
   expect_warning(secuTrialR:::datetimes_secuTrial(e))
 })
 
+# test warnings for incomplete conversion
+path <- system.file("extdata", "sT_exports", "encodings",
+                    "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
+                    package = "secuTrialR")
+
+tes05_raw <- read_secuTrial_raw(path)
+
+test_that("loading data: TES05 incomplete dates (warn)", {
+  expect_warning(f <- dates_secuTrial(tes05_raw))
+})
+
 # TODO: include tests with a dataset that was exported with duplicate meta data into all tables
 #       include tests with dates and datetimes in repetitions
