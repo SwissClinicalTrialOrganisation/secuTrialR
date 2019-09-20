@@ -136,7 +136,8 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
         #       "at" if shortnames is exported
         # exclude mnpfs variables since 0 is not converted
         ! (grepl("^mnpfs", name) | grepl("^at", form))) {
-      warning(paste("Unexpected: Not all factors converted for:", name))
+      warning(paste("Unexpected: Not all factors converted for:", name,
+                    "In form:", form))
     }
   }
   return(data)
