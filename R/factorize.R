@@ -128,6 +128,16 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
 
     data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
     data <- .move_column_after(data, paste0(name, ".factor"), name)
+    # check for conversion of all else warn // this is expected to never happen
+    if (length(which(is.na(data[, paste0(name, ".factor")]))) >
+        length(which(is.na(data[, name]))) &
+        # exclude audit trail
+        # note: this will also exclude forms with a name starting with
+        #       "at" if shortnames is exported
+        # exclude mnpfs variables since 0 is not converted
+        ! (grepl("^mnpfs", name) | grepl("^at", form))) {
+      warning(paste("Unexpected: Not all levels converted for", name, "in form", form))
+    }
   }
   return(data)
 }

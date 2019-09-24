@@ -77,7 +77,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
     dateformat <- object$export_options$date_format
     datetimeformat <- object$export_options$datetime_format
     tmp <- object[[obj]]
-    tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, ...)
+    tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, obj, ...)
   })
   object[table_names] <- obs
   object$export_options$dated <- TRUE
@@ -89,12 +89,19 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
 # @param data data.frame
 # @param datevars string consisting of variables with dates
 # @param format format of dates (typically taken from \code{object$export_options$date_format})
-dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, warn = FALSE) {
+dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, form, warn = FALSE) {
   datevars <- datevars[datevars %in% names(data)]
   timevars <- timevars[timevars %in% names(data)]
   if (length(datevars) > 0) {
     for (x in datevars) {
       newdatecol <- dates_secuTrial(data[, x], dateformat)
+      # check for conversion of all else warn
+      if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
+        warning(paste0("Not all dates were converted for\n",
+                       "  variable: '", x,
+                       "'\n  in form: '", form,
+                       "'\n  This is likely due to incomplete date entries."))
+      }
       data[, paste0(x, ".date")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".date"), x)
     }
@@ -105,6 +112,13 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
   if (length(timevars) > 0) {
     for (x in timevars) {
       newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
+      # check for conversion of all else warn
+      if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
+        warning(paste0("Not all dates were converted for\n",
+                       "  variable: '", x,
+                       "'\n  in form: '", form,
+                       "'\n  This is likely due to incomplete date entries."))
+      }
       data[, paste0(x, ".datetime")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }

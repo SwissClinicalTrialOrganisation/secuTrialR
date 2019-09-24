@@ -33,9 +33,12 @@ test_that("failure on CTU05 data", {
   expect_error(visit_structure(ldat), regexp = NA)
 })
 
+# warning can be suppressed (it is expected)
+suppressWarnings(
 dat <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                   "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                                   package = "secuTrialR"))
+)
 
 test_that("no fail with TES05", {
           expect_error(visit_structure(dat), regexp = NA)

@@ -13,13 +13,18 @@ s_ctu05_pl <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
                                          package = "secuTrialR"))
 
 # TES05
+# warning can be suppressed (it is expected)
+suppressWarnings(
 s_tes05_iso <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                           "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                                           package = "secuTrialR"))
+)
+# warning can be suppressed (it is expected)
+suppressWarnings(
 l_tes05_utf <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                           "s_export_CSV-xls_TES05_long_ref_en_utf8.zip",
                                           package = "secuTrialR"))
-
+)
 
 test_that("Test fail", {
   expect_error(form_status_counts(1337))
