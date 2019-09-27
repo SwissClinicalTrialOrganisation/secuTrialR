@@ -1,3 +1,6 @@
+# secuTrialR 0.5.5
+* `read_secuTrial_raw()` and `read_secuTrial()` no longer fail due to missing "Description" in export options.
+
 # secuTrialR 0.5.4
 * `dates_secuTrial()` now warns if not all dates were parsed (expected if there are incomplete dates).
 * `factorize_secuTrial()` now warns if there are issues with the factorization (not expected to trigger).
