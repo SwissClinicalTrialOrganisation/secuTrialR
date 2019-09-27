@@ -142,7 +142,7 @@ convertnames <- function(df, format){
   # need to omit the "patients" column since this can be manually changed in the
   # AdminTool for some projects and the language will then be wrongly set to "unknown"
   # "email" must also be removed since it is not available for every export
-  dict <- subset(dict, select = -c(patients, email))
+  dict <- subset(dict, select = -c(patients, email, description))
   # determine export language
   is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
   is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))
