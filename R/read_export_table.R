@@ -113,10 +113,12 @@ read_export_table <- function(data_dir, file_name, export_options,
   }
 
   # adding pat_id
-  if (add_pat_id & ("mnppid" %in% names(loaded_table)) & export_options$add_id) {
-    loaded_table <- add_pat_id_col(table = loaded_table,
-                                   id = "pat_id",
-                                   casenodes_table = casenodes_table)
+  if (add_pat_id & ("mnppid" %in% names(loaded_table))) {
+    if (export_options$add_id) {
+      loaded_table <- add_pat_id_col(table = loaded_table,
+                                     id = "pat_id",
+                                     casenodes_table = casenodes_table)
+    }
   }
 
   # adding centres
