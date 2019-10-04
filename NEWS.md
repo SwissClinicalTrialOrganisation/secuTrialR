@@ -1,5 +1,5 @@
 # secuTrialR 0.6.0
-`read_secuTrial_raw()` and `read_secuTrial()` no longer fail due to missing Add-ID, centre information or project setup in export data. Instead, adding of `pat_id` (no Add-ID), `centre` (no centre information) and `visit_name` (no project setup) to the data tables is now omitted if the accoring data for the operation is not available.
+* `read_secuTrial_raw()` and `read_secuTrial()` no longer fail due to missing Add-ID, centre information or project setup in export data. Instead, adding of `pat_id` (no Add-ID), `centre` (no centre information) and `visit_name` (no project setup) to the data tables is now omitted if the accoring data for the operation is not available.
 
 # secuTrialR 0.5.5
 * `read_secuTrial_raw()` and `read_secuTrial()` no longer fail due to missing "Description" in export options.
