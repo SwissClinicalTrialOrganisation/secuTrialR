@@ -122,7 +122,7 @@ read_export_table <- function(data_dir, file_name, export_options,
   }
 
   # adding centres
-  if (add_centre & "mnppid" %in% names(loaded_table))  {
+  if (add_centre & "mnppid" %in% names(loaded_table) & export_options$centre_info) {
     loaded_table <- add_centre_col(table = loaded_table, id = "centre",
                                    remove_ctag = FALSE, casenodes_table = casenodes_table,
                                    centre_table = centre_table)
