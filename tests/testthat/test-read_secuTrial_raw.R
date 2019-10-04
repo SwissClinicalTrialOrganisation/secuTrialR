@@ -20,6 +20,10 @@ no_proj_setup_export_location <- system.file("extdata", "sT_exports", "export_op
                                              "s_export_CSV-xls_CTU05_20191003-144751_no_proj_setup.zip",
                                              package = "secuTrialR")
 
+no_add_id_cent_proj_export_location <- system.file("extdata", "sT_exports", "export_options",
+                                                   "s_export_CSV-xls_CTU05_20191004-101600_no_addid_no_centre_info_no_proj_setup.zip",
+                                                   package = "secuTrialR")
+
 all_info_export_location <- system.file("extdata", "sT_exports", "export_options",
                                         "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
                                         package = "secuTrialR")
@@ -30,6 +34,7 @@ sT_export_long <- read_secuTrial_raw(data_dir = long_export_location)
 sT_export_no_add_id <- read_secuTrial_raw(data_dir = no_add_id_export_location)
 sT_export_no_centre_info <- read_secuTrial_raw(data_dir = no_centre_info_export_location)
 sT_export_no_proj_setup <- read_secuTrial_raw(data_dir = no_proj_setup_export_location)
+sT_export_no_add_id_cent_proj <- read_secuTrial_raw(data_dir = no_add_id_cent_proj_export_location)
 sT_export_all_info <- read_secuTrial_raw(data_dir = all_info_export_location)
 
 # test length of list
@@ -41,6 +46,8 @@ test_that("All data tables loaded.", {
   expect_equal(length(names(sT_export_no_centre_info)), 31)
   # 5 less // "fs", "is", "qs", "vp", "vpfs" are missing
   expect_equal(length(names(sT_export_no_proj_setup)), 27)
+  # 6 less // "fs", "ctr", "is", "qs", "vp", "vpfs" are missing
+  expect_equal(length(names(sT_export_no_add_id_cent_proj)), 26)
   expect_equal(length(names(sT_export_all_info)), 32)
 })
 
@@ -55,6 +62,8 @@ test_that("Data dimensions are correct.", {
   expect_equal(dim(sT_export_no_centre_info$baseline), c(17, 61))
   # 61 because visit_name column has not been added
   expect_equal(dim(sT_export_no_proj_setup$baseline), c(17, 61))
+  # 59 because pat_id, centre, visit_name columns have not been added
+  expect_equal(dim(sT_export_no_add_id_cent_proj$baseline), c(17, 59))
   # dim bone mineral density
   expect_equal(dim(sT_export_short$bmd), dim(sT_export_long$dem00bmd))
   expect_equal(dim(sT_export_long$dem00bmd), c(504, 27))
@@ -72,6 +81,7 @@ test_that("add_id and lab_id correctly determined", {
   expect_true(sT_export_no_centre_info$export_options$add_id)
   expect_true(sT_export_no_proj_setup$export_options$add_id)
   expect_false(sT_export_no_add_id$export_options$add_id)
+  expect_false(sT_export_no_add_id_cent_proj$export_options$add_id)
   expect_true(sT_export_short$export_options$add_id)
   expect_true(sT_export_long$export_options$add_id)
   expect_false(sT_export_short$export_options$lab_id)
