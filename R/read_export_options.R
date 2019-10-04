@@ -89,6 +89,12 @@ read_export_options <- function(data_dir) {
   # Form status
   form_status <- any(sapply(dict_settings[, "formstatus"], function(x) any(grepl(x, parsed_export))))
 
+  # Project setup
+  proj_setup <- any(sapply(dict_settings[, "projsetup"], function(x) any(grepl(x, parsed_export))))
+
+  # centre information
+  centre_info <- any(sapply(dict_settings[, "centreinfo"], function(x) any(grepl(x, parsed_export))))
+
   # metadata file names
   meta_names <- list()
   if (short_names == TRUE) {
@@ -277,6 +283,8 @@ read_export_options <- function(data_dir) {
                         time_of_export = time_of_export,
                         encoding = encoding,
                         form_status = form_status,
+                        centre_info = centre_info,
+                        proj_setup = proj_setup,
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
