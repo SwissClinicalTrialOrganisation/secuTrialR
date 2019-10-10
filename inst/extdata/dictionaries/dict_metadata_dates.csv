@@ -18,4 +18,3 @@ qacdate,datetime,%Y-%m-%d %H:%M:%S
 sdvdate,datetime,%Y-%m-%d %H:%M:%S
 uploaddate,datetime,%Y-%m-%d %H:%M:%S
 versiondate,datetime,%Y-%m-%d %H:%M:%S
-visitday,date,%Y-%m-%d
