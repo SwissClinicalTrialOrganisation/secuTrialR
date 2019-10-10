@@ -50,10 +50,18 @@ f <- suppressWarnings(dates_secuTrial(dat))
 # as.character(l$ffcolname) %in% gsub("\\.date$", "", n)
 # nolint end
 
+meta_dict <- .get_dict("dict_metadata_dates.csv")
+meta_datevars <- meta_dict[meta_dict$type %in% "date", "colname"]
+meta_datetimevars <- meta_dict[meta_dict$type %in% "datetime", "colname"]
+
+
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y)[1] == "Date")))))
-test_that("number of date variables", expect_equal(n, 12))
+n_should <- sum(unlist(lapply(f, function(x) sum(names(x) %in% meta_datevars)))) + 12
+test_that("number of date variables", expect_equal(n, n_should))
+
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y)[1] == "POSIXct")))))
-test_that("number of date variables", expect_equal(n, 1))
+n_should <- sum(unlist(lapply(f, function(x) sum(names(x) %in% meta_datetimevars)))) + 1
+test_that("number of date variables", expect_equal(n, n_should))
 
 # test for any .date at end of names
 test_that("dates detected",
@@ -172,7 +180,7 @@ path <- system.file("extdata", "sT_exports", "encodings",
 tes05_raw <- read_secuTrial_raw(path)
 
 test_that("loading data: TES05 incomplete dates (warn)", {
-  expect_warning(f <- dates_secuTrial(tes05_raw))
+  expect_warning(f <- dates_secuTrial(tes05_raw, warn = TRUE))
 })
 
 # TODO: include tests with a dataset that was exported with duplicate meta data into all tables
