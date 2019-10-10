@@ -27,15 +27,17 @@
 dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
 
+
+
+
 #' @rdname dates_secuTrial
 #' @export
 dates_secuTrial.secuTrialdata <- function(object, ...) {
   if (object$export_options$dated) warning("dates already added")
-
   table_names <- object$export_options$data_names
   names(table_names) <- NULL
-  # not for meta tables
-  table_names <- table_names[!table_names %in% object$export_options$meta_names]
+  ####### not for meta tables
+  ######table_names <- table_names[!table_names %in% object$export_options$meta_names]
   # get language and internationalization dictionary for items table
   dict <- object$export_options$dict_items
 
@@ -78,6 +80,26 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
     datetimeformat <- object$export_options$datetime_format
     tmp <- object[[obj]]
     tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, obj, ...)
+
+    ## for metadata vars
+    meta_dates <- .get_dict("dict_metadata_dates.csv")
+    meta_dateformat <- unique(meta_dates[meta_dates$type %in% "date", "format"])
+    meta_datetimeformat <- unique(meta_dates[meta_dates$type %in% "datetime", "format"])
+    if(length(meta_dateformat) > 1){
+      warning("Cannot convert any metadata columns with dates from character to R's Date format")
+    } else if(length(meta_datetimeformat) > 1){
+      warning("Cannot convert any metadata columns with dates from character to R's Date format")
+    } else{
+      meta_datevars <- meta_dates[meta_dates$type %in% "date", "colname"]
+      meta_timevars <- meta_dates[meta_dates$type %in% "datetime", "colname"]
+      tmp <- dates_secuTrial(tmp, meta_datevars, meta_timevars, meta_dateformat, meta_datetimeformat, obj, ...)
+    }
+
+
+
+
+
+
   })
   object[table_names] <- obs
   object$export_options$dated <- TRUE
@@ -97,7 +119,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- dates_secuTrial(data[, x], dateformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        warning(paste0("Not all dates were converted for\n",
+        if (warn) warning(paste0("Not all dates were converted for\n",
                        "  variable: '", x,
                        "'\n  in form: '", form,
                        "'\n  This is likely due to incomplete date entries."))
@@ -114,7 +136,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        warning(paste0("Not all dates were converted for\n",
+        if (warn) warning(paste0("Not all dates were converted for\n",
                        "  variable: '", x,
                        "'\n  in form: '", form,
                        "'\n  This is likely due to incomplete date entries."))

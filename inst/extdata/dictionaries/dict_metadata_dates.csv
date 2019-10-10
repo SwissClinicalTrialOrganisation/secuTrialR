@@ -1,0 +1,21 @@
+colname,type,format
+changedate,datetime,%Y-%m-%d %H:%M:%S
+editdate,datetime,%Y-%m-%d %H:%M:%S
+mnpaedate,datetime,%Y-%m-%d %H:%M:%S
+mnpaefudt,datetime,%Y-%m-%d %H:%M:%S
+mnpcrtdt,datetime,%Y-%m-%d %H:%M:%S
+mnplastedit,datetime,%Y-%m-%d %H:%M:%S
+mnpvisfdt,datetime,%Y-%m-%d %H:%M:%S
+mnpvispdt,date,%Y-%m-%d
+mnpvisstartdate,date,%Y-%m-%d
+newdate,date,%Y-%m-%d
+newmnpvispdt,date,%Y-%m-%d
+newvisitstartdate,date,%Y-%m-%d
+olddate,date,%Y-%m-%d
+oldmnpvispdt,date,%Y-%m-%d
+oldvisitstartdate,date,%Y-%m-%d
+qacdate,datetime,%Y-%m-%d %H:%M:%S
+sdvdate,datetime,%Y-%m-%d %H:%M:%S
+uploaddate,datetime,%Y-%m-%d %H:%M:%S
+versiondate,datetime,%Y-%m-%d %H:%M:%S
+visitday,date,%Y-%m-%d
