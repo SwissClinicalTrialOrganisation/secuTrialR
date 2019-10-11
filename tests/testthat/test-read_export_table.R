@@ -1,4 +1,4 @@
-context("load export table testing")
+context("read export table testing")
 
 # load export options
 export_options <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
@@ -56,6 +56,10 @@ visitplan_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_ex
                                         export_options = export_options_unzipped,
                                         is_meta_table = TRUE)
 
+# specifically setting this here
+# because the availability of the add_id is
+# figured out in read_secuTrail_raw()
+export_options$add_id <- TRUE
 bmd_all <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
                                                     "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                                      package = "secuTrialR"),
@@ -65,6 +69,10 @@ bmd_all <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BM
                              centre_table = centre,
                              visitplan_table = visitplan)
 
+# specifically setting this here
+# because the availability of the add_id is
+# figured out in read_secuTrail_raw()
+export_options_unzipped$add_id <- TRUE
 # unzipped
 bmd_all_unzipped <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
                                                              "s_export_CSV-xls_BMD_short_en_utf8",

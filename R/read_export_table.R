@@ -112,22 +112,24 @@ read_export_table <- function(data_dir, file_name, export_options,
     return(loaded_table)
   }
 
-  # adding pat_id
+  # adding pat_id (only possible if Add-ID was exported in ExportSearchTool)
   if (add_pat_id & ("mnppid" %in% names(loaded_table))) {
-    loaded_table <- add_pat_id_col(table = loaded_table,
-                                   id = "pat_id",
-                                   casenodes_table = casenodes_table)
+    if (export_options$add_id) {
+      loaded_table <- add_pat_id_col(table = loaded_table,
+                                     id = "pat_id",
+                                     casenodes_table = casenodes_table)
+    }
   }
 
-  # adding centres
-  if (add_centre & "mnppid" %in% names(loaded_table))  {
+  # adding centres (only possible if centre information was exported in ExportSearchTool)
+  if (add_centre & "mnppid" %in% names(loaded_table) & export_options$centre_info) {
     loaded_table <- add_centre_col(table = loaded_table, id = "centre",
                                    remove_ctag = FALSE, casenodes_table = casenodes_table,
                                    centre_table = centre_table)
   }
 
-  # adding visit names
-  if (add_visitname & "mnpvisid" %in% names(loaded_table))  {
+  # adding visit names (only possible if Project Setup was exported in ExportSearchTool)
+  if (add_visitname & "mnpvisid" %in% names(loaded_table) & export_options$proj_setup)  {
     loaded_table <- add_visitname_col(table = loaded_table, id = "visit_name",
                                       visitplan_table = visitplan_table)
   }

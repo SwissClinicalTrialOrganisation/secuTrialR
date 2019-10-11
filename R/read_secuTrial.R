@@ -18,12 +18,42 @@ read_secuTrial <- function(data_dir,
                            labels = TRUE,
                            factor = TRUE,
                            dates = TRUE) {
-
-  d <- read_secuTrial_raw(data_dir = data_dir)
-  if (labels) d <- label_secuTrial(d)
-  if (factor & d$export_options$refvals_separate) d <- factorize_secuTrial(d)
-  if (dates) d <- dates_secuTrial(d)
-
+  # read raw export
+  tryCatch(
+    expr = {
+      d <- read_secuTrial_raw(data_dir = data_dir)
+      message("Read export successfully.")
+    },
+    error = function(e) {
+      message("Input to read_secuTrial() appears to be incompatible.")
+    }
+  )
+  # label
+  tryCatch(
+    expr = {
+      if (labels) d <- label_secuTrial(d)
+    },
+    error = function(e) {
+      message("label_secuTrial() failed. Proceeding without labelling.")
+    }
+  )
+  # factorize
+  tryCatch(
+    expr = {
+      if (factor & d$export_options$refvals_separate) d <- factorize_secuTrial(d)
+    },
+    error = function(e) {
+      message("factorize_secuTrial() failed. Proceeding without factorization.")
+    }
+  )
+  # parse dates
+  tryCatch(
+    expr = {
+      if (dates) d <- dates_secuTrial(d)
+    },
+    error = function(e) {
+      message("dates_secuTrial() failed. Proceeding without date parsing.")
+    }
+  )
   return(d)
-
 }

@@ -76,7 +76,7 @@ label_secuTrial <- function(object, ...) UseMethod("label_secuTrial", object)
 #' @export
 label_secuTrial.secuTrialdata <- function(object) {
   if (!object$export_options$meta_available$items) {
-    stop("'items' metadata not available")
+    stop("'items' metadata not available. Try reexporting your data with Project setup enabled.")
   }
   if (object$export_options$labelled) warning("already labelled - any changes will be lost")
 

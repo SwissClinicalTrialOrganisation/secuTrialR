@@ -147,7 +147,7 @@ dict_export_settings <- .get_dict("dict_export_options_settings.csv")
 
 test_that("items table dictionary loaded", {
   expect_equal(dim(dict_export_settings)[1], 6)
-  expect_equal(dim(dict_export_settings)[2], 8)
+  expect_equal(dim(dict_export_settings)[2], 10)
 })
 
 # ---- test .get_export_language
