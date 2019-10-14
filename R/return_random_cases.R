@@ -56,7 +56,7 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
      # add centre strings
      cn_table <- add_centre_col(cn_table, casenodes_table = cn_table, centre_table = ctr_table)
      # remove cases before specified date
-     removed_date_idx <- which(cn_table$mnpvisstartdate <= date_parsed)
+     removed_date_idx <- which(ymd(cn_table$mnpvisstartdate) <= date_parsed)
      if(length(removed_date_idx)) {
        cn_table <- cn_table[-removed_date_idx, ]
      }
