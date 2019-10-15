@@ -436,6 +436,27 @@ links_secuTrial(bmd_export)
 ![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
+#### Sampling random cases
+
+During study monitoring it is common practice to check random cases from a study database. These
+cases should be retrieved in a reproducible fashion. The below function allows this for a loaded 
+secuTrial data export.
+
+
+```r
+# retrieve at least 25 percent of cases recorded after March 18th 2019 
+# from the centres "Inselspital Bern" and "Charité Berlin"
+return_random_cases(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
+                    centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+```
+
+```
+##           mnpaid                   centre mnpvisstartdate
+## 1  RPACK-INS-011 Inselspital Bern (RPACK)      2019-04-11
+## 4  RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
+## 41 RPACK-CBE-004   Charité Berlin (RPACK)      2019-04-04
+## 3  RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
+```
 
 ## For contributors
 ### Testing with devtools
