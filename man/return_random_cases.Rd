@@ -20,7 +20,7 @@ of cases to be returned per centre.}
 Format should be "YYYY-MM-DD" (e.g. "2011-03-26" for March 26th 2011).
 This date is checked against mnpvisstartdate in the casenodes table.}
 
-\item{seed}{Allows to \code{set.seed} for id sampling.}
+\item{seed}{Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.}
 }
 \description{
 There are situations (e.g. randomized monitoring) in which you may want to

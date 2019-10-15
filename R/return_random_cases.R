@@ -9,7 +9,7 @@
 #' @param date If only cases after a specific date should be considered this can be entered here.
 #'             Format should be "YYYY-MM-DD" (e.g. "2011-03-26" for March 26th 2011).
 #'             This date is checked against mnpvisstartdate in the casenodes table.
-#' @param seed Allows to \code{set.seed} for id sampling.
+#' @param seed Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.
 #' @export
 #' @details return_random_cases will produce a data.frame that contains random cases from each
 #'          specified centre. This is performed based on a specified seed to retain reproducibilty.
@@ -64,6 +64,8 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
      random_cases <- setNames(data.frame(matrix(ncol = 3, nrow = 0)),
                               c("mnpaid", "centre", "mnpvisstartdate"))
      for (ctr in centres) {
+       # different seed for every centre
+       seed <- seed + 1
        curr_ctr_cn <- cn_table %>% filter(cn_table$centre == ctr)
        curr_ctr_cn_trunc <- curr_ctr_cn[, c("mnpaid", "centre", "mnpvisstartdate")]
        case_ids_count <- length(curr_ctr_cn$mnpaid)
