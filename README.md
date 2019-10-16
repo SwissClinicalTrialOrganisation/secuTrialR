@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.6.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.6.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -26,6 +26,10 @@ export_location <- system.file("extdata", "sT_exports", "longnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
+```
+
+```
+## Read export successfully.
 ```
 This will load all sheets from the export into an object of class `secuTrialdata`, which is basically a list. It will always contain `export_details` (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via `ctu05$export_options$data_names`. The function also adds [labels to variables](#variable-labels) and data.frames, converts [categorical variables to `factor`s](#prepare-factors) and ensures that [dates are `Date`s and date-times are `POSIXct`](#prepare-dates).
 `read_secuTrial` is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary).
@@ -432,6 +436,27 @@ links_secuTrial(bmd_export)
 ![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
+#### Sampling random cases
+
+During study monitoring it is common practice to check random cases from a study database. These
+cases should be retrieved in a reproducible fashion. The below function allows this for a loaded 
+secuTrial data export.
+
+
+```r
+# retrieve at least 25 percent of cases recorded after March 18th 2019 
+# from the centres "Inselspital Bern" and "Charité Berlin"
+return_random_cases(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
+                    centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+```
+
+```
+##           mnpaid                   centre mnpvisstartdate
+## 1  RPACK-INS-011 Inselspital Bern (RPACK)      2019-04-11
+## 4  RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
+## 41 RPACK-CBE-004   Charité Berlin (RPACK)      2019-04-04
+## 3  RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
+```
 
 ## For contributors
 ### Testing with devtools
