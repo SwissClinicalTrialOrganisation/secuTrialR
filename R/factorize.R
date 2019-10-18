@@ -104,8 +104,8 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     lookup <- cl[grepl(regex_cl, cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]
 
-    # exception for meta variables (for non meta variables the lookup should never be empty)
-    if (nrow(lookup) == 0 & name %in% meta_var_names) {
+    # exception for meta variables
+    if (name %in% meta_var_names) {
       # meta variables do not need to be tied to a form thus the
       # formname does not need to be part of the regex
       lookup <- cl[grepl(paste0("^", name, "$"), cl$column), ]
