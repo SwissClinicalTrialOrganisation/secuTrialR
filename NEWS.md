@@ -1,3 +1,6 @@
+# secuTrialR 0.6.2
+* `factorize_secuTrial()` now no longer triggers an unexpected warning when the name of a secuTrial lookuptable is equal to the name of the variable it is being used in. (PR #108)
+
 # secuTrialR 0.6.1
 * `return_random_cases()` has been added to the package. It allows to sample a random subset of cases from a secuTrial export in a reproducible fashion.
 
