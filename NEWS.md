@@ -1,4 +1,4 @@
-# secuTrialR 0.6.2
+# secuTrialR 0.6.3
 * metadata variables are now also transformed to date and datetime formats, whenever appropriate.
 
 # secuTrialR 0.6.2
