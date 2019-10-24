@@ -88,7 +88,10 @@ read_secuTrial_raw <- function(data_dir) {
     # load table
     loaded_table <- read_export_table(data_dir = data_dir,
                                       file_name = file,
-                                      export_options = export_options,
+                                      # needs to be return_list$export_options
+                                      # because this is updated with add-id and lab-id
+                                      # export_options is not
+                                      export_options = return_list$export_options,
                                       casenodes_table = return_list[[export_options$meta_names$casenodes]],
                                       centre_table = return_list[[export_options$meta_names$centres]],
                                       visitplan_table = return_list[[export_options$meta_names$visitplan]])
