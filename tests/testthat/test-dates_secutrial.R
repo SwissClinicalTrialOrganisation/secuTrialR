@@ -3,8 +3,8 @@ context("dates")
 
 # check individual variables
 dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
-                                         "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
-                                         package = "secuTrialR"))
+                                      "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
+                                      package = "secuTrialR"))
 test_that("loading data: CTU05_shortnames (warn)",
           expect_warning(f <- dates_secuTrial(dat, warn = TRUE)))
 test_that("loading data: CTU05_shortnames (no warn)",
@@ -12,6 +12,7 @@ test_that("loading data: CTU05_shortnames (no warn)",
 f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (shortnames)",
           expect_equal(class(f$outcome$death_date.date), "Date"))
+
 test_that("metadata variable is date (shortnames)",
           expect_equal(class(f$cn$mnpvisstartdate.date), "Date"))
 test_that("metadata variable is date",
@@ -49,8 +50,8 @@ test_that("number of date metadata variables",
 
 
 dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-                                         "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
-                                         package = "secuTrialR"))
+                                      "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
+                                      package = "secuTrialR"))
 test_that("loading data: CTU05_longnames (warn)",
           expect_warning(f <- dates_secuTrial(dat, warn = TRUE)))
 test_that("loading data: CTU05_longnames (no warn)",
@@ -59,9 +60,14 @@ test_that("loading data: CTU05_longnames (no warn)",
 f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (longnames)", expect_equal(class(f$ctu05outcome$death_date.date), "Date"))
 
+test_that("number of datetime metadata variables",
+          expect_equal(sum(sapply(sapply(f$ctu05treatment, class), function(x) identical(x, c("POSIXct", "POSIXt")))), 2))
+test_that("number of date metadata variables",
+          expect_equal(sum(sapply(sapply(f$atadverseevents, class), function(x) identical(x, "Date"))), 2))
+
 dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
-                                         "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                                         package = "secuTrialR"))
+                                      "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+                                      package = "secuTrialR"))
 test_that("loading data: CTU05_long_sep_ref (warn)",
           expect_warning(f <- dates_secuTrial(dat, warn = TRUE)))
 test_that("loading data: CTU05_long_sep_ref (no warn)",
@@ -87,8 +93,8 @@ f <- suppressWarnings(dates_secuTrial(dat))
 
 meta_datevars <- c("mnpvispdt", "mnpvisstartdate", "newdate", "newmnpvispdt",
                    "newvisitstartdate", "olddate", "oldmnpvispdt", "oldvisitstartdate")
-meta_timevars <- c("changedate", "editdate", "mnpaedate", "mnpaefudt", "mnpcrtdt",
-                   "mnplastedit", "mnpvisfdt", "qacdate", "sdvdate", "uploaddate", "versiondate")
+meta_datetimevars <- c("changedate", "editdate", "mnpaedate", "mnpaefudt", "mnpcrtdt",
+                       "mnplastedit", "mnpvisfdt", "qacdate", "sdvdate", "uploaddate", "versiondate")
 
 
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y)[1] == "Date")))))
@@ -109,7 +115,7 @@ test_that("datetime correctly parsed",
           expect_equal(as.numeric(format(f$ctu05baseline$hiv_date.datetime,
                                          "%Y%m%d%H%M")),
                        f$ctu05baseline$hiv_date)
-          )
+)
 
 # warnings for trying to run dates again
 # nolint start
@@ -134,31 +140,31 @@ units(nd) <- "bar"
 
 x <- secuTrialR:::dates_secuTrial(fd)
 test_that("factor dates", {
-          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 x <- secuTrialR:::dates_secuTrial(nd, format = "%Y%m%d")
 test_that("numeric dates", {
-          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 x <- secuTrialR:::dates_secuTrial(d)
 test_that("character dates", {
-          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 d <- c(NA, NA)
 label(d) <- "foo"
 units(d) <- "bar"
 x <- secuTrialR:::dates_secuTrial(d)
 test_that("logical dates", {
-          expect_equal(as.numeric(x), as.numeric(as.Date(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.Date(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 
 
 
@@ -174,32 +180,32 @@ units(nd) <- "bar"
 
 x <- secuTrialR:::datetimes_secuTrial(fd)
 test_that("factor datetimes", {
-          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 
 x <- secuTrialR:::datetimes_secuTrial(nd,
                                       format = "%Y%m%d%H%M")
 test_that("numeric datetimes", {
-          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 
 x <- secuTrialR:::datetimes_secuTrial(d)
 test_that("character datetimes", {
-          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
-          expect_equal(label(x), "foo")
-          expect_equal(units(x), "bar")
-  })
+  expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+  expect_equal(label(x), "foo")
+  expect_equal(units(x), "bar")
+})
 d <- c(NA, NA)
 label(d) <- "foo"
 units(d) <- "bar"
 x <- secuTrialR:::datetimes_secuTrial(d)
 test_that("logical datetimes", {
-          expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
-  })
+  expect_equal(as.numeric(x), as.numeric(as.POSIXct(d)))
+})
 
 d <- dates_secuTrial(c("2010-10-15", "2019-05-15"))
 e <- secuTrialR:::datetimes_secuTrial(c("2010-10-15 12:15", "2019-05-15 12:15"))
