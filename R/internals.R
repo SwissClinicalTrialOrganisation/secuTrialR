@@ -3,7 +3,7 @@
 # Returns internal dictionary file
 #
 # @return data.frame containing a secuTrialR dictionary
-#' @export
+#
 .get_dict <- function(file, language = NULL){
   dict_file <- system.file("extdata", "dictionaries",
                            file,
@@ -180,7 +180,6 @@ convertnames <- function(df, format){
 # @param object - secuTrial object containing imported secuTrial data
 # @param obj - string containing the name of a data frame within 'object'
 # @param dict - data frame containing language and internationalization dictionary for items table
-# @param meta_dict - data frame containing dictionary for metadata dates
 # @param warn - logical which determines whether warnings will be shown (TRUE) or not (FALSE)
 # @return data frame containing object[[obj]] with converted dates and datetimes, if applicable
 #
@@ -222,19 +221,27 @@ convertnames <- function(df, format){
   datetimeformat <- object$export_options$datetime_format
   tmp <- object[[obj]]
   tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, obj, ...)
-  ## for metadata vars
-  meta_dict <- .get_dict("dict_metadata_dates.csv")
-  meta_dateformat <- unique(meta_dict[meta_dict$type %in% "date", "format"])
-  meta_datetimeformat <- unique(meta_dict[meta_dict$type %in% "datetime", "format"])
-  meta_datevars <- meta_dict[meta_dict$type %in% "date", "colname"]
-  meta_timevars <- meta_dict[meta_dict$type %in% "datetime", "colname"]
+  ## conversion for metadata vars
+  meta_dateformat <- "%Y-%m-%d"
+  meta_datetimeformat <- "%Y-%m-%d %H:%M:%S"
+  meta_datevars <- c("mnpvispdt", "mnpvisstartdate", "newdate", "newmnpvispdt",
+                     "newvisitstartdate", "olddate", "oldmnpvispdt", "oldvisitstartdate")
+  meta_timevars <- c("changedate", "editdate", "mnpaedate", "mnpaefudt", "mnpcrtdt",
+                     "mnplastedit", "mnpvisfdt", "qacdate", "sdvdate", "uploaddate", "versiondate")
   tmp <- dates_secuTrial(tmp, meta_datevars, meta_timevars, meta_dateformat, meta_datetimeformat, obj, ...)
-  # warnings
-  if (warn & (length(datevars) == 0 | length(meta_datevars) == 0)) {
+  # warnings if no dates detected
+  if (warn & length(datevars) == 0) {
     warning(paste("no dates detected in ", obj))
   }
-  if (warn & (length(timevars) == 0 | length(meta_timevars) == 0)) {
+  if (warn & length(meta_datevars) == 0){
+    warning(paste("no dates detected in metadata of ", obj))
+  }
+  if (warn & length(timevars) == 0) {
     warning(paste("no datetimes detected in ", obj))
   }
+  if (warn & length(meta_timevars) == 0) {
+    warning(paste("no datetimes detected in metadata of ", obj))
+  }
+
   return(tmp)
 }
