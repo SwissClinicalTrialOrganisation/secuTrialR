@@ -38,7 +38,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
   names(table_names) <- NULL
   # get language and internationalization dictionary for items table
   dict <- object$export_options$dict_items
-  obs <- lapply(table_names, function(obj) .convert_dates(obj, object, dict, ...))
+  obs <- lapply(table_names, .convert_dates, object = object, dict = dict, ...)
 
   object[table_names] <- obs
   object$export_options$dated <- TRUE
@@ -58,7 +58,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- dates_secuTrial(data[, x], dateformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        if (warn) warning(paste0("Not all dates were converted for\n",
+        warning(paste0("Not all dates were converted for\n",
                        "  variable: '", x,
                        "'\n  in form: '", form,
                        "'\n  This is likely due to incomplete date entries."))
@@ -73,7 +73,7 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        if (warn) warning(paste0("Not all dates were converted for\n",
+        warning(paste0("Not all dates were converted for\n",
                        "  variable: '", x,
                        "'\n  in form: '", form,
                        "'\n  This is likely due to incomplete date entries."))
