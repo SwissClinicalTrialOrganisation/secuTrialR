@@ -184,7 +184,7 @@ convertnames <- function(df, format){
 # @param warn - logical which determines whether warnings will be shown (TRUE) or not (FALSE)
 # @return data frame containing object[[obj]] with converted dates and datetimes, if applicable
 #
-.convert_dates <- function(obj, object, dict, meta_dict, warn = FALSE, ...) {
+.convert_dates <- function(obj, object, dict, warn = FALSE, ...) {
   # find date variables
   it <- object[[object$export_options$meta_names$items]]
   qu <- object[[object$export_options$meta_names$questions]]
@@ -223,6 +223,7 @@ convertnames <- function(df, format){
   tmp <- object[[obj]]
   tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, obj, ...)
   ## for metadata vars
+  meta_dict <- .get_dict("dict_metadata_dates.csv")
   meta_dateformat <- unique(meta_dict[meta_dict$type %in% "date", "format"])
   meta_datetimeformat <- unique(meta_dict[meta_dict$type %in% "datetime", "format"])
   meta_datevars <- meta_dict[meta_dict$type %in% "date", "colname"]

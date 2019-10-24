@@ -38,8 +38,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
   names(table_names) <- NULL
   # get language and internationalization dictionary for items table
   dict <- object$export_options$dict_items
-  meta_dict <- .get_dict("dict_metadata_dates.csv")
-  obs <- lapply(table_names, function(obj) .convert_dates(obj, object, dict, meta_dict, ...))
+  obs <- lapply(table_names, function(obj) .convert_dates(obj, object, dict, ...))
 
   object[table_names] <- obs
   object$export_options$dated <- TRUE
