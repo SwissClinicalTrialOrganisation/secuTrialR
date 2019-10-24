@@ -12,6 +12,41 @@ test_that("loading data: CTU05_shortnames (no warn)",
 f <- suppressWarnings(dates_secuTrial(dat))
 test_that("outcome variable is date (shortnames)",
           expect_equal(class(f$outcome$death_date.date), "Date"))
+test_that("metadata variable is date (shortnames)",
+          expect_equal(class(f$cn$mnpvisstartdate.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atallmedi$mnpvispdt.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atae1$newdate.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atcvp$newmnpvispdt.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atcn$newvisitstartdate.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atae1$olddate.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atcvp$oldmnpvispdt.date), "Date"))
+test_that("metadata variable is date",
+          expect_equal(class(f$atcn$oldvisitstartdate.date), "Date"))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atcn$changedate.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atmiv$editdate.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atmiv$editdate.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$qac$qacdate.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atsae$mnpaefudt.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atsae$mnplastedit.datetime), c("POSIXct", "POSIXt")))
+test_that("metadata variable is datetime",
+          expect_equal(class(f$atallmedi$mnpvisfdt.datetime), c("POSIXct", "POSIXt")))
+test_that("number of datetime metadata variables",
+          expect_equal(sum(sapply(sapply(f$treatment, class), function(x) identical(x, c("POSIXct", "POSIXt")))), 2))
+test_that("number of date metadata variables",
+          expect_equal(sum(sapply(sapply(f$atae1, class), function(x) identical(x, "Date"))), 2))
+
 
 dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
                                          "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
@@ -50,9 +85,10 @@ f <- suppressWarnings(dates_secuTrial(dat))
 # as.character(l$ffcolname) %in% gsub("\\.date$", "", n)
 # nolint end
 
-meta_dict <- .get_dict("dict_metadata_dates.csv")
-meta_datevars <- meta_dict[meta_dict$type %in% "date", "colname"]
-meta_datetimevars <- meta_dict[meta_dict$type %in% "datetime", "colname"]
+meta_datevars <- c("mnpvispdt", "mnpvisstartdate", "newdate", "newmnpvispdt",
+                   "newvisitstartdate", "olddate", "oldmnpvispdt", "oldvisitstartdate")
+meta_timevars <- c("changedate", "editdate", "mnpaedate", "mnpaefudt", "mnpcrtdt",
+                   "mnplastedit", "mnpvisfdt", "qacdate", "sdvdate", "uploaddate", "versiondate")
 
 
 n <- sum(unlist(lapply(f, function(x) sum(sapply(x, function(y) class(y)[1] == "Date")))))
