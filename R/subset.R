@@ -4,7 +4,7 @@
 #' this function filters the data object to include only the selected pat ids.
 #'
 #' @param dat secuTrialdata object
-#' @param pat_id character vector with a selection of patient IDs (mnpaid) used for subsetting
+#' @param patient character vector with a selection of patient IDs (mnpaid) used for subsetting
 #' @param centre character vector with a selection of centre IDs (mnpctrid) used for subsetting
 #' @param exclude boolean which if true excludes given pat_id and centre from dat
 #' @return secuTrialdata object containing only the pat_ids that meet the selection criteria.
@@ -18,60 +18,68 @@
 #'                     "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                     package = "secuTrialR")
 #' sT_export <- read_secuTrial(path)
-#' patients <- c("RPACK-INS-011", "RPACK-INS-014")
+#' patient <- c("RPACK-INS-011", "RPACK-INS-014")
 #' centre <- c("Inselspital Bern (RPACK)")
 #'
 #' # subset sT_export
-#' subset_sT_export <- subset_secuTrial(dat = sT_export, pat_id = patients)
+#' subset_sT_export <- subset_secuTrial(dat = sT_export, pat_id = patient)
 #'
-subset_secuTrial <- function(dat, ...,  exclude = FALSE){
-  arg <- list(...)
-  if(!all(names(arg) %in% c("pat_id", "centre"))){
-    stop("subsetting parameters must be either 'pat_id', or 'centre'")
+subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE){
+
+  if(!is.null(patients) & !dat$export_options$add_id){
+    stop("No subsetting based on patient ids possible. Re-export your data with the Add-ID option.")
   }
 
   meta <- unlist(dat$export_options$meta_names)
   forms <- dat$export_options$data_names[!dat$export_options$data_names %in% meta]
 
-  patients <- arg$pat_id
-  centre <- arg$centre
-
-  new_dat <- vector("list", length(dat))
-  names(new_dat) <- names(dat)
-
-  if(is.null(centre) & is.null(patients)){
+  if(is.null(centre) & is.null(patient)){
     return(dat)
   }
 
   if(!is.null(centre)){
     if(exclude){
-      new_dat[[meta["centres"]]] <- dat[[meta["centres"]]][which(!dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
-      new_dat[[meta["casenodes"]]] <- dat[[meta["casenodes"]]][which(!dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["centres"]]] <- new_at[[meta["centres"]]][which(!new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(!new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
     } else {
-      new_dat[[meta["centres"]]] <- dat[[meta["centres"]]][which(dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
-      new_dat[[meta["casenodes"]]] <- dat[[meta["casenodes"]]][which(dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][which(new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
     }
   }
 
-  if(!is.null(patients)){
+  if(!is.null(patient)){
     if (exclude) {
-      new_dat[[meta["casenodes"]]] <- dat[[meta["casenodes"]]][which(!dat[[meta["casenodes"]]][["mnpaid"]] %in% patients), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(!new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient), ]
     } else {
-      new_dat[[meta["casenodes"]]] <- dat[[meta["casenodes"]]][which(dat[[meta["casenodes"]]][["mnpaid"]] %in% patients), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient), ]
     }
   }
 
-  patients_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
+  patient_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
 
   for(tab in names(new_dat)){
-    if("mnppid" %in% names(dat[[tab]])){
-      new_dat[[tab]] <- dat[[tab]][which(dat[[tab]][["mnppid"]] %in% patients_sel), ]
+    if (class(new_dat[[tab]]) != "data.frame"){
+      next
+    }
+    if("mnppid" %in% names(new_dat[[tab]])){
+      new_dat[[tab]] <- new_dat[[tab]][which(new_dat[[tab]][["mnppid"]] %in% patient_sel), ]
     } else {
-      new_dat[[tab]] <- dat[[tab]]
+      new_dat[[tab]] <- new_dat[[tab]]
+    }
+    ## make adaptation necessary to match exports without a centre (object class, attributes)
+    if(!is.null(centre) & "centre" %in% names(new_dat[[tab]])){
+      new_dat[[tab]] <- modify_if(new_dat[[tab]],
+                                  function(x) all(is.na(x)) & !any(class(x) %in% c("Date", "POSIXct", "POSIXt", "Datetime", "factor")),
+                                  as.logical)
+      new_dat[[tab]][["centre"]] <- as.factor(as.character(new_dat[[tab]][["centre"]]))
+      new_dat[[tab]][["pat_id"]] <- as.character(new_dat[[tab]][["pat_id"]])
+    }
+    if("visit_name" %in% names(new_dat[[tab]])){
+      new_dat[[tab]][["visit_name"]] <- as.character(new_dat[[tab]][["visit_name"]])
+    }
+    if(nrow(new_dat[[tab]]) > 0){
+      row.names(new_dat[[tab]]) <- 1:nrow(new_dat[[tab]])
     }
   }
-
-  new_dat$export_options <- dat$export_options
-
   return(new_dat)
 }
