@@ -1,6 +1,9 @@
 # secuTrialR 0.6.4
 * New function `diff_secuTrial()` added to allow light weight comparison of the setup of two secuTrial exports.
 
+# secuTrialR 0.6.3
+* metadata variables are now also transformed to date and datetime formats, whenever appropriate.
+
 # secuTrialR 0.6.2
 * `factorize_secuTrial()` now no longer triggers an unexpected warning when the name of a secuTrial lookuptable is equal to the name of the variable it is being used in. (PR #108)
 
