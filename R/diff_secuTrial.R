@@ -48,7 +48,9 @@ diff_secuTrial <- function(x, y) {
       items_y <- y[[y$export_options$meta_names$items]]
       item_diff <- unique(items_y$ffcolname[which(! items_y$ffcolname %in% items_x$ffcolname)])
 
-      return(list(form_diff, item_diff))
+      return_list <- list(form_diff, item_diff)
+      names(return_list) <- c("new_forms", "new_variables")
+      return(return_list)
     }
   } else {
     stop("return_scores requires objects of the class 'secuTrialdata' as input.")
