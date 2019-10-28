@@ -1,4 +1,4 @@
-context("version increment")
+context("version increment - DESCRIPTION/README badge")
 
 return_code <- system("git diff", intern = TRUE)
 
@@ -10,10 +10,15 @@ if (length(return_code) == 0) {
 }
 
 grep_version <- grep("Version: \\d\\.\\d\\.\\d", return_code)
+grep_badge <- grep("https://img.shields.io/badge/", return_code)
 
 # should return length 2 if the Version number has changed
 # this will only check if the developer locally runs the tests
 # travis will skip this
-test_that("Version number has been incremented", {
+test_that("Version number has been incremented in DESCRIPTION", {
   expect_true(length(grep_version) >= 2)
+})
+
+test_that("Version number has been incremented in README badge", {
+  expect_true(length(grep_badge) >= 2)
 })
