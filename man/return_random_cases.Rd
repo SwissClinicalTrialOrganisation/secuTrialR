@@ -27,8 +27,9 @@ There are situations (e.g. randomized monitoring) in which you may want to
              return a list of random cases from a secuTrial export.
 }
 \details{
-return_random_cases will produce a data.frame that contains random cases from each
-         specified centre. This is performed based on a specified seed to retain reproducibilty.
+return_random_cases will produce a list of two elements. First, a data.frame that contains the
+         random cases from each specified centre. This is performed based on a specified seed to retain reproducibilty.
+         Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
 }
 \examples{
 # export location
