@@ -1,3 +1,6 @@
+# secuTrialR 0.6.6
+* `return_random_cases()` now returns a list. The first element are the cases and the second element is the output of `RNGkind()`.
+
 # secuTrialR 0.6.4
 * New function `diff_secuTrial()` added to allow light weight comparison of the setup of two secuTrial exports.
 
