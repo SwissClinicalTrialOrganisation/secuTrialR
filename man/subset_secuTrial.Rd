@@ -4,12 +4,16 @@
 \alias{subset_secuTrial}
 \title{Subsets a secuTrialdata object}
 \usage{
-subset_secuTrial(dat, pat_id)
+subset_secuTrial(dat, ..., exclude = FALSE)
 }
 \arguments{
 \item{dat}{secuTrialdata object}
 
-\item{pat_id}{a selection of patient IDs used for subsetting}
+\item{exclude}{boolean which if true excludes given pat_id and centre from dat}
+
+\item{pat_id}{character vector with a selection of patient IDs (mnpaid) used for subsetting}
+
+\item{centre}{character vector with a selection of centre IDs (mnpctrid) used for subsetting}
 }
 \value{
 secuTrialdata object containing only the pat_ids that meet the selection criteria.
@@ -27,6 +31,7 @@ path <- system.file("extdata", "sT_exports", "longnames",
                     package = "secuTrialR")
 sT_export <- read_secuTrial(path)
 patients <- c("RPACK-INS-011", "RPACK-INS-014")
+centre <- c("Inselspital Bern (RPACK)")
 
 # subset sT_export
 subset_sT_export <- subset_secuTrial(dat = sT_export, pat_id = patients)
