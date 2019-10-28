@@ -26,18 +26,18 @@ sT_export_no_centre_info <- read_secuTrial_raw(data_dir = no_centre_info_export_
 
 # prepare random case output
 cases_sdat <- return_random_cases(sdat_ctu05, percent = 0.25, seed = 1337, date = "2019-04-02",
-                                  centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+                                  centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))$cases
 cases_ldat <- return_random_cases(ldat_ctu05, percent = 0.25, seed = 1337, date = "2019-04-02",
-                                  centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+                                  centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))$cases
 
 test_that("Test output", {
   expect_equal(cases_sdat, cases_ldat)
   # test date
   expect_true(all(cases_sdat$mnpvisstartdate > ymd("2019-04-02")))
   # test percentage
-  expect_equal(nrow(return_random_cases(bmd)), 12)
-  expect_equal(nrow(return_random_cases(bmd, percent = 0.23)), 26)
-  expect_equal(nrow(return_random_cases(bmd, percent = 0.999)), 113)
+  expect_equal(nrow(return_random_cases(bmd)$cases), 12)
+  expect_equal(nrow(return_random_cases(bmd, percent = 0.23)$cases), 26)
+  expect_equal(nrow(return_random_cases(bmd, percent = 0.999)$cases), 113)
   # test errors
   expect_error(return_random_cases("bmd"))
   expect_error(return_random_cases(bmd, percent = 99))
