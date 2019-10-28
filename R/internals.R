@@ -173,3 +173,75 @@ convertnames <- function(df, format){
   }
   return(lang)
 }
+
+
+# Converts dates using dates_secuTrial dispatcher
+#
+# @param object - secuTrial object containing imported secuTrial data
+# @param obj - string containing the name of a data frame within 'object'
+# @param dict - data frame containing language and internationalization dictionary for items table
+# @param warn - logical which determines whether warnings will be shown (TRUE) or not (FALSE)
+# @return data frame containing object[[obj]] with converted dates and datetimes, if applicable
+#
+.convert_dates <- function(obj, object, dict, warn = FALSE, ...) {
+  # find date variables
+  it <- object[[object$export_options$meta_names$items]]
+  qu <- object[[object$export_options$meta_names$questions]]
+  # if meta data is duplicated then the additional "formtablename"
+  # in the items table creates a problem and is thus removed here
+  if (object$export_options$duplicate_meta) {
+    it <- subset(it, select = -c(formtablename))
+  }
+  itqu <- merge(it, qu, by = "fgid")
+
+  # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
+  # condition 2: this is only appropriate if short_names == TRUE
+  if ("mnpsubdocid" %in% names(object[[obj]]) & object$export_options$short_names) {
+    regex <- gsub(obj, pattern = "^e", replacement = "^e.+")
+    # grep with custom regex
+    itqu <- itqu[grepl(regex, as.character(itqu$formtablename)), ]
+  } else {
+    itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
+  }
+
+  itqu$itemtype <- as.character(itqu$itemtype)
+  itqu$ffcolname <- as.character(itqu$ffcolname)
+  date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
+  itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
+  # remove year, interval and time
+  year_string <- paste0("\\(", dict[, "year"], "\\)")
+  itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
+  itqu <- itqu[!grepl(dict[, "interval"], itqu$itemtype, ignore.case = TRUE), ]
+  dates <- itqu[!grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
+  datetimes <- itqu[grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
+  datevars <- unique(dates$ffcolname)
+  timevars <- unique(datetimes$ffcolname)
+  # date format
+  dateformat <- object$export_options$date_format
+  datetimeformat <- object$export_options$datetime_format
+  tmp <- object[[obj]]
+  tmp <- dates_secuTrial(tmp, datevars, timevars, dateformat, datetimeformat, obj, ...)
+  ## conversion for metadata vars
+  meta_dateformat <- "%Y-%m-%d"
+  meta_datetimeformat <- "%Y-%m-%d %H:%M:%S"
+  meta_datevars <- c("mnpvispdt", "mnpvisstartdate", "newdate", "newmnpvispdt",
+                     "newvisitstartdate", "olddate", "oldmnpvispdt", "oldvisitstartdate")
+  meta_timevars <- c("changedate", "editdate", "mnpaedate", "mnpaefudt", "mnpcrtdt",
+                     "mnplastedit", "mnpvisfdt", "qacdate", "sdvdate", "uploaddate", "versiondate")
+  tmp <- dates_secuTrial(tmp, meta_datevars, meta_timevars, meta_dateformat, meta_datetimeformat, obj, ...)
+  # warnings if no dates detected
+  if (warn & length(datevars) == 0) {
+    warning(paste("no dates detected in ", obj))
+  }
+  if (warn & length(meta_datevars) == 0){
+    warning(paste("no dates detected in metadata of ", obj))
+  }
+  if (warn & length(timevars) == 0) {
+    warning(paste("no datetimes detected in ", obj))
+  }
+  if (warn & length(meta_timevars) == 0) {
+    warning(paste("no datetimes detected in metadata of ", obj))
+  }
+
+  return(tmp)
+}
