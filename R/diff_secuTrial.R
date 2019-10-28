@@ -2,9 +2,9 @@
 #' @description During ongoing studies it is possible that changes to the DataCapture interface
 #'              are made. Sometimes these changes may call for adjustments in analysis code.
 #'              It is considered good practice to run \code{diff_secuTrial()} on the last export
-#'              and the current export of a project export to at least make yourself aware of
-#'              potential changes to the setup. If there are changes, the results of this function should
-#'              be interpreted as a first indicator since they may not cover all changed aspects.
+#'              and the current export of a project to at least make yourself aware of
+#'              potential changes to the setup. If there are differences, the results of this function should
+#'              be interpreted as a first indicator since they may not cover all alterations.
 #'              Information is returned on new forms and variables.
 #'              A detailed list of changes can be produced in the FormBuilder with
 #'              "Compare project setup".
