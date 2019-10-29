@@ -57,9 +57,14 @@ sT <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
 sT_InselUSB <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
                                           "s_export_CSV-xls_CTU05_short_Insel-USB_en.zip",
                                           package = "secuTrialR"))
-sT_InselUSB_noid <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
-                                               "s_export_CSV-xls_CTU05_short_Insel-USB_no-id_en.zip",
+
+sT_noid <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
+                                               "s_export_CSV-xls_CTU05_20191003-144833_no_addid.zip",
                                                package = "secuTrialR"))
+
+sT_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
+                                      "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
+                                      package = "secuTrialR"))
 
 sT_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
                                       "s_export_CSV-xls_CTU05_long_all-info_en.zip",
@@ -70,7 +75,8 @@ sT_InselUSB_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset"
                                                package = "secuTrialR"))
 
 test_that("Subset errors", {
-  expect_error(subset_secuTrial(sT_InselUSB_noid, patient = "1"))
+  expect_error(subset_secuTrial(sT_noid, patient = "1")) # cannot subset based on patients if no "add id"
+  expect_error(subset_secuTrial(sT_nocentre, patient = "1")) # cannot subset based on centres if no centre information
 })
 
 ## test subsetting based on centers
