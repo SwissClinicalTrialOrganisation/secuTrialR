@@ -54,7 +54,7 @@ rec_sdat_berlin <- plot_recruitment(sdat_berlin, return_data = TRUE)
 rec_sdat_no_basel_1 <- plot_recruitment(sdat_no_basel_1, return_data = TRUE)
 rec_sdat_no_basel_2 <- plot_recruitment(sdat_no_basel_2, return_data = TRUE)
 
-test_that("Test output after subsetting", {
+test_that("Test output after subsetting centres", {
   expect_equal(length(rec_sdat_all), length(rec_sdat_bern) + 2)
   expect_equal(length(rec_sdat_all), length(rec_sdat_berlin) + 2)
   expect_equal(length(rec_sdat_no_basel_1), length(rec_sdat_berlin) + 1)
@@ -66,4 +66,22 @@ test_that("Test output after subsetting", {
   expect_true("Charité Berlin (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
   expect_equal(rec_sdat_all[[2]], rec_sdat_berlin[[1]])
   expect_equal(rec_sdat_all[[3]]$centre_name, rec_sdat_bern[[1]]$centre_name)
+})
+
+# 11 registered cases in sdat
+id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-INS-011")
+
+rm_set_sdat <- subset_secuTrial(sdat, patient = id_set, exclude = TRUE)
+keep_set_sdat <- subset_secuTrial(sdat, patient = id_set)
+
+rm_set_rec <- plot_recruitment(rm_set_sdat, return_data = TRUE)
+keep_set_rec <- plot_recruitment(keep_set_sdat, return_data = TRUE)
+
+test_that("Test output after subsetting patients", {
+  expect_equal(length(rm_set_rec), length(rec_sdat_all))
+  expect_equal(length(keep_set_rec), length(rec_sdat_all) - 1)
+  expect_equal(nrow(rec_sdat_all[[1]]), nrow(rm_set_rec[[1]]) + 3)
+  expect_equal(nrow(rec_sdat_all[[1]]), nrow(keep_set_rec[[1]]) + 8)
+  expect_true("Universitätsspital Basel (RPACK)" %in% rm_set_rec[[1]]$centre_name)
+  expect_false("Universitätsspital Basel (RPACK)" %in% keep_set_rec[[1]]$centre_name)
 })
