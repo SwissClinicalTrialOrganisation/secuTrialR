@@ -26,33 +26,34 @@
 #'
 subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE){
 
-  if(!is.null(patients) & !dat$export_options$add_id){
+  if(!is.null(patient) & !dat$export_options$add_id){
     stop("No subsetting based on patient ids possible. Re-export your data with the Add-ID option.")
   }
-
-  meta <- unlist(dat$export_options$meta_names)
-  forms <- dat$export_options$data_names[!dat$export_options$data_names %in% meta]
-
   if(is.null(centre) & is.null(patient)){
     return(dat)
   }
+  meta <- unlist(dat$export_options$meta_names)
+  forms <- dat$export_options$data_names[!dat$export_options$data_names %in% meta]
+  new_dat <- dat
 
   if(!is.null(centre)){
     if(exclude){
-      new_dat[[meta["centres"]]] <- new_at[[meta["centres"]]][which(!new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(!new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre, ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre, ]
     } else {
-      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][which(new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre), ]
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre), ]
+      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre, ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre, ]
     }
   }
 
   if(!is.null(patient)){
     if (exclude) {
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(!new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient, ]
     } else {
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][which(new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient), ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient, ]
     }
+    #centres_present <- unique(new_dat[[meta[["casenodes"]]]][["mnpctrid"]])
+    #new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][new_dat[[meta["centres"]]][["mnpctrid"]] %in% centres_present, ]
   }
 
   patient_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
@@ -62,7 +63,7 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
       next
     }
     if("mnppid" %in% names(new_dat[[tab]])){
-      new_dat[[tab]] <- new_dat[[tab]][which(new_dat[[tab]][["mnppid"]] %in% patient_sel), ]
+      new_dat[[tab]] <- new_dat[[tab]][new_dat[[tab]][["mnppid"]] %in% patient_sel, ]
     } else {
       new_dat[[tab]] <- new_dat[[tab]]
     }
@@ -71,7 +72,8 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
       new_dat[[tab]] <- modify_if(new_dat[[tab]],
                                   function(x) all(is.na(x)) & !any(class(x) %in% c("Date", "POSIXct", "POSIXt", "Datetime", "factor")),
                                   as.logical)
-      new_dat[[tab]][["centre"]] <- as.factor(as.character(new_dat[[tab]][["centre"]]))
+      new_dat[[tab]][["centre"]] <- factor(new_dat[[tab]][["centre"]],
+                                              levels = new_dat[[meta["centres"]]][["mnpctrname"]])
       new_dat[[tab]][["pat_id"]] <- as.character(new_dat[[tab]][["pat_id"]])
     }
     if("visit_name" %in% names(new_dat[[tab]])){
