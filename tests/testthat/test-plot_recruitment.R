@@ -65,4 +65,5 @@ test_that("Test output after subsetting", {
   expect_true("Inselspital Bern (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
   expect_true("Charité Berlin (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
   expect_equal(rec_sdat_all[[2]], rec_sdat_berlin[[1]])
+  expect_equal(rec_sdat_all[[3]]$centre_name, rec_sdat_bern[[1]]$centre_name)
 })
