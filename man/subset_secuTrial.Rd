@@ -26,14 +26,16 @@ this function filters the data object to include only the selected pat ids.
 
 # This example, builds pseudo-urls that do not point to an active secuTrial instance.
 
-path <- system.file("extdata", "sT_exports", "longnames",
-                    "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+path <- system.file("extdata", "sT_exports", "subset",
+                    "s_export_CSV-xls_CTU05_short_all-info_en.zip",
                     package = "secuTrialR")
 sT_export <- read_secuTrial(path)
-patient <- c("RPACK-INS-011", "RPACK-INS-014")
-centre <- c("Inselspital Bern (RPACK)")
+patients <- c("RPACK-INS-011", "RPACK-INS-014")
+centres <- c(461, 441)
 
 # subset sT_export
-subset_sT_export <- subset_secuTrial(dat = sT_export, pat_id = patient)
+sT_export_patients1 <- subset_secuTrial(dat = sT_export, patient = patients)
+sT_export_patients2 <- subset_secuTrial(dat = sT_export, patient = patients, exclude = TRUE)
+sT_export_centre <- subset_secuTrial(dat = sT_export, centre = centres, exclude = TRUE)
 
 }
