@@ -7,7 +7,7 @@
 subset_secuTrial(dat, patient = NULL, centre = NULL, exclude = FALSE)
 }
 \arguments{
-\item{dat}{secuTrialdata object}
+\item{dat}{secuTrialdata object containing patient IDs and centre information}
 
 \item{patient}{character vector with a selection of patient IDs (mnpaid) used for subsetting}
 
@@ -20,7 +20,9 @@ secuTrialdata object containing only the pat_ids that meet the selection criteri
 }
 \description{
 Given a secuTrial data object, and subsetting parameters,
-this function filters the data object to include only the selected pat ids.
+this function filters the data object to include only the desired patients. Subsetting is possible based on
+patients and based on centres. In order to subset based on patients, patient IDs musst be present in the export.
+In order to subset based on centres, centre information must be present in the export.
 }
 \examples{
 
