@@ -1,9 +1,11 @@
 #' Subsets a secuTrialdata object
 #'
 #' Given a secuTrial data object, and subsetting parameters,
-#' this function filters the data object to include only the selected pat ids.
+#' this function filters the data object to include only the desired patients. Subsetting is possible based on
+#' patients and based on centres. In order to subset based on patients, patient IDs musst be present in the export.
+#' In order to subset based on centres, centre information must be present in the export.
 #'
-#' @param dat secuTrialdata object
+#' @param dat secuTrialdata object containing patient IDs and centre information
 #' @param patient character vector with a selection of patient IDs (mnpaid) used for subsetting
 #' @param centre character vector with a selection of centre IDs (mnpctrid) used for subsetting
 #' @param exclude boolean which if true excludes given pat_id and centre from dat
@@ -11,8 +13,6 @@
 #' @export
 #'
 #' @examples
-#'
-#' # This example, builds pseudo-urls that do not point to an active secuTrial instance.
 #'
 #' path <- system.file("extdata", "sT_exports", "subset",
 #'                     "s_export_CSV-xls_CTU05_short_all-info_en.zip",
@@ -30,6 +30,9 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
 
   if (!is.null(patient) & !dat$export_options$add_id){
     stop("No subsetting based on patient ids possible. Re-export your data with the Add-ID option.")
+  }
+  if (!is.null(centre) & !dat$export_options$centre_info){
+    stop("No subsetting based on centres possible. Re-export your data with centre info.")
   }
   if (is.null(centre) & is.null(patient)){
     return(dat)
