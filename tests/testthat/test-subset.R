@@ -4,13 +4,14 @@ secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
   if (!equality %in% c("all", "attr", "data")) stop("eqaulity must be all, attr or data")
   forms_equal <- TRUE
   attrs_equal <- TRUE
-  for(tab in names(dat)){
+  for (tab in names(dat)){
     if (tab == "export_options") {
       next
     }
-    attrs_equal <- suppressWarnings(forms_equal & all_equal(sort(names(attributes(dat[[tab]]))), sort(names(attributes(dat_ref[[tab]])))))
+    attrs_equal <- suppressWarnings(forms_equal & all_equal(sort(names(attributes(dat[[tab]]))),
+                                                            sort(names(attributes(dat_ref[[tab]])))))
     forms_equal <- suppressWarnings(attrs_equal & all_equal(dat[[tab]], dat_ref[[tab]]))
-    if(equality == "all"){
+    if (equality == "all"){
       return(forms_equal & attrs_equal)
     } else if (equality == "attr"){
       return(attr_equal)
@@ -22,18 +23,18 @@ secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
 
 compare_patients <- function(dat, patients){
   pats_equal <- TRUE
-  for(tab in names(dat)){
+  for (tab in names(dat)){
     if (tab == "export_options") {
       next
     }
     if (any(names(dat[[tab]]) %in% "pat_id") & nrow(dat[[tab]]) > 0){
       pats_equal <- pats_equal & all(dat[[tab]][["pat_id"]] %in% patients)
-    } else if(any(names(dat[[tab]]) %in% "mnpaid") & nrow(dat[[tab]]) > 0){
+    } else if (any(names(dat[[tab]]) %in% "mnpaid") & nrow(dat[[tab]]) > 0){
       pats_equal <- pats_equal & all(dat[[tab]][["mnpaid"]] %in% patients)
     } else{
       next
     }
-    if(!pats_equal){
+    if (!pats_equal){
       print(unique(dat[[tab]] %>% select(contains("pat_id"), contains("mnpaid"))))
       return(pats_equal)
     }
@@ -94,7 +95,7 @@ test_that("Subset patient", {
   expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn$mnpaid[!sT$cn$mnpaid %in% patients]))
   expect_equal(levels(sT$baseline$centre), levels(sT_subset$baseline$centre)) ## center levels should stay same
   expect_equal(FALSE, all(sT$baseline$centre %in% sT_subset$baseline$centre)) ## actually represented levels not
-  expect_equal(TRUE, all(sT$ctr$mnpctrid %in% sT_subset$ctr$mnpctrid)) ## all centres should be present, although no patients given for some centres
+  expect_equal(TRUE, all(sT$ctr$mnpctrid %in% sT_subset$ctr$mnpctrid)) ## all centres should be present
 })
 
 centres <- c("462", "441")
@@ -103,11 +104,13 @@ sT_subset_exclude <- subset_secuTrial(sT, patient = patients, centre = centres, 
 ## what happens if disjunkt
 
 test_that("Subset patient and centre", {
-  expect_equal(TRUE, compare_patients(sT_subset, sT$cn[sT$cn[["mnpaid"]] %in% patients & sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
+  expect_equal(TRUE, compare_patients(sT_subset, sT$cn[sT$cn[["mnpaid"]] %in%
+                                                         patients & sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
   expect_equal(TRUE, all(sT_subset$ctr$mnpctrid %in% centres))
   expect_equal(levels(sT_subset$baseline$centre),  sT$ctr[sT$ctr$mnpctrid %in% centres, "mnpctrname"])
 
-  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn[!sT$cn[["mnpaid"]] %in% patients & !sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
+  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn[!sT$cn[["mnpaid"]] %in%
+                                                                 patients & !sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
   expect_equal(TRUE, all(!sT_subset_exclude$ctr$mnpctrid %in% centres))
   expect_equal(levels(sT_subset_exclude$baseline$centre), sT$ctr[!sT$ctr$mnpctrid %in% centres, "mnpctrname"])
 })

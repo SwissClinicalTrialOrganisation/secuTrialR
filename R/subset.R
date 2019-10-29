@@ -28,18 +28,18 @@
 #'
 subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE){
 
-  if(!is.null(patient) & !dat$export_options$add_id){
+  if (!is.null(patient) & !dat$export_options$add_id){
     stop("No subsetting based on patient ids possible. Re-export your data with the Add-ID option.")
   }
-  if(is.null(centre) & is.null(patient)){
+  if (is.null(centre) & is.null(patient)){
     return(dat)
   }
   meta <- unlist(dat$export_options$meta_names)
   forms <- dat$export_options$data_names[!dat$export_options$data_names %in% meta]
   new_dat <- dat
 
-  if(!is.null(centre)){
-    if(exclude){
+  if (!is.null(centre)){
+    if (exclude){
       new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre, ]
       new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre, ]
     } else {
@@ -48,7 +48,7 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
     }
   }
 
-  if(!is.null(patient)){
+  if (!is.null(patient)){
     if (exclude) {
       new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpaid"]] %in% patient, ]
     } else {
@@ -58,28 +58,29 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
 
   patient_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
 
-  for(tab in names(new_dat)){
+  for (tab in names(new_dat)){
     if (class(new_dat[[tab]]) != "data.frame"){
       next
     }
-    if("mnppid" %in% names(new_dat[[tab]])){
+    if ("mnppid" %in% names(new_dat[[tab]])){
       new_dat[[tab]] <- new_dat[[tab]][new_dat[[tab]][["mnppid"]] %in% patient_sel, ]
     } else {
       new_dat[[tab]] <- new_dat[[tab]]
     }
     ## make adaptation necessary to match exports without a centre (object class, attributes)
-    if(!is.null(centre) & "centre" %in% names(new_dat[[tab]])){
+    if (!is.null(centre) & "centre" %in% names(new_dat[[tab]])){
       new_dat[[tab]] <- modify_if(new_dat[[tab]],
-                                  function(x) all(is.na(x)) & !any(class(x) %in% c("Date", "POSIXct", "POSIXt", "Datetime", "factor")),
+                                  function(x) { all(is.na(x)) &
+                                      !any(class(x) %in% c("Date", "POSIXct", "POSIXt", "Datetime", "factor"))},
                                   as.logical)
       new_dat[[tab]][["centre"]] <- factor(new_dat[[tab]][["centre"]],
-                                              levels = new_dat[[meta["centres"]]][["mnpctrname"]])
+                                           levels = new_dat[[meta["centres"]]][["mnpctrname"]])
       new_dat[[tab]][["pat_id"]] <- as.character(new_dat[[tab]][["pat_id"]])
     }
-    if("visit_name" %in% names(new_dat[[tab]])){
+    if ("visit_name" %in% names(new_dat[[tab]])){
       new_dat[[tab]][["visit_name"]] <- as.character(new_dat[[tab]][["visit_name"]])
     }
-    if(nrow(new_dat[[tab]]) > 0){
+    if (nrow(new_dat[[tab]]) > 0){
       row.names(new_dat[[tab]]) <- 1:nrow(new_dat[[tab]])
     }
   }
