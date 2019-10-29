@@ -50,8 +50,8 @@ compare_patients <- function(dat, patients){
 }
 
 
-sT <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
-                                 "s_export_CSV-xls_CTU05_short_all-info_en.zip",
+sT <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
+                                 "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
                                  package = "secuTrialR"))
 
 sT_InselUSB <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
@@ -76,12 +76,10 @@ sT_InselUSB_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset"
 
 test_that("Subset errors", {
   expect_error(subset_secuTrial(sT_noid, patient = "1")) # cannot subset based on patients if no "add id"
-  expect_error(subset_secuTrial(sT_nocentre, patient = "1")) # cannot subset based on centres if no centre information
+  expect_error(subset_secuTrial(sT_nocentre, centre = "1")) # cannot subset based on centres if no centre information
 })
 
 ## test subsetting based on centers
-patients <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004",
-              "RPACK-CBE-005", "RPACK-INS-014", "RPACK-INS-015")
 centres <- c(461, 441)
 sT_subset <- subset_secuTrial(sT, centre = centres) # positive selection of data based on centres
 sT_subset_exclude <- subset_secuTrial(sT, centre = 462, exclude = TRUE) # negative selection of data based on centres
@@ -133,6 +131,16 @@ patients <- c("RPACK-USB-123") # this patient is in centre 441
 centres <- c("461", "462") # "patients" are not associated with "centres"
 sT_subset_disjunct <- subset_secuTrial(sT, patient = patients, centre = centres) # no patient form data should be present
 
+no_patients <- c("not a patient")
+sT_subset_nopat <- subset_secuTrial(sT, patient = "not a patient")
+sT_subset_nocentre <- subset_secuTrial(sT, centre = "not a centre")
+sT_subset_nopat_exclude <- subset_secuTrial(sT, patient = "not a patient", exclude = TRUE)
+sT_subset_nocentre_exclude <- subset_secuTrial(sT, centre = "not a centre", exclude = TRUE)
+
 test_that("Subset disjunct patient and centre", {
+  expect_equal(TRUE, compare_patients(sT_subset_nopat, c())) # if subsetting parameter not found in data
+  expect_equal(TRUE, compare_patients(sT_subset_nocentre, c())) # if subsetting parameter not found in data
+  expect_equal(TRUE, secuTrial_is_equal(sT, sT_subset_nopat_exclude)) # if subsetting parameter not found in data and exclusion is on
+  expect_equal(TRUE, secuTrial_is_equal(sT, sT_subset_nocentre_exclude)) # if subsetting parameter not found in data and exclusion is on
   expect_equal(TRUE, compare_patients(sT_subset_disjunct, c())) # metadata tables are present, but no patient data
 })
