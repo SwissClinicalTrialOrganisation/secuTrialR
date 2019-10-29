@@ -26,8 +26,6 @@ In order to subset based on centres, centre information must be present in the e
 }
 \examples{
 
-# This example, builds pseudo-urls that do not point to an active secuTrial instance.
-
 path <- system.file("extdata", "sT_exports", "subset",
                     "s_export_CSV-xls_CTU05_short_all-info_en.zip",
                     package = "secuTrialR")
