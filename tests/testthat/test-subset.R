@@ -1,5 +1,10 @@
 context("subset")
 
+## compares two secutrialdata for equality. very specialized function for the purpose of testing.
+## if equal, TRUE is returned, otherwise, FALSE.
+## equality = "atr" ... equality of attributes in all elements of dat_ref and dat
+## equality = "dat" ... equality of data contained in all elements of dat_ref and dat
+## equality = "all" ... equality of data and attributes
 secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
   if (!equality %in% c("all", "attr", "data")) stop("eqaulity must be all, attr or data")
   forms_equal <- TRUE
@@ -21,6 +26,8 @@ secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
   }
 }
 
+## function that compares patient IDs present in all data frames
+## of a "dat" secuTrialdata object with those provided via "patients" character vector
 compare_patients <- function(dat, patients){
   pats_equal <- TRUE
   for (tab in names(dat)){
@@ -66,42 +73,42 @@ test_that("Subset errors", {
   expect_error(subset_secuTrial(sT_InselUSB_noid, patient = "1"))
 })
 
-## subsetting based on centers
+## test subsetting based on centers
 patients <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004",
               "RPACK-CBE-005", "RPACK-INS-014", "RPACK-INS-015")
 centres <- c(461, 441)
-sT_subset <- subset_secuTrial(sT, centre = centres)
-sT_subset_exclude <- subset_secuTrial(sT, centre = 462, exclude = TRUE)
-sT_subset_long <- subset_secuTrial(sT_long, centre = centres)
+sT_subset <- subset_secuTrial(sT, centre = centres) # positive selection of data based on centres
+sT_subset_exclude <- subset_secuTrial(sT, centre = 462, exclude = TRUE) # negative selection of data based on centres
+sT_subset_long <- subset_secuTrial(sT_long, centre = centres) # subsetting for exports with long table names
 
 test_that("Subset centre", {
-  expect_equal(sT, subset_secuTrial(sT))
-  expect_equal(sT_long, subset_secuTrial(sT_long))
-  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset, "all"))
-  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset_exclude, "all"))
-  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB_long, sT_subset_long, "all"))
+  expect_equal(sT, subset_secuTrial(sT)) # return input if no selection criteria provided (short table names)
+  expect_equal(sT_long, subset_secuTrial(sT_long)) # return input if no selection criteria provided (long table names)
+  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset, "all")) # check that subsetting worked based on centres
+  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset_exclude, "all")) # check that centers are correctly excluded
+  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB_long, sT_subset_long, "all")) # as above for long table names
 })
 
-## based on patients
+## test subsetting based on patients
 patients <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004",
               "RPACK-CBE-005", "RPACK-INS-014", "RPACK-INS-015")
-sT_subset <- subset_secuTrial(sT, patient = patients)
-sT_subset_exclude <- subset_secuTrial(sT, patient = patients, exclude = TRUE)
+sT_subset <- subset_secuTrial(sT, patient = patients) # positive selection of data based on patients
+sT_subset_exclude <- subset_secuTrial(sT, patient = patients, exclude = TRUE) # negative selection of data based on patients
 
 test_that("Subset patient", {
-  expect_equal(TRUE, all(unique(sT_subset$baseline$pat_id) %in% patients))
-  expect_equal(TRUE, all(patients %in% unique(sT_subset$baseline$pat_id)))
-  expect_equal(TRUE, compare_patients(sT_subset, patients))
-  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn$mnpaid[!sT$cn$mnpaid %in% patients]))
-  expect_equal(levels(sT$baseline$centre), levels(sT_subset$baseline$centre)) ## center levels should stay same
-  expect_equal(FALSE, all(sT$baseline$centre %in% sT_subset$baseline$centre)) ## actually represented levels not
-  expect_equal(TRUE, all(sT$ctr$mnpctrid %in% sT_subset$ctr$mnpctrid)) ## all centres should be present
+  expect_equal(TRUE, all(unique(sT_subset$baseline$pat_id) %in% patients)) # check if subsetting worked in "baseline" tbl
+  expect_equal(TRUE, all(patients %in% unique(sT_subset$baseline$pat_id))) # check if subsetting worked in "baseline" tbl
+  expect_equal(TRUE, compare_patients(sT_subset, patients)) # data frames of sT_subset should contain only "patients" data
+  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn$mnpaid[!sT$cn$mnpaid %in% patients])) # exclude logics
+  expect_equal(levels(sT$baseline$centre), levels(sT_subset$baseline$centre)) # center levels should stay same
+  expect_equal(FALSE, all(sT$baseline$centre %in% sT_subset$baseline$centre)) # actually represented levels change
+  expect_equal(TRUE, all(sT$ctr$mnpctrid %in% sT_subset$ctr$mnpctrid)) # all centres should be present
 })
 
+## test subsetting based on both patients and centres in one go
 centres <- c("462", "441")
-sT_subset <- subset_secuTrial(sT, patient = patients, centre = centres)
-sT_subset_exclude <- subset_secuTrial(sT, patient = patients, centre = centres, exclude = TRUE)
-## what happens if disjunkt
+sT_subset <- subset_secuTrial(sT, patient = patients, centre = centres) # positive selection for patients and centres
+sT_subset_exclude <- subset_secuTrial(sT, patient = patients, centre = centres, exclude = TRUE) # exlude patients and centres
 
 test_that("Subset patient and centre", {
   expect_equal(TRUE, compare_patients(sT_subset, sT$cn[sT$cn[["mnpaid"]] %in%
@@ -115,11 +122,11 @@ test_that("Subset patient and centre", {
   expect_equal(levels(sT_subset_exclude$baseline$centre), sT$ctr[!sT$ctr$mnpctrid %in% centres, "mnpctrname"])
 })
 
-# check dijunct selections
-patients <- c("RPACK-USB-123")
-centres <- c("461", "462")
-sT_subset_disjunct <- subset_secuTrial(sT, patient = patients, centre = centres)
+# check subsetting of disjunct
+patients <- c("RPACK-USB-123") # this patient is in centre 441
+centres <- c("461", "462") # "patients" are not associated with "centres"
+sT_subset_disjunct <- subset_secuTrial(sT, patient = patients, centre = centres) # no patient form data should be present
 
 test_that("Subset disjunct patient and centre", {
-  expect_equal(TRUE, compare_patients(sT_subset_disjunct, c()))
+  expect_equal(TRUE, compare_patients(sT_subset_disjunct, c())) # metadata tables are present, but no patient data
 })
