@@ -53,6 +53,14 @@ sT_InselUSB_noid <- read_secuTrial(system.file("extdata", "sT_exports", "subset"
                                                "s_export_CSV-xls_CTU05_short_Insel-USB_no-id_en.zip",
                                                package = "secuTrialR"))
 
+sT_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
+                                      "s_export_CSV-xls_CTU05_long_all-info_en.zip",
+                                      package = "secuTrialR"))
+
+sT_InselUSB_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
+                                               "s_export_CSV-xls_CTU05_long_Insel-USB_en.zip",
+                                               package = "secuTrialR"))
+
 test_that("Subset errors", {
   expect_error(subset_secuTrial(sT_InselUSB_noid, patient = "1"))
 })
@@ -63,11 +71,14 @@ patients <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004"
 centres <- c(461, 441)
 sT_subset <- subset_secuTrial(sT, centre = centres)
 sT_subset_exclude <- subset_secuTrial(sT, centre = 462, exclude = TRUE)
+sT_subset_long <- subset_secuTrial(sT_long, centre = centres)
 
 test_that("Subset centre", {
   expect_equal(sT, subset_secuTrial(sT))
+  expect_equal(sT_long, subset_secuTrial(sT_long))
   expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset, "all"))
   expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB, sT_subset_exclude, "all"))
+  expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB_long, sT_subset_long, "all"))
 })
 
 ## based on patients
