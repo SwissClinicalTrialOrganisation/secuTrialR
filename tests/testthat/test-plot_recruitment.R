@@ -41,3 +41,28 @@ test_that("Test output", {
                nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[4]])
                )
 })
+
+# subset_secuTrial tests for plot_recruitment
+sdat_bern <- subset_secuTrial(sdat, centre = 461)
+sdat_berlin <- subset_secuTrial(sdat, centre = 462)
+sdat_no_basel_1 <- subset_secuTrial(sdat, centre = c(461, 462))
+sdat_no_basel_2 <- subset_secuTrial(sdat, centre = 441, exclude = TRUE)
+
+rec_sdat_all <- plot_recruitment(sdat, return_data = TRUE)
+rec_sdat_bern <- plot_recruitment(sdat_bern, return_data = TRUE)
+rec_sdat_berlin <- plot_recruitment(sdat_berlin, return_data = TRUE)
+rec_sdat_no_basel_1 <- plot_recruitment(sdat_no_basel_1, return_data = TRUE)
+rec_sdat_no_basel_2 <- plot_recruitment(sdat_no_basel_2, return_data = TRUE)
+
+test_that("Test output after subsetting", {
+  expect_equal(length(rec_sdat_all), length(rec_sdat_bern) + 2)
+  expect_equal(length(rec_sdat_all), length(rec_sdat_berlin) + 2)
+  expect_equal(length(rec_sdat_no_basel_1), length(rec_sdat_berlin) + 1)
+  expect_equal(length(unique(rec_sdat_bern[[1]]$centre_name)), 1)
+  expect_equal(length(unique(rec_sdat_berlin[[1]]$centre_name)), 1)
+  expect_equal(rec_sdat_no_basel_1, rec_sdat_no_basel_2)
+  expect_false("Universitätsspital Basel (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
+  expect_true("Inselspital Bern (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
+  expect_true("Charité Berlin (RPACK)" %in% rec_sdat_no_basel_1[[1]]$centre_name)
+  expect_equal(rec_sdat_all[[2]], rec_sdat_berlin[[1]])
+})
