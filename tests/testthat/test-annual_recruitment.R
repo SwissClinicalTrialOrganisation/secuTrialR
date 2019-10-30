@@ -48,7 +48,6 @@ ann_rec_s_bern <- annual_recruitment(sdat_ctu05_bern)
 ann_rec_l_no_bern <- annual_recruitment(ldat_ctu05_no_bern)
 ann_rec_s_no_bern <- annual_recruitment(sdat_ctu05_no_bern)
 
-# test equality
 test_that("Test centre subsetting", {
   expect_equal(ann_rec_l_bern, ann_rec_s_bern)
   expect_equal(ann_rec_l_no_bern, ann_rec_s_no_bern)
