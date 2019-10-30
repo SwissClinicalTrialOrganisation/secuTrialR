@@ -43,6 +43,7 @@ test_that("Test output", {
 })
 
 # subset_secuTrial tests for plot_recruitment
+# centres
 sdat_bern <- subset_secuTrial(sdat, centre = "Inselspital Bern (RPACK)")
 sdat_berlin <- subset_secuTrial(sdat, centre = "Charité Berlin (RPACK)")
 sdat_no_basel_1 <- subset_secuTrial(sdat, centre = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
@@ -68,6 +69,7 @@ test_that("Test output after subsetting centres", {
   expect_equal(rec_sdat_all[[3]]$centre_name, rec_sdat_bern[[1]]$centre_name)
 })
 
+# cases
 # 11 registered cases in sdat
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-INS-011")
 
