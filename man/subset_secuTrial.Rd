@@ -31,7 +31,7 @@ path <- system.file("extdata", "sT_exports", "subset",
                     package = "secuTrialR")
 sT_export <- read_secuTrial(path)
 patients <- c("RPACK-INS-011", "RPACK-INS-014")
-centres <- c(461, 441)
+centres <- c("Inselspital Bern (RPACK)", "Universitätsspital Basel (RPACK)")
 
 # subset sT_export
 sT_export_patients1 <- subset_secuTrial(dat = sT_export, patient = patients)

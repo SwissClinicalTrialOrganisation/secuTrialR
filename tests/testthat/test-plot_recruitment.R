@@ -43,10 +43,10 @@ test_that("Test output", {
 })
 
 # subset_secuTrial tests for plot_recruitment
-sdat_bern <- subset_secuTrial(sdat, centre = 461)
-sdat_berlin <- subset_secuTrial(sdat, centre = 462)
-sdat_no_basel_1 <- subset_secuTrial(sdat, centre = c(461, 462))
-sdat_no_basel_2 <- subset_secuTrial(sdat, centre = 441, exclude = TRUE)
+sdat_bern <- subset_secuTrial(sdat, centre = "Inselspital Bern (RPACK)")
+sdat_berlin <- subset_secuTrial(sdat, centre = "Charité Berlin (RPACK)")
+sdat_no_basel_1 <- subset_secuTrial(sdat, centre = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+sdat_no_basel_2 <- subset_secuTrial(sdat, centre = "Universitätsspital Basel (RPACK)", exclude = TRUE)
 
 rec_sdat_all <- plot_recruitment(sdat, return_data = TRUE)
 rec_sdat_bern <- plot_recruitment(sdat_bern, return_data = TRUE)

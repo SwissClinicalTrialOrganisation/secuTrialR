@@ -19,7 +19,7 @@
 #'                     package = "secuTrialR")
 #' sT_export <- read_secuTrial(path)
 #' patients <- c("RPACK-INS-011", "RPACK-INS-014")
-#' centres <- c(461, 441)
+#' centres <- c("Inselspital Bern (RPACK)", "Universitätsspital Basel (RPACK)")
 #'
 #' # subset sT_export
 #' sT_export_patients1 <- subset_secuTrial(dat = sT_export, patient = patients)
@@ -43,11 +43,14 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
 
   if (!is.null(centre)){
     if (exclude){
-      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre, ]
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre, ]
+      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrname"]] %in% centre, ]
+
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in%
+                                                                     new_dat[[meta["centres"]]][["mnpctrid"]], ]
     } else {
-      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][new_dat[[meta["centres"]]][["mnpctrid"]] %in% centre, ]
-      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in% centre, ]
+      new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][new_dat[[meta["centres"]]][["mnpctrname"]] %in% centre, ]
+      new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in%
+                                                                     new_dat[[meta["centres"]]][["mnpctrid"]], ]
     }
   }
 

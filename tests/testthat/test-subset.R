@@ -59,12 +59,12 @@ sT_InselUSB <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
                                           package = "secuTrialR"))
 
 sT_noid <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                               "s_export_CSV-xls_CTU05_20191003-144833_no_addid.zip",
-                                               package = "secuTrialR"))
+                                      "s_export_CSV-xls_CTU05_20191003-144833_no_addid.zip",
+                                      package = "secuTrialR"))
 
 sT_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                      "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
-                                      package = "secuTrialR"))
+                                          "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
+                                          package = "secuTrialR"))
 
 sT_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset",
                                       "s_export_CSV-xls_CTU05_long_all-info_en.zip",
@@ -80,9 +80,9 @@ test_that("Subset errors", {
 })
 
 ## test subsetting based on centers
-centres <- c(461, 441)
+centres <- c("Inselspital Bern (RPACK)", "Universitätsspital Basel (RPACK)")
 sT_subset <- subset_secuTrial(sT, centre = centres) # positive selection of data based on centres
-sT_subset_exclude <- subset_secuTrial(sT, centre = 462, exclude = TRUE) # negative selection of data based on centres
+sT_subset_exclude <- subset_secuTrial(sT, centre = "Charité Berlin (RPACK)", exclude = TRUE) # negative selection of data based on centres
 sT_subset_long <- subset_secuTrial(sT_long, centre = centres) # subsetting for exports with long table names
 
 test_that("Subset centre", {
@@ -110,28 +110,30 @@ test_that("Subset patient", {
 })
 
 ## test subsetting based on both patients and centres in one go
-centres <- c("462", "441")
+patients <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004",
+              "RPACK-CBE-005", "RPACK-INS-014", "RPACK-INS-015")
+centres <- c("Charité Berlin (RPACK)", "Universitätsspital Basel (RPACK)")
 sT_subset <- subset_secuTrial(sT, patient = patients, centre = centres) # positive selection for patients and centres
 sT_subset_exclude <- subset_secuTrial(sT, patient = patients, centre = centres, exclude = TRUE) # exlude patients and centres
+centres_id <- sT$ctr$mnpctrid[sT$ctr$mnpctrname %in% centres]
 
 test_that("Subset patient and centre", {
-  expect_equal(TRUE, compare_patients(sT_subset, sT$cn[sT$cn[["mnpaid"]] %in%
-                                                         patients & sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
-  expect_equal(TRUE, all(sT_subset$ctr$mnpctrid %in% centres))
-  expect_equal(levels(sT_subset$baseline$centre),  sT$ctr[sT$ctr$mnpctrid %in% centres, "mnpctrname"])
+  expect_equal(TRUE, compare_patients(sT_subset,
+                                      sT$cn[sT$cn[["mnpaid"]] %in% patients & sT$cn$mnpctrid %in% centres_id, "mnpaid"]))
+  expect_equal(TRUE, all(sT_subset$ctr$mnpctrname %in% centres))
+  expect_equal(levels(sT_subset$baseline$centre),  sT$ctr[sT$ctr$mnpctrname %in% centres, "mnpctrname"])
 
-  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn[!sT$cn[["mnpaid"]] %in%
-                                                                 patients & !sT$cn[["mnpctrid"]] %in% centres, "mnpaid"]))
-  expect_equal(TRUE, all(!sT_subset_exclude$ctr$mnpctrid %in% centres))
-  expect_equal(levels(sT_subset_exclude$baseline$centre), sT$ctr[!sT$ctr$mnpctrid %in% centres, "mnpctrname"])
+  expect_equal(TRUE, compare_patients(sT_subset_exclude, sT$cn[!sT$cn[["mnpaid"]] %in% patients &
+                                                                 !sT$cn[["mnpctrid"]] %in% centres_id, "mnpaid"]))
+  expect_equal(TRUE, all(!sT_subset_exclude$ctr$mnpctrname %in% centres))
+  expect_equal(levels(sT_subset_exclude$baseline$centre), sT$ctr[!sT$ctr$mnpctrname %in% centres, "mnpctrname"])
 })
 
-# check subsetting of disjunct
+# check subsetting disjunct sets of patients and centres
 patients <- c("RPACK-USB-123") # this patient is in centre 441
-centres <- c("461", "462") # "patients" are not associated with "centres"
+centres <- c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)") # "patients" are not associated with "centres"
 sT_subset_disjunct <- subset_secuTrial(sT, patient = patients, centre = centres) # no patient form data should be present
 
-no_patients <- c("not a patient")
 sT_subset_nopat <- subset_secuTrial(sT, patient = "not a patient")
 sT_subset_nocentre <- subset_secuTrial(sT, centre = "not a centre")
 sT_subset_nopat_exclude <- subset_secuTrial(sT, patient = "not a patient", exclude = TRUE)
