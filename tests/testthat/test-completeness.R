@@ -109,3 +109,60 @@ test_that("Test column sums", {
 })
 
 # TODO add more tests with warnings and errors and empty data
+
+# subset_secuTrial tests for plot_recruitment
+# centres
+sdat_berlin <- subset_secuTrial(s_ctu05, centre = "Charité Berlin (RPACK)")
+sdat_no_berlin <- subset_secuTrial(s_ctu05, centre = "Charité Berlin (RPACK)", exclude = TRUE)
+
+summary_all <- form_status_summary(s_ctu05)
+summary_berlin <- form_status_summary(sdat_berlin)
+summary_no_berlin <- form_status_summary(sdat_no_berlin)
+counts_all <- form_status_counts(s_ctu05)
+counts_berlin <- form_status_counts(sdat_berlin)
+counts_no_berlin <- form_status_counts(sdat_no_berlin)
+
+count_cols <- c("completely_filled", "partly_filled", "empty", "with_warnings", "with_errors")
+
+test_that("Test output after subsetting centres", {
+  expect_equal(summary_all[which(summary_all$form_name == "baseline"), ]$partly_filled,
+               (summary_berlin[which(summary_berlin$form_name == "baseline"), ]$partly_filled +
+                  summary_no_berlin[which(summary_no_berlin$form_name == "baseline"), ]$partly_filled))
+  expect_equal(summary_all[which(summary_all$form_name == "baseline"), ]$form_count,
+               (summary_berlin[which(summary_berlin$form_name == "baseline"), ]$form_count +
+                  summary_no_berlin[which(summary_no_berlin$form_name == "baseline"), ]$form_count))
+  expect_equal(summary_all[which(summary_all$form_name == "baseline"), ]$completely_filled,
+               (summary_berlin[which(summary_berlin$form_name == "baseline"), ]$completely_filled +
+                  summary_no_berlin[which(summary_no_berlin$form_name == "baseline"), ]$completely_filled))
+  expect_equal(nrow(counts_all), (nrow(counts_berlin) + nrow(counts_no_berlin)))
+  expect_equal(colSums(counts_all[, count_cols]), (colSums(counts_no_berlin[, count_cols]) +
+                                                   colSums(counts_berlin[, count_cols])))
+})
+
+# cases
+id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-USB-123")
+
+l_ctu05_rm <- subset_secuTrial(l_ctu05, patient = id_set, exclude = TRUE)
+l_ctu05_keep <- subset_secuTrial(l_ctu05, patient = id_set)
+
+counts_rm_ids <- form_status_counts(l_ctu05_rm)
+counts_keep_ids <- form_status_counts(l_ctu05_keep)
+
+test_that("Test output after subsetting cases", {
+  expect_equal(colSums(counts_all[, count_cols]), (colSums(counts_rm_ids[, count_cols]) +
+                                                   colSums(counts_keep_ids[, count_cols])))
+})
+
+
+# centre and cases
+no_bern_no_basel <- subset_secuTrial(s_ctu05,
+                                     patient = "RPACK-USB-123", centre = "Inselspital Bern (RPACK)",
+                                     exclude = TRUE)
+
+counts_no_bern_no_basel <- form_status_counts(no_bern_no_basel)
+summary_no_bern_no_basel <- form_status_summary(no_bern_no_basel)
+
+test_that("Test output after subsetting centres and cases together", {
+  expect_equal(counts_no_bern_no_basel, counts_berlin)
+  expect_equal(summary_no_bern_no_basel, summary_berlin)
+})
