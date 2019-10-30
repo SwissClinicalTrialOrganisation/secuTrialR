@@ -11,12 +11,12 @@ subset_secuTrial(dat, patient = NULL, centre = NULL, exclude = FALSE)
 
 \item{patient}{character vector with a selection of patient IDs (mnpaid) used for subsetting}
 
-\item{centre}{character vector with a selection of centre IDs (mnpctrid) used for subsetting}
+\item{centre}{character vector with a selection of centre names (mnpctrname) used for subsetting}
 
 \item{exclude}{boolean which if true excludes given pat_id and centre from dat}
 }
 \value{
-secuTrialdata object containing only the pat_ids that meet the selection criteria.
+secuTrialdata object containing only the pat_ids and centres that meet the selection criteria.
 }
 \description{
 Given a secuTrial data object, and subsetting parameters,

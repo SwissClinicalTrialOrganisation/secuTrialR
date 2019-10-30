@@ -7,9 +7,9 @@
 #'
 #' @param dat secuTrialdata object containing patient IDs and centre information
 #' @param patient character vector with a selection of patient IDs (mnpaid) used for subsetting
-#' @param centre character vector with a selection of centre IDs (mnpctrid) used for subsetting
+#' @param centre character vector with a selection of centre names (mnpctrname) used for subsetting
 #' @param exclude boolean which if true excludes given pat_id and centre from dat
-#' @return secuTrialdata object containing only the pat_ids that meet the selection criteria.
+#' @return secuTrialdata object containing only the pat_ids and centres that meet the selection criteria.
 #' @export
 #'
 #' @examples
@@ -44,7 +44,6 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
   if (!is.null(centre)){
     if (exclude){
       new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrname"]] %in% centre, ]
-
       new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in%
                                                                      new_dat[[meta["centres"]]][["mnpctrid"]], ]
     } else {
@@ -73,7 +72,8 @@ subset_secuTrial <- function(dat, patient = NULL, centre = NULL, exclude = FALSE
     } else {
       new_dat[[tab]] <- new_dat[[tab]]
     }
-    ## make adaptation necessary to match exports without a centre (object class, attributes)
+    # make adaptation necessary for subsets based on centres to match exports made without
+    # a centre to begin with. Adaptation of object class and attributes needed.
     if (!is.null(centre) & "centre" %in% names(new_dat[[tab]])){
       new_dat[[tab]] <- modify_if(new_dat[[tab]],
                                   function(x) { all(is.na(x)) &
