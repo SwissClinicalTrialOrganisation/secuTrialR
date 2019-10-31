@@ -45,15 +45,21 @@ diff_secuTrial <- function(x, y) {
       # forms
       forms_x <- x[[x$export_options$meta_names$forms]]
       forms_y <- y[[y$export_options$meta_names$forms]]
-      form_diff <- unique(forms_y$formtablename[which(! forms_y$formtablename %in% forms_x$formtablename)])
+      # new forms
+      form_diff_new <- unique(forms_y$formtablename[which(! forms_y$formtablename %in% forms_x$formtablename)])
+      # removed forms
+      form_diff_rm <- unique(forms_x$formtablename[which(! forms_x$formtablename %in% forms_y$formtablename)])
 
       # items
       items_x <- x[[x$export_options$meta_names$items]]
       items_y <- y[[y$export_options$meta_names$items]]
-      item_diff <- unique(items_y$ffcolname[which(! items_y$ffcolname %in% items_x$ffcolname)])
+      # new items
+      item_diff_new <- unique(items_y$ffcolname[which(! items_y$ffcolname %in% items_x$ffcolname)])
+      # removed items
+      item_diff_rm <- unique(items_x$ffcolname[which(! items_x$ffcolname %in% items_y$ffcolname)])
 
-      return_list <- list(form_diff, item_diff)
-      names(return_list) <- c("new_forms", "new_variables")
+      return_list <- list(form_diff_new, item_diff_new, form_diff_rm, item_diff_rm)
+      names(return_list) <- c("new_forms", "new_variables", "removed_forms", "removed_variables")
       return(return_list)
     }
   } else {
