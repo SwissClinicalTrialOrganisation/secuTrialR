@@ -16,15 +16,19 @@
 #'          new variables.
 #'
 #' @examples
-#' # export location
-#' export_loc <- system.file("extdata", "sT_exports", "longnames",
-#'                           "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-#'                           package = "secuTrialR")
-#' # read export
-#' sT_export <- read_secuTrial(export_loc)
+#' # read exports
 #'
-#' # return scores // in this case on the same export
-#' diff_secuTrial(sT_export, sT_export)
+#' # v1 is essentially a clone of the CTU05 setup
+#' ctu06_v1 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
+#'                                        "s_export_CSV-xls_CTU06_version1.zip",
+#'                                        package = "secuTrialR"))
+#' # v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform) and
+#' # 2 additional variables (new_item_in_fu, new_item_in_new_form)
+#' ctu06_v2 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
+#'                                        "s_export_CSV-xls_CTU06_version2.zip",
+#'                                        package = "secuTrialR"))
+#' # return diff
+#' diff_secuTrial(ctu06_v1, ctu06_v2)
 #'
 diff_secuTrial <- function(x, y) {
   if (class(x) == "secuTrialdata" & class(y) == "secuTrialdata") {
