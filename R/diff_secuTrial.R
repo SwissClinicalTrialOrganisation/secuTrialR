@@ -53,6 +53,6 @@ diff_secuTrial <- function(x, y) {
       return(return_list)
     }
   } else {
-    stop("return_scores requires objects of the class 'secuTrialdata' as input.")
+    stop("diff_secuTrial requires objects of the class 'secuTrialdata' as input.")
   }
 }
