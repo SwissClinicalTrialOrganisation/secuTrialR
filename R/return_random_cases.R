@@ -11,8 +11,9 @@
 #'             This date is checked against mnpvisstartdate in the casenodes table.
 #' @param seed Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.
 #' @export
-#' @details return_random_cases will produce a data.frame that contains random cases from each
-#'          specified centre. This is performed based on a specified seed to retain reproducibilty.
+#' @details return_random_cases will produce a list of two elements. First, a data.frame that contains the
+#'          random cases from each specified centre. This is performed based on a specified seed to retain reproducibilty.
+#'          Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
 #'
 #' @examples
 #' # export location
@@ -77,7 +78,10 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
        random_cases <- rbind(random_cases,
                              curr_ctr_cn_trunc[sample(nrow(curr_ctr_cn_trunc), sample_count), ])
      }
-     return(random_cases)
+     rng_config <- RNGkind()
+     return_list <- list(random_cases, rng_config)
+     names(return_list) <- c("cases", "rng_config")
+     return(return_list)
   } else {
     stop("return_random_cases requires objects of the class 'secuTrialdata' as input.")
   }

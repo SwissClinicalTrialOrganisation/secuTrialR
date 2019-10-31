@@ -248,19 +248,8 @@ ls()
 ```
 
 ```
-##  [1] "bmd_export"              "centres"                
-##  [3] "ctu05"                   "ctu05_raw"              
-##  [5] "dat"                     "dates"                  
-##  [7] "export_location"         "factors"                
-##  [9] "labelled"                "labs"                   
-## [11] "meta"                    "participants"           
-## [13] "path"                    "res"                    
-## [15] "sT"                      "sT_export"              
-## [17] "sT_export_participants1" "sT_nocentre"            
-## [19] "sT_noid"                 "sT_noid_nocentre"       
-## [21] "sT_participants1"        "sT_subset1"             
-## [23] "sT_subset2"              "sT_subset3"             
-## [25] "sT_subset4"              "sT_subset5"
+## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
+## [5] "export_location" "factors"         "labelled"        "labs"
 ```
 
 ```r
@@ -297,23 +286,14 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "centres"                
-## [13] "ctu05"                   "ctu05_raw"              
-## [15] "ctu05ae"                 "ctu05allmedi"           
-## [17] "ctu05baseline"           "ctu05outcome"           
-## [19] "ctu05sae"                "ctu05studyterminat"     
-## [21] "ctu05treatment"          "dat"                    
-## [23] "dates"                   "emnpctu05surgeries"     
-## [25] "export_location"         "factors"                
-## [27] "labelled"                "labs"                   
-## [29] "meta"                    "participants"           
-## [31] "path"                    "res"                    
-## [33] "sT"                      "sT_export"              
-## [35] "sT_export_participants1" "sT_nocentre"            
-## [37] "sT_noid"                 "sT_noid_nocentre"       
-## [39] "sT_participants1"        "sT_subset1"             
-## [41] "sT_subset2"              "sT_subset3"             
-## [43] "sT_subset4"              "sT_subset5"
+## [11] "bmd_export"              "ctu05"                  
+## [13] "ctu05_raw"               "ctu05ae"                
+## [15] "ctu05allmedi"            "ctu05baseline"          
+## [17] "ctu05outcome"            "ctu05sae"               
+## [19] "ctu05studyterminat"      "ctu05treatment"         
+## [21] "dates"                   "emnpctu05surgeries"     
+## [23] "export_location"         "factors"                
+## [25] "labelled"                "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
@@ -471,11 +451,15 @@ return_random_cases(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
 ```
 
 ```
+## $cases
 ##          mnpaid                   centre mnpvisstartdate
 ## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
 ## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
 ## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05
 ## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
+## 
+## $rng_config
+## [1] "Mersenne-Twister" "Inversion"        "Rejection"
 ```
 
 ## For contributors
