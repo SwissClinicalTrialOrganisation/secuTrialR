@@ -105,11 +105,20 @@ sT_export2 <- read_secuTrial_raw(data_dir = system.file("extdata", "sT_exports",
                                                            package = "secuTrialR"))
 # project version
 test_that("Project version parsing", {
-  expect_equal(sT_export$export_options$project_version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(export_options_regular_short$project_version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(export_options_regular_long$project_version, "25.02.2019 - 13:13:44 (CET)")
-  expect_equal(sT_export2$export_options$project_version, "30.04.2019 - 13:40:52 (CEST)")
-  expect_equal(bmd_unzipped$project_version, "25.02.2019 - 13:13:44 (CET)")
+  expect_equal(sT_export$export_options$project_version, "(25.02.2019 - 13:13:44 (CET))")
+  expect_equal(export_options_regular_short$project_version, "(25.02.2019 - 13:13:44 (CET))")
+  expect_equal(export_options_regular_long$project_version, "(25.02.2019 - 13:13:44 (CET))")
+  expect_equal(sT_export2$export_options$project_version, "(30.04.2019 - 13:40:52 (CEST))")
+  expect_equal(bmd_unzipped$project_version, "(25.02.2019 - 13:13:44 (CET))")
+})
+
+# project name
+test_that("Project name parsing", {
+  expect_equal(sT_export$export_options$project_name, "BONE MINERAL DENSITY")
+  expect_equal(export_options_regular_short$project_name, "BONE MINERAL DENSITY")
+  expect_equal(export_options_regular_long$project_name, "BONE MINERAL DENSITY")
+  expect_equal(sT_export2$export_options$project_name, "secuTrialR example CDMA")
+  expect_equal(bmd_unzipped$project_name, "BONE MINERAL DENSITY")
 })
 
 # duplicated meta data

@@ -55,13 +55,14 @@ read_export_options <- function(data_dir) {
                                         text = version_line)
                                )
                     )
-
+  # Project version
   pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
-  pversion <- unlist(regmatches(pversion_line,
-                                gregexpr(pattern = "(?<=\\().*(?=\\))",
-                                         text = pversion_line, perl = TRUE)
-                                )
-                     )
+  pversion <- str_match(pversion_line, pattern = "<b>(.+)</b>")[,2]
+
+  # Project name
+  pname_line <- parsed_export[grep(paste(dict_keys[, "project"], collapse = "|"), parsed_export) + 2]
+  pname <- str_match(pname_line, pattern = "<b>(.+)</b>")[,2]
+
 
   # short names
   short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
@@ -280,6 +281,7 @@ read_export_options <- function(data_dir) {
                         data_dir = data_dir,
                         secuTrial_version = version,
                         project_version = pversion,
+                        project_name = pname,
                         time_of_export = time_of_export,
                         encoding = encoding,
                         form_status = form_status,

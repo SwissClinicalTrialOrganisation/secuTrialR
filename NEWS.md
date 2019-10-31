@@ -1,3 +1,6 @@
+# secuTrialR 0.6.4
+* New function `diff_secuTrial()` added to allow light weight comparison of the setup of two secuTrial exports.
+
 # secuTrialR 0.6.3
 * metadata variables are now also transformed to date and datetime formats, whenever appropriate.
 
