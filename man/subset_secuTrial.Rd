@@ -4,38 +4,56 @@
 \alias{subset_secuTrial}
 \title{Subsets a secuTrialdata object}
 \usage{
-subset_secuTrial(dat, patient = NULL, centre = NULL, exclude = FALSE)
+subset_secuTrial(dat, participant = NULL, centre = NULL,
+  exclude = FALSE)
 }
 \arguments{
-\item{dat}{secuTrialdata object containing patient IDs and centre information}
+\item{dat}{secuTrialdata object containing participant IDs and centre information}
 
-\item{patient}{character vector with a selection of patient IDs (mnpaid) used for subsetting}
+\item{participant}{character vector with a selection of participant IDs (mnpaid) used for subsetting}
 
 \item{centre}{character vector with a selection of centre names (mnpctrname) used for subsetting}
 
-\item{exclude}{boolean which if true excludes given pat_id and centre from dat}
+\item{exclude}{boolean which if true excludes participants and centres from dat}
 }
 \value{
-secuTrialdata object containing only the pat_ids and centres that meet the selection criteria.
+secuTrialdata object containing only those participants that meet the selection criteria.
 }
 \description{
 Given a secuTrial data object, and subsetting parameters,
-this function filters the data object to include only the desired patients. Subsetting is possible based on
-patients and based on centres. In order to subset based on patients, patient IDs musst be present in the export.
-In order to subset based on centres, centre information must be present in the export.
+this function filters the data object to include only the desired study participants. Subsetting is possible based on
+participants and based on centres. In order to subset based on participants, participant IDs (mnpaid) musst be present in the export.
+In order to subset based on centres, centre information must be included in the export.
+}
+\details{
+Subsetting based on patients only, centers only, or based on both is possible. The value of parameter exclude
+determines whether the output will include participants that meet selection criteria (when exclude = FALSE),
+or exclude them (when exclude = TRUE). When selecting based on both participants and centres,
+exclude = FALSE will include the intersection of participants meeting the selection criteria. If exclude = TRUE,
+a complement of union of participant and centre sets is returned.
 }
 \examples{
 
-path <- system.file("extdata", "sT_exports", "subset",
-                    "s_export_CSV-xls_CTU05_short_all-info_en.zip",
+path <- system.file("extdata", "sT_exports", "export_options",
+                    "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
                     package = "secuTrialR")
-sT_export <- read_secuTrial(path)
-patients <- c("RPACK-INS-011", "RPACK-INS-014")
+sT <- read_secuTrial(path)
+participants <- c("RPACK-INS-011", "RPACK-INS-014", "RPACK-INS-015")
 centres <- c("Inselspital Bern (RPACK)", "Universitätsspital Basel (RPACK)")
 
+# show all patients
+get_participants(sT)
+
 # subset sT_export
-sT_export_patients1 <- subset_secuTrial(dat = sT_export, patient = patients)
-sT_export_patients2 <- subset_secuTrial(dat = sT_export, patient = patients, exclude = TRUE)
-sT_export_centre <- subset_secuTrial(dat = sT_export, centre = centres, exclude = TRUE)
+sT_subset1 <- subset_secuTrial(dat = sT, participant = participants)
+get_participants(sT_subset1)
+sT_subset2 <- subset_secuTrial(dat = sT, participant = participants, exclude = TRUE)
+get_participants(sT_subset2)
+sT_subset3 <- subset_secuTrial(dat = sT, centre = centres, exclude = TRUE)
+get_participants(sT_subset3)
+sT_subset4 <- subset_secuTrial(dat = sT, participant = participants, centre = centres, exclude = FALSE)
+get_participants(sT_subset4)
+sT_subset5 <- subset_secuTrial(dat = sT, participant = participants, centre = centres[2], exclude = FALSE)
+get_participants(sT_subset5)
 
 }

@@ -60,8 +60,8 @@ test_that("Test centre subsetting", {
 # cases
 id_set <- c("RPACK-CBE-001", "RPACK-INS-012", "RPACK-USB-123")
 
-rm_set_sdat <- subset_secuTrial(sdat_ctu05, patient = id_set, exclude = TRUE)
-keep_set_sdat <- subset_secuTrial(sdat_ctu05, patient = id_set)
+rm_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set, exclude = TRUE)
+keep_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set)
 
 ann_rec_rm <- annual_recruitment(rm_set_sdat)
 annrec_keep <- annual_recruitment(keep_set_sdat)

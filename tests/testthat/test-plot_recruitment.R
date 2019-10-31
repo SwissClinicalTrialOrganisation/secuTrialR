@@ -73,8 +73,8 @@ test_that("Test output after subsetting centres", {
 # 11 registered cases in sdat
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-INS-011")
 
-rm_set_sdat <- subset_secuTrial(sdat, patient = id_set, exclude = TRUE)
-keep_set_sdat <- subset_secuTrial(sdat, patient = id_set)
+rm_set_sdat <- subset_secuTrial(sdat, participant = id_set, exclude = TRUE)
+keep_set_sdat <- subset_secuTrial(sdat, participant = id_set)
 
 rm_set_rec <- plot_recruitment(rm_set_sdat, return_data = TRUE)
 keep_set_rec <- plot_recruitment(keep_set_sdat, return_data = TRUE)

@@ -142,8 +142,8 @@ test_that("Test output after subsetting centres", {
 # cases
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-USB-123")
 
-l_ctu05_rm <- subset_secuTrial(l_ctu05, patient = id_set, exclude = TRUE)
-l_ctu05_keep <- subset_secuTrial(l_ctu05, patient = id_set)
+l_ctu05_rm <- subset_secuTrial(l_ctu05, participant = id_set, exclude = TRUE)
+l_ctu05_keep <- subset_secuTrial(l_ctu05, participant = id_set)
 
 counts_rm_ids <- form_status_counts(l_ctu05_rm)
 counts_keep_ids <- form_status_counts(l_ctu05_keep)
@@ -156,7 +156,7 @@ test_that("Test output after subsetting cases", {
 
 # centre and cases
 no_bern_no_basel <- subset_secuTrial(s_ctu05,
-                                     patient = "RPACK-USB-123", centre = "Inselspital Bern (RPACK)",
+                                     participant = "RPACK-USB-123", centre = "Inselspital Bern (RPACK)",
                                      exclude = TRUE)
 
 counts_no_bern_no_basel <- form_status_counts(no_bern_no_basel)
