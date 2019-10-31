@@ -1,4 +1,4 @@
-# secuTrialR 0.6.6
+# secuTrialR 0.6.5
 * `return_random_cases()` now returns a list. The first element are the cases and the second element is the output of `RNGkind()`.
 
 # secuTrialR 0.6.4
