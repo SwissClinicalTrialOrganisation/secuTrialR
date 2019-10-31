@@ -28,7 +28,7 @@ test_that("Errors", {
   expect_error(diff_secuTrial(bmd, ctu05_fr))
 })
 
-print_string = "The project structure has not changed. Project versions are both: (20.06.2019 - 11:22:04 (CEST))"
+print_string <- "The project structure has not changed. Project versions are both: (20.06.2019 - 11:22:04 (CEST))"
 test_that("Same version", {
   expect_equal(diff_secuTrial(ctu05_en_2, ctu05_fr), print_string)
   expect_equal(diff_secuTrial(ctu05_fr, ctu05_fr), print_string)
