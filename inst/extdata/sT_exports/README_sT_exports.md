@@ -8,6 +8,7 @@ This readme file contains information about file structure and naming convention
 - **longnames** - contains a collection of secuTrial exports with long table names
 - **shortnames** - contains a collection of secuTrial exports with short table names
 - **export_options** - contains a collection of secuTrial exports with differing export options
+- **change_tracking** - contains exports with differing project setups and without any case data
 
 ## File naming
 
