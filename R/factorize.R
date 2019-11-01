@@ -126,6 +126,11 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
               lookup$code[which(duplicated(lookup$value))])
     }
 
+    # this is a fix for Issue #116 on github
+    if (nrow(lookup) == 0) {
+      next
+    }
+
     data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
     data <- .move_column_after(data, paste0(name, ".factor"), name)
     # check for conversion of all else warn // this is expected to never happen
