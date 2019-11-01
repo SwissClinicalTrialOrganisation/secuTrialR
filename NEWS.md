@@ -1,3 +1,6 @@
+# secuTrialR 0.7.1
+* Fixed issue #116 on GitHub
+
 # secuTrialR 0.6.5
 * `return_random_cases()` now returns a list. The first element are the cases and the second element is the output of `RNGkind()`.
 
