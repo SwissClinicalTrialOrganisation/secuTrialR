@@ -16,6 +16,10 @@ sT_noid_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "export_
                                           "s_export_CSV-xls_CTU05_20191004-101600_no_addid_no_centre_info_no_proj_setup.zip",
                                           package = "secuTrialR"))
 
+test_that("Get patient error", {
+  expect_error(get_participants(data.frame()))
+})
+
 test_that("Get patients", {
   expect_equal(c(11, 4), dim(get_participants(sT)))
   expect_equal(c(11, 3), dim(get_participants(sT_noid)))

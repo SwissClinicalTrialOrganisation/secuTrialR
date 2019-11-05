@@ -76,6 +76,7 @@ sT_InselUSB_long <- read_secuTrial(system.file("extdata", "sT_exports", "subset"
                                                package = "secuTrialR"))
 
 test_that("Subset errors", {
+  expect_error(subset_secuTrial(data.frame()))
   expect_error(subset_secuTrial(sT_noid, participant = "1"))
   expect_error(subset_secuTrial(sT_nocentre, centre = "1"))
 })

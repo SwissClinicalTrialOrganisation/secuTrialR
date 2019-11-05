@@ -43,7 +43,9 @@
 #' get_participants(sT_subset5)
 #'
 subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = FALSE){
-
+  if (class(dat) != "secuTrialdata"){
+    stop("subset_secuTrial() requires objects of the class 'secuTrialdata' as input parameter 'dat'.")
+  }
   if (!is.null(participant) & !dat$export_options$add_id){
     stop("No subsetting based on participants possible. Re-export your data with the Add-ID option.")
   }
