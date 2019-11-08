@@ -25,20 +25,13 @@ get_participants <- function(dat){
 
   meta <- unlist(dat$export_options$meta_names)
 
-  if (dat$export_options$add_id & dat$export_options$centre_info){
-    participants <- dat[[meta["casenodes"]]][, c("mnppid", "mnpaid", "mnpctrid")]
-    centres <- dat[[meta["centres"]]][, c("mnpctrid", "mnpctrname")]
+  participants <- dat[[meta["casenodes"]]]
+  if(dat$export_options$centre_info){
+    centres <- dat[[meta["centres"]]]
     participants <- suppressMessages(left_join(participants, centres))
-  } else if (!dat$export_options$add_id & dat$export_options$centre_info){
-    participants <- dat[[meta["casenodes"]]][, c("mnppid", "mnpctrid")]
-    centres <- dat[[meta["centres"]]][, c("mnpctrid", "mnpctrname")]
-    participants <- suppressMessages(left_join(participants, centres))
-  } else if (dat$export_options$add_id & !dat$export_options$centre_info){
-    participants <- dat[[meta["casenodes"]]][, c("mnppid", "mnpaid")]
   }
-  else{
-    participants <- dat[[meta["casenodes"]]][, "mnppid", drop = FALSE]
-  }
+  select_columns <- c("mnppid", "mnpaid", "mnpctrid", "mnpctrname")
+  participants <- participants[, which(names(participants) %in% select_columns), drop = FALSE]
 
   return(participants)
 }
