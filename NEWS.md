@@ -1,6 +1,10 @@
 # secuTrialR 0.7.1
 * Fixed issue #116 on GitHub
 
+# secuTrialR 0.7.0
+* `subset_secuTrial()` function was added. It allows subsetting of secuTrialdata based on patient ID and/or study centre name.
+* `get_participants()` function was added. It allows easy extractions of participant info from a secuTrialdata object.
+
 # secuTrialR 0.6.5
 * `return_random_cases()` now returns a list. The first element are the cases and the second element is the output of `RNGkind()`.
 
