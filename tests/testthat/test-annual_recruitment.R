@@ -34,3 +34,39 @@ test_that("Test output", {
   expect_equal(dim(annual_recruitment(bmd)), c(1, 4))
   expect_equal(dim(annual_recruitment(tes05)), c(1, 4))
 })
+
+# subset_secuTrial tests for plot_recruitment
+# centres
+sdat_ctu05_bern <- subset_secuTrial(sdat_ctu05, centre = "Inselspital Bern (RPACK)")
+sdat_ctu05_no_bern <- subset_secuTrial(sdat_ctu05, centre = "Inselspital Bern (RPACK)", exclude = TRUE)
+ldat_ctu05_bern <- subset_secuTrial(ldat_ctu05, centre = "Inselspital Bern (RPACK)")
+ldat_ctu05_no_bern <- subset_secuTrial(ldat_ctu05, centre = c("Charité Berlin (RPACK)",
+                                                              "Universitätsspital Basel (RPACK)"))
+ann_rec_all <- annual_recruitment(sdat_ctu05)
+ann_rec_l_bern <- annual_recruitment(ldat_ctu05_bern)
+ann_rec_s_bern <- annual_recruitment(sdat_ctu05_bern)
+ann_rec_l_no_bern <- annual_recruitment(ldat_ctu05_no_bern)
+ann_rec_s_no_bern <- annual_recruitment(sdat_ctu05_no_bern)
+
+test_that("Test centre subsetting", {
+  expect_equal(ann_rec_l_bern, ann_rec_s_bern)
+  expect_equal(ann_rec_l_no_bern, ann_rec_s_no_bern)
+  expect_true("Inselspital Bern (RPACK)" %in% ann_rec_l_bern$Center)
+  expect_false("Inselspital Bern (RPACK)" %in% ann_rec_l_no_bern$Center)
+  expect_equal((as.numeric(ann_rec_all$Total)[1] - as.numeric(ann_rec_s_bern$Total)[1]),
+               as.numeric(ann_rec_s_no_bern$Total)[1])
+})
+
+# cases
+id_set <- c("RPACK-CBE-001", "RPACK-INS-012", "RPACK-USB-123")
+
+rm_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set, exclude = TRUE)
+keep_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set)
+
+ann_rec_rm <- annual_recruitment(rm_set_sdat)
+annrec_keep <- annual_recruitment(keep_set_sdat)
+
+test_that("Test case subsetting", {
+  expect_equal((as.numeric(ann_rec_all$Total) - as.numeric(annrec_keep$Total)),
+               as.numeric(ann_rec_rm$Total))
+})
