@@ -1,3 +1,6 @@
+# secuTrialR 0.7.1
+* Fixed issue #116 on GitHub
+
 # secuTrialR 0.7.0
 * `subset_secuTrial()` function was added. It allows subsetting of secuTrialdata based on patient ID and/or study centre name.
 * `get_participants()` function was added. It allows easy extractions of participant info from a secuTrialdata object.
