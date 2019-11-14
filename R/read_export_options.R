@@ -194,19 +194,6 @@ read_export_options <- function(data_dir) {
   date_format_meta <- "%Y-%m-%d"
   date_format <- "%Y%m%d"
   datetime_format <- "%Y%m%d%H%M"
-  # TODO : custom formats? parsed from ExportOptions?
-
-  # unknown date strings
-  unknown_date_string <- NULL
-  # TODO : custom formats? parsed from ExportOptions?
-
-  # partial dates
-  partial_date_string <- ""
-  partial_date_handling <- "fill.partial.dates.and.keep.original"
-  # TODO : parsed from ExportOptions?
-
-  # IDs
-  # TODO : parsed from ExportOptions?
 
   # filenames
   datafiles <- files$Name[!grepl(".html$", files$Name)]
@@ -257,9 +244,6 @@ read_export_options <- function(data_dir) {
                         # this stays with a "." to keep consistency
                         # with read.table "na.strings" parameter
                         na.strings = na.strings, # if blanks mean missing
-                        unknown_date_string = unknown_date_string, # incomplete dates
-                        partial_date_string = partial_date_string,
-                        partial_date_handling = partial_date_handling,
                         short_names = short_names,
                         is_zip = is_zip,
                         is_rectangular = rectangular_table,
