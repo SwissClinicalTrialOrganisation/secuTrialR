@@ -25,7 +25,7 @@ Thus, we suggest to work with exports which:
 - do NOT have the meta data duplicated into all tables
 - are UTF-8 encoded
 
-You can use the `check-export_options()` function on a secuTrialdata object to identify where your export may differ.
+You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
 
 ## Basic usage
 Load the package
