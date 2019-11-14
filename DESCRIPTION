@@ -43,7 +43,6 @@ Suggests:
     knitr,
     lintr,
     rmarkdown,
-    badger,
     testthat,
     shiny
 VignetteBuilder: knitr
