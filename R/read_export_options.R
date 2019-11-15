@@ -57,12 +57,15 @@ read_export_options <- function(data_dir) {
                     )
   # Project version
   pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
-  pversion <- str_match(pversion_line, pattern = "<b>(.+)</b>")[,2]
+  pversion <- str_match(pversion_line, pattern = "<b>(.+)</b>")[, 2]
 
   # Project name
   pname_line <- parsed_export[grep(paste(dict_keys[, "project"], collapse = "|"), parsed_export) + 2]
-  pname <- str_match(pname_line, pattern = "<b>(.+)</b>")[,2]
+  pname <- str_match(pname_line, pattern = "<b>(.+)</b>")[, 2]
 
+  # Format e.g. "CSV format for MS Excel"
+  format_line <- parsed_export[grep(paste(dict_keys[, "format"], collapse = "|"), parsed_export) + 2]
+  format_info <- str_match(format_line, pattern = "<b>(.+)</b>")[, 2]
 
   # short names
   short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
@@ -266,6 +269,7 @@ read_export_options <- function(data_dir) {
                         secuTrial_version = version,
                         project_version = pversion,
                         project_name = pname,
+                        format_info = format_info,
                         time_of_export = time_of_export,
                         encoding = encoding,
                         form_status = form_status,

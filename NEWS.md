@@ -1,6 +1,7 @@
 # secuTrialR 0.7.2
 * `check_export_options()` function was added. It informs on deviations from suggested export options. (#17)
 * Removed tracking of obsolete export options (`partial_date_string`, `partial_date_handling`, `unknown_date_string`).
+* Added `format_info` (e.g. "CSV format for MS Excel") to `export_options`.
 
 # secuTrialR 0.7.1
 * Fixed issue #116 on GitHub
