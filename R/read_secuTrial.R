@@ -23,6 +23,7 @@ read_secuTrial <- function(data_dir,
     expr = {
       d <- read_secuTrial_raw(data_dir = data_dir)
       message("Read export successfully.")
+      check_export_options(d)
     },
     error = function(e) {
       message("Input to read_secuTrial() appears to be incompatible. Have you exported CSV format?")
