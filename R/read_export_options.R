@@ -67,6 +67,13 @@ read_export_options <- function(data_dir) {
   format_line <- parsed_export[grep(paste(dict_keys[, "format"], collapse = "|"), parsed_export) + 2]
   format_info <- str_match(format_line, pattern = "<b>(.+)</b>")[, 2]
 
+  # check format info // only the two CSV formats are compatible
+  # grep instead of exact match because there are language differences in the string
+  if (! grepl("CSV", format_info)) {
+    stop(paste0("Your export must be exported as CSV format for MS Excel or CSV format. ",
+                "It currently is: ", format_info))
+  }
+
   # short names
   short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
 
