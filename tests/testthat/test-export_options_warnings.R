@@ -17,7 +17,7 @@ sT_unzipped <- read_secuTrial_raw(path_unzipped)
 
 test_that("error, warning and no warning", {
   expect_error(check_export_options(1337))
-  expect_warning(check_export_options(sT_unzipped))
-  expect_warning(check_export_options(sT_only_col_names))
+  expect_message(check_export_options(sT_unzipped))
+  expect_message(check_export_options(sT_only_col_names))
   expect_equal(check_export_options(sT_all_info), NULL)
 })
