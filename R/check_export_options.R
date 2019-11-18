@@ -8,7 +8,7 @@
 #' @details While the package strives to allow loading of as many types of secuTrial data exports
 #'          as possible, there are certain export options which are less likely to cause issues.
 #'          If possible it is suggested to export data which adheres to a suggested option set.
-#'          This function points out deviations from the suggested set of options which are:
+#'          This function points out deviations from the suggested set of options which are: \cr
 #'          is_zip == TRUE \cr
 #'          refvals_separate == TRUE \cr
 #'          add_id == TRUE \cr
@@ -16,7 +16,8 @@
 #'          encoding == "UTF-8" \cr
 #'          form_status == TRUE \cr
 #'          centre_info == TRUE \cr
-#'          proj_setup == TRUE
+#'          proj_setup == TRUE \cr
+#'          dict_items$lang == "en"
 #'
 #' @examples
 #' path <- system.file("extdata", "sT_exports", "export_options",
@@ -55,10 +56,13 @@ check_export_options <- function(dat) {
   if (! eo$proj_setup) {
     warn_components <- paste0(warn_components, "Project setup is not part of the export.\n")
   }
+  if (eo$dict_items$lang != "en") {
+    warn_components <- paste0(warn_components, "Language is not English.\n")
+  }
 
   if (str_length(warn_components)) {
     warn_start <- "The following export options deviate from the suggested specifications:\n"
     warn <- paste0(warn_start, warn_components)
-    warning(warn)
+    message(warn)
   }
 }
