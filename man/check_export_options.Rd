@@ -17,7 +17,7 @@ from suggested export options.
 While the package strives to allow loading of as many types of secuTrial data exports
          as possible, there are certain export options which are less likely to cause issues.
          If possible it is suggested to export data which adheres to a suggested option set.
-         This function points out deviations from the suggested set of options which are:
+         This function points out deviations from the suggested set of options which are: \cr
          is_zip == TRUE \cr
          refvals_separate == TRUE \cr
          add_id == TRUE \cr
@@ -25,7 +25,8 @@ While the package strives to allow loading of as many types of secuTrial data ex
          encoding == "UTF-8" \cr
          form_status == TRUE \cr
          centre_info == TRUE \cr
-         proj_setup == TRUE
+         proj_setup == TRUE \cr
+         dict_items$lang == "en"
 }
 \examples{
 path <- system.file("extdata", "sT_exports", "export_options",
