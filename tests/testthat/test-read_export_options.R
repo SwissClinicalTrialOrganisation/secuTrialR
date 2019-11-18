@@ -138,3 +138,28 @@ test_that("Time of export", {
   expect_equal(export_options_regular_long$time_of_export, "18.03.2019 - 10:47:03 (CET)")
   expect_equal(sT_export2$export_options$time_of_export, "30.04.2019 - 15:29:45 (CEST)")
 })
+
+# errors for non CSV exports
+test_that("Errored for non CSV format", {
+  # SAS
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+                                                          "s_export_SAS_CTU05_20191115-092453_SAS.zip",
+                                                          package = "secuTrialR")))
+  # SPSS
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+                                                          "s_export_SPSS_CTU05_20191115-092020_SPSS.zip",
+                                                          package = "secuTrialR")))
+  # CDISC
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+                                                          "s_export_XML_CTU05_20191115-092559_CDISC.zip",
+                                                          package = "secuTrialR")))
+})
+
+# success for CSV exports
+eo_csv <- read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+                                                     "s_export_CSV_CTU05_20191115-091627_CSV.zip",
+                                                     package = "secuTrialR"))
+test_that("Success for CSV format", {
+  expect_equal(eo_csv$format_info, "CSV format")
+  expect_equal(exp_opt_tes05_iso$format_info, "CSV format for MS Excel")
+})

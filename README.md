@@ -1,7 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -11,6 +12,22 @@ An R package to handle data from the clinical data management system (CDMS) [sec
 ```r
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
+
+## Recommended export options
+
+While the package strives to allow loading of as many types of secuTrial data exports
+as possible, there are certain export options which are less likely to cause issues.
+If possible it is suggested to export data which adheres to a suggested option set.
+Thus, we suggest to work with exports which:
+- are **zipped**
+- are **English**
+- have **reference values** stored **in a separate table**
+- contain **Add-IDs**, **centre information**, **form status**, **project setup**
+- do **NOT** have the **meta data duplicated** into all tables
+- are **UTF-8** encoded
+- are **"CSV format"** or **"CSV format for MS Excel"**
+
+You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
 
 ## Basic usage
 Load the package
@@ -72,7 +89,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/markovicm/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls

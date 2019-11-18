@@ -1,3 +1,8 @@
+# secuTrialR 0.7.2
+* `check_export_options()` function was added. It informs on deviations from suggested export options. (#17)
+* Removed tracking of obsolete export options (`partial_date_string`, `partial_date_handling`, `unknown_date_string`).
+* Added `format_info` (e.g. "CSV format for MS Excel") to `export_options`.
+
 # secuTrialR 0.7.1
 * Fixed issue #116 on GitHub
 
@@ -12,7 +17,7 @@
 * New function `diff_secuTrial()` added to allow light weight comparison of the setup of two secuTrial exports.
 
 # secuTrialR 0.6.3
-* metadata variables are now also transformed to date and datetime formats, whenever appropriate.
+* Metadata variables are now also transformed to date and datetime formats, whenever appropriate.
 
 # secuTrialR 0.6.2
 * `factorize_secuTrial()` now no longer triggers an unexpected warning when the name of a secuTrial lookuptable is equal to the name of the variable it is being used in. (PR #108)

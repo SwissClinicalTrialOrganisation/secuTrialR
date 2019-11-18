@@ -23,9 +23,10 @@ read_secuTrial <- function(data_dir,
     expr = {
       d <- read_secuTrial_raw(data_dir = data_dir)
       message("Read export successfully.")
+      check_export_options(d)
     },
     error = function(e) {
-      message("Input to read_secuTrial() appears to be incompatible.")
+      message("Input to read_secuTrial() appears to be incompatible. Have you exported CSV format?")
     }
   )
   # label
@@ -55,5 +56,13 @@ read_secuTrial <- function(data_dir,
       message("dates_secuTrial() failed. Proceeding without date parsing.")
     }
   )
-  return(d)
+  # return output
+  tryCatch(
+    expr = {
+      return(d)
+    },
+    error = function(e) {
+      message("read_secuTrial() failed.")
+    }
+  )
 }

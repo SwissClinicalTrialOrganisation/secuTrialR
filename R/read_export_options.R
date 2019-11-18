@@ -57,12 +57,22 @@ read_export_options <- function(data_dir) {
                     )
   # Project version
   pversion_line <- parsed_export[max(grep(paste(dict_keys[, "version"], collapse = "|"), parsed_export)) + 2]
-  pversion <- str_match(pversion_line, pattern = "<b>(.+)</b>")[,2]
+  pversion <- str_match(pversion_line, pattern = "<b>(.+)</b>")[, 2]
 
   # Project name
   pname_line <- parsed_export[grep(paste(dict_keys[, "project"], collapse = "|"), parsed_export) + 2]
-  pname <- str_match(pname_line, pattern = "<b>(.+)</b>")[,2]
+  pname <- str_match(pname_line, pattern = "<b>(.+)</b>")[, 2]
 
+  # Format e.g. "CSV format for MS Excel"
+  format_line <- parsed_export[grep(paste(dict_keys[, "format"], collapse = "|"), parsed_export) + 2]
+  format_info <- str_match(format_line, pattern = "<b>(.+)</b>")[, 2]
+
+  # check format info // only the two CSV formats are compatible
+  # grep instead of exact match because there are language differences in the string
+  if (! grepl("CSV", format_info)) {
+    stop(paste0("Your export must be exported as CSV format for MS Excel or CSV format. ",
+                "It currently is: ", format_info))
+  }
 
   # short names
   short_names <- any(sapply(dict_settings[, "shortnames"], function(x) any(grepl(x, parsed_export))))
@@ -194,19 +204,6 @@ read_export_options <- function(data_dir) {
   date_format_meta <- "%Y-%m-%d"
   date_format <- "%Y%m%d"
   datetime_format <- "%Y%m%d%H%M"
-  # TODO : custom formats? parsed from ExportOptions?
-
-  # unknown date strings
-  unknown_date_string <- NULL
-  # TODO : custom formats? parsed from ExportOptions?
-
-  # partial dates
-  partial_date_string <- ""
-  partial_date_handling <- "fill.partial.dates.and.keep.original"
-  # TODO : parsed from ExportOptions?
-
-  # IDs
-  # TODO : parsed from ExportOptions?
 
   # filenames
   datafiles <- files$Name[!grepl(".html$", files$Name)]
@@ -257,9 +254,6 @@ read_export_options <- function(data_dir) {
                         # this stays with a "." to keep consistency
                         # with read.table "na.strings" parameter
                         na.strings = na.strings, # if blanks mean missing
-                        unknown_date_string = unknown_date_string, # incomplete dates
-                        partial_date_string = partial_date_string,
-                        partial_date_handling = partial_date_handling,
                         short_names = short_names,
                         is_zip = is_zip,
                         is_rectangular = rectangular_table,
@@ -282,6 +276,7 @@ read_export_options <- function(data_dir) {
                         secuTrial_version = version,
                         project_version = pversion,
                         project_name = pname,
+                        format_info = format_info,
                         time_of_export = time_of_export,
                         encoding = encoding,
                         form_status = form_status,

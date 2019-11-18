@@ -1,7 +1,7 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of data from the clinical data management system secuTrial 
-Version: 0.7.1
+Version: 0.7.2
 Authors@R:
     c(person(given = "Pascal",
              family = "Benkert",
@@ -43,7 +43,6 @@ Suggests:
     knitr,
     lintr,
     rmarkdown,
-    badger,
     testthat,
     shiny
 VignetteBuilder: knitr
