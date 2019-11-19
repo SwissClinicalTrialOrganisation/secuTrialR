@@ -11,16 +11,20 @@ write_secuTrial(object, ...)
 
 \item{path}{directory where the files should be saved}
 
-\item{format}{format in which to save the export (one of "dta", "sas", "sav")}
+\item{format}{format in which to save the export (one of "dta", "sas", "sav", "xpt")}
 }
 \value{
 a list of filenames
 }
 \description{
-Convert the export prepared in R and export it SPSS, Stata or SAS using the haven package.
+Convert the export prepared in R and export it to
+             SPSS (sav), Stata (dta) or SAS (sas, xpt)
+             using the haven package.
 }
 \details{
-Due to variable naming limitations in other packages, date variables are appended with _d (rather than _date), datetime/POSIX variables are appended with _dt (rather than _datetime) and factors with _f (rather than _factor).
+Due to variable naming limitations in other packages, date variables are
+         appended with _d (rather than _date), datetime/POSIX variables are appended
+         with _dt (rather than _datetime) and factors with _f (rather than _factor).
 }
 \examples{
 # prepare path to example export
