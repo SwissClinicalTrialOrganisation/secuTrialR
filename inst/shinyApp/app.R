@@ -87,22 +87,21 @@ ui <- dashboardPage(skin = "red",
                                 downloadButton('download_monitoring_cases_csv', 'Cases'),
                                 downloadButton('download_monitoring_config_csv', 'Config'),
                                 hr(),
-                                box(tableOutput("monitoring_cases"), width = 220)
+                                box(tableOutput("monitoring_cases"), width = 4)
                         ),
 
                         # seventh tab codebook
                         tabItem(tabName = "codebook",
                                 h2("Codebook"),
-                                tags$style(HTML("
-                  .tabbable > .nav > li > a                  {background-color: #444;  color:white}
-                  .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}
-                ")),
+                                tags$style(HTML(".tabbable > .nav > li > a                  {background-color: #444;  color:white}
+                                                 .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}")),
                                 tabsetPanel(
                                   tabPanel("Forms", tableOutput("forms")),
                                   tabPanel("Questions", tableOutput("questions")),
                                   tabPanel("Items", tableOutput("items")),
                                   tabPanel("Centres", tableOutput("centres")),
-                                  tabPanel("Cases", tableOutput("cases"))
+                                  tabPanel("Cases", tableOutput("cases")),
+                                  tabPanel("Visitplan", tableOutput("visitplan"))
                                 )
 
 
@@ -161,6 +160,7 @@ server <- function(input, output, session) {
     sT_export(curr_export)
   })
 
+  # start codebook
   output$forms <- renderTable({
     sT_export()[[sT_export()$export_options$meta_names$forms]]
   })
@@ -182,6 +182,11 @@ server <- function(input, output, session) {
     #cols <- c("mnpaid", "mnpvisstartdate")
     sT_export()[[sT_export()$export_options$meta_names$casenodes]]#[cols]
   })
+
+  output$visitplan <- renderTable({
+    sT_export()[[sT_export()$export_options$meta_names$visitplan]]
+  })
+  # end codebook
 
   output$recruitment_plot <- renderPlot({
     plot_recruitment(sT_export())
