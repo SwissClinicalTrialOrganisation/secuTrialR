@@ -1,3 +1,7 @@
+# secuTrialR 0.7.4
+* Fixed issue #121 on GitHub. `factorize_secuTrial()` can now handle exports which have the reset option
+enabled in radio buttons.
+
 # secuTrialR 0.7.2
 * `check_export_options()` function was added. It informs on deviations from suggested export options. (#17)
 * Removed tracking of obsolete export options (`partial_date_string`, `partial_date_handling`, `unknown_date_string`).
