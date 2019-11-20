@@ -1,6 +1,7 @@
 ## app.R ##
 library(shinydashboard)
 library(shiny)
+library(shinyWidgets) # setSliderColor
 library(secuTrialR)
 
 ui <- dashboardPage(skin = "red",
@@ -79,6 +80,7 @@ ui <- dashboardPage(skin = "red",
                                 dateInput(inputId = "dateafter", label = "Return cases after date",
                                           value = "1900-01-01", width = 190),
                                 numericInput(inputId = "seednumber", label = "Seed", value = 1, width = 100),
+                                setSliderColor(c("#dd4b39"), c(1)),
                                 sliderInput(inputId = "percentage", label = "Specify percentage of cases",
                                             min = 1, max = 99, value = 10, width = 400),
                                 hr(),
