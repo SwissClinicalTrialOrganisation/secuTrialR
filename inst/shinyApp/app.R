@@ -162,6 +162,17 @@ server <- function(input, output, session) {
     sT_export(curr_export)
   })
 
+  observeEvent(input$use_example_data, {
+    sendSweetAlert(
+      session = session,
+      title = "Example data loaded.",
+      text = icon("lightbulb"),
+      btn_colors = "#dd4b39",
+      btn_labels = "OK"
+      #type = "success"
+    )
+  })
+
   # start codebook
   output$forms <- renderTable({
     sT_export()[[sT_export()$export_options$meta_names$forms]]
