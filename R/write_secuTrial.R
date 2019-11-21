@@ -6,9 +6,8 @@
 #' @param object secuTrialdata object
 #' @param path directory where the files should be saved
 #' @param format format in which to save the export (one of "dta", "sas", "sav", "xpt")
-#' @details Due to variable naming limitations in other packages, date variables are
-#'          appended with _d (rather than _date), datetime/POSIX variables are appended
-#'          with _dt (rather than _datetime) and factors with _f (rather than _factor).
+#' @details Variable names may be altered in the conversion process.
+#'          For details please refer to the \code{haven} documentation.
 #' @return a list of filenames
 #' @export
 #' @examples
