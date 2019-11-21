@@ -1,3 +1,7 @@
+# secuTrialR 0.7.4
+* Fixed issue #121 on GitHub. `factorize_secuTrial()` can now handle exports which have the reset option
+enabled in radio buttons.
+
 # secuTrialR 0.7.3
 * `write_secuTrial()` now allows xpt version 8 files to be written. (closes #57)
 
