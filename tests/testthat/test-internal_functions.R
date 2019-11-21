@@ -151,7 +151,7 @@ test_that("items table dictionary loaded", {
 })
 
 # ---- test .get_export_language
-parse_export_options <- function(data_dir){
+parse_export_options <- function(data_dir) {
   files <- unzip(data_dir, list = TRUE)
   study_options_file_idx <- grep("ExportOptions", files$Name)
   file_con <- unz(data_dir, files$Name[study_options_file_idx])

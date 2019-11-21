@@ -21,7 +21,7 @@
 #'
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 #' @export
-write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FALSE, ...){
+write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FALSE, ...) {
 
   if (! format %in% c("dta", "sas", "sav")) { # , "xpt")) {
     stop(paste0("format must be one of 'dta', 'sas', 'sav'. You specified: ", format)) # 'xpt'. You specified: ", format))
@@ -36,7 +36,7 @@ write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FAL
   })
 }
 
-write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", ...){
+write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", ...) {
   df <- convertnames(df, format)
   format2 <- format
   if (format == "sas") format2 <- "sas7bdat"

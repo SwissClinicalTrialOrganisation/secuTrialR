@@ -42,25 +42,25 @@
 #' sT_subset5 <- subset_secuTrial(dat = sT, participant = participants, centre = centres[2], exclude = FALSE)
 #' get_participants(sT_subset5)
 #'
-subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = FALSE){
-  if (class(dat) != "secuTrialdata"){
+subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = FALSE) {
+  if (class(dat) != "secuTrialdata") {
     stop("subset_secuTrial() requires objects of the class 'secuTrialdata' as input parameter 'dat'.")
   }
-  if (!is.null(participant) & !dat$export_options$add_id){
+  if (!is.null(participant) & !dat$export_options$add_id) {
     stop("No subsetting based on participants possible. Re-export your data with the Add-ID option.")
   }
-  if (!is.null(centre) & !dat$export_options$centre_info){
+  if (!is.null(centre) & !dat$export_options$centre_info) {
     stop("No subsetting based on centres possible. Re-export your data with centre info.")
   }
-  if (is.null(centre) & is.null(participant)){
+  if (is.null(centre) & is.null(participant)) {
     return(dat)
   }
   meta <- unlist(dat$export_options$meta_names)
   forms <- dat$export_options$data_names[!dat$export_options$data_names %in% meta]
   new_dat <- dat
 
-  if (!is.null(centre)){
-    if (exclude){
+  if (!is.null(centre)) {
+    if (exclude) {
       new_dat[[meta["centres"]]] <- new_dat[[meta["centres"]]][!new_dat[[meta["centres"]]][["mnpctrname"]] %in% centre, ]
       new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][new_dat[[meta["casenodes"]]][["mnpctrid"]] %in%
                                                                      new_dat[[meta["centres"]]][["mnpctrid"]], ]
@@ -71,7 +71,7 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
     }
   }
 
-  if (!is.null(participant)){
+  if (!is.null(participant)) {
     if (exclude) {
       new_dat[[meta["casenodes"]]] <- new_dat[[meta["casenodes"]]][!new_dat[[meta["casenodes"]]][["mnpaid"]]
                                                                    %in% participant, ]
@@ -83,20 +83,20 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
 
   participant_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
 
-  for (tab in names(new_dat)){
-    if (class(new_dat[[tab]]) != "data.frame"){
+  for (tab in names(new_dat)) {
+    if (class(new_dat[[tab]]) != "data.frame") {
       next
     }
-    if ("mnppid" %in% names(new_dat[[tab]])){
+    if ("mnppid" %in% names(new_dat[[tab]])) {
       new_dat[[tab]] <- new_dat[[tab]][new_dat[[tab]][["mnppid"]] %in% participant_sel, ]
     } else {
       new_dat[[tab]] <- new_dat[[tab]]
     }
     # make adaptation necessary for subsets based on centres to match exports made without
     # a centre to begin with. Adaptation of object class and attributes needed.
-    if (!is.null(centre) & "centre" %in% names(new_dat[[tab]])){
+    if (!is.null(centre) & "centre" %in% names(new_dat[[tab]])) {
       new_dat[[tab]] <- modify_if(new_dat[[tab]],
-                                  function(x){
+                                  function(x) {
                                     all(is.na(x)) & !any(class(x) %in% c("Date", "POSIXct", "POSIXt", "Datetime", "factor"))
                                   },
                                   as.logical)
@@ -104,10 +104,10 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
                                            levels = new_dat[[meta["centres"]]][["mnpctrname"]])
       new_dat[[tab]][["pat_id"]] <- as.character(new_dat[[tab]][["pat_id"]])
     }
-    if ("visit_name" %in% names(new_dat[[tab]])){
+    if ("visit_name" %in% names(new_dat[[tab]])) {
       new_dat[[tab]][["visit_name"]] <- as.character(new_dat[[tab]][["visit_name"]])
     }
-    if (nrow(new_dat[[tab]]) > 0){
+    if (nrow(new_dat[[tab]]) > 0) {
       row.names(new_dat[[tab]]) <- 1:nrow(new_dat[[tab]])
     }
   }

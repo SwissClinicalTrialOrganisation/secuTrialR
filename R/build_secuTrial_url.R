@@ -65,7 +65,7 @@
 #' # make several links with all docids
 #' build_secuTrial_url(server, instance, customer, project, docids)
 #'
-build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = NA, docid = NA){
+build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = NA, docid = NA) {
   if (all(!is.na(docid)) & (is.na(projid) | is.na(customer) | is.na(instance))) {
     warning("'projid', 'customer' and 'instance' must all be provided with 'docid'")
   } else if (!is.na(projid) & (is.na(customer) | is.na(instance))) {
@@ -74,10 +74,10 @@ build_secuTrial_url <- function(server, instance = NA, customer = NA, projid = N
     warning("'instance' must be provided with 'customer'")
   }
   # check completeness of server url
-  if (!grepl("^https://", server)){
+  if (!grepl("^https://", server)) {
     server <- paste0("https://", server)
   }
-  if (!grepl("/$", server)){
+  if (!grepl("/$", server)) {
     server <- paste0(server, "/")
   }
   # start building the secuTrial url

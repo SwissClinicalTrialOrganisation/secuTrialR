@@ -6,20 +6,20 @@ context("subset")
 ## "atr" - equality of attributes in all elements of dat_ref and dat
 ## "dat" - equality of data contained in all elements of dat_ref and dat
 ## "all" - equality of data and attributes
-secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
+secuTrial_is_equal <- function(dat_ref, dat, equality = "all") {
   if (!equality %in% c("all", "attr", "data")) stop("eqaulity must be all, attr or data")
   forms_equal <- TRUE
   attrs_equal <- TRUE
-  for (tab in names(dat)){
+  for (tab in names(dat)) {
     if (tab == "export_options") {
       next
     }
     attrs_equal <- suppressWarnings(forms_equal & all_equal(sort(names(attributes(dat[[tab]]))),
                                                             sort(names(attributes(dat_ref[[tab]])))))
     forms_equal <- suppressWarnings(attrs_equal & all_equal(dat[[tab]], dat_ref[[tab]]))
-    if (equality == "all"){
+    if (equality == "all") {
       return(forms_equal & attrs_equal)
-    } else if (equality == "attr"){
+    } else if (equality == "attr") {
       return(attr_equal)
     } else {
       return(forms_equal)
@@ -29,20 +29,20 @@ secuTrial_is_equal <- function(dat_ref, dat, equality = "all"){
 
 ## function that compares participant IDs present in all data frames
 ## of a "dat" secuTrialdata object with those provided via "participants" character vector
-compare_participants <- function(dat, participants){
+compare_participants <- function(dat, participants) {
   pats_equal <- TRUE
-  for (tab in names(dat)){
+  for (tab in names(dat)) {
     if (tab == "export_options") {
       next
     }
-    if (any(names(dat[[tab]]) %in% "pat_id") & nrow(dat[[tab]]) > 0){
+    if (any(names(dat[[tab]]) %in% "pat_id") & nrow(dat[[tab]]) > 0) {
       pats_equal <- pats_equal & all(dat[[tab]][["pat_id"]] %in% participants)
-    } else if (any(names(dat[[tab]]) %in% "mnpaid") & nrow(dat[[tab]]) > 0){
+    } else if (any(names(dat[[tab]]) %in% "mnpaid") & nrow(dat[[tab]]) > 0) {
       pats_equal <- pats_equal & all(dat[[tab]][["mnpaid"]] %in% participants)
     } else{
       next
     }
-    if (!pats_equal){
+    if (!pats_equal) {
       print(unique(dat[[tab]] %>% select(contains("pat_id"), contains("mnpaid"))))
       return(pats_equal)
     }

@@ -159,7 +159,7 @@ read_export_options <- function(data_dir) {
   }
 
   # find form data separator ----
-  if (is_zip){
+  if (is_zip) {
     file_con <- unz(data_dir, files$Name[!grepl("html$", files$Name)][1])
     header <- readLines(file_con, 1)
     close(file_con)

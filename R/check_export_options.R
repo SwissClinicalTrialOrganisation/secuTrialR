@@ -38,7 +38,7 @@ check_export_options <- function(dat) {
   if (! eo$refvals_separate) {
     warn_components <- paste0(warn_components, "Reference values are not stored in separate table.\n")
   }
-  if(! eo$add_id) {
+  if (! eo$add_id) {
     warn_components <- paste0(warn_components, "Add-ID is not part of the export.\n")
   }
   if (eo$duplicate_meta) {

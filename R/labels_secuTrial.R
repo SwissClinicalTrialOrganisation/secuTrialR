@@ -112,7 +112,7 @@ label_secuTrial.secuTrialdata <- function(object) {
   x <- x[!x %in% object$export_options$meta_names]
   if (!object$export_options$short_names) x <- x[x %in% it$fname]
   # note that the basic form for extended forms might have no variables
-  obs <- lapply(x, function(obj){
+  obs <- lapply(x, function(obj) {
     tmp <- object[[obj]]
     if (object$export_options$short_names) tmp <- label_secuTrial(tmp, it)
     if (!object$export_options$short_names) tmp <- label_secuTrial(tmp, it[it$fname == obj, ])
@@ -146,13 +146,13 @@ label <- function(x) attr(x, "label")
 units <- function(x) attr(x, "units")
 
 #' @export
-"label<-" <- function(x, value){
+"label<-" <- function(x, value) {
   attr(x, "label") <- value
   return(x)
 }
 
 #' @export
-"units<-" <- function(x, value){
+"units<-" <- function(x, value) {
   attr(x, "units") <- value
   return(x)
 }

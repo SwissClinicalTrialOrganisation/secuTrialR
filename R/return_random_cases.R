@@ -32,11 +32,11 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
      cn_table <- x[[x$export_options$meta_names$casenodes]]
      ctr_table <- x[[x$export_options$meta_names$centres]]
      # need add ids because these will be returned
-     if(! x$export_options$add_id) {
+     if (! x$export_options$add_id) {
        stop("Please reexport with Add-ID.")
      }
      # need centre info
-     if(! x$export_options$centre_info) {
+     if (! x$export_options$centre_info) {
        stop("Please reexport with Centre information.")
      }
      # 0 and 1 can also be excluded because 0 means nothing
@@ -58,7 +58,7 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
      cn_table <- add_centre_col(cn_table, casenodes_table = cn_table, centre_table = ctr_table)
      # remove cases before specified date
      removed_date_idx <- which(ymd(cn_table$mnpvisstartdate) <= date_parsed)
-     if(length(removed_date_idx)) {
+     if (length(removed_date_idx)) {
        cn_table <- cn_table[-removed_date_idx, ]
      }
      # init output data.frame
