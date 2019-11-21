@@ -127,9 +127,14 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     }
 
     # this is a fix for Issue #116 on github
+    # factorize on same variable name in different forms with different data types
     if (nrow(lookup) == 0) {
       next
     }
+
+    # this is a fix for Issue #121 on github
+    # Radiobutton reset option interferes with factorize_secuTrial()
+    lookup <- lookup[which(! is.na(lookup$code)), ]
 
     data[, paste0(name, ".factor")] <- factorize_secuTrial(data[, name], lookup)
     data <- .move_column_after(data, paste0(name, ".factor"), name)
