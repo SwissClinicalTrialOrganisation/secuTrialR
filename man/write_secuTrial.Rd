@@ -22,7 +22,10 @@ Convert the export prepared in R and export it to
              using the haven package.
 }
 \details{
-Variable names may be altered in the conversion process.
+Due to variable naming limitations in other packages, date variables are
+         appended with _d (rather than _date), datetime/POSIX variables are appended
+         with _dt (rather than _datetime) and factors with _f (rather than _factor).
+         Further variable names may be altered in the conversion process.
          For details please refer to the \code{haven} documentation.
 }
 \examples{
