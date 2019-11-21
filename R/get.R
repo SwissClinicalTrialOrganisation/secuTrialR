@@ -18,15 +18,15 @@
 #' # show participants
 #' participants <- get_participants(sT_export)
 #'
-get_participants <- function(dat){
-  if (class(dat) != "secuTrialdata"){
+get_participants <- function(dat) {
+  if (class(dat) != "secuTrialdata") {
     stop("get_participants requires objects of the class 'secuTrialdata' as input.")
   }
 
   meta <- unlist(dat$export_options$meta_names)
 
   participants <- dat[[meta["casenodes"]]]
-  if(dat$export_options$centre_info){
+  if (dat$export_options$centre_info) {
     centres <- dat[[meta["centres"]]]
     participants <- suppressMessages(left_join(participants, centres))
   }

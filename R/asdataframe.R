@@ -44,7 +44,7 @@ as.data.frame.secuTrialdata <- function(object,
 
   invisible(
     mapply(
-      function(orig_name, new_name){
+      function(orig_name, new_name) {
         assign(new_name, object[[orig_name]], envir = envir)
       },
   datanames, datanames2)

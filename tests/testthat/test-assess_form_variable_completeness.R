@@ -67,7 +67,7 @@ test_that("Variable completeness allforms working.", {
   expect_equal(dim(completeness_bmd_short), c(3, 4))
   expect_equal(sum(completeness_bmd_long$timesentered), 1507)
   expect_equal(sum(completeness_bmd_long$timesmissing), 188)
-  expect_equal(round(completeness_bmd_long$completeness, digits = 3), c( 0.890, 0.888, 0.888))
+  expect_equal(round(completeness_bmd_long$completeness, digits = 3), c(0.890, 0.888, 0.888))
 })
 
 # bmd completeness savedforms short and long

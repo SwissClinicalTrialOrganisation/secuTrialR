@@ -86,8 +86,8 @@ ui <- dashboardPage(skin = "red",
                                 hr(),
                                 actionButton(inputId = "create_mon_table", label = "Submit configuration",
                                              icon("paper-plane")),
-                                downloadButton('download_monitoring_cases_csv', 'Cases'),
-                                downloadButton('download_monitoring_config_csv', 'Config'),
+                                downloadButton("download_monitoring_cases_csv", "Cases"),
+                                downloadButton("download_monitoring_config_csv", "Config"),
                                 hr(),
                                 box(tableOutput("monitoring_cases"), width = 4)
                         ),
@@ -113,9 +113,9 @@ ui <- dashboardPage(skin = "red",
                         tabItem(tabName = "download",
                                 h2("Download files"),
                                 h4("Download recruitment plot"),
-                                downloadButton('downloadDataRecruitmentPlot', 'Download'),
+                                downloadButton("downloadDataRecruitmentPlot", "Download"),
                                 h4("Download Stata conversion"),
-                                downloadButton('downloadDataStata', 'Download')
+                                downloadButton("downloadDataStata", "Download")
                                 #h4("Download plots"),
                                 #downloadButton('downloadData', 'Download')
                         )
@@ -199,7 +199,7 @@ server <- function(input, output, session) {
   })
 
   output$form_completeness_perc <- renderTable({
-    if(input$percent) {
+    if (input$percent) {
       table <- form_status_summary(sT_export())
       names <- names(table)
       names_perc <- names[grepl(names, pattern = ".percent")]
@@ -214,7 +214,7 @@ server <- function(input, output, session) {
   })
 
   output$form_completeness_count <- renderTable({
-    if(input$counts) {
+    if (input$counts) {
       table <- form_status_summary(sT_export())
       names <- names(table)
       names_count <- names[! grepl(names, pattern = ".percent")]

@@ -64,7 +64,7 @@ annual_recruitment <- function(x, rm_regex = "") {
     missing_centers <- ctr$mnpctrname[which(! ctr$mnpctrname %in% recruitment_table$Center)]
     for (centre in missing_centers) {
       recruitment_table <- rbind(recruitment_table,
-                                 c(centre, rep(0, length(recruitment_table[1,]) - 1)))
+                                 c(centre, rep(0, length(recruitment_table[1, ]) - 1)))
     }
     # apply rm_regex
     recruitment_table$Center <- trimws(gsub(recruitment_table$Center, pattern = rm_regex, replacement = ""))
