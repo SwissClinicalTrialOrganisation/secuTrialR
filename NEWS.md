@@ -1,3 +1,6 @@
+# secuTrialR 0.7.5
+* `dates_secuTrial()` incomplete date warnings are now concatenated and returned as one warning per form instead of many.
+
 # secuTrialR 0.7.2
 * `check_export_options()` function was added. It informs on deviations from suggested export options. (#17)
 * Removed tracking of obsolete export options (`partial_date_string`, `partial_date_handling`, `unknown_date_string`).
