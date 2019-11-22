@@ -27,9 +27,6 @@
 dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
 datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
 
-
-
-
 #' @rdname dates_secuTrial
 #' @export
 dates_secuTrial.secuTrialdata <- function(object, ...) {
@@ -51,6 +48,7 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
 # @param datevars string consisting of variables with dates
 # @param format format of dates (typically taken from \code{object$export_options$date_format})
 dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, datetimeformat, form, warn = FALSE) {
+  warn_msg <- ""
   datevars <- datevars[datevars %in% names(data)]
   timevars <- timevars[timevars %in% names(data)]
   if (length(datevars) > 0) {
@@ -58,10 +56,10 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- dates_secuTrial(data[, x], dateformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        warning(paste0("Not all dates were converted for\n",
-                       "  variable: '", x,
-                       "'\n  in form: '", form,
-                       "'\n  This is likely due to incomplete date entries."))
+        warn_msg <- paste0(warn_msg, "Not all dates were converted for\n",
+                           "  variable: '", x,
+                           "'\n  in form: '", form,
+                           "'\n  This is likely due to incomplete date entries.\n")
       }
       data[, paste0(x, ".date")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".date"), x)
@@ -73,14 +71,18 @@ dates_secuTrial.data.frame <- function(data, datevars, timevars, dateformat, dat
       newdatecol <- datetimes_secuTrial(data[, x], datetimeformat)
       # check for conversion of all else warn
       if (length(which(is.na(newdatecol))) > length(which(is.na(data[, x])))) {
-        warning(paste0("Not all dates were converted for\n",
-                       "  variable: '", x,
-                       "'\n  in form: '", form,
-                       "'\n  This is likely due to incomplete date entries."))
+        warn_msg <- paste0(warn_msg, "Not all dates were converted for\n",
+                           "  variable: '", x,
+                           "'\n  in form: '", form,
+                           "'\n  This is likely due to incomplete date entries.\n")
       }
       data[, paste0(x, ".datetime")] <- newdatecol
       data <- .move_column_after(data, paste0(x, ".datetime"), x)
     }
+  }
+  # only if there is at least one warning queued
+  if (str_length(warn_msg)) {
+    warning(warn_msg)
   }
   data
 }
