@@ -1,12 +1,24 @@
 ## app.R ##
 library(shinydashboard)
 library(shiny)
+library(shinyWidgets) # setSliderColor
 library(secuTrialR)
 
 ui <- dashboardPage(skin = "red",
                     dashboardHeader(title = "SCTO - secuTrialR"),
                     dashboardSidebar(
                       sidebarMenu(
+                        # set icon colors
+                        tags$style(".fa-upload {color:#dd4b39}"),
+                        tags$style(".fa-signal {color:#dd4b39}"),
+                        tags$style(".fa-table {color:#dd4b39}"),
+                        tags$style(".fa-percent {color:#dd4b39}"),
+                        tags$style(".fa-calendar-alt {color:#dd4b39}"),
+                        tags$style(".fa-dice {color:#dd4b39}"),
+                        tags$style(".fa-book {color:#dd4b39}"),
+                        tags$style(".fa-download {color:#dd4b39}"),
+                        tags$style(".fa-paper-plane {color:#dd4b39}"),
+                        tags$style(".fa-lightbulb {color:#dd4b39}"),
                         menuItem("Upload", tabName = "upload", icon = icon("upload")),
                         menuItem("Recruitment plot", tabName = "recruitmentplot", icon = icon("signal")),
                         menuItem("Recruitment table", tabName = "recruitmenttable", icon = icon("table")),
@@ -27,7 +39,13 @@ ui <- dashboardPage(skin = "red",
                                           accept = c("zip",
                                                      "ziparchive",
                                                      ".zip"), width = 700),
-                                textOutput("read_sT_data")
+                                textOutput("read_sT_data"),
+                                hr(),
+                                actionButton(inputId = "use_example_data", label = "Use example data",
+                                             icon("lightbulb")),
+                                hr(),
+                                textOutput("example_sT_data")
+
                         ),
 
                         # Second tab content
@@ -62,30 +80,30 @@ ui <- dashboardPage(skin = "red",
                                 dateInput(inputId = "dateafter", label = "Return cases after date",
                                           value = "1900-01-01", width = 190),
                                 numericInput(inputId = "seednumber", label = "Seed", value = 1, width = 100),
+                                setSliderColor(c("#dd4b39"), c(1)),
                                 sliderInput(inputId = "percentage", label = "Specify percentage of cases",
                                             min = 1, max = 99, value = 10, width = 400),
                                 hr(),
                                 actionButton(inputId = "create_mon_table", label = "Submit configuration",
                                              icon("paper-plane")),
-                                downloadButton('download_monitoring_cases_csv', 'Cases'),
-                                downloadButton('download_monitoring_config_csv', 'Config'),
+                                downloadButton("download_monitoring_cases_csv", "Cases"),
+                                downloadButton("download_monitoring_config_csv", "Config"),
                                 hr(),
-                                box(tableOutput("monitoring_cases"), width = 220)
+                                box(tableOutput("monitoring_cases"), width = 4)
                         ),
 
                         # seventh tab codebook
                         tabItem(tabName = "codebook",
                                 h2("Codebook"),
-                                tags$style(HTML("
-                  .tabbable > .nav > li > a                  {background-color: #444;  color:white}
-                  .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}
-                ")),
+                                tags$style(HTML(".tabbable > .nav > li > a                  {background-color: #444;  color:white}
+                                                 .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}")),
                                 tabsetPanel(
                                   tabPanel("Forms", tableOutput("forms")),
                                   tabPanel("Questions", tableOutput("questions")),
                                   tabPanel("Items", tableOutput("items")),
                                   tabPanel("Centres", tableOutput("centres")),
-                                  tabPanel("Cases", tableOutput("cases"))
+                                  tabPanel("Cases", tableOutput("cases")),
+                                  tabPanel("Visitplan", tableOutput("visitplan"))
                                 )
 
 
@@ -95,9 +113,9 @@ ui <- dashboardPage(skin = "red",
                         tabItem(tabName = "download",
                                 h2("Download files"),
                                 h4("Download recruitment plot"),
-                                downloadButton('downloadDataRecruitmentPlot', 'Download'),
+                                downloadButton("downloadDataRecruitmentPlot", "Download"),
                                 h4("Download Stata conversion"),
-                                downloadButton('downloadDataStata', 'Download')
+                                downloadButton("downloadDataStata", "Download")
                                 #h4("Download plots"),
                                 #downloadButton('downloadData', 'Download')
                         )
@@ -107,9 +125,13 @@ ui <- dashboardPage(skin = "red",
 
 server <- function(input, output, session) {
 
-  # read data
-  sT_export <- eventReactive(input$secuTrial_export_file$datapath, {
-    read_secuTrial(input$secuTrial_export_file$datapath)
+  # init the sT export reactive Val
+  sT_export <- reactiveVal()
+
+  # read upload data
+  observeEvent(input$secuTrial_export_file$datapath, {
+    curr_export <- read_secuTrial(input$secuTrial_export_file$datapath)
+    sT_export(curr_export)
   })
 
   output$read_sT_data <- renderText({
@@ -131,6 +153,16 @@ server <- function(input, output, session) {
     }
   })
 
+  # use example data
+  observeEvent(input$use_example_data, {
+    path <- system.file("extdata", "sT_exports", "longnames",
+                        "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+                        package = "secuTrialR")
+    curr_export <- read_secuTrial(path)
+    sT_export(curr_export)
+  })
+
+  # start codebook
   output$forms <- renderTable({
     sT_export()[[sT_export()$export_options$meta_names$forms]]
   })
@@ -153,6 +185,11 @@ server <- function(input, output, session) {
     sT_export()[[sT_export()$export_options$meta_names$casenodes]]#[cols]
   })
 
+  output$visitplan <- renderTable({
+    sT_export()[[sT_export()$export_options$meta_names$visitplan]]
+  })
+  # end codebook
+
   output$recruitment_plot <- renderPlot({
     plot_recruitment(sT_export())
   })
@@ -162,7 +199,7 @@ server <- function(input, output, session) {
   })
 
   output$form_completeness_perc <- renderTable({
-    if(input$percent) {
+    if (input$percent) {
       table <- form_status_summary(sT_export())
       names <- names(table)
       names_perc <- names[grepl(names, pattern = ".percent")]
@@ -177,7 +214,7 @@ server <- function(input, output, session) {
   })
 
   output$form_completeness_count <- renderTable({
-    if(input$counts) {
+    if (input$counts) {
       table <- form_status_summary(sT_export())
       names <- names(table)
       names_count <- names[! grepl(names, pattern = ".percent")]

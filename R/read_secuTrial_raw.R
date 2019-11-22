@@ -121,11 +121,11 @@ read_secuTrial_raw <- function(data_dir) {
 #' # or
 #' sT_export
 
-print.secuTrialdata <- function(x){
+print.secuTrialdata <- function(x) {
 
   cat(paste("SecuTrial data imported from", x$export_options$data_dir, "\n"))
 
-  tab <- lapply(x$export_options$data_names, function(y){
+  tab <- lapply(x$export_options$data_names, function(y) {
     tmp <- x[[y]]
     tmp
     data.frame(table = y,
@@ -142,7 +142,7 @@ print.secuTrialdata <- function(x){
 
 #' @rdname secuTrialdata
 #' @usage plot(x)
-plot.secuTrialdata <- function(x){
+plot.secuTrialdata <- function(x) {
   vs <- visit_structure(x)
   plot(vs)
 }

@@ -4,7 +4,7 @@
 #
 # @return data.frame containing a secuTrialR dictionary
 #
-.get_dict <- function(file, language = NULL){
+.get_dict <- function(file, language = NULL) {
   dict_file <- system.file("extdata", "dictionaries",
                            file,
                            package = "secuTrialR")
@@ -12,7 +12,7 @@
   # col_types = cols() explicitly uses the default guessing behavior
   # -> which suppresses the printing
   dict <- read_csv(dict_file, col_types = cols())
-  if (!is.null(language) & any(grep("lang", names(dict)))){
+  if (!is.null(language) & any(grep("lang", names(dict)))) {
     dict <- dict[dict$lang == language, ]
   }
   return(as.data.frame(dict))
@@ -34,7 +34,7 @@
 }
 
 # convert names (used in write_secutrial)
-convertnames <- function(df, format){
+convertnames <- function(df, format) {
   name <- names(df)
   # if (format %in% c("dta", "sav")){
   name <- gsub("\\.datetime", "_dt", name)
@@ -54,7 +54,7 @@ convertnames <- function(df, format){
     stop("Error: Passed object is not a data.frame in .move_column_to_pos")
   }
   # check for integer
-  if (! ( (col_idx %% 1) == 0)) {
+  if (! ((col_idx %% 1) == 0)) {
     stop(paste0("Error: col_idx ", col_idx, " is not an integer."))
   }
   # check for integer
@@ -75,14 +75,14 @@ convertnames <- function(df, format){
   }
   # move to end
   else if (new_col_idx == ncol(df)) {
-    df <- df[, c( (1:ncol(df))[-col_idx], col_idx)]
+    df <- df[, c((1:ncol(df))[-col_idx], col_idx)]
   } else {
     # move forward
     if (new_col_idx < col_idx) {
       df <- df[, c(1:new_col_idx - 1, col_idx, (new_col_idx:ncol(df))[(new_col_idx:ncol(df)) != col_idx])]
       # move backwards
     } else {
-      df <- df[, c( (1:new_col_idx)[-col_idx], col_idx, ( (new_col_idx + 1):ncol(df)))]
+      df <- df[, c((1:new_col_idx)[-col_idx], col_idx, ((new_col_idx + 1):ncol(df)))]
     }
   }
   return(df)
@@ -115,7 +115,7 @@ convertnames <- function(df, format){
         # position   before or after ref
         new_col_idx <- ref_col_idx + as.numeric(col_idx > ref_col_idx)
       }
-      if (!is.null(label(df))){
+      if (!is.null(label(df))) {
         lab <- label(df)
         labl <- TRUE
       } else {
@@ -136,7 +136,7 @@ convertnames <- function(df, format){
 # @param parsed_export - string containing parsed ExportOptions file
 # @return string containing iso 639-1 language code of the secuTrial export, or "unknown" if the language was not recognised.
 #
-.get_export_language <- function(parsed_export){
+.get_export_language <- function(parsed_export) {
   # read dictionary of export options
   dict <- .get_dict("dict_export_options_keys.csv")
   # need to omit the "patients" column since this can be manually changed in the
@@ -151,22 +151,22 @@ convertnames <- function(df, format){
   is_pl <- all(sapply(dict[which(dict$lang == "pl"), ], function(x) any(grepl(x, parsed_export))))
   is_es <- all(sapply(dict[which(dict$lang == "es"), ], function(x) any(grepl(x, parsed_export))))
   # if export language is none of the known languages, return "unknown"
-  if (sum(is_de, is_en, is_it, is_fr, is_pl, is_es, na.rm = TRUE) != 1){
+  if (sum(is_de, is_en, is_it, is_fr, is_pl, is_es, na.rm = TRUE) != 1) {
     lang <- "unknown"
     return(lang)
   }
   # write export language
-  if (is_en){
+  if (is_en) {
     lang <- "en"
-  } else if (is_de){
+  } else if (is_de) {
     lang <- "de"
-  } else if (is_it){
+  } else if (is_it) {
     lang <- "it"
-  } else if (is_fr){
+  } else if (is_fr) {
     lang <- "fr"
-  } else if (is_pl){
+  } else if (is_pl) {
     lang <- "pl"
-  } else if (is_es){
+  } else if (is_es) {
     lang <- "es"
   } else {
     lang <- "unknown"
@@ -233,7 +233,7 @@ convertnames <- function(df, format){
   if (warn & length(datevars) == 0) {
     warning(paste("no dates detected in ", obj))
   }
-  if (warn & length(meta_datevars) == 0){
+  if (warn & length(meta_datevars) == 0) {
     warning(paste("no dates detected in metadata of ", obj))
   }
   if (warn & length(timevars) == 0) {

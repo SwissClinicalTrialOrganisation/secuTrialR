@@ -34,11 +34,11 @@ diff_secuTrial <- function(x, y) {
   if (class(x) == "secuTrialdata" & class(y) == "secuTrialdata") {
 
     # comapring different projects makes no sense really
-    if(x$export_options$project_name != y$export_options$project_name) {
+    if (x$export_options$project_name != y$export_options$project_name) {
       stop("The two exports appear to originate from different secuTrial projects.")
     }
 
-    if(x$export_options$project_version == y$export_options$project_version) {
+    if (x$export_options$project_version == y$export_options$project_version) {
       print(paste0("The project structure has not changed. Project versions are both: ",
                    x$export_options$project_version))
     } else if (x$export_options$project_version != y$export_options$project_version) {

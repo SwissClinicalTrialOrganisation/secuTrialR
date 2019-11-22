@@ -18,7 +18,7 @@
 #' \dontrun{
 #' visit_structure(sT_export)
 #' }
-visit_structure <- function(x){
+visit_structure <- function(x) {
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]
   if (any(is.na(vp$mnpvisid))) stop(paste("Visits do not appear to be a part of this database or",
@@ -69,7 +69,7 @@ visit_structure <- function(x){
 #'   plot(sT_export)
 #' }
 
-plot.secuTrialvisit <- function(r){
+plot.secuTrialvisit <- function(r) {
   # construct the figure
   z <- !is.na(as.matrix(r[, -1]))
   names <- gsub("tmpvar.", "", names(r[, -1]))
