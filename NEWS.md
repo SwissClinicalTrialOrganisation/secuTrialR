@@ -1,3 +1,6 @@
+# secuTrialR 0.7.5
+* `dates_secuTrial()` incomplete date warnings are now concatenated and returned as one warning per form instead of many. (#124)
+
 # secuTrialR 0.7.4
 * Fixed issue #121 on GitHub. `factorize_secuTrial()` can now handle exports which have the reset option
 enabled in radio buttons.
