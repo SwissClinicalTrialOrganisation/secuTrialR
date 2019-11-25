@@ -33,6 +33,7 @@ ui <- dashboardPage(skin = "red",
                       tabItems(
                         # First tab content
                         tabItem(tabName = "upload",
+                                tags$head(tags$style(".progress-bar{background-color:#dd4b39;}")),
                                 fileInput(inputId = "secuTrial_export_file",
                                           label = "Choose secuTrial export zip",
                                           multiple = FALSE,
