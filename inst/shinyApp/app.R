@@ -33,6 +33,7 @@ ui <- dashboardPage(skin = "red",
                       tabItems(
                         # First tab content
                         tabItem(tabName = "upload",
+                                tags$head(tags$style(".progress-bar{background-color:#dd4b39;}")),
                                 fileInput(inputId = "secuTrial_export_file",
                                           label = "Choose secuTrial export zip",
                                           multiple = FALSE,
@@ -62,9 +63,12 @@ ui <- dashboardPage(skin = "red",
                         # Fourth tab content
                         tabItem(tabName = "formcompleteness",
                                 h2("Form completeness"),
-                                checkboxInput(inputId = "percent", label = "Percent", value = TRUE),
-                                checkboxInput(inputId = "counts", label = "Counts", value = TRUE),
-                                checkboxInput(inputId = "rmat", label = "Remove at forms"),
+                                #checkboxInput(inputId = "percent", label = "Percent", value = TRUE),
+                                materialSwitch(inputId = "percent", label = "Percent switch", value = TRUE, status = "danger"),
+                                #checkboxInput(inputId = "counts", label = "Counts", value = TRUE),
+                                materialSwitch(inputId = "counts", label = "Counts", value = TRUE, status = "danger"),
+                                #checkboxInput(inputId = "rmat", label = "Remove audit trail (at) forms"),
+                                materialSwitch(inputId = "rmat", label = "Remove audit trail (at) forms", value = TRUE, status = "danger"),
                                 box(tableOutput("form_completeness_perc"), width = 300),
                                 box(tableOutput("form_completeness_count"), width = 250)
                         ),
