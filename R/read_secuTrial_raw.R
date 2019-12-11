@@ -25,6 +25,11 @@
 #'
 read_secuTrial_raw <- function(data_dir) {
 
+  # check for file existence
+  if(! file.exists(data_dir)) {
+    stop(paste0("There is no file '", data_dir, "'"))
+  }
+
   # load export options
   export_options <- read_export_options(data_dir = data_dir)
 
