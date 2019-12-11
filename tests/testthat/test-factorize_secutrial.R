@@ -101,8 +101,8 @@ duplicate_1$code <- 1987
 duplicate_2$code <- 2019
 ctu05_l$cl <- rbind(ctu05_l$cl, duplicate_1, duplicate_2)
 
-test_that("Exception for duplicated factor levels in mnpptnid working.", {
-  expect_warning(factorize_secuTrial(ctu05_l))
+test_that("Exception for duplicated factor levels in working.", {
+  expect_true(factorize_secuTrial(ctu05_l)$export_options$factorized)
 })
 
 options(stringsAsFactors = sAF)
