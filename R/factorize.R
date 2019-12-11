@@ -119,7 +119,9 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     # e.g. decoding of mnpptnid to user names can be non-unique
     # e.g. lookuptables can show this behaviour too
     if (any(duplicated(lookup$value))) { #} & name == "mnpptnid") {
-      warning(paste0("Duplicate values found during factorization of ", name))
+      if(name != "mnpptnid") { # fix for Issue #135 on github
+        warning(paste0("Duplicate values found during factorization of ", name))
+      }
       # concat the value with the code for duplication after first
       lookup$value[which(duplicated(lookup$value))] <-
         paste(lookup$value[which(duplicated(lookup$value))],
@@ -146,7 +148,10 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
         #       "at" if shortnames is exported
         # exclude mnpfs variables since 0 is not converted
         ! (grepl("^mnpfs", name) | grepl("^at", form))) {
-      warning(paste("Unexpected: Not all levels converted for", name, "in form", form))
+      warning(paste0("Unexpected: Not all levels converted for\n",
+                     "  variable: '", name, "' \n  in form: '", form,
+                     # fix for Issue #134 on github
+                     "'\n  Has a 'Take value from ...' rule been implemented for '", name, "'?"))
     }
   }
   return(data)

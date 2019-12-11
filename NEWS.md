@@ -1,6 +1,9 @@
 # secuTrialR 0.7.7
 * `read_secuTrial()` and `read_secuTrial_raw()` now check if the input file exists. (#137)
 
+# secuTrialR 0.7.6
+* `factorize_secuTrial()` warning messages have been adjusted to improve trouble shooting experience. (#134, #135)
+
 # secuTrialR 0.7.5
 * `dates_secuTrial()` incomplete date warnings are now concatenated and returned as one warning per form instead of many. (#124)
 
