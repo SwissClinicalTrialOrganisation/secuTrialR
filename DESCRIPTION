@@ -1,8 +1,8 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of data from the clinical data management system secuTrial 
-Version: 0.7.6
-Authors@R:
+Version: 0.7.7
+Author:
     c(person(given = "Pascal",
              family = "Benkert",
              role = c("cre", "aut"),

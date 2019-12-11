@@ -18,6 +18,12 @@ read_secuTrial <- function(data_dir,
                            labels = TRUE,
                            factor = TRUE,
                            dates = TRUE) {
+
+  # check for file existence
+  if(! file.exists(data_dir)) {
+    stop(paste0("There is no file '", data_dir, "'"))
+  }
+
   # read raw export
   tryCatch(
     expr = {

@@ -120,3 +120,8 @@ test_that("No Column names failing", {
                                      package = "secuTrialR"))
               )
 })
+
+# test missing file
+test_that("Missing file exception.", {
+  expect_error(read_secuTrial("thisisnotafile.zip"))
+})
