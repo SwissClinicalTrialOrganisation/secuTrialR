@@ -1,5 +1,5 @@
 # secuTrialR 0.7.7
-* `read_secuTrial()` and `read_secuTrial_raw()` now check if the input file exists.
+* `read_secuTrial()` and `read_secuTrial_raw()` now check if the input file exists. (#137)
 
 # secuTrialR 0.7.5
 * `dates_secuTrial()` incomplete date warnings are now concatenated and returned as one warning per form instead of many. (#124)
