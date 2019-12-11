@@ -70,3 +70,8 @@ test_that("Zipped and unzipped return the same.", {
   expect_true(all.equal(bmd_zip$vp, bmd_unzip$vp))
   expect_true(all.equal(bmd_zip$qs, bmd_unzip$qs))
 })
+
+# test missing file
+test_that("Missing file exception.", {
+  expect_error(read_secuTrial("thisisnotafile.zip"))
+})
