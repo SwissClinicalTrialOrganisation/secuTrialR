@@ -20,13 +20,13 @@
 #' export_location <- system.file("extdata", "sT_exports", "BMD",
 #'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #'                                package = "secuTrialR")
-#' # load all export data
+#' # read all export data
 #' sT_export <- read_secuTrial_raw(data_dir = export_location)
 #'
 read_secuTrial_raw <- function(data_dir) {
 
   # check for file existence
-  if(! file.exists(data_dir)) {
+  if (! file.exists(data_dir)) {
     stop(paste0("There is no file '", data_dir, "'"))
   }
 

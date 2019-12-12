@@ -3,7 +3,8 @@
 # Find the mnpvislabel related to an mnpvisid
 #
 # @param mnpvisid The mnpvisid for which the mnpvislabel should be retrieved.
-# @param visitplan_table data.frame This is the loaded reference table to make the translation (i.e. visitplan/vp in export archive).
+# @param visitplan_table data.frame This is the loaded reference table to make
+#        the translation (i.e. visitplan/vp in export archive).
 #
 # @return mnpvislabel related to the entered mnpvisid.
 #
@@ -22,7 +23,8 @@ mnpvisid2mnpvislabel <- function(mnpvisid, visitplan_table) {
 #
 # @param table data.frame with a column mnpvisid to be translated to visit names.
 # @param id string This specifies the name of the new id column.
-# @param visitplan_table data.frame This is the loaded reference table to make the translation (i.e. visitplan/vp in export archive).
+# @param visitplan_table data.frame This is the loaded reference table
+#        to make the translation (i.e. visitplan/vp in export archive).
 #
 # @return Returns a data.frame with a new column containing the translated visit names.
 # @examples
@@ -49,7 +51,8 @@ add_visitname_col <- function(table, id = "visit_name", visitplan_table) {
 #
 # @param table data.frame with a column mnppid to be translated to pat_id (mnpaid).
 # @param id string This specifies the name of the new id column.
-# @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+# @param casenodes_table data.frame This is the loaded reference table to make
+#                        the translation (i.e. casenodes/cn in export archive).
 #
 # @return Returns a data.frame with a new first column containing the translated ids.
 #
@@ -74,7 +77,8 @@ add_pat_id_col <- function(table, id = "pat_id", casenodes_table) {
 # Find the mnpaid related to an mnppid
 #
 # @param mnppid The mnppid for which the mnpaid should be retrieved.
-# @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
+# @param casenodes_table data.frame This is the loaded reference table
+#                        to make the translation (i.e. casenodes/cn in export archive).
 #
 # @return mnpaid related to the entered mnppid.
 #
@@ -94,9 +98,12 @@ mnppid2mnpaid <- function(mnppid, casenodes_table) {
 #
 # @param table data.frame A data.frame with a column mnppid.
 # @param id string This specifies the name of the new centre column.
-# @param remove_ctag boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.
-# @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
-# @param centre_table data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).
+# @param remove_ctag boolean If this is TRUE it will remove trailing brackets and
+#                    their contents from the centre name.
+# @param casenodes_table data.frame This is the loaded reference table to make the
+#                        translation (i.e. casenodes/cn in export archive).
+# @param centre_table data.frame This is the loaded reference table to make the
+#                     translation (i.e. centres/ctr in export archive).
 #
 # @return Returns a data.frame with a new column containing the centres.
 #
@@ -123,9 +130,12 @@ add_centre_col <- function(table, id = "centre", remove_ctag = FALSE, casenodes_
 # Find the centre related to an mnppid
 #
 # @param mnppid The mnppid for which the centre should be retrieved.
-# @param remove_ctag boolean If this is TRUE it will remove trailing brackets and their contents from the centre name.
-# @param casenodes_table data.frame This is the loaded reference table to make the translation (i.e. casenodes/cn in export archive).
-# @param centre_table data.frame This is the loaded reference table to make the translation (i.e. centres/ctr in export archive).
+# @param remove_ctag boolean If this is TRUE it will remove trailing brackets and their
+#                    contents from the centre name.
+# @param casenodes_table data.frame This is the loaded reference table to make the
+#                        translation (i.e. casenodes/cn in export archive).
+# @param centre_table data.frame This is the loaded reference table to make the
+#                     translation (i.e. centres/ctr in export archive).
 #
 # @return centre related to the entered mnppid.
 #

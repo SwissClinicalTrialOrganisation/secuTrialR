@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_secuTrial.R
 \name{read_secuTrial}
 \alias{read_secuTrial}
-\title{Load secuTrial export}
+\title{Read secuTrial export}
 \usage{
 read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 }
@@ -11,7 +11,8 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 
 \item{labels}{logical - add labels to variables and table}
 
-\item{factor}{logical - convert categorical variables to factor variables (ignored when reference values are not in a separate table)}
+\item{factor}{logical - convert categorical variables to factor variables
+(ignored when reference values are not in a separate table)}
 
 \item{dates}{logical - convert date variables}
 }
@@ -19,11 +20,14 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 secuTrialdata object - a list with one data.frame for each file on the export.
 }
 \description{
-Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
+Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial},
+             \code{factorize_secuTrial} and \code{dates_secuTrial}.
 }
 \examples{
-path <- system.file("extdata", "sT_exports", "longnames",
-                    "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                    package = "secuTrialR")
-d <- read_secuTrial(path)
+export_location <- system.file("extdata", "sT_exports", "longnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+                               package = "secuTrialR")
+# read all export data
+sT_export <- read_secuTrial_raw(data_dir = export_location)
+
 }

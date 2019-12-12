@@ -19,14 +19,14 @@ test_that("Test fail", {
 })
 
 test_that("Test output", {
-  # show_centres = FALSE
+  # show_centres is FALSE
   expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = FALSE),
                plot_recruitment(ldat, return_data = TRUE, show_centres = FALSE))
   expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = FALSE),
                plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = FALSE))
   expect_equal(plot_recruitment(ctu05_utf8_french, return_data = TRUE, show_centres = FALSE),
                plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = FALSE))
-  # show_centres = TRUE
+  # show_centres is TRUE
   expect_equal(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE),
                plot_recruitment(ldat, return_data = TRUE, show_centres = TRUE))
   expect_equal(plot_recruitment(ctu05_iso15_french, return_data = TRUE, show_centres = TRUE),

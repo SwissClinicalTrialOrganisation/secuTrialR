@@ -1,7 +1,8 @@
 #' Get the visit structure of secuTrialdata objects
 #'
 #' @param x secuTrialdata object
-#' @note Requires a fixed visit structure - an error will be returned for projects without a visit structure or one with flexible visits
+#' @note Requires a fixed visit structure - an error will be returned for projects without
+#'       a visit structure or one with flexible visits
 #' @return data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
 #' @export
 #'
