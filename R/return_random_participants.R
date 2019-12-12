@@ -1,19 +1,19 @@
-#' Returns the random cases from a secuTrial export
+#' Returns the random participants from a secuTrial export
 #' @description There are situations (e.g. randomized monitoring) in which you may want to
-#'              return a list of random cases from a secuTrial export.
+#'              return a list of random participants from a secuTrial export.
 #' @param x a \code{secuTrialdata} object
-#' @param centres A character vector of centres for which cases should be returned. If left
-#'                unspecified it will return cases for every study centre.
+#' @param centres A character vector of centres for which participants should be returned. If left
+#'                unspecified it will return participants for every study centre.
 #' @param percent A number greater than 0 and smaller than 1 specifying the approximate percantage
-#'                of cases to be returned per centre.
-#' @param date If only cases after a specific date should be considered this can be entered here.
+#'                of participants to be returned per centre.
+#' @param date If only participants after a specific date should be considered this can be entered here.
 #'             Format should be "YYYY-MM-DD" (e.g. "2011-03-26" for March 26th 2011).
 #'             This date is checked against mnpvisstartdate in the casenodes table.
 #' @param seed Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.
 #' @export
-#' @details return_random_cases will produce a list of two elements. First, a data.frame that contains the
-#'          random cases from each specified centre. This is performed based on a specified seed to retain reproducibilty.
-#'          Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
+#' @details return_random_participants will produce a list of two elements. First, a data.frame that contains the
+#'          random participants from each specified centre. This is performed based on a specified seed to retain
+#'          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
 #'
 #' @examples
 #' # export location
@@ -23,11 +23,11 @@
 #' # read export
 #' sT_export <- read_secuTrial(expot_loc)
 #'
-#' # return random cases
-#' return_random_cases(sT_export, percent = 0.25, seed = 1337, date = "2019-03-18",
-#'                     centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+#' # return random participants
+#' return_random_participants(sT_export, percent = 0.25, seed = 1337, date = "2019-03-18",
+#'                            centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
 #'
-return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-01-01", seed = 1) {
+return_random_participants <- function(x, centres = "all", percent = 0.1, date = "1900-01-01", seed = 1) {
   if (class(x) == "secuTrialdata") {
      cn_table <- x[[x$export_options$meta_names$casenodes]]
      ctr_table <- x[[x$export_options$meta_names$centres]]
@@ -56,33 +56,33 @@ return_random_cases <- function(x, centres = "all", percent = 0.1, date = "1900-
 
      # add centre strings
      cn_table <- add_centre_col(cn_table, casenodes_table = cn_table, centre_table = ctr_table)
-     # remove cases before specified date
+     # remove participants before specified date
      removed_date_idx <- which(ymd(cn_table$mnpvisstartdate) <= date_parsed)
      if (length(removed_date_idx)) {
        cn_table <- cn_table[-removed_date_idx, ]
      }
      # init output data.frame
-     random_cases <- setNames(data.frame(matrix(ncol = 3, nrow = 0)),
-                              c("mnpaid", "centre", "mnpvisstartdate"))
+     random_participants <- setNames(data.frame(matrix(ncol = 3, nrow = 0)),
+                                     c("mnpaid", "centre", "mnpvisstartdate"))
      for (ctr in centres) {
        # different seed for every centre
        seed <- seed + 1
        curr_ctr_cn <- cn_table %>% filter(cn_table$centre == ctr)
        curr_ctr_cn_trunc <- curr_ctr_cn[, c("mnpaid", "centre", "mnpvisstartdate")]
-       case_ids_count <- length(curr_ctr_cn$mnpaid)
+       participant_ids_count <- length(curr_ctr_cn$mnpaid)
        # sample count / round up
-       sample_count <- ceiling(case_ids_count * percent)
+       sample_count <- ceiling(participant_ids_count * percent)
        # set seed
        set.seed(seed)
        # sample
-       random_cases <- rbind(random_cases,
-                             curr_ctr_cn_trunc[sample(nrow(curr_ctr_cn_trunc), sample_count), ])
+       random_participants <- rbind(random_participants,
+                                    curr_ctr_cn_trunc[sample(nrow(curr_ctr_cn_trunc), sample_count), ])
      }
      rng_config <- RNGkind()
-     return_list <- list(random_cases, rng_config)
-     names(return_list) <- c("cases", "rng_config")
+     return_list <- list(random_participants, rng_config)
+     names(return_list) <- c("participants", "rng_config")
      return(return_list)
   } else {
-    stop("return_random_cases requires objects of the class 'secuTrialdata' as input.")
+    stop("return_random_participants requires objects of the class 'secuTrialdata' as input.")
   }
 }

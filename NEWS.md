@@ -1,3 +1,7 @@
+# secuTrialR 0.7.9
+* The general nomenclature for a study subject will from now on be participant (pat). All variations of this
+(e.g. case, patient) have been adjusted in the code and the documentation.
+
 # secuTrialR 0.7.8
 * Removed generic `plot()` function for `secuTrialdata` objects. (#139)
 
