@@ -11,7 +11,7 @@
 #'
 #' Variable completeness is defined as percentage of data entered for a variable
 #' when considering all occurrences of the variable throughout the visit plan and
-#' all patients/cases registered in the secuTrial data base. The completeness can
+#' all participants registered in the secuTrial data base. The completeness can
 #' be assessed for 'allforms', which will also take unsaved forms into account, and
 #' for 'savedforms' which will only consider forms that have been actively saved.
 #' In order to asses variable completeness the function requires a loaded secuTrial
@@ -74,16 +74,16 @@ assess_form_variable_completeness <- function(form,
   }
 
   if (completeness == "allforms") {
-    # count cases (all registered ids)
-    forms_per_case_count <- length(casenodes_table[, 1])
-    # multiply forms_per_case_count with form occurence in
+    # count participants (all registered ids)
+    forms_per_participant_count <- length(casenodes_table[, 1])
+    # multiply forms_per_participant_count with form occurence in
     # visit plan to adjust for repeating forms
-    forms_per_case_count <- forms_per_case_count * occ_in_vp
+    forms_per_participant_count <- forms_per_participant_count * occ_in_vp
     # count form entries
     saved_form_count <- length(form[, 1])
     # count empty forms - frozen forms appear as "rule-based freeze"
     # and are thus not counted as missing
-    empty_form_count <- forms_per_case_count - saved_form_count
+    empty_form_count <- forms_per_participant_count - saved_form_count
     # consistency check, empty_form_count cannot be negative
     if (empty_form_count < 0) {
       stop(paste0("You have likely not specified occ_in_vp correctly. You specified: ", occ_in_vp))
@@ -105,7 +105,7 @@ assess_form_variable_completeness <- function(form,
     # change to dataframe
     table_missing_counts <- as.data.frame(as.matrix(table_missing_counts))
     # add completeness
-    table_missing_counts$completeness <- 1 - (table_missing_counts$V1 / forms_per_case_count)
+    table_missing_counts$completeness <- 1 - (table_missing_counts$V1 / forms_per_participant_count)
     # table names and formatting
     table_missing_counts <- rownames_to_column(table_missing_counts)
     names(table_missing_counts) <- c("variable", "timesmissing", "completeness")

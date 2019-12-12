@@ -139,7 +139,7 @@ test_that("Test output after subsetting centres", {
                                                    colSums(counts_berlin[, count_cols])))
 })
 
-# cases
+# participants 
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-USB-123")
 
 l_ctu05_rm <- subset_secuTrial(l_ctu05, participant = id_set, exclude = TRUE)
@@ -148,13 +148,13 @@ l_ctu05_keep <- subset_secuTrial(l_ctu05, participant = id_set)
 counts_rm_ids <- form_status_counts(l_ctu05_rm)
 counts_keep_ids <- form_status_counts(l_ctu05_keep)
 
-test_that("Test output after subsetting cases", {
+test_that("Test output after subsetting participants", {
   expect_equal(colSums(counts_all[, count_cols]), (colSums(counts_rm_ids[, count_cols]) +
                                                    colSums(counts_keep_ids[, count_cols])))
 })
 
 
-# centre and cases
+# centre and participants 
 no_bern_no_basel <- subset_secuTrial(s_ctu05,
                                      participant = "RPACK-USB-123", centre = "Inselspital Bern (RPACK)",
                                      exclude = TRUE)
@@ -162,7 +162,7 @@ no_bern_no_basel <- subset_secuTrial(s_ctu05,
 counts_no_bern_no_basel <- form_status_counts(no_bern_no_basel)
 summary_no_bern_no_basel <- form_status_summary(no_bern_no_basel)
 
-test_that("Test output after subsetting centres and cases together", {
+test_that("Test output after subsetting centres and participants together", {
   expect_equal(counts_no_bern_no_basel, counts_berlin)
   expect_equal(summary_no_bern_no_basel, summary_berlin)
 })

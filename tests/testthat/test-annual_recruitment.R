@@ -57,7 +57,7 @@ test_that("Test centre subsetting", {
                as.numeric(ann_rec_s_no_bern$Total)[1])
 })
 
-# cases
+# participants 
 id_set <- c("RPACK-CBE-001", "RPACK-INS-012", "RPACK-USB-123")
 
 rm_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set, exclude = TRUE)
@@ -66,7 +66,7 @@ keep_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set)
 ann_rec_rm <- annual_recruitment(rm_set_sdat)
 annrec_keep <- annual_recruitment(keep_set_sdat)
 
-test_that("Test case subsetting", {
+test_that("Test participant subsetting", {
   expect_equal((as.numeric(ann_rec_all$Total) - as.numeric(annrec_keep$Total)),
                as.numeric(ann_rec_rm$Total))
 })

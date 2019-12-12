@@ -183,7 +183,7 @@ over time for a given export file.
 ```{r, eval = TRUE}
 # show plot
 # note that there is no line for Universitätsspital 
-# Basel because only one case is registered for this centre
+# Basel because only one participant is registered for this centre
 plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
 # return the plot data
 plot_recruitment(ctu05, return_data = TRUE)
@@ -206,13 +206,13 @@ tail(count_summary)
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
-For a more patient id centered statistic you can perform the following.
+For a more participant id centered statistic you can perform the following.
 
 ```{r, eval = FALSE}
 form_status_counts(ctu05)
 ```
 
-This will give you a count based overview per patient id and form. Please note that both `form_status_summary` 
+This will give you a count based overview per participant id and form. Please note that both `form_status_summary` 
 and `form_status_counts` only work with saved forms since unsaved form data is not available in secuTrial exports.
 
 #### Visit plan
@@ -234,17 +234,17 @@ links_secuTrial(bmd_export)
 ![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
-#### Sampling random cases
+#### Sampling random participants
 
-During study monitoring it is common practice to check random cases from a study database. These
-cases should be retrieved in a reproducible fashion. The below function allows this for a loaded 
+During study monitoring it is common practice to check random participants from a study database. These
+participants should be retrieved in a reproducible fashion. The below function allows this for a loaded 
 secuTrial data export.
 
 ```{r}
-# retrieve at least 25 percent of cases recorded after March 18th 2019 
+# retrieve at least 25 percent of participants recorded after March 18th 2019 
 # from the centres "Inselspital Bern" and "Charité Berlin"
-return_random_cases(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
-                    centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
+                           centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
 ```
 
 ## For contributors

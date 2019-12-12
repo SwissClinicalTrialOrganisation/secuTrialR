@@ -1,7 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
 # secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.10-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -323,7 +322,7 @@ over time for a given export file.
 ```r
 # show plot
 # note that there is no line for Universitätsspital 
-# Basel because only one case is registered for this centre
+# Basel because only one participant is registered for this centre
 plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
 ```
 
@@ -336,38 +335,38 @@ plot_recruitment(ctu05, return_data = TRUE)
 
 ```
 ## [[1]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
-## 1  2019-04-01       462          2           Charité Berlin (RPACK)
-## 2  2019-04-02       462          3           Charité Berlin (RPACK)
-## 3  2019-04-03       462          4           Charité Berlin (RPACK)
-## 4  2019-04-04       462          5           Charité Berlin (RPACK)
-## 5  2019-04-05       462          6           Charité Berlin (RPACK)
-## 6  2019-04-11       461          7         Inselspital Bern (RPACK)
-## 7  2019-04-12       461          8         Inselspital Bern (RPACK)
-## 8  2019-04-13       461          9         Inselspital Bern (RPACK)
-## 9  2019-04-14       461         10         Inselspital Bern (RPACK)
-## 10 2019-04-15       461         11         Inselspital Bern (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
+## 1  2019-04-01       462         2           Charité Berlin (RPACK)
+## 2  2019-04-02       462         3           Charité Berlin (RPACK)
+## 3  2019-04-03       462         4           Charité Berlin (RPACK)
+## 4  2019-04-04       462         5           Charité Berlin (RPACK)
+## 5  2019-04-05       462         6           Charité Berlin (RPACK)
+## 6  2019-04-11       461         7         Inselspital Bern (RPACK)
+## 7  2019-04-12       461         8         Inselspital Bern (RPACK)
+## 8  2019-04-13       461         9         Inselspital Bern (RPACK)
+## 9  2019-04-14       461        10         Inselspital Bern (RPACK)
+## 10 2019-04-15       461        11         Inselspital Bern (RPACK)
 ## 
 ## [[2]]
-##         date centre_id case_count            centre_name
-## 1 2019-04-01       462          1 Charité Berlin (RPACK)
-## 2 2019-04-02       462          2 Charité Berlin (RPACK)
-## 3 2019-04-03       462          3 Charité Berlin (RPACK)
-## 4 2019-04-04       462          4 Charité Berlin (RPACK)
-## 5 2019-04-05       462          5 Charité Berlin (RPACK)
+##         date centre_id pat_count            centre_name
+## 1 2019-04-01       462         1 Charité Berlin (RPACK)
+## 2 2019-04-02       462         2 Charité Berlin (RPACK)
+## 3 2019-04-03       462         3 Charité Berlin (RPACK)
+## 4 2019-04-04       462         4 Charité Berlin (RPACK)
+## 5 2019-04-05       462         5 Charité Berlin (RPACK)
 ## 
 ## [[3]]
-##          date centre_id case_count              centre_name
-## 6  2019-04-11       461          1 Inselspital Bern (RPACK)
-## 7  2019-04-12       461          2 Inselspital Bern (RPACK)
-## 8  2019-04-13       461          3 Inselspital Bern (RPACK)
-## 9  2019-04-14       461          4 Inselspital Bern (RPACK)
-## 10 2019-04-15       461          5 Inselspital Bern (RPACK)
+##          date centre_id pat_count              centre_name
+## 6  2019-04-11       461         1 Inselspital Bern (RPACK)
+## 7  2019-04-12       461         2 Inselspital Bern (RPACK)
+## 8  2019-04-13       461         3 Inselspital Bern (RPACK)
+## 9  2019-04-14       461         4 Inselspital Bern (RPACK)
+## 10 2019-04-15       461         5 Inselspital Bern (RPACK)
 ## 
 ## [[4]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
 ```
 
 Furthermore, recruitment per year and center can be returned.
@@ -421,14 +420,14 @@ tail(count_summary)
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
-For a more patient id centered statistic you can perform the following.
+For a more participant id centered statistic you can perform the following.
 
 
 ```r
 form_status_counts(ctu05)
 ```
 
-This will give you a count based overview per patient id and form. Please note that both `form_status_summary` 
+This will give you a count based overview per participant id and form. Please note that both `form_status_summary` 
 and `form_status_counts` only work with saved forms since unsaved form data is not available in secuTrial exports.
 
 #### Visit plan
@@ -452,22 +451,22 @@ links_secuTrial(bmd_export)
 ![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
 
-#### Sampling random cases
+#### Sampling random participants
 
-During study monitoring it is common practice to check random cases from a study database. These
-cases should be retrieved in a reproducible fashion. The below function allows this for a loaded 
+During study monitoring it is common practice to check random participants from a study database. These
+participants should be retrieved in a reproducible fashion. The below function allows this for a loaded 
 secuTrial data export.
 
 
 ```r
-# retrieve at least 25 percent of cases recorded after March 18th 2019 
+# retrieve at least 25 percent of participants recorded after March 18th 2019 
 # from the centres "Inselspital Bern" and "Charité Berlin"
-return_random_cases(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
-                    centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
+                           centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
 ```
 
 ```
-## $cases
+## $participants
 ##          mnpaid                   centre mnpvisstartdate
 ## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
 ## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14

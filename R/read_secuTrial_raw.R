@@ -118,7 +118,6 @@ read_secuTrial_raw <- function(data_dir) {
 #'         contains the name, number of rows and columns, an indicator for
 #'         whether the table is a metadata table and the files original name.
 #' @export
-#' @usage print(x)
 #'
 #' @examples
 #' # Print method
@@ -143,11 +142,4 @@ print.secuTrialdata <- function(x) {
   rownames(tab) <- NULL
   print(tab, row.names = FALSE)
 
-}
-
-#' @rdname secuTrialdata
-#' @usage plot(x)
-plot.secuTrialdata <- function(x) {
-  vs <- visit_structure(x)
-  plot(vs)
 }

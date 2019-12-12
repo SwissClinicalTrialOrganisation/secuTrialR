@@ -4,14 +4,11 @@
 \alias{secuTrialdata}
 \alias{read_secuTrial_raw}
 \alias{print.secuTrialdata}
-\alias{plot.secuTrialdata}
 \title{This function loads a secuTrial export}
 \usage{
 read_secuTrial_raw(data_dir)
 
-print(x)
-
-plot(x)
+\method{print}{secuTrialdata}(x)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
