@@ -37,7 +37,7 @@ NOTE: This is not exported currently since it is not generic enough.
 
 Variable completeness is defined as percentage of data entered for a variable
 when considering all occurrences of the variable throughout the visit plan and
-all patients/cases registered in the secuTrial data base. The completeness can
+all participants registered in the secuTrial data base. The completeness can
 be assessed for 'allforms', which will also take unsaved forms into account, and
 for 'savedforms' which will only consider forms that have been actively saved.
 In order to asses variable completeness the function requires a loaded secuTrial
