@@ -1,3 +1,6 @@
+# secuTrialR 0.7.8
+* Removed generic `plot()` function for `secuTrialdata` objects. (#139)
+
 # secuTrialR 0.7.7
 * `read_secuTrial()` and `read_secuTrial_raw()` now check if the input file exists. (#137)
 
