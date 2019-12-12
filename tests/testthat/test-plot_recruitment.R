@@ -69,8 +69,8 @@ test_that("Test output after subsetting centres", {
   expect_equal(rec_sdat_all[[3]]$centre_name, rec_sdat_bern[[1]]$centre_name)
 })
 
-# cases
-# 11 registered cases in sdat
+# participants
+# 11 registered participants in sdat
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-INS-011")
 
 rm_set_sdat <- subset_secuTrial(sdat, participant = id_set, exclude = TRUE)
