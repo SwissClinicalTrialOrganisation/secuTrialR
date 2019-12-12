@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.7-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.9-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -336,38 +336,38 @@ plot_recruitment(ctu05, return_data = TRUE)
 
 ```
 ## [[1]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
-## 1  2019-04-01       462          2           Charité Berlin (RPACK)
-## 2  2019-04-02       462          3           Charité Berlin (RPACK)
-## 3  2019-04-03       462          4           Charité Berlin (RPACK)
-## 4  2019-04-04       462          5           Charité Berlin (RPACK)
-## 5  2019-04-05       462          6           Charité Berlin (RPACK)
-## 6  2019-04-11       461          7         Inselspital Bern (RPACK)
-## 7  2019-04-12       461          8         Inselspital Bern (RPACK)
-## 8  2019-04-13       461          9         Inselspital Bern (RPACK)
-## 9  2019-04-14       461         10         Inselspital Bern (RPACK)
-## 10 2019-04-15       461         11         Inselspital Bern (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
+## 1  2019-04-01       462         2           Charité Berlin (RPACK)
+## 2  2019-04-02       462         3           Charité Berlin (RPACK)
+## 3  2019-04-03       462         4           Charité Berlin (RPACK)
+## 4  2019-04-04       462         5           Charité Berlin (RPACK)
+## 5  2019-04-05       462         6           Charité Berlin (RPACK)
+## 6  2019-04-11       461         7         Inselspital Bern (RPACK)
+## 7  2019-04-12       461         8         Inselspital Bern (RPACK)
+## 8  2019-04-13       461         9         Inselspital Bern (RPACK)
+## 9  2019-04-14       461        10         Inselspital Bern (RPACK)
+## 10 2019-04-15       461        11         Inselspital Bern (RPACK)
 ## 
 ## [[2]]
-##         date centre_id case_count            centre_name
-## 1 2019-04-01       462          1 Charité Berlin (RPACK)
-## 2 2019-04-02       462          2 Charité Berlin (RPACK)
-## 3 2019-04-03       462          3 Charité Berlin (RPACK)
-## 4 2019-04-04       462          4 Charité Berlin (RPACK)
-## 5 2019-04-05       462          5 Charité Berlin (RPACK)
+##         date centre_id pat_count            centre_name
+## 1 2019-04-01       462         1 Charité Berlin (RPACK)
+## 2 2019-04-02       462         2 Charité Berlin (RPACK)
+## 3 2019-04-03       462         3 Charité Berlin (RPACK)
+## 4 2019-04-04       462         4 Charité Berlin (RPACK)
+## 5 2019-04-05       462         5 Charité Berlin (RPACK)
 ## 
 ## [[3]]
-##          date centre_id case_count              centre_name
-## 6  2019-04-11       461          1 Inselspital Bern (RPACK)
-## 7  2019-04-12       461          2 Inselspital Bern (RPACK)
-## 8  2019-04-13       461          3 Inselspital Bern (RPACK)
-## 9  2019-04-14       461          4 Inselspital Bern (RPACK)
-## 10 2019-04-15       461          5 Inselspital Bern (RPACK)
+##          date centre_id pat_count              centre_name
+## 6  2019-04-11       461         1 Inselspital Bern (RPACK)
+## 7  2019-04-12       461         2 Inselspital Bern (RPACK)
+## 8  2019-04-13       461         3 Inselspital Bern (RPACK)
+## 9  2019-04-14       461         4 Inselspital Bern (RPACK)
+## 10 2019-04-15       461         5 Inselspital Bern (RPACK)
 ## 
 ## [[4]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
 ```
 
 Furthermore, recruitment per year and center can be returned.
