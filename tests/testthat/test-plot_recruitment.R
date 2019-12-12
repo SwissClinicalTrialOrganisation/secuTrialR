@@ -79,7 +79,7 @@ keep_set_sdat <- subset_secuTrial(sdat, participant = id_set)
 rm_set_rec <- plot_recruitment(rm_set_sdat, return_data = TRUE)
 keep_set_rec <- plot_recruitment(keep_set_sdat, return_data = TRUE)
 
-test_that("Test output after subsetting patients", {
+test_that("Test output after subsetting participants", {
   expect_equal(length(rm_set_rec), length(rec_sdat_all))
   expect_equal(length(keep_set_rec), length(rec_sdat_all) - 1)
   expect_equal(nrow(rec_sdat_all[[1]]), nrow(rm_set_rec[[1]]) + 3)
