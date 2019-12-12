@@ -26,7 +26,8 @@ bmd <- read_secuTrial(system.file("extdata", "sT_exports", "BMD",
 ctu06_v1 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
                                        "s_export_CSV-xls_CTU06_version1.zip",
                                        package = "secuTrialR"))
-# v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform) and 2 additional variables (new_item_in_fu, new_item_in_new_form)
+# v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform)
+# and 2 additional variables (new_item_in_fu, new_item_in_new_form)
 ctu06_v2 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
                                        "s_export_CSV-xls_CTU06_version2.zip",
                                        package = "secuTrialR"))

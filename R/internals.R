@@ -36,7 +36,7 @@
 # convert names (used in write_secutrial)
 convertnames <- function(df, format) {
   name <- names(df)
-  # if (format %in% c("dta", "sav")){
+  # if (format %in% c("dta", "sav")) {
   name <- gsub("\\.datetime", "_dt", name)
   name <- gsub("\\.date", "_d", name)
   name <- gsub("\\.factor", "_f", name)

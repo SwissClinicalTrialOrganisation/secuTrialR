@@ -1,14 +1,18 @@
 #' Show links between forms
 #'
-#' secuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
+#' secuTrial creates a large number of files and identifiers with which to link files together.
+#' Understanding the links can be difficult. This function produces a map linking the forms
+#' with common variables.
 #'
 #' @param object secuTrialdata object
 #' @param forms a regular expression for which forms should be included
 #' @param formcol color for form name circles
 #' @param varcol color for variable name circles
 #' @param plot boolean specifies if the plot should be shown
-#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored dull orange, variables are colored light blue.
-#' @note Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
+#' @details We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability.
+#'          Forms are colored dull orange, variables are colored light blue.
+#' @note Note that where a form name is also a variable name, it is appended by \code{_form}
+#'       (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
 #' @export
 #'
@@ -41,7 +45,6 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
 
   if (object$export_options$audit_trail) {
     names <- names(obj)
-    # names <- names[!names %in% object$export_options$meta_names]
     names2 <- gsub("^at", "", names)
     names <- names[!names %in% unique(names2)]
     obj <- obj[-which(names(obj) %in% names)]

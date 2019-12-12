@@ -1,26 +1,29 @@
-#' Load secuTrial export
-#' @description Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial}, \code{factorize_secuTrial} and \code{dates_secuTrial}.
+#' Read secuTrial export
+#' @description Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial},
+#'              \code{factorize_secuTrial} and \code{dates_secuTrial}.
 #' @param data_dir string - location of the export
 #' @param labels logical - add labels to variables and table
-#' @param factor logical - convert categorical variables to factor variables (ignored when reference values are not in a separate table)
+#' @param factor logical - convert categorical variables to factor variables
+#'               (ignored when reference values are not in a separate table)
 #' @param dates  logical - convert date variables
 #'
 #' @return secuTrialdata object - a list with one data.frame for each file on the export.
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata", "sT_exports", "longnames",
-#'                     "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-#'                     package = "secuTrialR")
-#' d <- read_secuTrial(path)
-
+#' export_location <- system.file("extdata", "sT_exports", "longnames",
+#'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+#'                                package = "secuTrialR")
+#' # read all export data
+#' sT_export <- read_secuTrial_raw(data_dir = export_location)
+#'
 read_secuTrial <- function(data_dir,
                            labels = TRUE,
                            factor = TRUE,
                            dates = TRUE) {
 
   # check for file existence
-  if(! file.exists(data_dir)) {
+  if (! file.exists(data_dir)) {
     stop(paste0("There is no file '", data_dir, "'"))
   }
 
