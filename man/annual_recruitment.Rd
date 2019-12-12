@@ -13,7 +13,7 @@ annual_recruitment(x, rm_regex = "")
 e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.}
 }
 \description{
-secuTrial exports inherently contain the information on which case was
+secuTrial exports inherently contain the information on which participant was
              registered at which point in time. This function makes use of this property
              to show annual recruitment.
 }
