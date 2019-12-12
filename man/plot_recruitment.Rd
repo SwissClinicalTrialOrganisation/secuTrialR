@@ -20,7 +20,7 @@ plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
 e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.}
 }
 \description{
-secuTrial exports inherently contain the information on which case was
+secuTrial exports inherently contain the information on which participant was
              registered at which point in time. This function makes use of this property
              to plot recruitment over time. Centers indicated with a black line in the
              legend did not recruit at all.

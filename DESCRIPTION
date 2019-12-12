@@ -31,9 +31,14 @@ Depends:
     R (>= 3.0.2),
     haven (>= 2.2.0),
     igraph,
+    readr,
     readxl,
     tcltk,
-    tidyverse,
+    stringr,
+    tibble,
+    purrr,
+    tidyr,
+    dplyr,
     lubridate
 License: GPL-2 
 Encoding: UTF-8

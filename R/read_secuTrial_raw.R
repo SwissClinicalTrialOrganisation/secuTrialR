@@ -20,13 +20,13 @@
 #' export_location <- system.file("extdata", "sT_exports", "BMD",
 #'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
 #'                                package = "secuTrialR")
-#' # load all export data
+#' # read all export data
 #' sT_export <- read_secuTrial_raw(data_dir = export_location)
 #'
 read_secuTrial_raw <- function(data_dir) {
 
   # check for file existence
-  if(! file.exists(data_dir)) {
+  if (! file.exists(data_dir)) {
     stop(paste0("There is no file '", data_dir, "'"))
   }
 
@@ -118,7 +118,6 @@ read_secuTrial_raw <- function(data_dir) {
 #'         contains the name, number of rows and columns, an indicator for
 #'         whether the table is a metadata table and the files original name.
 #' @export
-#' @usage print(x)
 #'
 #' @examples
 #' # Print method
@@ -143,11 +142,4 @@ print.secuTrialdata <- function(x) {
   rownames(tab) <- NULL
   print(tab, row.names = FALSE)
 
-}
-
-#' @rdname secuTrialdata
-#' @usage plot(x)
-plot.secuTrialdata <- function(x) {
-  vs <- visit_structure(x)
-  plot(vs)
 }

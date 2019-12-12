@@ -22,13 +22,17 @@ links_secuTrial(object, forms = NULL, formcol = "#d8b365",
 a tcltk plot window.
 }
 \description{
-secuTrial creates a large number of files and identifiers with which to link files together. Understanding the links can be difficult. This function produces a map linking the forms with common variables.
+secuTrial creates a large number of files and identifiers with which to link files together.
+Understanding the links can be difficult. This function produces a map linking the forms
+with common variables.
 }
 \details{
-We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability. Forms are colored dull orange, variables are colored light blue.
+We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability.
+         Forms are colored dull orange, variables are colored light blue.
 }
 \note{
-Note that where a form name is also a variable name, it is appended by \code{_form} (igraph requires uniquely named nodes).
+Note that where a form name is also a variable name, it is appended by \code{_form}
+      (igraph requires uniquely named nodes).
 }
 \examples{
 \dontrun{

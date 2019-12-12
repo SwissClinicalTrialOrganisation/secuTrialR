@@ -19,7 +19,8 @@ build_secuTrial_url(server, instance = NA, customer = NA,
 \item{docid}{(optional) secuTrial document/form identifer}
 }
 \value{
-string containing a URL to desired secuTrial page. Currently we provide no guarantee that the returned URL is valid.
+string containing a URL to desired secuTrial page. Currently we provide no
+        guarantee that the returned URL is valid.
 }
 \description{
 Given a secuTrial server URL, and optionally instance, customer, project id and document id,
@@ -36,7 +37,8 @@ you usually use to log in. For example in:
 \item instance id is: \strong{ST21-setup-DataCapture}
 \item you can find the customer id at the end of the link i.e \strong{TES}
 
-Alternatively it can be found in the CustomerAdminTool -> click "Kunden" -> Value in DB column of table on login page.
+Alternatively it can be found in the
+      CustomerAdminTool -> click "Kunden" -> Value in DB column of table on login page.
 \item you can find the project id in the AdminTool -> Projects -> left side ID column in the table.
 \item you can find docids in secuTrial exports as values in the "mnpdocid" column.
 
@@ -49,7 +51,8 @@ Thus, there are different scenarios:
 \item if only server address is provided, the output will point to the secuTrial server
 \item if secuTrial server and instance are provided, the output will point to the secuTrial instance.
 \item if secutrial server, instance and customer id are provided, the output will point to the customer page.
-\item if secuTrial server, instance, customer, project and document id are provided, the output will point to a specific secuTrial form.
+\item if secuTrial server, instance, customer, project and document id are provided,
+      the output will point to a specific secuTrial form.
 }
 }
 \examples{

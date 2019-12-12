@@ -1,15 +1,16 @@
 #' Subsets a secuTrialdata object
 #'
 #' Given a secuTrial data object, and subsetting parameters,
-#' this function filters the data object to include only the desired study participants. Subsetting is possible based on
-#' participants and based on centres. In order to subset based on participants, participant IDs (mnpaid) musst be present in the export.
+#' this function filters the data object to include only the desired study participants.
+#' Subsetting is possible based on participants and based on centres. In order to subset
+#' based on participants, participant IDs (mnpaid) musst be present in the export.
 #' In order to subset based on centres, centre information must be included in the export.
 #'
-#' Subsetting based on patients only, centers only, or based on both is possible. The value of parameter exclude
+#' Subsetting based on participants only, centers only, or based on both is possible. The value of parameter exclude
 #' determines whether the output will include participants that meet selection criteria (when exclude = FALSE),
 #' or exclude them (when exclude = TRUE). When selecting based on both participants and centres,
-#' exclude = FALSE will include the intersection of participants meeting the selection criteria. If exclude = TRUE,
-#' a complement of union of participant and centre sets is returned.
+#' exclude = FALSE will include the intersection of participants meeting the selection criteria.
+#' If exclude = TRUE, a complement of union of participant and centre sets is returned.
 #'
 #' @param dat secuTrialdata object containing participant IDs and centre information
 #' @param participant character vector with a selection of participant IDs (mnpaid) used for subsetting
@@ -27,7 +28,7 @@
 #' participants <- c("RPACK-INS-011", "RPACK-INS-014", "RPACK-INS-015")
 #' centres <- c("Inselspital Bern (RPACK)", "Universitätsspital Basel (RPACK)")
 #'
-#' # show all patients
+#' # show all participants
 #' get_participants(sT)
 #'
 #' # subset sT_export

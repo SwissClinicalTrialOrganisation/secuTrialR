@@ -91,7 +91,6 @@ captured_print <- capture.output(print(sT_export$export_options))
 
 # test print.secutrialoptions
 test_that("Print export options working.", {
-  # expect_equal(length(captured_print), 24)
   expect_equal(captured_print[1], "SecuTrial version: 5.3.4.6 ")
   expect_equal(captured_print[2], "Time of export on server: 25.02.2019 - 15:14:27 (CET) ")
   expect_equal(captured_print[6], "Seperator: '\t'")

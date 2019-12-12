@@ -1,5 +1,5 @@
 #' Returns a data.frame showing the annual recruitment per center
-#' @description secuTrial exports inherently contain the information on which case was
+#' @description secuTrial exports inherently contain the information on which participant was
 #'              registered at which point in time. This function makes use of this property
 #'              to show annual recruitment.
 #' @note This function wraps plot_recruitment to retrieve the data.

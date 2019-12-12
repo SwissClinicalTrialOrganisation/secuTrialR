@@ -1,5 +1,5 @@
 #' Plots the recruitment over time for secuTrialdata objects
-#' @description secuTrial exports inherently contain the information on which case was
+#' @description secuTrial exports inherently contain the information on which participant was
 #'              registered at which point in time. This function makes use of this property
 #'              to plot recruitment over time. Centers indicated with a black line in the
 #'              legend did not recruit at all.
@@ -41,8 +41,8 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
     if (return_data & (! show_centres)) {
       return(plot_data)
     } else if (! return_data) {
-      plot(dates_centre_ids$date, dates_centre_ids$case_count, type = "s", lwd = 2, col = "steelblue",
-           main = "Recruitment over time", xlab = "Date of enrollment", ylab = "Case count")
+      plot(dates_centre_ids$date, dates_centre_ids$pat_count, type = "s", lwd = 2, col = "steelblue",
+           main = "Recruitment over time", xlab = "Date of enrollment", ylab = "Participant count")
     }
     # centre recruitment
     if (show_centres) {
@@ -70,7 +70,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
         # append to return data
         plot_data[[length(plot_data) + 1]] <- dates_centre_ids_curr_ctr
         if (! return_data) {
-          lines(dates_centre_ids_curr_ctr$date, dates_centre_ids_curr_ctr$case_count,
+          lines(dates_centre_ids_curr_ctr$date, dates_centre_ids_curr_ctr$pat_count,
                 lwd = 2, col = cols[col_idx], lty = 2, type = "s")
         }
         col_idx <- col_idx + 1
@@ -99,8 +99,8 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
   # sort
   dates_centre_ids <- dates_centre_ids[order(dates_centre_ids$mnpvisstartdate), ]
   # add count column
-  dates_centre_ids$case_count <- 1:nrow(dates_centre_ids)
-  names(dates_centre_ids) <- c("date", "centre_id", "case_count")
+  dates_centre_ids$pat_count <- 1:nrow(dates_centre_ids)
+  names(dates_centre_ids) <- c("date", "centre_id", "pat_count")
   # translate centre names
   dates_centre_ids$centre_name <- dates_centre_ids$centre_id
   for (i in 1:nrow(ctr)) {

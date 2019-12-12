@@ -4,14 +4,11 @@
 \alias{secuTrialdata}
 \alias{read_secuTrial_raw}
 \alias{print.secuTrialdata}
-\alias{plot.secuTrialdata}
 \title{This function loads a secuTrial export}
 \usage{
 read_secuTrial_raw(data_dir)
 
-print(x)
-
-plot(x)
+\method{print}{secuTrialdata}(x)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
@@ -38,7 +35,7 @@ The export options are also loaded and written into export_options.
 export_location <- system.file("extdata", "sT_exports", "BMD",
                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
-# load all export data
+# read all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
 
 # Print method
