@@ -1,3 +1,6 @@
+# secuTrialR 0.8.0
+* Changed license for the package from GPL-2 to MIT.
+
 # secuTrialR 0.7.9
 * The general nomenclature for a study subject will from now on be participant (pat). All variations of this
 (e.g. case, patient) have been adjusted in the code and the documentation.

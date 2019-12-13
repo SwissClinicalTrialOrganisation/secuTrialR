@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.7.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -274,8 +274,20 @@ ls()
 ```
 
 ```
-## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"
+##  [1] "atadverseevents"         "atemnpctu05surgeries"   
+##  [3] "atmiv"                   "atmnpctu05ae"           
+##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
+##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [11] "bmd_export"              "count_summary"          
+## [13] "ctu05"                   "ctu05_raw"              
+## [15] "ctu05ae"                 "ctu05allmedi"           
+## [17] "ctu05baseline"           "ctu05outcome"           
+## [19] "ctu05sae"                "ctu05studyterminat"     
+## [21] "ctu05treatment"          "dates"                  
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "labelled"               
+## [27] "labs"
 ```
 
 ```r
@@ -312,14 +324,15 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"
+## [11] "bmd_export"              "count_summary"          
+## [13] "ctu05"                   "ctu05_raw"              
+## [15] "ctu05ae"                 "ctu05allmedi"           
+## [17] "ctu05baseline"           "ctu05outcome"           
+## [19] "ctu05sae"                "ctu05studyterminat"     
+## [21] "ctu05treatment"          "dates"                  
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "labelled"               
+## [27] "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
@@ -346,38 +359,38 @@ plot_recruitment(ctu05, return_data = TRUE)
 
 ```
 ## [[1]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
-## 1  2019-04-01       462          2           Charité Berlin (RPACK)
-## 2  2019-04-02       462          3           Charité Berlin (RPACK)
-## 3  2019-04-03       462          4           Charité Berlin (RPACK)
-## 4  2019-04-04       462          5           Charité Berlin (RPACK)
-## 5  2019-04-05       462          6           Charité Berlin (RPACK)
-## 6  2019-04-11       461          7         Inselspital Bern (RPACK)
-## 7  2019-04-12       461          8         Inselspital Bern (RPACK)
-## 8  2019-04-13       461          9         Inselspital Bern (RPACK)
-## 9  2019-04-14       461         10         Inselspital Bern (RPACK)
-## 10 2019-04-15       461         11         Inselspital Bern (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
+## 1  2019-04-01       462         2           Charité Berlin (RPACK)
+## 2  2019-04-02       462         3           Charité Berlin (RPACK)
+## 3  2019-04-03       462         4           Charité Berlin (RPACK)
+## 4  2019-04-04       462         5           Charité Berlin (RPACK)
+## 5  2019-04-05       462         6           Charité Berlin (RPACK)
+## 6  2019-04-11       461         7         Inselspital Bern (RPACK)
+## 7  2019-04-12       461         8         Inselspital Bern (RPACK)
+## 8  2019-04-13       461         9         Inselspital Bern (RPACK)
+## 9  2019-04-14       461        10         Inselspital Bern (RPACK)
+## 10 2019-04-15       461        11         Inselspital Bern (RPACK)
 ## 
 ## [[2]]
-##         date centre_id case_count            centre_name
-## 1 2019-04-01       462          1 Charité Berlin (RPACK)
-## 2 2019-04-02       462          2 Charité Berlin (RPACK)
-## 3 2019-04-03       462          3 Charité Berlin (RPACK)
-## 4 2019-04-04       462          4 Charité Berlin (RPACK)
-## 5 2019-04-05       462          5 Charité Berlin (RPACK)
+##         date centre_id pat_count            centre_name
+## 1 2019-04-01       462         1 Charité Berlin (RPACK)
+## 2 2019-04-02       462         2 Charité Berlin (RPACK)
+## 3 2019-04-03       462         3 Charité Berlin (RPACK)
+## 4 2019-04-04       462         4 Charité Berlin (RPACK)
+## 5 2019-04-05       462         5 Charité Berlin (RPACK)
 ## 
 ## [[3]]
-##          date centre_id case_count              centre_name
-## 6  2019-04-11       461          1 Inselspital Bern (RPACK)
-## 7  2019-04-12       461          2 Inselspital Bern (RPACK)
-## 8  2019-04-13       461          3 Inselspital Bern (RPACK)
-## 9  2019-04-14       461          4 Inselspital Bern (RPACK)
-## 10 2019-04-15       461          5 Inselspital Bern (RPACK)
+##          date centre_id pat_count              centre_name
+## 6  2019-04-11       461         1 Inselspital Bern (RPACK)
+## 7  2019-04-12       461         2 Inselspital Bern (RPACK)
+## 8  2019-04-13       461         3 Inselspital Bern (RPACK)
+## 9  2019-04-14       461         4 Inselspital Bern (RPACK)
+## 10 2019-04-15       461         5 Inselspital Bern (RPACK)
 ## 
 ## [[4]]
-##          date centre_id case_count                      centre_name
-## 11 2018-05-01       441          1 Universitätsspital Basel (RPACK)
+##          date centre_id pat_count                      centre_name
+## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
 ```
 
 Furthermore, recruitment per year and center can be returned.
@@ -477,7 +490,15 @@ return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-1
 ```
 
 ```
-## Error in return_random_participants(ctu05, percent = 0.25, seed = 1337, : could not find function "return_random_participants"
+## $participants
+##          mnpaid                   centre mnpvisstartdate
+## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
+## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
+## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05
+## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
+## 
+## $rng_config
+## [1] "Mersenne-Twister" "Inversion"        "Rejection"
 ```
 
 ## For contributors
