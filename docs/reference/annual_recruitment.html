@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
       </span>
     </div>
 
@@ -161,21 +161,17 @@ e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.</p
 <span class='co'># read export</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>expot_loc</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'>
 <span class='co'># plot recruitment</span>
-<span class='fu'>annual_recruitment</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt;                              Center Total 2018 2019
-#&gt; 1                               All    11    1   10
-#&gt; 2           CharitÃ© Berlin (RPACK)     5    0    5
-#&gt; 3          Inselspital Bern (RPACK)     5    0    5
-#&gt; 4 UniversitÃ¤tsspital Basel (RPACK)     1    1    0
-#&gt; 5            Charité Berlin (RPACK)     0    0    0
-#&gt; 6  Universitätsspital Basel (RPACK)     0    0    0</div><div class='input'>
+<span class='fu'>annual_recruitment</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt;                             Center Total 2018 2019
+#&gt; 1                              All    11    1   10
+#&gt; 2           Charité Berlin (RPACK)     5    0    5
+#&gt; 3         Inselspital Bern (RPACK)     5    0    5
+#&gt; 4 Universitätsspital Basel (RPACK)     1    1    0</div><div class='input'>
 <span class='co'># show without trailing bracket</span>
-<span class='fu'>annual_recruitment</span>(<span class='no'>sT_export</span>, <span class='kw'>rm_regex</span> <span class='kw'>=</span> <span class='st'>"\\(.*\\)$"</span>)</div><div class='output co'>#&gt;                      Center Total 2018 2019
-#&gt; 1                       All    11    1   10
-#&gt; 2           CharitÃ© Berlin     5    0    5
-#&gt; 3          Inselspital Bern     5    0    5
-#&gt; 4 UniversitÃ¤tsspital Basel     1    1    0
-#&gt; 5            Charité Berlin     0    0    0
-#&gt; 6  Universitätsspital Basel     0    0    0</div><div class='input'>
+<span class='fu'>annual_recruitment</span>(<span class='no'>sT_export</span>, <span class='kw'>rm_regex</span> <span class='kw'>=</span> <span class='st'>"\\(.*\\)$"</span>)</div><div class='output co'>#&gt;                     Center Total 2018 2019
+#&gt; 1                      All    11    1   10
+#&gt; 2           Charité Berlin     5    0    5
+#&gt; 3         Inselspital Bern     5    0    5
+#&gt; 4 Universitätsspital Basel     1    1    0</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
