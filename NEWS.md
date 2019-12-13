@@ -1,6 +1,6 @@
-# secuTrialR 0.8.0
+# secuTrialR 0.8.1
 * add appveyor testing, pkgdown site
-* fix possible bug on windows due to regex in .prep_line_items (used in plot_recruitment)
+* fix possible bug on windows due to regex in .prep_line_items (used in plot_recruitment) (#147)
 
 # secuTrialR 0.8.0
 * Changed license for the package from GPL-2 to MIT.
