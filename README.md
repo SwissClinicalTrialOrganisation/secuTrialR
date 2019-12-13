@@ -526,13 +526,14 @@ knit("README.Rmd")
 
 ### Guidelines for contributors
 
-In order to contribute to this R package you should fork the main repository.
+Requests for new features and bug fixes should first be documented as an [Issue](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues) on GitHub.
+Subsequently, in order to contribute to this R package you should fork the main repository.
 After you have made your changes please run the 
 [tests](README.md#testing-with-devtools)
 and 
 [lint](README.md#linting-with-lintr) your code as 
 indicated above. Please also increment the version number and recompile the `README.md` to increment the dev-version badge (requires installing the package after editing the `DESCRIPTION` file). If all tests pass and linting confirms that your 
-coding style conforms you can send a pull request (PR).  Changes should also be mentioned in the `NEWS` file.
+coding style conforms you can send a pull request (PR). Changes should also be mentioned in the `NEWS` file.
 The PR should have a description to help the reviewer understand what has been 
 added/changed. New functionalities must be thoroughly documented, have examples 
 and should be accompanied by at least one [test](tests/testthat/) to ensure long term 
