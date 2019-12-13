@@ -89,7 +89,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/markovicm/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -274,20 +274,8 @@ ls()
 ```
 
 ```
-##  [1] "atadverseevents"         "atemnpctu05surgeries"   
-##  [3] "atmiv"                   "atmnpctu05ae"           
-##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
-##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "count_summary"          
-## [13] "ctu05"                   "ctu05_raw"              
-## [15] "ctu05ae"                 "ctu05allmedi"           
-## [17] "ctu05baseline"           "ctu05outcome"           
-## [19] "ctu05sae"                "ctu05studyterminat"     
-## [21] "ctu05treatment"          "dates"                  
-## [23] "emnpctu05surgeries"      "export_location"        
-## [25] "factors"                 "labelled"               
-## [27] "labs"
+## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
+## [5] "export_location" "factors"         "labelled"        "labs"
 ```
 
 ```r
@@ -324,15 +312,14 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "count_summary"          
-## [13] "ctu05"                   "ctu05_raw"              
-## [15] "ctu05ae"                 "ctu05allmedi"           
-## [17] "ctu05baseline"           "ctu05outcome"           
-## [19] "ctu05sae"                "ctu05studyterminat"     
-## [21] "ctu05treatment"          "dates"                  
-## [23] "emnpctu05surgeries"      "export_location"        
-## [25] "factors"                 "labelled"               
-## [27] "labs"
+## [11] "bmd_export"              "ctu05"                  
+## [13] "ctu05_raw"               "ctu05ae"                
+## [15] "ctu05allmedi"            "ctu05baseline"          
+## [17] "ctu05outcome"            "ctu05sae"               
+## [19] "ctu05studyterminat"      "ctu05treatment"         
+## [21] "dates"                   "emnpctu05surgeries"     
+## [23] "export_location"         "factors"                
+## [25] "labelled"                "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
