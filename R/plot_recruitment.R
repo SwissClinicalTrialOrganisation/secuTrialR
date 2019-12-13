@@ -102,16 +102,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
   dates_centre_ids$pat_count <- 1:nrow(dates_centre_ids)
   names(dates_centre_ids) <- c("date", "centre_id", "pat_count")
   # translate centre names
-  # dates_centre_ids$centre_name <- dates_centre_ids$centre_id
   dates_centre_ids$centre_name <- ctr$mnpctrname[match(dates_centre_ids$centre_id, ctr$mnpctrid)]
-  # for (i in 1:nrow(ctr)) {
-  #   curr_line <- ctr[i, ]
-  #   dates_centre_ids$centre_name <- gsub(dates_centre_ids$centre_name,
-  #                                        # force full length match with "^ $" to avoid substring match
-  #                                        pattern = paste0("^", curr_line$mnpctrid, "$"),
-  #                                        replacement = curr_line$mnpctrname,
-  #                                        useBytes = TRUE)
-  # }
   if (encoding != "UTF-8") {
     Encoding(dates_centre_ids$centre_name) <- "latin1"
   }
