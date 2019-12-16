@@ -1,5 +1,9 @@
 context("version increment - DESCRIPTION/README badge")
 
+skip_on_cran()
+skip_on_appveyor()
+skip_on_travis()
+
 return_code <- system("git diff", intern = TRUE)
 
 # only if there are diffs this check should be made
