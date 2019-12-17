@@ -21,6 +21,9 @@ The most important components are related to reading data exports from secuTrial
 aims to enable swift execution of repetitive tasks in order to allow spending more time on the unique aspects
 of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation ([\textcolor{blue}{SCTO}](https://www.scto.ch/en/news.html)).
 
+This vignette will teach you how to use the `secuTrialR` package and you will likely learn quite a bit about secuTrial
+exports in general along the way.
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -38,8 +41,13 @@ and then loading it. For this you will need to have `devtools` installed.
 ```{r, eval = FALSE}
 # install
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
+```
+
+```{r}
 # load
 library(secuTrialR)
+# show secuTrialR version
+installed.packages()["secuTrialR", "Version"]
 ```
 
 # The CTU05 dataset
@@ -61,7 +69,7 @@ ctu05_data_location <- system.file("extdata", "sT_exports", "export_options",
                                    package = "secuTrialR")
 ```
 
-If you work with `secuTrialR` on your own data sets you can specify a path without using `system.file()`.
+If you work on your own datasets you can specify a path as a regular charater without using `system.file()`.
 
 \newpage
 
@@ -103,4 +111,26 @@ Really this is only a list containing all the information from your secuTrial ex
 typeof(ctu05_data)
 ```
 
-We have implemented a variation of the `print()` function for `secuTrialdata` objects.
+We have implemented a custom variation of the `print()` function for `secuTrialdata` objects.
+
+**TODO: This will not wrap which is a little annoying.**
+
+```{r}
+print(ctu05_data)
+```
+
+It shows you where the source file of your `secuTrialdata` object is located, tells you which
+tables (i.e. `table`) it contains, what the source files (i.e. `original_name`) are and
+specifies each table's dimensions (i.e. `ncol`, `nrow`). 
+
+By now you have possibly realized that all the forms specified earlier (i.e. "surgeries", "baseline", "outcome", 
+"treatment", "allmedi", "studyterminat", "ae" and "sae") are present, but also that there are many tables
+which you do not recognize.
+
+\newpage
+
+And finally here is the `sessionInfo()`
+
+```{r}
+sessionInfo()
+```
