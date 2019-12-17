@@ -1,172 +1,106 @@
 ---
-title: "secuTrialR package vignette"
+title: "secuTrialR - a walk through"
 author: "Patrick R. Wright"
 date: "`r Sys.Date()`"
-output:
-  pdf_document: default
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{secuTrialR-package-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-<!-- 
-add to jaml header so that the vignette is properly recognised
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
-also, consider doing the html/md one so that it can open in the help pane
--->
+> “If I had just five minutes to chop down a tree I would spend the first two and a half minutes sharpening my axe.”
 
-```{r setup, include = FALSE}
+> `r tufte::quote_footer('--- An anonymous woodsman')`
+
+# Introduction
+
+This R package provides functions for handling data from the clinical data management system (CDMS) 
+[\textcolor{blue}{secuTrial}](https://www.secutrial.com/en/).
+The most important components are related to reading data exports from secuTrial into R. In brief, the package
+aims to enable swift execution of repetitive tasks in order to allow spending more time on the unique aspects
+of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation ([\textcolor{blue}{SCTO}](https://www.scto.ch/en/news.html)).
+
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  message = FALSE,
   comment = "#>"
 )
 ```
 
-This R package provides functions for handling data from the clinical data management system (CDMS) secuTrial. The most important components are
-related to loading data exports from secuTrial into R. In brief, the package aims to allow swift execution of repetitive tasks in order
-to allow spending more time on the unique aspects of a dataset.
+# Installing
 
-For this vignette and also to test your installation of the secuTrialR package
-some example export data is delivered with the package. The data (*calcium*) was retrieved from the **lava** package and and extended
-with some made up data (ID 999). Subsequently the dataset was prepared for import into a secuTrial electronic case report form (eCRF).
-After import, the data was again exported and added to the secuTrialR package. The exports processed in the following are non-rectangular.
+Lets get started by installing the package straight from 
+[\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+and then loading it. For this you will need to have `devtools` installed.
+\vspace{5pt}
 
-### Load the secuTrial library
-
-```{r}
+```{r, eval = FALSE}
+# install
+devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
+# load
 library(secuTrialR)
 ```
 
-### Introduction to the dataset
+# The CTU05 dataset
 
-To give you a brief impression of the dataset it will be briefly shown here.
-
-```{r}
-bone_mineral_dinsity_loc <- system.file("extdata", "sT_exports", "BMD",
-                                        "calcium_secuTrial.csv", 
-                                        package = "secuTrialR")
-
-bmd_data <- read.table(file = bone_mineral_dinsity_loc, sep = ";", header = TRUE)
-
-head(bmd_data[,c("patid", "visitdate", "bmd.bmd", "bmd.grouping", "bmd.age")])
-tail(bmd_data[,c("patid", "visitdate", "bmd.bmd", "bmd.grouping", "bmd.age")])
-table(bmd_data$bmd.grouping)
-unique(length(bmd_data$patid))
-```
-
-As you can see there are 504 unique patients grouped into "Calcium" and "Placebo". The patient with
-id 999 was subsequently added to the original dataset. This record has some missing values.
-These values are missing on purpose, since missing values are needed to demonstrate some downstream 
-functionalities of the package. 
-
-The central files this vignette will be using are part of the package. Since the paths end up being a little
-cryptic we will store them in the following two variables. Both zip archives are secuTrial exports of the data
-above.
+Before we continue with the functionalities lets briefly talk about the test data which is
+delivered as a part of the package. We refer to it as the `CTU05` (clinical trial unit project 05) data.
+This dataset has been fabricated for demonstrarion purposes only and is not real clinical data.
+Principally it is made up of eight forms. These are called "surgeries", "baseline", "outcome", 
+"treatment", "allmedi", "studyterminat", "ae" and "sae". You will see these names again later when 
+the data has been read into R.
+The project setup includes most data types implementable in secuTrial. It is, however, not exhaustive.
+Since it is delivered with the installation of the `secuTrialR` package we can point to it via the
+`system.file()` function. 
+\vspace{5pt}
 
 ```{r}
-
-export_location_shortnames <- system.file("extdata", "sT_exports", "BMD",
-                                         "s_export_CSV-xls_BMD_short_en_utf8.zip",
-                                          package = "secuTrialR")
-
-export_location_longnames <- system.file("extdata", "sT_exports", "BMD",
-                                          "s_export_CSV-xls_BMD_long_en_utf8.zip",
-                                          package = "secuTrialR")
-
+ctu05_data_location <- system.file("extdata", "sT_exports", "export_options",
+                                   "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+                                   package = "secuTrialR")
 ```
 
-### Loading an export
+If you work with `secuTrialR` on your own data sets you can specify a path without using `system.file()`.
 
-The code below shows how to load a secuTrial export. The output of read_secuTrial_raw is a list. 
+\newpage
+
+# secuTrial data export options
+
+Before reading your data into R you need to export it with the secuTrial ExportSearchTool.
+We suggest exporting **non rectangular**, **zipped**, **English** data with 
+**reference values** stored **in a separate table** including 
+**Add-IDs**, **centre information**, **form status**, **project setup**
+and **without duplicated meta data**. Furthermore it is suggested to use
+**UTF-8** encoding and **"CSV format"**/**"CSV format for MS Excel"**.
+Most of these options are truly optional and reading your data should
+work even with differences from the above specifications.
+
+# Reading a secuTrial data export into R
+
+There is one princtiple way to read your data. You should use `read_secuTrial()`.
+Below you can see it in action with the `CTU05` dataset.
+\vspace{5pt}
 
 ```{r}
-
-sT_export_shortnames <- read_secuTrial_raw(data_dir = export_location_shortnames)
-typeof(sT_export_shortnames)
-sT_export_longtnames <- read_secuTrial_raw(data_dir = export_location_longnames)
-typeof(sT_export_longtnames)
-
+ctu05_data <- read_secuTrial(data_dir = ctu05_data_location)
 ```
 
-The first element of this list is another list containing the options of the export. The export options
-are followed by data frames containing meta data tables and finally the central study data tables.
-At this point you can also see how exports with long names and short names differ.
+If the "Read export successfully." message appears your data was correctly read.
+
+# The secuTrialdata object
+
+If you inspect the `class()` of `ctu05_data` you will find that it is a `secuTrialdata` object.
+\vspace{5pt}
 
 ```{r}
-
-names(sT_export_shortnames)
-names(sT_export_longtnames)
-
+class(ctu05_data)
 ```
 
-The study data for the bmd secuTrial form is stored in bmd for the short table names and dem00bmd for the long table names.
-As expected they are the same if compared, since the only difference is the formatting of the table names.
+Really this is only a list containing all the information from your secuTrial export.
 
 ```{r}
-head(sT_export_shortnames$bmd[,c("pat_id", "age", "grouping", "bmd")], n = 4)
-
-all.equal(sT_export_shortnames$bmd, sT_export_longtnames$dem00bmd)
-
+typeof(ctu05_data)
 ```
 
-
-### Analysing data completeness
-
-For various reasons eCRFs are frequently only partially filled. This can be commonly
-observed in cohort studies of registries. Thus, before performing more thorough analyses
-it is sometimes informative to get an overview of data completeness.
-
-To asses data completeness of a secuTrial export you first need to generate the
-validation overview in secuTrial and export it as an *.xlsx file. Remember to select the
-"Column" and "Completion status" columns before you export the validation overview.
-The validation overview for this vignette is also part of this package.
-
-```{r}
-val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
-                                "bmd_validation_overview.xlsx", 
-                                package = "secuTrialR")
-```
-
-In order to asses variable completeness we first require a loaded secuTrial
-validation overview and a loaded secuTrial export. Both the validation
-overview and the data export should be from the same time (not more than minutes
-apart if possible) to ensure data integrity.
-
-The secuTrial export has already been loaded above. The code below shows how to load the validation overview.
-The validation overview contains a line for every variable with a missing or erroneous value. As explained 
-earlier, patient 999 was added with missing values. As you can see the validation report only contains entries
-for "Patient" 999.
-
-```{r}
-val_ovv <- read_validation_overview(data_dir = val_ovv_location)
-val_ovv[,c("Patient", "Completion status", "Column")]
-
-```
-
-First we will asses the completeness only for "savedforms". Below you see
-that "age" is missing once while "grouping" and "bmd" are both missing twice
-just as reported in the validation overview.
-
-```{r}
-secuTrialR:::assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
-                                  casenodes_table = sT_export_longtnames$casenodes,
-                                  validation_overview = val_ovv, 
-                                  completeness = "savedforms")
-```
-
-If you would like to know the completeness for all forms also taking forms into account
-which have not been saved, then you need to set the completeness parameter to "allforms".
-Note that the occ_in_vp parameter has also been set to five. This is because the patients
-in the study were followed up, up to five times (i.e. five visits). Thus, if a patient 
-was followed up less then five times his or her data is not complete. To set this parameter 
-correctly, knowledge of the study design is necessary. As expected the completeness is 
-reduced when regarding all forms.
-
-```{r}
-secuTrialR:::assess_form_variable_completeness(form = sT_export_longtnames$dem00bmd, 
-                                  casenodes_table = sT_export_longtnames$casenodes,
-                                  validation_overview = val_ovv,
-                                  completeness = "allforms",
-                                  occ_in_vp = 5)
-```
+We have implemented a variation of the `print()` function for `secuTrialdata` objects.
