@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -228,13 +230,13 @@ dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date",
 ## 7      20060301         2006-03-01           NA                <NA>
 ```
 
-SecuTrial exports containing date variables sometimes include incomplete dates of the format mm.yyyy or yyyy. secuTrialR 
-currently converts such incomplete date entries to `NA`s in newly created variables with a `.date` suffix. 
+secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing.
+During date conversion (i.e. `dates_secuTrial()`) `secuTrialR` currently creates `NA`s from such incomplete date entries.
 
-Incomplete dates are currently not approximated to exact dates, since this can lead to false conclusion. 
-The users are alarmed about such incidences with a warning(), however the date approximation is left up to the user.
+Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases.
+Users are, however, informed about this behaviour with a `warning()`. Subsequent approximation of incomplete dates can be manually performed.
 
-Recommended literature about incomplete dates:\
+Recommended literature on incomplete dates/date imputation:\
 [Dubois and Hebert 2001](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf) \
 [Bowman 2006](https://www.lexjansen.com/phuse/2006/po/PO11.pdf) \
 
