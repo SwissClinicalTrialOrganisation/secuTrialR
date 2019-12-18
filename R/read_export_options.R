@@ -285,12 +285,12 @@ read_export_options <- function(data_dir) {
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
-  class(study_options) <- "secutrialoptions"
+  class(study_options) <- "secuTrialoptions"
   return(study_options)
 }
 
 #' @export
-print.secutrialoptions <- function(x) {
+print.secuTrialoptions <- function(x) {
   cat(paste("SecuTrial version:", x$secuTrial_version, "\n"))
   cat(paste("Time of export on server:", x$time_of_export, "\n"))
   cat(paste("Project version:", x$project_version, "\n"))
