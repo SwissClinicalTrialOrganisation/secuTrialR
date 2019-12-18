@@ -111,6 +111,8 @@ Really this is only a list containing all the information from your secuTrial ex
 typeof(ctu05_data)
 ```
 
+## The data tables in the secuTrialdata object
+
 We have implemented a custom variation of the `print()` function for `secuTrialdata` objects.
 
 **TODO: This will not wrap which is a little annoying.**
@@ -119,7 +121,7 @@ We have implemented a custom variation of the `print()` function for `secuTriald
 print(ctu05_data)
 ```
 
-It shows you where the source file of your `secuTrialdata` object is located, tells you which
+It shows you where the export archive of your `secuTrialdata` object is located, tells you which
 tables (i.e. `table`) it contains, what the source files (i.e. `original_name`) are and
 specifies each table's dimensions (i.e. `ncol`, `nrow`). 
 
@@ -127,10 +129,68 @@ By now you have possibly realized that all the forms specified earlier (i.e. "su
 "treatment", "allmedi", "studyterminat", "ae" and "sae") are present, but also that there are many tables
 which you do not recognize.
 
+The majority of the unrecognizable tables are tagged as `TRUE` in the `meta` column. This means that they are structural
+data tables. Their names and data structures are fixed in all secuTrial exports. In the following we will briefly explain
+which information the most relevant meta tables contain.
+
+* `vp` - visitplan definition
+* `vpfs` - visitplan form linkage
+* `fs` - forms information
+* `qs` - questions
+* `is` - items i.e. variable definitions
+* `ctr` - centre information
+* `cn` - casenodes i.e. list of entered study participants
+* `cl` - information how the data in the variables is coded
+
+Furthermore, there is a set of tables whose names start with "at". These are audit trail tables. Last but not least
+you may have also realized that the "surgeries" table is called `esurgeries`. This is because it is a so-called repetition
+form. Repetition forms are labelled with a leading "e" and are implemented as subforms in other forms. In this case,
+`esurgeries` is a subform in `baseline` and the linkage is defined by the `mnpdocid` column in both tables. If this sounds
+cryptic to you I suggest you talk so someone who has implemented a data base in secuTrial and let them explain it with a
+specific example.
+
+## Accessing the tables and values
+
+Since the `secuTrialdata` object is a list and the data tables within this list are data frames you can simply access the tables using `$`.
+Lets say you would like to have a look at the placebo to verum ratio in your `treatment` data or what types of other medication were entered in
+`allmedi`.
+
+```{r}
+table(ctu05_data$treatment$rando_treatment)
+table(ctu05_data$allmedi$med_product)
+```
+
+## Export options
+
+The `secuTrialdata` object also contains information on the export options.
+
+```{r}
+ctu05_data$export_options
+```
+
+`export_options` itself is a `list`. If you are interested in more information than is printed you can also access it.
+Lets assume you would like to know the `project_name` and `encoding`.
+
+```{r}
+ctu05_data$export_options$project_name
+ctu05_data$export_options$encoding
+```
+
+Much more information is stored in the elements of `export_options` and their names should be descriptive.
+```{r}
+names(ctu05_data$export_options)
+```
+
 \newpage
+
 
 And finally here is the `sessionInfo()`
 
 ```{r}
 sessionInfo()
 ```
+
+Disclaimer:
+
+The descriptions of the export data and the linkages within are our understanding of them and come with no warranty.
+For in depth details please refer to the original secuTrial manuals.
