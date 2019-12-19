@@ -518,7 +518,7 @@ The README file contains both standard text and interpreted R code. It must ther
 
 
 ```r
-library("knitr")
+library(knitr)
 knit("README.Rmd")
 ```
 
