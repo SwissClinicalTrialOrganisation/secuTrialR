@@ -55,7 +55,7 @@ installed.packages()["secuTrialR", "Version"]
 
 Before we continue with the functionalities let's briefly talk about the test data which is
 delivered as a part of the package. We refer to it as the `CTU05` (clinical trial unit project 05) data.
-This dataset has been fabricated for demonstrarion purposes only and is not real clinical data.
+This dataset has been fabricated for demonstration purposes only and is not real clinical data.
 Principally it is made up of eight forms. These are called "surgeries", "baseline", "outcome", 
 "treatment", "allmedi", "studyterminat", "ae" and "sae". You will see these names again later when 
 the data has been read into R.
@@ -228,7 +228,7 @@ class(ctu05_data$baseline$hiv_date.datetime)
 Depending on the setup, incomplete dates can be valid entries in a secuTrial database. Thus they will also
 occasionally appear in your exports. The datetime conversion does not work in these cases and `NA`s are created. 
 If this happens, `secuTrialR` will warn you accordingly and you should have a closer look into the affected
-datetime variables and whether or not you would like to perform data imputation.
+datetime variables and whether you would like to perform data imputation.
 
 ## Export options
 
@@ -296,7 +296,7 @@ It is also possible to plot the recruitment over time.
 plot_recruitment(ctu05_data, cex = 1.2, rm_regex = "\\(.*\\)$")
 ```
 
-## Visit plan visualisation
+## Visit plan visualization
 
 `secuTrialR` can provide a depiction of the visit structure, although only where the visit plan is fixed.
 \vspace{5pt}
@@ -322,7 +322,7 @@ completeness on variable basis while showing 0% completeness on form basis. It i
 possible to assess completeness on variable basis in a generic way. Hence, high completeness on form basis implies
 high completeness on variable basis but **NOT** vice versa.
 
-For a more participant id centered statistic you can perform the following.
+For a more participant id centred statistic you can perform the following.
 \vspace{5pt}
 
 ```{r}
