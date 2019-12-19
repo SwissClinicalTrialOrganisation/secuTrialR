@@ -1,5 +1,5 @@
 ---
-title: "secuTrialR - a walk through"
+title: "secuTrialR - a walkthrough"
 author: "Patrick R. Wright"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -33,9 +33,10 @@ knitr::opts_chunk$set(
 
 # Installing
 
-Lets get started by installing the package straight from 
+Let's get started by installing the package straight from 
 [\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
-and then loading it. For this you will need to have `devtools` installed.
+and then loading it. For this you will need to have `devtools` installed. We are planning to add `secuTrialR` to CRAN but
+we are not there yet.
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -52,7 +53,7 @@ installed.packages()["secuTrialR", "Version"]
 
 # The CTU05 dataset
 
-Before we continue with the functionalities lets briefly talk about the test data which is
+Before we continue with the functionalities let's briefly talk about the test data which is
 delivered as a part of the package. We refer to it as the `CTU05` (clinical trial unit project 05) data.
 This dataset has been fabricated for demonstrarion purposes only and is not real clinical data.
 Principally it is made up of eight forms. These are called "surgeries", "baseline", "outcome", 
@@ -105,7 +106,7 @@ If you inspect the `class()` of `ctu05_data` you will find that it is a `secuTri
 class(ctu05_data)
 ```
 
-Really this is only a list containing all the information from your secuTrial export.
+Really this is only a `list` containing all the information from your secuTrial export.
 
 ```{r}
 typeof(ctu05_data)
@@ -139,7 +140,7 @@ which information the most relevant meta tables contain.
 * `qs` - questions
 * `is` - items i.e. variable definitions
 * `ctr` - centre information
-* `cn` - casenodes i.e. list of entered study participants
+* `cn` - casenodes i.e. table of entered study participants
 * `cl` - information how the data in the variables is coded
 
 Furthermore, there is a set of tables whose names start with "at". These are audit trail tables. Last but not least
@@ -151,8 +152,9 @@ specific example.
 
 ## Accessing the tables and values
 
-Since the `secuTrialdata` object is a list and the data tables within this list are data frames you can simply access the tables using `$`.
-Lets say you would like to have a look at the placebo to verum ratio in your `treatment` data or what types of other medication were entered in
+Since the `secuTrialdata` object is a `list` and the data tables within this `list` are `data.frame`s 
+you can simply access the tables using `$`. Let's say you would like to have a look at the placebo
+to verum ratio in your `treatment` data or what types of other medication were entered in
 `allmedi`.
 
 ```{r}
@@ -189,8 +191,31 @@ label(ctu05_data$baseline$gender.factor)
 label(ctu05_data$esurgeries$surgery_organ.factor)
 ```
 
-Datetime data is also transformed and similarly to the factorization process appended with
+Datetime data is also transformed and similarly to the factorization process the names are concatenated with
 `.date` or `.datetime`.
+
+```{r}
+# raw
+ctu05_data$baseline$visit_date
+# processed
+ctu05_data$baseline$visit_date.date
+# raw
+ctu05_data$baseline$hiv_date
+# processed
+ctu05_data$baseline$hiv_date.datetime
+
+# classes
+class(ctu05_data$baseline$visit_date)
+class(ctu05_data$baseline$visit_date.date)
+class(ctu05_data$baseline$hiv_date)
+class(ctu05_data$baseline$hiv_date.datetime)
+
+```
+
+Depending on the setup, incomplete dates can be valid entries in a secuTrial database. Thus they will also
+occasionally appear in your exports. The datetime conversion does not work in these cases and `NA`s are created. 
+If this happens, `secuTrialR` will warn you accordingly and you should have a closer look into the affected
+datetime variables and whether or not you would like to perform data imputation.
 
 ## Export options
 
@@ -201,14 +226,15 @@ ctu05_data$export_options
 ```
 
 `export_options` itself is a `list`. If you are interested in more information than is printed you can also access it.
-Lets assume you would like to know the `project_name` and `encoding`.
+Let's assume you would like to know the `project_name` and `encoding`.
 
 ```{r}
 ctu05_data$export_options$project_name
 ctu05_data$export_options$encoding
 ```
 
-Much more information is stored in the elements of `export_options` and their names should be descriptive regarding their contents.
+Much more information is stored in the elements of `export_options`. The names of the elements should
+be descriptive enough to infer the contents.
 
 ```{r}
 names(ctu05_data$export_options)
@@ -338,7 +364,7 @@ diff_secuTrial(ctu05_data, ctu05_data_new)
 
 ```
 
-Since this list contains only empty entries you can conclude that nothing has changed.
+Since this `list` contains only empty entries you can conclude that nothing has changed.
 
 ## Conversion to SPSS, STATA, SAS
 
@@ -388,7 +414,7 @@ ctu05_data_pids$ctr
 ```
 
 Since the truncated object's class remains unchanged (i.e. `secuTrialdata`) you can still use the generic functions on it.
-Lets say you would only like to look at the recruitment plot for Bern.
+Let's say you would only like to look at the recruitment plot for Bern.
 
 ```{r}
 # keep only Bern
@@ -406,9 +432,9 @@ ctu05_data_bern_berlin <- subset_secuTrial(ctu05_data, centre = c("Inselspital B
 plot_recruitment(ctu05_data_bern_berlin)
 ```
 
-## A note on `mnp` variables
+## A note on `mnp*` variables
 
-There is a plethora of variables in the tables of secuTrial exports that start with `mnp`. These are meta variables
+There is a plethora of variables in the tables of secuTrial exports whose names start with `mnp`. These are meta variables
 which are e.g. important to logically link the different tables. Explaining them all is beyond the scope of this
 vignette. For detailed explanations please refer to the secuTrial user manual.
 
