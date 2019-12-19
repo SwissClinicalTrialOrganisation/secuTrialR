@@ -66,8 +66,6 @@ visit_structure <- function(x) {
 #' \dontrun{
 #'   vs <- visit_structure(sT_export)
 #'   plot(vs)
-#'   # or, equivalently
-#'   plot(sT_export)
 #' }
 
 plot.secuTrialvisit <- function(r) {
