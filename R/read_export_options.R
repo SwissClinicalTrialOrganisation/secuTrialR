@@ -285,13 +285,18 @@ read_export_options <- function(data_dir) {
                         factorized = FALSE,
                         dated = FALSE,
                         labelled = FALSE)
-  class(study_options) <- "secutrialoptions"
+  class(study_options) <- "secuTrialoptions"
   return(study_options)
 }
 
 #' @export
+<<<<<<< HEAD
 print.secutrialoptions <- function(x) {
   cat(paste("secuTrial version:", x$secuTrial_version, "\n"))
+=======
+print.secuTrialoptions <- function(x) {
+  cat(paste("SecuTrial version:", x$secuTrial_version, "\n"))
+>>>>>>> a9edeec380bcb288a2ad435be7351c02fc3d8e34
   cat(paste("Time of export on server:", x$time_of_export, "\n"))
   cat(paste("Project version:", x$project_version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
