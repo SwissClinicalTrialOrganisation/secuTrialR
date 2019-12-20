@@ -70,8 +70,16 @@ visit_structure <- function(x) {
 #'   plot(sT_export)
 #' }
 
-plot.secuTrialvisit <- function(r) {
-  # construct the figure
+plot.secuTrialvisit <- function(r, sorted = TRUE) {
+  # construct the figure. By default, formas are sorted by first visit of occurence and number of occurences.
+  if (sorted){
+    z.input <- !is.na(as.matrix(r[, -1])) # where does which form appear
+    n.uses <- apply(z.input, 1, sum) # how often is each form used
+    first.use <- apply(z.input, 1, function(x) match(TRUE, x)) # which visit first?
+    r <- r[order(first.use, n.uses, decreasing = FALSE), ] # sort on when
+                                                         # it was used
+                                                         # and how often
+  }
   z <- !is.na(as.matrix(r[, -1]))
   names <- gsub("tmpvar.", "", names(r[, -1]))
   paropts <- par()
