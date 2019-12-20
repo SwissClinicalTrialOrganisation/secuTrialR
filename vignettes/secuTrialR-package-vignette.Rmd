@@ -25,6 +25,10 @@ This vignette will teach you how to use the `secuTrialR` package and you will li
 exports in general along the way.
 
 ```{r, include = FALSE}
+# needed so that the as.data.frame part of the vignette
+# does not need a restart of the session everytime the
+# vignette is built
+rm(list = ls())
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -97,7 +101,7 @@ ctu05_data <- read_secuTrial(data_dir = ctu05_data_location)
 
 If the "Read export successfully." message appears your data was correctly read.
 
-# The secuTrialdata object
+# The `secuTrialdata` object
 
 If you inspect the `class()` of `ctu05_data` you will find that it is a `secuTrialdata` object.
 \vspace{5pt}
@@ -107,16 +111,15 @@ class(ctu05_data)
 ```
 
 Really this is only a `list` containing all the information from your secuTrial export.
+\vspace{5pt}
 
 ```{r}
 typeof(ctu05_data)
 ```
 
-## The data tables in the secuTrialdata object
+## The data tables in the `secuTrialdata` object
 
 We have implemented a custom variation of the `print()` function for `secuTrialdata` objects.
-
-**TODO: This will not wrap which is a little annoying.**
 
 ```{r}
 print(ctu05_data)
@@ -487,13 +490,26 @@ plot_recruitment(ctu05_data_bern_berlin)
 
 This vignette has been working with the `secuTrialdata` object as a `list`.
 For some users, working with a `list` can be tiresome so `secuTrialR` provides an
-`as.data.frame()` method to save the `data.frame`s in the `list` to
+`as.data.frame()` method to save the `data.frame`s in the `secuTrialdata` object to
 an environment of your choice.
+
+Let's have a look at the state of your `globalenv()`
+before running `as.data.frame()`...
 \vspace{5pt}
+
+```{r}
+ls(globalenv())
+```
 
 ```{r}
 # add files to global environment
 as.data.frame(ctu05_data)
+```
+
+... and afterwards.
+\vspace{5pt}
+```{r}
+ls(globalenv())
 ```
 
 # A note on `mnp*` variables
