@@ -45,8 +45,8 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
 ```{r}
-# load
-library(secuTrialR)
+# load silently
+suppressMessages(library(secuTrialR))
 # show secuTrialR version
 installed.packages()["secuTrialR", "Version"]
 ```
@@ -464,7 +464,7 @@ Since the truncated object's class remains unchanged (i.e. `secuTrialdata`) you 
 Let's say you would only like to look at the recruitment plot for Bern alone.
 \vspace{5pt}
 
-```{r, fig.height = 3.9, fig.width = 8}
+```{r, fig.height = 3.8, fig.width = 8}
 # keep only Bern
 ctu05_data_bern <- subset_secuTrial(ctu05_data, centre = "Inselspital Bern (RPACK)")
 # plot
@@ -474,12 +474,26 @@ plot_recruitment(ctu05_data_bern)
 ... or Bern and Berlin.
 \vspace{5pt}
 
-```{r, fig.height = 3.9, fig.width = 8}
+```{r, fig.height = 3.8, fig.width = 8}
 # keep only Bern and Berlin
-ctu05_data_bern_berlin <- subset_secuTrial(ctu05_data, centre = c("Inselspital Bern (RPACK)",
-                                                                  "Charité Berlin (RPACK)"))
+ctu05_data_bern_berlin <- subset_secuTrial(ctu05_data,
+                                           centre = c("Inselspital Bern (RPACK)",
+                                                      "Charité Berlin (RPACK)"))
 # plot
 plot_recruitment(ctu05_data_bern_berlin)
+```
+
+# `as.data.frame`
+
+This vignette has been working with the `secuTrialdata` object as a `list`.
+For some users, working with a `list` can be tiresome so `secuTrialR` provides an
+`as.data.frame()` method to save the `data.frame`s in the `list` to
+an environment of your choice.
+\vspace{5pt}
+
+```{r}
+# add files to global environment
+as.data.frame(ctu05_data)
 ```
 
 # A note on `mnp*` variables
