@@ -2,6 +2,9 @@
 * added up-to-date vignette (#99)
 * path in `print.secuTrialdata` is now wrapped at 80 characters
 
+# secuTrialR 0.8.2
+* `secutrialoptions` class is now `secuTrialoptions`.
+
 # secuTrialR 0.8.1
 * add appveyor testing, pkgdown site
 * fix possible bug on windows due to regex in .prep_line_items (used in plot_recruitment) (#147)
