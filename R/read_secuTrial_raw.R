@@ -127,7 +127,8 @@ read_secuTrial_raw <- function(data_dir) {
 
 print.secuTrialdata <- function(x) {
 
-  cat(paste("SecuTrial data imported from", x$export_options$data_dir, "\n"))
+  cat("secuTrial data imported from:\n")
+  cat(str_wrap(x$export_options$data_dir, width = 80), "\n")
 
   tab <- lapply(x$export_options$data_names, function(y) {
     tmp <- x[[y]]
