@@ -3,26 +3,33 @@ title: "secuTrialR - a walkthrough"
 author: "Patrick R. Wright, Milica Markovic, Alan Haynes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+toc: true
 vignette: >
   %\VignetteIndexEntry{secuTrialR-package-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+\newpage
+
+# Introduction
+
 > “If I had just five minutes to chop down a tree I would spend the first two and a half minutes sharpening my axe.”
 
 > `r tufte::quote_footer('--- An anonymous woodsman')`
 
-# Introduction
+\vspace{13pt}
 
 This R package provides functions for handling data from the clinical data management system (CDMS) 
 [\textcolor{blue}{secuTrial}](https://www.secutrial.com/en/).
-The most important components are related to reading data exports from secuTrial into R. In brief, the package
-aims to enable swift execution of repetitive tasks in order to allow spending more time on the unique aspects
-of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation ([\textcolor{blue}{SCTO}](https://www.scto.ch/en/news.html)).
+The most important components are related to reading data exports from
+secuTrial into R. In brief, the package aims to enable swift execution of
+repetitive tasks in order to allow spending more time on the unique aspects
+of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation
+([\textcolor{blue}{SCTO}](https://www.scto.ch/en/news.html)).
 
-This vignette will teach you how to use the `secuTrialR` package and you will likely learn quite a bit about secuTrial
-exports in general along the way.
+This vignette will teach you how to use the `secuTrialR` package and you will likely
+learn quite a bit about secuTrial exports in general along the way.
 
 ```{r, include = FALSE}
 # needed so that the as.data.frame part of the vignette
@@ -39,8 +46,8 @@ knitr::opts_chunk$set(
 
 Let's get started by installing the package straight from 
 [\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
-and then loading it. For this you will need to have `devtools` installed. We are planning to add `secuTrialR` to CRAN but
-we are not there yet.
+and then loading it. For this you will need to have `devtools` installed. We are
+planning to add `secuTrialR` to CRAN but we are not there yet.
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -58,14 +65,14 @@ installed.packages()["secuTrialR", "Version"]
 # The CTU05 dataset
 
 Before we continue with the functionalities let's briefly talk about the test data which is
-delivered as a part of the package. We refer to it as the `CTU05` (clinical trial unit project 05) data.
-This dataset has been fabricated for demonstration purposes only and is not real clinical data.
-Principally it is made up of eight forms. These are called "surgeries", "baseline", "outcome", 
-"treatment", "allmedi", "studyterminat", "ae" and "sae". You will see these names again later when 
-the data has been read into R.
-The project setup includes most data types implementable in secuTrial. It is, however, not exhaustive.
-Since the data is delivered with the installation of the `secuTrialR` package we can point to it via the
-`system.file()` function. 
+delivered as a part of the package. We refer to it as the `CTU05` (clinical trial unit project 05)
+data. This dataset has been fabricated for demonstration purposes only and is not
+real clinical data. Principally it is made up of eight forms. These are called "surgeries",
+"baseline", "outcome", "treatment", "allmedi", "studyterminat", "ae" and "sae".
+You will see these names again later when the data has been read into R.
+The project setup includes most data types implementable in secuTrial. It is, however,
+not exhaustive. Since the data is delivered with the installation of the `secuTrialR`
+package we can point to it via the `system.file()` function.
 \vspace{5pt}
 
 ```{r}
@@ -74,7 +81,8 @@ ctu05_data_location <- system.file("extdata", "sT_exports", "export_options",
                                    package = "secuTrialR")
 ```
 
-If you work on your own datasets you can specify a path as a regular character without using `system.file()`.
+If you work on your own datasets you can specify a path as a regular character without
+using `system.file()`.
 
 \newpage
 
@@ -129,12 +137,13 @@ It shows you where the export archive of your `secuTrialdata` object is located,
 tables (i.e. `table`) it contains, what the source files (i.e. `original_name`) are and
 specifies each table's dimensions (i.e. `ncol`, `nrow`). 
 
-By now you have possibly realized that all the forms specified earlier (i.e. "surgeries", "baseline", "outcome", 
-"treatment", "allmedi", "studyterminat", "ae" and "sae") are present, but also that there are many tables
-which you do not recognize.
+By now you have possibly realized that all the forms specified earlier
+(i.e. "surgeries", "baseline", "outcome", "treatment", "allmedi", "studyterminat", "ae"
+and "sae") are present, but also that there are many tables which you do not recognize.
 
-The majority of the unrecognizable tables are tagged as `TRUE` in the `meta` column. This means that they are structural
-data tables. Their names and data structures are fixed in secuTrial exports. In the following we will briefly explain
+The majority of the unrecognizable tables are tagged as `TRUE` in the `meta` column.
+This means that they are structural data tables. Their names and data structures
+are fixed in secuTrial exports. In the following we will briefly explain
 which information the most relevant meta tables contain.
 
 * `vp` - visitplan definition
@@ -146,22 +155,25 @@ which information the most relevant meta tables contain.
 * `cn` - casenodes i.e. table of entered study participants
 * `cl` - information how the data in the variables is coded
 
-Furthermore, there is a set of tables whose names start with "at". These are audit trail tables and only relevant
-if you need to investigate changes in the data.
-Last but not least you may have also realized that the "surgeries" table is called `esurgeries`.
-This is because it is a so-called repetition form. Repetition forms are labelled with a leading "e" and are implemented
-as subforms in other forms. In this case, `esurgeries` is a subform in `baseline` and the linkage is defined by
-the `mnpdocid` column in both tables. If this sounds cryptic to you we suggest you talk so someone who has implemented
-a database in secuTrial and let them explain it with a specific example. It is pretty straight forward.
+Furthermore, there is a set of tables whose names start with "at". These are audit trail
+tables and only relevant if you need to investigate changes in the data.
+Last but not least you may have also realized that the "surgeries" table is
+called `esurgeries`. This is because it is a so-called repetition form.
+Repetition forms are labelled with a leading "e" and are implemented
+as subforms in other forms. In this case, `esurgeries` is a subform in
+`baseline` and the linkage is defined by the `mnpdocid` column in both tables.
+If this sounds cryptic to you we suggest you talk so someone who has implemented
+a database in secuTrial and let them explain it with a specific example.
+It is pretty straight forward.
 
 \newpage
 
 ## Accessing the tables and values
 
-Since the `secuTrialdata` object is a `list` and the data tables within this `list` are `data.frame`s 
-you can simply access the tables using `$`. Let's say you would like to have a look at the placebo
-to verum ratio in your `treatment` data or what types of other medication were entered in
-`allmedi`.
+Since the `secuTrialdata` object is a `list` and the data tables within this `list` are
+`data.frame`s you can simply access the tables using `$`. Let's say you would like to have
+a look at the placebo to verum ratio in your `treatment` data or what types of other
+medication were entered in `allmedi`.
 \vspace{5pt}
 
 ```{r}
@@ -172,9 +184,10 @@ table(ctu05_data$allmedi$med_product)
 ## Data transformations
 
 During the loading process, coded categorical data is transformed. For example
-the `gender` variable in the `baseline` form is categorical. The raw data is accessible via `gender`
-and the transformed version of the data is added during the reading process and accessible via `gender.factor`.
-Thus, data is not overwritten but added with the `.factor` extension. If there are issues during factorization
+the `gender` variable in the `baseline` form is categorical. The raw data is
+accessible via `gender` and the transformed version of the data is added during
+the reading process and accessible via `gender.factor`. Thus, data is not overwritten
+but added with the `.factor` extension. If there are issues during factorization
 a `warning()` will inform you of this.
 \vspace{5pt}
 
@@ -203,7 +216,8 @@ label(ctu05_data$baseline$gender.factor)
 label(ctu05_data$esurgeries$surgery_organ.factor)
 ```
 
-Datetime data is also transformed and similarly to the factorization process the names are concatenated with
+Datetime data is also transformed and similarly to the factorization
+process the names are concatenated with
 `.date` or `.datetime`.
 \vspace{5pt}
 
@@ -228,10 +242,11 @@ class(ctu05_data$baseline$hiv_date.datetime)
 
 ```
 
-Depending on the setup, incomplete dates can be valid entries in a secuTrial database. Thus they will also
-occasionally appear in your exports. The datetime conversion does not work in these cases and `NA`s are created. 
-If this happens, `secuTrialR` will warn you accordingly and you should have a closer look into the affected
-datetime variables and whether you would like to perform data imputation.
+Depending on the setup, incomplete dates can be valid entries in a secuTrial database.
+Thus they will also occasionally appear in your exports. The datetime conversion
+does not work in these cases and `NA`s are created. If this happens, `secuTrialR` will
+warn you accordingly and you should have a closer look into the affected
+datetime variables and whether you would like to perform so-called date imputation.
 
 ## Export options
 
@@ -242,8 +257,9 @@ The `secuTrialdata` object also contains information on the export options.
 ctu05_data$export_options
 ```
 
-`export_options` itself is a `list`. If you are interested in more information than is printed you can also access it.
-Let's assume you would like to know the `project_name` and `encoding`.
+`export_options` itself is a `list`. If you are interested in more information
+than is printed you can also access it. Let's assume you would like to know
+the `project_name` and `encoding`.
 \vspace{5pt}
 
 ```{r}
@@ -251,8 +267,8 @@ ctu05_data$export_options$project_name
 ctu05_data$export_options$encoding
 ```
 
-Much more information is stored in the elements of `export_options`. The names of the elements should
-be descriptive enough to infer the contents.
+Much more information is stored in the elements of `export_options`.
+The names of the elements should be descriptive enough to infer the contents.
 \vspace{5pt}
 
 ```{r}
@@ -282,8 +298,10 @@ You can return recruitment per centre and year.
 annual_recruitment(ctu05_data)
 ```
 
-Since the centre names often have a systematic addition (e.g. (RPACK)) we have enabled the option
-to remove certain parts of the centre descriptions via regular expressions (i.e. `rm_regex` argument).
+Since the centre names often have a systematic addition (e.g. (RPACK)) we have
+enabled the option to remove certain parts of the centre descriptions via
+regular expressions (i.e. `rm_regex` argument). In this case the regular expression
+removes trailing parentheses and everything they enclose.
 \vspace{5pt}
 
 ```{r}
@@ -301,7 +319,8 @@ plot_recruitment(ctu05_data, cex = 1.2, rm_regex = "\\(.*\\)$")
 
 ## Visit plan visualization
 
-`secuTrialR` can provide a depiction of the visit structure, although only where the visit plan is fixed.
+`secuTrialR` can provide a depiction of the visit structure, although only where
+the visit plan is fixed.
 \vspace{5pt}
 
 ```{r, fig.height = 4, fig.width = 4}
@@ -311,8 +330,9 @@ plot(vs)
 
 ## Completeness of forms
 
-If you are not sure about how complete the data in your export is, it may be useful to get a quick overview of 
-how well the forms have been filled. The below table shows both absolute and relative numbers for a few forms.
+If you are not sure about how complete the data in your export is, it may be useful to
+get a quick overview of how well the forms have been filled. The below table shows
+both absolute and relative numbers for a few forms.
 \vspace{5pt}
 
 ```{r}
@@ -320,10 +340,11 @@ fss <- form_status_summary(ctu05_data)
 tail(fss, n = 5)
 ```
 
-Please note that a form is only complete if all required fields have been filled. Thus, a whole study may have 99%
-completeness on variable basis while showing 0% completeness on form basis. It is currently not technically
-possible to assess completeness on variable basis in a generic way. Hence, high completeness on form basis implies
-high completeness on variable basis but **NOT** vice versa.
+Please note that a form is only complete if all required fields have been filled.
+Thus, a whole study may have 99% completeness on variable basis while showing
+0% completeness on form basis. It is currently not technically possible to assess
+completeness on variable basis in a generic way. Hence, high completeness on form
+basis implies high completeness on variable basis but **NOT** vice versa.
 
 For a more participant id centred statistic you can perform the following.
 \vspace{5pt}
@@ -336,9 +357,11 @@ head(fsc)
 
 ## Form linkage
 
-Linkages amongst forms can be explored with the `links_secuTrial()` function. This relies on the `igraph` package to create a network.
-It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned
-to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.
+Linkages amongst forms can be explored with the `links_secuTrial()` function.
+This relies on the `igraph` package to create a network. It is possible to
+interact with the network, e.g. move nodes around in order to read the labels better.
+The device ID is returned to the console, but can be ignored. Forms are plotted in
+deep yellow, variables in light blue.
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -349,8 +372,9 @@ The output can not be shown within this vignette.
 
 ## Sampling random participants
 
-During study monitoring it is common practice to check random participants from a study database. These participants
-should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export.
+During study monitoring it is common practice to check random participants
+from a study database. These participants should be retrieved in a reproducible
+fashion. The below function allows this for a loaded secuTrial data export.
 \vspace{5pt}
 
 ```{r}
@@ -364,13 +388,16 @@ return_random_participants(ctu05_data,
                                        "Charité Berlin (RPACK)"))
 ```
 
-Please note that earlier R versions may return different results because there is a different `rng_config`.
+Please note that earlier R versions may return different results because
+there is a different `rng_config`.
 For this reason we have added the `rng_config` to the output.
 
 ## Retrieve score variables
 
-Generally, it is advisable to recalculate score variables before data analysis. The below function will allow you
-to detect which variables this concerns.
+Generally, it is advisable to recalculate score variables before data analysis.
+A rule of thumb: The more complex a score is and the more data from different 
+forms is necessary for its calculation the more likely its value should be recalculated.
+The below function will allow you to detect which variables this concerns.
 \vspace{5pt}
 
 ```{r}
@@ -381,13 +408,15 @@ return_scores(ctu05_data)
 
 ## Finding changes/differences in exports
 
-During ongoing studies it is possible that changes to the secuTrial data entry interface (i.e. the electronic case report forms)
-are made. Sometimes these changes may call for adjustments in analysis code. It is considered good practice to run 
-`diff_secuTrial()` on the last export and the current export of a project to at least make yourself
-aware of potential changes in the setup. If there are differences, the results of this function should
-be interpreted as a first indicator since they may not cover all alterations. Information is returned
-on new forms and variables. A detailed list of changes can be produced in the secuTrial FormBuilder with
-"Compare project setup".
+During ongoing studies it is possible that changes to the secuTrial data entry
+interface (i.e. the electronic case report forms) are made. Sometimes these
+changes may call for adjustments in analysis code. It is considered good practice
+to run  `diff_secuTrial()` on the last export and the current export of a project
+to at least make yourself aware of potential changes in the setup. If there are
+differences, the results of this function should be interpreted as a first indicator
+since they may not cover all alterations. Information is returned on new forms and
+variables. A detailed list of changes can be produced in the secuTrial
+FormBuilder with "Compare project setup".
 \vspace{5pt}
 
 ``` {r}
@@ -407,8 +436,9 @@ This `list` contains only empty entries. Thus, you can conclude that nothing has
 
 ## Conversion to SPSS, STATA, SAS
 
-Given that you are working with R it is unlikely that you need such conversions for yourself. However,
-collaborators may ask for data which is readily importable into SPSS, STATA or SAS. For this you
+Given that you are working with R it is unlikely that you need such conversions for
+yourself. However, collaborators may ask for data which is readily importable into SPSS,
+STATA or SAS. For this you
 can use `write_secuTrial()`.
 \vspace{5pt}
 
@@ -419,17 +449,20 @@ tdir <- tempdir()
 write_secuTrial(ctu05_data, format = "sav", path = tdir)
 ```
 
-Since this has not been heavily tested or used there may be issues and you might prefer doing
-this manually with the `haven` package.
+Since this has not been heavily tested or used there may be issues and
+you might prefer doing this manually with the `haven` package.
 
 \newpage
 
 ## Subsetting `secuTrialdata`
 
-In some cases it may be useful to subset your `secuTrialdata` object. For example if you have cohort data and would 
-like to supply a subset of the data for a retrospective study. We have implemented this option with `subset_secuTrial()`.
-It will truncate your `secuTrialdata` object and return a new `secuTrialdata` object which is a subset of the original data.
-It is possible to subset by including or excluding specific participant ids or centres.
+In some cases it may be useful to subset your `secuTrialdata` object.
+For example if you have cohort data and would like to supply a subset of
+the data for a retrospective study. We have implemented this
+option with `subset_secuTrial()`. It will truncate your `secuTrialdata` object
+and return a new `secuTrialdata` object which is a subset of the original data.
+It is possible to subset by including or excluding specific participant
+ids or centres.
 \vspace{5pt}
 
 ```{r}
@@ -449,8 +482,8 @@ class(ctu05_data_bern_basel)
 class(ctu05_data_pids)
 ```
 
-If you subset based on centres all traces of deleted centres will be removed. If you remove based
-on participant ids all traces of deleted participants will be removed.
+If you subset based on centres all traces of deleted centres will be removed.
+If you remove based on participant ids all traces of deleted participants will be removed.
 \vspace{5pt}
 
 ```{r}
@@ -463,7 +496,8 @@ ctu05_data_pids$ctr
 
 \newpage
 
-Since the truncated object's class remains unchanged (i.e. `secuTrialdata`) you can still use the generic functions on it.
+Since the truncated object's class remains unchanged (i.e. `secuTrialdata`) you can
+still use the generic functions on it.
 Let's say you would only like to look at the recruitment plot for Bern alone.
 \vspace{5pt}
 
@@ -486,7 +520,7 @@ ctu05_data_bern_berlin <- subset_secuTrial(ctu05_data,
 plot_recruitment(ctu05_data_bern_berlin)
 ```
 
-# `as.data.frame`
+# The `as.data.frame` function
 
 This vignette has been working with the `secuTrialdata` object as a `list`.
 For some users, working with a `list` can be tiresome so `secuTrialR` provides an
@@ -514,16 +548,18 @@ ls(globalenv())
 
 # A note on `mnp*` variables
 
-There is a plethora of variables in the tables of secuTrial exports whose names start with `mnp`. These are meta variables
-which are e.g. important to logically link the different tables. Explaining them all is beyond the scope of this
-vignette. For detailed explanations please refer to the secuTrial user manual.
+There is a plethora of variables in the tables of secuTrial exports whose names start
+with `mnp`. These are meta variables which are e.g. important to logically link the
+different tables. Explaining them all is beyond the scope of this vignette.
+For detailed explanations please refer to the secuTrial user manual.
 
 # Disclaimer
 
-The descriptions of the export data and the logic within are our understanding of them and come with no warranty.
-For in depth details please refer to the original secuTrial manuals.
+The descriptions of the export data and the logic within are our understanding of 
+them and come with no warranty. For in depth details please refer to the original
+secuTrial manuals.
 
-# `sessionInfo()`
+# The `sessionInfo()` of the vignette
 
 ```{r}
 sessionInfo()
