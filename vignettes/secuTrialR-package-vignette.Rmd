@@ -369,6 +369,8 @@ links_secuTrial(ctu05_data)
 ```
 
 The output can not be shown within this vignette but you should give it a try.
+Please note that the linkage plot is likely most useful **without** the audit trail
+data in the export.
 
 ## Sampling random participants
 
