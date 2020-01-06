@@ -81,7 +81,7 @@ ctu05_data_location <- system.file("extdata", "sT_exports", "export_options",
                                    package = "secuTrialR")
 ```
 
-If you work on your own datasets you can specify a path as a regular character without
+If you work on your own datasets you can specify a path as a regular character string without
 using `system.file()`.
 
 \newpage
@@ -164,7 +164,7 @@ as subforms in other forms. In this case, `esurgeries` is a subform in
 `baseline` and the linkage is defined by the `mnpdocid` column in both tables.
 If this sounds cryptic to you we suggest you talk so someone who has implemented
 a database in secuTrial and let them explain it with a specific example.
-It is pretty straight forward.
+It is pretty straight forward when you look at a concrete implementation.
 
 \newpage
 
@@ -368,7 +368,7 @@ deep yellow, variables in light blue.
 links_secuTrial(ctu05_data)
 ```
 
-The output can not be shown within this vignette.
+The output can not be shown within this vignette but you should give it a try.
 
 ## Sampling random participants
 
@@ -408,7 +408,7 @@ return_scores(ctu05_data)
 
 ## Finding changes/differences in exports
 
-During ongoing studies it is possible that changes to the secuTrial data entry
+In ongoing studies it is possible that changes to the secuTrial data entry
 interface (i.e. the electronic case report forms) are made. Sometimes these
 changes may call for adjustments in analysis code. It is considered good practice
 to run  `diff_secuTrial()` on the last export and the current export of a project
