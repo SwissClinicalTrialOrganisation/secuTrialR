@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.4-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
 
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -90,7 +90,7 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+## SecuTrial data imported from /home/dutilhg/R/x86_64-suse-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
