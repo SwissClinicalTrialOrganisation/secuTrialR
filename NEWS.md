@@ -1,3 +1,7 @@
+# secuTrialR 0.8.3
+* added up-to-date vignette (#99)
+* path in `print.secuTrialdata` is now wrapped at 80 characters
+
 # secuTrialR 0.8.2
 * `secutrialoptions` class is now `secuTrialoptions`.
 

@@ -282,12 +282,18 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
                                                    line_length_linter(125)))
 ```
 
+### Building the vignette
+```{r, eval = FALSE}
+library(rmarkdown)
+render("vignettes/secuTrialR-package-vignette.Rmd", output_format=c("pdf_document"))
+```
+
 ### Generating the README file
 
 The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
 
 ```{r, eval = FALSE}
-library("knitr")
+library(knitr)
 knit("README.Rmd")
 ```
 
