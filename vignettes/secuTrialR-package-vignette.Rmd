@@ -562,6 +562,69 @@ as.data.frame(ctu05_data)
 ls(globalenv())
 ```
 
+\newpage
+
+# Frequent warning messages
+
+Certain `warning` messages can occur quite frequently. Some of them may call for deliberate
+action and thus it is important to understand them. We briefly mentioned some of them earlier in
+this document but will now more closely explain how they can be interpreted.
+
+Please note that `warning` messages may "pile up" depending on the export you are reading.
+For example this may happen if there are many date variables with incomplete data. This is
+no reason for concern. We suggest that you read them and interpret them based on the
+explanations below.
+
+## Dates
+
+The below warning may be triggered after running `read_secuTrial()`. It tells you that some
+data in a date variable could not be converted during the process of date conversion (i.e. `dates_secuTrial()`).
+This ususally occurs if incomplete date entries are present. Since the raw data is not overwritten but rather a
+`variable_name.date` or `variable_name.datetime` column are added to the dataset you can specifically see which
+values could not be converted because the raw data will contain data while the corresponding `.date`/`.datetime`
+entires will be `NA`. The `warning` also indicates where to look. The dummy example below indicates to look
+at the variable `a_variable_name` in form `a_form_name`.
+
+```{r, echo = FALSE, results = TRUE}
+
+# incomplete dates
+warning(
+"In dates_secuTrial.data.frame(tmp, datevars, timevars, dateformat,  :
+Not all dates were converted for
+variable: 'a_variable_name'
+in form: 'a_form_name'
+This is likely due to incomplete date entries."
+)
+
+```
+
+## Factors
+
+In some cases secuTrial allows differently coded data to be decoded to the same target value for the
+same variable. For instance this can happen if hierarchical lookuptables have been implemented
+in the database. Because this interferes with the factorization we add the code
+to the duplicate decoded value and return the below message to make you aware.
+
+If you run into this `warning` message we suggest running the `table()` function on the
+variable in question. This will likely clarify the above explanation.
+
+```{r, echo = FALSE, results = TRUE}
+# duplicate factors
+warning(
+"In factorize_secuTrial.data.frame(curr_form_data, cl = object$cl,  :
+Duplicate values found during factorization of sys_therapy_detail")
+```
+
+## Labels
+
+```{r, echo = FALSE, results = TRUE}
+# duplicate labels
+warning(
+"In label_secuTrial.secuTrialdata(d) :
+some variable names appear to be duplicated - labels attribute may be longer that 1"
+)
+```
+
 # A note on `mnp*` variables
 
 There is a plethora of variables in the tables of secuTrial exports whose names start
