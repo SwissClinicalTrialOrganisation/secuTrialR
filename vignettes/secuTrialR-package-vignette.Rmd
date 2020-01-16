@@ -612,7 +612,7 @@ variable in question. This will likely clarify the above explanation.
 # duplicate factors
 warning(
 "In factorize_secuTrial.data.frame(curr_form_data, cl = object$cl,  :
-Duplicate values found during factorization of sys_therapy_detail")
+Duplicate values found during factorization of a_variable_name")
 ```
 
 ## Labels
