@@ -148,7 +148,10 @@ label_secuTrial.secuTrialdata <- function(object) {
 label_secuTrial.data.frame <- function(data, it) {
   it <- it[it$ffcolname %in% names(data), ]
   for (i in names(data)[names(data) %in% it$ffcolname]) {
-    x <- it$fflabel[it$ffcolname == i]
+    # variables can have the same name in different
+    # forms, if this is not made unique() labels can contain
+    # the same string several times which is not informative
+    x <- unique(it$fflabel[it$ffcolname == i])
     u <- it$unit[it$ffcolname == i]
     label(data[, i]) <- x
     if (any(!is.na(u))) units(data[, i]) <- u
