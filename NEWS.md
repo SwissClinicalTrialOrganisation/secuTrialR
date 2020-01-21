@@ -1,5 +1,6 @@
 # secuTrialR 0.8.4
 * adjusted warning message in `label_secuTrial()`
+* only allow unique labels in `label_secuTrial()`
 * added "Frequent warning messages" paragraph to the vignette (#156)
 
 # secuTrialR 0.8.3
