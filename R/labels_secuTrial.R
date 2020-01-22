@@ -92,30 +92,42 @@ label_secuTrial.secuTrialdata <- function(object) {
 
 
   it <- object[[object$export_options$meta_names$items]]
+  # if meta data has not been duplicated into all forms
+  # it needs to be added to the items (it) table from the
+  # questions (qs) table
+  # the merge does not create an identical data frame compared
+  # to the items table if meta data was duplicated into all tables
   if (!object$export_options$duplicate_meta) {
     qs <- object[[object$export_options$meta_names$questions]]
     it <- merge(it, qs, by = "fgid")
   }
+  # make sure that the columns are characters to avoid exceptions
   it$ffcolname <- as.character(it$ffcolname)
   it$fflabel <- as.character(it$fflabel)
   it$formtablename <- as.character(it$formtablename)
   it$formname <- as.character(it$formname)
   it$unit <- as.character(it$unit)
 
-
   dict <- object$export_options$dict_items
+  # remove Layout Dummies
   it <- it[!grepl(dict[, c("dummy")], as.character(it$itemtype)), ]
-  # it <- it[, c("ffcolname", "fflabel", "formtablename")]
-  it$formtablename <- as.character(it$formtablename)
   it$fname <- gsub(pattern = "^mnp", "", it$formtablename)
+  # these duplications happen because the old status is
+  # stored after releasing a new version of a CDMA
   it <- it[!duplicated(it[, c("ffcolname", "fflabel", "formtablename")]), ]
-  # # some variables are still duplicated - fflabel can differ
-  # # - retain longest
-  # it$length <- nchar(it$fflabel)
-  # it <- it[order(it$length, decreasing = TRUE), ]
-  # it <- it[!duplicated(it[, c("ffcolname", "formtablename")]), ]
+  # some variables are still duplicated because fflabel can differ
+  # this happens when the label is changed in the implementation
+  # of the CDMA. The old and the new state of fflabel differ thus
+  # both state are added and the label can be longer than 1
   if (any(duplicated(it[, c("ffcolname", "formtablename")]))) {
-    warning("some variable names appear to be duplicated - labels attribute may be longer that 1")
+    # prep for specific warning
+    longer_one_vars <- it$ffcolname[which(duplicated(it[, c("ffcolname", "formtablename")]))]
+    longer_one_forms <- it$formtablename[which(duplicated(it[, c("ffcolname", "formtablename")]))]
+    warning(paste0("The labels attribute may be longer than 1 for the following variables and forms.\n",
+                   "Likely the label was changed from its original state in the secuTrial project setup.\n",
+                   "variables: ", toString(longer_one_vars),
+                   "\nforms: ", toString(longer_one_forms))
+           )
   }
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -128,16 +140,18 @@ label_secuTrial.secuTrialdata <- function(object) {
     if (!object$export_options$short_names) tmp <- label_secuTrial(tmp, it[it$fname == obj, ])
     tmp
   })
-  obs
   object[x] <- obs
   object$export_options$labelled <- TRUE
-  object
+  return(object)
 }
 
 label_secuTrial.data.frame <- function(data, it) {
   it <- it[it$ffcolname %in% names(data), ]
   for (i in names(data)[names(data) %in% it$ffcolname]) {
-    x <- it$fflabel[it$ffcolname == i]
+    # variables can have the same name in different
+    # forms, if this is not made unique() labels can contain
+    # the same string several times which is not informative
+    x <- unique(it$fflabel[it$ffcolname == i])
     u <- it$unit[it$ffcolname == i]
     label(data[, i]) <- x
     if (any(!is.na(u))) units(data[, i]) <- u
