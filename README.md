@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.4-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.5-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
 
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -275,10 +275,8 @@ ls()
 ```
 
 ```
-##  [1] "bmd_export"      "ctu05"           "ctu05_raw"      
-##  [4] "dates"           "dx"              "export_location"
-##  [7] "factors"         "g"               "labelled"       
-## [10] "labs"            "vs"
+## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
+## [5] "export_location" "factors"         "labelled"        "labs"
 ```
 
 ```r
@@ -320,11 +318,9 @@ ls()
 ## [15] "ctu05allmedi"            "ctu05baseline"          
 ## [17] "ctu05outcome"            "ctu05sae"               
 ## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "dx"                     
-## [23] "emnpctu05surgeries"      "export_location"        
-## [25] "factors"                 "g"                      
-## [27] "labelled"                "labs"                   
-## [29] "vs"
+## [21] "dates"                   "emnpctu05surgeries"     
+## [23] "export_location"         "factors"                
+## [25] "labelled"                "labs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
