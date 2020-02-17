@@ -291,7 +291,7 @@ read_export_options <- function(data_dir) {
 
 #' @export
 print.secuTrialoptions <- function(x) {
-  cat(paste("SecuTrial version:", x$secuTrial_version, "\n"))
+  cat(paste("secuTrial version:", x$secuTrial_version, "\n"))
   cat(paste("Time of export on server:", x$time_of_export, "\n"))
   cat(paste("Project version:", x$project_version, "\n"))
   if (x$short_names) cat("Exported with short names \n")
@@ -299,12 +299,12 @@ print.secuTrialoptions <- function(x) {
   cat(paste("File extension:", x$extension, "\n"))
   cat(paste0("Seperator: '", x$sep, "'\n"))
   cat(paste(length(x$all_files), "files exported\n"))
-  cat(paste("  including", sum(unlist(x$meta_available)), "metadata elements\n"))
+  cat(paste("  including", sum(unlist(x$meta_available)), "metadata tables\n"))
   cat(paste("Reference values",
             ifelse(x$refvals_separate,
                    "exported - factorize possible\n",
                    "not exported - factorize not possible\n")))
-  cat("Metadata elements:\n")
+  cat("Metadata tables:\n")
   df <- data.frame(type = names(x$meta_available),
                    exportname = unlist(x$meta_names),
                    available = unlist(x$meta_available))
