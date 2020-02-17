@@ -19,7 +19,7 @@
 #' \dontrun{
 #' visit_structure(sT_export)
 #' }
-visit_structure <- function(x) {
+visit_structure <- function(x, sorted = TRUE) {
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]
   if (any(is.na(vp$mnpvisid))) stop(paste("Visits do not appear to be a part of this database or",
@@ -55,6 +55,18 @@ visit_structure <- function(x) {
 
   ro <- r[form_order, c("formname", vis_order)]
 
+  # By default (sorted = TRUE), formas are sorted by first visit of
+  # occurence and number of occurences.
+  if (sorted) {
+    # where does which form appear
+    z_input <- !is.na(as.matrix(ro[, -1]))
+    # how often is each form used
+    n_uses <- apply(z_input, 1, sum)
+    # which visit first?
+    first_use <- apply(z_input, 1, function(x) match(TRUE, x))
+    # sort on when was used and and how often
+    ro <- ro[order(first_use, n_uses, decreasing = FALSE), ]
+  }
   class(ro) <- c("secuTrialvisit", "data.frame")
   return(ro)
 }
@@ -70,18 +82,8 @@ visit_structure <- function(x) {
 #'   plot(sT_export)
 #' }
 
-plot.secuTrialvisit <- function(r, sorted = TRUE) {
-  # construct the figure. By default, formas are sorted by first visit of occurence and number of occurences.
-  if (sorted) {
-    # where does which form appear
-    z_input <- !is.na(as.matrix(r[, -1]))
-    # how often is each form used
-    n_uses <- apply(z_input, 1, sum)
-    # which visit first?
-    first_use <- apply(z_input, 1, function(x) match(TRUE, x))
-    # sort on when was used and and how often
-    r <- r[order(first_use, n_uses, decreasing = FALSE), ]
-  }
+plot.secuTrialvisit <- function(r) {
+  # construct the figure. 
   z <- !is.na(as.matrix(r[, -1]))
   names <- gsub("tmpvar.", "", names(r[, -1]))
   paropts <- par()
