@@ -1,4 +1,7 @@
-# secuTrialR 0.8.2
+# # secuTrialR 0.8.5
+* Added sorting option to visit_structure. (#152)
+
+# # secuTrialR 0.8.2
 * `secutrialoptions` class is now `secuTrialoptions`.
 
 # secuTrialR 0.8.1

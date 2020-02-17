@@ -275,8 +275,10 @@ ls()
 ```
 
 ```
-## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"
+##  [1] "bmd_export"      "ctu05"           "ctu05_raw"      
+##  [4] "dates"           "dx"              "export_location"
+##  [7] "factors"         "g"               "labelled"       
+## [10] "labs"            "vs"
 ```
 
 ```r
@@ -318,9 +320,11 @@ ls()
 ## [15] "ctu05allmedi"            "ctu05baseline"          
 ## [17] "ctu05outcome"            "ctu05sae"               
 ## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"
+## [21] "dates"                   "dx"                     
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "g"                      
+## [27] "labelled"                "labs"                   
+## [29] "vs"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
