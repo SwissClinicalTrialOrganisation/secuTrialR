@@ -4,6 +4,15 @@ library(shiny)
 library(shinyWidgets) # setSliderColor
 library(secuTrialR)
 
+source("R/mod_upload.R")
+source("R/mod_recruitplot.R")
+source("R/mod_recruittable.R")
+source("R/mod_formcomplete.R")
+source("R/mod_visitplan.R")
+source("R/mod_monitorcn.R")
+source("R/mod_codebook.R")
+source("R/mod_export.R")
+
 ui <- dashboardPage(skin = "red",
                     dashboardHeader(title = "SCTO - secuTrialR"),
                     dashboardSidebar(
