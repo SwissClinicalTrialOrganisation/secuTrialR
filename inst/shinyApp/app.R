@@ -40,7 +40,8 @@ ui <- dashboardPage(skin = "red",
                         tags$style(".fa-lightbulb {color:#dd4b39}"),
                         # define sidebar menu items
                         menuItem("Upload", tabName = mod$upload, icon = icon("upload")),
-                        menuItem("Recruitment plot", tabName = "recruitmentplot", icon = icon("signal")),
+                        menuItem("Recruitment plot", tabName = mod$recruitplot, icon = icon("signal")),
+
                         menuItem("Recruitment table", tabName = "recruitmenttable", icon = icon("table")),
                         menuItem("Form completeness", tabName = "formcompleteness", icon = icon("percent")),
                         menuItem("Visit plan", tabName = "visitstructure", icon = icon("calendar-alt")),
@@ -52,12 +53,8 @@ ui <- dashboardPage(skin = "red",
                     dashboardBody(
                       tabItems(
                         mod_upload_UI(mod$upload, label = mod$upload),
-                        # Second tab content
-                        tabItem(tabName = "recruitmentplot",
-                                h2("Study recruitment"),
-                                box(plotOutput("recruitment_plot", height = 500, width = 900), width = 1000),
-                                downloadButton("downloadDataRecruitmentPlot", "Download pdf")
-                        ),
+                        mod_recruitplot_UI(mod$recruitplot, label = mod$recruitplot),
+
                         # Third tab content
                         tabItem(tabName = "recruitmenttable",
                                 h2("Study recruitment"),
@@ -146,6 +143,7 @@ server <- function(input, output, session) {
   # init the sT export reactive Val
   sT_export <- reactiveVal()
   callModule(mod_upload, mod$upload, sT_export)
+  callModule(mod_recruitplot, mod$recruitplot, sT_export)
 
   # start codebook
   output$forms <- renderTable({
@@ -175,9 +173,6 @@ server <- function(input, output, session) {
   })
   # end codebook
 
-  output$recruitment_plot <- renderPlot({
-    plot_recruitment(sT_export())
-  })
 
   output$annual_recruitment <- renderTable({
     annual_recruitment(sT_export())
@@ -229,23 +224,6 @@ server <- function(input, output, session) {
     rdm_cases()
   })
 
-  output$downloadDataRecruitmentPlot <- downloadHandler(
-
-    # This function returns a string which tells the client
-    # browser what name to use when saving the file.
-    filename = function() {
-      "recruitment_plot.pdf"
-    },
-
-    # This function should write data to a file given to it by
-    # the argument 'file'.
-    content = function(file) {
-      # Write to a file specified by the 'file' argument
-      pdf(file = file)
-      plot_recruitment(sT_export())
-      dev.off()
-    }
-  )
 
   output$downloadDataStata <- downloadHandler(
     tdir <- tempdir(),
