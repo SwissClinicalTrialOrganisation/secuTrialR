@@ -1,9 +1,6 @@
-## upload module
-
-# widget module
+# Upload module UI function
 mod_upload_UI <- function(id, label){
   ns <- NS(id)
-  # First tab content
   tabItem(tabName = label,
           tags$head(tags$style(".progress-bar{background-color:#dd4b39;}")),
           fileInput(inputId = ns("secuTrial_export_file"),
@@ -19,6 +16,7 @@ mod_upload_UI <- function(id, label){
   )
 }
 
+# Upload module server function
 mod_upload <- function(input, output, session, sT_export){
   # read upload data
   observeEvent(input$secuTrial_export_file$datapath, {
@@ -64,5 +62,4 @@ mod_upload <- function(input, output, session, sT_export){
       #type = "success"
     )
   })
-
 }

@@ -1,8 +1,6 @@
-## mod_monitorcn.R
-
+# Casenode monitoring module UI function
 mod_monitorcn_UI <- function(id, label) {
   ns <- NS(id)
-  # Sixth tab monitoring
   tabItem(tabName = label,
           h2("Return random monitoring cases"),
           selectInput(inputId = ns("centre"), label = "Specify centre",
@@ -24,9 +22,9 @@ mod_monitorcn_UI <- function(id, label) {
             width = 4
           )
   )
-
 }
 
+# Casenode monitoring module server function
 mod_monitorcn <- function(input, output, session, sT_export) {
   # reactive button
   rdm_cases <- eventReactive(input$create_mon_table, {

@@ -1,12 +1,13 @@
-## mod_codebook.R
-
+# Codebook module UI function
 mod_codebook_UI <- function(id, label) {
   ns <- NS(id)
   # seventh tab codebook
   tabItem(tabName = label,
           h2("Codebook"),
-          tags$style(HTML(".tabbable > .nav > li > a                  {background-color: #444;  color:white}
-                                                 .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}")),
+          tags$style(HTML(".tabbable > .nav > li > a",
+                          "{background-color: #444;  color:white}",
+                          ".tabbable > .nav > li[class=active]",
+                          "> a {background-color: #dd4b39; color:white}")),
           tabsetPanel(
             tabPanel("Forms", tableOutput(ns("forms"))),
             tabPanel("Questions", tableOutput(ns("questions"))),
@@ -15,11 +16,10 @@ mod_codebook_UI <- function(id, label) {
             tabPanel("Cases", tableOutput(ns("cases"))),
             tabPanel("Visitplan", tableOutput(ns("visitplan")))
           )
-
-
   )
 }
 
+# Codebook module server function
 mod_codebook <- function(input, output, session, sT_export) {
   output$forms <- renderTable({
     sT_export()[[sT_export()$export_options$meta_names$forms]]
@@ -46,5 +46,4 @@ mod_codebook <- function(input, output, session, sT_export) {
   output$visitplan <- renderTable({
     sT_export()[[sT_export()$export_options$meta_names$visitplan]]
   })
-
 }

@@ -1,5 +1,4 @@
-## mod_export.R
-
+# Export module UI function
 mod_export_UI <- function(id, label) {
   ns <- NS(id)
   # Last tab content / Download
@@ -22,6 +21,7 @@ mod_export_UI <- function(id, label) {
   )
 }
 
+# Export module server function
 mod_export <- function(input, output, session, sT_export) {
 
   output$downloadDataStata <- downloadHandler(
@@ -95,5 +95,4 @@ mod_export <- function(input, output, session, sT_export) {
       zip(zipfile = file, files = dta_loc, flags = "-j")
     }
   )
-
 }

@@ -1,4 +1,5 @@
 ## mod_recruittable.R
+# Recruitment table module UI function
 mod_recruittable_UI <- function(id, label) {
   ns <- NS(id)
 
@@ -11,6 +12,7 @@ mod_recruittable_UI <- function(id, label) {
   )
 }
 
+# Recruitment table module server function
 mod_recruittable <- function(input, output, session, sT_export) {
 
   output$annual_recruitment <- renderTable({

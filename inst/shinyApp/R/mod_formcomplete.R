@@ -1,5 +1,4 @@
-## mod_formcomplete.R
-
+## Form completeness module UI function
 mod_formcomplete_UI <- function(id, label) {
   ns <- NS(id)
   # Fourth tab content
@@ -25,6 +24,7 @@ mod_formcomplete_UI <- function(id, label) {
   )
 }
 
+# Form completeness module server function
 mod_formcomplete <- function(input, output, session, sT_export) {
 
   output$form_completeness_count <- renderTable({
@@ -55,5 +55,4 @@ mod_formcomplete <- function(input, output, session, sT_export) {
       }
     }
   })
-
 }

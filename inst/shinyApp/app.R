@@ -4,6 +4,7 @@ library(shiny)
 library(shinyWidgets) # setSliderColor
 library(secuTrialR)
 
+# load all module functions
 source("R/mod_upload.R")
 source("R/mod_recruitplot.R")
 source("R/mod_recruittable.R")
@@ -13,6 +14,7 @@ source("R/mod_monitorcn.R")
 source("R/mod_codebook.R")
 source("R/mod_export.R")
 
+# a list of all module names
 mod <- list(
   upload = "mod_upload",
   recruitplot = "mod_recruitplot",
@@ -52,6 +54,7 @@ ui <- dashboardPage(skin = "red",
                     ),
                     dashboardBody(
                       tabItems(
+                        # fill dashboard body contents with module UI functions
                         mod_upload_UI(mod$upload, label = mod$upload),
                         mod_recruitplot_UI(mod$recruitplot, label = mod$recruitplot),
                         mod_recruittable_UI(mod$recruittable, label = mod$recruittable),
@@ -67,6 +70,7 @@ ui <- dashboardPage(skin = "red",
 server <- function(input, output, session) {
   # init the sT export reactive Val
   sT_export <- reactiveVal()
+  # call all server modules
   callModule(mod_upload, mod$upload, sT_export)
   callModule(mod_recruitplot, mod$recruitplot, sT_export)
   callModule(mod_recruittable, mod$recruittable, sT_export)
