@@ -16,6 +16,7 @@ source("R/mod_export.R")
 mod <- list(
   upload = "mod_upload",
   recruitplot = "mod_recruitplot",
+  recruittable = "mod_recruittable",
   formcomplete = "mod_formcomplete",
   visitplan = "mod_visitplan",
   monitorcn = "mod_monitorcn",
@@ -41,8 +42,8 @@ ui <- dashboardPage(skin = "red",
                         # define sidebar menu items
                         menuItem("Upload", tabName = mod$upload, icon = icon("upload")),
                         menuItem("Recruitment plot", tabName = mod$recruitplot, icon = icon("signal")),
+                        menuItem("Recruitment table", tabName = mod$recruittable, icon = icon("table")),
 
-                        menuItem("Recruitment table", tabName = "recruitmenttable", icon = icon("table")),
                         menuItem("Form completeness", tabName = "formcompleteness", icon = icon("percent")),
                         menuItem("Visit plan", tabName = "visitstructure", icon = icon("calendar-alt")),
                         menuItem("Monitoring cases", tabName = "moncases", icon = icon("dice")),
@@ -54,12 +55,8 @@ ui <- dashboardPage(skin = "red",
                       tabItems(
                         mod_upload_UI(mod$upload, label = mod$upload),
                         mod_recruitplot_UI(mod$recruitplot, label = mod$recruitplot),
+                        mod_recruittable_UI(mod$recruittable, label = mod$recruittable),
 
-                        # Third tab content
-                        tabItem(tabName = "recruitmenttable",
-                                h2("Study recruitment"),
-                                box(tableOutput("annual_recruitment"))
-                        ),
                         # Fourth tab content
                         tabItem(tabName = "formcompleteness",
                                 h2("Form completeness"),
@@ -144,6 +141,7 @@ server <- function(input, output, session) {
   sT_export <- reactiveVal()
   callModule(mod_upload, mod$upload, sT_export)
   callModule(mod_recruitplot, mod$recruitplot, sT_export)
+  callModule(mod_recruittable, mod$recruittable, sT_export)
 
   # start codebook
   output$forms <- renderTable({
@@ -173,10 +171,6 @@ server <- function(input, output, session) {
   })
   # end codebook
 
-
-  output$annual_recruitment <- renderTable({
-    annual_recruitment(sT_export())
-  })
 
   output$form_completeness_perc <- renderTable({
     if (input$percent) {
