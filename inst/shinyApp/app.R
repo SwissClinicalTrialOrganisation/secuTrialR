@@ -13,6 +13,16 @@ source("R/mod_monitorcn.R")
 source("R/mod_codebook.R")
 source("R/mod_export.R")
 
+mod <- list(
+  upload = "mod_upload",
+  recruitplot = "mod_recruitplot",
+  formcomplete = "mod_formcomplete",
+  visitplan = "mod_visitplan",
+  monitorcn = "mod_monitorcn",
+  codebook = "mod_codebook",
+  export = "mod_export"
+)
+
 ui <- dashboardPage(skin = "red",
                     dashboardHeader(title = "SCTO - secuTrialR"),
                     dashboardSidebar(
@@ -28,7 +38,8 @@ ui <- dashboardPage(skin = "red",
                         tags$style(".fa-download {color:#dd4b39}"),
                         tags$style(".fa-paper-plane {color:#dd4b39}"),
                         tags$style(".fa-lightbulb {color:#dd4b39}"),
-                        menuItem("Upload", tabName = "upload", icon = icon("upload")),
+                        # define sidebar menu items
+                        menuItem("Upload", tabName = mod$upload, icon = icon("upload")),
                         menuItem("Recruitment plot", tabName = "recruitmentplot", icon = icon("signal")),
                         menuItem("Recruitment table", tabName = "recruitmenttable", icon = icon("table")),
                         menuItem("Form completeness", tabName = "formcompleteness", icon = icon("percent")),
@@ -40,24 +51,7 @@ ui <- dashboardPage(skin = "red",
                     ),
                     dashboardBody(
                       tabItems(
-                        # First tab content
-                        tabItem(tabName = "upload",
-                                tags$head(tags$style(".progress-bar{background-color:#dd4b39;}")),
-                                fileInput(inputId = "secuTrial_export_file",
-                                          label = "Choose secuTrial export zip",
-                                          multiple = FALSE,
-                                          accept = c("zip",
-                                                     "ziparchive",
-                                                     ".zip"), width = 700),
-                                textOutput("read_sT_data"),
-                                hr(),
-                                actionButton(inputId = "use_example_data", label = "Use example data",
-                                             icon("lightbulb")),
-                                hr(),
-                                textOutput("example_sT_data")
-
-                        ),
-
+                        mod_upload_UI(mod$upload, label = mod$upload),
                         # Second tab content
                         tabItem(tabName = "recruitmentplot",
                                 h2("Study recruitment"),
@@ -149,54 +143,9 @@ ui <- dashboardPage(skin = "red",
 )
 
 server <- function(input, output, session) {
-
   # init the sT export reactive Val
   sT_export <- reactiveVal()
-
-  # read upload data
-  observeEvent(input$secuTrial_export_file$datapath, {
-    curr_export <- read_secuTrial(input$secuTrial_export_file$datapath)
-    sT_export(curr_export)
-  })
-
-  output$read_sT_data <- renderText({
-    # catch exception
-    if (is.null(input$secuTrial_export_file$datapath)) {
-      print("Please upload file.")
-    } else {
-      # select centre dropdown for monitoring cases
-      ctr <- sT_export()[[sT_export()$export_options$meta_names$centres]]
-      updateSelectInput(session, inputId = "centre",
-                        choices = c("all", ctr$mnpctrname)
-      )
-
-      if (length(sT_export())) {
-        print("Upload and reading of data successful.")
-      } else {
-        print("Error: Data could not be read.")
-      }
-    }
-  })
-
-  # use example data
-  observeEvent(input$use_example_data, {
-    path <- system.file("extdata", "sT_exports", "longnames",
-                        "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                        package = "secuTrialR")
-    curr_export <- read_secuTrial(path)
-    sT_export(curr_export)
-  })
-
-  observeEvent(input$use_example_data, {
-    sendSweetAlert(
-      session = session,
-      title = "Example data loaded.",
-      text = icon("lightbulb"),
-      btn_colors = "#dd4b39",
-      btn_labels = "OK"
-      #type = "success"
-    )
-  })
+  callModule(mod_upload, mod$upload, sT_export)
 
   # start codebook
   output$forms <- renderTable({
