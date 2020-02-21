@@ -46,8 +46,8 @@ ui <- dashboardPage(skin = "red",
                         menuItem("Form completeness", tabName = mod$formcomplete, icon = icon("percent")),
                         menuItem("Visit plan", tabName = mod$visitplan, icon = icon("calendar-alt")),
                         menuItem("Monitoring cases", tabName = mod$monitorcn, icon = icon("dice")),
+                        menuItem("Codebook", tabName = mod$codebook, icon = icon("book")),
 
-                        menuItem("Codebook", tabName = "codebook", icon = icon("book")),
                         menuItem("STATA - SAS - SPSS", tabName = "download", icon = icon("download"))
                       )
                     ),
@@ -59,24 +59,8 @@ ui <- dashboardPage(skin = "red",
                         mod_formcomplete_UI(mod$formcomplete, label = mod$formcomplete),
                         mod_visitplan_UI(mod$visitplan, label = mod$visitplan),
                         mod_monitorcn_UI(mod$monitorcn, label = mod$monitorcn),
+                        mod_codebook_UI(mod$codebook, label = mod$codebook),
 
-
-                        # seventh tab codebook
-                        tabItem(tabName = "codebook",
-                                h2("Codebook"),
-                                tags$style(HTML(".tabbable > .nav > li > a                  {background-color: #444;  color:white}
-                                                 .tabbable > .nav > li[class=active]    > a {background-color: #dd4b39; color:white}")),
-                                tabsetPanel(
-                                  tabPanel("Forms", tableOutput("forms")),
-                                  tabPanel("Questions", tableOutput("questions")),
-                                  tabPanel("Items", tableOutput("items")),
-                                  tabPanel("Centres", tableOutput("centres")),
-                                  tabPanel("Cases", tableOutput("cases")),
-                                  tabPanel("Visitplan", tableOutput("visitplan"))
-                                )
-
-
-                        ),
 
                         # Last tab content / Download
                         tabItem(tabName = "download",
@@ -109,34 +93,8 @@ server <- function(input, output, session) {
   callModule(mod_formcomplete, mod$formcomplete, sT_export)
   callModule(mod_visitplan, mod$visitplan, sT_export)
   callModule(mod_monitorcn, mod$monitorcn, sT_export)
+  callModule(mod_codebook, mod$codebook, sT_export)
 
-  # start codebook
-  output$forms <- renderTable({
-    sT_export()[[sT_export()$export_options$meta_names$forms]]
-  })
-
-  output$questions <- renderTable({
-    sT_export()[[sT_export()$export_options$meta_names$questions]]
-  })
-
-  output$items <- renderTable({
-    #cols <- c("ffcolname", "itemtype", "fflabel", "unit", "lookuptable")
-    sT_export()[[sT_export()$export_options$meta_names$items]]#[cols]
-  })
-
-  output$centres <- renderTable({
-    sT_export()[[sT_export()$export_options$meta_names$centres]]
-  })
-
-  output$cases <- renderTable({
-    #cols <- c("mnpaid", "mnpvisstartdate")
-    sT_export()[[sT_export()$export_options$meta_names$casenodes]]#[cols]
-  })
-
-  output$visitplan <- renderTable({
-    sT_export()[[sT_export()$export_options$meta_names$visitplan]]
-  })
-  # end codebook
 
 
 
