@@ -45,8 +45,8 @@ ui <- dashboardPage(skin = "red",
                         menuItem("Recruitment table", tabName = mod$recruittable, icon = icon("table")),
                         menuItem("Form completeness", tabName = mod$formcomplete, icon = icon("percent")),
                         menuItem("Visit plan", tabName = mod$visitplan, icon = icon("calendar-alt")),
+                        menuItem("Monitoring cases", tabName = mod$monitorcn, icon = icon("dice")),
 
-                        menuItem("Monitoring cases", tabName = "moncases", icon = icon("dice")),
                         menuItem("Codebook", tabName = "codebook", icon = icon("book")),
                         menuItem("STATA - SAS - SPSS", tabName = "download", icon = icon("download"))
                       )
@@ -58,26 +58,8 @@ ui <- dashboardPage(skin = "red",
                         mod_recruittable_UI(mod$recruittable, label = mod$recruittable),
                         mod_formcomplete_UI(mod$formcomplete, label = mod$formcomplete),
                         mod_visitplan_UI(mod$visitplan, label = mod$visitplan),
+                        mod_monitorcn_UI(mod$monitorcn, label = mod$monitorcn),
 
-                        # Sixth tab monitoring
-                        tabItem(tabName = "moncases",
-                                h2("Return random monitoring cases"),
-                                selectInput(inputId = "centre", label = "Specify centre",
-                                            choices = c("all")),
-                                dateInput(inputId = "dateafter", label = "Return cases after date",
-                                          value = "1900-01-01", width = 190),
-                                numericInput(inputId = "seednumber", label = "Seed", value = 1, width = 100),
-                                setSliderColor(c("#dd4b39"), c(1)),
-                                sliderInput(inputId = "percentage", label = "Specify percentage of cases",
-                                            min = 1, max = 99, value = 10, width = 400),
-                                hr(),
-                                actionButton(inputId = "create_mon_table", label = "Submit configuration",
-                                             icon("paper-plane")),
-                                downloadButton("download_monitoring_cases_csv", "Cases"),
-                                downloadButton("download_monitoring_config_csv", "Config"),
-                                hr(),
-                                box(tableOutput("monitoring_cases"), width = 4)
-                        ),
 
                         # seventh tab codebook
                         tabItem(tabName = "codebook",
@@ -126,6 +108,7 @@ server <- function(input, output, session) {
   callModule(mod_recruittable, mod$recruittable, sT_export)
   callModule(mod_formcomplete, mod$formcomplete, sT_export)
   callModule(mod_visitplan, mod$visitplan, sT_export)
+  callModule(mod_monitorcn, mod$monitorcn, sT_export)
 
   # start codebook
   output$forms <- renderTable({
@@ -156,18 +139,7 @@ server <- function(input, output, session) {
   # end codebook
 
 
-  # reactive button
-  rdm_cases <- eventReactive(input$create_mon_table, {
-    perc <- input$percentage / 100
-    return_random_cases(sT_export(), seed = input$seednumber,
-                        centres = input$centre,
-                        date = input$dateafter,
-                        percent = perc)$cases
-  })
 
-  output$monitoring_cases <- renderTable({
-    rdm_cases()
-  })
 
 
   output$downloadDataStata <- downloadHandler(
@@ -239,44 +211,6 @@ server <- function(input, output, session) {
       dta_loc <- list.files(path = tdir, full.names = TRUE, pattern = "sav$")
       # -j prevents keeping directory structure
       zip(zipfile = file, files = dta_loc, flags = "-j")
-    }
-  )
-
-  output$download_monitoring_cases_csv <- downloadHandler(
-
-    # This function returns a string which tells the client
-    # browser what name to use when saving the file.
-    filename = function() {
-      "monitoring_cases.csv"
-    },
-
-    # This function should write data to a file given to it by
-    # the argument 'file'.
-    content = function(file) {
-      # Write to a file specified by the 'file' argument
-      write.csv(rdm_cases(), file = file, row.names = FALSE, quote = FALSE)
-    }
-  )
-
-  output$download_monitoring_config_csv <- downloadHandler(
-
-    # This function returns a string which tells the client
-    # browser what name to use when saving the file.
-    filename = function() {
-      "monitoring_cases_config.csv"
-    },
-
-    # This function should write data to a file given to it by
-    # the argument 'file'.
-    content = function(file) {
-      write(
-        paste(c(
-          paste0("percentage: ", input$percentage),
-          paste0("seed: ", input$seednumber),
-          paste0("centre(s): ", input$centre),
-          paste0("after date: ", as.character.Date(input$dateafter)))),
-        sep = ",", file = file, append = TRUE
-      )
     }
   )
 
