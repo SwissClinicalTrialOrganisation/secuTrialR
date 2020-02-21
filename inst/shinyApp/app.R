@@ -44,8 +44,8 @@ ui <- dashboardPage(skin = "red",
                         menuItem("Recruitment plot", tabName = mod$recruitplot, icon = icon("signal")),
                         menuItem("Recruitment table", tabName = mod$recruittable, icon = icon("table")),
                         menuItem("Form completeness", tabName = mod$formcomplete, icon = icon("percent")),
+                        menuItem("Visit plan", tabName = mod$visitplan, icon = icon("calendar-alt")),
 
-                        menuItem("Visit plan", tabName = "visitstructure", icon = icon("calendar-alt")),
                         menuItem("Monitoring cases", tabName = "moncases", icon = icon("dice")),
                         menuItem("Codebook", tabName = "codebook", icon = icon("book")),
                         menuItem("STATA - SAS - SPSS", tabName = "download", icon = icon("download"))
@@ -57,12 +57,8 @@ ui <- dashboardPage(skin = "red",
                         mod_recruitplot_UI(mod$recruitplot, label = mod$recruitplot),
                         mod_recruittable_UI(mod$recruittable, label = mod$recruittable),
                         mod_formcomplete_UI(mod$formcomplete, label = mod$formcomplete),
+                        mod_visitplan_UI(mod$visitplan, label = mod$visitplan),
 
-                        # Fifth tab content
-                        tabItem(tabName = "visitstructure",
-                                h2("Visit plan"),
-                                box(plotOutput("visit_structure", height = 500, width = 900), width = 1000)
-                        ),
                         # Sixth tab monitoring
                         tabItem(tabName = "moncases",
                                 h2("Return random monitoring cases"),
@@ -129,6 +125,7 @@ server <- function(input, output, session) {
   callModule(mod_recruitplot, mod$recruitplot, sT_export)
   callModule(mod_recruittable, mod$recruittable, sT_export)
   callModule(mod_formcomplete, mod$formcomplete, sT_export)
+  callModule(mod_visitplan, mod$visitplan, sT_export)
 
   # start codebook
   output$forms <- renderTable({
@@ -158,10 +155,6 @@ server <- function(input, output, session) {
   })
   # end codebook
 
-
-  output$visit_structure <- renderPlot({
-    plot(visit_structure(sT_export()))
-  })
 
   # reactive button
   rdm_cases <- eventReactive(input$create_mon_table, {
