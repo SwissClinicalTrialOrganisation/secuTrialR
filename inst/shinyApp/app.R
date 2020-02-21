@@ -43,8 +43,8 @@ ui <- dashboardPage(skin = "red",
                         menuItem("Upload", tabName = mod$upload, icon = icon("upload")),
                         menuItem("Recruitment plot", tabName = mod$recruitplot, icon = icon("signal")),
                         menuItem("Recruitment table", tabName = mod$recruittable, icon = icon("table")),
+                        menuItem("Form completeness", tabName = mod$formcomplete, icon = icon("percent")),
 
-                        menuItem("Form completeness", tabName = "formcompleteness", icon = icon("percent")),
                         menuItem("Visit plan", tabName = "visitstructure", icon = icon("calendar-alt")),
                         menuItem("Monitoring cases", tabName = "moncases", icon = icon("dice")),
                         menuItem("Codebook", tabName = "codebook", icon = icon("book")),
@@ -56,22 +56,8 @@ ui <- dashboardPage(skin = "red",
                         mod_upload_UI(mod$upload, label = mod$upload),
                         mod_recruitplot_UI(mod$recruitplot, label = mod$recruitplot),
                         mod_recruittable_UI(mod$recruittable, label = mod$recruittable),
+                        mod_formcomplete_UI(mod$formcomplete, label = mod$formcomplete),
 
-                        # Fourth tab content
-                        tabItem(tabName = "formcompleteness",
-                                h2("Form completeness"),
-                                #checkboxInput(inputId = "percent", label = "Percent", value = TRUE),
-                                materialSwitch(inputId = "percent", label = "Percent switch",
-                                               value = TRUE, status = "danger"),
-                                #checkboxInput(inputId = "counts", label = "Counts", value = TRUE),
-                                materialSwitch(inputId = "counts", label = "Counts",
-                                               value = TRUE, status = "danger"),
-                                #checkboxInput(inputId = "rmat", label = "Remove audit trail (at) forms"),
-                                materialSwitch(inputId = "rmat", label = "Remove audit trail (at) forms",
-                                               value = TRUE, status = "danger"),
-                                box(tableOutput("form_completeness_perc"), width = 300),
-                                box(tableOutput("form_completeness_count"), width = 250)
-                        ),
                         # Fifth tab content
                         tabItem(tabName = "visitstructure",
                                 h2("Visit plan"),
@@ -142,6 +128,7 @@ server <- function(input, output, session) {
   callModule(mod_upload, mod$upload, sT_export)
   callModule(mod_recruitplot, mod$recruitplot, sT_export)
   callModule(mod_recruittable, mod$recruittable, sT_export)
+  callModule(mod_formcomplete, mod$formcomplete, sT_export)
 
   # start codebook
   output$forms <- renderTable({
@@ -171,35 +158,6 @@ server <- function(input, output, session) {
   })
   # end codebook
 
-
-  output$form_completeness_perc <- renderTable({
-    if (input$percent) {
-      table <- form_status_summary(sT_export())
-      names <- names(table)
-      names_perc <- names[grepl(names, pattern = ".percent")]
-      names_perc <- c("form_name", names_perc)
-      if (input$rmat) {
-        table <- table[which(! grepl(table$form_name, pattern = "^at")), ]
-        table %>% select(names_perc)
-      } else {
-        table %>% select(names_perc)
-      }
-    }
-  })
-
-  output$form_completeness_count <- renderTable({
-    if (input$counts) {
-      table <- form_status_summary(sT_export())
-      names <- names(table)
-      names_count <- names[! grepl(names, pattern = ".percent")]
-      if (input$rmat) {
-        table <- table[which(! grepl(table$form_name, pattern = "^at")), ]
-        table %>% select(names_count)
-      } else {
-        table %>% select(names_count)
-      }
-    }
-  })
 
   output$visit_structure <- renderPlot({
     plot(visit_structure(sT_export()))
