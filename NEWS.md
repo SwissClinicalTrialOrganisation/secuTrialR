@@ -1,3 +1,6 @@
+# secuTrialR 0.8.5
+* Added sorting option to visit_structure. (#152)
+
 # secuTrialR 0.8.4
 * adjusted warning message in `label_secuTrial()`
 * only allow unique labels in `label_secuTrial()`
