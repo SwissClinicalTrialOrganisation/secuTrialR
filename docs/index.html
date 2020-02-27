@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.6</span>
       </span>
     </div>
 
@@ -56,7 +56,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/secuTrialR-package-vignette.html">secuTrialR package vignette</a>
+      <a href="articles/secuTrialR-package-vignette.html">secuTrialR - a walkthrough</a>
     </li>
   </ul>
 </li>
@@ -76,9 +76,9 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr-travis-codecov-" class="section level1">
+<div id="secutrialr-travis-codecov--appveyor-build-status" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr-travis-codecov-" class="anchor"></a>secuTrialR <img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a> <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/dev%20version-0.8.1-blue.svg"></a>
+<a href="#secutrialr-travis-codecov--appveyor-build-status" class="anchor"></a>secuTrialR <img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a> <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/dev%20version-0.8.6-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a>
 </h1></div>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
@@ -134,7 +134,23 @@ bmd_export
 ```
 
 ```
-## SecuTrial data imported from C:/Program Files/R/R-3.6.1/library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip
+## secuTrial data imported from:
+## C:/Program Files/R/R-3.6.1/library/secuTrialR/extdata/sT_exports/BMD/
+## s_export_CSV-xls_BMD_short_en_utf8.zip 
+##  table nrow ncol  meta original_name
+##     vp    1   10  TRUE        vp.xls
+##   vpfs    1    2  TRUE      vpfs.xls
+##     fs    1    7  TRUE        fs.xls
+##     qs    1    7  TRUE        qs.xls
+##     is    3    8  TRUE        is.xls
+##    ctr    1    3  TRUE       ctr.xls
+##     cn  113   13  TRUE        cn.xls
+##   atcn    0    6  TRUE      atcn.xls
+##  atcvp    0   11  TRUE     atcvp.xls
+##    qac    0   10  TRUE       qac.xls
+##    cts    0    8  TRUE       cts.xls
+##    bmd  504   27 FALSE       bmd.xls
+##  atbmd    0   28 FALSE     atbmd.xls
 ```
 
 Individual tables can be extracted from the `bmd_export` object via `tab 
@@ -144,13 +160,32 @@ Individual tables can be extracted from the `bmd_export` object via `tab
 For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.
 
 ```r
-labs % 
+labs  201903052356 2019-03-05 23:56:00
+## 7      20060301         2006-03-01           NA                <na>
+```
+
+secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing.
+During date conversion (i.e. `dates_secuTrial()`) `secuTrialR` currently creates `NA`s from such incomplete date entries.
+
+Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases.
+Users are, however, informed about this behaviour with a `warning()`. Subsequent approximation of incomplete dates can be manually performed.
+
+Recommended literature on incomplete dates/date imputation:\
+[Dubois and Hebert 2001](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf) \
+[Bowman 2006](https://www.lexjansen.com/phuse/2006/po/PO11.pdf) \
+
+
+#### Recommended approach if not using `read_secuTrial`
+
+
+```r
+f % 
   label_secuTrial() %&gt;%
   factorize_secuTrial() %&gt;%
   dates_secuTrial()
 ```
 
-</details><div id="exploratory-helpers" class="section level3">
+</na></details><div id="exploratory-helpers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exploratory-helpers" class="anchor"></a>Exploratory helpers</h3>
 <p><code>secuTrialR</code> has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.</p>
@@ -159,29 +194,9 @@ labs %
 <a href="#asdataframe" class="anchor"></a>as.data.frame</h4>
 <p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</a></code></pre></div>
-<pre><code>##  [1] "bmd"                       "bmd_export"               
-##  [3] "centre"                    "centre_id"                
-##  [5] "cn"                        "col_idx"                  
-##  [7] "cols"                      "counts_vect"              
-##  [9] "ctmnpdem00bmd"             "ctr"                      
-## [11] "ctu05"                     "ctu05_raw"                
-## [13] "curr_centre"               "curr_count"               
-## [15] "curr_ctr_cn"               "curr_dat"                 
-## [17] "curr_line"                 "curr_year"                
-## [19] "dates"                     "dates_centre_ids"         
-## [21] "dates_centre_ids_curr_ctr" "dem00bmd"                 
-## [23] "encoding"                  "export_location"          
-## [25] "factors"                   "header"                   
-## [27] "i"                         "j"                        
-## [29] "labelled"                  "labs"                     
-## [31] "ldat_ctu05"                "legend_names"             
-## [33] "missing_centers"           "output_line"              
-## [35] "plot_data"                 "recruitment_data"         
-## [37] "recruitment_table"         "return_data"              
-## [39] "rm_regex"                  "sdat_ctu05"               
-## [41] "show_centres"              "tes05"                    
-## [43] "tmnpdem00bmd"              "x"                        
-## [45] "year_counts"</code></pre>
+<pre><code>## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dat"            
+## [5] "dates"           "export_location" "factors"         "labelled"       
+## [9] "labs"</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(ctu05)</a></code></pre></div>
 <pre><code>##  [1] "export_options"          "forms"                  
 ##  [3] "casenodes"               "centres"                
@@ -201,38 +216,20 @@ labs %
 ## [31] "atemnpctu05surgeries"    "atadverseevents"</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(ctu05)</a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</a></code></pre></div>
-<pre><code>##  [1] "atadverseevents"           "atemnpctu05surgeries"     
-##  [3] "atmiv"                     "atmnpctu05ae"             
-##  [5] "atmnpctu05allmedi"         "atmnpctu05baseline"       
-##  [7] "atmnpctu05outcome"         "atmnpctu05sae"            
-##  [9] "atmnpctu05studyterminat"   "atmnpctu05treatment"      
-## [11] "bmd"                       "bmd_export"               
-## [13] "centre"                    "centre_id"                
-## [15] "cn"                        "col_idx"                  
-## [17] "cols"                      "counts_vect"              
-## [19] "ctmnpdem00bmd"             "ctr"                      
-## [21] "ctu05"                     "ctu05_raw"                
-## [23] "ctu05ae"                   "ctu05allmedi"             
-## [25] "ctu05baseline"             "ctu05outcome"             
-## [27] "ctu05sae"                  "ctu05studyterminat"       
-## [29] "ctu05treatment"            "curr_centre"              
-## [31] "curr_count"                "curr_ctr_cn"              
-## [33] "curr_dat"                  "curr_line"                
-## [35] "curr_year"                 "dates"                    
-## [37] "dates_centre_ids"          "dates_centre_ids_curr_ctr"
-## [39] "dem00bmd"                  "emnpctu05surgeries"       
-## [41] "encoding"                  "export_location"          
-## [43] "factors"                   "header"                   
-## [45] "i"                         "j"                        
-## [47] "labelled"                  "labs"                     
-## [49] "ldat_ctu05"                "legend_names"             
-## [51] "missing_centers"           "output_line"              
-## [53] "plot_data"                 "recruitment_data"         
-## [55] "recruitment_table"         "return_data"              
-## [57] "rm_regex"                  "sdat_ctu05"               
-## [59] "show_centres"              "tes05"                    
-## [61] "tmnpdem00bmd"              "x"                        
-## [63] "year_counts"</code></pre>
+<pre><code>##  [1] "atadverseevents"         "atemnpctu05surgeries"   
+##  [3] "atmiv"                   "atmnpctu05ae"           
+##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
+##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [11] "bmd_export"              "ctu05"                  
+## [13] "ctu05_raw"               "ctu05ae"                
+## [15] "ctu05allmedi"            "ctu05baseline"          
+## [17] "ctu05outcome"            "ctu05sae"               
+## [19] "ctu05studyterminat"      "ctu05treatment"         
+## [21] "dat"                     "dates"                  
+## [23] "emnpctu05surgeries"      "export_location"        
+## [25] "factors"                 "labelled"               
+## [27] "labs"</code></pre>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
 <div id="recruitment-over-time" class="section level4">
@@ -243,7 +240,7 @@ labs %
 <a class="sourceLine" id="cb11-2" title="2"><span class="co"># note that there is no line for Universitätsspital </span></a>
 <a class="sourceLine" id="cb11-3" title="3"><span class="co"># Basel because only one participant is registered for this centre</span></a>
 <a class="sourceLine" id="cb11-4" title="4"><span class="kw"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(ctu05, <span class="dt">cex =</span> <span class="fl">1.5</span>, <span class="dt">rm_regex =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">(.*</span><span class="ch">\\</span><span class="st">)$"</span>)</a></code></pre></div>
-<p><img src="figure/unnamed-chunk-18-1.png" alt="plot of chunk unnamed-chunk-18"></p>
+<p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># return the plot data</span></a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(ctu05, <span class="dt">return_data =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [[1]]
@@ -281,40 +278,66 @@ labs %
 ## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)</code></pre>
 <p>Furthermore, recruitment per year and center can be returned.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="reference/annual_recruitment.html">annual_recruitment</a></span>(ctu05, <span class="dt">rm_regex =</span> <span class="st">"</span><span class="ch">\\</span><span class="st">(.*</span><span class="ch">\\</span><span class="st">)$"</span>)</a></code></pre></div>
+<pre><code>##                     Center Total 2018 2019
+## 1                      All    11    1   10
+## 2           Charité Berlin     5    0    5
+## 3         Inselspital Bern     5    0    5
+## 4 Universitätsspital Basel     1    1    0</code></pre>
 </div>
 <div id="form-status-summary-statistics" class="section level4">
 <h4 class="hasAnchor">
 <a href="#form-status-summary-statistics" class="anchor"></a>Form status summary statistics</h4>
 <p>If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms have been filled.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">count_summary &lt;-<span class="st"> </span><span class="kw"><a href="reference/form_status_summary.html">form_status_summary</a></span>(ctu05)</a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(count_summary)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">count_summary &lt;-<span class="st"> </span><span class="kw"><a href="reference/form_status_summary.html">form_status_summary</a></span>(ctu05)</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(count_summary)</a></code></pre></div>
+<pre><code>##             form_name partly_filled completely_filled empty with_warnings
+## 5        ctu05allmedi             1                16     0             0
+## 6       ctu05baseline             3                14     0             0
+## 7        ctu05outcome             1                12     0             0
+## 8            ctu05sae             0                 2     0             0
+## 9  ctu05studyterminat             0                10     0             0
+## 10     ctu05treatment             0                11     0             0
+##    with_errors partly_filled.percent completely_filled.percent
+## 5            0            0.05882353                 0.9411765
+## 6            0            0.17647059                 0.8235294
+## 7            0            0.07692308                 0.9230769
+## 8            0            0.00000000                 1.0000000
+## 9            0            0.00000000                 1.0000000
+## 10           0            0.00000000                 1.0000000
+##    empty.percent with_warnings.percent with_errors.percent form_count
+## 5              0                     0                   0         17
+## 6              0                     0                   0         17
+## 7              0                     0                   0         13
+## 8              0                     0                   0          2
+## 9              0                     0                   0         10
+## 10             0                     0                   0         11</code></pre>
 <p>As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors. For a more participant id centered statistic you can perform the following.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="reference/form_status_counts.html">form_status_counts</a></span>(ctu05)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="reference/form_status_counts.html">form_status_counts</a></span>(ctu05)</a></code></pre></div>
 <p>This will give you a count based overview per participant id and form. Please note that both <code>form_status_summary</code> and <code>form_status_counts</code> only work with saved forms since unsaved form data is not available in secuTrial exports.</p>
 </div>
 <div id="visit-plan" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visit-plan" class="anchor"></a>Visit plan</h4>
 <p>secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">vs &lt;-<span class="st"> </span><span class="kw"><a href="reference/visit_structure.html">visit_structure</a></span>(ctu05)</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(vs)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">vs &lt;-<span class="st"> </span><span class="kw"><a href="reference/visit_structure.html">visit_structure</a></span>(ctu05)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(vs)</a></code></pre></div>
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 </div>
 <div id="linking-different-forms" class="section level4">
 <h4 class="hasAnchor">
 <a href="#linking-different-forms" class="anchor"></a>Linking different forms</h4>
 <p>Linkages amongst forms can be explored with the <code>links_secuTrial</code> function. This relies on the <code>igraph</code> package to create a network. It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="reference/links_secuTrial.html">links_secuTrial</a></span>(bmd_export)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="reference/links_secuTrial.html">links_secuTrial</a></span>(bmd_export)</a></code></pre></div>
 <p><img src="inst/extdata/graphics/map.png"><!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG --></p>
 </div>
 <div id="sampling-random-participants" class="section level4">
 <h4 class="hasAnchor">
 <a href="#sampling-random-participants" class="anchor"></a>Sampling random participants</h4>
 <p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span></a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="kw"><a href="reference/return_random_participants.html">return_random_participants</a></span>(ctu05, <span class="dt">percent =</span> <span class="fl">0.25</span>, <span class="dt">seed =</span> <span class="dv">1337</span>, <span class="dt">date =</span> <span class="st">"2019-03-18"</span>,</a>
-<a class="sourceLine" id="cb19-4" title="4">                           <span class="dt">centres =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw"><a href="reference/return_random_participants.html">return_random_participants</a></span>(ctu05, <span class="dt">percent =</span> <span class="fl">0.25</span>, <span class="dt">seed =</span> <span class="dv">1337</span>, <span class="dt">date =</span> <span class="st">"2019-03-18"</span>,</a>
+<a class="sourceLine" id="cb21-4" title="4">                           <span class="dt">centres =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</a></code></pre></div>
 <pre><code>## $participants
 ##          mnpaid                   centre mnpvisstartdate
 ## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
@@ -333,35 +356,41 @@ labs %
 <div id="testing-with-devtools" class="section level3">
 <h3 class="hasAnchor">
 <a href="#testing-with-devtools" class="anchor"></a>Testing with devtools</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># run tests</span></a>
-<a class="sourceLine" id="cb21-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/test.html">test</a></span>(<span class="st">"secuTrialR"</span>)</a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span></a>
-<a class="sourceLine" id="cb21-4" title="4">ignore_words &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,</a>
-<a class="sourceLine" id="cb21-5" title="5">                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,</a>
-<a class="sourceLine" id="cb21-6" title="6">                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>, </a>
-<a class="sourceLine" id="cb21-7" title="7">                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)</a>
-<a class="sourceLine" id="cb21-8" title="8">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/spell_check.html">spell_check</a></span>(<span class="st">"secuTrialR"</span>, <span class="dt">ignore =</span> ignore_words)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># run tests</span></a>
+<a class="sourceLine" id="cb23-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/test.html">test</a></span>(<span class="st">"secuTrialR"</span>)</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span></a>
+<a class="sourceLine" id="cb23-4" title="4">ignore_words &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,</a>
+<a class="sourceLine" id="cb23-5" title="5">                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,</a>
+<a class="sourceLine" id="cb23-6" title="6">                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>, </a>
+<a class="sourceLine" id="cb23-7" title="7">                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)</a>
+<a class="sourceLine" id="cb23-8" title="8">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/spell_check.html">spell_check</a></span>(<span class="st">"secuTrialR"</span>, <span class="dt">ignore =</span> ignore_words)</a></code></pre></div>
 </div>
 <div id="linting-with-lintr" class="section level3">
 <h3 class="hasAnchor">
 <a href="#linting-with-lintr" class="anchor"></a>Linting with lintr</h3>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># lint the package -&gt; should be clean</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lintr)</a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="kw">lint_package</span>(<span class="st">"secuTrialR"</span>, <span class="dt">linters =</span> <span class="kw">with_defaults</span>(<span class="dt">camel_case_linter =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb22-4" title="4">                                                   <span class="dt">object_usage_linter =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb22-5" title="5">                                                   <span class="kw">line_length_linter</span>(<span class="dv">125</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># lint the package -&gt; should be clean</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lintr)</a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="kw">lint_package</span>(<span class="st">"secuTrialR"</span>, <span class="dt">linters =</span> <span class="kw">with_defaults</span>(<span class="dt">camel_case_linter =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb24-4" title="4">                                                   <span class="dt">object_usage_linter =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb24-5" title="5">                                                   <span class="kw">line_length_linter</span>(<span class="dv">125</span>)))</a></code></pre></div>
+</div>
+<div id="building-the-vignette" class="section level3">
+<h3 class="hasAnchor">
+<a href="#building-the-vignette" class="anchor"></a>Building the vignette</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rmarkdown)</a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw">render</span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>, <span class="dt">output_format=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pdf_document"</span>))</a></code></pre></div>
 </div>
 <div id="generating-the-readme-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#generating-the-readme-file" class="anchor"></a>Generating the README file</h3>
 <p>The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the <code>README.Rmd</code> file and the file “knited” with R. This is easiest with RStudio, but other methods are available.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"knitr"</span>)</a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="kw">knit</span>(<span class="st">"README.Rmd"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(knitr)</a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="kw">knit</span>(<span class="st">"README.Rmd"</span>)</a></code></pre></div>
 </div>
 <div id="guidelines-for-contributors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#guidelines-for-contributors" class="anchor"></a>Guidelines for contributors</h3>
-<p>In order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
+<p>Requests for new features and bug fixes should first be documented as an <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues">Issue</a> on GitHub. Subsequently, in order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
 <p>A depiction of the core functionalities for loading can be found <a href="inst/extdata/graphics/secuTrialR.png">here</a>.</p>
 </div>
 </div>

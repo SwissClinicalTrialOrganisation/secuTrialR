@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.6</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/secuTrialR-package-vignette.html">secuTrialR package vignette</a>
+      <a href="../articles/secuTrialR-package-vignette.html">secuTrialR - a walkthrough</a>
     </li>
   </ul>
 </li>
@@ -168,58 +168,58 @@
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'><span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'>write_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dta"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmiv.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmiv.dta"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05baseline.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05baseline.dta"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05baseline.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05baseline.dta"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05outcome.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05outcome.dta"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05outcome.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05outcome.dta"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05treatment.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05treatment.dta"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05treatment.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05treatment.dta"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05allmedi.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05allmedi.dta"
 #&gt; 
 #&gt; [[9]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05allmedi.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05allmedi.dta"
 #&gt; 
 #&gt; [[10]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05studyterminat.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05studyterminat.dta"
 #&gt; 
 #&gt; [[11]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05studyterminat.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05studyterminat.dta"
 #&gt; 
 #&gt; [[12]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05ae.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05ae.dta"
 #&gt; 
 #&gt; [[13]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05ae.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05ae.dta"
 #&gt; 
 #&gt; [[14]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/ctu05sae.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/ctu05sae.dta"
 #&gt; 
 #&gt; [[15]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atmnpctu05sae.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atmnpctu05sae.dta"
 #&gt; 
 #&gt; [[16]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/emnpctu05surgeries.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/emnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[17]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atemnpctu05surgeries.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atemnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[18]]
-#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\Rtmp6B9EtI/atadverseevents.dta"
+#&gt; [1] "Saved to C:\\Users\\haynes\\AppData\\Local\\Temp\\RtmpGSaTNy/atadverseevents.dta"
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "atadverseevents.dta"         "atemnpctu05surgeries.dta"   
 #&gt;  [3] "atmiv.dta"                   "atmnpctu05ae.dta"           
 #&gt;  [5] "atmnpctu05allmedi.dta"       "atmnpctu05baseline.dta"     
@@ -229,8 +229,8 @@
 #&gt; [13] "ctu05baseline.dta"           "ctu05outcome.dta"           
 #&gt; [15] "ctu05sae.dta"                "ctu05studyterminat.dta"     
 #&gt; [17] "ctu05treatment.dta"          "emnpctu05surgeries.dta"     
-#&gt; [19] "file5ef84eae15c3.dll"        "libloc_185_23ef288.rds"     
-#&gt; [21] "libloc_219_9a73a63c.rds"    </div><div class='input'>
+#&gt; [19] "file9d5047ab32b4.dll"        "libloc_185_23ef288.rds"     
+#&gt; [21] "libloc_220_86c956c6.rds"    </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
