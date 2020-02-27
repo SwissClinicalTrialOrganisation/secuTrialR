@@ -81,7 +81,7 @@ read_export_options <- function(data_dir) {
   rectangular_table <- any(sapply(dict_settings[, "rectangulartable"], function(x) any(grepl(x, parsed_export))))
 
   # audit trail
-  audit_trail <- any(sapply(dict_settings[, "audittrail"], function(x) any(grepl(x, parsed_export))))
+  audit_trail <- any(sapply(dict_settings[, "audittrail"], function(x) any(grepl(x, parsed_export) & !grepl("Trail */", parsed_export, fixed = TRUE))))
 
   # language of the export (2-letter code)
   lang <- .get_export_language(parsed_export)
