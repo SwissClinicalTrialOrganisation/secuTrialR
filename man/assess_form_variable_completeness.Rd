@@ -4,9 +4,14 @@
 \alias{assess_form_variable_completeness}
 \title{Asses completeness of data for each variable in a secuTrial export}
 \usage{
-assess_form_variable_completeness(form, casenodes_table,
-  validation_overview, completeness = "allforms", occ_in_vp = 1,
-  omit_mnp = TRUE)
+assess_form_variable_completeness(
+  form,
+  casenodes_table,
+  validation_overview,
+  completeness = "allforms",
+  occ_in_vp = 1,
+  omit_mnp = TRUE
+)
 }
 \arguments{
 \item{form}{data.frame Form for which to assess variable completeness

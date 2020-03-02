@@ -4,8 +4,13 @@
 \alias{return_random_participants}
 \title{Returns the random participants from a secuTrial export}
 \usage{
-return_random_participants(x, centres = "all", percent = 0.1,
-  date = "1900-01-01", seed = 1)
+return_random_participants(
+  x,
+  centres = "all",
+  percent = 0.1,
+  date = "1900-01-01",
+  seed = 1
+)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}

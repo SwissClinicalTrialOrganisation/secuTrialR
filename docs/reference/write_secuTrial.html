@@ -166,58 +166,58 @@
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'><span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'>write_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dta"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmiv.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmiv.dta"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05baseline.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05baseline.dta"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05baseline.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05baseline.dta"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05outcome.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05outcome.dta"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05outcome.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05outcome.dta"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05treatment.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05treatment.dta"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05treatment.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05treatment.dta"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05allmedi.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05allmedi.dta"
 #&gt; 
 #&gt; [[9]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05allmedi.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05allmedi.dta"
 #&gt; 
 #&gt; [[10]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05studyterminat.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05studyterminat.dta"
 #&gt; 
 #&gt; [[11]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05studyterminat.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05studyterminat.dta"
 #&gt; 
 #&gt; [[12]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05ae.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05ae.dta"
 #&gt; 
 #&gt; [[13]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05ae.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05ae.dta"
 #&gt; 
 #&gt; [[14]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/ctu05sae.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/ctu05sae.dta"
 #&gt; 
 #&gt; [[15]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atmnpctu05sae.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atmnpctu05sae.dta"
 #&gt; 
 #&gt; [[16]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/emnpctu05surgeries.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/emnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[17]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atemnpctu05surgeries.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atemnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[18]]
-#&gt; [1] "Saved to /tmp/RtmpeR0JA3/atadverseevents.dta"
+#&gt; [1] "Saved to /tmp/Rtmp4qMTmZ/atadverseevents.dta"
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "atadverseevents.dta"             "atemnpctu05surgeries.dta"       
 #&gt;  [3] "atmiv.dta"                       "atmnpctu05ae.dta"               
 #&gt;  [5] "atmnpctu05allmedi.dta"           "atmnpctu05baseline.dta"         
@@ -227,8 +227,8 @@
 #&gt; [13] "ctu05baseline.dta"               "ctu05outcome.dta"               
 #&gt; [15] "ctu05sae.dta"                    "ctu05studyterminat.dta"         
 #&gt; [17] "ctu05treatment.dta"              "emnpctu05surgeries.dta"         
-#&gt; [19] "file43f94d098e58.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [21] "libloc_174_173b0d0583319ed2.rds" "libloc_191_b4d4fcc161e3181a.rds"
+#&gt; [19] "file5dd72671ad51.so"             "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [21] "libloc_174_173b0d0583319ed2.rds" "libloc_190_a664afc79c9c884b.rds"
 #&gt; [23] "libloc_198_906ea0066f46c4fa.rds"</div><div class='input'>
 </div></pre>
   </div>

@@ -4,8 +4,13 @@
 \alias{build_secuTrial_url}
 \title{Compose a secuTrial URL}
 \usage{
-build_secuTrial_url(server, instance = NA, customer = NA,
-  projid = NA, docid = NA)
+build_secuTrial_url(
+  server,
+  instance = NA,
+  customer = NA,
+  projid = NA,
+  docid = NA
+)
 }
 \arguments{
 \item{server}{string containing a server URL}
@@ -37,12 +42,12 @@ you usually use to log in. For example in:
 \item instance id is: \strong{ST21-setup-DataCapture}
 \item you can find the customer id at the end of the link i.e \strong{TES}
 
-Alternatively it can be found in the
+      Alternatively it can be found in the
       CustomerAdminTool -> click "Kunden" -> Value in DB column of table on login page.
 \item you can find the project id in the AdminTool -> Projects -> left side ID column in the table.
 \item you can find docids in secuTrial exports as values in the "mnpdocid" column.
 
-Alternatively they are noted in the form footers of the DataCapture.
+      Alternatively they are noted in the form footers of the DataCapture.
 }
 
 Also note that only the server address has to be provided, the other arguments are optional.
