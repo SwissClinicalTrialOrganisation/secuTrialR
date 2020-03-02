@@ -8,11 +8,13 @@
 
 <title>Subsets a secuTrialdata object — subset_secuTrial • secuTrialR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,14 +34,15 @@
 
 
 
-<meta property="og:title" content="Subsets a secuTrialdata object — subset_secuTrial" />
 
+<meta property="og:title" content="Subsets a secuTrialdata object — subset_secuTrial" />
 <meta property="og:description" content="Given a secuTrial data object, and subsetting parameters,
 this function filters the data object to include only the desired study participants.
 Subsetting is possible based on participants and based on centres. In order to subset
 based on participants, participant IDs (mnpaid) musst be present in the export.
 In order to subset based on centres, centre information must be included in the export." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -70,7 +73,7 @@ In order to subset based on centres, centre information must be included in the 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.6</span>
       </span>
     </div>
 
@@ -93,7 +96,7 @@ In order to subset based on centres, centre information must be included in the 
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/secuTrialR-package-vignette.html">secuTrialR package vignette</a>
+      <a href="../articles/secuTrialR-package-vignette.html">secuTrialR - a walkthrough</a>
     </li>
   </ul>
 </li>
@@ -101,7 +104,6 @@ In order to subset based on centres, centre information must be included in the 
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -123,18 +125,16 @@ In order to subset based on centres, centre information must be included in the 
     </div>
 
     <div class="ref-description">
-    
     <p>Given a secuTrial data object, and subsetting parameters,
 this function filters the data object to include only the desired study participants.
 Subsetting is possible based on participants and based on centres. In order to subset
 based on participants, participant IDs (mnpaid) musst be present in the export.
 In order to subset based on centres, centre information must be included in the export.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>subset_secuTrial</span>(<span class='no'>dat</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centre</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -155,11 +155,10 @@ In order to subset based on centres, centre information must be included in the 
       <td><p>boolean which if true excludes participants and centres from dat</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>secuTrialdata object containing only those participants that meet the selection criteria.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Subsetting based on participants only, centers only, or based on both is possible. The value of parameter exclude
@@ -167,7 +166,6 @@ determines whether the output will include participants that meet selection crit
 or exclude them (when exclude = TRUE). When selecting based on both participants and centres,
 exclude = FALSE will include the intersection of participants meeting the selection criteria.
 If exclude = TRUE, a complement of union of participant and centre sets is returned.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -223,11 +221,8 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

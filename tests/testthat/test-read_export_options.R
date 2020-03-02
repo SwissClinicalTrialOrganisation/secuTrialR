@@ -162,3 +162,14 @@ test_that("Success for CSV format", {
   expect_equal(eo_csv$format_info, "CSV format")
   expect_equal(exp_opt_tes05_iso$format_info, "CSV format for MS Excel")
 })
+
+# audit trail parsing
+export_location_no_at <- system.file("extdata", "sT_exports", "export_options",
+                                     "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+                                     package = "secuTrialR")
+
+sT_export_no_at <- read_secuTrial_raw(data_dir = export_location_no_at)
+
+test_that("Lack of Audit Trail successfully parsed", {
+  expect_false(sT_export_no_at$export_options$audit_trail)
+})
