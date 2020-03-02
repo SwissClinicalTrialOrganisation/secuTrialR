@@ -5,7 +5,7 @@
 \alias{plot.secuTrialvisit}
 \title{Get the visit structure of secuTrialdata objects}
 \usage{
-visit_structure(x)
+visit_structure(x, sorted = TRUE)
 
 plot(x)
 }
