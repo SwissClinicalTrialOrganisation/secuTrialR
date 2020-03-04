@@ -4,8 +4,7 @@
 \alias{subset_secuTrial}
 \title{Subsets a secuTrialdata object}
 \usage{
-subset_secuTrial(dat, participant = NULL, centre = NULL,
-  exclude = FALSE)
+subset_secuTrial(dat, participant = NULL, centre = NULL, exclude = FALSE)
 }
 \arguments{
 \item{dat}{secuTrialdata object containing participant IDs and centre information}

@@ -4,8 +4,13 @@
 \alias{links_secuTrial}
 \title{Show links between forms}
 \usage{
-links_secuTrial(object, forms = NULL, formcol = "#d8b365",
-  varcol = "#e5f5f9", plot = TRUE)
+links_secuTrial(
+  object,
+  forms = NULL,
+  formcol = "#d8b365",
+  varcol = "#e5f5f9",
+  plot = TRUE
+)
 }
 \arguments{
 \item{object}{secuTrialdata object}

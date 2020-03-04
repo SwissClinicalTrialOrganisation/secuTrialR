@@ -4,8 +4,13 @@
 \alias{plot_recruitment}
 \title{Plots the recruitment over time for secuTrialdata objects}
 \usage{
-plot_recruitment(x, return_data = FALSE, show_centres = TRUE,
-  cex = 1, rm_regex = "")
+plot_recruitment(
+  x,
+  return_data = FALSE,
+  show_centres = TRUE,
+  cex = 1,
+  rm_regex = ""
+)
 }
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
