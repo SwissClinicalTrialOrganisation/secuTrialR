@@ -72,7 +72,6 @@ suppressMessages(library(secuTrialR))
 installed.packages()["secuTrialR", "Version"]
 ```
 
-
 # The CTU05 dataset
 
 Before we continue with the functionalities let's briefly talk about the test data which is
