@@ -1,3 +1,6 @@
+# secuTrialR 0.8.7
+* add launch_dashboard function to launch shiny app
+
 # secuTrialR 0.8.6
 * bug fix: presence of the audit trail was incorrectly identified due to a comment in the source file of the export options (see #155, comments from @suvi-subra and @OliviaEbnerIAS)
 
