@@ -28,7 +28,7 @@ Description: This R package is intended to standardize and simplify working with
     exported from the clinical data management system (CDMS) secuTrial. The primary
     data export the package works with is a standard non-rectangular export.
 Depends:
-    R (>= 3.0.2),
+    R (>= 3.2),
     haven (>= 2.2.0),
     igraph,
     readr,
