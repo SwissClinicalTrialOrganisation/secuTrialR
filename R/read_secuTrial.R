@@ -15,7 +15,7 @@
 #'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                package = "secuTrialR")
 #' # read all export data
-#' sT_export <- read_secuTrial_raw(data_dir = export_location)
+#' sT_export <- read_secuTrial(data_dir = export_location)
 #'
 read_secuTrial <- function(data_dir,
                            labels = TRUE,
@@ -35,7 +35,7 @@ read_secuTrial <- function(data_dir,
       check_export_options(d)
     },
     error = function(e) {
-      message("Input to read_secuTrial() appears to be incompatible. Have you exported CSV format?")
+      message("Input to read_secuTrial() appears to be incompatible. Is it rectangular? Have you exported CSV format?")
     }
   )
   # label
