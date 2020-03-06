@@ -1,4 +1,9 @@
 # secuTrialR 0.8.6
+* extended failure comment in `read_secuTrial()` to indicate that the problem could be a rectangular export file (#168)
+* added "Form data of hidden fields" export option information to `export_options` (#171)
+* added `return_hidden_items()` function (#172)
+
+# secuTrialR 0.8.6
 * bug fix: presence of the audit trail was incorrectly identified due to a comment in the source file of the export options (see #155, comments from @suvi-subra and @OliviaEbnerIAS)
 
 # secuTrialR 0.8.5
