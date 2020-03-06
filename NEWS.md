@@ -1,4 +1,4 @@
-# secuTrialR 0.8.6
+# secuTrialR 0.8.7
 * extended failure comment in `read_secuTrial()` to indicate that the problem could be a rectangular export file (#168)
 * added "Form data of hidden fields" export option information to `export_options` (#171)
 * added `return_hidden_items()` function (#172)
