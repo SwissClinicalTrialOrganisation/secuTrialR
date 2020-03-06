@@ -33,6 +33,11 @@
 diff_secuTrial <- function(x, y) {
   if (class(x) == "secuTrialdata" & class(y) == "secuTrialdata") {
 
+    # comparisons are only possible if the project setup was exported
+    if (! x$export_options$proj_setup & y$export_options$proj_setup) {
+      stop("Both exports must be exported with Project setup data to allow the comparison.")
+    }
+
     # comapring different projects makes no sense really
     if (x$export_options$project_name != y$export_options$project_name) {
       stop("The two exports appear to originate from different secuTrial projects.")
