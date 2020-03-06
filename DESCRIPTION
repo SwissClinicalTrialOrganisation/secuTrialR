@@ -49,6 +49,5 @@ Suggests:
     lintr,
     rmarkdown,
     testthat,
-    shiny,
     tufte
 VignetteBuilder: knitr
