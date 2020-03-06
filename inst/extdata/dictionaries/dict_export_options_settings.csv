@@ -1,7 +1,7 @@
-lang,shortnames,rectangulartable,audittrail,columnnames,duplicatemeta,separatetable,formstatus,centreinfo,projsetup
-en,[sS]horten,[rR]ectangular table,[aA]udit [tT]rail<br,[cC]olumn names,[dD]uplicate form meta data into all tables,separate table,[fF]orm status,[cC]entre information,Project setup
-de,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup
-it,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup
-fr,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Nom de la colonne,Dupliziere Formular-Metadaten in alle Tabellen,Tableau séparé,Formular-Status,Centres<br,Modification du projet
-pl,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup
-es,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Nombres de columnas,Dupliziere Formular-Metadaten in alle Tabellen,tabla separada,Formular-Status,[cC]entro de información,Modificación de proyecto
+lang,shortnames,rectangulartable,audittrail,columnnames,duplicatemeta,separatetable,formstatus,centreinfo,projsetup,hiddenfields
+en,[sS]horten,[rR]ectangular table,[aA]udit [tT]rail<br,[cC]olumn names,[dD]uplicate form meta data into all tables,separate table,[fF]orm status,[cC]entre information,Project setup,Form data of hidden fields
+de,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup,Formulardaten von ausgeblendeten Feldern
+it,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup,Formulardaten von ausgeblendeten Feldern
+fr,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Nom de la colonne,Dupliziere Formular-Metadaten in alle Tabellen,Tableau séparé,Formular-Status,Centres<br,Modification du projet,Données du formulaire à partir des champs masqués
+pl,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Spaltennamen,Dupliziere Formular-Metadaten in alle Tabellen,Extratabelle,Formular-Status,[zZ]entrumsinformationen,Projekt-Setup,Formulardaten von ausgeblendeten Feldern
+es,Tabellenamen kürzen,Rechtecktabelle,Audit Trail<br,Nombres de columnas,Dupliziere Formular-Metadaten in alle Tabellen,tabla separada,Formular-Status,[cC]entro de información,Modificación de proyecto,Datos de formulario de campos ocultos
