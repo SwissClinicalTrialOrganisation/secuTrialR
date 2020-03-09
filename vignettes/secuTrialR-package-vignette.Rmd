@@ -439,6 +439,18 @@ return_scores(ctu05_data)
 
 \newpage
 
+## Retrieve hidden variables
+
+Sometimes, during a study, certain fields may be hidden because data should
+no longer be entered into them. If this is the case and the data of these
+fields is part of your export is likely good to know about it. In this case
+nothing is hidden.
+\vspace{5pt}
+
+```{r}
+return_hidden_items(ctu05_data)
+```
+
 ## Finding changes/differences in project setup implementations
 
 In ongoing studies it is possible that changes to the secuTrial data entry
@@ -484,8 +496,6 @@ tdir <- tempdir()
 # write spss
 write_secuTrial(ctu05_data, format = "sav", path = tdir)
 ```
-
-\newpage
 
 ## Subsetting `secuTrialdata`
 
