@@ -28,8 +28,14 @@ repetitive tasks in order to allow spending more time on the unique aspects
 of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation
 ([\textcolor{blue}{SCTO}](https://www.scto.ch/en/news.html)).
 
+If you are still challenged by more basic operations in R we suggest reading
+[\textcolor{blue}{Hands-On Programming with R}](https://rstudio-education.github.io/hopr/),
+which serves as an excellent introduction to the basic concepts of R.
+
 This vignette will teach you how to use the `secuTrialR` package and you will likely
 learn quite a bit about secuTrial exports in general along the way.
+Throughout the `secuTrialR` package and within this vignette we refer to
+patients, cases, subjects etc. enrolled in a secuTrial database as participants.
 
 ```{r, include = FALSE}
 # needed so that the as.data.frame part of the vignette
@@ -42,12 +48,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Installing
+# Installing from GitHub with `devtools`
 
-Let's get started by installing the package straight from 
-[\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
-and then loading it. For this you will need to have `devtools` installed. We are
-planning to add `secuTrialR` to CRAN but we are not there yet.
+planning to add `secuTrialR` to CRAN but we are not there yet. If you are working on Windows and would
+like to install with `devtools` you  will likely need to install
+[\textcolor{blue}{Rtools}](https://cran.r-project.org/bin/windows/Rtools/).
+Installing everything, including the dependencies, from scratch may take a while (20-30 minutes).
+
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -97,6 +104,10 @@ and **without duplicated meta data**. Furthermore, it is important to use
 Most of these options are truly optional and reading your data should
 work even with differences from the above specifications.
 
+A description of how data can be exported from secuTrial can be found
+[\textcolor{blue}{here}](https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/).
+This description includes screenshots of the export options configuration interface.
+
 # Reading a secuTrial data export into R
 
 There is one principle function to read your data (i.e. `read_secuTrial()`).
@@ -139,10 +150,10 @@ specifies each table's dimensions (i.e. `ncol`, `nrow`).
 
 By now you have possibly realized that all the forms specified earlier
 (i.e. "surgeries", "baseline", "outcome", "treatment", "allmedi", "studyterminat", "ae"
-and "sae") are present, but also that there are many tables do not correspond to the
+and "sae") are present, but also that there are many tables that do not correspond to the
 previously introduced forms.
 
-The majority of the unrecognizable tables are tagged as `TRUE` in the `meta` column.
+The majority of the unfamiliar tables are tagged as `TRUE` in the `meta` column.
 This means that they are metadata tables. Their names and data structures
 are fixed in secuTrial exports. In the following we will briefly explain
 which information the most relevant meta tables contain.
@@ -327,10 +338,11 @@ plot_recruitment(ctu05_data, cex = 1.2, rm_regex = "\\(.*\\)$")
 ## Visit plan visualization
 
 `secuTrialR` can provide a depiction of the visit structure, although only where
-the visit plan is fixed.
+the visit plan is fixed. Black rectangles in the grid represent a form to be filled (x)
+during one of the visits (y).
 \vspace{5pt}
 
-```{r, fig.height = 4, fig.width = 4}
+```{r, fig.height = 3.9, fig.width = 3.9}
 vs <- visit_structure(ctu05_data)
 plot(vs)
 ```
@@ -353,7 +365,8 @@ Thus, a whole study may have 99% completeness on variable basis while showing
 completeness on variable basis in a generic way. Hence, high completeness on form
 basis implies high completeness on variable basis but **NOT** vice versa.
 
-For a more participant id centred statistic you can perform the following.
+If you would rather retrieve information on form completeness for each participant individually
+you can perform the following.
 \vspace{5pt}
 
 ```{r}
@@ -383,7 +396,8 @@ data in the export.
 
 During study monitoring it is common practice to check random participants
 from a study database. These participants should be retrieved in a reproducible
-fashion. The below function allows this for a loaded secuTrial data export.
+fashion, which can be achieved by setting a so-called seed.
+The below function allows reproducible retrieval for a loaded secuTrial data export.
 \vspace{5pt}
 
 ```{r}
@@ -435,7 +449,7 @@ return_hidden_items(ctu05_data)
 ```
 
 
-## Finding changes/differences in exports
+## Finding changes/differences in project setup implementations
 
 In ongoing studies it is possible that changes to the secuTrial data entry
 interface (i.e. the electronic case report forms) are made. Sometimes these
