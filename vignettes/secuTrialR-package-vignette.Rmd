@@ -57,7 +57,6 @@ planning to add `secuTrialR` to CRAN but we are not there yet. If you are workin
 like to install with `devtools` you  will likely need to install
 [\textcolor{blue}{Rtools}](https://cran.r-project.org/bin/windows/Rtools/).
 Installing everything, including the dependencies, from scratch may take a while (20-30 minutes).
-
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -400,7 +399,7 @@ data in the export.
 During study monitoring it is common practice to check random participants
 from a study database. These participants should be retrieved in a reproducible
 fashion, which can be achieved by setting a so-called seed.
-The below function allows reproducible retrieval for a loaded secuTrial data export.
+The below function allows this for a loaded secuTrial data export.
 \vspace{5pt}
 
 ```{r}
@@ -450,6 +449,7 @@ nothing is hidden.
 ```{r}
 return_hidden_items(ctu05_data)
 ```
+
 
 ## Finding changes/differences in project setup implementations
 
