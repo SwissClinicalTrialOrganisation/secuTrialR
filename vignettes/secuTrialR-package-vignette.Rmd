@@ -50,6 +50,9 @@ knitr::opts_chunk$set(
 
 # Installing from GitHub with `devtools`
 
+Let's get started by installing the package straight from
+[\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+and then loading it. For this you will need to have `devtools` installed. We are
 planning to add `secuTrialR` to CRAN but we are not there yet. If you are working on Windows and would
 like to install with `devtools` you  will likely need to install
 [\textcolor{blue}{Rtools}](https://cran.r-project.org/bin/windows/Rtools/).
