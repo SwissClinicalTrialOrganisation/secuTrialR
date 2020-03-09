@@ -152,3 +152,12 @@ test_that("Separate reference table option parsing", {
   expect_true(sT_export_long_es$export_options$refvals_separate)
   expect_true(sT_export_long_pl$export_options$refvals_separate)
 })
+
+test_that("Hidden fields option parsing", {
+  expect_true(sT_export_long_en$export_options$hidden_fields)
+  expect_true(sT_export_long_de$export_options$hidden_fields)
+  expect_true(sT_export_long_it$export_options$hidden_fields)
+  expect_true(sT_export_long_fr$export_options$hidden_fields)
+  expect_true(sT_export_long_es$export_options$hidden_fields)
+  expect_true(sT_export_long_pl$export_options$hidden_fields)
+})

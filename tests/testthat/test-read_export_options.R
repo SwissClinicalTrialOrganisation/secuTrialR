@@ -164,12 +164,18 @@ test_that("Success for CSV format", {
 })
 
 # audit trail parsing
-export_location_no_at <- system.file("extdata", "sT_exports", "export_options",
-                                     "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
-                                     package = "secuTrialR")
+export_location_only_col_names <- system.file("extdata", "sT_exports", "export_options",
+                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+                                              package = "secuTrialR")
 
-sT_export_no_at <- read_secuTrial_raw(data_dir = export_location_no_at)
+sT_export_only_col_names <- read_secuTrial_raw(data_dir = export_location_only_col_names)
 
 test_that("Lack of Audit Trail successfully parsed", {
-  expect_false(sT_export_no_at$export_options$audit_trail)
+  expect_false(sT_export_only_col_names$export_options$audit_trail)
+})
+
+# hidden field parsing
+test_that("Hidden fields successfully parsed", {
+  expect_false(sT_export_only_col_names$export_options$hidden_fields)
+  expect_true(exp_opt_tes05_iso$hidden_fields)
 })
