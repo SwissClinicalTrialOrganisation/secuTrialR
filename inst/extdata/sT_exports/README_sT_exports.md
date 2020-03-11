@@ -9,7 +9,7 @@ This readme file contains information about file structure and naming convention
 - **shortnames** - contains a collection of secuTrial exports with short table names
 - **export_options** - contains a collection of secuTrial exports with differing export options
 - **change_tracking** - contains exports with differing project setups and without any case data
-- **subset** - contains partial secuTrial exports based on study centre. This is needed for testing the secuTrialdata subsetting funcitonality.
+- **subset** - contains partial secuTrial exports based on study centre. This is needed for testing the secuTrialdata subsetting functionality.
 
 ## File naming
 
