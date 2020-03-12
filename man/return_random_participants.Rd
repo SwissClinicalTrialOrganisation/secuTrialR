@@ -18,7 +18,7 @@ return_random_participants(
 \item{centres}{A character vector of centres for which participants should be returned. If left
 unspecified it will return participants for every study centre.}
 
-\item{percent}{A number greater than 0 and smaller than 1 specifying the approximate percantage
+\item{percent}{A number greater than 0 and smaller than 1 specifying the approximate percentage
 of participants to be returned per centre.}
 
 \item{date}{If only participants after a specific date should be considered this can be entered here.
@@ -34,7 +34,9 @@ There are situations (e.g. randomized monitoring) in which you may want to
 \details{
 return_random_participants will produce a list of two elements. First, a data.frame that contains the
          random participants from each specified centre. This is performed based on a specified seed to retain
-         reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
+         reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()}).
+         If the percentage does not yield an integer for a centre the number is tranformed into an integer
+         under application of the \code{ceiling()} function (i.e. it is rounded up).
 }
 \examples{
 # export location

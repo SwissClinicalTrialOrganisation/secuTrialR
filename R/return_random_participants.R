@@ -4,7 +4,7 @@
 #' @param x a \code{secuTrialdata} object
 #' @param centres A character vector of centres for which participants should be returned. If left
 #'                unspecified it will return participants for every study centre.
-#' @param percent A number greater than 0 and smaller than 1 specifying the approximate percantage
+#' @param percent A number greater than 0 and smaller than 1 specifying the approximate percentage
 #'                of participants to be returned per centre.
 #' @param date If only participants after a specific date should be considered this can be entered here.
 #'             Format should be "YYYY-MM-DD" (e.g. "2011-03-26" for March 26th 2011).
@@ -13,7 +13,9 @@
 #' @export
 #' @details return_random_participants will produce a list of two elements. First, a data.frame that contains the
 #'          random participants from each specified centre. This is performed based on a specified seed to retain
-#'          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()})
+#'          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()}).
+#'          If the percentage does not yield an integer for a centre the number is tranformed into an integer
+#'          under application of the \code{ceiling()} function (i.e. it is rounded up).
 #'
 #' @examples
 #' # export location
@@ -38,6 +40,15 @@ return_random_participants <- function(x, centres = "all", percent = 0.1, date =
      # need centre info
      if (! x$export_options$centre_info) {
        stop("Please reexport with Centre information.")
+     }
+     # check for centres being part of the export (github issue #151)
+     if (! "all" %in% centres) {
+       missing_ctr <- centres[which(! centres %in% ctr_table$mnpctrname)]
+       if (length(missing_ctr)) {
+         stop(paste(paste(missing_ctr, collapse = ", "),
+                    "not part of the specified export.\nViable centres are:",
+                    paste(ctr_table$mnpctrname, collapse = ", ")))
+       }
      }
      # 0 and 1 can also be excluded because 0 means nothing
      # and 1 means everything. Both cases are implicitly useless.

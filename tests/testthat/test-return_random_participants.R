@@ -47,4 +47,6 @@ test_that("Test output", {
   expect_error(suppressWarnings(return_random_participants(bmd, date = 1999)))
   expect_error(return_random_participants(sT_export_only_col_names))
   expect_error(return_random_participants(sT_export_no_centre_info))
+  expect_error(return_random_participants(bmd, centres = "Not a centre"))
+  expect_error(return_random_participants(bmd, centres = c("Not a centre", "Also not a centre")))
 })
