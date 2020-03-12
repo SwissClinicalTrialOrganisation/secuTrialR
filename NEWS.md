@@ -1,3 +1,6 @@
+# secuTrialR 0.8.8
+* added check to make sure that specified centres are part of the export in `return_random_participants()` (#151)
+
 # secuTrialR 0.8.7
 * extended failure comment in `read_secuTrial()` to indicate that the problem could be a rectangular export file (#168)
 * added "Form data of hidden fields" export option information to `export_options` (#171)
