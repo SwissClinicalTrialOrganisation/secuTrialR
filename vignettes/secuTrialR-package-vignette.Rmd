@@ -101,8 +101,9 @@ using `system.file()`.
 Prior to reading your data into R you need to export it with the secuTrial ExportSearchTool.
 We suggest exporting **non-rectangular**, **zipped**, **English** data with 
 **reference values** stored **in a separate table** including 
-**Add-IDs**, **centre information**, **form status**, **project setup**
-and **without duplicated meta data**. Furthermore, it is important to use
+**Add-IDs**, **centre information**, **form status**, **project setup**,
+**without duplicated meta data** and **without form data of hidden fields**.
+Furthermore, it is important to use
 **"CSV format"**/**"CSV format for MS Excel"** and suggested to select **UTF-8** encoding.
 Most of these options are truly optional and reading your data should
 work even with differences from the above specifications.
