@@ -155,7 +155,7 @@ test_that("Errored for non CSV format", {
 })
 
 # success for CSV exports
-eo_csv <- read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+eo_csv <- read_export_options(data_dir = system.file("extdata", "sT_exports", "exp_opt",
                                                      "s_export_CSV_CTU05_20191115-091627_CSV.zip",
                                                      package = "secuTrialR"))
 test_that("Success for CSV format", {
@@ -164,8 +164,8 @@ test_that("Success for CSV format", {
 })
 
 # audit trail parsing
-export_location_only_col_names <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+export_location_only_col_names <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
                                               package = "secuTrialR")
 
 sT_export_only_col_names <- read_secuTrial_raw(data_dir = export_location_only_col_names)

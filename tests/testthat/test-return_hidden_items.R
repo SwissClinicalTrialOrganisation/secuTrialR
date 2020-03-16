@@ -7,8 +7,8 @@ ldat <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
                                   "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                   package = "secuTrialR"))
 
-export_location_only_col_names <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+export_location_only_col_names <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
                                               package = "secuTrialR")
 
 sT_export_only_col_names <- read_secuTrial_raw(data_dir = export_location_only_col_names)

@@ -1,19 +1,19 @@
 context("get")
 
-sT <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                 "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+sT <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
+                                 "s_export_CSV-xls_CTU05_all_info.zip",
                                  package = "secuTrialR"))
 
-sT_noid <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                      "s_export_CSV-xls_CTU05_20191003-144833_no_addid.zip",
+sT_noid <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
+                                      "s_export_CSV-xls_CTU05_no_addid.zip",
                                       package = "secuTrialR"))
 
-sT_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                          "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
+sT_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
+                                          "s_export_CSV-xls_CTU05_no_centre_info.zip",
                                           package = "secuTrialR"))
 
-sT_noid_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "export_options",
-                                          "s_export_CSV-xls_CTU05_20191004-101600_no_addid_no_centre_info_no_proj_setup.zip",
+sT_noid_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
+                                          "s_export_CSV-xls_CTU05_no_addid_no_ctr_info_no_proj_setup.zip",
                                           package = "secuTrialR"))
 
 test_that("Get participant error", {

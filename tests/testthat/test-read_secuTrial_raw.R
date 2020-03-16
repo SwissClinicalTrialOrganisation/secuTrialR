@@ -8,28 +8,28 @@ long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
-no_add_id_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                         "s_export_CSV-xls_CTU05_20191003-144833_no_addid.zip",
+no_add_id_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                         "s_export_CSV-xls_CTU05_no_addid.zip",
                                          package = "secuTrialR")
 
-no_centre_info_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
+no_centre_info_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_no_centre_info.zip",
                                               package = "secuTrialR")
 
-no_proj_setup_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                             "s_export_CSV-xls_CTU05_20191003-144751_no_proj_setup.zip",
+no_proj_setup_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                             "s_export_CSV-xls_CTU05_no_proj_setup.zip",
                                              package = "secuTrialR")
 
-no_add_id_cent_proj_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                                   "s_export_CSV-xls_CTU05_20191004-101600_no_addid_no_centre_info_no_proj_setup.zip",
+no_add_id_cent_proj_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                                   "s_export_CSV-xls_CTU05_no_addid_no_ctr_info_no_proj_setup.zip",
                                                    package = "secuTrialR")
 
-all_info_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                        "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+all_info_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                        "s_export_CSV-xls_CTU05_all_info.zip",
                                         package = "secuTrialR")
 
-only_col_names_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+only_col_names_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
                                               package = "secuTrialR")
 
 sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
