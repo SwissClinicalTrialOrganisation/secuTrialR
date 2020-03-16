@@ -37,7 +37,7 @@
 #'
 #' # ex. 2
 #' # load export
-#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
 #'                                             "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
 #'                                             package = "secuTrialR"))
 #'
@@ -71,7 +71,7 @@ labels_secuTrial <- function(object, form = NULL) {
 #'
 #' # APPROACH 2: label_secuTrial
 #' # load secuTrial export with separate reference table
-#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
 #'                                             "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                             package = "secuTrialR"))
 #' # label the secuTrialdata object
