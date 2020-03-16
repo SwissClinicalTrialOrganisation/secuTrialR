@@ -43,7 +43,6 @@ write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FAL
   })
 }
 
-#' @export
 #' @name write_secuTrial
 #' @param df a data.frame
 #' @param filename file name
