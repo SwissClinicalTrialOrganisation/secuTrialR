@@ -23,7 +23,8 @@ file_extension <- "xls"
 entry <- "items"
 
 test_that("Meta name constructed.", {
-  expect_equal(.construct_metaname("items", meta_names, file_tag, file_extension), "items_DEM00_20190318-104703.xls")
+  expect_equal(.construct_metaname("items", meta_names, file_tag, file_extension),
+               "items_DEM00_20190318-104703.xls")
 })
 
 
@@ -160,22 +161,22 @@ parse_export_options <- function(data_dir) {
   return(parsed_export)
 }
 # load exports in supported languages
-data_dirs_supported <- list(en = system.file("extdata", "sT_exports", "longnames",
+data_dirs_supported <- list(en = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                              package = "secuTrialR"),
-                            de = system.file("extdata", "sT_exports", "longnames",
+                            de = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_de_utf8.zip",
                                              package = "secuTrialR"),
-                            fr = system.file("extdata", "sT_exports", "longnames",
+                            fr = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_fr_utf8.zip",
                                              package = "secuTrialR"),
-                            it = system.file("extdata", "sT_exports", "longnames",
+                            it = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_it_utf8.zip",
                                              package = "secuTrialR"),
-                            es = system.file("extdata", "sT_exports", "longnames",
+                            es = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_es_utf8.zip",
                                              package = "secuTrialR"),
-                            pl = system.file("extdata", "sT_exports", "longnames",
+                            pl = system.file("extdata", "sT_exports", "lnames",
                                              "s_export_CSV-xls_CTU05_long_ref_miss_pl_utf8.zip",
                                              package = "secuTrialR"))
 parsed_exports_supported <- lapply(data_dirs_supported, function(x) parse_export_options(x))
@@ -190,7 +191,7 @@ test_that("export options language parsed", {
 })
 
 # unknown language short file name
-data_dir_unsupported <- system.file("extdata", "sT_exports", "shortnames",
+data_dir_unsupported <- system.file("extdata", "sT_exports", "snames",
                                     "s_export_CSV-xls_CTU05_short_meta_ref_miss_unsupported_utf8.zip",
                                     package = "secuTrialR")
 # unsupported language error msg

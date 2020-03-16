@@ -1,14 +1,14 @@
 context("completeness")
 
 # CTU05
-l_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
+l_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "lnames",
                                       "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                       package = "secuTrialR"))
-s_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+s_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                       "s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip",
                                       package = "secuTrialR"))
 # polish
-s_ctu05_pl <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+s_ctu05_pl <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_meta_ref_miss_pl_utf8.zip",
                                          package = "secuTrialR"))
 
@@ -139,7 +139,7 @@ test_that("Test output after subsetting centres", {
                                                    colSums(counts_berlin[, count_cols])))
 })
 
-# participants 
+# participants
 id_set <- c("RPACK-CBE-002", "RPACK-INS-014", "RPACK-USB-123")
 
 l_ctu05_rm <- subset_secuTrial(l_ctu05, participant = id_set, exclude = TRUE)
@@ -154,7 +154,7 @@ test_that("Test output after subsetting participants", {
 })
 
 
-# centre and participants 
+# centre and participants
 no_bern_no_basel <- subset_secuTrial(s_ctu05,
                                      participant = "RPACK-USB-123", centre = "Inselspital Bern (RPACK)",
                                      exclude = TRUE)

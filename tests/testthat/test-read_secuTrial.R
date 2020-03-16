@@ -2,13 +2,13 @@ context("read_secutrial")
 
 
 # zipped
-l1 <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+l1 <- system.file("extdata", "sT_exports", "lnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
             package = "secuTrialR")
 
-l2 <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
+l2 <- system.file("extdata", "sT_exports", "lnames", "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                   package = "secuTrialR")
 
-s1 <- system.file("extdata", "sT_exports", "shortnames", "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
+s1 <- system.file("extdata", "sT_exports", "snames", "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                   package = "secuTrialR")
 
 # zipped

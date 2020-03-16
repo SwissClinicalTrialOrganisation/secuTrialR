@@ -2,7 +2,7 @@ context("dates")
 
 
 # check individual variables
-dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
+dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "snames",
                                       "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                       package = "secuTrialR"))
 test_that("loading data: CTU05_shortnames (warn)",
@@ -49,7 +49,7 @@ test_that("number of date metadata variables",
           expect_equal(sum(sapply(sapply(f$atae1, class), function(x) identical(x, "Date"))), 2))
 
 
-dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                       "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                       package = "secuTrialR"))
 test_that("loading data: CTU05_longnames (warn)",
@@ -65,7 +65,7 @@ test_that("number of datetime metadata variables",
 test_that("number of date metadata variables",
           expect_equal(sum(sapply(sapply(f$atadverseevents, class), function(x) identical(x, "Date"))), 2))
 
-dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                       "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                       package = "secuTrialR"))
 test_that("loading data: CTU05_long_sep_ref (warn)",

@@ -9,7 +9,7 @@ long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
-sep_ref_export_loc <- system.file("extdata", "sT_exports", "longnames",
+sep_ref_export_loc <- system.file("extdata", "sT_exports", "lnames",
                                   "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                   package = "secuTrialR")
 

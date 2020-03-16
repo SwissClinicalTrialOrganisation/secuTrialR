@@ -1,9 +1,9 @@
 context("annual recruitment")
 
-sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
-ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
+ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "lnames",
                                          "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 bmd <- read_secuTrial(system.file("extdata", "sT_exports", "BMD",
@@ -57,7 +57,7 @@ test_that("Test centre subsetting", {
                as.numeric(ann_rec_s_no_bern$Total)[1])
 })
 
-# participants 
+# participants
 id_set <- c("RPACK-CBE-001", "RPACK-INS-012", "RPACK-USB-123")
 
 rm_set_sdat <- subset_secuTrial(sdat_ctu05, participant = id_set, exclude = TRUE)

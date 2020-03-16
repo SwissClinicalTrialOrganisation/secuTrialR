@@ -39,7 +39,7 @@ test_that("Non-existent form", {
 })
 
 # more tests for labels_secuTrial with more complex CDMA
-sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                                "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                                package = "secuTrialR"))
 
@@ -70,11 +70,11 @@ test_that("age label", {
 })
 
 
-sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
+sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 sdat <- label_secuTrial(sdat)
-ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                          "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
@@ -97,7 +97,7 @@ test_that("single form", {
 
 
 # labels get propogated to factors/dates
-ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                           "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                           package = "secuTrialR"))
 ldat <- label_secuTrial(ldat)
