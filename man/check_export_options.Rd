@@ -26,7 +26,8 @@ While the package strives to allow loading of as many types of secuTrial data ex
          form_status == TRUE \cr
          centre_info == TRUE \cr
          proj_setup == TRUE \cr
-         dict_items$lang == "en"
+         dict_items$lang == "en" \cr
+         hidden_fields == FALSE
 }
 \examples{
 path <- system.file("extdata", "sT_exports", "export_options",

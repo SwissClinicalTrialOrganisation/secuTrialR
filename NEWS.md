@@ -1,3 +1,6 @@
+# secuTrialR 0.8.9
+* added suggestion to *NOT* export form data of hidden fields (#177)
+
 # secuTrialR 0.8.8
 * added check to make sure that specified centres are part of the export in `return_random_participants()` (#151)
 
