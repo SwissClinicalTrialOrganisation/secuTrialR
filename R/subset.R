@@ -38,9 +38,11 @@
 #' get_participants(sT_subset2)
 #' sT_subset3 <- subset_secuTrial(dat = sT, centre = centres, exclude = TRUE)
 #' get_participants(sT_subset3)
-#' sT_subset4 <- subset_secuTrial(dat = sT, participant = participants, centre = centres, exclude = FALSE)
+#' sT_subset4 <- subset_secuTrial(dat = sT, participant = participants,
+#'                                centre = centres, exclude = FALSE)
 #' get_participants(sT_subset4)
-#' sT_subset5 <- subset_secuTrial(dat = sT, participant = participants, centre = centres[2], exclude = FALSE)
+#' sT_subset5 <- subset_secuTrial(dat = sT, participant = participants,
+#'                                centre = centres[2], exclude = FALSE)
 #' get_participants(sT_subset5)
 #'
 subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = FALSE) {
