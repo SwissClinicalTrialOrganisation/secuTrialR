@@ -4,6 +4,9 @@
 \alias{labels_secuTrial}
 \alias{label_secuTrial}
 \alias{label}
+\alias{units}
+\alias{label<-}
+\alias{units<-}
 \title{Get variable labels for secuTrialdata objects}
 \usage{
 labels_secuTrial(object, form = NULL)
@@ -11,6 +14,12 @@ labels_secuTrial(object, form = NULL)
 label_secuTrial(object, ...)
 
 label(x)
+
+units(x)
+
+label(x) <- value
+
+units(x) <- value
 }
 \arguments{
 \item{object}{\code{secuTrialdata} object}

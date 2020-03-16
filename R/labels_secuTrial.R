@@ -166,15 +166,21 @@ label_secuTrial.data.frame <- function(data, it) {
 #' @export
 label <- function(x) attr(x, "label")
 
+#' @rdname labels_secuTrial
+#' @param x any object
 #' @export
 units <- function(x) attr(x, "units")
 
+#' @rdname labels_secuTrial
+#' @param x any object
 #' @export
 "label<-" <- function(x, value) {
   attr(x, "label") <- value
   return(x)
 }
 
+#' @rdname labels_secuTrial
+#' @param x any object
 #' @export
 "units<-" <- function(x, value) {
   attr(x, "units") <- value
