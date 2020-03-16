@@ -1,3 +1,6 @@
+# secuTrialR 0.9.0
+* restructuring in preparation for a release on CRAN
+
 # secuTrialR 0.8.9
 * added suggestion to *NOT* export form data of hidden fields (#177)
 
