@@ -16,7 +16,7 @@ Only saved forms are considered for the statistic.
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata","sT_exports", "shortnames",
+export_location <- system.file("extdata","sT_exports", "snames",
                                "s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
