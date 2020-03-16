@@ -10,15 +10,15 @@
 #' @rdname visit_structure
 #'
 #' @examples
-#' # prepare path to example export
-#' export_location <- system.file("extdata", "sT_exports", "BMD",
-#'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
+#' export_location <- system.file("extdata", "sT_exports", "lnames",
+#'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                package = "secuTrialR")
-#' # load all export data
-#' sT_export <- read_secuTrial_raw(data_dir = export_location)
-#' \dontrun{
-#' visit_structure(sT_export)
-#' }
+#' # read all export data
+#' sT_export <- read_secuTrial(data_dir = export_location)
+#' # get visit structure
+#' vs <- visit_structure(sT_export)
+#' # plot
+#' plot(vs)
 visit_structure <- function(x, sorted = TRUE) {
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]
@@ -72,14 +72,7 @@ visit_structure <- function(x, sorted = TRUE) {
 }
 
 #' @rdname visit_structure
-#' @usage plot(x)
 #' @export
-#' @examples
-#' \dontrun{
-#'   vs <- visit_structure(sT_export)
-#'   plot(vs)
-#' }
-
 plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.
   z <- !is.na(as.matrix(x[, -1]))
