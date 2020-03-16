@@ -24,7 +24,7 @@ Convenience wrapper for \code{read_secuTrial_raw}, \code{label_secuTrial},
              \code{factorize_secuTrial} and \code{dates_secuTrial}.
 }
 \examples{
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # read all export data

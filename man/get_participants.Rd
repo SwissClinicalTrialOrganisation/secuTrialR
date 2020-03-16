@@ -19,8 +19,8 @@ if available.
 }
 \examples{
 
-path <- system.file("extdata", "sT_exports", "export_options",
-                    "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+path <- system.file("extdata", "sT_exports", "exp_opt",
+                    "s_export_CSV-xls_CTU05_all_info.zip",
                     package = "secuTrialR")
 sT_export <- read_secuTrial(path)
 
