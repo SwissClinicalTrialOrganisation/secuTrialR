@@ -40,7 +40,7 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
@@ -65,13 +65,15 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD_short_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "lnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -229,7 +231,8 @@ Date variables are converted to `Date` class, and datetimes are converted to `PO
 
 
 ```r
-dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
+dates$ctu05baseline[c(1, 7), c("aspirin_start", "aspirin_start.date",
+                              "hiv_date", "hiv_date.datetime")]
 ```
 
 ```
@@ -526,8 +529,12 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 ### Building the vignette
 
 ```r
+# for CRAN
+devtools::build_vignettes()
+# for the vignettes directory
 library(rmarkdown)
-render("vignettes/secuTrialR-package-vignette.Rmd", output_format=c("pdf_document"))
+render("vignettes/secuTrialR-package-vignette.Rmd",
+       output_format=c("pdf_document"))
 ```
 
 ### Generating the README file
