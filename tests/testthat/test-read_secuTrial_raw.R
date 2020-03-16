@@ -21,7 +21,7 @@ no_proj_setup_export_location <- system.file("extdata", "sT_exports", "exp_opt",
                                              package = "secuTrialR")
 
 no_add_id_cent_proj_export_location <- system.file("extdata", "sT_exports", "exp_opt",
-                                                   "s_export_CSV-xls_CTU05_no_addid_no_ctr_info_no_proj_setup.zip",
+                                                   "s_export_CSV-xls_CTU05_no_addid_ctr_info_proj_setup.zip",
                                                    package = "secuTrialR")
 
 all_info_export_location <- system.file("extdata", "sT_exports", "exp_opt",

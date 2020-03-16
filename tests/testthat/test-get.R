@@ -13,7 +13,7 @@ sT_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
                                           package = "secuTrialR"))
 
 sT_noid_nocentre <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
-                                          "s_export_CSV-xls_CTU05_no_addid_no_ctr_info_no_proj_setup.zip",
+                                          "s_export_CSV-xls_CTU05_no_addid_ctr_info_proj_setup.zip",
                                           package = "secuTrialR"))
 
 test_that("Get participant error", {

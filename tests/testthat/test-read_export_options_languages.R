@@ -75,7 +75,7 @@ sT_export_short_pl <- read_secuTrial_raw(data_dir = export_path_short_pl)
 # UNKNOWN
 # unknown language short file name
 export_path_short_unsupported <- system.file("extdata", "sT_exports", "snames",
-                                             "s_export_CSV-xls_CTU05_short_meta_ref_miss_unsupported_utf8.zip",
+                                             "s_export_CSV-xls_CTU05_short_meta_ref_miss_unsup_utf8.zip",
                                              package = "secuTrialR")
 
 # unsupported language error msg
