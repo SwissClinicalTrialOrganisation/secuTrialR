@@ -8,6 +8,8 @@ form_status_summary(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}
+
+\item{...}{further parameters}
 }
 \description{
 This function warps form_status_counts and returns a

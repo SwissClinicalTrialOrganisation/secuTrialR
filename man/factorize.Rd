@@ -13,10 +13,7 @@ factorize_secuTrial(object, ...)
 \arguments{
 \item{object}{a \code{secuTrialdata} object}
 
-\item{x}{a \code{secuTrialdata} object}
-}
-\value{
-\code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
+\item{...}{further parameters}
 }
 \description{
 secuTrial can return a codebook of codes and labels for categorical variables, including lookup

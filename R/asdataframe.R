@@ -1,6 +1,7 @@
 #' as.data.frame method for secuTrialdata objects
 #'
-#' @param object secuTrialdata object
+#' @param x secuTrialdata object
+#' @param ... further parameters
 #' @param data.frames character vector of data.frame names to turn into data.frames
 #' @param meta logical should metadata be returned
 #' @param regex regex syntax to remove from names

@@ -14,6 +14,8 @@ read_secuTrial_raw(data_dir)
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
 
 \item{x}{secuTrialdata object as returned by \code{read_secuTrial_raw}}
+
+\item{...}{further parameters}
 }
 \value{
 This is a list of class secuTrialdata containing a list of

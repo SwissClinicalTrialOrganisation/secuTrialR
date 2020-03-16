@@ -1,6 +1,7 @@
 #' Get the visit structure of secuTrialdata objects
 #'
-#' @param x secuTrialdata object
+#' @param x a secuTrialdata object
+#' @param sorted logical if TRUE sorted by first visit
 #' @note Requires a fixed visit structure - an error will be returned for projects without
 #'       a visit structure or one with flexible visits
 #' @return data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
@@ -55,7 +56,7 @@ visit_structure <- function(x, sorted = TRUE) {
 
   ro <- r[form_order, c("formname", vis_order)]
 
-  # By default (sorted = TRUE), formas are sorted by first visit of
+  # By default (sorted = TRUE), forms are sorted by first visit of
   # occurence and number of occurences.
   if (sorted) {
     # where does which form appear
@@ -72,6 +73,7 @@ visit_structure <- function(x, sorted = TRUE) {
 }
 
 #' @rdname visit_structure
+#' @param ... further parameters
 #' @export
 plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.

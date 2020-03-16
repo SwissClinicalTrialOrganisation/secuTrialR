@@ -5,6 +5,7 @@
 #' form type and participant id. The numbers are occurrence counts.
 #'
 #' @param object secuTrialdata object
+#' @param ... further parameters
 #' @keywords form status, completeness
 #' @export
 #' @examples
@@ -135,6 +136,7 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #' Only saved forms are considered for the statistic.
 #'
 #' @param object secuTrialdata object
+#' @param ... further parameters
 #' @keywords form status, completeness
 #' @export
 #' @examples

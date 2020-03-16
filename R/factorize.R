@@ -6,7 +6,8 @@
 #'              used by users. The other methods could be used with customized codebooks.
 #' @rdname factorize
 #' @name factorize
-#' @param x a \code{secuTrialdata} object
+#' @param object a \code{secuTrialdata} object
+#' @param ... further parameters
 #' @export
 #' @details factorize_secuTrial will return an error if the appropriate codebook is not available.
 #'
@@ -21,14 +22,7 @@
 # create factors
 factorize_secuTrial <- function(object, ...) UseMethod("factorize_secuTrial", object)
 
-#' Method for secuTrialdata objects
-#' These objects include all relevant data (assuming that reference values are saved to a separate table,
-#' \link[see here for info]{https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/})
-#'
 #' @rdname factorize
-#' @param object a \code{secuTrialdata} object
-#'
-#' @return \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 #' @export
 factorize_secuTrial.secuTrialdata <- function(object, ...) {
   if (!object$export_options$refvals_separate) {

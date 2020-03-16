@@ -6,7 +6,7 @@
 #'              \code{secuTrialR} offers two main methods to get those labels. \code{labels_secuTrial}
 #'              returns a named list of labels. \code{label_secuTrial} adds labels and units to
 #'              variables (and data.frames) which can then be queried via \code{label} or \code{units}.
-#' @param object \code{secuTrialdata} object
+#' @param object a \code{secuTrialdata} object
 #' @param form which form (string)
 #' @details For \code{labels_secuTrial}, regular expressions are used with \code{form}
 #'          (specifically, it is inserted between \code{(} and \code{)$} to identify the form).
@@ -66,6 +66,8 @@ labels_secuTrial <- function(object, form = NULL) {
 
 
 #' @rdname labels_secuTrial
+#' @param object a \code{secuTrialdata} object
+#' @param ... further parameters
 #' @export
 #' @examples
 #'
@@ -173,6 +175,7 @@ units <- function(x) attr(x, "units")
 
 #' @rdname labels_secuTrial
 #' @param x any object
+#' @param value any object
 #' @export
 "label<-" <- function(x, value) {
   attr(x, "label") <- value
@@ -181,6 +184,7 @@ units <- function(x) attr(x, "units")
 
 #' @rdname labels_secuTrial
 #' @param x any object
+#' @param value any object
 #' @export
 "units<-" <- function(x, value) {
   attr(x, "units") <- value

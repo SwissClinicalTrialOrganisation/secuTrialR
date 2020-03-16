@@ -3,6 +3,7 @@
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
+#' @param ... further parameters
 #' @details New variables are created appended with \code{.date} or \code{.datetime}.
 #'          This is a safety mechanism in case NAs are inadvertently introduced.
 #' @return same as the original object with date variables converted to \code{Date}s.

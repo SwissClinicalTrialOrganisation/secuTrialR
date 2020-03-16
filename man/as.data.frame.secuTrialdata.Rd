@@ -15,6 +15,10 @@
 )
 }
 \arguments{
+\item{x}{secuTrialdata object}
+
+\item{...}{further parameters}
+
 \item{data.frames}{character vector of data.frame names to turn into data.frames}
 
 \item{meta}{logical should metadata be returned}
@@ -24,8 +28,6 @@
 \item{rep}{replacement for regex}
 
 \item{envir}{environment in which to put the data}
-
-\item{object}{secuTrialdata object}
 }
 \value{
 each data.frame on the secuTrialdata object is saved to it's own data.frame in the environment

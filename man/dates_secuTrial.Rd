@@ -11,6 +11,8 @@ dates_secuTrial(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}
+
+\item{...}{further parameters}
 }
 \value{
 same as the original object with date variables converted to \code{Date}s.

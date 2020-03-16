@@ -10,7 +10,11 @@ visit_structure(x, sorted = TRUE)
 \method{plot}{secuTrialvisit}(x, ...)
 }
 \arguments{
-\item{x}{secuTrialdata object}
+\item{x}{a secuTrialdata object}
+
+\item{sorted}{logical if TRUE sorted by first visit}
+
+\item{...}{further parameters}
 }
 \value{
 data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)

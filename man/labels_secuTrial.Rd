@@ -22,11 +22,15 @@ label(x) <- value
 units(x) <- value
 }
 \arguments{
-\item{object}{\code{secuTrialdata} object}
+\item{object}{a \code{secuTrialdata} object}
 
 \item{form}{which form (string)}
 
+\item{...}{further parameters}
+
 \item{x}{any object}
+
+\item{value}{any object}
 }
 \value{
 \code{labels_secuTrial} returns a named vector

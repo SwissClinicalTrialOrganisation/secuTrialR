@@ -8,6 +8,8 @@ form_status_counts(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}
+
+\item{...}{further parameters}
 }
 \description{
 This function returns a data.frame informing on the status of saved
