@@ -2,7 +2,7 @@
 title: "secuTrialR - a walkthrough"
 author: "Patrick R. Wright, Milica Markovic, Alan Haynes"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 toc: true
 vignette: >
   %\VignetteIndexEntry{secuTrialR-package-vignette}
