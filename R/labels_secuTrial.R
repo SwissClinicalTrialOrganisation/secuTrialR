@@ -84,7 +84,7 @@ labels_secuTrial <- function(object, form = NULL) {
 #' units(sT_export_labelled$ctu05baseline$height)
 label_secuTrial <- function(object, ...) UseMethod("label_secuTrial", object)
 #' @export
-label_secuTrial.secuTrialdata <- function(object) {
+label_secuTrial.secuTrialdata <- function(object, ...) {
   if (!object$export_options$meta_available$items) {
     stop("'items' metadata not available. Try reexporting your data with Project setup enabled.")
   }

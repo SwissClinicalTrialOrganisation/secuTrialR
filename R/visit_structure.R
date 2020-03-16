@@ -80,15 +80,15 @@ visit_structure <- function(x, sorted = TRUE) {
 #'   plot(vs)
 #' }
 
-plot.secuTrialvisit <- function(r) {
-  # construct the figure. 
-  z <- !is.na(as.matrix(r[, -1]))
-  names <- gsub("tmpvar.", "", names(r[, -1]))
+plot.secuTrialvisit <- function(x, ...) {
+  # construct the figure.
+  z <- !is.na(as.matrix(x[, -1]))
+  names <- gsub("tmpvar.", "", names(x[, -1]))
   paropts <- par()
   on.exit(paropts)
   par(mai = c(0, 0, 0.1, 0.1))
   layout(matrix(c(0, 1, 0, 0), 2, 2, byrow = TRUE))
   image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))
-  axis(2, r$formname, at = 0:(nrow(r) - 1) / (nrow(r) - 1), las = 1)
+  axis(2, x$formname, at = 0:(nrow(x) - 1) / (nrow(x) - 1), las = 1)
   axis(1, names, at = 0:(length(names) - 1) / (length(names) - 1), las = 2)
 }

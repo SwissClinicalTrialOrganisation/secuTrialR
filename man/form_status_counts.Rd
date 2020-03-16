@@ -4,7 +4,7 @@
 \alias{form_status_counts}
 \title{A function to assess the status of forms}
 \usage{
-form_status_counts(x, ...)
+form_status_counts(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}

@@ -8,7 +8,7 @@
 \usage{
 read_secuTrial_raw(data_dir)
 
-\method{print}{secuTrialdata}(x)
+\method{print}{secuTrialdata}(x, ...)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}

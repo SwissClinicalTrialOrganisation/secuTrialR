@@ -19,7 +19,7 @@
 #' sT_export_factorized <- factorize_secuTrial(sT_export)
 
 # create factors
-factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
+factorize_secuTrial <- function(object, ...) UseMethod("factorize_secuTrial", object)
 
 #' Method for secuTrialdata objects
 #' These objects include all relevant data (assuming that reference values are saved to a separate table,
@@ -30,7 +30,7 @@ factorize_secuTrial <- function(x, ...) UseMethod("factorize_secuTrial", x)
 #'
 #' @return \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
 #' @export
-factorize_secuTrial.secuTrialdata <- function(object) {
+factorize_secuTrial.secuTrialdata <- function(object, ...) {
   if (!object$export_options$refvals_separate) {
     ifelse(options()$stringsAsFactors,
            saf <- "\nCategorical variables are probably factors already (options()$stringsAsFactors == TRUE)\n",

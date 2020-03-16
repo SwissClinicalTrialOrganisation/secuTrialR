@@ -5,7 +5,7 @@
 \alias{dates_secuTrial.secuTrialdata}
 \title{Methods to handle date(times)s in secuTrial exports}
 \usage{
-dates_secuTrial(x, ...)
+dates_secuTrial(object, ...)
 
 \method{dates_secuTrial}{secuTrialdata}(object, ...)
 }

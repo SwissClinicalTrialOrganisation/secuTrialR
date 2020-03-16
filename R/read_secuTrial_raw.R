@@ -125,7 +125,7 @@ read_secuTrial_raw <- function(data_dir) {
 #' # or
 #' sT_export
 
-print.secuTrialdata <- function(x) {
+print.secuTrialdata <- function(x, ...) {
 
   cat("secuTrial data imported from:\n")
   cat(str_wrap(x$export_options$data_dir, width = 80), "\n")

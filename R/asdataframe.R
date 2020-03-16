@@ -21,22 +21,23 @@
 #' as.data.frame(sT_export)
 #' # add files to global environment, removing the project name from the file names
 #' as.data.frame(sT_export, regex = "ctu05")
-as.data.frame.secuTrialdata <- function(object,
+as.data.frame.secuTrialdata <- function(x, ...,
                                         data.frames = NULL,
                                         meta = FALSE,
                                         regex = NULL,
                                         rep = "",
-                                        envir = .GlobalEnv) {
+                                        envir = .GlobalEnv
+                                        ) {
 
   if (all(!is.character(regex), !is.null(regex))) stop("regex should be either NULL or character")
   if (!is.character(rep)) stop("rep should be character")
   if (!is.environment(envir)) stop("envir should be an environment")
 
-  datanames <- object$export_options$data_names
+  datanames <- x$export_options$data_names
   datanames <- as.character(datanames)
   if (!all(data.frames %in% datanames)) stop("unrecognised data.frame specified")
   if (!meta) {
-    datanames <- datanames[!datanames %in% unlist(object$export_options$meta_names)]
+    datanames <- datanames[!datanames %in% unlist(x$export_options$meta_names)]
   }
   if (!is.null(data.frames)) datanames <- datanames[datanames %in% data.frames]
   datanames2 <- datanames
@@ -45,7 +46,7 @@ as.data.frame.secuTrialdata <- function(object,
   invisible(
     mapply(
       function(orig_name, new_name) {
-        assign(new_name, object[[orig_name]], envir = envir)
+        assign(new_name, x[[orig_name]], envir = envir)
       },
   datanames, datanames2)
   )

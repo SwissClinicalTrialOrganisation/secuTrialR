@@ -24,8 +24,8 @@
 #' sT_export_dates$ctu05baseline$paracetamol_start.date[1]
 #' # [1] "2019-03-05"
 
-dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
-datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
+dates_secuTrial <- function(object, ...) UseMethod("dates_secuTrial", object)
+datetimes_secuTrial <- function(object, ...) UseMethod("datetimes_secuTrial", object)
 
 #' @rdname dates_secuTrial
 #' @export

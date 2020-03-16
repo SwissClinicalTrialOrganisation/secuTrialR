@@ -4,7 +4,7 @@
 \alias{form_status_summary}
 \title{A function to show summary statistics for form statuses}
 \usage{
-form_status_summary(x, ...)
+form_status_summary(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}

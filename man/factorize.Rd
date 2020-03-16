@@ -6,14 +6,14 @@
 \alias{factorize_secuTrial.secuTrialdata}
 \title{Add factors to secuTrialdata objects}
 \usage{
-factorize_secuTrial(x, ...)
+factorize_secuTrial(object, ...)
 
-\method{factorize_secuTrial}{secuTrialdata}(object)
+\method{factorize_secuTrial}{secuTrialdata}(object, ...)
 }
 \arguments{
-\item{x}{a \code{secuTrialdata} object}
-
 \item{object}{a \code{secuTrialdata} object}
+
+\item{x}{a \code{secuTrialdata} object}
 }
 \value{
 \code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})

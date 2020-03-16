@@ -18,10 +18,10 @@
 #' # get form status
 #' form_status_counts(sT_export)
 #'
-form_status_counts <- function(x, ...) UseMethod("form_status_counts", x)
+form_status_counts <- function(object, ...) UseMethod("form_status_counts", object)
 
 #' @export
-form_status_counts.secuTrialdata <- function(object) {
+form_status_counts.secuTrialdata <- function(object, ...) {
 
   if (! object$export_options$form_status) {
     stop("Please reexport with the Form status selected for this function to work.")
@@ -148,10 +148,10 @@ form_status_counts.secuTrialdata <- function(object) {
 #' # get form status
 #' form_status_summary(sT_export)
 #'
-form_status_summary <- function(x, ...) UseMethod("form_status_summary", x)
+form_status_summary <- function(object, ...) UseMethod("form_status_summary", object)
 
 #' @export
-form_status_summary.secuTrialdata <- function(object) {
+form_status_summary.secuTrialdata <- function(object, ...) {
 
   status_counts <- form_status_counts(object)
   status_summary <- status_counts %>%

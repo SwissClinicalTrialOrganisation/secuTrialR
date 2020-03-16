@@ -294,7 +294,7 @@ read_export_options <- function(data_dir) {
 }
 
 #' @export
-print.secuTrialoptions <- function(x) {
+print.secuTrialoptions <- function(x, ...) {
   cat(paste("secuTrial version:", x$secuTrial_version, "\n"))
   cat(paste("Time of export on server:", x$time_of_export, "\n"))
   cat(paste("Project version:", x$project_version, "\n"))
