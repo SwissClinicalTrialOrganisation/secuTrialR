@@ -6,6 +6,10 @@
 #' The export options are also loaded and written into export_options.
 #'
 #' @export read_secuTrial_raw
+#' @importFrom stringr str_match str_length str_wrap
+#' @importFrom dplyr all_equal
+#' @importFrom magrittr %>%
+#' @import readr
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.

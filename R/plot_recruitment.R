@@ -12,6 +12,7 @@
 #                                              # show up properly in the help file
 #'                             e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.
 #' @export
+#' @importFrom purrr modify_if
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'          or a list of data.frames if return_data is set to TRUE
 #'

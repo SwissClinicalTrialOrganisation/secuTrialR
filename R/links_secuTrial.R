@@ -15,7 +15,6 @@
 #'       (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
 #' @export
-#'
 #' @examples
 #' \dontrun{
 #' # ex. 1

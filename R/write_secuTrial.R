@@ -12,6 +12,7 @@
 #'          For details please refer to the \code{haven} documentation.
 #' @return a list of filenames
 #' @export
+#' @import haven
 #' @examples
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "sT_exports", "lnames",

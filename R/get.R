@@ -6,6 +6,7 @@
 #'
 #' @param dat secuTrialdata object containing participant IDs and centre information
 #' @return data frame containing a list of participants present in dat
+#' @importFrom dplyr left_join
 #' @export
 #'
 #' @examples

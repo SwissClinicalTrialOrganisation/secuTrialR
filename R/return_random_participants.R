@@ -11,6 +11,8 @@
 #'             This date is checked against mnpvisstartdate in the casenodes table.
 #' @param seed Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.
 #' @export
+#' @importFrom lubridate ymd
+#' @importFrom dplyr filter
 #' @details return_random_participants will produce a list of two elements. First, a data.frame that contains the
 #'          random participants from each specified centre. This is performed based on a specified seed to retain
 #'          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()}).

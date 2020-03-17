@@ -17,6 +17,7 @@
 #' @param centre character vector with a selection of centre names (mnpctrname) used for subsetting
 #' @param exclude boolean which if true excludes participants and centres from dat
 #' @return secuTrialdata object containing only those participants that meet the selection criteria.
+#' @importFrom purrr modify_if
 #' @export
 #'
 #' @examples

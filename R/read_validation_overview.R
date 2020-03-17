@@ -7,6 +7,9 @@
 #'
 #' @return tibble with the 'Validation Overview' data.
 #' @export read_validation_overview
+#' @importFrom readxl read_excel
+#' @importFrom readxl excel_sheets
+#' @importFrom dplyr bind_rows
 #' @examples
 #' val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
 #'                                 "bmd_validation_overview.xlsx",

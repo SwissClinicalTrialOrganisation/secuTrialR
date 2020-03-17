@@ -8,6 +8,8 @@
 #' @param ... further parameters
 #' @keywords form status, completeness
 #' @export
+#' @importFrom tidyr spread
+#' @importFrom dplyr count recode
 #' @examples
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "sT_exports", "snames",
@@ -138,6 +140,7 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #' @param object secuTrialdata object
 #' @param ... further parameters
 #' @keywords form status, completeness
+#' @importFrom dplyr group_by summarise mutate_all
 #' @export
 #' @examples
 #' # prepare path to example export
