@@ -39,7 +39,7 @@ visit_structure <- function(x, sorted = TRUE) {
   tmp <- merge(tmp, f, by = "formid")
   u <- unique(tmp[, c("mnpvislabel", "formname")])
   u$tmpvar <- 1
-  r <- reshape(u, direct = "wide",
+  r <- reshape(u, direction = "wide",
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
   # column order
