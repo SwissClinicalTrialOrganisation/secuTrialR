@@ -91,7 +91,7 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
                              vertices = vs)
   igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, varcol, formcol)
   if (plot) {
-    igraph::tkplot(g, layout = layout_as_tree)
+    igraph::tkplot(g)
   } else {
     # for testing purposes
     length(unlist(g))

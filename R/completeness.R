@@ -83,11 +83,19 @@ form_status_counts.secuTrialdata <- function(object, ...) {
                                          "mnpfcs2.factor")]
 
       # the warnings here are uninformative
-      status_summary0 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs0.factor))
-      status_summary1 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs1.factor))
-      status_summary2 <- suppressWarnings(form_status_table %>% count(pat_id, mnpfcs2.factor))
+      status_summary0 <- suppressWarnings(form_status_table %>% count(form_status_table$pat_id,
+                                                                      form_status_table$mnpfcs0.factor))
+      status_summary1 <- suppressWarnings(form_status_table %>% count(form_status_table$pat_id,
+                                                                      form_status_table$mnpfcs1.factor))
+      status_summary2 <- suppressWarnings(form_status_table %>% count(form_status_table$pat_id,
+                                                                      form_status_table$mnpfcs2.factor))
 
-      spread_summary0 <- spread(status_summary0, key = mnpfcs0.factor, value = n)
+      # change names
+      names(status_summary0) <- c("pat_id", "mnpfcs0.factor", "n")
+      names(status_summary1) <- c("pat_id", "mnpfcs1.factor", "n")
+      names(status_summary2) <- c("pat_id", "mnpfcs2.factor", "n")
+
+      spread_summary0 <- spread(status_summary0, key = "mnpfcs0.factor", value = "n")
       # catch exceptions
       if (! "empty" %in% names(spread_summary0)) {
         spread_summary0$"empty" <- NA
@@ -99,13 +107,13 @@ form_status_counts.secuTrialdata <- function(object, ...) {
         spread_summary0$"completely filled" <- NA
       }
 
-      spread_summary1 <- spread(status_summary1, key = mnpfcs1.factor, value = n)
+      spread_summary1 <- spread(status_summary1, key = "mnpfcs1.factor", value = "n")
       # catch exceptions
       if (! "with errors" %in% names(spread_summary1)) {
         spread_summary1$"with errors" <- NA
       }
 
-      spread_summary2 <- spread(status_summary2, key = mnpfcs2.factor, value = n)
+      spread_summary2 <- spread(status_summary2, key = "mnpfcs2.factor", value = "n")
       # catch exceptions
       if (! "with warnings" %in% names(spread_summary2)) {
         spread_summary2$"with warnings" <- NA
@@ -155,22 +163,26 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #'
 form_status_summary <- function(object, ...) UseMethod("form_status_summary", object)
 
+#' @importFrom rlang .data
 #' @export
 form_status_summary.secuTrialdata <- function(object, ...) {
 
   status_counts <- form_status_counts(object)
   status_summary <- status_counts %>%
-    group_by(form_name) %>%
-    summarise("partly_filled" = sum(partly_filled),
-              "completely_filled" = sum(completely_filled),
-              "empty" = sum(empty),
-              "with_warnings" = sum(with_warnings),
-              "with_errors" = sum(with_errors))
+    # .data helps with the "no visible binding for global variable"
+    # NOTE produced by "R CMD check" for this to word we also need
+    # the @importFrom rlang .data over the function
+    group_by(.data$form_name) %>%
+    summarise("partly_filled" = sum(.data$partly_filled),
+              "completely_filled" = sum(.data$completely_filled),
+              "empty" = sum(.data$empty),
+              "with_warnings" = sum(.data$with_warnings),
+              "with_errors" = sum(.data$with_errors))
   # the sum of "partly filled", "completely filled", "empty" is the total count of
   # registered forms for each form type (form_name)
-  form_count <- rowSums(subset(status_summary, select = c(partly_filled,
-                                               completely_filled,
-                                               empty)))
+  form_count <- rowSums(subset(status_summary, select = c("partly_filled",
+                                                          "completely_filled",
+                                                          "empty")))
   # omit form_name and divide all count columns by form_count
   percentage <- status_summary[, 2:ncol(status_summary)] %>%
                   mutate_all(list(~. / form_count))

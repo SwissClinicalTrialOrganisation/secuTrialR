@@ -51,7 +51,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
       cols <-  rainbow(length(ctr$mnpctrid))
       col_idx <- 1
       for (centre_id in ctr$mnpctrid) {
-        curr_ctr_cn <- subset(cn, mnpctrid == centre_id)
+        curr_ctr_cn <- subset(cn, cn$mnpctrid == centre_id)
         if (! length(curr_ctr_cn$mnppid)) {
           # centres with 0 entries are labelled black in the legend
           cols[col_idx] <- "black"
