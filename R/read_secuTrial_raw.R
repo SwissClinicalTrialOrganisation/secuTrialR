@@ -10,6 +10,10 @@
 #' @importFrom dplyr all_equal
 #' @importFrom magrittr %>%
 #' @import readr
+#' @importFrom grDevices rainbow
+#' @importFrom graphics axis image layout legend lines par plot
+#' @importFrom stats aggregate median na.omit reshape setNames
+#' @importFrom utils read.table unzip
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
