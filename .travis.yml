@@ -9,6 +9,10 @@ language: r
 
 warnings_are_errors: true
 
+apt_packages:
+  - tcl8.5-dev
+  - tk8.5-dev
+
 r_packages:
   - covr
 
