@@ -553,7 +553,7 @@ Dependencies to other R packages are to be declared in the `DESCRIPTION` file un
 the specific `roxygen2` documentation of the functions relying on the dependency. It is suggested to
 be as explicit as possible. i.e. Just import functions that are needed and not entire packages.
 
-Example to import `str_match` `str_length` `str_wrap` from the `stringr` package (see R/read_secuTrial_raw.R):
+Example to import `str_match` `str_length` `str_wrap` from the `stringr` package (see [read_secuTrial_raw.R](R/read_secuTrial_raw.R)):
 
 ```r
 #' @importFrom stringr str_match str_length str_wrap
