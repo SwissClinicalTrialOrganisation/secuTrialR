@@ -23,9 +23,6 @@ environment:
     - R_VERSION: oldrel
       CRAN: http://cran.rstudio.com
 
-    - R_VERSION: 3.4.2
-      CRAN: http://cran.rstudio.com
-    
 install:
   ps: Bootstrap
 
