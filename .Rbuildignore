@@ -1,3 +1,6 @@
+.gitignore
+.git
+.Rhistory
 ..Rcheck
 figure
 README.Rmd
