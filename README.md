@@ -559,6 +559,16 @@ Example to import `str_match` `str_length` `str_wrap` from the `stringr` package
 #' @importFrom stringr str_match str_length str_wrap
 ```
 
+### Performing a release on CRAN
+
+```bash
+# build the package archive
+R CMD build secuTrialR
+# check the archive (should return "Status: OK", no WARNINGs, no NOTEs)
+# in this example for version 0.9.0
+R CMD check secuTrialR_0.9.0.tar.gz
+```
+
 ### Guidelines for contributors
 
 Requests for new features and bug fixes should first be documented as an [Issue](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues) on GitHub.
