@@ -1,3 +1,7 @@
+# secuTrialR 0.9.1
+* added "Form meta data: Structure" export option information to `export_options` (#182)
+* added error handling for missing structure data when running `annual_recruitment()` and `return_random_participants()` (#182)
+
 # secuTrialR 0.9.0
 * restructuring in preparation for a release on CRAN
 
