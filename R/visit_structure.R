@@ -1,6 +1,7 @@
 #' Get the visit structure of secuTrialdata objects
 #'
-#' @param x secuTrialdata object
+#' @param x a secuTrialdata object
+#' @param sorted logical if TRUE sorted by first visit
 #' @note Requires a fixed visit structure - an error will be returned for projects without
 #'       a visit structure or one with flexible visits
 #' @return data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
@@ -10,15 +11,15 @@
 #' @rdname visit_structure
 #'
 #' @examples
-#' # prepare path to example export
-#' export_location <- system.file("extdata", "sT_exports", "BMD",
-#'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
+#' export_location <- system.file("extdata", "sT_exports", "lnames",
+#'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                package = "secuTrialR")
-#' # load all export data
-#' sT_export <- read_secuTrial_raw(data_dir = export_location)
-#' \dontrun{
-#' visit_structure(sT_export)
-#' }
+#' # read all export data
+#' sT_export <- read_secuTrial(data_dir = export_location)
+#' # get visit structure
+#' vs <- visit_structure(sT_export)
+#' # plot
+#' plot(vs)
 visit_structure <- function(x, sorted = TRUE) {
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
   vp <- x[[x$export_options$meta_names$visitplan]]
@@ -38,7 +39,7 @@ visit_structure <- function(x, sorted = TRUE) {
   tmp <- merge(tmp, f, by = "formid")
   u <- unique(tmp[, c("mnpvislabel", "formname")])
   u$tmpvar <- 1
-  r <- reshape(u, direct = "wide",
+  r <- reshape(u, direction = "wide",
                timevar = "mnpvislabel",
                idvar = "formname", v.names = "tmpvar")
   # column order
@@ -55,7 +56,7 @@ visit_structure <- function(x, sorted = TRUE) {
 
   ro <- r[form_order, c("formname", vis_order)]
 
-  # By default (sorted = TRUE), formas are sorted by first visit of
+  # By default (sorted = TRUE), forms are sorted by first visit of
   # occurence and number of occurences.
   if (sorted) {
     # where does which form appear
@@ -72,23 +73,17 @@ visit_structure <- function(x, sorted = TRUE) {
 }
 
 #' @rdname visit_structure
-#' @usage plot(x)
+#' @param ... further parameters
 #' @export
-#' @examples
-#' \dontrun{
-#'   vs <- visit_structure(sT_export)
-#'   plot(vs)
-#' }
-
-plot.secuTrialvisit <- function(r) {
-  # construct the figure. 
-  z <- !is.na(as.matrix(r[, -1]))
-  names <- gsub("tmpvar.", "", names(r[, -1]))
+plot.secuTrialvisit <- function(x, ...) {
+  # construct the figure.
+  z <- !is.na(as.matrix(x[, -1]))
+  names <- gsub("tmpvar.", "", names(x[, -1]))
   paropts <- par()
   on.exit(paropts)
   par(mai = c(0, 0, 0.1, 0.1))
   layout(matrix(c(0, 1, 0, 0), 2, 2, byrow = TRUE))
   image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))
-  axis(2, r$formname, at = 0:(nrow(r) - 1) / (nrow(r) - 1), las = 1)
+  axis(2, x$formname, at = 0:(nrow(x) - 1) / (nrow(x) - 1), las = 1)
   axis(1, names, at = 0:(length(names) - 1) / (length(names) - 1), las = 2)
 }

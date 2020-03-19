@@ -142,7 +142,9 @@ convertnames <- function(df, format) {
   # need to omit the "patients" column since this can be manually changed in the
   # AdminTool for some projects and the language will then be wrongly set to "unknown"
   # "email" must also be removed since it is not available for every export
-  dict <- subset(dict, select = -c(patients, email, description))
+  dict <- dict[, -which(names(dict) %in% c("patients",
+                                           "email",
+                                           "description"))]
   # determine export language
   is_de <- all(sapply(dict[which(dict$lang == "de"), ], function(x) any(grepl(x, parsed_export))))
   is_en <- all(sapply(dict[which(dict$lang == "en"), ], function(x) any(grepl(x, parsed_export))))
@@ -190,7 +192,7 @@ convertnames <- function(df, format) {
   # if meta data is duplicated then the additional "formtablename"
   # in the items table creates a problem and is thus removed here
   if (object$export_options$duplicate_meta) {
-    it <- subset(it, select = -c(formtablename))
+    it <- it[, -which(names(it) %in% "formtablename")]
   }
   itqu <- merge(it, qu, by = "fgid")
 

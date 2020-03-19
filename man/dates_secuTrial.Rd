@@ -5,12 +5,14 @@
 \alias{dates_secuTrial.secuTrialdata}
 \title{Methods to handle date(times)s in secuTrial exports}
 \usage{
-dates_secuTrial(x, ...)
+dates_secuTrial(object, ...)
 
 \method{dates_secuTrial}{secuTrialdata}(object, ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}
+
+\item{...}{further parameters}
 }
 \value{
 same as the original object with date variables converted to \code{Date}s.
@@ -24,7 +26,7 @@ New variables are created appended with \code{.date} or \code{.datetime}.
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data

@@ -9,11 +9,14 @@
 #                                              # show up properly in the help file
 #'                             e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.
 #' @export
+#' @importFrom lubridate year
+#' @importFrom purrr modify_if
+#' @importFrom dplyr distinct
 #' @details annual_recruitment will return a data.frame showing the annual recruitment per center
 #'
 #' @examples
 #' # export location
-#' expot_loc <- system.file("extdata", "sT_exports", "longnames",
+#' expot_loc <- system.file("extdata", "sT_exports", "lnames",
 #'                          "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                          package = "secuTrialR")
 #' # read export

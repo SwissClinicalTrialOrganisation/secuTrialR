@@ -5,7 +5,8 @@
 \title{as.data.frame method for secuTrialdata objects}
 \usage{
 \method{as.data.frame}{secuTrialdata}(
-  object,
+  x,
+  ...,
   data.frames = NULL,
   meta = FALSE,
   regex = NULL,
@@ -14,7 +15,9 @@
 )
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{x}{secuTrialdata object}
+
+\item{...}{further parameters}
 
 \item{data.frames}{character vector of data.frame names to turn into data.frames}
 
@@ -34,7 +37,7 @@ as.data.frame method for secuTrialdata objects
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data

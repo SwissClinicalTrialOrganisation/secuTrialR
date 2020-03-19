@@ -1,7 +1,7 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of data from the clinical data management system secuTrial 
-Version: 0.8.9
+Version: 0.9.0
 Author:
     c(person(given = "Pascal",
              family = "Benkert",
@@ -28,7 +28,8 @@ Description: This R package is intended to standardize and simplify working with
     exported from the clinical data management system (CDMS) secuTrial. The primary
     data export the package works with is a standard non-rectangular export.
 Depends:
-    R (>= 3.2),
+    R (>= 3.5)
+Imports:
     haven (>= 2.2.0),
     igraph,
     readr,
@@ -36,11 +37,13 @@ Depends:
     tcltk,
     stringr,
     tibble,
+    magrittr,
     purrr,
     tidyr,
     dplyr,
+    rlang,
     lubridate
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2

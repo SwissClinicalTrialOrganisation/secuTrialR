@@ -1,12 +1,12 @@
 context("diff secuTrial exports")
 
-ctu05_en_1 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+ctu05_en_1 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 #> ctu05_en_1$export_options$project_version
 #[1] "(30.04.2019 - 13:40:52 (CEST))"
 
-ctu05_en_2 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+ctu05_en_2 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 #> ctu05_en_2$export_options$project_version

@@ -34,8 +34,8 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 }
 \examples{
 
-path <- system.file("extdata", "sT_exports", "export_options",
-                    "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+path <- system.file("extdata", "sT_exports", "exp_opt",
+                    "s_export_CSV-xls_CTU05_all_info.zip",
                     package = "secuTrialR")
 sT <- read_secuTrial(path)
 participants <- c("RPACK-INS-011", "RPACK-INS-014", "RPACK-INS-015")
@@ -51,9 +51,11 @@ sT_subset2 <- subset_secuTrial(dat = sT, participant = participants, exclude = T
 get_participants(sT_subset2)
 sT_subset3 <- subset_secuTrial(dat = sT, centre = centres, exclude = TRUE)
 get_participants(sT_subset3)
-sT_subset4 <- subset_secuTrial(dat = sT, participant = participants, centre = centres, exclude = FALSE)
+sT_subset4 <- subset_secuTrial(dat = sT, participant = participants,
+                               centre = centres, exclude = FALSE)
 get_participants(sT_subset4)
-sT_subset5 <- subset_secuTrial(dat = sT, participant = participants, centre = centres[2], exclude = FALSE)
+sT_subset5 <- subset_secuTrial(dat = sT, participant = participants,
+                               centre = centres[2], exclude = FALSE)
 get_participants(sT_subset5)
 
 }

@@ -2,7 +2,7 @@
 title: "secuTrialR - a walkthrough"
 author: "Patrick R. Wright, Milica Markovic, Alan Haynes"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 toc: true
 vignette: >
   %\VignetteIndexEntry{secuTrialR-package-vignette}
@@ -86,8 +86,8 @@ package we can point to it via the `system.file()` function.
 \vspace{5pt}
 
 ```{r}
-ctu05_data_location <- system.file("extdata", "sT_exports", "export_options",
-                                   "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+ctu05_data_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                   "s_export_CSV-xls_CTU05_all_info.zip",
                                    package = "secuTrialR")
 ```
 
@@ -468,7 +468,7 @@ FormBuilder with "Compare project setup".
 
 ``` {r}
 # load second export from the same project
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # read all export data

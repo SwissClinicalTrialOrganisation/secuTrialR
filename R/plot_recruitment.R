@@ -12,12 +12,13 @@
 #                                              # show up properly in the help file
 #'                             e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.
 #' @export
+#' @importFrom purrr modify_if
 #' @details plot_recruitment will return a simple line plot showing recruitment over time
 #'          or a list of data.frames if return_data is set to TRUE
 #'
 #' @examples
 #' # export location
-#' expot_loc <- system.file("extdata", "sT_exports", "longnames",
+#' expot_loc <- system.file("extdata", "sT_exports", "lnames",
 #'                          "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                          package = "secuTrialR")
 #' # read export
@@ -50,7 +51,7 @@ plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 
       cols <-  rainbow(length(ctr$mnpctrid))
       col_idx <- 1
       for (centre_id in ctr$mnpctrid) {
-        curr_ctr_cn <- subset(cn, mnpctrid == centre_id)
+        curr_ctr_cn <- subset(cn, cn$mnpctrid == centre_id)
         if (! length(curr_ctr_cn$mnppid)) {
           # centres with 0 entries are labelled black in the legend
           cols[col_idx] <- "black"

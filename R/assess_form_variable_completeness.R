@@ -37,7 +37,7 @@
 #'                  (only relevant if completeness = 'allforms' is set).
 #' @param omit_mnp boolean Removes variable names from the result table that start with mnp.
 #' @return data.frame showing percent completeness per variable.
-#'
+#' @importFrom tibble rownames_to_column
 #' @examples
 #' \donttest{
 #' assess_form_variable_completeness(form = sT_export$bmd, casenodes_table = sT_export$cn,

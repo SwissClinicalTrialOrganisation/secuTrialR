@@ -6,17 +6,14 @@
 \alias{factorize_secuTrial.secuTrialdata}
 \title{Add factors to secuTrialdata objects}
 \usage{
-factorize_secuTrial(x, ...)
+factorize_secuTrial(object, ...)
 
-\method{factorize_secuTrial}{secuTrialdata}(object)
+\method{factorize_secuTrial}{secuTrialdata}(object, ...)
 }
 \arguments{
-\item{x}{a \code{secuTrialdata} object}
-
 \item{object}{a \code{secuTrialdata} object}
-}
-\value{
-\code{secuTrialdata} object with extra variables in forms for factors (names are appended with \code{.factor})
+
+\item{...}{further parameters}
 }
 \description{
 secuTrial can return a codebook of codes and labels for categorical variables, including lookup
@@ -30,7 +27,7 @@ factorize_secuTrial will return an error if the appropriate codebook is not avai
 }
 \examples{
 # load secuTrial export with separate reference table
-sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                             "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 # factorize the secuTrialdata object

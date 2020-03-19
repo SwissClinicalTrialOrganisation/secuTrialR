@@ -1,5 +1,16 @@
+.gitignore
+.git
+.Rhistory
+..Rcheck
+figure
+README.Rmd
+.github
+.travis.yml
 ^docs$
 ^_pkgdown\.yml$
 ^appveyor\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^doc$
+^Meta$

@@ -1,12 +1,12 @@
 context("export options warning")
 
-path_only_col_names <- system.file("extdata", "sT_exports", "export_options",
-                                   "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+path_only_col_names <- system.file("extdata", "sT_exports", "exp_opt",
+                                   "s_export_CSV-xls_CTU05_only_column_names.zip",
                                    package = "secuTrialR")
 sT_only_col_names <- read_secuTrial_raw(path_only_col_names)
 
-path_all_info <- system.file("extdata", "sT_exports", "export_options",
-                             "s_export_CSV-xls_CTU05_20191003-144349_all_info.zip",
+path_all_info <- system.file("extdata", "sT_exports", "exp_opt",
+                             "s_export_CSV-xls_CTU05_all_info.zip",
                              package = "secuTrialR")
 sT_all_info <- read_secuTrial_raw(path_all_info)
 

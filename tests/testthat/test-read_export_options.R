@@ -22,7 +22,7 @@ bmd_unzipped <- read_export_options(data_dir = system.file("extdata", "sT_export
                                                            package = "secuTrialR"))
 
 # duplicated meta
-dup_meta <- read_export_options(system.file("extdata", "sT_exports", "longnames",
+dup_meta <- read_export_options(system.file("extdata", "sT_exports", "lnames",
                                             "s_export_CSV-xls_CTU05_long_meta_ref_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 
@@ -99,7 +99,7 @@ test_that("Print export options working.", {
 })
 
 
-sT_export2 <- read_secuTrial_raw(data_dir = system.file("extdata", "sT_exports", "shortnames",
+sT_export2 <- read_secuTrial_raw(data_dir = system.file("extdata", "sT_exports", "snames",
                                                            "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                                            package = "secuTrialR"))
 # project version
@@ -141,21 +141,21 @@ test_that("Time of export", {
 # errors for non CSV exports
 test_that("Errored for non CSV format", {
   # SAS
-  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "exp_opt",
                                                           "s_export_SAS_CTU05_20191115-092453_SAS.zip",
                                                           package = "secuTrialR")))
   # SPSS
-  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "exp_opt",
                                                           "s_export_SPSS_CTU05_20191115-092020_SPSS.zip",
                                                           package = "secuTrialR")))
   # CDISC
-  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+  expect_error(read_export_options(data_dir = system.file("extdata", "sT_exports", "exp_opt",
                                                           "s_export_XML_CTU05_20191115-092559_CDISC.zip",
                                                           package = "secuTrialR")))
 })
 
 # success for CSV exports
-eo_csv <- read_export_options(data_dir = system.file("extdata", "sT_exports", "export_options",
+eo_csv <- read_export_options(data_dir = system.file("extdata", "sT_exports", "exp_opt",
                                                      "s_export_CSV_CTU05_20191115-091627_CSV.zip",
                                                      package = "secuTrialR"))
 test_that("Success for CSV format", {
@@ -164,8 +164,8 @@ test_that("Success for CSV format", {
 })
 
 # audit trail parsing
-export_location_only_col_names <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+export_location_only_col_names <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
                                               package = "secuTrialR")
 
 sT_export_only_col_names <- read_secuTrial_raw(data_dir = export_location_only_col_names)

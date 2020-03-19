@@ -4,6 +4,9 @@
 \alias{labels_secuTrial}
 \alias{label_secuTrial}
 \alias{label}
+\alias{units}
+\alias{label<-}
+\alias{units<-}
 \title{Get variable labels for secuTrialdata objects}
 \usage{
 labels_secuTrial(object, form = NULL)
@@ -11,13 +14,23 @@ labels_secuTrial(object, form = NULL)
 label_secuTrial(object, ...)
 
 label(x)
+
+units(x)
+
+label(x) <- value
+
+units(x) <- value
 }
 \arguments{
-\item{object}{\code{secuTrialdata} object}
+\item{object}{a \code{secuTrialdata} object}
 
 \item{form}{which form (string)}
 
+\item{...}{further parameters}
+
 \item{x}{any object}
+
+\item{value}{any object}
 }
 \value{
 \code{labels_secuTrial} returns a named vector
@@ -58,7 +71,7 @@ labels[["age"]]
 
 # ex. 2
 # load export
-sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                             "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 
@@ -68,7 +81,7 @@ labels <- labels_secuTrial(sT_export, form = c("sae", "treatment", "surgeries"))
 
 # APPROACH 2: label_secuTrial
 # load secuTrial export with separate reference table
-sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                             "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                             package = "secuTrialR"))
 # label the secuTrialdata object

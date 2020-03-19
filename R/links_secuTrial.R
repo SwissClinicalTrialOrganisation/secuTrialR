@@ -14,8 +14,9 @@
 #' @note Note that where a form name is also a variable name, it is appended by \code{_form}
 #'       (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
+#' @import igraph
+#' @import tcltk
 #' @export
-#'
 #' @examples
 #' \dontrun{
 #' # ex. 1
@@ -30,7 +31,7 @@
 #'
 #' # ex. 2
 #' # prepare path to example export
-#' export_location <- system.file("extdata", "sT_exports", "longnames",
+#' export_location <- system.file("extdata", "sT_exports", "lnames",
 #'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
@@ -92,7 +93,7 @@ links_secuTrial <- function(object, forms = NULL, formcol = "#d8b365", varcol = 
                              vertices = vs)
   igraph::V(g)$color <- ifelse(igraph::V(g)$y == 0, varcol, formcol)
   if (plot) {
-    igraph::tkplot(g, layout = layout_as_tree)
+    igraph::tkplot(g)
   } else {
     # for testing purposes
     length(unlist(g))

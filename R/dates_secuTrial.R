@@ -3,13 +3,14 @@
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
 #' @param object secuTrialdata object
+#' @param ... further parameters
 #' @details New variables are created appended with \code{.date} or \code{.datetime}.
 #'          This is a safety mechanism in case NAs are inadvertently introduced.
 #' @return same as the original object with date variables converted to \code{Date}s.
 #' @export
 #' @examples
 #' # prepare path to example export
-#' export_location <- system.file("extdata", "sT_exports", "longnames",
+#' export_location <- system.file("extdata", "sT_exports", "lnames",
 #'                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                package = "secuTrialR")
 #' # load all export data
@@ -24,8 +25,8 @@
 #' sT_export_dates$ctu05baseline$paracetamol_start.date[1]
 #' # [1] "2019-03-05"
 
-dates_secuTrial <- function(x, ...) UseMethod("dates_secuTrial", x)
-datetimes_secuTrial <- function(x, ...) UseMethod("datetimes_secuTrial", x)
+dates_secuTrial <- function(object, ...) UseMethod("dates_secuTrial", object)
+datetimes_secuTrial <- function(object, ...) UseMethod("datetimes_secuTrial", object)
 
 #' @rdname dates_secuTrial
 #' @export

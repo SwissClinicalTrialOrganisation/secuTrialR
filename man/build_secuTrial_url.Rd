@@ -77,7 +77,7 @@ build_secuTrial_url(server, instance, customer, project)
 build_secuTrial_url(server, instance, customer, project, docid)
 
 # examples of docids (mnpdocid)
-path <- system.file("extdata", "sT_exports", "longnames",
+path <- system.file("extdata", "sT_exports", "lnames",
                     "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                     package = "secuTrialR")
 sT_export <- read_secuTrial(path)

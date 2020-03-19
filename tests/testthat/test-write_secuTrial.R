@@ -1,9 +1,9 @@
 context("write to other format")
 
-sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "shortnames",
+sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "snames",
                                           "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                           package = "secuTrialR"))
-ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+ldat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
                                           "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                           package = "secuTrialR"))
 tdir <- tempdir()

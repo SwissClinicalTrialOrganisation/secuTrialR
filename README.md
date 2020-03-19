@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.8.9-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.9.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
 
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -40,7 +40,7 @@ library(secuTrialR)
 Load a dataset 
 
 ```r
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05 <- read_secuTrial(export_location)
@@ -65,13 +65,15 @@ Individual tables can be extracted from the `ctu05` object via `tab <- ctu05$tab
 
 ```r
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "BMD", "s_export_CSV-xls_BMD_short_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data
 bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
 # load a second dataset
-export_location <- system.file("extdata", "sT_exports", "longnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+export_location <- system.file("extdata", "sT_exports", "lnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 ctu05_raw <- read_secuTrial_raw(export_location)
 
@@ -229,7 +231,8 @@ Date variables are converted to `Date` class, and datetimes are converted to `PO
 
 
 ```r
-dates$ctu05baseline[c(1,7), c("aspirin_start", "aspirin_start.date", "hiv_date", "hiv_date.datetime")]
+dates$ctu05baseline[c(1, 7), c("aspirin_start", "aspirin_start.date",
+                              "hiv_date", "hiv_date.datetime")]
 ```
 
 ```
@@ -526,8 +529,12 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 ### Building the vignette
 
 ```r
+# for CRAN
+devtools::build_vignettes()
+# for the vignettes directory
 library(rmarkdown)
-render("vignettes/secuTrialR-package-vignette.Rmd", output_format=c("pdf_document"))
+render("vignettes/secuTrialR-package-vignette.Rmd",
+       output_format=c("pdf_document"))
 ```
 
 ### Generating the README file
@@ -538,6 +545,28 @@ The README file contains both standard text and interpreted R code. It must ther
 ```r
 library(knitr)
 knit("README.Rmd")
+```
+
+### Handling dependencies
+
+Dependencies to other R packages are to be declared in the `DESCRIPTION` file under `Imports:` and in
+the specific `roxygen2` documentation of the functions relying on the dependency. It is suggested to
+be as explicit as possible. i.e. Just import functions that are needed and not entire packages.
+
+Example to import `str_match` `str_length` `str_wrap` from the `stringr` package (see [read_secuTrial_raw.R](R/read_secuTrial_raw.R)):
+
+```r
+#' @importFrom stringr str_match str_length str_wrap
+```
+
+### Performing a release on CRAN
+
+```bash
+# build the package archive
+R CMD build secuTrialR
+# check the archive (should return "Status: OK", no WARNINGs, no NOTEs)
+# in this example for version 0.9.0
+R CMD check secuTrialR_0.9.0.tar.gz
 ```
 
 ### Guidelines for contributors

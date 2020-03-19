@@ -6,7 +6,7 @@
 #'              \code{secuTrialR} offers two main methods to get those labels. \code{labels_secuTrial}
 #'              returns a named list of labels. \code{label_secuTrial} adds labels and units to
 #'              variables (and data.frames) which can then be queried via \code{label} or \code{units}.
-#' @param object \code{secuTrialdata} object
+#' @param object a \code{secuTrialdata} object
 #' @param form which form (string)
 #' @details For \code{labels_secuTrial}, regular expressions are used with \code{form}
 #'          (specifically, it is inserted between \code{(} and \code{)$} to identify the form).
@@ -37,7 +37,7 @@
 #'
 #' # ex. 2
 #' # load export
-#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
 #'                                             "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
 #'                                             package = "secuTrialR"))
 #'
@@ -66,12 +66,14 @@ labels_secuTrial <- function(object, form = NULL) {
 
 
 #' @rdname labels_secuTrial
+#' @param object a \code{secuTrialdata} object
+#' @param ... further parameters
 #' @export
 #' @examples
 #'
 #' # APPROACH 2: label_secuTrial
 #' # load secuTrial export with separate reference table
-#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "longnames",
+#' sT_export <- read_secuTrial_raw(system.file("extdata", "sT_exports", "lnames",
 #'                                             "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
 #'                                             package = "secuTrialR"))
 #' # label the secuTrialdata object
@@ -84,7 +86,7 @@ labels_secuTrial <- function(object, form = NULL) {
 #' units(sT_export_labelled$ctu05baseline$height)
 label_secuTrial <- function(object, ...) UseMethod("label_secuTrial", object)
 #' @export
-label_secuTrial.secuTrialdata <- function(object) {
+label_secuTrial.secuTrialdata <- function(object, ...) {
   if (!object$export_options$meta_available$items) {
     stop("'items' metadata not available. Try reexporting your data with Project setup enabled.")
   }
@@ -166,15 +168,23 @@ label_secuTrial.data.frame <- function(data, it) {
 #' @export
 label <- function(x) attr(x, "label")
 
+#' @rdname labels_secuTrial
+#' @param x any object
 #' @export
 units <- function(x) attr(x, "units")
 
+#' @rdname labels_secuTrial
+#' @param x any object
+#' @param value any object
 #' @export
 "label<-" <- function(x, value) {
   attr(x, "label") <- value
   return(x)
 }
 
+#' @rdname labels_secuTrial
+#' @param x any object
+#' @param value any object
 #' @export
 "units<-" <- function(x, value) {
   attr(x, "units") <- value

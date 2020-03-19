@@ -6,6 +6,14 @@
 #' The export options are also loaded and written into export_options.
 #'
 #' @export read_secuTrial_raw
+#' @importFrom stringr str_match str_length str_wrap
+#' @importFrom dplyr all_equal
+#' @importFrom magrittr %>%
+#' @import readr
+#' @importFrom grDevices rainbow
+#' @importFrom graphics axis image layout legend lines par plot
+#' @importFrom stats aggregate median na.omit reshape setNames
+#' @importFrom utils read.table unzip
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
@@ -113,7 +121,7 @@ read_secuTrial_raw <- function(data_dir) {
 
 #' @rdname secuTrialdata
 #' @param x secuTrialdata object as returned by \code{read_secuTrial_raw}
-#'
+#' @param ... further parameters
 #' @return data.frame with a row for each table in the export. For each table it
 #'         contains the name, number of rows and columns, an indicator for
 #'         whether the table is a metadata table and the files original name.
@@ -125,7 +133,7 @@ read_secuTrial_raw <- function(data_dir) {
 #' # or
 #' sT_export
 
-print.secuTrialdata <- function(x) {
+print.secuTrialdata <- function(x, ...) {
 
   cat("secuTrial data imported from:\n")
   cat(str_wrap(x$export_options$data_dir, width = 80), "\n")

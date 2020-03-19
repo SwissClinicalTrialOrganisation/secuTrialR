@@ -1,11 +1,11 @@
 context("random participants")
 
 # read data
-sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "shortnames",
+sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 
-ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "longnames",
+ldat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "lnames",
                                          "s_export_CSV-xls_CTU05_long_miss_en_utf8.zip",
                                          package = "secuTrialR"))
 
@@ -13,13 +13,13 @@ bmd <- read_secuTrial(system.file("extdata", "sT_exports", "BMD",
                                   "s_export_CSV-xls_BMD_short_en_utf8.zip",
                                   package = "secuTrialR"))
 
-only_col_names_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191004-131608_only_column_names.zip",
+only_col_names_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
                                               package = "secuTrialR")
 sT_export_only_col_names <- read_secuTrial_raw(data_dir = only_col_names_export_location)
 
-no_centre_info_export_location <- system.file("extdata", "sT_exports", "export_options",
-                                              "s_export_CSV-xls_CTU05_20191003-144655_no_centre_info.zip",
+no_centre_info_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_no_centre_info.zip",
                                               package = "secuTrialR")
 sT_export_no_centre_info <- read_secuTrial_raw(data_dir = no_centre_info_export_location)
 

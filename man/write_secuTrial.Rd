@@ -2,16 +2,30 @@
 % Please edit documentation in R/write_secuTrial.R
 \name{write_secuTrial}
 \alias{write_secuTrial}
+\alias{write_secuTrial.secuTrialdata}
+\alias{write_secuTrial.data.frame}
 \title{Write secuTrial exports to other formats}
 \usage{
 write_secuTrial(object, ...)
+
+\method{write_secuTrial}{secuTrialdata}(object, format = "dta", metadata = FALSE, ...)
+
+\method{write_secuTrial}{data.frame}(df, filename, path = "", format = "dta", ...)
 }
 \arguments{
 \item{object}{secuTrialdata object}
 
-\item{path}{directory where the files should be saved}
+\item{...}{further parameters}
 
 \item{format}{format in which to save the export (one of "dta", "sas", "sav", "xpt")}
+
+\item{metadata}{if TRUE then metadate files will also be written}
+
+\item{df}{a data.frame}
+
+\item{filename}{file name}
+
+\item{path}{directory where the files should be saved}
 }
 \value{
 a list of filenames
@@ -30,7 +44,7 @@ Due to variable naming limitations in other packages, date variables are
 }
 \examples{
 # prepare path to example export
-export_location <- system.file("extdata", "sT_exports", "longnames",
+export_location <- system.file("extdata", "sT_exports", "lnames",
                                "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
                                package = "secuTrialR")
 # load all export data

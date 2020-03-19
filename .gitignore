@@ -2,10 +2,11 @@ vignettes/*.html
 vignettes/*.R
 vignettes/*.tex
 tests/testthat/Rplots.pdf
-inst/doc
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 ..Rcheck
 .directory
+Meta
+doc

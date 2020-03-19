@@ -5,9 +5,9 @@ This readme file contains information about file structure and naming convention
 
 - **BMD** - contains secuTrial exports associated with the Bone Mineral Density (BMD) dataset
 - **encodings** - contains secuTrial exports relevant for encoding
-- **longnames** - contains a collection of secuTrial exports with long table names
-- **shortnames** - contains a collection of secuTrial exports with short table names
-- **export_options** - contains a collection of secuTrial exports with differing export options
+- **lnames** - contains a collection of secuTrial exports with long table names
+- **snames** - contains a collection of secuTrial exports with short table names
+- **exp_opt** - contains a collection of secuTrial exports with differing export options
 - **change_tracking** - contains exports with differing project setups and without any case data
 - **subset** - contains partial secuTrial exports based on study centre. This is needed for testing the secuTrialdata subsetting functionality.
 
