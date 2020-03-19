@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -148,7 +148,7 @@ unspecified it will return participants for every study centre.</p></td>
     </tr>
     <tr>
       <th>percent</th>
-      <td><p>A number greater than 0 and smaller than 1 specifying the approximate percantage
+      <td><p>A number greater than 0 and smaller than 1 specifying the approximate percentage
 of participants to be returned per centre.</p></td>
     </tr>
     <tr>
@@ -167,15 +167,18 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
 
     <p>return_random_participants will produce a list of two elements. First, a data.frame that contains the
          random participants from each specified centre. This is performed based on a specified seed to retain
-         reproducibilty. Second, the configuration of the randomization (i.e. result of <code><a href='https://rdrr.io/r/base/Random.html'>RNGkind()</a></code>)</p>
+         reproducibilty. Second, the configuration of the randomization (i.e. result of <code><a href='https://rdrr.io/r/base/Random.html'>RNGkind()</a></code>).
+         If the percentage does not yield an integer for a centre the number is tranformed into an integer
+         under application of the <code><a href='https://rdrr.io/r/base/Round.html'>ceiling()</a></code> function (i.e. it is rounded up).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># export location</span>
-<span class='no'>expot_loc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>expot_loc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                          <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                          <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='co'># read export</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>expot_loc</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'>
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>expot_loc</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># return random participants</span>
 <span class='fu'>return_random_participants</span>(<span class='no'>sT_export</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1337</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2019-03-18"</span>,
                            <span class='kw'>centres</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Charité Berlin (RPACK)"</span>))</div><div class='output co'>#&gt; $participants

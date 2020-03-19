@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -126,7 +126,8 @@
 
     <pre class="usage"><span class='co'># S3 method for secuTrialdata</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(
-  <span class='no'>object</span>,
+  <span class='no'>x</span>,
+  <span class='no'>...</span>,
   <span class='kw'>data.frames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -138,8 +139,12 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
+      <th>x</th>
       <td><p>secuTrialdata object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further parameters</p></td>
     </tr>
     <tr>
       <th>data.frames</th>
@@ -169,7 +174,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='co'># load all export data</span>

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -126,14 +126,23 @@
 
     <pre class="usage"><span class='fu'>visit_structure</span>(<span class='no'>x</span>, <span class='kw'>sorted</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</pre>
+<span class='co'># S3 method for secuTrialvisit</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>secuTrialdata object</p></td>
+      <td><p>a secuTrialdata object</p></td>
+    </tr>
+    <tr>
+      <th>sorted</th>
+      <td><p>logical if TRUE sorted by first visit</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further parameters</p></td>
     </tr>
     </table>
 
@@ -146,19 +155,15 @@
       a visit structure or one with flexible visits</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
-                               <span class='st'>"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,
+    <pre class="examples"><div class='input'><span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+                               <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='co'># load all export data</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>visit_structure</span>(<span class='no'>sT_export</span>)
-}
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='no'>vs</span> <span class='kw'>&lt;-</span> <span class='fu'>visit_structure</span>(<span class='no'>sT_export</span>)
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>vs</span>)
-}</div></pre>
+<span class='co'># read all export data</span>
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='co'># get visit structure</span>
+<span class='no'>vs</span> <span class='kw'>&lt;-</span> <span class='fu'>visit_structure</span>(<span class='no'>sT_export</span>)
+<span class='co'># plot</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>vs</span>)</div><div class='img'><img src='visit_structure-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
