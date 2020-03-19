@@ -22,7 +22,7 @@ Thus, we suggest to work with exports which:
 - are **zipped**
 - are **English**
 - have **reference values** stored **in a separate table**
-- contain **Add-IDs**, **centre information**, **form status**, **project setup**
+- contain **Add-IDs**, **centre information**, **structure information**,  **form status**, **project setup**
 - do **NOT** have the **meta data duplicated** into all tables
 - are **UTF-8** encoded
 - are **"CSV format"** or **"CSV format for MS Excel"**
