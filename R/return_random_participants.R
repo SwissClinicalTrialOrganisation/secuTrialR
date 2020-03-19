@@ -33,6 +33,12 @@
 #'
 return_random_participants <- function(x, centres = "all", percent = 0.1, date = "1900-01-01", seed = 1) {
   if (class(x) == "secuTrialdata") {
+
+     # check for meta data Structure available
+     if (! x$export_options$structure) {
+       stop("Structure meta data not exported.\n  Please enable this option in ExportSeachTool and reexport.")
+     }
+
      cn_table <- x[[x$export_options$meta_names$casenodes]]
      ctr_table <- x[[x$export_options$meta_names$centres]]
      # need add ids because these will be returned
