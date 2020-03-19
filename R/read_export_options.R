@@ -109,6 +109,9 @@ read_export_options <- function(data_dir) {
   # hidden field data included
   hidden_fields <- any(sapply(dict_settings[, "hiddenfields"], function(x) any(grepl(x, parsed_export))))
 
+  # Form meta data: Structure data included
+  structure <- any(sapply(dict_settings[, "structure"], function(x) any(grepl(x, parsed_export))))
+
   # metadata file names
   meta_names <- list()
   if (short_names == TRUE) {
@@ -285,6 +288,7 @@ read_export_options <- function(data_dir) {
                         form_status = form_status,
                         centre_info = centre_info,
                         hidden_fields = hidden_fields,
+                        structure = structure,
                         proj_setup = proj_setup,
                         factorized = FALSE,
                         dated = FALSE,
