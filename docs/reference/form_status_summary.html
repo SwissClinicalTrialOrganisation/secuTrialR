@@ -71,7 +71,7 @@ Only saved forms are considered for the statistic." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@ data.frame summarizing the statuses for each form.
 Only saved forms are considered for the statistic.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>form_status_summary</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>form_status_summary</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,16 +137,21 @@ Only saved forms are considered for the statistic.</p>
       <th>object</th>
       <td><p>secuTrialdata object</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further parameters</p></td>
+    </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,<span class='st'>"sT_exports"</span>, <span class='st'>"shortnames"</span>,
+<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>,<span class='st'>"sT_exports"</span>, <span class='st'>"snames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip"</span>,
                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='co'># load all export data</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'>
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># get form status</span>
 <span class='fu'>form_status_summary</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt;          form_name partly_filled completely_filled empty with_warnings
 #&gt; 1               ae             0                 1     0             0

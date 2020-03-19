@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -128,7 +128,13 @@
              using the haven package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_secuTrial</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>write_secuTrial</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for secuTrialdata</span>
+<span class='fu'>write_secuTrial</span>(<span class='no'>object</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dta"</span>, <span class='kw'>metadata</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>write_secuTrial</span>(<span class='no'>df</span>, <span class='no'>filename</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dta"</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,12 +144,28 @@
       <td><p>secuTrialdata object</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>directory where the files should be saved</p></td>
+      <th>...</th>
+      <td><p>further parameters</p></td>
     </tr>
     <tr>
       <th>format</th>
       <td><p>format in which to save the export (one of "dta", "sas", "sav", "xpt")</p></td>
+    </tr>
+    <tr>
+      <th>metadata</th>
+      <td><p>if TRUE then metadate files will also be written</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>a data.frame</p></td>
+    </tr>
+    <tr>
+      <th>filename</th>
+      <td><p>file name</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>directory where the files should be saved</p></td>
     </tr>
     </table>
 
@@ -160,64 +182,65 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='co'># load all export data</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'><span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='no'>tdir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
 <span class='fu'>write_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dta"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='no'>tdir</span>)</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmiv.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmiv.dta"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05baseline.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05baseline.dta"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05baseline.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05baseline.dta"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05outcome.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05outcome.dta"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05outcome.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05outcome.dta"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05treatment.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05treatment.dta"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05treatment.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05treatment.dta"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05allmedi.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05allmedi.dta"
 #&gt; 
 #&gt; [[9]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05allmedi.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05allmedi.dta"
 #&gt; 
 #&gt; [[10]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05studyterminat.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05studyterminat.dta"
 #&gt; 
 #&gt; [[11]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05studyterminat.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05studyterminat.dta"
 #&gt; 
 #&gt; [[12]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05ae.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05ae.dta"
 #&gt; 
 #&gt; [[13]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05ae.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05ae.dta"
 #&gt; 
 #&gt; [[14]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/ctu05sae.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/ctu05sae.dta"
 #&gt; 
 #&gt; [[15]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atmnpctu05sae.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atmnpctu05sae.dta"
 #&gt; 
 #&gt; [[16]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/emnpctu05surgeries.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/emnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[17]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atemnpctu05surgeries.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atemnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[18]]
-#&gt; [1] "Saved to /tmp/RtmpMP2SdC/atadverseevents.dta"
+#&gt; [1] "Saved to /tmp/Rtmpc0HxOU/atadverseevents.dta"
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='no'>tdir</span>)</div><div class='output co'>#&gt;  [1] "atadverseevents.dta"             "atemnpctu05surgeries.dta"       
 #&gt;  [3] "atmiv.dta"                       "atmnpctu05ae.dta"               
 #&gt;  [5] "atmnpctu05allmedi.dta"           "atmnpctu05baseline.dta"         
@@ -227,8 +250,8 @@
 #&gt; [13] "ctu05baseline.dta"               "ctu05outcome.dta"               
 #&gt; [15] "ctu05sae.dta"                    "ctu05studyterminat.dta"         
 #&gt; [17] "ctu05treatment.dta"              "emnpctu05surgeries.dta"         
-#&gt; [19] "file699182d75fa.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
-#&gt; [21] "libloc_174_173b0d0583319ed2.rds" "libloc_189_178c4f1e346e5689.rds"
+#&gt; [19] "file2643df015d1.so"              "libloc_169_8f48fc7d1db1bb3e.rds"
+#&gt; [21] "libloc_174_173b0d0583319ed2.rds" "libloc_191_8c8ca18184936503.rds"
 #&gt; [23] "libloc_198_906ea0066f46c4fa.rds"</div><div class='input'>
 </div></pre>
   </div>

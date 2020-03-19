@@ -101,8 +101,8 @@ using `system.file()`.
 Prior to reading your data into R you need to export it with the secuTrial ExportSearchTool.
 We suggest exporting **non-rectangular**, **zipped**, **English** data with 
 **reference values** stored **in a separate table** including 
-**Add-IDs**, **centre information**, **form status**, **project setup**,
-**without duplicated meta data** and **without form data of hidden fields**.
+**Add-IDs**, **centre information**, **structure information**,  **form status**,
+**project setup**, **without duplicated meta data** and **without form data of hidden fields**.
 Furthermore, it is important to use
 **"CSV format"**/**"CSV format for MS Excel"** and suggested to select **UTF-8** encoding.
 Most of these options are truly optional and reading your data should
@@ -123,6 +123,8 @@ ctu05_data <- read_secuTrial(data_dir = ctu05_data_location)
 ```
 
 If the "Read export successfully." message appears your data was correctly read.
+In this example you are also warned that hidden data fields are in the export which is a deviation
+from the suggested export option configuraion.
 
 # The `secuTrialdata` object
 
@@ -184,8 +186,6 @@ If this sounds cryptic to you we suggest you talk so someone who has implemented
 a database in secuTrial and let them explain it with a specific example.
 It is pretty straight forward when you look at a concrete implementation.
 
-\newpage
-
 ## Accessing the tables and values
 
 Since the `secuTrialdata` object is a `list` and the data tables within this `list` are
@@ -222,8 +222,6 @@ ctu05_data$allmedi$no_more_meds
 # transformed more meds
 ctu05_data$allmedi$no_more_meds.factor
 ```
-
-\newpage
 
 Note that descriptive labels have also been automatically added to the data.
 \vspace{5pt}
@@ -458,29 +456,36 @@ return_hidden_items(ctu05_data)
 In ongoing studies it is possible that changes to the secuTrial data entry
 interface (i.e. the electronic case report forms) are made. Sometimes these
 changes may call for adjustments in analysis code. It is considered good practice
-to run  `diff_secuTrial()` on the last export and the current export of a project
+to run `diff_secuTrial()` on the last export and the current export of a project
 to at least make yourself aware of potential changes in the setup. If there are
 differences, the results of this function should be interpreted as a first indicator
-since they may not cover all alterations. Information is returned on new forms and
+since they may not cover all alterations. Information is returned on forms and
 variables. A detailed list of changes can be produced in the secuTrial
 FormBuilder with "Compare project setup".
+
+For the below `diff_secuTrial()` showcase we emulated a changed setup of CTU05
+by copying the setup and importing it in the FormBuilder as a new secuTrial
+project (CTU06). From this, we created a data export (v1) and then made a few
+minor changes and exported again (v2). If this sounds confusing, never mind.
+CTU06 v1 is simply a copy of CTU05. CTU06 v2 is a slighly altered version of CTU06 v1.
 \vspace{5pt}
 
 ``` {r}
-# load second export from the same project
-export_location <- system.file("extdata", "sT_exports", "lnames",
-                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                               package = "secuTrialR")
-# read all export data
-ctu05_data_new <- read_secuTrial_raw(data_dir = export_location)
+ctu06_v1 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
+                                       "s_export_CSV-xls_CTU06_version1.zip",
+                                       package = "secuTrialR"))
 
-# show diff
-diff_secuTrial(ctu05_data, ctu05_data_new)
+ctu06_v2 <- read_secuTrial(system.file("extdata", "sT_exports", "change_tracking",
+                                       "s_export_CSV-xls_CTU06_version2.zip",
+                                       package = "secuTrialR"))
+
+diff_secuTrial(ctu06_v1, ctu06_v2)
 
 ```
 
-This `list` contains only empty entries. Thus, you can conclude that there are no new forms or
-variables and no forms or variables have been removed.
+As you can see `ctu06_v2` contains the two additional forms `mnpctu06anewform` and
+`mnpctu06anothernewform` and the two additional variables `new_item_in_fu` and
+`new_item_in_new_form`.
 
 ## Conversion to SPSS, STATA, SAS
 
@@ -564,6 +569,49 @@ ctu05_data_bern_berlin <- subset_secuTrial(ctu05_data,
 # plot
 plot_recruitment(ctu05_data_bern_berlin)
 ```
+
+# Building URLs to your secuTrial server
+
+If you are creating reports in which you would like to directly
+link to specific pages of your secuTrial DataCapture you can
+use `build_secuTrial_url`. If you are no expert regarding the
+secuTrial server architecture you would like to build links for, you should
+talk to the server admin or consult the `build_secuTrial_url` help page.
+They will be able to guide you regarding the information for the `server`,
+`instance`, `customer` and `project` parameters. The `docid`, however, is
+included in your export data in the non-meta data tables of the
+`secuTrialdata` object and can be found in the `mnpdocid` columns.
+
+```{r}
+head(ctu05_data$treatment$mnpdocid)
+head(ctu05_data$baseline$mnpdocid)
+```
+
+To demsonstrate `build_secuTrial_url` we will use imaginary data
+for the `server`, `instance`, `customer` and `project` parameters.
+The real counterparts on your server will likely look structurally
+similar.
+
+```{r}
+server <- "server.secutrial.com"
+instance <- "ST21-setup-DataCapture"
+customer <- "TES"
+project <- "7036"
+
+# make three links with the first three baseline docids
+bl_docids <- head(ctu05_data$baseline$mnpdocid, n = 3)
+links <- build_secuTrial_url(server, instance, customer,
+                             project, bl_docids)
+```
+**These are the links**:  
+`r links[1]`  
+
+`r links[2]`  
+
+`r links[3]`  
+
+Of course they are dead ends but maybe you can use them to make
+out the arguments for your server.
 
 # The `as.data.frame` function
 
@@ -675,8 +723,8 @@ For detailed explanations, please refer to the secuTrial "Export Formats" user m
 The descriptions of the secuTrial exports used in this vignette and other `secuTrialR`
 documentation correspond to our understanding of them and come with no warranty.
 For in depth details please refer to the original secuTrial manuals.
+\vspace{50pt}
 
-# The `sessionInfo()`
 
 ```{r}
 sessionInfo()

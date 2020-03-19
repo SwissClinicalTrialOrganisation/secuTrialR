@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -134,21 +134,35 @@
 
 <span class='fu'>label_secuTrial</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='fu'>label</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>label</span>(<span class='no'>x</span>)
+
+<span class='fu'>units</span>(<span class='no'>x</span>)
+
+<span class='fu'>label</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='fu'>units</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p><code>secuTrialdata</code> object</p></td>
+      <td><p>a <code>secuTrialdata</code> object</p></td>
     </tr>
     <tr>
       <th>form</th>
       <td><p>which form (string)</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>further parameters</p></td>
+    </tr>
+    <tr>
       <th>x</th>
+      <td><p>any object</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
       <td><p>any object</p></td>
     </tr>
     </table>
@@ -186,7 +200,7 @@ and data.frames
 <span class='no'>labels</span><span class='kw'>[[</span><span class='st'>"age"</span>]]</div><div class='output co'>#&gt; [1] "Age"</div><div class='input'>
 <span class='co'># ex. 2</span>
 <span class='co'># load export</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                             <span class='st'>"s_export_CSV-xls_CTU05_long_miss_en_utf8.zip"</span>,
                                             <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>))
 
@@ -196,7 +210,7 @@ and data.frames
 
 <span class='co'># APPROACH 2: label_secuTrial</span>
 <span class='co'># load secuTrial export with separate reference table</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                             <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                                             <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>))
 <span class='co'># label the secuTrialdata object</span>
@@ -204,7 +218,7 @@ and data.frames
 <span class='co'># form label</span>
 <span class='fu'>label</span>(<span class='no'>sT_export_labelled</span>$<span class='no'>ctu05baseline</span>)</div><div class='output co'>#&gt; [1] "General screen"</div><div class='input'><span class='co'># variable label</span>
 <span class='fu'>label</span>(<span class='no'>sT_export_labelled</span>$<span class='no'>ctu05baseline</span>$<span class='no'>visit_date</span>)</div><div class='output co'>#&gt; [1] "Date of visit"</div><div class='input'><span class='co'># sampling units</span>
-<span class='fu'><a href='https://rdrr.io/r/base/difftime.html'>units</a></span>(<span class='no'>sT_export_labelled</span>$<span class='no'>ctu05baseline</span>$<span class='no'>height</span>)</div><div class='output co'>#&gt; [1] "cm"</div></pre>
+<span class='fu'>units</span>(<span class='no'>sT_export_labelled</span>$<span class='no'>ctu05baseline</span>$<span class='no'>height</span>)</div><div class='output co'>#&gt; [1] "cm"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -70,7 +70,7 @@ this function composes a URL to a specific secuTrial instance, customer or form.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -201,10 +201,11 @@ Thus, there are different scenarios:</p><ul>
 
 <span class='fu'>build_secuTrial_url</span>(<span class='no'>server</span>)</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='no'>server</span>, <span class='no'>instance</span>)</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='no'>server</span>, <span class='no'>instance</span>, <span class='no'>customer</span>)</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='no'>server</span>, <span class='no'>instance</span>, <span class='no'>customer</span>, <span class='no'>project</span>)</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='no'>server</span>, <span class='no'>instance</span>, <span class='no'>customer</span>, <span class='no'>project</span>, <span class='no'>docid</span>)</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=181"</div><div class='input'>
 <span class='co'># examples of docids (mnpdocid)</span>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"longnames"</span>,
+<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                     <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'>
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># return docids</span>
 <span class='no'>docids</span> <span class='kw'>&lt;-</span> <span class='no'>sT_export</span>$<span class='no'>ctu05baseline</span>$<span class='no'>mnpdocid</span>
 

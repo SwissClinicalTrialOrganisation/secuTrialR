@@ -73,7 +73,7 @@ In order to subset based on centres, centre information must be included in the 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -168,10 +168,11 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"export_options"</span>,
-                    <span class='st'>"s_export_CSV-xls_CTU05_20191003-144349_all_info.zip"</span>,
+<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
+                    <span class='st'>"s_export_CSV-xls_CTU05_all_info.zip"</span>,
                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>sT</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'><span class='no'>participants</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"RPACK-INS-011"</span>, <span class='st'>"RPACK-INS-014"</span>, <span class='st'>"RPACK-INS-015"</span>)
+<span class='no'>sT</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='no'>participants</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"RPACK-INS-011"</span>, <span class='st'>"RPACK-INS-014"</span>, <span class='st'>"RPACK-INS-015"</span>)
 <span class='no'>centres</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Universitätsspital Basel (RPACK)"</span>)
 
 <span class='co'># show all participants</span>
@@ -207,11 +208,13 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 #&gt; 2   1205 RPACK-CBE-002      462 Charité Berlin (RPACK)
 #&gt; 3   1206 RPACK-CBE-003      462 Charité Berlin (RPACK)
 #&gt; 4   1207 RPACK-CBE-004      462 Charité Berlin (RPACK)
-#&gt; 5   1208 RPACK-CBE-005      462 Charité Berlin (RPACK)</div><div class='input'><span class='no'>sT_subset4</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>, <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+#&gt; 5   1208 RPACK-CBE-005      462 Charité Berlin (RPACK)</div><div class='input'><span class='no'>sT_subset4</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>,
+                               <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset4</span>)</div><div class='output co'>#&gt;   mnppid        mnpaid mnpctrid               mnpctrname
 #&gt; 1   1209 RPACK-INS-011      461 Inselspital Bern (RPACK)
 #&gt; 2   1212 RPACK-INS-014      461 Inselspital Bern (RPACK)
-#&gt; 3   1213 RPACK-INS-015      461 Inselspital Bern (RPACK)</div><div class='input'><span class='no'>sT_subset5</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>, <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>[<span class='fl'>2</span>], <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+#&gt; 3   1213 RPACK-INS-015      461 Inselspital Bern (RPACK)</div><div class='input'><span class='no'>sT_subset5</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>,
+                               <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>[<span class='fl'>2</span>], <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset5</span>)</div><div class='output co'>#&gt; [1] mnppid     mnpaid     mnpctrid   mnpctrname
 #&gt; &lt;0 rows&gt; (or 0-length row.names)</div><div class='input'>
 </div></pre>

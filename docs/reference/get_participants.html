@@ -71,7 +71,7 @@ if available." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -145,10 +145,11 @@ if available.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"export_options"</span>,
-                    <span class='st'>"s_export_CSV-xls_CTU05_20191003-144349_all_info.zip"</span>,
+<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
+                    <span class='st'>"s_export_CSV-xls_CTU05_all_info.zip"</span>,
                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='input'>
+<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># show participants</span>
 <span class='no'>participants</span> <span class='kw'>&lt;-</span> <span class='fu'>get_participants</span>(<span class='no'>sT_export</span>)</div></pre>
   </div>

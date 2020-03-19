@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1>secuTrialR - a walkthrough</h1>
                         <h4 class="author">Patrick R. Wright, Milica Markovic, Alan Haynes</h4>
             
-            <h4 class="date">2020-03-06</h4>
+            <h4 class="date">2020-03-19</h4>
       
       
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -101,26 +101,29 @@
 </blockquote>
 
 <p>This R package provides functions for handling data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/"></a>. The most important components are related to reading data exports from secuTrial into R. In brief, the package aims to enable swift execution of repetitive tasks in order to allow spending more time on the unique aspects of a dataset. It is developed and maintained by the Swiss Clinical Trial Organisation (<a href="https://www.scto.ch/en/news.html"></a>).</p>
-<p>This vignette will teach you how to use the <code>secuTrialR</code> package and you will likely learn quite a bit about secuTrial exports in general along the way.</p>
+<p>If you are still challenged by more basic operations in R we suggest reading <a href="https://rstudio-education.github.io/hopr/"></a>, which serves as an excellent introduction to the basic concepts of R.</p>
+<p>This vignette will teach you how to use the <code>secuTrialR</code> package and you will likely learn quite a bit about secuTrial exports in general along the way. Throughout the <code>secuTrialR</code> package and within this vignette we refer to patients, cases, subjects etc. enrolled in a secuTrial database as participants.</p>
 </div>
-<div id="installing" class="section level1">
+<div id="installing-from-github-with-devtools" class="section level1">
 <h1 class="hasAnchor">
-<a href="#installing" class="anchor"></a>Installing</h1>
-<p>Let’s get started by installing the package straight from <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"></a> and then loading it. For this you will need to have <code>devtools</code> installed. We are planning to add <code>secuTrialR</code> to CRAN but we are not there yet. </p>
+<a href="#installing-from-github-with-devtools" class="anchor"></a>Installing from GitHub with <code>devtools</code>
+</h1>
+<p>Let’s get started by installing the package straight from <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"></a> and then loading it. For this you will need to have <code>devtools</code> installed. We are planning to add <code>secuTrialR</code> to CRAN but we are not there yet. If you are working on Windows and would like to install with <code>devtools</code> you will likely need to install <a href="https://cran.r-project.org/bin/windows/Rtools/"></a>. Installing everything, including the dependencies, from scratch may take a while (20-30 minutes).</p>
+
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># load silently</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(secuTrialR))</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># show secuTrialR version</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>()[<span class="st">"secuTrialR"</span>, <span class="st">"Version"</span>]</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [1] "0.8.7"</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [1] "0.9.1"</span></a></code></pre></div>
 </div>
 <div id="the-ctu05-dataset" class="section level1">
 <h1 class="hasAnchor">
 <a href="#the-ctu05-dataset" class="anchor"></a>The CTU05 dataset</h1>
 <p>Before we continue with the functionalities let’s briefly talk about the test data which is delivered as a part of the package. We refer to it as the <code>CTU05</code> (clinical trial unit project 05) data. This dataset has been fabricated for demonstration purposes only and is not real clinical data. Principally it is made up of eight forms. These are called “surgeries”, “baseline”, “outcome”, “treatment”, “allmedi”, “studyterminat”, “ae” and “sae”. You will see these names again later when the data has been read into R. The project setup includes most data types implementable in secuTrial. It is, however, not exhaustive. Since the data is delivered with the installation of the <code>secuTrialR</code> package we can point to it via the <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code> function. </p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ctu05_data_location &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"export_options"</span>,</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">                                   <span class="st">"s_export_CSV-xls_CTU05_20191003-144349_all_info.zip"</span>,</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ctu05_data_location &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"exp_opt"</span>,</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">                                   <span class="st">"s_export_CSV-xls_CTU05_all_info.zip"</span>,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">                                   <span class="dt">package =</span> <span class="st">"secuTrialR"</span>)</a></code></pre></div>
 <p>If you work on your own datasets you can specify a path as a regular character string without using <code><a href="https://rdrr.io/r/base/system.file.html">system.file()</a></code>.</p>
 <div style="page-break-after: always;"></div>
@@ -128,15 +131,18 @@
 <div id="secutrial-export-options" class="section level1">
 <h1 class="hasAnchor">
 <a href="#secutrial-export-options" class="anchor"></a>secuTrial export options</h1>
-<p>Prior to reading your data into R you need to export it with the secuTrial ExportSearchTool. We suggest exporting <strong>non-rectangular</strong>, <strong>zipped</strong>, <strong>English</strong> data with <strong>reference values</strong> stored <strong>in a separate table</strong> including <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>form status</strong>, <strong>project setup</strong> and <strong>without duplicated meta data</strong>. Furthermore, it is important to use <strong>“CSV format”</strong>/<strong>“CSV format for MS Excel”</strong> and suggested to select <strong>UTF-8</strong> encoding. Most of these options are truly optional and reading your data should work even with differences from the above specifications.</p>
+<p>Prior to reading your data into R you need to export it with the secuTrial ExportSearchTool. We suggest exporting <strong>non-rectangular</strong>, <strong>zipped</strong>, <strong>English</strong> data with <strong>reference values</strong> stored <strong>in a separate table</strong> including <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong>, <strong>without duplicated meta data</strong> and <strong>without form data of hidden fields</strong>. Furthermore, it is important to use <strong>“CSV format”</strong>/<strong>“CSV format for MS Excel”</strong> and suggested to select <strong>UTF-8</strong> encoding. Most of these options are truly optional and reading your data should work even with differences from the above specifications.</p>
+<p>A description of how data can be exported from secuTrial can be found <a href="https://swissclinicaltrialorganisation.github.io/secuTrial_recipes/export_data/"></a>. This description includes screenshots of the export options configuration interface.</p>
 </div>
 <div id="reading-a-secutrial-data-export-into-r" class="section level1">
 <h1 class="hasAnchor">
 <a href="#reading-a-secutrial-data-export-into-r" class="anchor"></a>Reading a secuTrial data export into R</h1>
 <p>There is one principle function to read your data (i.e. <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code>). Below you can see it in action with the <code>CTU05</code> dataset. </p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ctu05_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span>(<span class="dt">data_dir =</span> ctu05_data_location)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Read export successfully.</span></a></code></pre></div>
-<p>If the “Read export successfully.” message appears your data was correctly read.</p>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Read export successfully.</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; The following export options deviate from the suggested specifications:</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Data from hidden fields is part of the export.</span></a></code></pre></div>
+<p>If the “Read export successfully.” message appears your data was correctly read. In this example you are also warned that hidden data fields are in the export which is a deviation from the suggested export option configuraion.</p>
 </div>
 <div id="the-secutrialdata-object" class="section level1">
 <h1 class="hasAnchor">
@@ -153,8 +159,8 @@
 <p>We have implemented a custom variation of the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function for <code>secuTrialdata</code> objects.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(ctu05_data)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; secuTrial data imported from:</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; /tmp/RtmpvxyLSp/temp_libpath546f94bc29/secuTrialR/extdata/sT_exports/</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; export_options/s_export_CSV-xls_CTU05_20191003-144349_all_info.zip </span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; /tmp/Rtmp0WFW9e/temp_libpath257e677849ea/secuTrialR/extdata/sT_exports/exp_opt/</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; s_export_CSV-xls_CTU05_all_info.zip </span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;            table nrow ncol  meta       original_name</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;               vp    4   12  TRUE              vp.xls</span></a>
 <a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;             vpfs    8    2  TRUE            vpfs.xls</span></a>
@@ -188,8 +194,8 @@
 <a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt;               cl  205    3  TRUE              cl.xls</span></a>
 <a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt;            atae1    0   20 FALSE           atae1.xls</span></a></code></pre></div>
 <p>It shows you where the export archive of your <code>secuTrialdata</code> object is located, tells you which data tables (i.e. <code>table</code>) it contains, what the source files (i.e. <code>original_name</code>) are and specifies each table’s dimensions (i.e. <code>ncol</code>, <code>nrow</code>).</p>
-<p>By now you have possibly realized that all the forms specified earlier (i.e. “surgeries”, “baseline”, “outcome”, “treatment”, “allmedi”, “studyterminat”, “ae” and “sae”) are present, but also that there are many tables do not correspond to the previously introduced forms.</p>
-<p>The majority of the unrecognizable tables are tagged as <code>TRUE</code> in the <code>meta</code> column. This means that they are metadata tables. Their names and data structures are fixed in secuTrial exports. In the following we will briefly explain which information the most relevant meta tables contain.</p>
+<p>By now you have possibly realized that all the forms specified earlier (i.e. “surgeries”, “baseline”, “outcome”, “treatment”, “allmedi”, “studyterminat”, “ae” and “sae”) are present, but also that there are many tables that do not correspond to the previously introduced forms.</p>
+<p>The majority of the unfamiliar tables are tagged as <code>TRUE</code> in the <code>meta</code> column. This means that they are metadata tables. Their names and data structures are fixed in secuTrial exports. In the following we will briefly explain which information the most relevant meta tables contain.</p>
 <ul>
 <li>
 <code>vp</code> - visitplan definition</li>
@@ -209,7 +215,6 @@
 <code>cl</code> - information how the data in the variables is coded</li>
 </ul>
 <p>Furthermore, there is a set of tables whose names start with “at”. These are audit trail tables. They are only relevant if you need to investigate changes in the data over time. For example certain values may be corrected (i.e. changed) due to findings during monitoring visits at study centres. Last but not least you may have also realized that the “surgeries” table is called <code>esurgeries</code>. This is because it is a so-called repetition form. Repetition forms are labelled with a leading “e” and are implemented as subforms in other forms. In this case, <code>esurgeries</code> is a subform in <code>baseline</code> and the linkage is defined by the <code>mnpdocid</code> column in both tables. If this sounds cryptic to you we suggest you talk so someone who has implemented a database in secuTrial and let them explain it with a specific example. It is pretty straight forward when you look at a concrete implementation.</p>
-<div style="page-break-after: always;"></div>
 </div>
 <div id="accessing-the-tables-and-values" class="section level2">
 <h2 class="hasAnchor">
@@ -254,7 +259,6 @@
 <a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt; attr(,"label")</span></a>
 <a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt; [1] No further medication</span></a>
 <a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt; Levels: no yes</span></a></code></pre></div>
-<div style="page-break-after: always;"></div>
 <p>Note that descriptive labels have also been automatically added to the data. </p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/labels_secuTrial.html">label</a></span>(ctu05_data<span class="op">$</span>allmedi<span class="op">$</span>no_more_meds.factor)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] "No further medication"</span></a>
@@ -347,8 +351,8 @@
 <a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt; [25] "secuTrial_version"  "project_version"    "project_name"      </span></a>
 <a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; [28] "format_info"        "time_of_export"     "encoding"          </span></a>
 <a class="sourceLine" id="cb14-12" data-line-number="12"><span class="co">#&gt; [31] "form_status"        "centre_info"        "hidden_fields"     </span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; [34] "proj_setup"         "factorized"         "dated"             </span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; [37] "labelled"</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co">#&gt; [34] "structure"          "proj_setup"         "factorized"        </span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; [37] "dated"              "labelled"</span></a></code></pre></div>
 </div>
 </div>
 <div id="generic-functions-for-secutrialdata-objects" class="section level1">
@@ -399,10 +403,10 @@
 <div id="visit-plan-visualization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visit-plan-visualization" class="anchor"></a>Visit plan visualization</h2>
-<p><code>secuTrialR</code> can provide a depiction of the visit structure, although only where the visit plan is fixed. </p>
+<p><code>secuTrialR</code> can provide a depiction of the visit structure, although only where the visit plan is fixed. Black rectangles in the grid represent a form to be filled (x) during one of the visits (y). </p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">vs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/visit_structure.html">visit_structure</a></span>(ctu05_data)</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(vs)</a></code></pre></div>
-<p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-20-1.png" width="384"></p>
+<p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-20-1.png" width="374.4"></p>
 </div>
 <div id="completeness-of-forms" class="section level2">
 <h2 class="hasAnchor">
@@ -429,7 +433,7 @@
 <a class="sourceLine" id="cb20-19" data-line-number="19"><span class="co">#&gt; 9              0                     0                   0         10</span></a>
 <a class="sourceLine" id="cb20-20" data-line-number="20"><span class="co">#&gt; 10             0                     0                   0         11</span></a></code></pre></div>
 <p>Please note that a form is only complete if all required fields have been filled. Thus, a whole study may have 99% completeness on variable basis while showing 0% completeness on form basis. It is currently not technically possible to assess completeness on variable basis in a generic way. Hence, high completeness on form basis implies high completeness on variable basis but <strong>NOT</strong> vice versa.</p>
-<p>For a more participant id centred statistic you can perform the following. </p>
+<p>If you would rather retrieve information on form completeness for each participant individually you can perform the following. </p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">fsc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/form_status_counts.html">form_status_counts</a></span>(ctu05_data)</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co"># show the top</span></a>
 <a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(fsc)</a>
@@ -458,7 +462,7 @@
 <div id="sampling-random-participants" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sampling-random-participants" class="anchor"></a>Sampling random participants</h2>
-<p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export. </p>
+<p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion, which can be achieved by setting a so-called seed. The below function allows reproducible retrieval for a loaded secuTrial data export. </p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># randomly retrieve at least 25 percent of participants recorded after March 18th 2019</span></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></a>
 <a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="../reference/return_random_participants.html">return_random_participants</a></span>(ctu05_data,</a>
@@ -496,31 +500,38 @@
 <a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co">#&gt; [1] name     itemtype label   </span></a>
 <a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></a></code></pre></div>
 </div>
-<div id="finding-changesdifferences-in-exports" class="section level2">
+<div id="finding-changesdifferences-in-project-setup-implementations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#finding-changesdifferences-in-exports" class="anchor"></a>Finding changes/differences in exports</h2>
-<p>In ongoing studies it is possible that changes to the secuTrial data entry interface (i.e. the electronic case report forms) are made. Sometimes these changes may call for adjustments in analysis code. It is considered good practice to run <code><a href="../reference/diff_secuTrial.html">diff_secuTrial()</a></code> on the last export and the current export of a project to at least make yourself aware of potential changes in the setup. If there are differences, the results of this function should be interpreted as a first indicator since they may not cover all alterations. Information is returned on new forms and variables. A detailed list of changes can be produced in the secuTrial FormBuilder with “Compare project setup”. </p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># load second export from the same project</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">export_location &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"longnames"</span>,</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">                               <span class="dt">package =</span> <span class="st">"secuTrialR"</span>)</a>
-<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co"># read all export data</span></a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">ctu05_data_new &lt;-<span class="st"> </span><span class="kw"><a href="../reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="dt">data_dir =</span> export_location)</a>
+<a href="#finding-changesdifferences-in-project-setup-implementations" class="anchor"></a>Finding changes/differences in project setup implementations</h2>
+<p>In ongoing studies it is possible that changes to the secuTrial data entry interface (i.e. the electronic case report forms) are made. Sometimes these changes may call for adjustments in analysis code. It is considered good practice to run <code><a href="../reference/diff_secuTrial.html">diff_secuTrial()</a></code> on the last export and the current export of a project to at least make yourself aware of potential changes in the setup. If there are differences, the results of this function should be interpreted as a first indicator since they may not cover all alterations. Information is returned on forms and variables. A detailed list of changes can be produced in the secuTrial FormBuilder with “Compare project setup”.</p>
+<p>For the below <code><a href="../reference/diff_secuTrial.html">diff_secuTrial()</a></code> showcase we emulated a changed setup of CTU05 by copying the setup and importing it in the FormBuilder as a new secuTrial project (CTU06). From this, we created a data export (v1) and then made a few minor changes and exported again (v2). If this sounds confusing, never mind. CTU06 v1 is simply a copy of CTU05. CTU06 v2 is a slighly altered version of CTU06 v1. </p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">ctu06_v1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">                                       <span class="st">"s_export_CSV-xls_CTU06_version1.zip"</span>,</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">                                       <span class="dt">package =</span> <span class="st">"secuTrialR"</span>))</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">#&gt; Read export successfully.</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co">#&gt; The following export options deviate from the suggested specifications:</span></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="co">#&gt; Data from hidden fields is part of the export.</span></a>
 <a class="sourceLine" id="cb26-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co"># show diff</span></a>
-<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="kw"><a href="../reference/diff_secuTrial.html">diff_secuTrial</a></span>(ctu05_data, ctu05_data_new)</a>
-<a class="sourceLine" id="cb26-10" data-line-number="10"><span class="co">#&gt; $new_forms</span></a>
-<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="co">#&gt; character(0)</span></a>
-<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="co">#&gt; $new_variables</span></a>
-<a class="sourceLine" id="cb26-14" data-line-number="14"><span class="co">#&gt; character(0)</span></a>
-<a class="sourceLine" id="cb26-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb26-16" data-line-number="16"><span class="co">#&gt; $removed_forms</span></a>
-<a class="sourceLine" id="cb26-17" data-line-number="17"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">ctu06_v2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">                                       <span class="st">"s_export_CSV-xls_CTU06_version2.zip"</span>,</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10">                                       <span class="dt">package =</span> <span class="st">"secuTrialR"</span>))</a>
+<a class="sourceLine" id="cb26-11" data-line-number="11"><span class="co">#&gt; Read export successfully.</span></a>
+<a class="sourceLine" id="cb26-12" data-line-number="12"><span class="co">#&gt; The following export options deviate from the suggested specifications:</span></a>
+<a class="sourceLine" id="cb26-13" data-line-number="13"><span class="co">#&gt; Data from hidden fields is part of the export.</span></a>
+<a class="sourceLine" id="cb26-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb26-15" data-line-number="15"><span class="kw"><a href="../reference/diff_secuTrial.html">diff_secuTrial</a></span>(ctu06_v1, ctu06_v2)</a>
+<a class="sourceLine" id="cb26-16" data-line-number="16"><span class="co">#&gt; $new_forms</span></a>
+<a class="sourceLine" id="cb26-17" data-line-number="17"><span class="co">#&gt; [1] "mnpctu06anewform"       "mnpctu06anothernewform"</span></a>
 <a class="sourceLine" id="cb26-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb26-19" data-line-number="19"><span class="co">#&gt; $removed_variables</span></a>
-<a class="sourceLine" id="cb26-20" data-line-number="20"><span class="co">#&gt; character(0)</span></a></code></pre></div>
-<p>This <code>list</code> contains only empty entries. Thus, you can conclude that there are no new forms or variables and no forms or variables have been removed.</p>
+<a class="sourceLine" id="cb26-19" data-line-number="19"><span class="co">#&gt; $new_variables</span></a>
+<a class="sourceLine" id="cb26-20" data-line-number="20"><span class="co">#&gt; [1] "new_item_in_fu"       "new_item_in_new_form"</span></a>
+<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-22" data-line-number="22"><span class="co">#&gt; $removed_forms</span></a>
+<a class="sourceLine" id="cb26-23" data-line-number="23"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb26-24" data-line-number="24"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb26-25" data-line-number="25"><span class="co">#&gt; $removed_variables</span></a>
+<a class="sourceLine" id="cb26-26" data-line-number="26"><span class="co">#&gt; character(0)</span></a></code></pre></div>
+<p>As you can see <code>ctu06_v2</code> contains the two additional forms <code>mnpctu06anewform</code> and <code>mnpctu06anothernewform</code> and the two additional variables <code>new_item_in_fu</code> and <code>new_item_in_new_form</code>.</p>
 </div>
 <div id="conversion-to-spss-stata-sas" class="section level2">
 <h2 class="hasAnchor">
@@ -583,39 +594,68 @@
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-32-1.png" width="768"></p>
 </div>
 </div>
+<div id="building-urls-to-your-secutrial-server" class="section level1">
+<h1 class="hasAnchor">
+<a href="#building-urls-to-your-secutrial-server" class="anchor"></a>Building URLs to your secuTrial server</h1>
+<p>If you are creating reports in which you would like to directly link to specific pages of your secuTrial DataCapture you can use <code>build_secuTrial_url</code>. If you are no expert regarding the secuTrial server architecture you would like to build links for, you should talk to the server admin or consult the <code>build_secuTrial_url</code> help page. They will be able to guide you regarding the information for the <code>server</code>, <code>instance</code>, <code>customer</code> and <code>project</code> parameters. The <code>docid</code>, however, is included in your export data in the non-meta data tables of the <code>secuTrialdata</code> object and can be found in the <code>mnpdocid</code> columns.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ctu05_data<span class="op">$</span>treatment<span class="op">$</span>mnpdocid)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt; [1] 181 193 200 205 213 224</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ctu05_data<span class="op">$</span>baseline<span class="op">$</span>mnpdocid)</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="co">#&gt; [1] 180 184 187 191 199 203</span></a></code></pre></div>
+<p>To demsonstrate <code>build_secuTrial_url</code> we will use imaginary data for the <code>server</code>, <code>instance</code>, <code>customer</code> and <code>project</code> parameters. The real counterparts on your server will likely look structurally similar.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">server &lt;-<span class="st"> "server.secutrial.com"</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">instance &lt;-<span class="st"> "ST21-setup-DataCapture"</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">customer &lt;-<span class="st"> "TES"</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">project &lt;-<span class="st"> "7036"</span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="co"># make three links with the first three baseline docids</span></a>
+<a class="sourceLine" id="cb33-7" data-line-number="7">bl_docids &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ctu05_data<span class="op">$</span>baseline<span class="op">$</span>mnpdocid, <span class="dt">n =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb33-8" data-line-number="8">links &lt;-<span class="st"> </span><span class="kw"><a href="../reference/build_secuTrial_url.html">build_secuTrial_url</a></span>(server, instance, customer,</a>
+<a class="sourceLine" id="cb33-9" data-line-number="9">                             project, bl_docids)</a></code></pre></div>
+<p><strong>These are the links</strong>:<br><a href="https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=180" class="uri">https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=180</a></p>
+<p><a href="https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=184" class="uri">https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=184</a></p>
+<p><a href="https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=187" class="uri">https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=187</a></p>
+<p>Of course they are dead ends but maybe you can use them to make out the arguments for your server.</p>
+</div>
 <div id="the-as-data-frame-function" class="section level1">
 <h1 class="hasAnchor">
 <a href="#the-as-data-frame-function" class="anchor"></a>The <code>as.data.frame</code> function</h1>
 <p>This vignette has been working with the <code>secuTrialdata</code> object, which is of type <code>list</code>. For some users, working with a <code>list</code> can be tiresome so <code>secuTrialR</code> provides an <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> method to save the <code>data.frame</code>s in the <code>secuTrialdata</code> object to an environment of your choice.</p>
 <p>Let’s have a look at the state of your <code><a href="https://rdrr.io/r/base/environment.html">globalenv()</a></code> before running <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>… </p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span>())</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#&gt;  [1] "centres"                "ctu05_data"            </span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">#&gt;  [3] "ctu05_data_berlin"      "ctu05_data_bern"       </span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="co">#&gt;  [5] "ctu05_data_bern_basel"  "ctu05_data_bern_berlin"</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">#&gt;  [7] "ctu05_data_location"    "ctu05_data_new"        </span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="co">#&gt;  [9] "ctu05_data_pids"        "export_location"       </span></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="co">#&gt; [11] "fsc"                    "fss"                   </span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="co">#&gt; [13] "participants"           "vs"</span></a></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># add files to global environment</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(ctu05_data)</a></code></pre></div>
-<p>… and afterwards. </p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span>())</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt;  [1] "ae"                     "allmedi"               </span></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">#&gt;  [3] "atae"                   "atae1"                 </span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">#&gt;  [5] "atallmedi"              "atbaseline"            </span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">#&gt;  [7] "atesurgeries"           "atmiv"                 </span></a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co">#&gt;  [9] "atoutcome"              "atsae"                 </span></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="co">#&gt; [11] "atstudyterminat"        "attreatment"           </span></a>
-<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="co">#&gt; [13] "baseline"               "centres"               </span></a>
-<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co">#&gt; [15] "ctu05_data"             "ctu05_data_berlin"     </span></a>
-<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="co">#&gt; [17] "ctu05_data_bern"        "ctu05_data_bern_basel" </span></a>
-<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="co">#&gt; [19] "ctu05_data_bern_berlin" "ctu05_data_location"   </span></a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="co">#&gt; [21] "ctu05_data_new"         "ctu05_data_pids"       </span></a>
-<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="co">#&gt; [23] "esurgeries"             "export_location"       </span></a>
-<a class="sourceLine" id="cb34-14" data-line-number="14"><span class="co">#&gt; [25] "fsc"                    "fss"                   </span></a>
-<a class="sourceLine" id="cb34-15" data-line-number="15"><span class="co">#&gt; [27] "outcome"                "participants"          </span></a>
-<a class="sourceLine" id="cb34-16" data-line-number="16"><span class="co">#&gt; [29] "sae"                    "studyterminat"         </span></a>
-<a class="sourceLine" id="cb34-17" data-line-number="17"><span class="co">#&gt; [31] "treatment"              "vs"</span></a></code></pre></div>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">#&gt;  [1] "bl_docids"              "centres"               </span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">#&gt;  [3] "ctu05_data"             "ctu05_data_berlin"     </span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">#&gt;  [5] "ctu05_data_bern"        "ctu05_data_bern_basel" </span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">#&gt;  [7] "ctu05_data_bern_berlin" "ctu05_data_location"   </span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co">#&gt;  [9] "ctu05_data_pids"        "ctu06_v1"              </span></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="co">#&gt; [11] "ctu06_v2"               "customer"              </span></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="co">#&gt; [13] "fsc"                    "fss"                   </span></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co">#&gt; [15] "instance"               "links"                 </span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="co">#&gt; [17] "participants"           "project"               </span></a>
+<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="co">#&gt; [19] "server"                 "vs"</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># add files to global environment</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(ctu05_data)</a></code></pre></div>
+<p>… and afterwards. </p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span>())</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">#&gt;  [1] "ae"                     "allmedi"               </span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co">#&gt;  [3] "atae"                   "atae1"                 </span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co">#&gt;  [5] "atallmedi"              "atbaseline"            </span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="co">#&gt;  [7] "atesurgeries"           "atmiv"                 </span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co">#&gt;  [9] "atoutcome"              "atsae"                 </span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="co">#&gt; [11] "atstudyterminat"        "attreatment"           </span></a>
+<a class="sourceLine" id="cb36-8" data-line-number="8"><span class="co">#&gt; [13] "baseline"               "bl_docids"             </span></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="co">#&gt; [15] "centres"                "ctu05_data"            </span></a>
+<a class="sourceLine" id="cb36-10" data-line-number="10"><span class="co">#&gt; [17] "ctu05_data_berlin"      "ctu05_data_bern"       </span></a>
+<a class="sourceLine" id="cb36-11" data-line-number="11"><span class="co">#&gt; [19] "ctu05_data_bern_basel"  "ctu05_data_bern_berlin"</span></a>
+<a class="sourceLine" id="cb36-12" data-line-number="12"><span class="co">#&gt; [21] "ctu05_data_location"    "ctu05_data_pids"       </span></a>
+<a class="sourceLine" id="cb36-13" data-line-number="13"><span class="co">#&gt; [23] "ctu06_v1"               "ctu06_v2"              </span></a>
+<a class="sourceLine" id="cb36-14" data-line-number="14"><span class="co">#&gt; [25] "customer"               "esurgeries"            </span></a>
+<a class="sourceLine" id="cb36-15" data-line-number="15"><span class="co">#&gt; [27] "fsc"                    "fss"                   </span></a>
+<a class="sourceLine" id="cb36-16" data-line-number="16"><span class="co">#&gt; [29] "instance"               "links"                 </span></a>
+<a class="sourceLine" id="cb36-17" data-line-number="17"><span class="co">#&gt; [31] "outcome"                "participants"          </span></a>
+<a class="sourceLine" id="cb36-18" data-line-number="18"><span class="co">#&gt; [33] "project"                "sae"                   </span></a>
+<a class="sourceLine" id="cb36-19" data-line-number="19"><span class="co">#&gt; [35] "server"                 "studyterminat"         </span></a>
+<a class="sourceLine" id="cb36-20" data-line-number="20"><span class="co">#&gt; [37] "treatment"              "vs"</span></a></code></pre></div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="frequent-warning-messages" class="section level1">
@@ -660,46 +700,41 @@
 <div id="disclaimer" class="section level1">
 <h1 class="hasAnchor">
 <a href="#disclaimer" class="anchor"></a>Disclaimer</h1>
-<p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals.</p>
-</div>
-<div id="the-sessioninfo" class="section level1">
-<h1 class="hasAnchor">
-<a href="#the-sessioninfo" class="anchor"></a>The <code>sessionInfo()</code>
-</h1>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="co">#&gt; R version 3.6.2 (2019-12-12)</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">#&gt; Running under: Ubuntu 18.04.4 LTS</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
-<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></a>
-<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">#&gt;  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span></a>
-<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="co">#&gt;  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span></a>
-<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="co">#&gt; [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span></a>
-<a class="sourceLine" id="cb38-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-16" data-line-number="16"><span class="co">#&gt; attached base packages:</span></a>
-<a class="sourceLine" id="cb38-17" data-line-number="17"><span class="co">#&gt; [1] tcltk     stats     graphics  grDevices utils     datasets  methods  </span></a>
-<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="co">#&gt; [8] base     </span></a>
-<a class="sourceLine" id="cb38-19" data-line-number="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="co">#&gt; other attached packages:</span></a>
-<a class="sourceLine" id="cb38-21" data-line-number="21"><span class="co">#&gt;  [1] secuTrialR_0.8.7 lubridate_1.7.4  dplyr_0.8.3      tidyr_1.0.0     </span></a>
-<a class="sourceLine" id="cb38-22" data-line-number="22"><span class="co">#&gt;  [5] purrr_0.3.3      tibble_2.1.3     stringr_1.4.0    readxl_1.3.1    </span></a>
-<a class="sourceLine" id="cb38-23" data-line-number="23"><span class="co">#&gt;  [9] readr_1.3.1      igraph_1.2.4.1   haven_2.2.0     </span></a>
-<a class="sourceLine" id="cb38-24" data-line-number="24"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb38-25" data-line-number="25"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
-<a class="sourceLine" id="cb38-26" data-line-number="26"><span class="co">#&gt;  [1] Rcpp_1.0.3       compiler_3.6.2   pillar_1.4.2     cellranger_1.1.0</span></a>
-<a class="sourceLine" id="cb38-27" data-line-number="27"><span class="co">#&gt;  [5] forcats_0.4.0    tools_3.6.2      zeallot_0.1.0    digest_0.6.22   </span></a>
-<a class="sourceLine" id="cb38-28" data-line-number="28"><span class="co">#&gt;  [9] lifecycle_0.1.0  evaluate_0.14    memoise_1.1.0    pkgconfig_2.0.3 </span></a>
-<a class="sourceLine" id="cb38-29" data-line-number="29"><span class="co">#&gt; [13] rlang_0.4.1      rstudioapi_0.10  yaml_2.2.0       pkgdown_1.4.1   </span></a>
-<a class="sourceLine" id="cb38-30" data-line-number="30"><span class="co">#&gt; [17] xfun_0.10        knitr_1.25       desc_1.2.0       fs_1.3.1        </span></a>
-<a class="sourceLine" id="cb38-31" data-line-number="31"><span class="co">#&gt; [21] vctrs_0.2.0      hms_0.5.2        rprojroot_1.3-2  tidyselect_0.2.5</span></a>
-<a class="sourceLine" id="cb38-32" data-line-number="32"><span class="co">#&gt; [25] tufte_0.5        glue_1.3.1       R6_2.4.0         rmarkdown_2.1   </span></a>
-<a class="sourceLine" id="cb38-33" data-line-number="33"><span class="co">#&gt; [29] magrittr_1.5     backports_1.1.5  htmltools_0.4.0  MASS_7.3-51.5   </span></a>
-<a class="sourceLine" id="cb38-34" data-line-number="34"><span class="co">#&gt; [33] assertthat_0.2.1 stringi_1.4.3    crayon_1.3.4</span></a></code></pre></div>
+<p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals. </p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="co">#&gt; R version 3.6.3 (2020-02-29)</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co">#&gt; Running under: Ubuntu 18.04.4 LTS</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co">#&gt; Matrix products: default</span></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span></a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb40-10" data-line-number="10"><span class="co">#&gt; locale:</span></a>
+<a class="sourceLine" id="cb40-11" data-line-number="11"><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></a>
+<a class="sourceLine" id="cb40-12" data-line-number="12"><span class="co">#&gt;  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span></a>
+<a class="sourceLine" id="cb40-13" data-line-number="13"><span class="co">#&gt;  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span></a>
+<a class="sourceLine" id="cb40-14" data-line-number="14"><span class="co">#&gt; [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span></a>
+<a class="sourceLine" id="cb40-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb40-16" data-line-number="16"><span class="co">#&gt; attached base packages:</span></a>
+<a class="sourceLine" id="cb40-17" data-line-number="17"><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></a>
+<a class="sourceLine" id="cb40-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb40-19" data-line-number="19"><span class="co">#&gt; other attached packages:</span></a>
+<a class="sourceLine" id="cb40-20" data-line-number="20"><span class="co">#&gt; [1] secuTrialR_0.9.1</span></a>
+<a class="sourceLine" id="cb40-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb40-22" data-line-number="22"><span class="co">#&gt; loaded via a namespace (and not attached):</span></a>
+<a class="sourceLine" id="cb40-23" data-line-number="23"><span class="co">#&gt;  [1] Rcpp_1.0.3       cellranger_1.1.0 compiler_3.6.3   pillar_1.4.2    </span></a>
+<a class="sourceLine" id="cb40-24" data-line-number="24"><span class="co">#&gt;  [5] forcats_0.4.0    tools_3.6.3      zeallot_0.1.0    digest_0.6.22   </span></a>
+<a class="sourceLine" id="cb40-25" data-line-number="25"><span class="co">#&gt;  [9] lifecycle_0.1.0  lubridate_1.7.4  evaluate_0.14    memoise_1.1.0   </span></a>
+<a class="sourceLine" id="cb40-26" data-line-number="26"><span class="co">#&gt; [13] tibble_2.1.3     pkgconfig_2.0.3  rlang_0.4.1      igraph_1.2.4.1  </span></a>
+<a class="sourceLine" id="cb40-27" data-line-number="27"><span class="co">#&gt; [17] rstudioapi_0.10  yaml_2.2.0       haven_2.2.0      pkgdown_1.4.1   </span></a>
+<a class="sourceLine" id="cb40-28" data-line-number="28"><span class="co">#&gt; [21] xfun_0.10        stringr_1.4.0    dplyr_0.8.3      knitr_1.25      </span></a>
+<a class="sourceLine" id="cb40-29" data-line-number="29"><span class="co">#&gt; [25] desc_1.2.0       fs_1.3.1         vctrs_0.2.0      hms_0.5.2       </span></a>
+<a class="sourceLine" id="cb40-30" data-line-number="30"><span class="co">#&gt; [29] rprojroot_1.3-2  tidyselect_0.2.5 tufte_0.5        glue_1.3.1      </span></a>
+<a class="sourceLine" id="cb40-31" data-line-number="31"><span class="co">#&gt; [33] R6_2.4.0         tcltk_3.6.3      readxl_1.3.1     rmarkdown_2.1   </span></a>
+<a class="sourceLine" id="cb40-32" data-line-number="32"><span class="co">#&gt; [37] tidyr_1.0.0      readr_1.3.1      purrr_0.3.3      magrittr_1.5    </span></a>
+<a class="sourceLine" id="cb40-33" data-line-number="33"><span class="co">#&gt; [41] backports_1.1.5  htmltools_0.4.0  MASS_7.3-51.5    assertthat_0.2.1</span></a>
+<a class="sourceLine" id="cb40-34" data-line-number="34"><span class="co">#&gt; [45] stringi_1.4.3    crayon_1.3.4</span></a></code></pre></div>
 </div>
   </div>
 
