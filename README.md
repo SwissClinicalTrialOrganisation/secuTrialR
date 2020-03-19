@@ -529,9 +529,6 @@ lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
 ### Building the vignette
 
 ```r
-# for CRAN
-devtools::build_vignettes()
-# for the vignettes directory
 library(rmarkdown)
 render("vignettes/secuTrialR-package-vignette.Rmd",
        output_format=c("pdf_document"))
@@ -547,6 +544,13 @@ library(knitr)
 knit("README.Rmd")
 ```
 
+### Building the `pkgdown` site
+
+```r
+library(pkgdown)
+build_site()
+```
+
 ### Handling dependencies
 
 Dependencies to other R packages are to be declared in the `DESCRIPTION` file under `Imports:` and in
@@ -559,7 +563,7 @@ Example to import `str_match` `str_length` `str_wrap` from the `stringr` package
 #' @importFrom stringr str_match str_length str_wrap
 ```
 
-### Performing a release on CRAN
+### Preparing a release on CRAN
 
 ```bash
 # build the package archive
