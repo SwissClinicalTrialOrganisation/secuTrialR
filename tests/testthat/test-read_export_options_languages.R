@@ -161,3 +161,12 @@ test_that("Hidden fields option parsing", {
   expect_true(sT_export_long_es$export_options$hidden_fields)
   expect_true(sT_export_long_pl$export_options$hidden_fields)
 })
+
+test_that("Form meta data Structure option parsing", {
+  expect_true(sT_export_long_en$export_options$structure)
+  expect_true(sT_export_long_de$export_options$structure)
+  expect_true(sT_export_long_it$export_options$structure)
+  expect_true(sT_export_long_fr$export_options$structure)
+  expect_true(sT_export_long_es$export_options$structure)
+  expect_true(sT_export_long_pl$export_options$structure)
+})

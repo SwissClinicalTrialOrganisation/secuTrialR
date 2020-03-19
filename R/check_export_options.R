@@ -18,7 +18,8 @@
 #'          centre_info == TRUE \cr
 #'          proj_setup == TRUE \cr
 #'          dict_items$lang == "en" \cr
-#'          hidden_fields == FALSE
+#'          hidden_fields == FALSE \cr
+#'          structure == TRUE
 #'
 #' @examples
 #' path <- system.file("extdata", "sT_exports", "exp_opt",
@@ -62,6 +63,9 @@ check_export_options <- function(dat) {
   }
   if (eo$hidden_fields) {
     warn_components <- paste0(warn_components, "Data from hidden fields is part of the export.\n")
+  }
+  if (! eo$structure) {
+    warn_components <- paste0(warn_components, "Structure information is not part of the export.\n")
   }
 
   if (str_length(warn_components)) {

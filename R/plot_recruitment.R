@@ -32,6 +32,12 @@
 #'
 plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1, rm_regex = "") {
   if (class(x) == "secuTrialdata") {
+
+    # check for meta data Structure available
+    if (! x$export_options$structure) {
+      stop("Structure meta data not exported.\n  Please enable this option in ExportSeachTool and reexport.")
+    }
+
     ctr <- x[[x$export_options$meta_names$centres]]
     cn <- x[[x$export_options$meta_names$casenodes]]
     dates_centre_ids <- .prep_line_data(cn = cn, ctr = ctr, encoding = x$export_options$encoding)

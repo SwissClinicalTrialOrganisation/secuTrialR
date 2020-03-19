@@ -14,8 +14,14 @@ ctu05_iso15_french <- read_secuTrial(system.file("extdata", "sT_exports", "encod
                                                  "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-15.zip",
                                                  package = "secuTrialR"))
 
+only_col_names_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                              "s_export_CSV-xls_CTU05_only_column_names.zip",
+                                              package = "secuTrialR")
+sT_export_only_col_names <- read_secuTrial_raw(data_dir = only_col_names_export_location)
+
 test_that("Test fail", {
   expect_error(plot_recruitment(1337))
+  expect_error(plot_recruitment(sT_export_only_col_names))
 })
 
 test_that("Test output", {
