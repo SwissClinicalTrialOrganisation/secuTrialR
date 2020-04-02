@@ -1,6 +1,6 @@
 ---
 title: "secuTrialR - a walkthrough"
-author: "Patrick R. Wright, Milica Markovic, Alan Haynes"
+author: "Patrick R. Wright, Milica Markovic, Alan G. Haynes"
 date: "`r Sys.Date()`"
 output: rmarkdown::pdf_document
 toc: true
