@@ -48,13 +48,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Installing from GitHub with `devtools`
+# Install
 
-Let's get started by installing the package straight from
-[\textcolor{blue}{GitHub}](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
-and then loading it. For this you will need to have `devtools` installed. We are
-planning to add `secuTrialR` to CRAN but we are not there yet. If you are working on Windows and would
-like to install with `devtools` you  will likely need to install
+Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
+\vspace{5pt}
+
+**Stable release from CRAN**
+\vspace{5pt}
+```{r, eval = FALSE}
+install.packages("secuTrialR", dependencies = TRUE)
+```
+
+**Development release from GitHub with `devtools`**
+
+For this you will need to have `devtools` installed.
+If you are working on Windows and would like to install with `devtools` you
+will likely need to install
 [\textcolor{blue}{Rtools}](https://cran.r-project.org/bin/windows/Rtools/).
 Installing everything, including the dependencies, from scratch may take a while (20-30 minutes).
 
@@ -93,8 +102,6 @@ ctu05_data_location <- system.file("extdata", "sT_exports", "exp_opt",
 
 If you work on your own datasets you can specify a path as a regular character string without
 using `system.file()`.
-
-\newpage
 
 # secuTrial export options
 
@@ -141,6 +148,8 @@ Really this is only a `list` containing all the information from your secuTrial 
 ```{r}
 typeof(ctu05_data)
 ```
+
+\newpage
 
 ## The data tables in the `secuTrialdata` object
 
@@ -308,6 +317,8 @@ get_participants(ctu05_data)
 Please note that the `mnpaid` column in this table corresponds to the `pat_id`
 column in other tables.
 
+\newpage
+
 ## Recruitment over time
 
 You can extract information about participant recruitment per centre and year by applying
@@ -328,14 +339,14 @@ removes trailing parentheses and everything they enclose.
 annual_recruitment(ctu05_data, rm_regex = "\\(.*\\)$")
 ```
 
-\newpage
-
 It is also possible to plot the recruitment over time.
 \vspace{5pt}
 
 ```{r, fig.height = 3.6, fig.width = 8}
 plot_recruitment(ctu05_data, cex = 1.2, rm_regex = "\\(.*\\)$")
 ```
+
+\newpage
 
 ## Visit plan visualization
 
@@ -394,6 +405,8 @@ The output can not be shown within this vignette but you should give it a try.
 Please note that the linkage plot is likely most useful **without** the audit trail
 data in the export.
 
+\newpage
+
 ## Sampling random participants
 
 During study monitoring it is common practice to check random participants
@@ -435,8 +448,6 @@ The below function will allow you to detect which variables this concerns.
 ```{r}
 return_scores(ctu05_data)
 ```
-
-\newpage
 
 ## Retrieve hidden variables
 
@@ -723,8 +734,8 @@ For detailed explanations, please refer to the secuTrial "Export Formats" user m
 The descriptions of the secuTrial exports used in this vignette and other `secuTrialR`
 documentation correspond to our understanding of them and come with no warranty.
 For in depth details please refer to the original secuTrial manuals.
-\vspace{50pt}
 
+\newpage
 
 ```{r}
 sessionInfo()
