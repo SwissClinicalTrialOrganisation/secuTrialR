@@ -185,4 +185,3 @@ test_that("Structure fields successfully parsed", {
   expect_false(sT_export_only_col_names$export_options$structure)
   expect_true(exp_opt_tes05_iso$structure)
 })
-

@@ -21,7 +21,7 @@
 return_hidden_items <- function(x) {
   if (class(x) == "secuTrialdata") {
 
-    if(! x$export_options$hidden_fields) {
+    if (! x$export_options$hidden_fields) {
       stop("Form data of hidden fields was not exported and will thus not be in this export.")
     }
 
