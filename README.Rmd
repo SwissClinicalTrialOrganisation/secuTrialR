@@ -9,6 +9,8 @@ An R package to handle data from the clinical data management system (CDMS) [sec
 
 ## Installing from github with devtools
 
+Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
+
 ```{r, eval = FALSE}
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
@@ -31,6 +33,11 @@ Thus, we suggest to work with exports which:
 You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
 
 ## Basic usage
+
+An extensive applied manual/vignette is available
+[here](vignettes/secuTrialR-package-vignette.pdf)
+and probably the best place to get started.
+
 Load the package
 ```{r, echo = TRUE, warning=FALSE, message=FALSE}
 library(secuTrialR)
@@ -328,6 +335,14 @@ R CMD build secuTrialR
 # in this example for version 0.9.0
 R CMD check secuTrialR_0.9.0.tar.gz
 ```
+
+### Versioning and releases
+The version number is made up of three digits. The first digit
+is reserved for major releases which may break backwards compatibility.
+The second and third digits are used for medium and minor changes respectively.
+Versions released on CRAN will be tagged and saved as releases on GitHub.
+The version released on CRAN is regarded as the stable version while
+the master branch on GitHub is regarded as the current development version.
 
 ### Guidelines for contributors
 

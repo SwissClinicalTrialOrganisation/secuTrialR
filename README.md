@@ -2,12 +2,14 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-0.9.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR ![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR) [![](https://img.shields.io/badge/dev%20version-1.0.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
 
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
 ## Installing from github with devtools
+
+Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
 
 
 ```r
@@ -32,6 +34,11 @@ Thus, we suggest to work with exports which:
 You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
 
 ## Basic usage
+
+An extensive applied manual/vignette is available
+[here](vignettes/secuTrialR-package-vignette.pdf)
+and probably the best place to get started.
+
 Load the package
 
 ```r
@@ -572,6 +579,14 @@ R CMD build secuTrialR
 # in this example for version 0.9.0
 R CMD check secuTrialR_0.9.0.tar.gz
 ```
+
+### Versioning and releases
+The version number is made up of three digits. The first digit
+is reserved for major releases which may break backwards compatibility.
+The second and third digits are used for medium and minor changes respectively.
+Versions released on CRAN will be tagged and saved as releases on GitHub.
+The version released on CRAN is regarded as the stable version while
+the master branch on GitHub is regarded as the current development version.
 
 ### Guidelines for contributors
 
