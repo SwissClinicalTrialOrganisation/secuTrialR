@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -113,12 +117,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       
     </div>
 
+    <div id="secutrialr-1-0-0" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#secutrialr-1-0-0" class="anchor"></a>secuTrialR 1.0.0</h1>
+<ul>
+<li>clarify correct options in <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code> failure message (#187)</li>
+<li>check for <code>project_setup</code> in <code><a href="../reference/visit_structure.html">visit_structure()</a></code> (#181)</li>
+</ul>
+</div>
     <div id="secutrialr-0-9-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.9.1">
 <a href="#secutrialr-0-9-1" class="anchor"></a>secuTrialR 0.9.1</h1>
 <ul>
 <li>added “Form meta data: Structure” export option information to <code>export_options</code> (#182)</li>
@@ -126,28 +138,28 @@
 </ul>
 </div>
     <div id="secutrialr-0-9-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.9.0">
 <a href="#secutrialr-0-9-0" class="anchor"></a>secuTrialR 0.9.0</h1>
 <ul>
 <li>restructuring in preparation for a release on CRAN</li>
 </ul>
 </div>
     <div id="secutrialr-0-8-9" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.9">
 <a href="#secutrialr-0-8-9" class="anchor"></a>secuTrialR 0.8.9</h1>
 <ul>
 <li>added suggestion to <em>NOT</em> export form data of hidden fields (#177)</li>
 </ul>
 </div>
     <div id="secutrialr-0-8-8" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.8">
 <a href="#secutrialr-0-8-8" class="anchor"></a>secuTrialR 0.8.8</h1>
 <ul>
 <li>added check to make sure that specified centres are part of the export in <code><a href="../reference/return_random_participants.html">return_random_participants()</a></code> (#151)</li>
 </ul>
 </div>
     <div id="secutrialr-0-8-7" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.7">
 <a href="#secutrialr-0-8-7" class="anchor"></a>secuTrialR 0.8.7</h1>
 <ul>
 <li>extended failure comment in <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code> to indicate that the problem could be a rectangular export file (#168)</li>
@@ -156,21 +168,21 @@
 </ul>
 </div>
     <div id="secutrialr-0-8-6" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.6">
 <a href="#secutrialr-0-8-6" class="anchor"></a>secuTrialR 0.8.6</h1>
 <ul>
-<li>bug fix: presence of the audit trail was incorrectly identified due to a comment in the source file of the export options (see #155, comments from <a href='https://github.com/suvi-subra'>@suvi-subra</a> and <a href='https://github.com/OliviaEbnerIAS'>@OliviaEbnerIAS</a>)</li>
+<li>bug fix: presence of the audit trail was incorrectly identified due to a comment in the source file of the export options (see #155, comments from @suvi-subra and @OliviaEbnerIAS)</li>
 </ul>
 </div>
     <div id="secutrialr-0-8-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.5">
 <a href="#secutrialr-0-8-5" class="anchor"></a>secuTrialR 0.8.5</h1>
 <ul>
 <li>Added sorting option to visit_structure. (#152)</li>
 </ul>
 </div>
     <div id="secutrialr-0-8-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.4">
 <a href="#secutrialr-0-8-4" class="anchor"></a>secuTrialR 0.8.4</h1>
 <ul>
 <li>adjusted warning message in <code><a href="../reference/labels_secuTrial.html">label_secuTrial()</a></code>
@@ -181,7 +193,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-8-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.3">
 <a href="#secutrialr-0-8-3" class="anchor"></a>secuTrialR 0.8.3</h1>
 <ul>
 <li>added up-to-date vignette (#99)</li>
@@ -189,7 +201,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-8-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.2">
 <a href="#secutrialr-0-8-2" class="anchor"></a>secuTrialR 0.8.2</h1>
 <ul>
 <li>
@@ -197,7 +209,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-8-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.1">
 <a href="#secutrialr-0-8-1" class="anchor"></a>secuTrialR 0.8.1</h1>
 <ul>
 <li>add appveyor testing, pkgdown site</li>
@@ -205,28 +217,28 @@
 </ul>
 </div>
     <div id="secutrialr-0-8-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.8.0">
 <a href="#secutrialr-0-8-0" class="anchor"></a>secuTrialR 0.8.0</h1>
 <ul>
 <li>Changed license for the package from GPL-2 to MIT.</li>
 </ul>
 </div>
     <div id="secutrialr-0-7-9" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.9">
 <a href="#secutrialr-0-7-9" class="anchor"></a>secuTrialR 0.7.9</h1>
 <ul>
 <li>The general nomenclature for a study subject will from now on be participant (pat). All variations of this (e.g. case, patient) have been adjusted in the code and the documentation.</li>
 </ul>
 </div>
     <div id="secutrialr-0-7-8" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.8">
 <a href="#secutrialr-0-7-8" class="anchor"></a>secuTrialR 0.7.8</h1>
 <ul>
 <li>Removed generic <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> function for <code>secuTrialdata</code> objects. (#139)</li>
 </ul>
 </div>
     <div id="secutrialr-0-7-7" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.7">
 <a href="#secutrialr-0-7-7" class="anchor"></a>secuTrialR 0.7.7</h1>
 <ul>
 <li>
@@ -234,7 +246,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-7-6" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.6">
 <a href="#secutrialr-0-7-6" class="anchor"></a>secuTrialR 0.7.6</h1>
 <ul>
 <li>
@@ -242,7 +254,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-7-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.5">
 <a href="#secutrialr-0-7-5" class="anchor"></a>secuTrialR 0.7.5</h1>
 <ul>
 <li>
@@ -250,14 +262,14 @@
 </ul>
 </div>
     <div id="secutrialr-0-7-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.4">
 <a href="#secutrialr-0-7-4" class="anchor"></a>secuTrialR 0.7.4</h1>
 <ul>
 <li>Fixed issue #121 on GitHub. <code><a href="../reference/factorize.html">factorize_secuTrial()</a></code> can now handle exports which have the reset option enabled in radio buttons.</li>
 </ul>
 </div>
     <div id="secutrialr-0-7-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.3">
 <a href="#secutrialr-0-7-3" class="anchor"></a>secuTrialR 0.7.3</h1>
 <ul>
 <li>
@@ -265,7 +277,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-7-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.2">
 <a href="#secutrialr-0-7-2" class="anchor"></a>secuTrialR 0.7.2</h1>
 <ul>
 <li>
@@ -275,14 +287,14 @@
 </ul>
 </div>
     <div id="secutrialr-0-7-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.1">
 <a href="#secutrialr-0-7-1" class="anchor"></a>secuTrialR 0.7.1</h1>
 <ul>
 <li>Fixed issue #116 on GitHub.</li>
 </ul>
 </div>
     <div id="secutrialr-0-7-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.7.0">
 <a href="#secutrialr-0-7-0" class="anchor"></a>secuTrialR 0.7.0</h1>
 <ul>
 <li>
@@ -292,7 +304,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-6-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.5">
 <a href="#secutrialr-0-6-5" class="anchor"></a>secuTrialR 0.6.5</h1>
 <ul>
 <li>
@@ -300,21 +312,21 @@
 </ul>
 </div>
     <div id="secutrialr-0-6-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.4">
 <a href="#secutrialr-0-6-4" class="anchor"></a>secuTrialR 0.6.4</h1>
 <ul>
 <li>New function <code><a href="../reference/diff_secuTrial.html">diff_secuTrial()</a></code> added to allow light weight comparison of the setup of two secuTrial exports.</li>
 </ul>
 </div>
     <div id="secutrialr-0-6-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.3">
 <a href="#secutrialr-0-6-3" class="anchor"></a>secuTrialR 0.6.3</h1>
 <ul>
 <li>Metadata variables are now also transformed to date and datetime formats, whenever appropriate.</li>
 </ul>
 </div>
     <div id="secutrialr-0-6-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.2">
 <a href="#secutrialr-0-6-2" class="anchor"></a>secuTrialR 0.6.2</h1>
 <ul>
 <li>
@@ -322,7 +334,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-6-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.1">
 <a href="#secutrialr-0-6-1" class="anchor"></a>secuTrialR 0.6.1</h1>
 <ul>
 <li>
@@ -330,7 +342,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-6-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.0">
 <a href="#secutrialr-0-6-0" class="anchor"></a>secuTrialR 0.6.0</h1>
 <ul>
 <li>
@@ -338,7 +350,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-5-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.5">
 <a href="#secutrialr-0-5-5" class="anchor"></a>secuTrialR 0.5.5</h1>
 <ul>
 <li>
@@ -346,7 +358,7 @@
 </ul>
 </div>
     <div id="secutrialr-0-5-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.4">
 <a href="#secutrialr-0-5-4" class="anchor"></a>secuTrialR 0.5.4</h1>
 <ul>
 <li>
@@ -356,21 +368,21 @@
 </ul>
 </div>
     <div id="secutrialr-0-5-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.2">
 <a href="#secutrialr-0-5-2" class="anchor"></a>secuTrialR 0.5.2</h1>
 <ul>
 <li>New function <code><a href="../reference/build_secuTrial_url.html">build_secuTrial_url()</a></code> has been added. It allows users to easily compose URLs to specific secuTrial forms.</li>
 </ul>
 </div>
     <div id="secutrialr-0-5-0" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.0">
 <a href="#secutrialr-0-5-0" class="anchor"></a>secuTrialR 0.5.0</h1>
 <ul>
 <li>The function name of <code>read_secuTrial_export()</code> has been changed to <code><a href="../reference/secuTrialdata.html">read_secuTrial_raw()</a></code> to avoid confusion with <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code>.</li>
 </ul>
 </div>
     <div id="secutrialr-0-4-16" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.16">
 <a href="#secutrialr-0-4-16" class="anchor"></a>secuTrialR 0.4.16</h1>
 <ul>
 <li>As of version 0.4.17, changes will be recorded in the NEWS file.</li>
@@ -378,45 +390,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#secutrialr-0-9-1">0.9.1</a></li>
-        <li><a href="#secutrialr-0-9-0">0.9.0</a></li>
-        <li><a href="#secutrialr-0-8-9">0.8.9</a></li>
-        <li><a href="#secutrialr-0-8-8">0.8.8</a></li>
-        <li><a href="#secutrialr-0-8-7">0.8.7</a></li>
-        <li><a href="#secutrialr-0-8-6">0.8.6</a></li>
-        <li><a href="#secutrialr-0-8-5">0.8.5</a></li>
-        <li><a href="#secutrialr-0-8-4">0.8.4</a></li>
-        <li><a href="#secutrialr-0-8-3">0.8.3</a></li>
-        <li><a href="#secutrialr-0-8-2">0.8.2</a></li>
-        <li><a href="#secutrialr-0-8-1">0.8.1</a></li>
-        <li><a href="#secutrialr-0-8-0">0.8.0</a></li>
-        <li><a href="#secutrialr-0-7-9">0.7.9</a></li>
-        <li><a href="#secutrialr-0-7-8">0.7.8</a></li>
-        <li><a href="#secutrialr-0-7-7">0.7.7</a></li>
-        <li><a href="#secutrialr-0-7-6">0.7.6</a></li>
-        <li><a href="#secutrialr-0-7-5">0.7.5</a></li>
-        <li><a href="#secutrialr-0-7-4">0.7.4</a></li>
-        <li><a href="#secutrialr-0-7-3">0.7.3</a></li>
-        <li><a href="#secutrialr-0-7-2">0.7.2</a></li>
-        <li><a href="#secutrialr-0-7-1">0.7.1</a></li>
-        <li><a href="#secutrialr-0-7-0">0.7.0</a></li>
-        <li><a href="#secutrialr-0-6-5">0.6.5</a></li>
-        <li><a href="#secutrialr-0-6-4">0.6.4</a></li>
-        <li><a href="#secutrialr-0-6-3">0.6.3</a></li>
-        <li><a href="#secutrialr-0-6-2">0.6.2</a></li>
-        <li><a href="#secutrialr-0-6-1">0.6.1</a></li>
-        <li><a href="#secutrialr-0-6-0">0.6.0</a></li>
-        <li><a href="#secutrialr-0-5-5">0.5.5</a></li>
-        <li><a href="#secutrialr-0-5-4">0.5.4</a></li>
-        <li><a href="#secutrialr-0-5-2">0.5.2</a></li>
-        <li><a href="#secutrialr-0-5-0">0.5.0</a></li>
-        <li><a href="#secutrialr-0-4-16">0.4.16</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -424,11 +401,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Patrick R. Wright.</p>
+  <p>Developed by Patrick R. Wright, Alan Haynes, Milica Markovic, Pascal Benkert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
