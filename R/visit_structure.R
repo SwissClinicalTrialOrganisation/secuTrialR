@@ -22,6 +22,7 @@
 #' plot(vs)
 visit_structure <- function(x, sorted = TRUE) {
   if (class(x)[1] != "secuTrialdata") stop("'secuTrialdata object required'")
+  if (! x$export_options$proj_setup) stop("Project setup data needs to be in the export but is not.")
   vp <- x[[x$export_options$meta_names$visitplan]]
   if (any(is.na(vp$mnpvisid))) stop(paste("Visits do not appear to be a part of this database or",
                                          "only flexible visits defined\nvisit_structure requires",
