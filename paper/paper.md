@@ -36,25 +36,29 @@ CDMS allow constraint based and version controlled data entry into a clinical tr
 integrity and quality of study data.  
 
 There is a vast market of heterogeneous CDMS solutions each with individual advantages and limitations [@kuchinke_etal_2010].
-One limitation is often the interaction with the data after it has been collected. Specifically, a CMDS may be
+One limitation can be the interaction with the data after it has been collected. Specifically, a CMDS may be
 tailored for optimal data capture while, at least to some extent, disregarding ease of use of study data after
-the conclusion of data entry. It is, however, vital that the interaction between data and data analysts takes place
-fast and seamlessly in order to avoid loss of valuable time due to technical friction. This point is prominently
+the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts takes place
+fast and seamlessly in order to avoid loss of valuable time due to technical friction. This point has been prominently
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
-regarding the timely transfer of information for up-to-date infection counts ultimately leading to delayed
-conclusions and actions [@risklayer_news]. While this is a stark example it still serves to show how
-severe the influence of technical friction between digital systems can be.  
+regarding the timely transfer of information for the preparation of up-to-date infection counts[@risklayer_news].
+These issues led to confusion and may have ultimately delayed important actions.
+While this is a stark example it still serves to show how severe the influence of technical friction
+between digital systems can be.  
 
 To this end we have developed the R statistics software package secuTrialR, which enables
 seamless interaction with data collected in the commercially available CDMS secuTrial.
-Next to reading the data it performs data transformation for dates, date times and categorical data to reduce
-the data preparation overhead. Furthermore, secuTrialR includes standard functionalities to 
-show descriptive statistics for secuTrial data exports such as study recruitment or completeness
-of entered data per case report form.
+Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
+to reduce the data preparation overhead. Furthermore, secuTrialR includes standard functionalities to 
+show descriptive statistics such as study recruitment or completeness of entered data per case report form
+for secuTrial data exports.
 
 # Acknowledgements
 
-The authors thank ... for testing and constructive feedback on the secuTrialR package.
+The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
+Thomas Fabbro, Inessa Kraft, Daniel Lengwiler, Armando Lenz, Hans Rock, Claudia Rokitta, Constantin Sluka,
+Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas, testing and
+constructive feedback on the secuTrialR package.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
 Science Foundation for the funding of this project.
 
