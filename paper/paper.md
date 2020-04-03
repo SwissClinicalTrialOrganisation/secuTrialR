@@ -50,5 +50,9 @@ the data preparation overhead. Furthermore, secuTrialR includes standard functio
 show descriptive statistics for secuTrial data exports such as study recruitment or completeness
 of entered data per case report form.
 
-# References
+# Acknowledgements
+The authors thank ... for testing and constructive feedback on the secuTrialR package.
+Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
+Science Foundation for the funding of this project.
 
+# References
