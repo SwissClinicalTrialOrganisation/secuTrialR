@@ -46,12 +46,15 @@ These issues led to confusion and may have ultimately delayed important actions.
 While this is a stark example it still serves to show how severe the influence of technical friction
 between digital systems can be.  
 
-To this end we have developed the R statistics software package secuTrialR, which enables
+To this end we have developed the R statistics [@r_citation] software package `secuTrialR`, which enables
 seamless interaction with data collected in the commercially available CDMS secuTrial.
 Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
-to reduce the data preparation overhead. Furthermore, secuTrialR includes standard functionalities to 
+to reduce the data preparation overhead. Furthermore, `secuTrialR` includes standard functionalities to 
 show descriptive statistics such as study recruitment or completeness of entered data per case report form
 for secuTrial data exports.
+
+The development of `secuTrialR` made extensive use of the `tidyverse` [@tidyverse_cit] and greatly benefited from
+the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit].
 
 # Acknowledgements
 
