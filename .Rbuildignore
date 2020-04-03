@@ -3,6 +3,7 @@
 .Rhistory
 ..Rcheck
 figure
+paper
 README.Rmd
 .github
 .travis.yml
