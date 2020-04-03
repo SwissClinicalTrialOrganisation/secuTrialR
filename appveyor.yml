@@ -16,8 +16,6 @@ environment:
     MINICONDA: C:\Miniconda3-x64
     R_ARCH: x64    
   matrix:
-    - R_VERSION: devel
-
     - R_VERSION: release
 
     - R_VERSION: oldrel

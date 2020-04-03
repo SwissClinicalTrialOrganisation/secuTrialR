@@ -1,3 +1,7 @@
+# secuTrialR 1.0.0
+* clarify correct options in `read_secuTrial()` failure message (#187)
+* check for `project_setup` in `visit_structure()` (#181)
+
 # secuTrialR 0.9.1
 * added "Form meta data: Structure" export option information to `export_options` (#182)
 * added error handling for missing structure data when running `annual_recruitment()` and `return_random_participants()` (#182)

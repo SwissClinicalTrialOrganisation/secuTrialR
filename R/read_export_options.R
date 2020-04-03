@@ -317,5 +317,4 @@ print.secuTrialoptions <- function(x, ...) {
                    exportname = unlist(x$meta_names),
                    available = unlist(x$meta_available))
   print(df, row.names = FALSE)
-
 }
