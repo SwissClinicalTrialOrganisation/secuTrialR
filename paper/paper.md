@@ -33,7 +33,8 @@ in the 18th century. Since these initial days of clinical research, trials have 
 and technologically. While it was viable and legitimate to collect clinical trials data in unversioned
 spread sheets in the past, this is no longer true and digital clinical data management systems (CDMS) have taken over.
 CDMS allow constraint based and version controlled data entry into a clinical trial database which ensures traceability, 
-integrity and quality of study data.
+integrity and quality of study data.  
+
 There is a vast market of heterogeneous CDMS solutions each with individual advantages and limitations [@kuchinke_etal_2010].
 One limitation is often the interaction with the data after it has been collected. Specifically, a CMDS may be
 tailored for optimal data capture while, at least to some extent, disregarding ease of use of study data after
@@ -42,10 +43,11 @@ fast and seamlessly in order to avoid loss of valuable time due to technical fri
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
 regarding the timely transfer of information for up-to-date infection counts ultimately leading to delayed
 conclusions and actions [@risklayer_news]. While this is a stark example it still serves to show how
-severe the influence of technical friction between digital systems can be.
-To this end we developed the R statistics software package secuTrialR, which enables
+severe the influence of technical friction between digital systems can be.  
+
+To this end we have developed the R statistics software package secuTrialR, which enables
 seamless interaction with data collected in the commercially available CDMS secuTrial.
-Next to loading the data it performs data transformation for dates, date times and categorical data to reduce
+Next to reading the data it performs data transformation for dates, date times and categorical data to reduce
 the data preparation overhead. Furthermore, secuTrialR includes standard functionalities to 
 show descriptive statistics for secuTrial data exports such as study recruitment or completeness
 of entered data per case report form.
