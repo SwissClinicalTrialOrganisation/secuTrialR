@@ -1,5 +1,7 @@
 context("build url")
 
+skip_on_cran()
+
 # inputs for the build_secuTrial_url() function
 server <- "server.secutrial.com"
 server2 <- "https://server.secutrial.com/"

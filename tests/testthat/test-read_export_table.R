@@ -1,5 +1,7 @@
 context("read export table testing")
 
+skip_on_cran()
+
 # load export options
 export_options <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
                                                              "s_export_CSV-xls_BMD_short_en_utf8.zip",

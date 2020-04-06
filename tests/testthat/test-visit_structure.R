@@ -1,5 +1,7 @@
 context("visit structure")
 
+skip_on_cran()
+
 test_that("secutrialdata object", expect_error(visit_structure(c(1:3))))
 
 

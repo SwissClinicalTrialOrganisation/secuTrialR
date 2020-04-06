@@ -1,5 +1,6 @@
 context("read_secutrial")
 
+skip_on_cran()
 
 # zipped
 l1 <- system.file("extdata", "sT_exports", "lnames", "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",

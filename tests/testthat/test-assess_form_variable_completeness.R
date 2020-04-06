@@ -1,5 +1,7 @@
 context("assess variable completeness")
 
+skip_on_cran()
+
 # load exports
 short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD_short_en_utf8.zip",

@@ -1,5 +1,7 @@
 context("subset")
 
+skip_on_cran()
+
 ## compares two secutrialdata for equality. very specialized function for the purpose of testing.
 ## if equal, TRUE is returned, otherwise, FALSE.
 ## Equality parameters:

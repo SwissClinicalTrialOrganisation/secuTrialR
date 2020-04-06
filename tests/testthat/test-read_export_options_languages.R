@@ -1,5 +1,7 @@
 context("export options internationalization")
 
+skip_on_cran()
+
 # ENGLISH
 # english long file name
 export_path_long_en <- system.file("extdata", "sT_exports", "lnames",

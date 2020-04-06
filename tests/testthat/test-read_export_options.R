@@ -1,5 +1,7 @@
 context("load export options testing")
 
+skip_on_cran()
+
 # shorten table names
 export_options_regular_short <- read_export_options(data_dir = system.file("extdata", "sT_exports", "BMD",
                                                                            "s_export_CSV-xls_BMD_short_en_utf8.zip",

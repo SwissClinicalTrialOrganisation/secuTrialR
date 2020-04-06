@@ -1,5 +1,7 @@
 context("internal functions testing")
 
+skip_on_cran()
+
 # ---- test .construct_metaname
 
 # init meta_names

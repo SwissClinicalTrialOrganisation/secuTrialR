@@ -1,5 +1,7 @@
 context("annual recruitment")
 
+skip_on_cran()
+
 sdat_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
                                          "s_export_CSV-xls_CTU05_short_miss_en_utf8.zip",
                                          package = "secuTrialR"))
