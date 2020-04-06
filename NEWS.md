@@ -1,3 +1,6 @@
+# secuTrialR 1.0.1
+* adjustments to handle review feedback from CRAN (#190)
+
 # secuTrialR 1.0.0
 * clarify correct options in `read_secuTrial()` failure message (#187)
 * check for `project_setup` in `visit_structure()` (#181)

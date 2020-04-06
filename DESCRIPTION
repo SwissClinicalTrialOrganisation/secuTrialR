@@ -1,28 +1,36 @@
 Package: secuTrialR
 Type: Package
-Title: Handling of Data from the Clinical Data Management System secuTrial
-Version: 1.0.0
+Title: Handling of Data from the Clinical Data Management System 'secuTrial'
+Version: 1.0.1
 Authors@R:
     c(person(given = "Patrick R.",
              family = "Wright",
-             role = c("cre", "aut"),
+             role = c("cre", "aut", "cph"),
              email = "patrick.wright@usb.ch"),
       person(given = "Alan G.",
              family = "Haynes",
-             role = c("aut"),
+             role = c("aut", "cph"),
              email = "alan.haynes@ctu.unibe.ch"),
       person(given = "Milica",
              family = "Markovic",
-             role = c("aut"),
+             role = c("aut", "cph"),
              email = "milica.markovic@usb.ch"),
+      person(given = "Gilles",
+             family = "Dutilh",
+             role = c("ctb")),
+      person(given = "Armando",
+             family = "Lenz",
+             role = c("ctb")),
       person(given = "Pascal",
              family = "Benkert",
-             role = c("aut"),
-             email = "pascal.benkert@usb.ch"))
+             role = c("com"),
+             email = "pascal.benkert@usb.ch")
+             )
 Maintainer: Patrick R. Wright <patrick.wright@usb.ch>
-Description: This R package is intended to standardize and simplify working with data
-    exported from the clinical data management system (CDMS) secuTrial. The primary
-    data export the package works with is a standard non-rectangular export.
+Description: 'secuTrialR' is intended to standardize and simplify working with data
+    exported from the clinical data management system (CDMS)
+    'secuTrial'<[https://www.secutrial.com]https://www.secutrial.com>.
+    The primary data export the package works with is a standard non-rectangular export.
 Depends:
     R (>= 3.5)
 Imports:
