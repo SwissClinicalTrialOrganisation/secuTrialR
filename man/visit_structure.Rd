@@ -18,6 +18,8 @@ visit_structure(x, sorted = TRUE)
 }
 \value{
 data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
+
+plot of the visit plan
 }
 \description{
 Get the visit structure of secuTrialdata objects

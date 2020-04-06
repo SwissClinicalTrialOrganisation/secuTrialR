@@ -5,7 +5,7 @@
 #'              be manually recalculated before data analysis.
 #' @param x a \code{secuTrialdata} object
 #' @export
-#' @details return_scores will produce a data.frame that pinpoints which items are scores/calculated.
+#' @return a data.frame that pinpoints which items are scores/calculated.
 #'
 #' @examples
 #' # export location

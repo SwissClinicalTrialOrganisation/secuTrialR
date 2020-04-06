@@ -5,7 +5,7 @@
 #'
 #' @param x a \code{secuTrialdata} object
 #' @export
-#' @details return_hidden_items will produce a data.frame that pinpoints which items are hidden.
+#' @return a data.frame that pinpoints which items are hidden
 #'
 #' @examples
 #' # export location

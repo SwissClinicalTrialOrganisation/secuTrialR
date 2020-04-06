@@ -11,6 +11,9 @@ form_status_summary(object, ...)
 
 \item{...}{further parameters}
 }
+\value{
+data.frame summarizing the statuses for each form
+}
 \description{
 This function warps form_status_counts and returns a
 data.frame summarizing the statuses for each form.

@@ -5,7 +5,7 @@
 #'
 #' @param data_dir Path to the Validation Overview (must be an *.xlsx file).
 #'
-#' @return tibble with the 'Validation Overview' data.
+#' @return tibble with the 'Validation Overview' data
 #' @export read_validation_overview
 #' @importFrom readxl read_excel
 #' @importFrom readxl excel_sheets

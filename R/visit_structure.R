@@ -76,6 +76,7 @@ visit_structure <- function(x, sorted = TRUE) {
 #' @rdname visit_structure
 #' @param ... further parameters
 #' @export
+#' @return plot of the visit plan
 plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.
   z <- !is.na(as.matrix(x[, -1]))

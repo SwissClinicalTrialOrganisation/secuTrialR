@@ -9,6 +9,9 @@ check_export_options(dat)
 \arguments{
 \item{dat}{secuTrialdata object}
 }
+\value{
+No return value.
+}
 \description{
 Given a secuTrialdata object, this function returns information on deviations
 from suggested export options.

@@ -9,14 +9,14 @@ return_scores(x)
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
 }
+\value{
+a data.frame that pinpoints which items are scores/calculated.
+}
 \description{
 secuTrial allows to set up calculated fields (i.e. scores) that depend on other items. It is not
              suggested to use the scores calculated by secuTrial to perform reliable analyses. To this end,
              calling \code{return_scores} will return all items in the secuTrial export which are scores and should
              be manually recalculated before data analysis.
-}
-\details{
-return_scores will produce a data.frame that pinpoints which items are scores/calculated.
 }
 \examples{
 # export location

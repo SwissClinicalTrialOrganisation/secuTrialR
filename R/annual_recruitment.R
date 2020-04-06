@@ -12,7 +12,7 @@
 #' @importFrom lubridate year
 #' @importFrom purrr modify_if
 #' @importFrom dplyr distinct
-#' @details annual_recruitment will return a data.frame showing the annual recruitment per center
+#' @return a data.frame showing the annual recruitment counts per center
 #'
 #' @examples
 #' # export location

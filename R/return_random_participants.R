@@ -13,7 +13,7 @@
 #' @export
 #' @importFrom lubridate ymd
 #' @importFrom dplyr filter
-#' @details return_random_participants will produce a list of two elements. First, a data.frame that contains the
+#' @return  list of two elements. First, a data.frame that contains the
 #'          random participants from each specified centre. This is performed based on a specified seed to retain
 #'          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()}).
 #'          If the percentage does not yield an integer for a centre the number is tranformed into an integer

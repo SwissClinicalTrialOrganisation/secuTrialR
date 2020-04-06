@@ -8,6 +8,7 @@
 #' @param ... further parameters
 #' @keywords form status completeness
 #' @export
+#' @return data.frame informing on the status of saved forms per participant
 #' @importFrom tidyr spread
 #' @importFrom dplyr count recode
 #' @examples
@@ -150,6 +151,7 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #' @keywords form status completeness
 #' @importFrom dplyr group_by summarise mutate_all
 #' @export
+#' @return data.frame summarizing the statuses for each form
 #' @examples
 #' # prepare path to example export
 #' export_location <- system.file("extdata","sT_exports", "snames",

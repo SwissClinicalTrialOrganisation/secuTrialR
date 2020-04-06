@@ -9,6 +9,7 @@
 #' @param object a \code{secuTrialdata} object
 #' @param ... further parameters
 #' @export
+#' @return factorized \code{secuTrialdata} object
 #' @details factorize_secuTrial will return an error if the appropriate codebook is not available.
 #'
 #' @examples

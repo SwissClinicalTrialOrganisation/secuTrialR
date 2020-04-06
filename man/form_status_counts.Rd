@@ -11,6 +11,9 @@ form_status_counts(object, ...)
 
 \item{...}{further parameters}
 }
+\value{
+data.frame informing on the status of saved forms per participant
+}
 \description{
 This function returns a data.frame informing on the status of saved
 forms per participant. There is a line for every combination of

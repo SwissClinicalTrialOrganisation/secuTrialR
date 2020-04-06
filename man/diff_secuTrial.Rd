@@ -11,6 +11,11 @@ diff_secuTrial(x, y)
 
 \item{y}{a \code{secuTrialdata} object (the newer export)}
 }
+\value{
+If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
+        The fist vector informs about new forms and the second vector informs about
+        new variables.
+}
 \description{
 During ongoing studies it is possible that changes to the DataCapture interface
              are made. Sometimes these changes may call for adjustments in analysis code.
@@ -21,11 +26,6 @@ During ongoing studies it is possible that changes to the DataCapture interface
              Information is returned on new forms and variables.
              A detailed list of changes can be produced in the FormBuilder with
              "Compare project setup".
-}
-\details{
-If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
-         The fist vector informs about new forms and the second vector informs about
-         new variables.
 }
 \examples{
 # read exports

@@ -69,6 +69,7 @@ labels_secuTrial <- function(object, form = NULL) {
 #' @param object a \code{secuTrialdata} object
 #' @param ... further parameters
 #' @export
+#' @return a labelled \code{secuTrialdata} object
 #' @examples
 #'
 #' # APPROACH 2: label_secuTrial

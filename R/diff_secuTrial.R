@@ -11,9 +11,9 @@
 #' @param x a \code{secuTrialdata} object (the older export)
 #' @param y a \code{secuTrialdata} object (the newer export)
 #' @export
-#' @details If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
-#'          The fist vector informs about new forms and the second vector informs about
-#'          new variables.
+#' @return If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
+#'         The fist vector informs about new forms and the second vector informs about
+#'         new variables.
 #'
 #' @examples
 #' # read exports

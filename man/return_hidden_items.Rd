@@ -9,13 +9,13 @@ return_hidden_items(x)
 \arguments{
 \item{x}{a \code{secuTrialdata} object}
 }
+\value{
+a data.frame that pinpoints which items are hidden
+}
 \description{
 Sometimes, during a study, certain fields may be hidden because data should
              no longer be entered into them. If this is the case and the data of these
              fields is part of your export is likely good to know about it.
-}
-\details{
-return_hidden_items will produce a data.frame that pinpoints which items are hidden.
 }
 \examples{
 # export location

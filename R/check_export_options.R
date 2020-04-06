@@ -5,6 +5,7 @@
 #'
 #' @param dat secuTrialdata object
 #' @export
+#' @return No return value.
 #' @details While the package strives to allow loading of as many types of secuTrial data exports
 #'          as possible, there are certain export options which are less likely to cause issues.
 #'          If possible it is suggested to export data which adheres to a suggested option set.

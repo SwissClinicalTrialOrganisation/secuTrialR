@@ -10,7 +10,7 @@ get_participants(dat)
 \item{dat}{secuTrialdata object containing participant IDs and centre information}
 }
 \value{
-data frame containing a list of participants present in dat
+data.frame containing participants present in dat
 }
 \description{
 Given a secuTrialdata object, this function simply returns a list of participants.

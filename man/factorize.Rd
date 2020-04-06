@@ -15,6 +15,9 @@ factorize_secuTrial(object, ...)
 
 \item{...}{further parameters}
 }
+\value{
+factorized \code{secuTrialdata} object
+}
 \description{
 secuTrial can return a codebook of codes and labels for categorical variables, including lookup
              type variables, if this option is selected in the export tool ('reference values as separate table').
