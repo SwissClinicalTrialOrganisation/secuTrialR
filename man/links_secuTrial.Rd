@@ -40,7 +40,7 @@ Note that where a form name is also a variable name, it is appended by \code{_fo
       (igraph requires uniquely named nodes).
 }
 \examples{
-\dontrun{
+\donttest{
 # ex. 1
 # prepare path to example export
 export_location <- system.file("extdata", "sT_exports", "BMD",

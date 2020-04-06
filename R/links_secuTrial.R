@@ -18,7 +18,7 @@
 #' @import tcltk
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # ex. 1
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "sT_exports", "BMD",
