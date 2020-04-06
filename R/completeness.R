@@ -6,7 +6,7 @@
 #'
 #' @param object secuTrialdata object
 #' @param ... further parameters
-#' @keywords form status, completeness
+#' @keywords form status completeness
 #' @export
 #' @importFrom tidyr spread
 #' @importFrom dplyr count recode
@@ -147,7 +147,7 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #'
 #' @param object secuTrialdata object
 #' @param ... further parameters
-#' @keywords form status, completeness
+#' @keywords form status completeness
 #' @importFrom dplyr group_by summarise mutate_all
 #' @export
 #' @examples
