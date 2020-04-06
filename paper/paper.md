@@ -59,8 +59,8 @@ the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit].
 # Acknowledgements
 
 The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
-Thomas Fabbro, Inessa Kraft, Daniel Lengwiler, Armando Lenz, Hans Rock, Claudia Rokitta, Constantin Sluka,
-Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas, testing and
+Thomas Fabbro, Inessa Kraft, Daniel Lengwiler, Armando Lenz, Henry Owusu, Hans Rock, Claudia Rokitta,
+Constantin Sluka, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas, testing and
 constructive feedback on the secuTrialR package.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
 Science Foundation for the funding of this project.
