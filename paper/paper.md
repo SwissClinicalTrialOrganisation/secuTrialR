@@ -21,7 +21,7 @@ affiliations:
    index: 1
  - name: University of Bern, Clinical Trial Unit, Bern, Switzerland
    index: 2
-date: 02 April 2020
+date: 06 April 2020
 bibliography: paper.bib
 ---
 
@@ -41,20 +41,29 @@ tailored for optimal data capture while, at least to some extent, disregarding e
 the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts takes place
 fast and seamlessly in order to avoid loss of valuable time due to technical friction. This point has been prominently
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
-regarding the timely transfer of information for the preparation of up-to-date infection counts[@risklayer_news].
-These issues led to confusion and may have ultimately delayed important actions.
-While this is a stark example it still serves to show how severe the influence of technical friction
-between digital systems can be.  
+regarding the timely transfer of information for the preparation of up-to-date infection
+counts[@spiegel_meldeluecke, @risklayer_news]. These issues led to confusion and may have ultimately
+delayed important actions. While this is a stark example it still serves to show how severe the influence
+of technical friction between digital systems can be.  
 
 To this end we have developed the R statistics [@r_citation] software package `secuTrialR`, which enables
 seamless interaction with data collected in the commercially available CDMS secuTrial.
 Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
-to reduce the data preparation overhead. Furthermore, `secuTrialR` includes standard functionalities to 
+to reduce the data preparation overhead. Furthermore, `secuTrialR` includes standard functionalities to
 show descriptive statistics such as study recruitment or completeness of entered data per case report form
 for secuTrial data exports.
 
 The development of `secuTrialR` made extensive use of the `tidyverse` [@tidyverse_cit] and greatly benefited from
-the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit].
+the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit]. Furthermore, `tcltk` and `igraph` [@igraph_cit]
+are incorporated.
+
+`secuTrialR` is available on GitHub, CRAN and Bioconda [@Gruening-2018-bioconda].
+
+# Design
+
+Independent of the specific database at hand all secuTrial data exports share a certain common technical structure.
+In `secuTrialR` we make use of this information to build an S3 object of class `secuTrialdata` when the
+data is read into R. All downstream functions expect a `secuTrialdata` object as input.
 
 # Acknowledgements
 
