@@ -81,8 +81,11 @@ plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.
   z <- !is.na(as.matrix(x[, -1]))
   names <- gsub("tmpvar.", "", names(x[, -1]))
-  paropts <- par()
-  on.exit(paropts)
+
+  # adjusted as per request in CRAN review
+  paropts <- par(no.readonly = TRUE)
+  on.exit(par(paropts))
+
   par(mai = c(0, 0, 0.1, 0.1))
   layout(matrix(c(0, 1, 0, 0), 2, 2, byrow = TRUE))
   image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))
