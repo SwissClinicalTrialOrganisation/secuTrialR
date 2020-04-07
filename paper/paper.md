@@ -42,7 +42,7 @@ the conclusion of data entry. It is, however, vital that the interaction between
 fast and seamlessly in order to avoid loss of valuable time due to technical friction. This point has been prominently
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
 regarding the timely transfer of information for the preparation of up-to-date infection
-counts[@spiegel_meldeluecke, @risklayer_news]. These issues led to confusion and may have ultimately
+counts[@spiegel_meldeluecke]. These issues led to confusion and may have ultimately
 delayed important actions. While this is a stark example it still serves to show how severe the influence
 of technical friction between digital systems can be.  
 
@@ -53,17 +53,25 @@ to reduce the data preparation overhead. Furthermore, `secuTrialR` includes stan
 show descriptive statistics such as study recruitment or completeness of entered data per case report form
 for secuTrial data exports.
 
-The development of `secuTrialR` made extensive use of the `tidyverse` [@tidyverse_cit] and greatly benefited from
-the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit]. Furthermore, `tcltk` and `igraph` [@igraph_cit]
-are incorporated.
-
-`secuTrialR` is available on GitHub, CRAN and Bioconda [@Gruening-2018-bioconda].
-
 # Design
 
 Independent of the specific database at hand all secuTrial data exports share a certain common technical structure.
 In `secuTrialR` we make use of this information to build an S3 object of class `secuTrialdata` when the
 data is read into R. All downstream functions expect a `secuTrialdata` object as input.
+
+# Availability
+
+`secuTrialR` is available on GitHub, CRAN and Bioconda [@Gruening-2018-bioconda].
+
+# Dependencies
+
+The development of `secuTrialR` made extensive use of the `tidyverse` [@tidyverse_cit] and greatly benefited from
+the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit]. Furthermore, `tcltk` and `igraph` [@igraph_cit]
+are incorporated.
+
+# Conflict of interest
+
+To be discussed...
 
 # Acknowledgements
 
