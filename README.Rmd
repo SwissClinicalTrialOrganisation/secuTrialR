@@ -29,7 +29,7 @@ Thus, we suggest to work with exports which:
 - are **"CSV format"** or **"CSV format for MS Excel"**
 - do **NOT** contain form data of hidden fields
 
-You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
+If you use `read_secuTrial()` to read your export then it will inform you regarding deviations.
 
 ## Basic usage
 
