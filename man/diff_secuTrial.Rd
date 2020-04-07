@@ -2,7 +2,7 @@
 % Please edit documentation in R/diff_secuTrial.R
 \name{diff_secuTrial}
 \alias{diff_secuTrial}
-\title{Returns differences in the setup of two secuTrialdata objects}
+\title{Returns differences in the setup of two \code{secuTrialdata} objects}
 \usage{
 diff_secuTrial(x, y)
 }

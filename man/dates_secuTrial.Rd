@@ -10,7 +10,7 @@ dates_secuTrial(object, ...)
 \method{dates_secuTrial}{secuTrialdata}(object, ...)
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
 }

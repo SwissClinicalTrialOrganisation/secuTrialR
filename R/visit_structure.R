@@ -1,6 +1,6 @@
-#' Get the visit structure of secuTrialdata objects
+#' Get the visit structure of \code{secuTrialdata} objects
 #'
-#' @param x a secuTrialdata object
+#' @param x a \code{secuTrialdata} object
 #' @param sorted logical if TRUE sorted by first visit
 #' @note Requires a fixed visit structure - an error will be returned for projects without
 #'       a visit structure or one with flexible visits
@@ -81,11 +81,8 @@ plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.
   z <- !is.na(as.matrix(x[, -1]))
   names <- gsub("tmpvar.", "", names(x[, -1]))
-
-  # adjusted as per request in CRAN review
   paropts <- par(no.readonly = TRUE)
   on.exit(par(paropts))
-
   par(mai = c(0, 0, 0.1, 0.1))
   layout(matrix(c(0, 1, 0, 0), 2, 2, byrow = TRUE))
   image(t(z), yaxt = "n", xaxt = "n", col = c("white", "black"))

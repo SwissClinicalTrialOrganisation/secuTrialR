@@ -17,7 +17,7 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 \item{dates}{logical - convert date variables}
 }
 \value{
-secuTrialdata object - a list with one data.frame for each file on the export
+\code{secuTrialdata} object - a list with one data.frame for each file on the export
         and a list containing the export options
 }
 \description{

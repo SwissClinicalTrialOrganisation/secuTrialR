@@ -7,7 +7,7 @@
 form_status_counts(object, ...)
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
 }

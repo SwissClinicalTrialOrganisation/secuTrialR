@@ -3,14 +3,14 @@
 \name{visit_structure}
 \alias{visit_structure}
 \alias{plot.secuTrialvisit}
-\title{Get the visit structure of secuTrialdata objects}
+\title{Get the visit structure of \code{secuTrialdata} objects}
 \usage{
 visit_structure(x, sorted = TRUE)
 
 \method{plot}{secuTrialvisit}(x, ...)
 }
 \arguments{
-\item{x}{a secuTrialdata object}
+\item{x}{a \code{secuTrialdata} object}
 
 \item{sorted}{logical if TRUE sorted by first visit}
 
@@ -22,7 +22,7 @@ data.frame with 1 for whether a form (rows) was collected during a particular vi
 plot of the visit plan
 }
 \description{
-Get the visit structure of secuTrialdata objects
+Get the visit structure of \code{secuTrialdata} objects
 }
 \note{
 Requires a fixed visit structure - an error will be returned for projects without

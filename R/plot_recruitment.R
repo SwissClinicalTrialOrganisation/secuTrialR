@@ -1,4 +1,4 @@
-#' Plots the recruitment over time for secuTrialdata objects
+#' Plots the recruitment over time for \code{secuTrialdata} objects
 #' @description secuTrial exports inherently contain the information on which participant was
 #'              registered at which point in time. This function makes use of this property
 #'              to plot recruitment over time. Centers indicated with a black line in the

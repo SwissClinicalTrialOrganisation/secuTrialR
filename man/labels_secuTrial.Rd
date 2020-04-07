@@ -38,7 +38,7 @@ units(x) <- value
 and data.frames
 \code{label} and \code{units} return strings with the appropriate labels
 
-a labelled \code{secuTrialdata} object
+\code{secuTrialdata} object with labels applied to each variable
 }
 \description{
 Variable labels are important for understanding the contents of a variable.

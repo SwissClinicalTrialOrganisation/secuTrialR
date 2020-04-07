@@ -1,4 +1,4 @@
-#' Returns differences in the setup of two secuTrialdata objects
+#' Returns differences in the setup of two \code{secuTrialdata} objects
 #' @description During ongoing studies it is possible that changes to the DataCapture interface
 #'              are made. Sometimes these changes may call for adjustments in analysis code.
 #'              It is considered good practice to run \code{diff_secuTrial()} on the last export

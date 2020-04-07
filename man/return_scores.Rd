@@ -2,7 +2,7 @@
 % Please edit documentation in R/return_scores.R
 \name{return_scores}
 \alias{return_scores}
-\title{Returns the score (calculated) items from secuTrialdata objects}
+\title{Returns the score (calculated) items from \code{secuTrialdata} objects}
 \usage{
 return_scores(x)
 }
@@ -10,7 +10,7 @@ return_scores(x)
 \item{x}{a \code{secuTrialdata} object}
 }
 \value{
-a data.frame that pinpoints which items are scores/calculated.
+a data.frame (columns: name, itemtype, label) that pinpoints which items are scores/calculated.
 }
 \description{
 secuTrial allows to set up calculated fields (i.e. scores) that depend on other items. It is not

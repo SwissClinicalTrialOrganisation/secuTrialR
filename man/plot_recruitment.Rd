@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_recruitment.R
 \name{plot_recruitment}
 \alias{plot_recruitment}
-\title{Plots the recruitment over time for secuTrialdata objects}
+\title{Plots the recruitment over time for \code{secuTrialdata} objects}
 \usage{
 plot_recruitment(
   x,

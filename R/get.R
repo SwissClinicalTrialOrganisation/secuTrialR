@@ -1,10 +1,10 @@
-#' Retrieves participants present in secuTrialdata
+#' Retrieves participants present in \code{secuTrialdata}
 #'
-#' Given a secuTrialdata object, this function simply returns a list of participants.
+#' Given a \code{secuTrialdata} object, this function simply returns a list of participants.
 #' Information included are participant IDs and corresponding study centre information,
 #' if available.
 #'
-#' @param dat secuTrialdata object containing participant IDs and centre information
+#' @param dat \code{secuTrialdata} object containing participant IDs and centre information
 #' @return data.frame containing participants present in dat
 #' @importFrom dplyr left_join
 #' @export

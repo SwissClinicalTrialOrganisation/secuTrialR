@@ -4,14 +4,14 @@
 \alias{factorize}
 \alias{factorize_secuTrial}
 \alias{factorize_secuTrial.secuTrialdata}
-\title{Add factors to secuTrialdata objects}
+\title{Add factors to \code{secuTrialdata} objects}
 \usage{
 factorize_secuTrial(object, ...)
 
 \method{factorize_secuTrial}{secuTrialdata}(object, ...)
 }
 \arguments{
-\item{object}{a \code{secuTrialdata} object}
+\item{object}{\code{secuTrialdata} object with additional factor variables in study forms containing categorical data}
 
 \item{...}{further parameters}
 }

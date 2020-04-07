@@ -1,4 +1,4 @@
-#' Add factors to secuTrialdata objects
+#' Add factors to \code{secuTrialdata} objects
 #' @description secuTrial can return a codebook of codes and labels for categorical variables, including lookup
 #'              type variables, if this option is selected in the export tool ('reference values as separate table').
 #'              This allows factors to be easily created. Factorize methods exist for \code{secuTrialdata} objects,
@@ -6,7 +6,7 @@
 #'              used by users. The other methods could be used with customized codebooks.
 #' @rdname factorize
 #' @name factorize
-#' @param object a \code{secuTrialdata} object
+#' @param object \code{secuTrialdata} object with additional factor variables in study forms containing categorical data
 #' @param ... further parameters
 #' @export
 #' @return factorized \code{secuTrialdata} object

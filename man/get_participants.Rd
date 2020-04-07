@@ -2,18 +2,18 @@
 % Please edit documentation in R/get.R
 \name{get_participants}
 \alias{get_participants}
-\title{Retrieves participants present in secuTrialdata}
+\title{Retrieves participants present in \code{secuTrialdata}}
 \usage{
 get_participants(dat)
 }
 \arguments{
-\item{dat}{secuTrialdata object containing participant IDs and centre information}
+\item{dat}{\code{secuTrialdata} object containing participant IDs and centre information}
 }
 \value{
 data.frame containing participants present in dat
 }
 \description{
-Given a secuTrialdata object, this function simply returns a list of participants.
+Given a \code{secuTrialdata} object, this function simply returns a list of participants.
 Information included are participant IDs and corresponding study centre information,
 if available.
 }

@@ -13,7 +13,7 @@ links_secuTrial(
 )
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{forms}{a regular expression for which forms should be included}
 

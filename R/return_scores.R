@@ -1,11 +1,11 @@
-#' Returns the score (calculated) items from secuTrialdata objects
+#' Returns the score (calculated) items from \code{secuTrialdata} objects
 #' @description secuTrial allows to set up calculated fields (i.e. scores) that depend on other items. It is not
 #'              suggested to use the scores calculated by secuTrial to perform reliable analyses. To this end,
 #'              calling \code{return_scores} will return all items in the secuTrial export which are scores and should
 #'              be manually recalculated before data analysis.
 #' @param x a \code{secuTrialdata} object
 #' @export
-#' @return a data.frame that pinpoints which items are scores/calculated.
+#' @return a data.frame (columns: name, itemtype, label) that pinpoints which items are scores/calculated.
 #'
 #' @examples
 #' # export location

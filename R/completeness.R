@@ -4,7 +4,7 @@
 #' forms per participant. There is a line for every combination of
 #' form type and participant id. The numbers are occurrence counts.
 #'
-#' @param object secuTrialdata object
+#' @param object \code{secuTrialdata} object
 #' @param ... further parameters
 #' @keywords form status completeness
 #' @export
@@ -146,7 +146,7 @@ form_status_counts.secuTrialdata <- function(object, ...) {
 #' data.frame summarizing the statuses for each form.
 #' Only saved forms are considered for the statistic.
 #'
-#' @param object secuTrialdata object
+#' @param object \code{secuTrialdata} object
 #' @param ... further parameters
 #' @keywords form status completeness
 #' @importFrom dplyr group_by summarise mutate_all

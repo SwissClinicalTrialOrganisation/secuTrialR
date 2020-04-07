@@ -2,12 +2,12 @@
 % Please edit documentation in R/subset.R
 \name{subset_secuTrial}
 \alias{subset_secuTrial}
-\title{Subsets a secuTrialdata object}
+\title{Subsets a \code{secuTrialdata} object}
 \usage{
 subset_secuTrial(dat, participant = NULL, centre = NULL, exclude = FALSE)
 }
 \arguments{
-\item{dat}{secuTrialdata object containing participant IDs and centre information}
+\item{dat}{\code{secuTrialdata} object containing participant IDs and centre information}
 
 \item{participant}{character vector with a selection of participant IDs (mnpaid) used for subsetting}
 
@@ -16,10 +16,10 @@ subset_secuTrial(dat, participant = NULL, centre = NULL, exclude = FALSE)
 \item{exclude}{boolean which if true excludes participants and centres from dat}
 }
 \value{
-secuTrialdata object containing only those participants that meet the selection criteria.
+\code{secuTrialdata} object containing only those participants that meet the selection criteria.
 }
 \description{
-Given a secuTrial data object, and subsetting parameters,
+Given a \code{secuTrialdata} object, and subsetting parameters,
 this function filters the data object to include only the desired study participants.
 Subsetting is possible based on participants and based on centres. In order to subset
 based on participants, participant IDs (mnpaid) musst be present in the export.
