@@ -9,7 +9,7 @@ tags:
 authors:
  - name: Patrick R. Wright
    orcid: 0000-0002-1153-0846 
-   affiliation: "1, 3, *"
+   affiliation: "1, 3, 4"
  - name: Alan G. Haynes
    orcid: 0000-0003-1374-081X
    affiliation: "2, 3"
@@ -23,8 +23,8 @@ affiliations:
    index: 2
  - name: Swiss Clinical Trial Organisation, Bern, Switzerland
    index: 3
- - name: To whom correspondence should be addressed.
-   index: *
+ - name: To whom correspondence should be addressed. Email: patrick.wright@usb.ch
+   index: 4
 date: 08 April 2020
 bibliography: paper.bib
 ---
