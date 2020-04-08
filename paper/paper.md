@@ -67,7 +67,8 @@ intact `secuTrialdata` objects.
 
 ![secuTrialR information flow](secuTrialR_information_flow.png)
 Figure 1: Information flow from secuTrial to R statistics and within R. Arrows indicate the 
-direction from gray towards black.
+direction from gray towards black. "..." indicates further functions working with `secuTrialdata`
+objects.
 
 # Availability
 
