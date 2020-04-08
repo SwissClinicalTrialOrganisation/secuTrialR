@@ -40,15 +40,15 @@ integrity and quality of study data.
 There is a vast market of heterogeneous CDMS solutions each with individual advantages and limitations [@kuchinke_etal_2010].
 One limitation can be the interaction with the data after it has been collected. Specifically, a CMDS may be
 tailored for optimal data capture while, at least to some extent, disregarding ease-of-use of study data after
-the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts takes place
-fast and seamlessly in order to avoid loss of valuable time due to technical friction. This point has been prominently
+the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts is
+fast and seamless in order to avoid loss of valuable time due to technical overhead. This point has been prominently
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
 regarding the timely transfer of information for the preparation of up-to-date infection
 counts [@spiegel_meldeluecke]. These issues led to confusion and may have ultimately
 delayed important actions. While this is a stark example it still serves to show how severe the influence
 of technical friction between digital systems can be.  
 
-To this end we have developed the R statistics [@r_citation] software package `secuTrialR`, which enables
+To this end we have developed the open source R statistics [@r_citation] software package `secuTrialR`, which enables
 seamless interaction with data collected in the commercially available CDMS
 [secuTrial](https://www.secutrial.com) (vendor [interActive Systems Berlin](https://interactive-systems.de/)).
 Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
