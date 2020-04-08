@@ -9,19 +9,23 @@ tags:
 authors:
  - name: Patrick R. Wright
    orcid: 0000-0002-1153-0846 
-   affiliation: 1
+   affiliation: "1, 3, *"
  - name: Alan G. Haynes
    orcid: 0000-0003-1374-081X
-   affiliation: 2
+   affiliation: "2, 3"
  - name: Milica Markovic
    orcid: 0000-0002-6973-6679
-   affiliation: 1
+   affiliation: "1, 3"
 affiliations:
  - name: University Hospital Basel, Clinical Trial Unit, Basel, Switzerland
    index: 1
  - name: University of Bern, Clinical Trial Unit, Bern, Switzerland
    index: 2
-date: 06 April 2020
+ - name: Swiss Clinical Trial Organisation, Bern, Switzerland
+   index: 3
+ - name: To whom correspondence should be addressed.
+   index: *
+date: 08 April 2020
 bibliography: paper.bib
 ---
 
