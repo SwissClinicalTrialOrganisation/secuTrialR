@@ -9,7 +9,7 @@ tags:
 authors:
  - name: Patrick R. Wright
    orcid: 0000-0002-1153-0846 
-   affiliation: "1, 3, 4"
+   affiliation: "1, 3"
  - name: Alan G. Haynes
    orcid: 0000-0003-1374-081X
    affiliation: "2, 3"
