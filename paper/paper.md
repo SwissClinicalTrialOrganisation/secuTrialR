@@ -23,8 +23,6 @@ affiliations:
    index: 2
  - name: Swiss Clinical Trial Organisation, Bern, Switzerland
    index: 3
- - name: To whom correspondence should be addressed. Email: patrick.wright@usb.ch
-   index: 4
 date: 08 April 2020
 bibliography: paper.bib
 ---
