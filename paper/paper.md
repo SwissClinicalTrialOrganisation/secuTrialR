@@ -83,11 +83,6 @@ The development of `secuTrialR` made extensive use of the `tidyverse` [@tidyvers
 the `devtools` package [@devtools_cit] and `RStudio` [@rstudio_cit]. Furthermore, `tcltk` and `igraph` [@igraph_cit]
 are incorporated.
 
-# Conflict of interest
-
-The authors are not employees but customers of interActive Systems (iAS). The authors therefore declare
-no conflict of interest.
-
 # interActive Systems statement
 
 InterActive Systems (iAS) has given permission for the open source development of this software
@@ -101,5 +96,10 @@ Constantin Sluka, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Z
 constructive feedback on the secuTrialR package.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
 Science Foundation for the funding of this project.
+
+# Conflict of interest
+
+The authors are not employees but customers of interActive Systems (iAS). The authors therefore declare
+no conflict of interest.
 
 # References
