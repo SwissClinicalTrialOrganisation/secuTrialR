@@ -49,7 +49,8 @@ delayed important actions. While this is a stark example it still serves to show
 of technical friction between digital systems can be.  
 
 To this end we have developed the R statistics [@r_citation] software package `secuTrialR`, which enables
-seamless interaction with data collected in the commercially available CDMS secuTrial.
+seamless interaction with data collected in the commercially available CDMS
+[secuTrial](https://www.secutrial.com) (vendor [interActive Systems Berlin](https://interactive-systems.de/)).
 Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
 to reduce the data preparation overhead and allow a swift transition into the analytical phase.
 Furthermore, `secuTrialR` includes standard functionalities to
@@ -84,7 +85,13 @@ are incorporated.
 
 # Conflict of interest
 
-To be discussed...
+The authors are not employees but customers of interActive Systems (iAS). The authors therefore declare
+no conflict of interest.
+
+# interActive Systems statement
+
+InterActive Systems (iAS) has given permission for the open source development of this software
+package but accepts no responsibility for the correctness of any functionalities within.
 
 # Acknowledgements
 
