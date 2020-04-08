@@ -56,12 +56,12 @@ for secuTrial data exports.
 
 # Design
 
-Independent of the specific database at hand, all secuTrial data exports share a certain common technical structure.
+All secuTrial data exports share a certain common technical structure independent of the specific database at hand.
 In `secuTrialR` we make use of this information to build an S3 object of class `secuTrialdata` while the
 data is being read into R. All downstream functions implemented in `secuTrialR` expect a `secuTrialdata` object as input
-but custom analyses with other compenents of R statistics are also possible (see Figure 1).
+but custom analyses with other compenents of R statistics are also an option (see Figure 1).
 While editing the `secuTrialdata` object is technically possible, this is not advisable.
-Rather it should be treated as raw data archive from which data can be extracted. However, if necessary, 
+Rather it should be treated as raw data archive from which data can be extracted for analysis. However, if necessary,
 it is possible to extract subsets of `secuTrialdata` objects with the `subset_secuTrial()` function and return
 intact `secuTrialdata` objects.
 
