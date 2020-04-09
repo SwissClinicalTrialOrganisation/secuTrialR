@@ -7,9 +7,12 @@
 form_status_summary(object, ...)
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
+}
+\value{
+data.frame summarizing the statuses for each form
 }
 \description{
 This function warps form_status_counts and returns a
@@ -30,4 +33,4 @@ form_status_summary(sT_export)
 }
 \keyword{completeness}
 \keyword{form}
-\keyword{status,}
+\keyword{status}

@@ -18,7 +18,7 @@ read_secuTrial_raw(data_dir)
 \item{...}{further parameters}
 }
 \value{
-This is a list of class secuTrialdata containing a list of
+\code{secuTrialdata} object containing a list of
         export options and data.frames with all the data loaded from
         the secuTrial export.
         The list will contain at least the metadata data.frames and

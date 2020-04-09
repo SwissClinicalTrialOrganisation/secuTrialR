@@ -1,6 +1,6 @@
 #' as.data.frame method for secuTrialdata objects
 #'
-#' @param x secuTrialdata object
+#' @param x \code{secuTrialdata} object
 #' @param ... further parameters
 #' @param data.frames character vector of data.frame names to turn into data.frames
 #' @param meta logical should metadata be returned
@@ -8,7 +8,7 @@
 #' @param rep replacement for regex
 #' @param envir environment in which to put the data
 #'
-#' @return each data.frame on the secuTrialdata object is saved to it's own data.frame in the environment
+#' @return each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
 #' @export
 #'
 #' @examples

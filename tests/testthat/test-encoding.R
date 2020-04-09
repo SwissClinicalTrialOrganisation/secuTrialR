@@ -1,5 +1,7 @@
 context("character encoding")
 
+skip_on_cran()
+
 # systematic encoding tests
 
 # functional encodings

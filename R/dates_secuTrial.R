@@ -2,7 +2,7 @@
 #' @description Converts dates and datetime variables to \code{Date} or \code{POSIXct} class, as appropriate.
 #' @name dates_secuTrial
 #' @rdname dates_secuTrial
-#' @param object secuTrialdata object
+#' @param object \code{secuTrialdata} object
 #' @param ... further parameters
 #' @details New variables are created appended with \code{.date} or \code{.datetime}.
 #'          This is a safety mechanism in case NAs are inadvertently introduced.

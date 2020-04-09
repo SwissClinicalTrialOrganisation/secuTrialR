@@ -12,13 +12,13 @@ annual_recruitment(x, rm_regex = "")
 \item{rm_regex}{character - specifies a regular expression to be removed from the centre names in the legend.
 e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.}
 }
+\value{
+a data.frame showing the annual recruitment counts per center
+}
 \description{
 secuTrial exports inherently contain the information on which participant was
              registered at which point in time. This function makes use of this property
              to show annual recruitment.
-}
-\details{
-annual_recruitment will return a data.frame showing the annual recruitment per center
 }
 \note{
 This function wraps plot_recruitment to retrieve the data.

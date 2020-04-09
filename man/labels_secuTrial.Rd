@@ -37,6 +37,8 @@ units(x) <- value
 \code{label_secuTrial} returns the same object as \code{object}, but with labels added to variables
 and data.frames
 \code{label} and \code{units} return strings with the appropriate labels
+
+\code{secuTrialdata} object with labels applied to each variable
 }
 \description{
 Variable labels are important for understanding the contents of a variable.

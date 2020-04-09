@@ -6,7 +6,7 @@
 #' NOTE: This is not exported currently since it is not generic enough.
 #'       It can still be used but in depth knowledge of the function is required
 #'       to evaluate if the result is correct.
-#'       As a rule of thumb: rigid CDMA setups with low complexity are likely
+#'       As a rule of thumb: rigid CDMA setups with low complexity will likely
 #'                           work as expected.
 #'
 #' Variable completeness is defined as percentage of data entered for a variable
@@ -39,11 +39,24 @@
 #' @return data.frame showing percent completeness per variable.
 #' @importFrom tibble rownames_to_column
 #' @examples
-#' \donttest{
-#' assess_form_variable_completeness(form = sT_export$bmd, casenodes_table = sT_export$cn,
-#'                                   validation_overview = val_ovv, completeness = "allforms",
-#'                                   occ_in_vp = 5)
-#' }
+#' # prepare path to example export
+#' export_location <- system.file("extdata", "sT_exports", "BMD",
+#'                                "s_export_CSV-xls_BMD_short_en_utf8.zip",
+#'                                package = "secuTrialR")
+#' # read all export data
+#' sT_export <- read_secuTrial_raw(data_dir = export_location)
+#'
+#' # read validation overview
+#' val_ovv_location <- system.file("extdata", "sT_exports", "BMD",
+#'                                 "bmd_validation_overview.xlsx",
+#'                                 package = "secuTrialR")
+#' val_ovv <- read_validation_overview(data_dir = val_ovv_location)
+#'
+#' secuTrialR:::assess_form_variable_completeness(form = sT_export$bmd,
+#'                                                casenodes_table = sT_export$cn,
+#'                                                validation_overview = val_ovv,
+#'                                                completeness = "allforms",
+#'                                                occ_in_vp = 5)
 #'
 #' @seealso read_validation_overview, read_secuTrial_raw
 #'

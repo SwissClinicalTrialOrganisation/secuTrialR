@@ -1,6 +1,6 @@
-#' Subsets a secuTrialdata object
+#' Subsets a \code{secuTrialdata} object
 #'
-#' Given a secuTrial data object, and subsetting parameters,
+#' Given a \code{secuTrialdata} object, and subsetting parameters,
 #' this function filters the data object to include only the desired study participants.
 #' Subsetting is possible based on participants and based on centres. In order to subset
 #' based on participants, participant IDs (mnpaid) musst be present in the export.
@@ -12,11 +12,11 @@
 #' exclude = FALSE will include the intersection of participants meeting the selection criteria.
 #' If exclude = TRUE, a complement of union of participant and centre sets is returned.
 #'
-#' @param dat secuTrialdata object containing participant IDs and centre information
+#' @param dat \code{secuTrialdata} object containing participant IDs and centre information
 #' @param participant character vector with a selection of participant IDs (mnpaid) used for subsetting
 #' @param centre character vector with a selection of centre names (mnpctrname) used for subsetting
 #' @param exclude boolean which if true excludes participants and centres from dat
-#' @return secuTrialdata object containing only those participants that meet the selection criteria.
+#' @return \code{secuTrialdata} object containing only those participants that meet the selection criteria.
 #' @importFrom purrr modify_if
 #' @export
 #'

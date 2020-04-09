@@ -3,7 +3,7 @@
 #'              SPSS (sav), Stata (dta) or SAS (sas, xpt version 8)
 #'              using the haven package.
 #' @name write_secuTrial
-#' @param object secuTrialdata object
+#' @param object \code{secuTrialdata} object
 #' @param ... further parameters
 #' @details Due to variable naming limitations in other packages, date variables are
 #'          appended with _d (rather than _date), datetime/POSIX variables are appended

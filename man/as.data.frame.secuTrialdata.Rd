@@ -15,7 +15,7 @@
 )
 }
 \arguments{
-\item{x}{secuTrialdata object}
+\item{x}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
 
@@ -30,7 +30,7 @@
 \item{envir}{environment in which to put the data}
 }
 \value{
-each data.frame on the secuTrialdata object is saved to it's own data.frame in the environment
+each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
 }
 \description{
 as.data.frame method for secuTrialdata objects

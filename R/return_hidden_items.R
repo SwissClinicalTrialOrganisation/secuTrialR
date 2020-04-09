@@ -1,11 +1,11 @@
-#' Returns hidden items (variables) from secuTrialdata objects
+#' Returns hidden items (variables) from \code{secuTrialdata} objects
 #' @description Sometimes, during a study, certain fields may be hidden because data should
 #'              no longer be entered into them. If this is the case and the data of these
 #'              fields is part of your export is likely good to know about it.
 #'
 #' @param x a \code{secuTrialdata} object
 #' @export
-#' @details return_hidden_items will produce a data.frame that pinpoints which items are hidden.
+#' @return a data.frame (columns: name, itemtype, label) that pinpoints which items are hidden
 #'
 #' @examples
 #' # export location

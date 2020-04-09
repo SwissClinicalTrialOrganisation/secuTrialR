@@ -2,7 +2,7 @@
 % Please edit documentation in R/diff_secuTrial.R
 \name{diff_secuTrial}
 \alias{diff_secuTrial}
-\title{Returns differences in the setup of two secuTrialdata objects}
+\title{Returns differences in the setup of two \code{secuTrialdata} objects}
 \usage{
 diff_secuTrial(x, y)
 }
@@ -10,6 +10,11 @@ diff_secuTrial(x, y)
 \item{x}{a \code{secuTrialdata} object (the older export)}
 
 \item{y}{a \code{secuTrialdata} object (the newer export)}
+}
+\value{
+If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
+        The fist vector informs about new forms and the second vector informs about
+        new variables.
 }
 \description{
 During ongoing studies it is possible that changes to the DataCapture interface
@@ -21,11 +26,6 @@ During ongoing studies it is possible that changes to the DataCapture interface
              Information is returned on new forms and variables.
              A detailed list of changes can be produced in the FormBuilder with
              "Compare project setup".
-}
-\details{
-If there are differences, \code{diff_secuTrial()} will produce a list of vectors.
-         The fist vector informs about new forms and the second vector informs about
-         new variables.
 }
 \examples{
 # read exports

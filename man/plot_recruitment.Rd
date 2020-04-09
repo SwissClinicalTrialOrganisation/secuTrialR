@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_recruitment.R
 \name{plot_recruitment}
 \alias{plot_recruitment}
-\title{Plots the recruitment over time for secuTrialdata objects}
+\title{Plots the recruitment over time for \code{secuTrialdata} objects}
 \usage{
 plot_recruitment(
   x,
@@ -24,15 +24,15 @@ plot_recruitment(
 \item{rm_regex}{character - specifies a regular expression to be removed from the centre names in the legend.
 e.g. rm_regex = "\\\(.*\\\)$" will remove trailing brackets and their contents.}
 }
+\value{
+a simple line plot showing recruitment over time
+        or a list of data.frames if return_data is set to TRUE
+}
 \description{
 secuTrial exports inherently contain the information on which participant was
              registered at which point in time. This function makes use of this property
              to plot recruitment over time. Centers indicated with a black line in the
              legend did not recruit at all.
-}
-\details{
-plot_recruitment will return a simple line plot showing recruitment over time
-         or a list of data.frames if return_data is set to TRUE
 }
 \examples{
 # export location

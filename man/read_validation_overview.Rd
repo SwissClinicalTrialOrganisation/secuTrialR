@@ -10,7 +10,7 @@ read_validation_overview(data_dir)
 \item{data_dir}{Path to the Validation Overview (must be an *.xlsx file).}
 }
 \value{
-tibble with the 'Validation Overview' data.
+tibble with the 'Validation Overview' data
 }
 \description{
 This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.

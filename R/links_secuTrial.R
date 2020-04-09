@@ -4,7 +4,7 @@
 #' Understanding the links can be difficult. This function produces a map linking the forms
 #' with common variables.
 #'
-#' @param object secuTrialdata object
+#' @param object \code{secuTrialdata} object
 #' @param forms a regular expression for which forms should be included
 #' @param formcol color for form name circles
 #' @param varcol color for variable name circles
@@ -18,7 +18,7 @@
 #' @import tcltk
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # ex. 1
 #' # prepare path to example export
 #' export_location <- system.file("extdata", "sT_exports", "BMD",

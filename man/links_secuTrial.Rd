@@ -13,7 +13,7 @@ links_secuTrial(
 )
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{forms}{a regular expression for which forms should be included}
 
@@ -40,7 +40,7 @@ Note that where a form name is also a variable name, it is appended by \code{_fo
       (igraph requires uniquely named nodes).
 }
 \examples{
-\dontrun{
+\donttest{
 # ex. 1
 # prepare path to example export
 export_location <- system.file("extdata", "sT_exports", "BMD",

@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR [![](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR [![](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -30,12 +30,12 @@ Thus, we suggest to work with exports which:
 - are **"CSV format"** or **"CSV format for MS Excel"**
 - do **NOT** contain form data of hidden fields
 
-You can use the `check_export_options()` function on a secuTrialdata object to identify where your export may differ.
+If you use `read_secuTrial()` to read your export then it will inform you regarding deviations.
 
 ## Basic usage
 
 An extensive applied manual/vignette is available
-[here](vignettes/secuTrialR-package-vignette.pdf)
+[here](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf)
 and probably the best place to get started.
 
 Load the package

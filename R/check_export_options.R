@@ -1,10 +1,9 @@
 #' Returns deviations from suggested export options
 #'
-#' Given a secuTrialdata object, this function returns information on deviations
+#' Given a \code{secuTrialdata} object, this function returns information on deviations
 #' from suggested export options.
 #'
-#' @param dat secuTrialdata object
-#' @export
+#' @param dat \code{secuTrialdata} object
 #' @details While the package strives to allow loading of as many types of secuTrial data exports
 #'          as possible, there are certain export options which are less likely to cause issues.
 #'          If possible it is suggested to export data which adheres to a suggested option set.
@@ -27,7 +26,7 @@
 #'                     package = "secuTrialR")
 #' sT_export <- read_secuTrial_raw(path)
 #'
-#' check_export_options(sT_export)
+#' secuTrialR:::check_export_options(sT_export)
 check_export_options <- function(dat) {
   if (class(dat) != "secuTrialdata") {
     stop("check_export_options requires objects of the class 'secuTrialdata' as input.")

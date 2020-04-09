@@ -7,7 +7,8 @@
 #'               (ignored when reference values are not in a separate table)
 #' @param dates  logical - convert date variables
 #'
-#' @return secuTrialdata object - a list with one data.frame for each file on the export.
+#' @return \code{secuTrialdata} object - a list with one data.frame for each file on the export
+#'         and a list containing the export options
 #' @export
 #'
 #' @examples

@@ -1,5 +1,7 @@
 context("get")
 
+skip_on_cran()
+
 sT <- read_secuTrial(system.file("extdata", "sT_exports", "exp_opt",
                                  "s_export_CSV-xls_CTU05_all_info.zip",
                                  package = "secuTrialR"))

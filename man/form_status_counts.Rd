@@ -7,9 +7,12 @@
 form_status_counts(object, ...)
 }
 \arguments{
-\item{object}{secuTrialdata object}
+\item{object}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
+}
+\value{
+data.frame informing on the status of saved forms per participant
 }
 \description{
 This function returns a data.frame informing on the status of saved
@@ -30,4 +33,4 @@ form_status_counts(sT_export)
 }
 \keyword{completeness}
 \keyword{form}
-\keyword{status,}
+\keyword{status}

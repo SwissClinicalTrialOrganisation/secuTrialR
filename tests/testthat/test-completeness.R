@@ -1,5 +1,7 @@
 context("completeness")
 
+skip_on_cran()
+
 # CTU05
 l_ctu05 <- read_secuTrial(system.file("extdata", "sT_exports", "lnames",
                                       "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",

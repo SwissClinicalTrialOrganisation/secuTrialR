@@ -1,5 +1,6 @@
 context("as.data.frame")
 
+skip_on_cran()
 
 bmd <- read_secuTrial(data_dir =
                            system.file("extdata", "sT_exports", "BMD",

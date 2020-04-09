@@ -27,16 +27,16 @@ This date is checked against mnpvisstartdate in the casenodes table.}
 
 \item{seed}{Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.}
 }
-\description{
-There are situations (e.g. randomized monitoring) in which you may want to
-             return a list of random participants from a secuTrial export.
-}
-\details{
-return_random_participants will produce a list of two elements. First, a data.frame that contains the
+\value{
+list of two elements. First, a data.frame that contains the
          random participants from each specified centre. This is performed based on a specified seed to retain
          reproducibilty. Second, the configuration of the randomization (i.e. result of \code{RNGkind()}).
          If the percentage does not yield an integer for a centre the number is tranformed into an integer
          under application of the \code{ceiling()} function (i.e. it is rounded up).
+}
+\description{
+There are situations (e.g. randomized monitoring) in which you may want to
+             return a list of random participants from a secuTrial export.
 }
 \examples{
 # export location

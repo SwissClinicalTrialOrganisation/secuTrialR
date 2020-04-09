@@ -7,10 +7,10 @@
 check_export_options(dat)
 }
 \arguments{
-\item{dat}{secuTrialdata object}
+\item{dat}{\code{secuTrialdata} object}
 }
 \description{
-Given a secuTrialdata object, this function returns information on deviations
+Given a \code{secuTrialdata} object, this function returns information on deviations
 from suggested export options.
 }
 \details{
@@ -36,5 +36,5 @@ path <- system.file("extdata", "sT_exports", "exp_opt",
                     package = "secuTrialR")
 sT_export <- read_secuTrial_raw(path)
 
-check_export_options(sT_export)
+secuTrialR:::check_export_options(sT_export)
 }

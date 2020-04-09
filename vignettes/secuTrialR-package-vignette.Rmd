@@ -41,7 +41,7 @@ patients, cases, subjects etc. enrolled in a secuTrial database as participants.
 # needed so that the as.data.frame part of the vignette
 # does not need a restart of the session everytime the
 # vignette is built
-rm(list = ls())
+#rm(list = ls()) # removed this at the request of the CRAN submission
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -78,7 +78,7 @@ devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 # load silently
 suppressMessages(library(secuTrialR))
 # show secuTrialR version
-installed.packages()["secuTrialR", "Version"]
+packageVersion("secuTrialR")
 ```
 
 # The CTU05 dataset

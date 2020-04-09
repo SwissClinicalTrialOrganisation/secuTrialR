@@ -1,5 +1,6 @@
 context("dates")
 
+skip_on_cran()
 
 # check individual variables
 dat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "snames",

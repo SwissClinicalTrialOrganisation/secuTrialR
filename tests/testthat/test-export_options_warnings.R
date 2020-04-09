@@ -1,5 +1,7 @@
 context("export options warning")
 
+skip_on_cran()
+
 path_only_col_names <- system.file("extdata", "sT_exports", "exp_opt",
                                    "s_export_CSV-xls_CTU05_only_column_names.zip",
                                    package = "secuTrialR")
