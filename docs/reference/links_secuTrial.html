@@ -74,7 +74,7 @@ with common variables." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -144,7 +144,7 @@ with common variables.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>secuTrialdata object</p></td>
+      <td><p><code>secuTrialdata</code> object</p></td>
     </tr>
     <tr>
       <th>forms</th>
@@ -177,7 +177,7 @@ with common variables.</p>
       (igraph requires uniquely named nodes).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># ex. 1</span>
 <span class='co'># prepare path to example export</span>
 <span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
@@ -186,8 +186,7 @@ with common variables.</p>
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
 <span class='co'># plot links</span>
-<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>)
-
+<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># ex. 2</span>
 <span class='co'># prepare path to example export</span>
 <span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
@@ -196,8 +195,8 @@ with common variables.</p>
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
 <span class='co'># plot links for form names starting with "ctu05"</span>
-<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>forms</span> <span class='kw'>=</span> <span class='st'>"^ctu05"</span>)
-}</div></pre>
+<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>forms</span> <span class='kw'>=</span> <span class='st'>"^ctu05"</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -209,7 +208,7 @@ with common variables.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic, Pascal Benkert.</p>
+  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic.</p>
 </div>
 
 <div class="pkgdown">

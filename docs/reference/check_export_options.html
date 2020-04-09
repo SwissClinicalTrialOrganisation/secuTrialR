@@ -73,7 +73,7 @@ from suggested export options." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ from suggested export options." />
     </div>
 
     <div class="ref-description">
-    <p>Given a secuTrialdata object, this function returns information on deviations
+    <p>Given a <code>secuTrialdata</code> object, this function returns information on deviations
 from suggested export options.</p>
     </div>
 
@@ -136,7 +136,7 @@ from suggested export options.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dat</th>
-      <td><p>secuTrialdata object</p></td>
+      <td><p><code>secuTrialdata</code> object</p></td>
     </tr>
     </table>
 
@@ -164,7 +164,7 @@ from suggested export options.</p>
                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='no'>path</span>)
 
-<span class='fu'>check_export_options</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+<span class='kw pkg'>secuTrialR</span><span class='kw ns'>:::</span><span class='fu'>check_export_options</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Add-ID is not part of the export.</span>
 #&gt; <span class='message'>Form status is not part of the export.</span>
 #&gt; <span class='message'>Centre information is not part of the export.</span>
@@ -181,7 +181,7 @@ from suggested export options.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic, Pascal Benkert.</p>
+  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic.</p>
 </div>
 
 <div class="pkgdown">

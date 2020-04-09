@@ -12,9 +12,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Handling of Data from the Clinical Data Management System secuTrial">
-<meta property="og:description" content="This R package is intended to standardize and simplify working with data
-    exported from the clinical data management system (CDMS) secuTrial. The primary
-    data export the package works with is a standard non-rectangular export.">
+<meta property="og:description" content="Seamless and standardized interaction with data
+    exported from the clinical data management system (CDMS)
+    secuTrial&lt;https://www.secutrial.com&gt;.
+    The primary data export the package works with is a standard non-rectangular export.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -78,7 +79,7 @@
   <div class="contents col-md-9">
 <div id="secutrialr-appveyor-build-status-travis-codecov" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
+<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.1-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
 </h1></div>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
@@ -106,12 +107,12 @@
 </li>
 <li>do <strong>NOT</strong> contain form data of hidden fields</li>
 </ul>
-<p>You can use the <code><a href="reference/check_export_options.html">check_export_options()</a></code> function on a secuTrialdata object to identify where your export may differ.</p>
+<p>If you use <code><a href="reference/read_secuTrial.html">read_secuTrial()</a></code> to read your export then it will inform you regarding deviations.</p>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-usage" class="anchor"></a>Basic usage</h2>
-<p>An extensive applied manual/vignette is available <a href="vignettes/secuTrialR-package-vignette.pdf">here</a> and probably the best place to get started.</p>
+<p>An extensive applied manual/vignette is available <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf">here</a> and probably the best place to get started.</p>
 <p>Load the package</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">secuTrialR</span>)</pre></div>
 <p>Load a dataset</p>
@@ -497,10 +498,10 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Patrick R. Wright <br><small class="roles"> Maintainer, author </small>  </li>
-<li>Alan G. Haynes <br><small class="roles"> Author </small>  </li>
-<li>Milica Markovic <br><small class="roles"> Author </small>  </li>
-<li>Pascal Benkert <br><small class="roles"> Author </small>  </li>
+<li>Patrick R. Wright <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
+<li>Alan G. Haynes <br><small class="roles"> Author, copyright holder </small>  </li>
+<li>Milica Markovic <br><small class="roles"> Author, copyright holder </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
@@ -509,7 +510,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic, Pascal Benkert.</p>
+  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic.</p>
 </div>
 
 <div class="pkgdown">
