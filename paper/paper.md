@@ -19,7 +19,7 @@ authors:
 affiliations:
  - name: University Hospital Basel, Clinical Trial Unit, Basel, Switzerland
    index: 1
- - name: University of Bern, Clinical Trial Unit, Bern, Switzerland
+ - name: CTU Bern, University of Bern
    index: 2
  - name: Swiss Clinical Trial Organisation, Bern, Switzerland
    index: 3
@@ -45,7 +45,7 @@ fast and seamless in order to avoid loss of valuable time due to technical overh
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
 regarding the timely transfer of information for the preparation of up-to-date infection
 counts [@spiegel_meldeluecke]. These issues led to confusion and may have ultimately
-delayed important actions. While this is a stark example it still serves to show how severe the influence
+delayed important actions. While this is a stark example, it still serves to show how severe the influence
 of technical friction between digital systems can be.  
 
 To this end we have developed the open source R statistics [@r_citation] software package `secuTrialR`, which enables
@@ -91,15 +91,15 @@ package but accepts no responsibility for the correctness of any functionalities
 # Acknowledgements
 
 The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
-Thomas Fabbro, Inessa Kraft, Daniel Lengwiler, Armando Lenz, Henry Owusu, Hans Rock, Claudia Rokitta,
-Constantin Sluka, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas, testing and
-constructive feedback on the secuTrialR package.
+Thomas Fabbro, Inessa Kraft, Arnaud Künzi, Daniel Lengwiler, Armando Lenz, Henry Owusu, Hans Rock, Claudia Rokitta,
+Marie Roumet, Constantin Sluka, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas,
+testing and constructive feedback on the `secuTrialR` package.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
 Science Foundation for the funding of this project.
 
 # Conflict of interest
 
 The authors are not employees but customers of interActive Systems (iAS). The authors therefore declare
-no conflict of interest.
+no conflict of interest. iAS has read and approved the manuscript.
 
 # References
