@@ -88,6 +88,8 @@ are incorporated.
 InterActive Systems (iAS) has given permission for the open source development of this software
 package but accepts no responsibility for the correctness of any functionalities within.
 
+iAS has read and approved this manuscript.
+
 # Acknowledgements
 
 The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
@@ -100,6 +102,6 @@ Science Foundation for the funding of this project.
 # Conflict of interest
 
 The authors are not employees but customers of interActive Systems (iAS). The authors therefore declare
-no conflict of interest. iAS has read and approved the manuscript.
+no conflict of interest.
 
 # References
