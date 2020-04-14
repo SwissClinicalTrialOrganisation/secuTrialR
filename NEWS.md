@@ -1,4 +1,4 @@
-# secuTrialR 1.0.1
+# secuTrialR 1.0.1, 1.0.2
 * adjustments to handle review feedback from CRAN (#190)
 
 # secuTrialR 1.0.0
