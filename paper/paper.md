@@ -12,7 +12,7 @@ authors:
    affiliation: "1, 3"
  - name: Alan G. Haynes
    orcid: 0000-0003-1374-081X
-   affiliation: "2, 3"
+   affiliation: "2, 4"
  - name: Milica Markovic
    orcid: 0000-0002-6973-6679
    affiliation: "1, 3"
@@ -21,9 +21,11 @@ affiliations:
    index: 1
  - name: CTU Bern, University of Bern
    index: 2
- - name: Swiss Clinical Trial Organisation, Bern, Switzerland
+ - name: Data Management Platform of the Swiss Clinical Trial Organisation (SCTO)
    index: 3
-date: 08 April 2020
+ - name: Statistics Platform of the Swiss Clinical Trial Organisation (SCTO)
+   index: 4
+date: 14 April 2020
 bibliography: paper.bib
 ---
 
