@@ -8,13 +8,11 @@
 
 <title>Subsets a <code>secuTrialdata</code> object — subset_secuTrial • secuTrialR</title>
 
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -38,13 +36,14 @@
 
 
 
-
 <meta property="og:title" content="Subsets a <code>secuTrialdata</code> object — subset_secuTrial" />
+
 <meta property="og:description" content="Given a secuTrialdata object, and subsetting parameters,
 this function filters the data object to include only the desired study participants.
 Subsetting is possible based on participants and based on centres. In order to subset
 based on participants, participant IDs (mnpaid) musst be present in the export.
 In order to subset based on centres, centre information must be included in the export." />
+
 
 
 
@@ -76,7 +75,7 @@ In order to subset based on centres, centre information must be included in the 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -107,6 +106,7 @@ In order to subset based on centres, centre information must be included in the 
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -128,15 +128,17 @@ In order to subset based on centres, centre information must be included in the 
     </div>
 
     <div class="ref-description">
+    
     <p>Given a <code>secuTrialdata</code> object, and subsetting parameters,
 this function filters the data object to include only the desired study participants.
 Subsetting is possible based on participants and based on centres. In order to subset
 based on participants, participant IDs (mnpaid) musst be present in the export.
 In order to subset based on centres, centre information must be included in the export.</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>subset_secuTrial</span>(<span class='no'>dat</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>centre</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -157,10 +159,11 @@ In order to subset based on centres, centre information must be included in the 
       <td><p>boolean which if true excludes participants and centres from dat</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>secuTrialdata</code> object containing only those participants that meet the selection criteria.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Subsetting based on participants only, centers only, or based on both is possible. The value of parameter exclude
@@ -168,6 +171,7 @@ determines whether the output will include participants that meet selection crit
 or exclude them (when exclude = TRUE). When selecting based on both participants and centres,
 exclude = FALSE will include the intersection of participants meeting the selection criteria.
 If exclude = TRUE, a complement of union of participant and centre sets is returned.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -176,7 +180,7 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
                     <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
 <span class='no'>sT</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='no'>participants</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"RPACK-INS-011"</span>, <span class='st'>"RPACK-INS-014"</span>, <span class='st'>"RPACK-INS-015"</span>)
-<span class='no'>centres</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Universitätsspital Basel (RPACK)"</span>)
+<span class='no'>centres</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"UniversitÃ¤tsspital Basel (RPACK)"</span>)
 
 <span class='co'># show all participants</span>
 <span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT</span>)</div><div class='output co'>#&gt;    mnppid        mnpaid mnpctrid                       mnpctrname
@@ -206,12 +210,13 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 #&gt; 6   1210 RPACK-INS-012      461         Inselspital Bern (RPACK)
 #&gt; 7   1211 RPACK-INS-013      461         Inselspital Bern (RPACK)
 #&gt; 8   1214 RPACK-USB-123      441 Universitätsspital Basel (RPACK)</div><div class='input'><span class='no'>sT_subset3</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset3</span>)</div><div class='output co'>#&gt;   mnppid        mnpaid mnpctrid             mnpctrname
-#&gt; 1   1204 RPACK-CBE-001      462 Charité Berlin (RPACK)
-#&gt; 2   1205 RPACK-CBE-002      462 Charité Berlin (RPACK)
-#&gt; 3   1206 RPACK-CBE-003      462 Charité Berlin (RPACK)
-#&gt; 4   1207 RPACK-CBE-004      462 Charité Berlin (RPACK)
-#&gt; 5   1208 RPACK-CBE-005      462 Charité Berlin (RPACK)</div><div class='input'><span class='no'>sT_subset4</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>,
+<span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset3</span>)</div><div class='output co'>#&gt;   mnppid        mnpaid mnpctrid                       mnpctrname
+#&gt; 1   1204 RPACK-CBE-001      462           Charité Berlin (RPACK)
+#&gt; 2   1205 RPACK-CBE-002      462           Charité Berlin (RPACK)
+#&gt; 3   1206 RPACK-CBE-003      462           Charité Berlin (RPACK)
+#&gt; 4   1207 RPACK-CBE-004      462           Charité Berlin (RPACK)
+#&gt; 5   1208 RPACK-CBE-005      462           Charité Berlin (RPACK)
+#&gt; 6   1214 RPACK-USB-123      441 Universitätsspital Basel (RPACK)</div><div class='input'><span class='no'>sT_subset4</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>,
                                <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset4</span>)</div><div class='output co'>#&gt;   mnppid        mnpaid mnpctrid               mnpctrname
 #&gt; 1   1209 RPACK-INS-011      461 Inselspital Bern (RPACK)
@@ -219,7 +224,7 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 #&gt; 3   1213 RPACK-INS-015      461 Inselspital Bern (RPACK)</div><div class='input'><span class='no'>sT_subset5</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_secuTrial</span>(<span class='kw'>dat</span> <span class='kw'>=</span> <span class='no'>sT</span>, <span class='kw'>participant</span> <span class='kw'>=</span> <span class='no'>participants</span>,
                                <span class='kw'>centre</span> <span class='kw'>=</span> <span class='no'>centres</span>[<span class='fl'>2</span>], <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='get_participants.html'>get_participants</a></span>(<span class='no'>sT_subset5</span>)</div><div class='output co'>#&gt; [1] mnppid     mnpaid     mnpctrid   mnpctrname
-#&gt; &lt;0 rows&gt; (or 0-length row.names)</div><div class='input'>
+#&gt; &lt;0 Zeilen&gt; (oder row.names mit Länge 0)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -236,7 +241,7 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

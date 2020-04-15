@@ -190,7 +190,7 @@ Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` m
 ```{r}
 ls()
 names(ctu05)
-as.data.frame(ctu05)
+as.data.frame(ctu05, envir = .GlobalEnv)
 ls()
 ```
 

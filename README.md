@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR [![](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR [![](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -105,8 +105,8 @@ bmd_export
 
 ```
 ## secuTrial data imported from:
-## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
-## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+## C:/Users/haynes/Documents/GitHub/secuTrialR/inst/extdata/sT_exports/BMD/
+## s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -292,8 +292,16 @@ ls()
 ```
 
 ```
-## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"
+##  [1] "atcasenodes"      "atcasevisitplans" "atmnpdbmd"       
+##  [4] "atmnpdebmd"       "atmnpdem00bmd"    "bmd_export"      
+##  [7] "casenodes"        "centres"          "comments"        
+## [10] "ctmnpdem00bmd"    "ctu05"            "ctu05_raw"       
+## [13] "dates"            "dbmd"             "debmd"           
+## [16] "dem00bmd"         "export_location"  "factors"         
+## [19] "foobmd"           "forms"            "items"           
+## [22] "labelled"         "labs"             "queries"         
+## [25] "questions"        "tmnpdem00bmd"     "visitplan"       
+## [28] "visitplanforms"
 ```
 
 ```r
@@ -320,24 +328,34 @@ names(ctu05)
 ```
 
 ```r
-as.data.frame(ctu05)
+as.data.frame(ctu05, envir = .GlobalEnv)
 ls()
 ```
 
 ```
-##  [1] "atadverseevents"         "atemnpctu05surgeries"   
-##  [3] "atmiv"                   "atmnpctu05ae"           
-##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
-##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"
+##  [1] "atadverseevents"         "atcasenodes"            
+##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
+##  [5] "atmiv"                   "atmnpctu05ae"           
+##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
+## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [13] "atmnpdbmd"               "atmnpdebmd"             
+## [15] "atmnpdem00bmd"           "bmd_export"             
+## [17] "casenodes"               "centres"                
+## [19] "comments"                "ctmnpdem00bmd"          
+## [21] "ctu05"                   "ctu05_raw"              
+## [23] "ctu05ae"                 "ctu05allmedi"           
+## [25] "ctu05baseline"           "ctu05outcome"           
+## [27] "ctu05sae"                "ctu05studyterminat"     
+## [29] "ctu05treatment"          "dates"                  
+## [31] "dbmd"                    "debmd"                  
+## [33] "dem00bmd"                "emnpctu05surgeries"     
+## [35] "export_location"         "factors"                
+## [37] "foobmd"                  "forms"                  
+## [39] "items"                   "labelled"               
+## [41] "labs"                    "queries"                
+## [43] "questions"               "tmnpdem00bmd"           
+## [45] "visitplan"               "visitplanforms"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).

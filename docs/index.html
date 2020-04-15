@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -77,16 +77,16 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr-appveyor-build-status-travis-codecov" class="section level1">
+<div id="secutrialr--appveyor-build-status-travis-codecov" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.2-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
+<a href="#secutrialr--appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.3-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
 </h1></div>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-from-github-with-devtools" class="anchor"></a>Installing from github with devtools</h2>
 <p>Please note that <code>R versions &gt;= 3.5</code> should be used to run <code>secuTrialR</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></div>
 </div>
 <div id="recommended-export-options" class="section level2">
 <h2 class="hasAnchor">
@@ -151,8 +151,8 @@
 <p><code>bmd_export</code> is a list, with class <code>secuTrialdata</code>. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within <code>bmd_export</code> instead. The information returned includes the original file name in the datafile, it’s name in the <code>secuTrialdata</code> object, together with the number of rows and columns and a column indicating whether the object is metadata or not:</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">bmd_export</span></pre></div>
 <pre><code>## secuTrial data imported from:
-## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
-## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+## C:/Users/haynes/Documents/GitHub/secuTrialR/inst/extdata/sT_exports/BMD/
+## s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -224,7 +224,7 @@
 <pre><code>##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
 ## 1            NA               &lt;NA&gt; 201903052356 2019-03-05 23:56:00
 ## 7      20060301         2006-03-01           NA                &lt;NA&gt;</code></pre>
-<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
+<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
 <p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
 <p>Recommended literature on incomplete dates/date imputation:\ <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf">Dubois and Hebert 2001</a> \ <a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf">Bowman 2006</a> \</p>
 </div>
@@ -252,13 +252,21 @@
 <h3 class="hasAnchor">
 <a href="#exploratory-helpers" class="anchor"></a>Exploratory helpers</h3>
 <p><code>secuTrialR</code> has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.</p>
-<div id="as-data-frame" class="section level4">
+<div id="asdataframe" class="section level4">
 <h4 class="hasAnchor">
-<a href="#as-data-frame" class="anchor"></a>as.data.frame</h4>
+<a href="#asdataframe" class="anchor"></a>as.data.frame</h4>
 <p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice.</p>
 <div class="sourceCode" id="cb31"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
-<pre><code>## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"</code></pre>
+<pre><code>##  [1] "atcasenodes"      "atcasevisitplans" "atmnpdbmd"       
+##  [4] "atmnpdebmd"       "atmnpdem00bmd"    "bmd_export"      
+##  [7] "casenodes"        "centres"          "comments"        
+## [10] "ctmnpdem00bmd"    "ctu05"            "ctu05_raw"       
+## [13] "dates"            "dbmd"             "debmd"           
+## [16] "dem00bmd"         "export_location"  "factors"         
+## [19] "foobmd"           "forms"            "items"           
+## [22] "labelled"         "labs"             "queries"         
+## [25] "questions"        "tmnpdem00bmd"     "visitplan"       
+## [28] "visitplanforms"</code></pre>
 <div class="sourceCode" id="cb33"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ctu05</span>)</pre></div>
 <pre><code>##  [1] "export_options"          "forms"                  
 ##  [3] "casenodes"               "centres"                
@@ -276,21 +284,31 @@
 ## [27] "atmnpctu05ae"            "ctu05sae"               
 ## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
 ## [31] "atemnpctu05surgeries"    "atadverseevents"</code></pre>
-<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>)
+<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="no">.GlobalEnv</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
-<pre><code>##  [1] "atadverseevents"         "atemnpctu05surgeries"   
-##  [3] "atmiv"                   "atmnpctu05ae"           
-##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
-##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"</code></pre>
+<pre><code>##  [1] "atadverseevents"         "atcasenodes"            
+##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
+##  [5] "atmiv"                   "atmnpctu05ae"           
+##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
+## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [13] "atmnpdbmd"               "atmnpdebmd"             
+## [15] "atmnpdem00bmd"           "bmd_export"             
+## [17] "casenodes"               "centres"                
+## [19] "comments"                "ctmnpdem00bmd"          
+## [21] "ctu05"                   "ctu05_raw"              
+## [23] "ctu05ae"                 "ctu05allmedi"           
+## [25] "ctu05baseline"           "ctu05outcome"           
+## [27] "ctu05sae"                "ctu05studyterminat"     
+## [29] "ctu05treatment"          "dates"                  
+## [31] "dbmd"                    "debmd"                  
+## [33] "dem00bmd"                "emnpctu05surgeries"     
+## [35] "export_location"         "factors"                
+## [37] "foobmd"                  "forms"                  
+## [39] "items"                   "labelled"               
+## [41] "labs"                    "queries"                
+## [43] "questions"               "tmnpdem00bmd"           
+## [45] "visitplan"               "visitplanforms"</code></pre>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
 <div id="recruitment-over-time" class="section level4">
@@ -466,11 +484,11 @@
 <div id="preparing-a-release-on-cran" class="section level3">
 <h3 class="hasAnchor">
 <a href="#preparing-a-release-on-cran" class="anchor"></a>Preparing a release on CRAN</h3>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># build the package archive</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="ex">R</span> CMD build secuTrialR</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></a>
-<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co"># in this example for version 0.9.0</span></a>
-<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="ex">R</span> CMD check secuTrialR_0.9.0.tar.gz</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># build the package archive</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="ex">R</span> CMD build secuTrialR</a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="co"># in this example for version 0.9.0</span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="ex">R</span> CMD check secuTrialR_0.9.0.tar.gz</a></code></pre></div>
 </div>
 <div id="versioning-and-releases" class="section level3">
 <h3 class="hasAnchor">
@@ -514,7 +532,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -8,13 +8,11 @@
 
 <title>Asses completeness of data for each variable in a secuTrial export — assess_form_variable_completeness • secuTrialR</title>
 
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -38,8 +36,8 @@
 
 
 
-
 <meta property="og:title" content="Asses completeness of data for each variable in a secuTrial export — assess_form_variable_completeness" />
+
 <meta property="og:description" content="NOTE: This is not exported currently since it is not generic enough.
       It can still be used but in depth knowledge of the function is required
       to evaluate if the result is correct.
@@ -59,6 +57,7 @@ if a variable is not marked as necessary for completeness, this variable will
 always be considered as 100 percent complete if only 'savedforms' are assessed.
 Please note that variable completeness for repetition forms should only be
 assessed for saved forms." />
+
 
 
 
@@ -90,7 +89,7 @@ assessed for saved forms." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -121,6 +120,7 @@ assessed for saved forms." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -142,6 +142,7 @@ assessed for saved forms." />
     </div>
 
     <div class="ref-description">
+    
     <p>NOTE: This is not exported currently since it is not generic enough.
       It can still be used but in depth knowledge of the function is required
       to evaluate if the result is correct.
@@ -161,6 +162,7 @@ if a variable is not marked as necessary for completeness, this variable will
 always be considered as 100 percent complete if only 'savedforms' are assessed.
 Please note that variable completeness for repetition forms should only be
 assessed for saved forms.</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>assess_form_variable_completeness</span>(
@@ -171,7 +173,7 @@ assessed for saved forms.</p>
   <span class='kw'>occ_in_vp</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>omit_mnp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -204,13 +206,15 @@ or only for saved forms ('savedforms').</p></td>
       <td><p>boolean Removes variable names from the result table that start with mnp.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.frame showing percent completeness per variable.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>read_validation_overview, read_secuTrial_raw</p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
@@ -251,7 +255,7 @@ or only for saved forms ('savedforms').</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
