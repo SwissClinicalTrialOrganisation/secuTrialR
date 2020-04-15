@@ -11,7 +11,7 @@
   meta = FALSE,
   regex = NULL,
   rep = "",
-  envir = .GlobalEnv
+  envir
 )
 }
 \arguments{
@@ -27,7 +27,7 @@
 
 \item{rep}{replacement for regex}
 
-\item{envir}{environment in which to put the data}
+\item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
 }
 \value{
 each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
@@ -43,7 +43,7 @@ export_location <- system.file("extdata", "sT_exports", "lnames",
 # load all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
 # add files to global environment
-as.data.frame(sT_export)
+as.data.frame(sT_export, envir = .GlobalEnv)
 # add files to global environment, removing the project name from the file names
-as.data.frame(sT_export, regex = "ctu05")
+as.data.frame(sT_export, regex = "ctu05", envir = .GlobalEnv)
 }
