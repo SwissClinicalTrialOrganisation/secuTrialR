@@ -6,7 +6,7 @@
 #' @param meta logical should metadata be returned
 #' @param regex regex syntax to remove from names
 #' @param rep replacement for regex
-#' @param envir environment in which to put the data
+#' @param envir environment in which to put the data (e.g. \code{.GlobalEnv})
 #'
 #' @return each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
 #' @export
@@ -19,15 +19,15 @@
 #' # load all export data
 #' sT_export <- read_secuTrial_raw(data_dir = export_location)
 #' # add files to global environment
-#' as.data.frame(sT_export)
+#' as.data.frame(sT_export, envir = .GlobalEnv)
 #' # add files to global environment, removing the project name from the file names
-#' as.data.frame(sT_export, regex = "ctu05")
+#' as.data.frame(sT_export, regex = "ctu05", envir = .GlobalEnv)
 as.data.frame.secuTrialdata <- function(x, ...,
                                         data.frames = NULL,
                                         meta = FALSE,
                                         regex = NULL,
                                         rep = "",
-                                        envir = .GlobalEnv
+                                        envir
                                         ) {
 
   if (all(!is.character(regex), !is.null(regex))) stop("regex should be either NULL or character")
