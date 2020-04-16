@@ -62,5 +62,5 @@ as.data.frame(sT_export, envir = env1)
 # add files to a new environment called env2, removing the project name from
 # the file names
 env2 <- new.env()
-as.data.frame(sT_export, regex = "ctu05", envir = env)
+as.data.frame(sT_export, regex = "ctu05", envir = env2)
 }

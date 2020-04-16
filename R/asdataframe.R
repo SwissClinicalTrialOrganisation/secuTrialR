@@ -30,7 +30,7 @@
 #' # add files to a new environment called env2, removing the project name from
 #' # the file names
 #' env2 <- new.env()
-#' as.data.frame(sT_export, regex = "ctu05", envir = env)
+#' as.data.frame(sT_export, regex = "ctu05", envir = env2)
 as.data.frame.secuTrialdata <- function(x,
                                         envir,
                                         data.frames = NULL,
