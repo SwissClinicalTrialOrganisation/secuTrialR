@@ -10,8 +10,8 @@ another environment (e.g. place them in the global environment
 \usage{
 \method{as.data.frame}{secuTrialdata}(
   x,
-  envir,
   ...,
+  envir,
   data.frames = NULL,
   meta = FALSE,
   regex = NULL,
@@ -21,9 +21,9 @@ another environment (e.g. place them in the global environment
 \arguments{
 \item{x}{\code{secuTrialdata} object}
 
-\item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
-
 \item{...}{further parameters}
+
+\item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
 
 \item{data.frames}{character vector of data.frame names to turn into data.frames}
 

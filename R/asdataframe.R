@@ -32,8 +32,8 @@
 #' env2 <- new.env()
 #' as.data.frame(sT_export, regex = "ctu05", envir = env2)
 as.data.frame.secuTrialdata <- function(x,
-                                        envir,
                                         ...,
+                                        envir,
                                         data.frames = NULL,
                                         meta = FALSE,
                                         regex = NULL,
