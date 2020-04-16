@@ -185,13 +185,15 @@ dat <- d %>%
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
 #### as.data.frame
-Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice.
+Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice. 
+As a demonstration, we'll create a new environment (`env`) and create the `data.frame`s in there. In practice, using `.GlobalEnv` would probably be more useful.
 
 ```{r}
-ls()
+env <- new.env()
+ls(env)
 names(ctu05)
-as.data.frame(ctu05, envir = .GlobalEnv)
-ls()
+as.data.frame(ctu05, envir = env)
+ls(env)
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
