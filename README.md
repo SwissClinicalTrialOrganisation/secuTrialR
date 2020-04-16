@@ -106,21 +106,7 @@ bmd_export
 ```
 ## secuTrial data imported from:
 ## C:/Users/haynes/Documents/GitHub/secuTrialR/inst/extdata/sT_exports/BMD/
-## s_export_CSV-xls_BMD_short_en_utf8.zip 
-##  table nrow ncol  meta original_name
-##     vp    1   10  TRUE        vp.xls
-##   vpfs    1    2  TRUE      vpfs.xls
-##     fs    1    7  TRUE        fs.xls
-##     qs    1    7  TRUE        qs.xls
-##     is    3    8  TRUE        is.xls
-##    ctr    1    3  TRUE       ctr.xls
-##     cn  113   13  TRUE        cn.xls
-##   atcn    0    6  TRUE      atcn.xls
-##  atcvp    0   11  TRUE     atcvp.xls
-##    qac    0   10  TRUE       qac.xls
-##    cts    0    8  TRUE       cts.xls
-##    bmd  504   27 FALSE       bmd.xls
-##  atbmd    0   28 FALSE     atbmd.xls
+## s_export_CSV-xls_BMD_short_en_utf8.zip
 ```
 
 Individual tables can be extracted from the `bmd_export` object via `tab <- bmd_export$tab`, where `tab` is the table of interest.
@@ -241,12 +227,6 @@ dates$ctu05baseline[c(1, 7), c("aspirin_start", "aspirin_start.date",
                               "hiv_date", "hiv_date.datetime")]
 ```
 
-```
-##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
-## 1            NA               <NA> 201903052356 2019-03-05 23:56:00
-## 7      20060301         2006-03-01           NA                <NA>
-```
-
 secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing.
 During date conversion (i.e. `dates_secuTrial()`) `secuTrialR` currently creates `NA`s from such incomplete date entries.
 
@@ -292,16 +272,30 @@ ls()
 ```
 
 ```
-##  [1] "atcasenodes"      "atcasevisitplans" "atmnpdbmd"       
-##  [4] "atmnpdebmd"       "atmnpdem00bmd"    "bmd_export"      
-##  [7] "casenodes"        "centres"          "comments"        
-## [10] "ctmnpdem00bmd"    "ctu05"            "ctu05_raw"       
-## [13] "dates"            "dbmd"             "debmd"           
-## [16] "dem00bmd"         "export_location"  "factors"         
-## [19] "foobmd"           "forms"            "items"           
-## [22] "labelled"         "labs"             "queries"         
-## [25] "questions"        "tmnpdem00bmd"     "visitplan"       
-## [28] "visitplanforms"
+##  [1] "atadverseevents"         "atcasenodes"            
+##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
+##  [5] "atmiv"                   "atmnpctu05ae"           
+##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
+## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [13] "atmnpdbmd"               "atmnpdebmd"             
+## [15] "atmnpdem00bmd"           "bmd_export"             
+## [17] "casenodes"               "centres"                
+## [19] "comments"                "count_summary"          
+## [21] "ctmnpdem00bmd"           "ctu05"                  
+## [23] "ctu05_raw"               "ctu05ae"                
+## [25] "ctu05allmedi"            "ctu05baseline"          
+## [27] "ctu05outcome"            "ctu05sae"               
+## [29] "ctu05studyterminat"      "ctu05treatment"         
+## [31] "dates"                   "dbmd"                   
+## [33] "debmd"                   "dem00bmd"               
+## [35] "emnpctu05surgeries"      "export_location"        
+## [37] "factors"                 "foobmd"                 
+## [39] "forms"                   "items"                  
+## [41] "labelled"                "labs"                   
+## [43] "queries"                 "questions"              
+## [45] "tmnpdem00bmd"            "visitplan"              
+## [47] "visitplanforms"
 ```
 
 ```r
@@ -342,20 +336,21 @@ ls()
 ## [13] "atmnpdbmd"               "atmnpdebmd"             
 ## [15] "atmnpdem00bmd"           "bmd_export"             
 ## [17] "casenodes"               "centres"                
-## [19] "comments"                "ctmnpdem00bmd"          
-## [21] "ctu05"                   "ctu05_raw"              
-## [23] "ctu05ae"                 "ctu05allmedi"           
-## [25] "ctu05baseline"           "ctu05outcome"           
-## [27] "ctu05sae"                "ctu05studyterminat"     
-## [29] "ctu05treatment"          "dates"                  
-## [31] "dbmd"                    "debmd"                  
-## [33] "dem00bmd"                "emnpctu05surgeries"     
-## [35] "export_location"         "factors"                
-## [37] "foobmd"                  "forms"                  
-## [39] "items"                   "labelled"               
-## [41] "labs"                    "queries"                
-## [43] "questions"               "tmnpdem00bmd"           
-## [45] "visitplan"               "visitplanforms"
+## [19] "comments"                "count_summary"          
+## [21] "ctmnpdem00bmd"           "ctu05"                  
+## [23] "ctu05_raw"               "ctu05ae"                
+## [25] "ctu05allmedi"            "ctu05baseline"          
+## [27] "ctu05outcome"            "ctu05sae"               
+## [29] "ctu05studyterminat"      "ctu05treatment"         
+## [31] "dates"                   "dbmd"                   
+## [33] "debmd"                   "dem00bmd"               
+## [35] "emnpctu05surgeries"      "export_location"        
+## [37] "factors"                 "foobmd"                 
+## [39] "forms"                   "items"                  
+## [41] "labelled"                "labs"                   
+## [43] "queries"                 "questions"              
+## [45] "tmnpdem00bmd"            "visitplan"              
+## [47] "visitplanforms"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
@@ -373,7 +368,7 @@ over time for a given export file.
 plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
 
 ```r
 # return the plot data
@@ -423,14 +418,6 @@ Furthermore, recruitment per year and center can be returned.
 annual_recruitment(ctu05, rm_regex = "\\(.*\\)$")
 ```
 
-```
-##                     Center Total 2018 2019
-## 1                      All    11    1   10
-## 2           Charité Berlin     5    0    5
-## 3         Inselspital Bern     5    0    5
-## 4 Universitätsspital Basel     1    1    0
-```
-
 
 #### Form status summary statistics
 If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms
@@ -440,30 +427,6 @@ have been filled.
 ```r
 count_summary <- form_status_summary(ctu05)
 tail(count_summary)
-```
-
-```
-##             form_name partly_filled completely_filled empty with_warnings
-## 5        ctu05allmedi             1                16     0             0
-## 6       ctu05baseline             3                14     0             0
-## 7        ctu05outcome             1                12     0             0
-## 8            ctu05sae             0                 2     0             0
-## 9  ctu05studyterminat             0                10     0             0
-## 10     ctu05treatment             0                11     0             0
-##    with_errors partly_filled.percent completely_filled.percent
-## 5            0            0.05882353                 0.9411765
-## 6            0            0.17647059                 0.8235294
-## 7            0            0.07692308                 0.9230769
-## 8            0            0.00000000                 1.0000000
-## 9            0            0.00000000                 1.0000000
-## 10           0            0.00000000                 1.0000000
-##    empty.percent with_warnings.percent with_errors.percent form_count
-## 5              0                     0                   0         17
-## 6              0                     0                   0         17
-## 7              0                     0                   0         13
-## 8              0                     0                   0          2
-## 9              0                     0                   0         10
-## 10             0                     0                   0         11
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
