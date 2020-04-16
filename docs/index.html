@@ -77,16 +77,16 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr--appveyor-build-status-travis-codecov" class="section level1">
+<div id="secutrialr-appveyor-build-status-travis-codecov" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr--appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.3-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
+<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.3-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
 </h1></div>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-from-github-with-devtools" class="anchor"></a>Installing from github with devtools</h2>
 <p>Please note that <code>R versions &gt;= 3.5</code> should be used to run <code>secuTrialR</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></div>
 </div>
 <div id="recommended-export-options" class="section level2">
 <h2 class="hasAnchor">
@@ -151,8 +151,22 @@
 <p><code>bmd_export</code> is a list, with class <code>secuTrialdata</code>. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within <code>bmd_export</code> instead. The information returned includes the original file name in the datafile, it’s name in the <code>secuTrialdata</code> object, together with the number of rows and columns and a column indicating whether the object is metadata or not:</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">bmd_export</span></pre></div>
 <pre><code>## secuTrial data imported from:
-## C:/Users/haynes/Documents/GitHub/secuTrialR/inst/extdata/sT_exports/BMD/
-## s_export_CSV-xls_BMD_short_en_utf8.zip</code></pre>
+## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
+## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
+##  table nrow ncol  meta original_name
+##     vp    1   10  TRUE        vp.xls
+##   vpfs    1    2  TRUE      vpfs.xls
+##     fs    1    7  TRUE        fs.xls
+##     qs    1    7  TRUE        qs.xls
+##     is    3    8  TRUE        is.xls
+##    ctr    1    3  TRUE       ctr.xls
+##     cn  113   13  TRUE        cn.xls
+##   atcn    0    6  TRUE      atcn.xls
+##  atcvp    0   11  TRUE     atcvp.xls
+##    qac    0   10  TRUE       qac.xls
+##    cts    0    8  TRUE       cts.xls
+##    bmd  504   27 FALSE       bmd.xls
+##  atbmd    0   28 FALSE     atbmd.xls</code></pre>
 <p>Individual tables can be extracted from the <code>bmd_export</code> object via <code>tab &lt;- bmd_export$tab</code>, where <code>tab</code> is the table of interest. <!-- accessor function? --></p>
 </div>
 <div id="variable-labels" class="section level4">
@@ -207,7 +221,10 @@
 <p>Date variables are converted to <code>Date</code> class, and datetimes are converted to <code>POSIXct</code> class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case <code>NA</code>s are accidentally created.</p>
 <div class="sourceCode" id="cb28"><pre class="r"><span class="no">dates</span>$<span class="no">ctu05baseline</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">7</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aspirin_start"</span>, <span class="st">"aspirin_start.date"</span>,
                               <span class="st">"hiv_date"</span>, <span class="st">"hiv_date.datetime"</span>)]</pre></div>
-<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
+<pre><code>##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
+## 1            NA               &lt;NA&gt; 201903052356 2019-03-05 23:56:00
+## 7      20060301         2006-03-01           NA                &lt;NA&gt;</code></pre>
+<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
 <p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
 <p>Recommended literature on incomplete dates/date imputation:\ <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf">Dubois and Hebert 2001</a> \ <a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf">Bowman 2006</a> \</p>
 </div>
@@ -215,7 +232,7 @@
 <h4 class="hasAnchor">
 <a href="#recommended-approach-if-not-using-read_secutrial" class="anchor"></a>Recommended approach if not using <code>read_secuTrial</code>
 </h4>
-<div class="sourceCode" id="cb29"><pre class="r"><span class="no">f</span> <span class="kw">&lt;-</span> <span class="st">"PATH_TO_FILE"</span>
+<div class="sourceCode" id="cb30"><pre class="r"><span class="no">f</span> <span class="kw">&lt;-</span> <span class="st">"PATH_TO_FILE"</span>
 <span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="no">f</span>)
 <span class="no">l</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/labels_secuTrial.html">label_secuTrial</a></span>(<span class="no">d</span>)
 <span class="no">fa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/factorize.html">factorize_secuTrial</a></span>(<span class="no">l</span>)
@@ -235,22 +252,14 @@
 <h3 class="hasAnchor">
 <a href="#exploratory-helpers" class="anchor"></a>Exploratory helpers</h3>
 <p><code>secuTrialR</code> has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.</p>
-<div id="asdataframe" class="section level4">
+<div id="as-data-frame" class="section level4">
 <h4 class="hasAnchor">
-<a href="#asdataframe" class="anchor"></a>as.data.frame</h4>
-<p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice.</p>
-<div class="sourceCode" id="cb30"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
-<pre><code>##  [1] "atcasenodes"      "atcasevisitplans" "atmnpdbmd"       
-##  [4] "atmnpdebmd"       "atmnpdem00bmd"    "bmd_export"      
-##  [7] "casenodes"        "centres"          "comments"        
-## [10] "ctmnpdem00bmd"    "ctu05"            "ctu05_raw"       
-## [13] "dates"            "dbmd"             "debmd"           
-## [16] "dem00bmd"         "export_location"  "factors"         
-## [19] "foobmd"           "forms"            "items"           
-## [22] "labelled"         "labs"             "queries"         
-## [25] "questions"        "tmnpdem00bmd"     "visitplan"       
-## [28] "visitplanforms"</code></pre>
-<div class="sourceCode" id="cb32"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ctu05</span>)</pre></div>
+<a href="#as-data-frame" class="anchor"></a>as.data.frame</h4>
+<p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice. As a demonstration, we’ll create a new environment (<code>env</code>) and create the <code>data.frame</code>s in there. In practice, using <code>.GlobalEnv</code> would probably be more useful.</p>
+<div class="sourceCode" id="cb31"><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">new.env</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb33"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ctu05</span>)</pre></div>
 <pre><code>##  [1] "export_options"          "forms"                  
 ##  [3] "casenodes"               "centres"                
 ##  [5] "items"                   "questions"              
@@ -267,43 +276,29 @@
 ## [27] "atmnpctu05ae"            "ctu05sae"               
 ## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
 ## [31] "atemnpctu05surgeries"    "atadverseevents"</code></pre>
-<div class="sourceCode" id="cb34"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="no">.GlobalEnv</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
-<pre><code>##  [1] "atadverseevents"         "atcasenodes"            
-##  [3] "atcasevisitplans"        "atemnpctu05surgeries"   
-##  [5] "atmiv"                   "atmnpctu05ae"           
-##  [7] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [9] "atmnpctu05outcome"       "atmnpctu05sae"          
-## [11] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [13] "atmnpdbmd"               "atmnpdebmd"             
-## [15] "atmnpdem00bmd"           "bmd_export"             
-## [17] "casenodes"               "centres"                
-## [19] "comments"                "ctmnpdem00bmd"          
-## [21] "ctu05"                   "ctu05_raw"              
-## [23] "ctu05ae"                 "ctu05allmedi"           
-## [25] "ctu05baseline"           "ctu05outcome"           
-## [27] "ctu05sae"                "ctu05studyterminat"     
-## [29] "ctu05treatment"          "dates"                  
-## [31] "dbmd"                    "debmd"                  
-## [33] "dem00bmd"                "emnpctu05surgeries"     
-## [35] "export_location"         "factors"                
-## [37] "foobmd"                  "forms"                  
-## [39] "items"                   "labelled"               
-## [41] "labs"                    "queries"                
-## [43] "questions"               "tmnpdem00bmd"           
-## [45] "visitplan"               "visitplanforms"</code></pre>
+<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="no">env</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
+<pre><code>##  [1] "atadverseevents"         "atemnpctu05surgeries"   
+##  [3] "atmiv"                   "atmnpctu05ae"           
+##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
+##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
+##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
+## [11] "ctu05ae"                 "ctu05allmedi"           
+## [13] "ctu05baseline"           "ctu05outcome"           
+## [15] "ctu05sae"                "ctu05studyterminat"     
+## [17] "ctu05treatment"          "emnpctu05surgeries"</code></pre>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
 <div id="recruitment-over-time" class="section level4">
 <h4 class="hasAnchor">
 <a href="#recruitment-over-time" class="anchor"></a>Recruitment over time</h4>
 <p>Recruitment is an important cornerstone for every clinical trial. <code>secuTrialR</code> allows for straigt forward visualizion of recuitment over time for a given export file.</p>
-<div class="sourceCode" id="cb36"><pre class="r"><span class="co"># show plot</span>
+<div class="sourceCode" id="cb37"><pre class="r"><span class="co"># show plot</span>
 <span class="co"># note that there is no line for Universitätsspital </span>
 <span class="co"># Basel because only one participant is registered for this centre</span>
 <span class="fu"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)</pre></div>
-<p><img src="figure/unnamed-chunk-19-1.png" alt="plot of chunk unnamed-chunk-19"></p>
-<div class="sourceCode" id="cb37"><pre class="r"><span class="co"># return the plot data</span>
+<p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
+<div class="sourceCode" id="cb38"><pre class="r"><span class="co"># return the plot data</span>
 <span class="fu"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">return_data</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
 <pre><code>## [[1]]
 ##          date centre_id pat_count                      centre_name
@@ -339,23 +334,49 @@
 ##          date centre_id pat_count                      centre_name
 ## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)</code></pre>
 <p>Furthermore, recruitment per year and center can be returned.</p>
-<div class="sourceCode" id="cb39"><pre class="r"><span class="fu"><a href="reference/annual_recruitment.html">annual_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)</pre></div>
+<div class="sourceCode" id="cb40"><pre class="r"><span class="fu"><a href="reference/annual_recruitment.html">annual_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)</pre></div>
+<pre><code>##                     Center Total 2018 2019
+## 1                      All    11    1   10
+## 2           Charité Berlin     5    0    5
+## 3         Inselspital Bern     5    0    5
+## 4 Universitätsspital Basel     1    1    0</code></pre>
 </div>
 <div id="form-status-summary-statistics" class="section level4">
 <h4 class="hasAnchor">
 <a href="#form-status-summary-statistics" class="anchor"></a>Form status summary statistics</h4>
 <p>If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms have been filled.</p>
-<div class="sourceCode" id="cb40"><pre class="r"><span class="no">count_summary</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/form_status_summary.html">form_status_summary</a></span>(<span class="no">ctu05</span>)
+<div class="sourceCode" id="cb42"><pre class="r"><span class="no">count_summary</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/form_status_summary.html">form_status_summary</a></span>(<span class="no">ctu05</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">count_summary</span>)</pre></div>
+<pre><code>##             form_name partly_filled completely_filled empty with_warnings
+## 5        ctu05allmedi             1                16     0             0
+## 6       ctu05baseline             3                14     0             0
+## 7        ctu05outcome             1                12     0             0
+## 8            ctu05sae             0                 2     0             0
+## 9  ctu05studyterminat             0                10     0             0
+## 10     ctu05treatment             0                11     0             0
+##    with_errors partly_filled.percent completely_filled.percent
+## 5            0            0.05882353                 0.9411765
+## 6            0            0.17647059                 0.8235294
+## 7            0            0.07692308                 0.9230769
+## 8            0            0.00000000                 1.0000000
+## 9            0            0.00000000                 1.0000000
+## 10           0            0.00000000                 1.0000000
+##    empty.percent with_warnings.percent with_errors.percent form_count
+## 5              0                     0                   0         17
+## 6              0                     0                   0         17
+## 7              0                     0                   0         13
+## 8              0                     0                   0          2
+## 9              0                     0                   0         10
+## 10             0                     0                   0         11</code></pre>
 <p>As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors. For a more participant id centered statistic you can perform the following.</p>
-<div class="sourceCode" id="cb41"><pre class="r"><span class="fu"><a href="reference/form_status_counts.html">form_status_counts</a></span>(<span class="no">ctu05</span>)</pre></div>
+<div class="sourceCode" id="cb44"><pre class="r"><span class="fu"><a href="reference/form_status_counts.html">form_status_counts</a></span>(<span class="no">ctu05</span>)</pre></div>
 <p>This will give you a count based overview per participant id and form. Please note that both <code>form_status_summary</code> and <code>form_status_counts</code> only work with saved forms since unsaved form data is not available in secuTrial exports.</p>
 </div>
 <div id="visit-plan" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visit-plan" class="anchor"></a>Visit plan</h4>
 <p>secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:</p>
-<div class="sourceCode" id="cb42"><pre class="r"><span class="no">vs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/visit_structure.html">visit_structure</a></span>(<span class="no">ctu05</span>)
+<div class="sourceCode" id="cb45"><pre class="r"><span class="no">vs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/visit_structure.html">visit_structure</a></span>(<span class="no">ctu05</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">vs</span>)</pre></div>
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 </div>
@@ -363,14 +384,14 @@
 <h4 class="hasAnchor">
 <a href="#linking-different-forms" class="anchor"></a>Linking different forms</h4>
 <p>Linkages amongst forms can be explored with the <code>links_secuTrial</code> function. This relies on the <code>igraph</code> package to create a network. It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.</p>
-<div class="sourceCode" id="cb43"><pre class="r"><span class="fu"><a href="reference/links_secuTrial.html">links_secuTrial</a></span>(<span class="no">bmd_export</span>)</pre></div>
+<div class="sourceCode" id="cb46"><pre class="r"><span class="fu"><a href="reference/links_secuTrial.html">links_secuTrial</a></span>(<span class="no">bmd_export</span>)</pre></div>
 <p><img src="inst/extdata/graphics/map.png"><!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG --></p>
 </div>
 <div id="sampling-random-participants" class="section level4">
 <h4 class="hasAnchor">
 <a href="#sampling-random-participants" class="anchor"></a>Sampling random participants</h4>
 <p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export.</p>
-<div class="sourceCode" id="cb44"><pre class="r"><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span>
+<div class="sourceCode" id="cb47"><pre class="r"><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span>
 <span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span>
 <span class="fu"><a href="reference/return_random_participants.html">return_random_participants</a></span>(<span class="no">ctu05</span>, <span class="kw">percent</span> <span class="kw">=</span> <span class="fl">0.25</span>, <span class="kw">seed</span> <span class="kw">=</span> <span class="fl">1337</span>, <span class="kw">date</span> <span class="kw">=</span> <span class="st">"2019-03-18"</span>,
                            <span class="kw">centres</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</pre></div>
@@ -393,7 +414,7 @@
 <div id="testing-with-devtools" class="section level3">
 <h3 class="hasAnchor">
 <a href="#testing-with-devtools" class="anchor"></a>Testing with devtools</h3>
-<div class="sourceCode" id="cb46"><pre class="r"><span class="co"># run tests</span>
+<div class="sourceCode" id="cb49"><pre class="r"><span class="co"># run tests</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/test.html">test</a></span>(<span class="st">"secuTrialR"</span>)
 <span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span>
 <span class="no">ignore_words</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,
@@ -405,7 +426,7 @@
 <div id="linting-with-lintr" class="section level3">
 <h3 class="hasAnchor">
 <a href="#linting-with-lintr" class="anchor"></a>Linting with lintr</h3>
-<div class="sourceCode" id="cb47"><pre class="r"><span class="co"># lint the package -&gt; should be clean</span>
+<div class="sourceCode" id="cb50"><pre class="r"><span class="co"># lint the package -&gt; should be clean</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lintr</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/lintr/man/lint_package.html">lint_package</a></span>(<span class="st">"secuTrialR"</span>, <span class="kw">linters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lintr/man/with_defaults.html">with_defaults</a></span>(<span class="kw">camel_case_linter</span> <span class="kw">=</span> <span class="kw">NULL</span>,
                                                    <span class="kw">object_usage_linter</span> <span class="kw">=</span> <span class="kw">NULL</span>,
@@ -414,7 +435,7 @@
 <div id="building-the-vignette" class="section level3">
 <h3 class="hasAnchor">
 <a href="#building-the-vignette" class="anchor"></a>Building the vignette</h3>
-<div class="sourceCode" id="cb48"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rmarkdown</span>)
+<div class="sourceCode" id="cb51"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rmarkdown</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>,
        <span class="kw">output_format</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pdf_document"</span>))</pre></div>
 </div>
@@ -422,13 +443,13 @@
 <h3 class="hasAnchor">
 <a href="#generating-the-readme-file" class="anchor"></a>Generating the README file</h3>
 <p>The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the <code>README.Rmd</code> file and the file “knited” with R. This is easiest with RStudio, but other methods are available.</p>
-<div class="sourceCode" id="cb49"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
+<div class="sourceCode" id="cb52"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span>(<span class="st">"README.Rmd"</span>)</pre></div>
 </div>
 <div id="building-the-pkgdown-site" class="section level3">
 <h3 class="hasAnchor">
 <a href="#building-the-pkgdown-site" class="anchor"></a>Building the <code>pkgdown</code> site</h3>
-<div class="sourceCode" id="cb50"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pkgdown</span>)
+<div class="sourceCode" id="cb53"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pkgdown</span>)
 <span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span>()</pre></div>
 </div>
 <div id="handling-dependencies" class="section level3">
@@ -436,21 +457,32 @@
 <a href="#handling-dependencies" class="anchor"></a>Handling dependencies</h3>
 <p>Dependencies to other R packages are to be declared in the <code>DESCRIPTION</code> file under <code>Imports:</code> and in the specific <code>roxygen2</code> documentation of the functions relying on the dependency. It is suggested to be as explicit as possible. i.e. Just import functions that are needed and not entire packages.</p>
 <p>Example to import <code>str_match</code> <code>str_length</code> <code>str_wrap</code> from the <code>stringr</code> package (see <a href="R/read_secuTrial_raw.R">read_secuTrial_raw.R</a>):</p>
-<div class="sourceCode" id="cb51"><pre class="r">#' @importFrom stringr str_match str_length str_wrap</pre></div>
+<div class="sourceCode" id="cb54"><pre class="r">#' @importFrom stringr str_match str_length str_wrap</pre></div>
 </div>
 <div id="preparing-a-release-on-cran" class="section level3">
 <h3 class="hasAnchor">
 <a href="#preparing-a-release-on-cran" class="anchor"></a>Preparing a release on CRAN</h3>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb52-1" title="1"><span class="co"># build the package archive</span></a>
-<a class="sourceLine" id="cb52-2" title="2"><span class="ex">R</span> CMD build secuTrialR</a>
-<a class="sourceLine" id="cb52-3" title="3"><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></a>
-<a class="sourceLine" id="cb52-4" title="4"><span class="co"># in this example for version 0.9.0</span></a>
-<a class="sourceLine" id="cb52-5" title="5"><span class="ex">R</span> CMD check secuTrialR_0.9.0.tar.gz</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># build the package archive</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="ex">R</span> CMD build secuTrialR</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co"># in this example for version 0.9.0</span></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="ex">R</span> CMD check secuTrialR_0.9.0.tar.gz</a></code></pre></div>
 </div>
 <div id="versioning-and-releases" class="section level3">
 <h3 class="hasAnchor">
 <a href="#versioning-and-releases" class="anchor"></a>Versioning and releases</h3>
 <p>The version number is made up of three digits. The first digit is reserved for major releases which may break backwards compatibility. The second and third digits are used for medium and minor changes respectively. Versions released on CRAN will be tagged and saved as releases on GitHub. The version released on CRAN is regarded as the stable version while the master branch on GitHub is regarded as the current development version.</p>
+<div id="release-checklist" class="section level4">
+<h4 class="hasAnchor">
+<a href="#release-checklist" class="anchor"></a>Release checklist</h4>
+<p>Compile/Update:</p>
+<ul>
+<li>README.Rmd</li>
+<li>vignette</li>
+<li>pkgdown page</li>
+<li>NEWS.md</li>
+</ul>
+</div>
 </div>
 <div id="guidelines-for-contributors" class="section level3">
 <h3 class="hasAnchor">
@@ -489,7 +521,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
