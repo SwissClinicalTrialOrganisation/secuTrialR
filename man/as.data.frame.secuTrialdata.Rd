@@ -57,10 +57,10 @@ export_location <- system.file("extdata", "sT_exports", "lnames",
 # load all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
 # add files to a new environment called env1
-env1 <- environment()
+env1 <- new.env()
 as.data.frame(sT_export, envir = env1)
 # add files to a new environment called env2, removing the project name from
 # the file names
-env2 <- environment()
+env2 <- new.env()
 as.data.frame(sT_export, regex = "ctu05", envir = env)
 }
