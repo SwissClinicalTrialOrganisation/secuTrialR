@@ -105,8 +105,8 @@ bmd_export
 
 ```
 ## secuTrial data imported from:
-## C:/Users/haynes/Documents/GitHub/secuTrialR/inst/extdata/sT_exports/BMD/
-## s_export_CSV-xls_BMD_short_en_utf8.zip 
+## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
+## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
 ##   vpfs    1    2  TRUE      vpfs.xls
@@ -577,12 +577,21 @@ R CMD check secuTrialR_0.9.0.tar.gz
 ```
 
 ### Versioning and releases
+
 The version number is made up of three digits. The first digit
 is reserved for major releases which may break backwards compatibility.
 The second and third digits are used for medium and minor changes respectively.
 Versions released on CRAN will be tagged and saved as releases on GitHub.
 The version released on CRAN is regarded as the stable version while
 the master branch on GitHub is regarded as the current development version.
+
+#### Release checklist
+
+Compile/Update:
+* README.Rmd
+* vignette
+* pkgdown page
+* NEWS.md
 
 ### Guidelines for contributors
 
