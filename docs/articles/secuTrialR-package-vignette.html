@@ -162,7 +162,7 @@
 <p>We have implemented a custom variation of the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function for <code>secuTrialdata</code> objects.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">ctu05_data</span>)
 <span class="co">#&gt; secuTrial data imported from:</span>
-<span class="co">#&gt; C:/Users/haynes/AppData/Local/Temp/RtmpCUzVPm/temp_libpath3efc47426379/</span>
+<span class="co">#&gt; C:/Users/haynes/AppData/Local/Temp/RtmpCUzVPm/temp_libpath3efc2fdf2a05/</span>
 <span class="co">#&gt; secuTrialR/extdata/sT_exports/exp_opt/s_export_CSV-xls_CTU05_all_info.zip </span>
 <span class="co">#&gt;            table nrow ncol  meta       original_name</span>
 <span class="co">#&gt;               vp    4   12  TRUE              vp.xls</span>
@@ -541,7 +541,7 @@
 <h2 class="hasAnchor">
 <a href="#conversion-to-spss-stata-sas" class="anchor"></a>Conversion to SPSS, STATA, SAS</h2>
 <p>Given that you are working with R it is unlikely that you need such conversions for yourself. However, collaborators may ask for data which is readily importable into SPSS, STATA or SAS. For this you can use <code><a href="../reference/write_secuTrial.html">write_secuTrial()</a></code>.</p>
-<p>Since this has not been heavily tested or used there may be issues and you might prefer doing this manually with the <code>haven</code> package. </p>
+<p>Since this has not been heavily tested or used there may be issues and you might prefer doing this manually with the <code>haven</code> package. One particular sticking point is the length of variable names - R is not restrictive in this respect, but other software can be. <code>secuTrialR</code> does not truncate names, prefering to leave this to the user, which can cause <code><a href="../reference/write_secuTrial.html">write_secuTrial()</a></code> to fail with an error. </p>
 <div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co"># retrieve path to a temporary directory</span>
 <span class="no">tdir</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>()
 <span class="co"># write spss</span>
@@ -626,43 +626,20 @@
 <a href="#the-as-data-frame-function" class="anchor"></a>The <code>as.data.frame</code> function</h1>
 <p>This vignette has been working with the <code>secuTrialdata</code> object, which is of type <code>list</code>. For some users, working with a <code>list</code> can be tiresome so <code>secuTrialR</code> provides an <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> method to save the <code>data.frame</code>s in the <code>secuTrialdata</code> object to an environment of your choice.</p>
 <p>As an example, we will create an environment called <code>env</code> and check that it’s empty before running <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>… </p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>()
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">new.env</a></span>()
 <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)
-<span class="co">#&gt;  [1] "bl_docids"              "centres"               </span>
-<span class="co">#&gt;  [3] "ctu05_data"             "ctu05_data_berlin"     </span>
-<span class="co">#&gt;  [5] "ctu05_data_bern"        "ctu05_data_bern_basel" </span>
-<span class="co">#&gt;  [7] "ctu05_data_bern_berlin" "ctu05_data_location"   </span>
-<span class="co">#&gt;  [9] "ctu05_data_pids"        "ctu06_v1"              </span>
-<span class="co">#&gt; [11] "ctu06_v2"               "customer"              </span>
-<span class="co">#&gt; [13] "env"                    "fsc"                   </span>
-<span class="co">#&gt; [15] "fss"                    "instance"              </span>
-<span class="co">#&gt; [17] "links"                  "participants"          </span>
-<span class="co">#&gt; [19] "project"                "server"                </span>
-<span class="co">#&gt; [21] "vs"</span></pre></body></html></div>
+<span class="co">#&gt; character(0)</span></pre></body></html></div>
 <div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># add files to global environment</span>
 <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05_data</span>, <span class="no">env</span>)</pre></body></html></div>
 <p>… and afterwards. </p>
 <div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)
-<span class="co">#&gt;  [1] "ae"                     "allmedi"               </span>
-<span class="co">#&gt;  [3] "atae"                   "atae1"                 </span>
-<span class="co">#&gt;  [5] "atallmedi"              "atbaseline"            </span>
-<span class="co">#&gt;  [7] "atesurgeries"           "atmiv"                 </span>
-<span class="co">#&gt;  [9] "atoutcome"              "atsae"                 </span>
-<span class="co">#&gt; [11] "atstudyterminat"        "attreatment"           </span>
-<span class="co">#&gt; [13] "baseline"               "bl_docids"             </span>
-<span class="co">#&gt; [15] "centres"                "ctu05_data"            </span>
-<span class="co">#&gt; [17] "ctu05_data_berlin"      "ctu05_data_bern"       </span>
-<span class="co">#&gt; [19] "ctu05_data_bern_basel"  "ctu05_data_bern_berlin"</span>
-<span class="co">#&gt; [21] "ctu05_data_location"    "ctu05_data_pids"       </span>
-<span class="co">#&gt; [23] "ctu06_v1"               "ctu06_v2"              </span>
-<span class="co">#&gt; [25] "customer"               "env"                   </span>
-<span class="co">#&gt; [27] "esurgeries"             "fsc"                   </span>
-<span class="co">#&gt; [29] "fss"                    "instance"              </span>
-<span class="co">#&gt; [31] "links"                  "outcome"               </span>
-<span class="co">#&gt; [33] "participants"           "project"               </span>
-<span class="co">#&gt; [35] "sae"                    "server"                </span>
-<span class="co">#&gt; [37] "studyterminat"          "treatment"             </span>
-<span class="co">#&gt; [39] "vs"</span></pre></body></html></div>
+<span class="co">#&gt;  [1] "ae"              "allmedi"         "atae"           </span>
+<span class="co">#&gt;  [4] "atae1"           "atallmedi"       "atbaseline"     </span>
+<span class="co">#&gt;  [7] "atesurgeries"    "atmiv"           "atoutcome"      </span>
+<span class="co">#&gt; [10] "atsae"           "atstudyterminat" "attreatment"    </span>
+<span class="co">#&gt; [13] "baseline"        "esurgeries"      "outcome"        </span>
+<span class="co">#&gt; [16] "sae"             "studyterminat"   "treatment"</span></pre></body></html></div>
+<p>Substituting <code>env</code> with <code>.GlobalEnv</code> instead would also be an option and would make the data.frames immediately accessible without having to refer to an environment.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="frequent-warning-messages" class="section level1">

@@ -213,11 +213,11 @@ environment would still entail referring to that environment).</p>
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
 <span class='co'># add files to a new environment called env1</span>
-<span class='no'>env1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>()
+<span class='no'>env1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>sT_export</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>env1</span>)
 <span class='co'># add files to a new environment called env2, removing the project name from</span>
 <span class='co'># the file names</span>
-<span class='no'>env2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>()
+<span class='no'>env2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>sT_export</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"ctu05"</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>env</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame.secuTrialdata(sT_export, regex = "ctu05", envir = env): Objekt 'env' nicht gefunden</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
