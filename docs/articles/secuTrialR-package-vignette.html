@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1 data-toc-skip>secuTrialR - a walkthrough</h1>
                         <h4 class="author">Patrick R. Wright, Milica Markovic, Alan G. Haynes</h4>
             
-            <h4 class="date">2020-04-14</h4>
+            <h4 class="date">2020-04-16</h4>
       
       
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -114,12 +114,12 @@
 <p>For this you will need to have <code>devtools</code> installed. If you are working on Windows and would like to install with <code>devtools</code> you will likely need to install <a href="https://cran.r-project.org/bin/windows/Rtools/"></a>. Installing everything, including the dependencies, from scratch may take a while (20-30 minutes).</p>
 
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># install</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></body></html></div>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></body></html></div>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># load silently</span>
 <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">secuTrialR</span>))
 <span class="co"># show secuTrialR version</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"secuTrialR"</span>)
-<span class="co">#&gt; [1] '1.0.2'</span></pre></body></html></div>
+<span class="co">#&gt; [1] '1.0.3'</span></pre></body></html></div>
 </div>
 <div id="the-ctu05-dataset" class="section level1">
 <h1 class="hasAnchor">
@@ -139,7 +139,7 @@
 <div id="reading-a-secutrial-data-export-into-r" class="section level1">
 <h1 class="hasAnchor">
 <a href="#reading-a-secutrial-data-export-into-r" class="anchor"></a>Reading a secuTrial data export into R</h1>
-<p>There is one principle function to read your data (i.e. <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code>). Below you can see it in action with the <code>CTU05</code> dataset. </p>
+<p>There is one principle function to read your data (i.e. <code><a href="../reference/read_secuTrial.html">read_secuTrial()</a></code>). Below you can see it in action with the <code>CTU05</code> dataset. </p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">ctu05_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span>(<span class="kw">data_dir</span> <span class="kw">=</span> <span class="no">ctu05_data_location</span>)
 <span class="co">#&gt; Read export successfully.</span>
 <span class="co">#&gt; The following export options deviate from the suggested specifications:</span>
@@ -162,8 +162,8 @@
 <p>We have implemented a custom variation of the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function for <code>secuTrialdata</code> objects.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">ctu05_data</span>)
 <span class="co">#&gt; secuTrial data imported from:</span>
-<span class="co">#&gt; /tmp/RtmpK0Wr8e/temp_libpath64b41b9c838b/secuTrialR/extdata/sT_exports/exp_opt/</span>
-<span class="co">#&gt; s_export_CSV-xls_CTU05_all_info.zip </span>
+<span class="co">#&gt; C:/Users/haynes/AppData/Local/Temp/RtmpCUzVPm/temp_libpath3efc47426379/</span>
+<span class="co">#&gt; secuTrialR/extdata/sT_exports/exp_opt/s_export_CSV-xls_CTU05_all_info.zip </span>
 <span class="co">#&gt;            table nrow ncol  meta       original_name</span>
 <span class="co">#&gt;               vp    4   12  TRUE              vp.xls</span>
 <span class="co">#&gt;             vpfs    8    2  TRUE            vpfs.xls</span>
@@ -196,8 +196,8 @@
 <span class="co">#&gt;     atesurgeries    0    9 FALSE    atesurgeries.xls</span>
 <span class="co">#&gt;               cl  205    3  TRUE              cl.xls</span>
 <span class="co">#&gt;            atae1    0   20 FALSE           atae1.xls</span></pre></body></html></div>
-<p>It shows you where the export archive of your <code>secuTrialdata</code> object is located, tells you which data tables (i.e. <code>table</code>) it contains, what the source files (i.e. <code>original_name</code>) are and specifies each table’s dimensions (i.e. <code>ncol</code>, <code>nrow</code>).</p>
-<p>By now you have possibly realized that all the forms specified earlier (i.e. “surgeries”, “baseline”, “outcome”, “treatment”, “allmedi”, “studyterminat”, “ae” and “sae”) are present, but also that there are many tables that do not correspond to the previously introduced forms.</p>
+<p>It shows you where the export archive of your <code>secuTrialdata</code> object is located, tells you which data tables (i.e. <code>table</code>) it contains, what the source files (i.e. <code>original_name</code>) are and specifies each table’s dimensions (i.e. <code>ncol</code>, <code>nrow</code>).</p>
+<p>By now you have possibly realized that all the forms specified earlier (i.e. “surgeries”, “baseline”, “outcome”, “treatment”, “allmedi”, “studyterminat”, “ae” and “sae”) are present, but also that there are many tables that do not correspond to the previously introduced forms.</p>
 <p>The majority of the unfamiliar tables are tagged as <code>TRUE</code> in the <code>meta</code> column. This means that they are metadata tables. Their names and data structures are fixed in secuTrial exports. In the following we will briefly explain which information the most relevant meta tables contain.</p>
 <ul>
 <li>
@@ -392,7 +392,7 @@
 <span class="co">#&gt; 2           Charité Berlin (RPACK)     5    0    5</span>
 <span class="co">#&gt; 3         Inselspital Bern (RPACK)     5    0    5</span>
 <span class="co">#&gt; 4 Universitätsspital Basel (RPACK)     1    1    0</span></pre></body></html></div>
-<p>Since the centre names often have a systematic addition (e.g. (RPACK)) we have enabled the option to remove certain parts of the centre descriptions via regular expressions (i.e. <code>rm_regex</code> argument). In this case the regular expression removes trailing parentheses and everything they enclose. </p>
+<p>Since the centre names often have a systematic addition (e.g. (RPACK)) we have enabled the option to remove certain parts of the centre descriptions via regular expressions (i.e. <code>rm_regex</code> argument). In this case the regular expression removes trailing parentheses and everything they enclose. </p>
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/annual_recruitment.html">annual_recruitment</a></span>(<span class="no">ctu05_data</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)
 <span class="co">#&gt;                     Center Total 2018 2019</span>
 <span class="co">#&gt; 1                      All    11    1   10</span>
@@ -485,7 +485,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rng_config</span>
 <span class="co">#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"</span></pre></body></html></div>
-<p>Please note that earlier R versions may return different results because there is a different <code>rng_config</code> (i.e. <code><a href="https://rdrr.io/r/base/Random.html">RNGkind()</a></code>). For this reason we have added the <code>rng_config</code> to the output.</p>
+<p>Please note that earlier R versions may return different results because there is a different <code>rng_config</code> (i.e. <code><a href="https://rdrr.io/r/base/Random.html">RNGkind()</a></code>). For this reason we have added the <code>rng_config</code> to the output.</p>
 </div>
 <div id="retrieve-score-variables" class="section level2">
 <h2 class="hasAnchor">
@@ -502,7 +502,7 @@
 <p>Sometimes, during a study, certain fields may be hidden because data should no longer be entered into them. If this is the case and the data of these fields is part of your export is likely good to know about it. In this case nothing is hidden. </p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/return_hidden_items.html">return_hidden_items</a></span>(<span class="no">ctu05_data</span>)
 <span class="co">#&gt; [1] name     itemtype label   </span>
-<span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></pre></body></html></div>
+<span class="co">#&gt; &lt;0 Zeilen&gt; (oder row.names mit Länge 0)</span></pre></body></html></div>
 </div>
 <div id="finding-changesdifferences-in-project-setup-implementations" class="section level2">
 <h2 class="hasAnchor">
@@ -582,7 +582,7 @@
 <span class="co">#&gt; 2      461         Inselspital Bern (RPACK)       NA</span>
 <span class="co">#&gt; 3      441 Universitätsspital Basel (RPACK)       NA</span></pre></body></html></div>
 <div style="page-break-after: always;"></div>
-<p>Since the truncated object’s class remains unchanged (i.e. <code>secuTrialdata</code>) you can still use the generic functions on it. Let’s say you would only like to look at the recruitment plot for Bern alone. </p>
+<p>Since the truncated object’s class remains unchanged (i.e. <code>secuTrialdata</code>) you can still use the generic functions on it. Let’s say you would only like to look at the recruitment plot for Bern alone. </p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co"># keep only Bern</span>
 <span class="no">ctu05_data_bern</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>, <span class="kw">centre</span> <span class="kw">=</span> <span class="st">"Inselspital Bern (RPACK)"</span>)
 <span class="co"># plot</span>
@@ -625,22 +625,24 @@
 <h1 class="hasAnchor">
 <a href="#the-as-data-frame-function" class="anchor"></a>The <code>as.data.frame</code> function</h1>
 <p>This vignette has been working with the <code>secuTrialdata</code> object, which is of type <code>list</code>. For some users, working with a <code>list</code> can be tiresome so <code>secuTrialR</code> provides an <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code> method to save the <code>data.frame</code>s in the <code>secuTrialdata</code> object to an environment of your choice.</p>
-<p>Let’s have a look at the state of your <code><a href="https://rdrr.io/r/base/environment.html">globalenv()</a></code> before running <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>… </p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span>())
+<p>As an example, we will create an environment called <code>env</code> and check that it’s empty before running <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>… </p>
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)
 <span class="co">#&gt;  [1] "bl_docids"              "centres"               </span>
 <span class="co">#&gt;  [3] "ctu05_data"             "ctu05_data_berlin"     </span>
 <span class="co">#&gt;  [5] "ctu05_data_bern"        "ctu05_data_bern_basel" </span>
 <span class="co">#&gt;  [7] "ctu05_data_bern_berlin" "ctu05_data_location"   </span>
 <span class="co">#&gt;  [9] "ctu05_data_pids"        "ctu06_v1"              </span>
 <span class="co">#&gt; [11] "ctu06_v2"               "customer"              </span>
-<span class="co">#&gt; [13] "fsc"                    "fss"                   </span>
-<span class="co">#&gt; [15] "instance"               "links"                 </span>
-<span class="co">#&gt; [17] "participants"           "project"               </span>
-<span class="co">#&gt; [19] "server"                 "vs"</span></pre></body></html></div>
+<span class="co">#&gt; [13] "env"                    "fsc"                   </span>
+<span class="co">#&gt; [15] "fss"                    "instance"              </span>
+<span class="co">#&gt; [17] "links"                  "participants"          </span>
+<span class="co">#&gt; [19] "project"                "server"                </span>
+<span class="co">#&gt; [21] "vs"</span></pre></body></html></div>
 <div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># add files to global environment</span>
-<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05_data</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05_data</span>, <span class="no">env</span>)</pre></body></html></div>
 <p>… and afterwards. </p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/environment.html">globalenv</a></span>())
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)
 <span class="co">#&gt;  [1] "ae"                     "allmedi"               </span>
 <span class="co">#&gt;  [3] "atae"                   "atae1"                 </span>
 <span class="co">#&gt;  [5] "atallmedi"              "atbaseline"            </span>
@@ -653,13 +655,14 @@
 <span class="co">#&gt; [19] "ctu05_data_bern_basel"  "ctu05_data_bern_berlin"</span>
 <span class="co">#&gt; [21] "ctu05_data_location"    "ctu05_data_pids"       </span>
 <span class="co">#&gt; [23] "ctu06_v1"               "ctu06_v2"              </span>
-<span class="co">#&gt; [25] "customer"               "esurgeries"            </span>
-<span class="co">#&gt; [27] "fsc"                    "fss"                   </span>
-<span class="co">#&gt; [29] "instance"               "links"                 </span>
-<span class="co">#&gt; [31] "outcome"                "participants"          </span>
-<span class="co">#&gt; [33] "project"                "sae"                   </span>
-<span class="co">#&gt; [35] "server"                 "studyterminat"         </span>
-<span class="co">#&gt; [37] "treatment"              "vs"</span></pre></body></html></div>
+<span class="co">#&gt; [25] "customer"               "env"                   </span>
+<span class="co">#&gt; [27] "esurgeries"             "fsc"                   </span>
+<span class="co">#&gt; [29] "fss"                    "instance"              </span>
+<span class="co">#&gt; [31] "links"                  "outcome"               </span>
+<span class="co">#&gt; [33] "participants"           "project"               </span>
+<span class="co">#&gt; [35] "sae"                    "server"                </span>
+<span class="co">#&gt; [37] "studyterminat"          "treatment"             </span>
+<span class="co">#&gt; [39] "vs"</span></pre></body></html></div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="frequent-warning-messages" class="section level1">
@@ -670,7 +673,7 @@
 <div id="dates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dates" class="anchor"></a>Dates</h2>
-<p>The below warning tells you that some data in a date variable could not be converted during the process of date conversion (i.e. <code><a href="../reference/dates_secuTrial.html">dates_secuTrial()</a></code>). This ususally occurs if incomplete date entries are present. Since the raw data is not overwritten but rather a <code>variable_name.date</code> or <code>variable_name.datetime</code> column are added to the dataset you can specifically see which values could not be converted because the raw data will contain data while the corresponding <code>.date</code>/<code>.datetime</code> entires will be <code>NA</code>. The <code>warning</code> also indicates where to look. The dummy example below indicates to look at the variable <code>a_variable_name</code> in form <code>a_form_name</code>.</p>
+<p>The below warning tells you that some data in a date variable could not be converted during the process of date conversion (i.e. <code><a href="../reference/dates_secuTrial.html">dates_secuTrial()</a></code>). This ususally occurs if incomplete date entries are present. Since the raw data is not overwritten but rather a <code>variable_name.date</code> or <code>variable_name.datetime</code> column are added to the dataset you can specifically see which values could not be converted because the raw data will contain data while the corresponding <code>.date</code>/<code>.datetime</code> entires will be <code>NA</code>. The <code>warning</code> also indicates where to look. The dummy example below indicates to look at the variable <code>a_variable_name</code> in form <code>a_form_name</code>.</p>
 <pre><code>#&gt; Warning: In dates_secuTrial.data.frame(tmp, datevars, timevars, dateformat,  :
 #&gt; Not all dates were converted for
 #&gt; variable: 'a_variable_name'
@@ -680,7 +683,7 @@
 <div id="factors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#factors" class="anchor"></a>Factors</h2>
-<p>In some cases secuTrial allows differently coded data to be decoded to the same target value for the same variable. For instance this can happen if hierarchical lookuptables have been implemented in the database. Because this interferes with the factorization (i.e. <code><a href="../reference/factorize.html">factorize_secuTrial()</a></code>) we add the code to the duplicate decoded value and return the below message to make you aware.</p>
+<p>In some cases secuTrial allows differently coded data to be decoded to the same target value for the same variable. For instance this can happen if hierarchical lookuptables have been implemented in the database. Because this interferes with the factorization (i.e. <code><a href="../reference/factorize.html">factorize_secuTrial()</a></code>) we add the code to the duplicate decoded value and return the below message to make you aware.</p>
 <p>If you run into this <code>warning</code> message we suggest running the <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function on the variable in question. This will likely clarify the above explanation.</p>
 <pre><code>#&gt; Warning: In factorize_secuTrial.data.frame(curr_form_data, cl = object$cl,  :
 #&gt; Duplicate values found during factorization of a_variable_name</code></pre>
@@ -688,7 +691,7 @@
 <div id="labels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#labels" class="anchor"></a>Labels</h2>
-<p>Sometimes the labels of variables in a secuTrial database implementation may be changed after release of the database. In these cases all labels (current and previous versions) are added to the <code>label</code> attribute during labelling (i.e. <code><a href="../reference/labels_secuTrial.html">label_secuTrial()</a></code>) and the below <code>warning</code> is triggered. It indicates which variables in which forms are affected.</p>
+<p>Sometimes the labels of variables in a secuTrial database implementation may be changed after release of the database. In these cases all labels (current and previous versions) are added to the <code>label</code> attribute during labelling (i.e. <code><a href="../reference/labels_secuTrial.html">label_secuTrial()</a></code>) and the below <code>warning</code> is triggered. It indicates which variables in which forms are affected.</p>
 <pre><code>#&gt; Warning: In label_secuTrial.secuTrialdata(d) :
 #&gt; The labels attribute may be longer than 1 for the following variables and forms.
 #&gt; Likely the label was changed from its original state in the secuTrial project setup.
@@ -707,44 +710,40 @@
 <p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals.</p>
 <div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
-<span class="co">#&gt; R version 3.6.3 (2020-02-29)</span>
-<span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">#&gt; Running under: Ubuntu 18.04.4 LTS</span>
+<span class="co">#&gt; R version 3.6.1 (2019-07-05)</span>
+<span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span>
+<span class="co">#&gt; Running under: Windows 10 x64 (build 17763)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1</span>
-<span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
-<span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
-<span class="co">#&gt;  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span>
-<span class="co">#&gt;  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span>
-<span class="co">#&gt; [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+<span class="co">#&gt; [1] LC_COLLATE=German_Switzerland.1252  LC_CTYPE=German_Switzerland.1252   </span>
+<span class="co">#&gt; [3] LC_MONETARY=German_Switzerland.1252 LC_NUMERIC=C                       </span>
+<span class="co">#&gt; [5] LC_TIME=German_Switzerland.1252    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attached base packages:</span>
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] secuTrialR_1.0.2</span>
+<span class="co">#&gt; [1] secuTrialR_1.0.3</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.3       cellranger_1.1.0 compiler_3.6.3   pillar_1.4.2    </span>
-<span class="co">#&gt;  [5] forcats_0.4.0    tools_3.6.3      zeallot_0.1.0    digest_0.6.22   </span>
+<span class="co">#&gt;  [1] Rcpp_1.0.2       cellranger_1.1.0 compiler_3.6.1   pillar_1.4.2    </span>
+<span class="co">#&gt;  [5] forcats_0.4.0    tools_3.6.1      zeallot_0.1.0    digest_0.6.22   </span>
 <span class="co">#&gt;  [9] lifecycle_0.1.0  lubridate_1.7.4  evaluate_0.14    memoise_1.1.0   </span>
 <span class="co">#&gt; [13] tibble_2.1.3     pkgconfig_2.0.3  rlang_0.4.1      igraph_1.2.4.1  </span>
-<span class="co">#&gt; [17] rstudioapi_0.10  yaml_2.2.0       haven_2.2.0      pkgdown_1.5.0   </span>
-<span class="co">#&gt; [21] xfun_0.10        stringr_1.4.0    dplyr_0.8.5      knitr_1.25      </span>
-<span class="co">#&gt; [25] desc_1.2.0       fs_1.3.1         vctrs_0.2.0      hms_0.5.2       </span>
+<span class="co">#&gt; [17] rstudioapi_0.10  yaml_2.2.0       haven_2.2.0      pkgdown_1.5.1   </span>
+<span class="co">#&gt; [21] xfun_0.10        stringr_1.4.0    dplyr_0.8.3      knitr_1.25      </span>
+<span class="co">#&gt; [25] desc_1.2.0       fs_1.3.1         vctrs_0.2.0      hms_0.5.0       </span>
 <span class="co">#&gt; [29] rprojroot_1.3-2  tidyselect_0.2.5 tufte_0.5        glue_1.3.1      </span>
-<span class="co">#&gt; [33] R6_2.4.0         tcltk_3.6.3      readxl_1.3.1     rmarkdown_2.1   </span>
+<span class="co">#&gt; [33] R6_2.4.0         tcltk_3.6.1      readxl_1.3.1     rmarkdown_1.16  </span>
 <span class="co">#&gt; [37] tidyr_1.0.0      readr_1.3.1      purrr_0.3.3      magrittr_1.5    </span>
-<span class="co">#&gt; [41] backports_1.1.5  htmltools_0.4.0  MASS_7.3-51.5    assertthat_0.2.1</span>
+<span class="co">#&gt; [41] backports_1.1.5  htmltools_0.4.0  MASS_7.3-51.4    assertthat_0.2.1</span>
 <span class="co">#&gt; [45] stringi_1.4.3    crayon_1.3.4</span></pre></body></html></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
         <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
     </nav>
 </div>
@@ -758,7 +757,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

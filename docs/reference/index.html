@@ -148,7 +148,11 @@
         <td>
           <p><code><a href="as.data.frame.secuTrialdata.html">as.data.frame(<i>&lt;secuTrialdata&gt;</i>)</a></code> </p>
         </td>
-        <td><p>as.data.frame method for secuTrialdata objects</p></td>
+        <td><p>as.data.frame method for secuTrialdata objects
+Make the data from the exports more easily accessible by placing them in
+another environment (e.g. place them in the global environment
+(<code>.GlobalEnv</code>) and you can reference them without referring to the
+<code>secuTrialdata</code> object anymore. Ie. they become regular <code>data.frame</code>s).</p></td>
       </tr><tr>
         
         <td>

@@ -631,23 +631,24 @@ For some users, working with a `list` can be tiresome so `secuTrialR` provides a
 `as.data.frame()` method to save the `data.frame`s in the `secuTrialdata` object to
 an environment of your choice.
 
-Let's have a look at the state of your `globalenv()`
+As an example, we will create an environment called `env` and check that it's empty
 before running `as.data.frame()`...
 \vspace{5pt}
 
 ```{r}
-ls(globalenv())
+env <- environment()
+ls(env)
 ```
 
 ```{r}
 # add files to global environment
-as.data.frame(ctu05_data)
+as.data.frame(ctu05_data, env)
 ```
 
 ... and afterwards.
 \vspace{5pt}
 ```{r}
-ls(globalenv())
+ls(env)
 ```
 
 \newpage
