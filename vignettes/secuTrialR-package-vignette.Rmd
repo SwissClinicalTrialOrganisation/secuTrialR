@@ -505,7 +505,10 @@ yourself. However, collaborators may ask for data which is readily importable in
 STATA or SAS. For this you can use `write_secuTrial()`.  
 
 Since this has not been heavily tested or used there may be issues and
-you might prefer doing this manually with the `haven` package.
+you might prefer doing this manually with the `haven` package. One particular 
+sticking point is the length of variable names - R is not restrictive in this 
+respect, but other software can be. `secuTrialR` does not truncate names, prefering 
+to leave this to the user, which can cause `write_secuTrial()` to fail with an error.
 \vspace{5pt}
 
 ```{r, eval = FALSE}
@@ -631,26 +634,27 @@ For some users, working with a `list` can be tiresome so `secuTrialR` provides a
 `as.data.frame()` method to save the `data.frame`s in the `secuTrialdata` object to
 an environment of your choice.
 
-Let's have a look at the state of your `globalenv()`
+As an example, we will create an environment called `env` and check that it's empty
 before running `as.data.frame()`...
 \vspace{5pt}
 
 ```{r}
-ls(globalenv())
+env <- new.env()
+ls(env)
 ```
 
 ```{r}
-# add files to global environment
-as.data.frame(ctu05_data)
+# add files to env
+as.data.frame(ctu05_data, envir = env)
 ```
 
 ... and afterwards.
 \vspace{5pt}
 ```{r}
-ls(globalenv())
+ls(env)
 ```
 
-\newpage
+Substituting `env` with `.GlobalEnv` instead would also be an option and would make the data.frames immediately accessible without having to refer to an environment.
 
 # Frequent warning messages
 

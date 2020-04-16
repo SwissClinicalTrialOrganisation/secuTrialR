@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR [![](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR [![](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -284,16 +284,17 @@ dat <- d %>%
 `secuTrialR` has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.
 
 #### as.data.frame
-Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice.
+Working with a list can be tiresome so `secuTrialR` provides a `as.data.frame` method to save the `data.frames` in the list to an environment of your choice. 
+As a demonstration, we'll create a new environment (`env`) and create the `data.frame`s in there. In practice, using `.GlobalEnv` would probably be more useful.
 
 
 ```r
-ls()
+env <- new.env()
+ls(env)
 ```
 
 ```
-## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"
+## character(0)
 ```
 
 ```r
@@ -320,8 +321,8 @@ names(ctu05)
 ```
 
 ```r
-as.data.frame(ctu05)
-ls()
+as.data.frame(ctu05, envir = env)
+ls(env)
 ```
 
 ```
@@ -330,14 +331,10 @@ ls()
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"
+## [11] "ctu05ae"                 "ctu05allmedi"           
+## [13] "ctu05baseline"           "ctu05outcome"           
+## [15] "ctu05sae"                "ctu05studyterminat"     
+## [17] "ctu05treatment"          "emnpctu05surgeries"
 ```
 
 There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
@@ -580,12 +577,21 @@ R CMD check secuTrialR_0.9.0.tar.gz
 ```
 
 ### Versioning and releases
+
 The version number is made up of three digits. The first digit
 is reserved for major releases which may break backwards compatibility.
 The second and third digits are used for medium and minor changes respectively.
 Versions released on CRAN will be tagged and saved as releases on GitHub.
 The version released on CRAN is regarded as the stable version while
 the master branch on GitHub is regarded as the current development version.
+
+#### Release checklist
+
+Compile/Update:
+* README.Rmd
+* vignette
+* pkgdown page
+* NEWS.md
 
 ### Guidelines for contributors
 

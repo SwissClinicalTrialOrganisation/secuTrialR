@@ -1,14 +1,20 @@
 #' as.data.frame method for secuTrialdata objects
-#'
+#' Make the data from the exports more easily accessible by placing them in
+#' another environment (e.g. place them in the global environment
+#' (\code{.GlobalEnv}) and you can reference them without referring to the
+#' \code{secuTrialdata} object anymore. Ie. they become regular \code{data.frame}s).
 #' @param x \code{secuTrialdata} object
-#' @param ... further parameters
+#' @param envir environment in which to put the data (e.g. \code{.GlobalEnv})
 #' @param data.frames character vector of data.frame names to turn into data.frames
 #' @param meta logical should metadata be returned
 #' @param regex regex syntax to remove from names
 #' @param rep replacement for regex
-#' @param envir environment in which to put the data
-#'
-#' @return each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
+#' @param ... further parameters
+#' @details \code{envir} must be specifically defined. For simplicity,
+#' \code{.GlobalEnv} would probably be the easiest (assigning it to another
+#' environment would still entail referring to that environment).
+#' @return each \code{data.frame} in the \code{secuTrialdata} object is saved to it's
+#' own \code{data.frame} in the designated environment
 #' @export
 #'
 #' @examples
@@ -18,16 +24,20 @@
 #'                                package = "secuTrialR")
 #' # load all export data
 #' sT_export <- read_secuTrial_raw(data_dir = export_location)
-#' # add files to global environment
-#' as.data.frame(sT_export)
-#' # add files to global environment, removing the project name from the file names
-#' as.data.frame(sT_export, regex = "ctu05")
-as.data.frame.secuTrialdata <- function(x, ...,
+#' # add files to a new environment called env1
+#' env1 <- new.env()
+#' as.data.frame(sT_export, envir = env1)
+#' # add files to a new environment called env2, removing the project name from
+#' # the file names
+#' env2 <- new.env()
+#' as.data.frame(sT_export, regex = "ctu05", envir = env2)
+as.data.frame.secuTrialdata <- function(x,
+                                        ...,
+                                        envir,
                                         data.frames = NULL,
                                         meta = FALSE,
                                         regex = NULL,
-                                        rep = "",
-                                        envir = .GlobalEnv
+                                        rep = ""
                                         ) {
 
   if (all(!is.character(regex), !is.null(regex))) stop("regex should be either NULL or character")
@@ -49,7 +59,7 @@ as.data.frame.secuTrialdata <- function(x, ...,
       function(orig_name, new_name) {
         assign(new_name, x[[orig_name]], envir = envir)
       },
-  datanames, datanames2)
+      datanames, datanames2)
   )
 
 }

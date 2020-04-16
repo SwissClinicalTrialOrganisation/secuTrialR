@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
   <div class="contents col-md-9">
 <div id="secutrialr-appveyor-build-status-travis-codecov" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.2-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
+<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.3-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
 </h1></div>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
@@ -255,10 +255,10 @@
 <div id="as-data-frame" class="section level4">
 <h4 class="hasAnchor">
 <a href="#as-data-frame" class="anchor"></a>as.data.frame</h4>
-<p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice.</p>
-<div class="sourceCode" id="cb31"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
-<pre><code>## [1] "bmd_export"      "ctu05"           "ctu05_raw"       "dates"          
-## [5] "export_location" "factors"         "labelled"        "labs"</code></pre>
+<p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice. As a demonstration, we’ll create a new environment (<code>env</code>) and create the <code>data.frame</code>s in there. In practice, using <code>.GlobalEnv</code> would probably be more useful.</p>
+<div class="sourceCode" id="cb31"><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">new.env</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
+<pre><code>## character(0)</code></pre>
 <div class="sourceCode" id="cb33"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ctu05</span>)</pre></div>
 <pre><code>##  [1] "export_options"          "forms"                  
 ##  [3] "casenodes"               "centres"                
@@ -276,21 +276,17 @@
 ## [27] "atmnpctu05ae"            "ctu05sae"               
 ## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
 ## [31] "atemnpctu05surgeries"    "atadverseevents"</code></pre>
-<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>()</pre></div>
+<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="no">env</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
 <pre><code>##  [1] "atadverseevents"         "atemnpctu05surgeries"   
 ##  [3] "atmiv"                   "atmnpctu05ae"           
 ##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
 ##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
 ##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "bmd_export"              "ctu05"                  
-## [13] "ctu05_raw"               "ctu05ae"                
-## [15] "ctu05allmedi"            "ctu05baseline"          
-## [17] "ctu05outcome"            "ctu05sae"               
-## [19] "ctu05studyterminat"      "ctu05treatment"         
-## [21] "dates"                   "emnpctu05surgeries"     
-## [23] "export_location"         "factors"                
-## [25] "labelled"                "labs"</code></pre>
+## [11] "ctu05ae"                 "ctu05allmedi"           
+## [13] "ctu05baseline"           "ctu05outcome"           
+## [15] "ctu05sae"                "ctu05studyterminat"     
+## [17] "ctu05treatment"          "emnpctu05surgeries"</code></pre>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
 <div id="recruitment-over-time" class="section level4">
@@ -476,6 +472,17 @@
 <h3 class="hasAnchor">
 <a href="#versioning-and-releases" class="anchor"></a>Versioning and releases</h3>
 <p>The version number is made up of three digits. The first digit is reserved for major releases which may break backwards compatibility. The second and third digits are used for medium and minor changes respectively. Versions released on CRAN will be tagged and saved as releases on GitHub. The version released on CRAN is regarded as the stable version while the master branch on GitHub is regarded as the current development version.</p>
+<div id="release-checklist" class="section level4">
+<h4 class="hasAnchor">
+<a href="#release-checklist" class="anchor"></a>Release checklist</h4>
+<p>Compile/Update:</p>
+<ul>
+<li>README.Rmd</li>
+<li>vignette</li>
+<li>pkgdown page</li>
+<li>NEWS.md</li>
+</ul>
+</div>
 </div>
 <div id="guidelines-for-contributors" class="section level3">
 <h3 class="hasAnchor">

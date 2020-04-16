@@ -10,23 +10,26 @@ test_that("bmd", {
   test <- new.env()
 
 
-  expect_error(as.data.frame(bmd), regexp = NA)
+  expect_error(as.data.frame(bmd, envir = .GlobalEnv), regexp = NA)
   expect_true(exists("dem00bmd"))
   expect_equal(dem00bmd, bmd$dem00bmd)
   expect_false(any(sapply(c("forms", "casenodes", "centres", "items"), exists)))
 
-  expect_error(as.data.frame(bmd, regex = "em00"), regexp = NA)
+  expect_error(as.data.frame(bmd, regex = "em00",
+                             envir = .GlobalEnv), regexp = NA)
   expect_equal(dbmd, bmd$dem00bmd)
   expect_true(exists("dbmd"))
 
-  expect_error(as.data.frame(bmd, regex = "m00", meta = TRUE), regexp = NA)
+  expect_error(as.data.frame(bmd, regex = "m00", meta = TRUE,
+                             envir = .GlobalEnv), regexp = NA)
   expect_equal(debmd, bmd$dem00bmd)
   expect_true(exists("debmd"))
   expect_true(all(sapply(c("forms", "casenodes", "centres", "items"), exists)))
 
 
   expect_error(as.data.frame(bmd, regex = "dem00", rep = "foo",
-                             data.frames = c("dem00bmd")), regexp = NA)
+                             data.frames = c("dem00bmd"),
+                             envir = .GlobalEnv), regexp = NA)
   expect_equal(foobmd, bmd$dem00bmd)
   expect_true(exists("foobmd"))
   expect_false(exists("atmnpfoobmd"))
@@ -39,19 +42,20 @@ test_that("bmd", {
 })
 
 test_that("errors", {
-  expect_error(as.data.frame(bmd, data.frames = "foo"),
+  expect_error(as.data.frame(bmd, data.frames = "foo", envir = .GlobalEnv),
                regexp = "unrecognised data.frame specified")
 
-  expect_error(as.data.frame(bmd, regex = TRUE),
+  expect_error(as.data.frame(bmd, regex = TRUE, envir = .GlobalEnv),
                regexp = "regex should be either NULL or character")
 
-  expect_warning(as.data.frame(bmd, regex = c("a", "b")),
+  expect_warning(as.data.frame(bmd, regex = c("a", "b"), envir = .GlobalEnv),
                regexp = "argument 'pattern' has length > 1")
 
-  expect_error(as.data.frame(bmd, rep = TRUE),
+  expect_error(as.data.frame(bmd, rep = TRUE, envir = .GlobalEnv),
                regexp = "rep should be character")
 
-  expect_warning(as.data.frame(bmd, regex = c("a", "b"), rep = c("c", "d")),
+  expect_warning(as.data.frame(bmd, regex = c("a", "b"), rep = c("c", "d"),
+                               envir = .GlobalEnv),
                regexp = "argument 'replacement' has length > 1")
 
   expect_error(as.data.frame(bmd, envir = TRUE),

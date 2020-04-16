@@ -2,22 +2,28 @@
 % Please edit documentation in R/asdataframe.R
 \name{as.data.frame.secuTrialdata}
 \alias{as.data.frame.secuTrialdata}
-\title{as.data.frame method for secuTrialdata objects}
+\title{as.data.frame method for secuTrialdata objects
+Make the data from the exports more easily accessible by placing them in
+another environment (e.g. place them in the global environment
+(\code{.GlobalEnv}) and you can reference them without referring to the
+\code{secuTrialdata} object anymore. Ie. they become regular \code{data.frame}s).}
 \usage{
 \method{as.data.frame}{secuTrialdata}(
   x,
   ...,
+  envir,
   data.frames = NULL,
   meta = FALSE,
   regex = NULL,
-  rep = "",
-  envir = .GlobalEnv
+  rep = ""
 )
 }
 \arguments{
 \item{x}{\code{secuTrialdata} object}
 
 \item{...}{further parameters}
+
+\item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
 
 \item{data.frames}{character vector of data.frame names to turn into data.frames}
 
@@ -26,14 +32,22 @@
 \item{regex}{regex syntax to remove from names}
 
 \item{rep}{replacement for regex}
-
-\item{envir}{environment in which to put the data}
 }
 \value{
-each data.frame on the \code{secuTrialdata} object is saved to it's own data.frame in the environment
+each \code{data.frame} in the \code{secuTrialdata} object is saved to it's
+own \code{data.frame} in the designated environment
 }
 \description{
 as.data.frame method for secuTrialdata objects
+Make the data from the exports more easily accessible by placing them in
+another environment (e.g. place them in the global environment
+(\code{.GlobalEnv}) and you can reference them without referring to the
+\code{secuTrialdata} object anymore. Ie. they become regular \code{data.frame}s).
+}
+\details{
+\code{envir} must be specifically defined. For simplicity,
+\code{.GlobalEnv} would probably be the easiest (assigning it to another
+environment would still entail referring to that environment).
 }
 \examples{
 # prepare path to example export
@@ -42,8 +56,11 @@ export_location <- system.file("extdata", "sT_exports", "lnames",
                                package = "secuTrialR")
 # load all export data
 sT_export <- read_secuTrial_raw(data_dir = export_location)
-# add files to global environment
-as.data.frame(sT_export)
-# add files to global environment, removing the project name from the file names
-as.data.frame(sT_export, regex = "ctu05")
+# add files to a new environment called env1
+env1 <- new.env()
+as.data.frame(sT_export, envir = env1)
+# add files to a new environment called env2, removing the project name from
+# the file names
+env2 <- new.env()
+as.data.frame(sT_export, regex = "ctu05", envir = env2)
 }
