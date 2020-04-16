@@ -33,11 +33,11 @@
 #' as.data.frame(sT_export, regex = "ctu05", envir = env2)
 as.data.frame.secuTrialdata <- function(x,
                                         envir,
+                                        ...,
                                         data.frames = NULL,
                                         meta = FALSE,
                                         regex = NULL,
-                                        rep = "",
-                                        ...
+                                        rep = ""
                                         ) {
 
   if (all(!is.character(regex), !is.null(regex))) stop("regex should be either NULL or character")

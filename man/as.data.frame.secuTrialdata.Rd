@@ -11,17 +11,19 @@ another environment (e.g. place them in the global environment
 \method{as.data.frame}{secuTrialdata}(
   x,
   envir,
+  ...,
   data.frames = NULL,
   meta = FALSE,
   regex = NULL,
-  rep = "",
-  ...
+  rep = ""
 )
 }
 \arguments{
 \item{x}{\code{secuTrialdata} object}
 
 \item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
+
+\item{...}{further parameters}
 
 \item{data.frames}{character vector of data.frame names to turn into data.frames}
 
@@ -30,8 +32,6 @@ another environment (e.g. place them in the global environment
 \item{regex}{regex syntax to remove from names}
 
 \item{rep}{replacement for regex}
-
-\item{...}{further parameters}
 }
 \value{
 each \code{data.frame} in the \code{secuTrialdata} object is saved to it's
