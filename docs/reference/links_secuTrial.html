@@ -8,11 +8,13 @@
 
 <title>Show links between forms — links_secuTrial • secuTrialR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,12 +38,11 @@
 
 
 
-<meta property="og:title" content="Show links between forms — links_secuTrial" />
 
+<meta property="og:title" content="Show links between forms — links_secuTrial" />
 <meta property="og:description" content="secuTrial creates a large number of files and identifiers with which to link files together.
 Understanding the links can be difficult. This function produces a map linking the forms
 with common variables." />
-
 
 
 
@@ -104,7 +105,6 @@ with common variables." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -126,11 +126,9 @@ with common variables." />
     </div>
 
     <div class="ref-description">
-    
     <p>secuTrial creates a large number of files and identifiers with which to link files together.
 Understanding the links can be difficult. This function produces a map linking the forms
 with common variables.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>links_secuTrial</span>(
@@ -140,7 +138,7 @@ with common variables.</p>
   <span class='kw'>varcol</span> <span class='kw'>=</span> <span class='st'>"#e5f5f9"</span>,
   <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -165,21 +163,18 @@ with common variables.</p>
       <td><p>boolean specifies if the plot should be shown</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a tcltk plot window.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>We recommend to resize the tcltk window and and click view/"fit to screen" to improve readability.
          Forms are colored dull orange, variables are colored light blue.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Note that where a form name is also a variable name, it is appended by <code>_form</code>
       (igraph requires uniquely named nodes).</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -200,7 +195,7 @@ with common variables.</p>
 <span class='co'># load all export data</span>
 <span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
 <span class='co'># plot links for form names starting with "ctu05"</span>
-<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>forms</span> <span class='kw'>=</span> <span class='st'>"^ctu05"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in structure(.External(.C_dotTclObjv, objv), class = "tclObj"): [tcl] invalid command name ".2.1".</span></div><div class='input'># }
+<span class='fu'>links_secuTrial</span>(<span class='no'>sT_export</span>, <span class='kw'>forms</span> <span class='kw'>=</span> <span class='st'>"^ctu05"</span>)</div><div class='output co'>#&gt; [1] 2</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -217,7 +212,7 @@ with common variables.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

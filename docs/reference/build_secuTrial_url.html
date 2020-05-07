@@ -8,11 +8,13 @@
 
 <title>Compose a secuTrial URL — build_secuTrial_url • secuTrialR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,11 +38,10 @@
 
 
 
-<meta property="og:title" content="Compose a secuTrial URL — build_secuTrial_url" />
 
+<meta property="og:title" content="Compose a secuTrial URL — build_secuTrial_url" />
 <meta property="og:description" content="Given a secuTrial server URL, and optionally instance, customer, project id and document id,
 this function composes a URL to a specific secuTrial instance, customer or form." />
-
 
 
 
@@ -103,7 +104,6 @@ this function composes a URL to a specific secuTrial instance, customer or form.
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -125,10 +125,8 @@ this function composes a URL to a specific secuTrial instance, customer or form.
     </div>
 
     <div class="ref-description">
-    
     <p>Given a secuTrial server URL, and optionally instance, customer, project id and document id,
 this function composes a URL to a specific secuTrial instance, customer or form.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>build_secuTrial_url</span>(
@@ -138,7 +136,7 @@ this function composes a URL to a specific secuTrial instance, customer or form.
   <span class='kw'>projid</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>docid</span> <span class='kw'>=</span> <span class='fl'>NA</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -163,12 +161,11 @@ this function composes a URL to a specific secuTrial instance, customer or form.
       <td><p>(optional) secuTrial document/form identifer</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>string containing a URL to desired secuTrial page. Currently we provide no
         guarantee that the returned URL is valid.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>To find the server and instance of a secuTrial database, simply extract the information from the URL that
@@ -194,7 +191,6 @@ Thus, there are different scenarios:</p><ul>
       the output will point to a specific secuTrial form.</p></li>
 </ul>
 
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -250,7 +246,7 @@ Thus, there are different scenarios:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

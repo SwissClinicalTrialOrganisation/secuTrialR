@@ -8,11 +8,13 @@
 
 <title>Returns the random participants from a secuTrial export — return_random_participants • secuTrialR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,11 +38,10 @@
 
 
 
-<meta property="og:title" content="Returns the random participants from a secuTrial export — return_random_participants" />
 
+<meta property="og:title" content="Returns the random participants from a secuTrial export — return_random_participants" />
 <meta property="og:description" content="There are situations (e.g. randomized monitoring) in which you may want to
              return a list of random participants from a secuTrial export." />
-
 
 
 
@@ -103,7 +104,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -125,10 +125,8 @@
     </div>
 
     <div class="ref-description">
-    
     <p>There are situations (e.g. randomized monitoring) in which you may want to
              return a list of random participants from a secuTrial export.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>return_random_participants</span>(
@@ -138,7 +136,7 @@
   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -167,7 +165,7 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
       <td><p>Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>list of two elements. First, a data.frame that contains the
@@ -175,7 +173,6 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
          reproducibilty. Second, the configuration of the randomization (i.e. result of <code><a href='https://rdrr.io/r/base/Random.html'>RNGkind()</a></code>).
          If the percentage does not yield an integer for a centre the number is tranformed into an integer
          under application of the <code><a href='https://rdrr.io/r/base/Round.html'>ceiling()</a></code> function (i.e. it is rounded up).</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># export location</span>
@@ -187,8 +184,16 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># return random participants</span>
 <span class='fu'>return_random_participants</span>(<span class='no'>sT_export</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1337</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2019-03-18"</span>,
-                           <span class='kw'>centres</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"CharitÃ© Berlin (RPACK)"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in return_random_participants(sT_export, percent = 0.25, seed = 1337,     date = "2019-03-18", centres = c("Inselspital Bern (RPACK)",         "CharitÃ© Berlin (RPACK)")): CharitÃ© Berlin (RPACK) not part of the specified export.</span>
-#&gt; <span class='error'>Viable centres are: Charité Berlin (RPACK), Inselspital Bern (RPACK), Universitätsspital Basel (RPACK)</span></div><div class='input'>
+                           <span class='kw'>centres</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Charité Berlin (RPACK)"</span>))</div><div class='output co'>#&gt; $participants
+#&gt;          mnpaid                   centre mnpvisstartdate
+#&gt; 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
+#&gt; 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
+#&gt; 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05
+#&gt; 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
+#&gt; 
+#&gt; $rng_config
+#&gt; [1] "Mersenne-Twister" "Inversion"        "Rejection"       
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -205,7 +210,7 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
