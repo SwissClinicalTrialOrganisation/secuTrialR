@@ -1,7 +1,7 @@
 on:
   push:
-  paths:
-  - README.Rmd
+    paths:
+    - README.Rmd
 
 name: Render-README
 
