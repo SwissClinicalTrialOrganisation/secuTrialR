@@ -547,13 +547,6 @@ library(knitr)
 knit("README.Rmd")
 ```
 
-### Building the `pkgdown` site
-
-```r
-library(pkgdown)
-build_site()
-```
-
 ### Handling dependencies
 
 Dependencies to other R packages are to be declared in the `DESCRIPTION` file under `Imports:` and in
