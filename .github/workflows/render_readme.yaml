@@ -17,6 +17,8 @@ jobs:
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Install badger
         run: Rscript -e 'install.packages("badger")'
+      - name: Install package
+        run: R CMD INSTALL .
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
