@@ -302,12 +302,7 @@ render("vignettes/secuTrialR-package-vignette.Rmd",
 
 ### Generating the README file
 
-The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
-
-```{r, eval = FALSE}
-library(knitr)
-knit("README.Rmd")
-```
+The README file is automatically generated on GitHub via a GitHub action.
 
 ### Handling dependencies
 
