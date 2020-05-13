@@ -15,6 +15,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Install badger
+        run: Rscript -e 'install.packages("badger")'
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
