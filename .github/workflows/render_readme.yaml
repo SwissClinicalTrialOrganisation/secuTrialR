@@ -2,6 +2,9 @@ on:
   push:
     paths:
       - README.Rmd
+  pull_request:
+    branches:
+      - master
 
 name: Render README
 
@@ -56,7 +59,6 @@ jobs:
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
         run: |
-          git add README.md && git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
-          git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
-
+          git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
 
