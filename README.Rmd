@@ -286,6 +286,7 @@ devtools::spell_check("secuTrialR", ignore = ignore_words)
 
 ### Linting with lintr
 
+
 ```{r, eval = FALSE}
 # lint the package -> should be clean
 library(lintr)

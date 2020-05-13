@@ -23,6 +23,8 @@ jobs:
 
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Install knitr
+        run: Rscript -e 'install.packages("knitr")'
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -56,7 +58,7 @@ jobs:
       - name: Install package
         run: R CMD INSTALL .
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'knitr::knit("README.Rmd")'
       - name: Commit results
         run: |
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
