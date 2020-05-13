@@ -13,6 +13,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Install XQuartz on macOS
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Query dependencies
