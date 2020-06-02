@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: aghaynes/actions/setup-tinytex@master
+      - uses: r-lib/actions/setup-tinytex@master
       - uses: r-lib/actions/setup-tinytex@master
 
 
