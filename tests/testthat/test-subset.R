@@ -16,9 +16,9 @@ secuTrial_is_equal <- function(dat_ref, dat, equality = "all") {
     if (tab == "export_options") {
       next
     }
-    attrs_equal <- suppressWarnings(forms_equal & all_equal(sort(names(attributes(dat[[tab]]))),
+    attrs_equal <- suppressWarnings(forms_equal & all.equal(sort(names(attributes(dat[[tab]]))),
                                                             sort(names(attributes(dat_ref[[tab]])))))
-    forms_equal <- suppressWarnings(attrs_equal & all_equal(dat[[tab]], dat_ref[[tab]]))
+    forms_equal <- suppressWarnings(attrs_equal & all.equal(dat[[tab]], dat_ref[[tab]]))
     if (equality == "all") {
       return(forms_equal & attrs_equal)
     } else if (equality == "attr") {
