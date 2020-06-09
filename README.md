@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# secuTrialR [![](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
+# secuTrialR [![](https://img.shields.io/badge/dev%20version-1.0.3-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)   [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
@@ -105,7 +105,7 @@ bmd_export
 
 ```
 ## secuTrial data imported from:
-## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
+## /Users/runner/runners/2.169.1/work/_temp/Library/secuTrialR/extdata/sT_exports/
 ## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
 ##  table nrow ncol  meta original_name
 ##     vp    1   10  TRUE        vp.xls
@@ -429,20 +429,20 @@ tail(count_summary)
 ## 8            ctu05sae             0                 2     0             0
 ## 9  ctu05studyterminat             0                10     0             0
 ## 10     ctu05treatment             0                11     0             0
-##    with_errors partly_filled.percent completely_filled.percent
-## 5            0            0.05882353                 0.9411765
-## 6            0            0.17647059                 0.8235294
-## 7            0            0.07692308                 0.9230769
-## 8            0            0.00000000                 1.0000000
-## 9            0            0.00000000                 1.0000000
-## 10           0            0.00000000                 1.0000000
-##    empty.percent with_warnings.percent with_errors.percent form_count
-## 5              0                     0                   0         17
-## 6              0                     0                   0         17
-## 7              0                     0                   0         13
-## 8              0                     0                   0          2
-## 9              0                     0                   0         10
-## 10             0                     0                   0         11
+##    with_errors partly_filled.percent completely_filled.percent empty.percent
+## 5            0            0.05882353                 0.9411765             0
+## 6            0            0.17647059                 0.8235294             0
+## 7            0            0.07692308                 0.9230769             0
+## 8            0            0.00000000                 1.0000000             0
+## 9            0            0.00000000                 1.0000000             0
+## 10           0            0.00000000                 1.0000000             0
+##    with_warnings.percent with_errors.percent form_count
+## 5                      0                   0         17
+## 6                      0                   0         17
+## 7                      0                   0         13
+## 8                      0                   0          2
+## 9                      0                   0         10
+## 10                     0                   0         11
 ```
 
 As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors.
@@ -521,6 +521,7 @@ devtools::spell_check("secuTrialR", ignore = ignore_words)
 ### Linting with lintr
 
 
+
 ```r
 # lint the package -> should be clean
 library(lintr)
@@ -539,20 +540,7 @@ render("vignettes/secuTrialR-package-vignette.Rmd",
 
 ### Generating the README file
 
-The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the `README.Rmd` file and the file "knited" with R. This is easiest with RStudio, but other methods are available.
-
-
-```r
-library(knitr)
-knit("README.Rmd")
-```
-
-### Building the `pkgdown` site
-
-```r
-library(pkgdown)
-build_site()
-```
+The README file is automatically generated on GitHub via a GitHub action.
 
 ### Handling dependencies
 
