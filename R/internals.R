@@ -194,6 +194,10 @@ convertnames <- function(df, format) {
   if (object$export_options$duplicate_meta) {
     it <- it[, -which(names(it) %in% "formtablename")]
   }
+
+  # filter 'it' for relevant variable types
+  it <- it[grepl(paste0(dict[, 2:(ncol(dict)-1)], collapse = "|"), it$itemtype, ignore.case = TRUE),]
+
   itqu <- merge(it, qu, by = "fgid")
 
   # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
