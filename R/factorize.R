@@ -93,6 +93,9 @@ factorize_secuTrial.data.frame <- function(data, cl, form, lookups, short_names)
   cl <- cl[grepl(paste0(names(data), collapse = "|"), cl$column), ]
 
   for (name in names(data)[names(data) %in% cl$var]) {
+
+    cl <- cl[grepl(name, cl$column), ]
+
     # construct search regex
     # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
     # condition 2: this is only appropriate if short_names == TRUE
