@@ -36,7 +36,8 @@ dates_secuTrial.secuTrialdata <- function(object, ...) {
   names(table_names) <- NULL
   # get language and internationalization dictionary for items table
   dict <- object$export_options$dict_items
-  obs <- lapply(table_names, .convert_dates, object = object, dict = dict, ...)
+  itqu <- create_itqu(object, dict)
+  obs <- lapply(table_names, .convert_dates, object = object, dict = dict, itqu = itqu, ...)
 
   object[table_names] <- obs
   object$export_options$dated <- TRUE
