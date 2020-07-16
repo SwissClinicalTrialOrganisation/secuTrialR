@@ -90,6 +90,7 @@ factorize_secuTrial.secuTrialdata <- function(object, ...) {
 factorize_secuTrial.data.frame <- function(data, cl, form, lookups, short_names) {
   meta_var_names <- unique(cl$column[! grepl(".", cl$column, fixed = TRUE)])
 
+  cl <- cl[grepl(paste0(names(data), collapse = "|"), cl$column), ]
 
   for (name in names(data)[names(data) %in% cl$var]) {
     # construct search regex
