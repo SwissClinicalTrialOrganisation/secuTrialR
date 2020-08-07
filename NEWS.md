@@ -1,5 +1,5 @@
 # secuTrialR 1.0.4
-* improved import speed, specifically through changes in dates_secutrial and factorize_secutrial
+* improved import speed, specifically through changes in dates_secutrial and factorize_secutrial (#204)
 
 # secuTrialR 1.0.1, 1.0.2, 1.0.3
 * adjustments to handle review feedback from CRAN (#190)
