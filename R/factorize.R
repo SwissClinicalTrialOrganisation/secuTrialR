@@ -38,14 +38,36 @@ factorize_secuTrial.secuTrialdata <- function(object, ...) {
   names(table_names) <- NULL
   # not for meta tables
   table_names <- table_names[!table_names %in% object$export_options$meta_names]
+
+  # prep 'cl'
+  cl <- object$cl
+  if (!is.character(cl$column)) cl$column <- as.character(cl$column)
+  str <- strsplit(cl$column, ".", fixed = TRUE)
+  # split by "." have two entries and the second is needed
+  # the rest has one entry i.e. length(x)
+  str <- sapply(str, function(x) x[length(x)])
+  cl$var <- str
+  items <- object[[object$export_options$meta_names$items]]
+  # character reformatting
+  if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
+  if (!is.character(items$lookuptable)) items$lookuptable <- as.character(items$lookuptable)
+  # lookups are similar to catalogues
+  lookups <- subset(items, !is.na(items$lookuptable))
+  lookups <- unique(lookups[, c("lookuptable", "ffcolname")])
+  w <- cl$column %in% lookups$lookuptable
+  cl$var[w] <- lookups$ffcolname[match(cl$column[w], lookups$lookuptable)]
+  # prep 'items'
+
+  # needed for the meta variable exception check below
+
   # factorize for every data table in the export
   factorized_tables <- lapply(table_names, function(form_name) {
     curr_form_data <- object[[form_name]]
     # passes to factorize_secuTrial.data.frame
     curr_form_data <- factorize_secuTrial(curr_form_data,
-                                          cl = object$cl,
+                                          cl = cl,
                                           form = form_name,
-                                          items = object[[object$export_options$meta_names$items]],
+                                          lookups = lookups,
                                           short_names = object$export_options$short_names)
     curr_form_data
   })
@@ -65,25 +87,10 @@ factorize_secuTrial.secuTrialdata <- function(object, ...) {
 # #' @examples
 # # data.frame method
 # nolint end
-factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
-  # character reformatting
-  if (!is.character(cl$column)) cl$column <- as.character(cl$column)
-  if (!is.character(items$ffcolname)) items$ffcolname <- as.character(items$ffcolname)
-  if (!is.character(items$lookuptable)) items$lookuptable <- as.character(items$lookuptable)
-  # lookups are similar to catalogues
-  lookups <- subset(items, !is.na(items$lookuptable))
-  lookups <- unique(lookups[, c("lookuptable", "ffcolname")])
-
-  # needed for the meta variable exception check below
+factorize_secuTrial.data.frame <- function(data, cl, form, lookups, short_names) {
   meta_var_names <- unique(cl$column[! grepl(".", cl$column, fixed = TRUE)])
 
-  str <- strsplit(cl$column, ".", fixed = TRUE)
-  # split by "." have two entries and the second is needed
-  # the rest has one entry i.e. length(x)
-  str <- sapply(str, function(x) x[length(x)])
-  cl$var <- str
-  w <- cl$column %in% lookups$lookuptable
-  cl$var[w] <- lookups$ffcolname[match(cl$column[w], lookups$lookuptable)]
+  cl <- cl[grepl(paste0(names(data), collapse = "|"), cl$column), ]
 
   for (name in names(data)[names(data) %in% cl$var]) {
     # construct search regex
@@ -95,6 +102,7 @@ factorize_secuTrial.data.frame <- function(data, cl, form, items, short_names) {
     } else { # non-repetitions (regular case)
       regex_cl <- paste0(form, ".", name, "$")
     }
+
     # lookup for non-meta variables
     lookup <- cl[grepl(regex_cl, cl$column) |
                    (cl$var %in% names(data) & cl$var %in% lookups$ffcolname), ]

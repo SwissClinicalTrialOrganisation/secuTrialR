@@ -62,6 +62,8 @@ jobs:
         run: Rscript -e 'knitr::knit("README.Rmd")'
       - name: Commit results
         run: |
+          git config --global user.email "render_readme@ghaction.com"
+          git config --global user.name "render_readme action"
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
