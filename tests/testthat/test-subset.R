@@ -97,6 +97,12 @@ test_that("Subset centre", {
   expect_equal(TRUE, secuTrial_is_equal(sT_InselUSB_long, sT_subset_long, "all"))
 })
 
+test_that("Subset centre labels", {
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset$treatment$rando_treatment))
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset_exclude$treatment$rando_treatment))
+  expect_equal(attributes(sT_long$ctu05treatment$rando_treatment), attributes(sT_subset_long$ctu05treatment$rando_treatment))
+})
+
 ## test subsetting based on participants
 participants <- c("RPACK-CBE-001", "RPACK-CBE-002", "RPACK-CBE-003", "RPACK-CBE-004",
               "RPACK-CBE-005", "RPACK-INS-014", "RPACK-INS-015")
@@ -111,6 +117,11 @@ test_that("Subset participant", {
   expect_equal(levels(sT$baseline$centre), levels(sT_subset$baseline$centre)) # center levels should stay same
   expect_equal(FALSE, all(sT$baseline$centre %in% sT_subset$baseline$centre)) # actually represented levels change
   expect_equal(TRUE, all(sT$ctr$mnpctrid %in% sT_subset$ctr$mnpctrid)) # all centres should be present
+})
+
+test_that("Subset participant labels", {
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset$treatment$rando_treatment))
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset_exclude$treatment$rando_treatment))
 })
 
 ## test subsetting based on both participants and centres in one go
@@ -131,6 +142,11 @@ test_that("Subset participant and centre", {
                                                                  !sT$cn[["mnpctrid"]] %in% centres_id, "mnpaid"]))
   expect_equal(TRUE, all(!sT_subset_exclude$ctr$mnpctrname %in% centres))
   expect_equal(levels(sT_subset_exclude$baseline$centre), sT$ctr[!sT$ctr$mnpctrname %in% centres, "mnpctrname"])
+})
+
+test_that("Subset participant and centre labels", {
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset$treatment$rando_treatment))
+  expect_equal(attributes(sT$treatment$rando_treatment), attributes(sT_subset_exclude$treatment$rando_treatment))
 })
 
 # check subsetting disjunct sets of participants and centres
