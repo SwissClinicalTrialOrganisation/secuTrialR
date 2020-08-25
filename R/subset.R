@@ -115,5 +115,8 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
       row.names(new_dat[[tab]]) <- 1:nrow(new_dat[[tab]])
     }
   }
+  # according to the export_options it is labelled which is not true
+  # so we suppress the warning here
+  new_dat <- suppressWarnings(label_secuTrial(new_dat))
   return(new_dat)
 }
