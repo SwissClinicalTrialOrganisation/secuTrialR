@@ -118,6 +118,7 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
   # if according to the export_options it is labelled we relabel
   # we also suppress the warning here because it is not appropriate
   if(new_dat$export_options$labelled) {
+    message("If you changed any labels in the secuTrialdata object manually these will be reset to their original state.")
     new_dat <- suppressWarnings(label_secuTrial(new_dat))
   }
   return(new_dat)
