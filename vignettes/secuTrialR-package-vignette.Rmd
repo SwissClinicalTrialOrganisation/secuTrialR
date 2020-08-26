@@ -727,6 +727,74 @@ forms: a_form_name"
 )
 ```
 
+# Merging forms in the `secuTrialdata` object
+
+Naturally, you will sometimes need to merge/join some of the data from the individual form data stored
+in your `secuTrialdata` object. To achieve this you can use the `merge()` function.
+A common task may be to merge repetition form data to its parent form.
+In our case `esurgeries` can be naively merged with `baseline` via the `mnpdocid`:
+
+\vspace{5pt}
+```{r}
+bl_surg <- merge(x = ctu05_data$baseline, y = ctu05_data$esurgeries, by = "mnpdocid")
+```
+
+Please note, that the merging can cause duplication of data if the ids that the merge is directed by are not unique.
+This also happened during the production of `bl_surg` in the code above. Participant "RPACK-INS-012" exhibits the
+`mnpdocid` 234 twice in the `esurgeries` repetition form which causes a duplication of the `baseline` data matching
+`mnpdocid` 234. Lets briefly illustrate this by looking at a `table()` of the `height` variable from the `baseline`
+form before and after merging.
+
+\newpage
+
+```{r}
+# before merge
+table(ctu05_data$baseline$height)
+
+# after merge
+table(bl_surg$height)
+```
+
+A closer look reveals that `180` now appears four times instead of three, which can be attributed to
+the duplication. This is not a favourable outcome because it can cause confusion and misinterpretation.
+A better approach is to change the structure of your repetition form before merging. For this you need to
+investigate which data you would like to merge. In our example case we are interested in the `surgery_organ`.
+Of course we also need to drag the `mnpdocid` along to perform the actual merge.
+
+\vspace{5pt}
+```{r}
+# write a temporary variable
+surg <- ctu05_data$esurgeries[, c("mnpdocid", "surgery_organ.factor")]
+# only retain non NA rows
+surg <- surg[which(! is.na(surg$surgery_organ.factor)), ]
+```
+
+In order to prevent duplication we can restructure the data before merging.
+During the merge we also set `all.x = TRUE` to prevent dropping rows from `baseline`
+that have no match in `surg_wide`. Checking the dimensions reveals that the structure,
+especially the line count, remains the same except for the data added from the `esurgeries`
+repetition form.
+
+\vspace{5pt}
+```{r}
+library(tidyr) # pivot_wider
+
+surg$count <- 1
+surg_wide <- pivot_wider(surg, names_from = surgery_organ.factor, values_from = count)
+# merge
+bl_surg_no_dup <- merge(x = ctu05_data$baseline, y = surg_wide,
+                        by = "mnpdocid", all.x = TRUE)
+
+# compare dimensions
+dim(bl_surg_no_dup)
+dim(ctu05_data$baseline)
+```
+
+The above description only provides a very brief and simplified example snapshot. In general, merging
+strategies need to be individually tailored and require a good understanding of the data at hand.
+The `links_secuTrial()` function may be helpful to understand which variables will allow you to
+merge forms.
+
 # A note on `mnp*` variables
 
 There is a plethora of variables in the tables of secuTrial exports whose names start
@@ -734,15 +802,16 @@ with `mnp`. These are metadata variables which are e.g. important to logically l
 different tables. Explaining them all is beyond the scope of this vignette.
 For detailed explanations, please refer to the secuTrial "Export Formats" user manual.
 
-# Disclaimer
-The descriptions of the secuTrial exports used in this vignette and other `secuTrialR`
-documentation correspond to our understanding of them and come with no warranty.
-For in depth details please refer to the original secuTrial manuals.
-
 \newpage
 
 ```{r}
 sessionInfo()
 ```
 
+\vspace{190pt}
 
+**Disclaimer**
+
+The descriptions of the secuTrial exports used in this vignette and other `secuTrialR`
+documentation correspond to our understanding of them and come with no warranty.
+For in depth details please refer to the original secuTrial manuals.
