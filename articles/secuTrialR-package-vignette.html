@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1 data-toc-skip>secuTrialR - a walkthrough</h1>
                         <h4 class="author">Patrick R. Wright, Milica Markovic, Alan G. Haynes</h4>
             
-            <h4 class="date">2020-08-07</h4>
+            <h4 class="date">2020-08-26</h4>
       
       
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -121,7 +121,7 @@
 <span class="co">#&gt; variable</span>
 <span class="co"># show secuTrialR version</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"secuTrialR"</span>)
-<span class="co">#&gt; [1] '1.0.4'</span></pre></body></html></div>
+<span class="co">#&gt; [1] '1.0.5'</span></pre></body></html></div>
 </div>
 <div id="the-ctu05-dataset" class="section level1">
 <h1 class="hasAnchor">
@@ -560,10 +560,13 @@
 
 <span class="co"># exclude Bern and Basel</span>
 <span class="no">ctu05_data_berlin</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>, <span class="kw">centre</span> <span class="kw">=</span> <span class="no">centres</span>, <span class="kw">exclude</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
 <span class="co"># exclude Berlin</span>
 <span class="no">ctu05_data_bern_basel</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>, <span class="kw">centre</span> <span class="kw">=</span> <span class="no">centres</span>)
+<span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
 <span class="co"># keep only subset of participants</span>
 <span class="no">ctu05_data_pids</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>, <span class="kw">participant</span> <span class="kw">=</span> <span class="no">participants</span>)
+<span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">ctu05_data_berlin</span>)
 <span class="co">#&gt; [1] "secuTrialdata"</span>
@@ -587,6 +590,7 @@
 <p>Since the truncated object’s class remains unchanged (i.e. <code>secuTrialdata</code>) you can still use the generic functions on it. Let’s say you would only like to look at the recruitment plot for Bern alone. </p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co"># keep only Bern</span>
 <span class="no">ctu05_data_bern</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>, <span class="kw">centre</span> <span class="kw">=</span> <span class="st">"Inselspital Bern (RPACK)"</span>)
+<span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05_data_bern</span>)</pre></body></html></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-32-1.png" width="768"></p>
@@ -595,6 +599,7 @@
 <span class="no">ctu05_data_bern_berlin</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span>(<span class="no">ctu05_data</span>,
                                            <span class="kw">centre</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Inselspital Bern (RPACK)"</span>,
                                                       <span class="st">"Charité Berlin (RPACK)"</span>))
+<span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05_data_bern_berlin</span>)</pre></body></html></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-33-1.png" width="768"></p>
@@ -702,7 +707,7 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] secuTrialR_1.0.4</span>
+<span class="co">#&gt; [1] secuTrialR_1.0.5</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] Rcpp_1.0.5       cellranger_1.1.0 compiler_4.0.2   pillar_1.4.6    </span>
@@ -710,11 +715,11 @@
 <span class="co">#&gt;  [9] evaluate_0.14    memoise_1.1.0    tibble_3.0.3     lifecycle_0.2.0 </span>
 <span class="co">#&gt; [13] pkgconfig_2.0.3  rlang_0.4.7      igraph_1.2.5     yaml_2.2.1      </span>
 <span class="co">#&gt; [17] haven_2.3.1      pkgdown_1.5.1    xfun_0.16        stringr_1.4.0   </span>
-<span class="co">#&gt; [21] dplyr_1.0.1      knitr_1.29       desc_1.2.0       generics_0.0.2  </span>
+<span class="co">#&gt; [21] dplyr_1.0.2      knitr_1.29       desc_1.2.0       generics_0.0.2  </span>
 <span class="co">#&gt; [25] fs_1.5.0         vctrs_0.3.2      hms_0.5.3        rprojroot_1.3-2 </span>
 <span class="co">#&gt; [29] tidyselect_1.1.0 tufte_0.6        glue_1.4.1       R6_2.4.1        </span>
 <span class="co">#&gt; [33] tcltk_4.0.2      readxl_1.3.1     rmarkdown_2.3    tidyr_1.1.1     </span>
-<span class="co">#&gt; [37] readr_1.3.1      purrr_0.3.4      magrittr_1.5     backports_1.1.8 </span>
+<span class="co">#&gt; [37] readr_1.3.1      purrr_0.3.4      magrittr_1.5     backports_1.1.9 </span>
 <span class="co">#&gt; [41] htmltools_0.5.0  ellipsis_0.3.1   MASS_7.3-51.6    assertthat_0.2.1</span>
 <span class="co">#&gt; [45] stringi_1.4.6    crayon_1.3.4</span></pre></body></html></div>
 </div>
