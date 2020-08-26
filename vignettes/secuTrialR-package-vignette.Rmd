@@ -730,7 +730,7 @@ forms: a_form_name"
 # Merging forms in the `secuTrialdata` object
 
 Naturally, you will sometimes need to merge/join some of the data from the individual form data stored
-in your `secuTrialdata` object. To achieve this you can use the `merge()` function.
+in your `secuTrialdata` object. To achieve this you can use the base R `merge()` function.
 A common task may be to merge repetition form data to its parent form.
 In our case `esurgeries` can be naively merged with `baseline` via the `mnpdocid`:
 
@@ -739,7 +739,7 @@ In our case `esurgeries` can be naively merged with `baseline` via the `mnpdocid
 bl_surg <- merge(x = ctu05_data$baseline, y = ctu05_data$esurgeries, by = "mnpdocid")
 ```
 
-Please note, that the merging can cause duplication of data if the ids that the merge is directed by are not unique.
+Please note, that merging can cause duplication of data if the ids that the merge is directed by are not unique.
 This also happened during the production of `bl_surg` in the code above. Participant "RPACK-INS-012" exhibits the
 `mnpdocid` 234 twice in the `esurgeries` repetition form which causes a duplication of the `baseline` data matching
 `mnpdocid` 234. Lets briefly illustrate this by looking at a `table()` of the `height` variable from the `baseline`
