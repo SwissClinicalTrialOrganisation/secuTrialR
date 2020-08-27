@@ -78,7 +78,7 @@
       <h1 data-toc-skip>secuTrialR - a walkthrough</h1>
                         <h4 class="author">Patrick R. Wright, Milica Markovic, Alan G. Haynes</h4>
             
-            <h4 class="date">2020-08-26</h4>
+            <h4 class="date">2020-08-27</h4>
       
       
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -681,17 +681,98 @@
 #&gt; forms: a_form_name</code></pre>
 </div>
 </div>
+<div id="merging-forms-in-the-secutrialdata-object" class="section level1">
+<h1 class="hasAnchor">
+<a href="#merging-forms-in-the-secutrialdata-object" class="anchor"></a>Merging forms in the <code>secuTrialdata</code> object</h1>
+<p>Naturally, you will sometimes need to merge/join some of the data from the individual form data stored in your <code>secuTrialdata</code> object. To achieve this you can use the base R <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code> function. For our dataset we might be interested in merging the <code>baseline</code> form data with that of the <code>treatment</code> form. For this we can use the <code>mnpcvpid</code> which uniquely identifies each participant visit. Since we are only interested in the <code>rando_treatment</code> variable we will shrink the data in the <code>treatment</code> form prior to merging.</p>
+
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="no">treatment_shrink</span> <span class="kw">&lt;-</span> <span class="no">ctu05_data</span>$<span class="no">treatment</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mnpcvpid"</span>, <span class="st">"rando_treatment"</span>)]</pre></body></html></div>
+<p>Because we do not want to drop non-matching rows from <code>baseline</code> we set <code>all.x = TRUE</code>. As you can see from the <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> calls, one column has been added after the merge. This corresponds to the <code>rando_treatment</code> variable.</p>
+<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">bl_treat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">ctu05_data</span>$<span class="no">baseline</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">treatment_shrink</span>,
+                  <span class="kw">by</span> <span class="kw">=</span> <span class="st">"mnpcvpid"</span>, <span class="kw">all.x</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="co"># check dimensions</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">ctu05_data</span>$<span class="no">baseline</span>)
+<span class="co">#&gt; [1]  17 107</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">bl_treat</span>)
+<span class="co">#&gt; [1]  17 108</span></pre></body></html></div>
+<p>Another common task may be to merge repetition form data to its parent form. In our case <code>esurgeries</code> can be naively merged with <code>baseline</code> via the <code>mnpdocid</code> (from the secuTrial manual: “Each eCRF document record has a unique document identifier.”):</p>
+
+<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">bl_surg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">ctu05_data</span>$<span class="no">baseline</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">ctu05_data</span>$<span class="no">esurgeries</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"mnpdocid"</span>)</pre></body></html></div>
+<p>Please note, that such naive merging can cause duplication of data if the ids that the merge is directed by are not unique. This also happened during the production of <code>bl_surg</code> in the code above. Participant “RPACK-INS-012” exhibits the <code>mnpdocid</code> 234 twice in the <code>esurgeries</code> repetition form which causes a duplication of the <code>baseline</code> data matching <code>mnpdocid</code> 234.</p>
+
+<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">ctu05_data</span>$<span class="no">esurgeries</span>$<span class="no">mnpdocid</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 180 184 187 191 199 203 211 216 220 222 230 234 238 243 249 255 265 </span>
+<span class="co">#&gt;   1   1   1   1   1   1   1   1   1   1   1   2   1   1   1   1   1</span></pre></body></html></div>
+<p>Lets briefly illustrate the consequences by looking at a <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> of the <code>height</code> variable from the <code>baseline</code> form before and after merging.</p>
+
+<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="co"># before merge</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">ctu05_data</span>$<span class="no">baseline</span>$<span class="no">height</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 110.1   150 150.1   160 167.9 170.3 170.4   180 180.1 190.2 </span>
+<span class="co">#&gt;     1     1     1     1     1     1     1     3     3     1</span>
+
+<span class="co"># after merge</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">bl_surg</span>$<span class="no">height</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 110.1   150 150.1   160 167.9 170.3 170.4   180 180.1 190.2 </span>
+<span class="co">#&gt;     1     1     1     1     1     1     1     4     3     1</span></pre></body></html></div>
+<p>A closer look reveals that <code>180</code> now appears four times instead of three, which can be attributed to the duplication. This is not a favourable outcome because it can cause confusion and misinterpretation. A better approach is to change the structure of your repetition form before merging to make the ids you merge by unique. For this you need to investigate which data you would like to merge and design an appropriate stategy. In our example case we are interested in the <code>surgery_organ</code>. Of course we also need to drag the <code>mnpdocid</code> along to perform the actual merge.</p>
+
+<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="co"># write a temporary object</span>
+<span class="no">surg</span> <span class="kw">&lt;-</span> <span class="no">ctu05_data</span>$<span class="no">esurgeries</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mnpdocid"</span>, <span class="st">"surgery_organ.factor"</span>)]
+<span class="co"># only retain non NA rows</span>
+<span class="no">surg</span> <span class="kw">&lt;-</span> <span class="no">surg</span>[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(! <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">surg</span>$<span class="no">surgery_organ.factor</span>)), ]
+<span class="co"># show it</span>
+<span class="no">surg</span>
+<span class="co">#&gt;    mnpdocid surgery_organ.factor</span>
+<span class="co">#&gt; 12      234              Stomach</span>
+<span class="co">#&gt; 13      234                Other</span></pre></body></html></div>
+<div style="page-break-after: always;"></div>
+<p>In order to prevent duplication we can restructure the data before merging.</p>
+
+<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyr</span>) <span class="co"># pivot_wider</span>
+<span class="co"># add a count</span>
+<span class="no">surg</span>$<span class="no">count</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
+<span class="co"># show the data</span>
+<span class="no">surg</span>
+<span class="co">#&gt;    mnpdocid surgery_organ.factor count</span>
+<span class="co">#&gt; 12      234              Stomach     1</span>
+<span class="co">#&gt; 13      234                Other     1</span>
+
+<span class="co"># make it wide</span>
+<span class="no">surg_wide</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span>(<span class="no">surg</span>, <span class="kw">names_from</span> <span class="kw">=</span> <span class="no">surgery_organ.factor</span>, <span class="kw">values_from</span> <span class="kw">=</span> <span class="no">count</span>)
+<span class="co"># show the wide data</span>
+<span class="no">surg_wide</span>
+<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="co">#&gt;   mnpdocid Stomach Other</span>
+<span class="co">#&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1      234       1     1</span></pre></body></html></div>
+<p>Checking the dimensions before and after merging reveals that the structure, especially the line count, remains the same except for the data added from the <code>esurgeries</code> repetition form (i.e. <code>Stomach</code> and <code>Other</code>). Also, as expected, the <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> of the height variable returns the expected result (i.e. 180 is present three not four times).</p>
+
+<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="co"># merge</span>
+<span class="no">bl_surg_no_dup</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">ctu05_data</span>$<span class="no">baseline</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">surg_wide</span>,
+                        <span class="kw">by</span> <span class="kw">=</span> <span class="st">"mnpdocid"</span>, <span class="kw">all.x</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+
+<span class="co"># compare dimensions</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">bl_surg_no_dup</span>)
+<span class="co">#&gt; [1]  17 109</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="no">ctu05_data</span>$<span class="no">baseline</span>)
+<span class="co">#&gt; [1]  17 107</span>
+
+<span class="co"># check the height variable</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">bl_surg_no_dup</span>$<span class="no">height</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; 110.1   150 150.1   160 167.9 170.3 170.4   180 180.1 190.2 </span>
+<span class="co">#&gt;     1     1     1     1     1     1     1     3     3     1</span></pre></body></html></div>
+<p>The above description only provides a very brief and simplified example. Merging strategies need to be individually tailored and require a good understanding of the data at hand. The <code><a href="../reference/links_secuTrial.html">links_secuTrial()</a></code> function may be helpful to understand which variables will allow you to merge forms.</p>
+</div>
 <div id="a-note-on-mnp-variables" class="section level1">
 <h1 class="hasAnchor">
 <a href="#a-note-on-mnp-variables" class="anchor"></a>A note on <code>mnp*</code> variables</h1>
 <p>There is a plethora of variables in the tables of secuTrial exports whose names start with <code>mnp</code>. These are metadata variables which are e.g. important to logically link the different tables. Explaining them all is beyond the scope of this vignette. For detailed explanations, please refer to the secuTrial “Export Formats” user manual.</p>
-</div>
-<div id="disclaimer" class="section level1">
-<h1 class="hasAnchor">
-<a href="#disclaimer" class="anchor"></a>Disclaimer</h1>
-<p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals.</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
 <span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
 <span class="co">#&gt; Running under: macOS Catalina 10.15.6</span>
@@ -707,21 +788,24 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] secuTrialR_1.0.5</span>
+<span class="co">#&gt; [1] tidyr_1.1.1      secuTrialR_1.0.5</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] Rcpp_1.0.5       cellranger_1.1.0 compiler_4.0.2   pillar_1.4.6    </span>
 <span class="co">#&gt;  [5] forcats_0.5.0    tools_4.0.2      digest_0.6.25    lubridate_1.7.9 </span>
 <span class="co">#&gt;  [9] evaluate_0.14    memoise_1.1.0    tibble_3.0.3     lifecycle_0.2.0 </span>
-<span class="co">#&gt; [13] pkgconfig_2.0.3  rlang_0.4.7      igraph_1.2.5     yaml_2.2.1      </span>
-<span class="co">#&gt; [17] haven_2.3.1      pkgdown_1.5.1    xfun_0.16        stringr_1.4.0   </span>
-<span class="co">#&gt; [21] dplyr_1.0.2      knitr_1.29       desc_1.2.0       generics_0.0.2  </span>
-<span class="co">#&gt; [25] fs_1.5.0         vctrs_0.3.2      hms_0.5.3        rprojroot_1.3-2 </span>
-<span class="co">#&gt; [29] tidyselect_1.1.0 tufte_0.6        glue_1.4.1       R6_2.4.1        </span>
-<span class="co">#&gt; [33] tcltk_4.0.2      readxl_1.3.1     rmarkdown_2.3    tidyr_1.1.1     </span>
-<span class="co">#&gt; [37] readr_1.3.1      purrr_0.3.4      magrittr_1.5     backports_1.1.9 </span>
-<span class="co">#&gt; [41] htmltools_0.5.0  ellipsis_0.3.1   MASS_7.3-51.6    assertthat_0.2.1</span>
-<span class="co">#&gt; [45] stringi_1.4.6    crayon_1.3.4</span></pre></body></html></div>
+<span class="co">#&gt; [13] pkgconfig_2.0.3  rlang_0.4.7      igraph_1.2.5     cli_2.0.2       </span>
+<span class="co">#&gt; [17] yaml_2.2.1       haven_2.3.1      pkgdown_1.5.1    xfun_0.16       </span>
+<span class="co">#&gt; [21] stringr_1.4.0    dplyr_1.0.2      knitr_1.29       desc_1.2.0      </span>
+<span class="co">#&gt; [25] generics_0.0.2   fs_1.5.0         vctrs_0.3.2      hms_0.5.3       </span>
+<span class="co">#&gt; [29] rprojroot_1.3-2  tidyselect_1.1.0 tufte_0.6        glue_1.4.1      </span>
+<span class="co">#&gt; [33] R6_2.4.1         fansi_0.4.1      tcltk_4.0.2      readxl_1.3.1    </span>
+<span class="co">#&gt; [37] rmarkdown_2.3    readr_1.3.1      purrr_0.3.4      magrittr_1.5    </span>
+<span class="co">#&gt; [41] backports_1.1.9  htmltools_0.5.0  ellipsis_0.3.1   MASS_7.3-51.6   </span>
+<span class="co">#&gt; [45] assertthat_0.2.1 utf8_1.1.4       stringi_1.4.6    crayon_1.3.4</span></pre></body></html></div>
+
+<p><strong>Disclaimer</strong></p>
+<p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals.</p>
 </div>
   </div>
 
