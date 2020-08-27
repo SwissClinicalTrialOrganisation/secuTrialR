@@ -837,7 +837,7 @@ dim(ctu05_data$baseline)
 table(bl_surg_no_dup$height)
 ```
 
-The above description only provides a very brief and simplified example snapshot. Merging
+The above description only provides a very brief and simplified example. Merging
 strategies need to be individually tailored and require a good understanding of the data at hand.
 The `links_secuTrial()` function may be helpful to understand which variables will allow you to
 merge forms.
