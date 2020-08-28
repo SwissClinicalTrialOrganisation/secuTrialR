@@ -4,10 +4,12 @@
 \alias{read_validation_overview}
 \title{This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.}
 \usage{
-read_validation_overview(data_dir)
+read_validation_overview(data_dir, skip = 7)
 }
 \arguments{
 \item{data_dir}{Path to the Validation Overview (must be an *.xlsx file).}
+
+\item{skip}{equivalent parameter in read_excel()}
 }
 \value{
 tibble with the 'Validation Overview' data
