@@ -4,7 +4,13 @@
 #' @export read_validation_overview
 #'
 #' @param data_dir Path to the Validation Overview (must be an *.xlsx file).
-#' @param skip equivalent parameter in read_excel()
+#' @param skip Equivalent parameter in read_excel().
+#'             The validation overview xlsx files contain some information in the first
+#'             few lines of each sheet which need to be skipped in order to produce the
+#'             correct header in R. Prior to reading the validation overview with read_validation_overview()
+#'             it is likely a good idea to check how many lines need to be skipped. This
+#'             parameter has been added because the amount of lines can differ between different
+#'             versions of secuTrial.
 #'
 #' @return tibble with the 'Validation Overview' data
 #' @export read_validation_overview
