@@ -38,6 +38,12 @@ bmd <- read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
                          add_centre = FALSE,
                          add_visitname = FALSE)
 
+# ---- test errors
+test_that("failure", {
+  expect_error(add_pat_id_col(iris))
+  expect_error(add_visitname_col(iris))
+})
+
 # ---- test mnppid2mnpaid / using "sum" for simplicity here
 test_that("mnpaids properly created.", {
   expect_equal(sum(mnppid2mnpaid(bmd$mnppid, casenodes_table = casenodes)), 135338)
