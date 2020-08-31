@@ -1,3 +1,6 @@
+# secuTrialR 1.0.6
+* added `skip` parameter to `read_validation_overview()` (#212)
+
 # secuTrialR 1.0.5
 * fixed a bug where `subset_secuTrial()` would drop labels during the subsetting process (#203)
 
