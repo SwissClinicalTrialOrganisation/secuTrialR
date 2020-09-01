@@ -48,6 +48,9 @@ test_that("Test output", {
                nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[3]]) +
                nrow(plot_recruitment(sdat, return_data = TRUE, show_centres = TRUE)[[4]])
                )
+  # test successful running of actual plot code
+  expect_null(plot_recruitment(sdat))
+  expect_null(plot_recruitment(ldat))
 })
 
 # subset_secuTrial tests for plot_recruitment
