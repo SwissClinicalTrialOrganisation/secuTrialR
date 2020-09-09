@@ -1,7 +1,16 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-secuTrialR [![](https://img.shields.io/badge/dev%20version-1.0.6-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![Actions Status](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
-===============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+secuTrialR
+==========
+
+[![](https://img.shields.io/badge/dev%20version-1.0.6-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+[![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
+[![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR)
+[![Actions
+Status](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions)
+[![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system
 (CDMS) [secuTrial](https://www.secutrial.com/en/).
@@ -20,12 +29,12 @@ While the package strives to allow loading of as many types of secuTrial
 data exports as possible, there are certain export options which are
 less likely to cause issues. If possible it is suggested to export data
 which adheres to a suggested option set. Thus, we suggest to work with
-exports which: - are **zipped** - are **English** - have **reference
-values** stored **in a separate table** - contain **Add-IDs**, **centre
+exports which: \* are **zipped** \* are **English** \* have **reference
+values** stored **in a separate table** \* contain **Add-IDs**, **centre
 information**, **structure information**, **form status**, **project
-setup** - do **NOT** have the **meta data duplicated** into all tables -
-are **UTF-8** encoded - are **“CSV format”** or **“CSV format for MS
-Excel”** - do **NOT** contain form data of hidden fields
+setup** \* do **NOT** have the **meta data duplicated** into all tables
+\* are **UTF-8** encoded \* are **“CSV format”** or **“CSV format for MS
+Excel”** \* do **NOT** contain form **data of hidden fields**
 
 If you use `read_secuTrial()` to read your export then it will inform
 you regarding deviations.
