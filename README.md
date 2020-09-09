@@ -3,8 +3,10 @@
 secuTrialR [![](https://img.shields.io/badge/dev%20version-1.0.6-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR) [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR) [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR) [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 =======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
+
 An R package to handle data from the clinical data management system
 (CDMS) [secuTrial](https://www.secutrial.com/en/).
+
 
 Installing from github with devtools
 ------------------------------------
@@ -103,6 +105,7 @@ automatically strips file names of dates. The new file names can be seen
 via `bmd_export$export_options$data_names`.
 <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method -->
 
+
 `bmd_export` is a list, with class `secuTrialdata`. To prevent it from
 printing all data to the console, a special print method returns some
 useful information about the objects within `bmd_export` instead. The
@@ -133,6 +136,7 @@ or not:
 
 Individual tables can be extracted from the `bmd_export` object via
 `tab <- bmd_export$tab`, where `tab` is the table of interest.
+
 <!-- accessor function? -->
 
 #### Variable labels
