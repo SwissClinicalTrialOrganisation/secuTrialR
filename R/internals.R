@@ -185,7 +185,8 @@ convertnames <- function(df, format) {
 # @param warn - logical which determines whether warnings will be shown (TRUE) or not (FALSE)
 # @return data frame containing object[[obj]] with converted dates and datetimes, if applicable
 #
-.convert_dates <- function(obj, object, dict, warn = FALSE, ...) {
+
+create_itqu <- function(object, dict){
   # find date variables
   it <- object[[object$export_options$meta_names$items]]
   qu <- object[[object$export_options$meta_names$questions]]
@@ -194,7 +195,24 @@ convertnames <- function(df, format) {
   if (object$export_options$duplicate_meta) {
     it <- it[, -which(names(it) %in% "formtablename")]
   }
+
+  # filter 'it' for relevant variable types
+  it <- it[grepl(paste0(dict[, 2:(ncol(dict)-1)], collapse = "|"), it$itemtype, ignore.case = TRUE),]
+
   itqu <- merge(it, qu, by = "fgid")
+
+  year_string <- paste0("\\(", dict[, "year"], "\\)")
+  itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
+  itqu <- itqu[!grepl(dict[, "interval"], itqu$itemtype, ignore.case = TRUE), ]
+  itqu$itemtype <- as.character(itqu$itemtype)
+  itqu$ffcolname <- as.character(itqu$ffcolname)
+  date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
+  itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
+
+}
+
+.convert_dates <- function(obj, object, dict, warn = FALSE, itqu, ...) {
+  # itqu <- create_itqu(object, dict)
 
   # condition 1: only subforms (repetitions) have a "mnpsubdocid" column
   # condition 2: this is only appropriate if short_names == TRUE
@@ -206,14 +224,7 @@ convertnames <- function(df, format) {
     itqu <- itqu[grepl(obj, as.character(itqu$formtablename)), ]
   }
 
-  itqu$itemtype <- as.character(itqu$itemtype)
-  itqu$ffcolname <- as.character(itqu$ffcolname)
-  date_string <- paste(dict[, c("date", "checkeddate")], collapse = "|")
-  itqu <- itqu[grepl(date_string, itqu$itemtype, ignore.case = TRUE), ]
   # remove year, interval and time
-  year_string <- paste0("\\(", dict[, "year"], "\\)")
-  itqu <- itqu[!grepl(year_string, itqu$itemtype, ignore.case = TRUE), ]
-  itqu <- itqu[!grepl(dict[, "interval"], itqu$itemtype, ignore.case = TRUE), ]
   dates <- itqu[!grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
   datetimes <- itqu[grepl(dict[, "time"], itqu$itemtype, ignore.case = TRUE), ]
   datevars <- unique(dates$ffcolname)

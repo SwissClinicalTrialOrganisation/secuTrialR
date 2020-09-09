@@ -14,13 +14,19 @@ long_export_location <- system.file("extdata", "sT_exports", "BMD",
                                     "s_export_CSV-xls_BMD_long_en_utf8.zip",
                                     package = "secuTrialR")
 
+no_proj_setup_export_location <- system.file("extdata", "sT_exports", "exp_opt",
+                                             "s_export_CSV-xls_CTU05_no_proj_setup.zip",
+                                             package = "secuTrialR")
+
 sT_export_short <- read_secuTrial_raw(data_dir = short_export_location)
 sT_export_long <- read_secuTrial_raw(data_dir = long_export_location)
+sT_no_proj_setup <- read_secuTrial_raw(data_dir = no_proj_setup_export_location)
 
-test_that("failure on bmd data", {
+test_that("failure", {
   expect_error(visit_structure(sT_export_short), regexp = NA)
   expect_error(visit_structure(sT_export_long), regexp = NA)
-  })
+  expect_error(visit_structure(sT_no_proj_setup))
+})
 
 
 sdat <- read_secuTrial_raw(system.file("extdata", "sT_exports", "snames",

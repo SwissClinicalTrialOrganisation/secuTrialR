@@ -4,10 +4,18 @@
 \alias{read_validation_overview}
 \title{This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.}
 \usage{
-read_validation_overview(data_dir)
+read_validation_overview(data_dir, skip = 7)
 }
 \arguments{
 \item{data_dir}{Path to the Validation Overview (must be an *.xlsx file).}
+
+\item{skip}{Equivalent parameter in read_excel().
+The validation overview xlsx files contain some information in the first
+few lines of each sheet which need to be skipped in order to produce the
+correct header in R. Prior to reading the validation overview with read_validation_overview()
+it is likely a good idea to check how many lines need to be skipped. This
+parameter has been added because the amount of lines can differ between different
+versions of secuTrial.}
 }
 \value{
 tibble with the 'Validation Overview' data
