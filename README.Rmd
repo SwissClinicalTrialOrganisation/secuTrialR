@@ -30,7 +30,7 @@ Thus, we suggest to work with exports which:
 * do **NOT** have the **meta data duplicated** into all tables
 * are **UTF-8** encoded
 * are **"CSV format"** or **"CSV format for MS Excel"**
-* do **NOT** contain form data of hidden fields
+* do **NOT** contain form **data of hidden fields**
 
 If you use `read_secuTrial()` to read your export then it will inform you regarding deviations.
 
