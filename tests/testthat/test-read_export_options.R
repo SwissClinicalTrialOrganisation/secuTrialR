@@ -123,7 +123,7 @@ test_that("Project name parsing", {
 })
 
 # duplicated meta data
-test_that("Project version parsing", {
+test_that("Duplicated meta data parsing", {
   expect_false(sT_export$export_options$duplicate_meta)
   expect_false(export_options_regular_short$duplicate_meta)
   expect_false(export_options_regular_long$duplicate_meta)

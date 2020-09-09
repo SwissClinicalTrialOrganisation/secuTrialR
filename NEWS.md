@@ -1,3 +1,12 @@
+# secuTrialR 1.0.6
+* added `skip` parameter to `read_validation_overview()` (#212)
+
+# secuTrialR 1.0.5
+* fixed a bug where `subset_secuTrial()` would drop labels during the subsetting process (#203)
+
+# secuTrialR 1.0.4
+* improved import speed, specifically through changes in `dates_secutrial()` and `factorize_secutrial()` (#204)
+
 # secuTrialR 1.0.1, 1.0.2, 1.0.3
 * adjustments to handle review feedback from CRAN (#190)
 
