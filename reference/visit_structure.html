@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the visit structure of <code>secuTrialdata</code> objects — visit_structure • secuTrialR</title>
+<title>Get the visit structure of secuTrialdata objects — visit_structure • secuTrialR</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Get the visit structure of <code>secuTrialdata</code> objects — visit_structure" />
+<meta property="og:title" content="Get the visit structure of secuTrialdata objects — visit_structure" />
 <meta property="og:description" content="Get the visit structure of secuTrialdata objects" />
 
 
@@ -127,10 +127,10 @@
     <p>Get the visit structure of <code>secuTrialdata</code> objects</p>
     </div>
 
-    <pre class="usage"><span class='fu'>visit_structure</span>(<span class='no'>x</span>, <span class='kw'>sorted</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>visit_structure</span>(<span class='kw'>x</span>, sorted = <span class='fl'>TRUE</span>)
 
 <span class='co'># S3 method for secuTrialvisit</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,15 +159,17 @@
       a visit structure or one with flexible visits</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+    <pre class="examples"><div class='input'><span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                               <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
+                               package = <span class='st'>"secuTrialR"</span>)
 <span class='co'># read all export data</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(data_dir = <span class='kw'>export_location</span>)
+</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='co'># get visit structure</span>
-<span class='no'>vs</span> <span class='kw'>&lt;-</span> <span class='fu'>visit_structure</span>(<span class='no'>sT_export</span>)
+<span class='kw'>vs</span> <span class='op'>&lt;-</span> <span class='fu'>visit_structure</span>(<span class='kw'>sT_export</span>)
 <span class='co'># plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>vs</span>)</div><div class='img'><img src='visit_structure-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>vs</span>)
+</div><div class='img'><img src='visit_structure-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -183,7 +185,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -130,11 +130,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>return_random_participants</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>centres</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
-  <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  <span class='kw'>x</span>,
+  centres = <span class='st'>"all"</span>,
+  percent = <span class='fl'>0.1</span>,
+  date = <span class='st'>"1900-01-01"</span>,
+  seed = <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -176,15 +176,17 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># export location</span>
-<span class='no'>expot_loc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='kw'>expot_loc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                          <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                         <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
+                         package = <span class='st'>"secuTrialR"</span>)
 <span class='co'># read export</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>expot_loc</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>expot_loc</span>)
+</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># return random participants</span>
-<span class='fu'>return_random_participants</span>(<span class='no'>sT_export</span>, <span class='kw'>percent</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>1337</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"2019-03-18"</span>,
-                           <span class='kw'>centres</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Charité Berlin (RPACK)"</span>))</div><div class='output co'>#&gt; $participants
+<span class='fu'>return_random_participants</span>(<span class='kw'>sT_export</span>, percent = <span class='fl'>0.25</span>, seed = <span class='fl'>1337</span>, date = <span class='st'>"2019-03-18"</span>,
+                           centres = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Inselspital Bern (RPACK)"</span>, <span class='st'>"Charité Berlin (RPACK)"</span>))
+</div><div class='output co'>#&gt; $participants
 #&gt;          mnpaid                   centre mnpvisstartdate
 #&gt; 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
 #&gt; 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
@@ -210,7 +212,7 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

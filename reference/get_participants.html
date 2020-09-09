@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieves participants present in <code>secuTrialdata</code> — get_participants • secuTrialR</title>
+<title>Retrieves participants present in secuTrialdata — get_participants • secuTrialR</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Retrieves participants present in <code>secuTrialdata</code> — get_participants" />
+<meta property="og:title" content="Retrieves participants present in secuTrialdata — get_participants" />
 <meta property="og:description" content="Given a secuTrialdata object, this function simply returns a list of participants.
 Information included are participant IDs and corresponding study centre information,
 if available." />
@@ -131,7 +131,7 @@ Information included are participant IDs and corresponding study centre informat
 if available.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_participants</span>(<span class='no'>dat</span>)</pre>
+    <pre class="usage"><span class='fu'>get_participants</span>(<span class='kw'>dat</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,13 +148,16 @@ if available.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
+<span class='kw'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
                     <span class='st'>"s_export_CSV-xls_CTU05_all_info.zip"</span>,
-                    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='no'>path</span>)</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+                    package = <span class='st'>"secuTrialR"</span>)
+<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>path</span>)
+</div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># show participants</span>
-<span class='no'>participants</span> <span class='kw'>&lt;-</span> <span class='fu'>get_participants</span>(<span class='no'>sT_export</span>)</div></pre>
+<span class='kw'>participants</span> <span class='op'>&lt;-</span> <span class='fu'>get_participants</span>(<span class='kw'>sT_export</span>)
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -170,7 +173,7 @@ if available.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -9,8 +9,8 @@
 <title>as.data.frame method for secuTrialdata objects
 Make the data from the exports more easily accessible by placing them in
 another environment (e.g. place them in the global environment
-(<code>.GlobalEnv</code>) and you can reference them without referring to the
-<code>secuTrialdata</code> object anymore. Ie. they become regular <code>data.frame</code>s). — as.data.frame.secuTrialdata • secuTrialR</title>
+(.GlobalEnv) and you can reference them without referring to the
+secuTrialdata object anymore. Ie. they become regular data.frames). — as.data.frame.secuTrialdata • secuTrialR</title>
 
 
 <!-- jquery -->
@@ -46,8 +46,8 @@ another environment (e.g. place them in the global environment
 <meta property="og:title" content="as.data.frame method for secuTrialdata objects
 Make the data from the exports more easily accessible by placing them in
 another environment (e.g. place them in the global environment
-(<code>.GlobalEnv</code>) and you can reference them without referring to the
-<code>secuTrialdata</code> object anymore. Ie. they become regular <code>data.frame</code>s). — as.data.frame.secuTrialdata" />
+(.GlobalEnv) and you can reference them without referring to the
+secuTrialdata object anymore. Ie. they become regular data.frames). — as.data.frame.secuTrialdata" />
 <meta property="og:description" content="as.data.frame method for secuTrialdata objects
 Make the data from the exports more easily accessible by placing them in
 another environment (e.g. place them in the global environment
@@ -149,13 +149,13 @@ another environment (e.g. place them in the global environment
 
     <pre class="usage"><span class='co'># S3 method for secuTrialdata</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(
-  <span class='no'>x</span>,
-  <span class='no'>...</span>,
-  <span class='no'>envir</span>,
-  <span class='kw'>data.frames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>rep</span> <span class='kw'>=</span> <span class='st'>""</span>
+  <span class='kw'>x</span>,
+  <span class='kw'>...</span>,
+  <span class='kw'>envir</span>,
+  data.frames = <span class='kw'>NULL</span>,
+  meta = <span class='fl'>FALSE</span>,
+  regex = <span class='kw'>NULL</span>,
+  rep = <span class='st'>""</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,18 +203,19 @@ environment would still entail referring to that environment).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='no'>export_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                               <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
+                               package = <span class='st'>"secuTrialR"</span>)
 <span class='co'># load all export data</span>
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>export_location</span>)
+<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(data_dir = <span class='kw'>export_location</span>)
 <span class='co'># add files to a new environment called env1</span>
-<span class='no'>env1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>sT_export</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>env1</span>)
+<span class='kw'>env1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>sT_export</span>, envir = <span class='kw'>env1</span>)
 <span class='co'># add files to a new environment called env2, removing the project name from</span>
 <span class='co'># the file names</span>
-<span class='no'>env2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>sT_export</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"ctu05"</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='no'>env2</span>)</div></pre>
+<span class='kw'>env2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span>()
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>sT_export</span>, regex = <span class='st'>"ctu05"</span>, envir = <span class='kw'>env2</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -230,7 +231,7 @@ environment would still entail referring to that environment).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

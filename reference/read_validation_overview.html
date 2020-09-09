@@ -127,7 +127,7 @@
     <p>This function loads a multi-page secuTrial 'Validation Overview' report into an R tibble.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_validation_overview</span>(<span class='no'>data_dir</span>, <span class='kw'>skip</span> <span class='kw'>=</span> <span class='fl'>7</span>)</pre>
+    <pre class="usage"><span class='fu'>read_validation_overview</span>(<span class='kw'>data_dir</span>, skip = <span class='fl'>7</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,10 +153,11 @@ versions of secuTrial.</p></td>
     <p>tibble with the 'Validation Overview' data</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>val_ovv_location</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
+    <pre class="examples"><div class='input'><span class='kw'>val_ovv_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
                                 <span class='st'>"bmd_validation_overview.xlsx"</span>,
-                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>val_ovv</span> <span class='kw'>&lt;-</span> <span class='fu'>read_validation_overview</span>(<span class='kw'>data_dir</span> <span class='kw'>=</span> <span class='no'>val_ovv_location</span>)</div><div class='output co'>#&gt; <span class='message'>New names:</span>
+                                package = <span class='st'>"secuTrialR"</span>)
+<span class='kw'>val_ovv</span> <span class='op'>&lt;-</span> <span class='fu'>read_validation_overview</span>(data_dir = <span class='kw'>val_ovv_location</span>)
+</div><div class='output co'>#&gt; <span class='message'>New names:</span>
 #&gt; <span class='message'>* `` -&gt; ...1</span>
 #&gt; <span class='message'>* `` -&gt; ...2</span></div><div class='input'>
 </div></pre>
@@ -175,7 +176,7 @@ versions of secuTrial.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

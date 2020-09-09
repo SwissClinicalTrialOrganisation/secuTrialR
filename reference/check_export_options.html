@@ -129,7 +129,7 @@ from suggested export options." />
 from suggested export options.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_export_options</span>(<span class='no'>dat</span>)</pre>
+    <pre class="usage"><span class='fu'>check_export_options</span>(<span class='kw'>dat</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,12 +159,13 @@ from suggested export options.</p>
          structure == TRUE</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
+    <pre class="examples"><div class='input'><span class='kw'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"exp_opt"</span>,
                     <span class='st'>"s_export_CSV-xls_CTU05_only_column_names.zip"</span>,
-                    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"secuTrialR"</span>)
-<span class='no'>sT_export</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='no'>path</span>)
+                    package = <span class='st'>"secuTrialR"</span>)
+<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='kw'>path</span>)
 
-<span class='kw pkg'>secuTrialR</span><span class='kw ns'>:::</span><span class='fu'>check_export_options</span>(<span class='no'>sT_export</span>)</div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
+<span class='kw'>secuTrialR</span>:::<span class='fu'>check_export_options</span>(<span class='kw'>sT_export</span>)
+</div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Add-ID is not part of the export.</span>
 #&gt; <span class='message'>Form status is not part of the export.</span>
 #&gt; <span class='message'>Centre information is not part of the export.</span>
@@ -185,7 +186,7 @@ from suggested export options.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
