@@ -77,10 +77,10 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr---appveyor-build-status-travis-actions-status-codecov" class="section level1">
+<div id="secutrialr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr---appveyor-build-status-travis-actions-status-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/dev%20version-1.0.6-blue.svg"></a> <a href="https://cran.r-project.org/package=secuTrialR"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
-</h1></div>
+<a href="#secutrialr" class="anchor"></a>secuTrialR</h1></div>
+
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
 <div id="installing-from-github-with-devtools" class="section level2">
 <h2 class="hasAnchor">
@@ -91,7 +91,7 @@
 <div id="recommended-export-options" class="section level2">
 <h2 class="hasAnchor">
 <a href="#recommended-export-options" class="anchor"></a>Recommended export options</h2>
-<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which: - are <strong>zipped</strong> - are <strong>English</strong> - have <strong>reference values</strong> stored <strong>in a separate table</strong> - contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong> - do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables - are <strong>UTF-8</strong> encoded - are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong> - do <strong>NOT</strong> contain form data of hidden fields</p>
+<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which: * are <strong>zipped</strong> * are <strong>English</strong> * have <strong>reference values</strong> stored <strong>in a separate table</strong> * contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong> * do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables * are <strong>UTF-8</strong> encoded * are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong> * do <strong>NOT</strong> contain form <strong>data of hidden fields</strong></p>
 <p>If you use <code><a href="reference/read_secuTrial.html">read_secuTrial()</a></code> to read your export then it will inform you regarding deviations.</p>
 </div>
 <div id="basic-usage" class="section level2">
@@ -515,7 +515,18 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/dev%20version-1.0.6-blue.svg"></a></li>
+<li><a href="https://cran.r-project.org/package=secuTrialR"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a></li>
+<li><a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
+<li><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
