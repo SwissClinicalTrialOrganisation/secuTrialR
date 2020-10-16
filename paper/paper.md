@@ -45,7 +45,7 @@ tailored for optimal data capture while, at least to some extent, disregarding e
 the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts is
 fast and seamless in order to avoid loss of valuable time due to technical overhead. This point has been prominently
 highlighted by the currently ongoing coronavirus pandemic [@callaway_etal_2020] in which issues have been reported
-regarding the timely transfer of information for the preparation of up-to-date infection
+regarding the timely and complete transfer of information for the preparation of up-to-date infection
 counts [@spiegel_meldeluecke]. These issues led to confusion and may have ultimately
 delayed important actions. While this is a stark example, it still serves to show how severe the influence
 of technical friction between digital systems can be.  
