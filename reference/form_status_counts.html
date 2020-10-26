@@ -131,7 +131,7 @@ forms per participant. There is a line for every combination of
 form type and participant id. The numbers are occurrence counts.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>form_status_counts</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>form_status_counts</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,15 +152,15 @@ form type and participant id. The numbers are occurrence counts.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"snames"</span>,
+<span class='va'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"snames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_short_ref_miss_en_utf8.zip"</span>,
-                               package = <span class='st'>"secuTrialR"</span>)
+                               package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
 <span class='co'># load all export data</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(data_dir = <span class='kw'>export_location</span>)
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span><span class='op'>(</span>data_dir <span class='op'>=</span> <span class='va'>export_location</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># get form status</span>
-<span class='fu'>form_status_counts</span>(<span class='kw'>sT_export</span>)
+<span class='fu'>form_status_counts</span><span class='op'>(</span><span class='va'>sT_export</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;           pat_id       form_name completely_filled partly_filled empty
 #&gt; 1  RPACK-CBE-001        baseline                 3             0     0
 #&gt; 2  RPACK-CBE-002        baseline                 1             0     0
@@ -303,7 +303,7 @@ form type and participant id. The numbers are occurrence counts.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

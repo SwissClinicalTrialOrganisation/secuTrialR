@@ -143,7 +143,7 @@
              "Compare project setup".</p>
     </div>
 
-    <pre class="usage"><span class='fu'>diff_secuTrial</span>(<span class='kw'>x</span>, <span class='kw'>y</span>)</pre>
+    <pre class="usage"><span class='fu'>diff_secuTrial</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,18 +168,18 @@
     <pre class="examples"><div class='input'><span class='co'># read exports</span>
 
 <span class='co'># v1 is essentially a clone of the CTU05 setup</span>
-<span class='kw'>ctu06_v1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"change_tracking"</span>,
+<span class='va'>ctu06_v1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"change_tracking"</span>,
                                        <span class='st'>"s_export_CSV-xls_CTU06_version1.zip"</span>,
-                                       package = <span class='st'>"secuTrialR"</span>))
+                                       package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='co'># v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform) and</span>
 <span class='co'># 2 additional variables (new_item_in_fu, new_item_in_new_form)</span>
-<span class='kw'>ctu06_v2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"change_tracking"</span>,
+<span class='va'>ctu06_v2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"change_tracking"</span>,
                                        <span class='st'>"s_export_CSV-xls_CTU06_version2.zip"</span>,
-                                       package = <span class='st'>"secuTrialR"</span>))
+                                       package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='co'># return diff</span>
-<span class='fu'>diff_secuTrial</span>(<span class='kw'>ctu06_v1</span>, <span class='kw'>ctu06_v2</span>)
+<span class='fu'>diff_secuTrial</span><span class='op'>(</span><span class='va'>ctu06_v1</span>, <span class='va'>ctu06_v2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $new_forms
 #&gt; [1] "mnpctu06anewform"       "mnpctu06anothernewform"
 #&gt; 
@@ -208,7 +208,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

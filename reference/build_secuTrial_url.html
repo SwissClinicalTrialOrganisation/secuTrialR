@@ -129,13 +129,13 @@ this function composes a URL to a specific secuTrial instance, customer or form.
 this function composes a URL to a specific secuTrial instance, customer or form.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>build_secuTrial_url</span>(
-  <span class='kw'>server</span>,
-  instance = <span class='fl'>NA</span>,
-  customer = <span class='fl'>NA</span>,
-  projid = <span class='fl'>NA</span>,
-  docid = <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>build_secuTrial_url</span><span class='op'>(</span>
+  <span class='va'>server</span>,
+  instance <span class='op'>=</span> <span class='cn'>NA</span>,
+  customer <span class='op'>=</span> <span class='cn'>NA</span>,
+  projid <span class='op'>=</span> <span class='cn'>NA</span>,
+  docid <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,30 +196,30 @@ Thus, there are different scenarios:</p><ul>
     <pre class="examples"><div class='input'>
 <span class='co'># This example, builds pseudo-urls that do not point to an active secuTrial instance.</span>
 
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='st'>"server.secutrial.com"</span>
-<span class='kw'>instance</span> <span class='op'>&lt;-</span> <span class='st'>"ST21-setup-DataCapture"</span>
-<span class='kw'>customer</span> <span class='op'>&lt;-</span> <span class='st'>"TES"</span>
-<span class='kw'>project</span> <span class='op'>&lt;-</span> <span class='st'>"7036"</span>
-<span class='kw'>docid</span> <span class='op'>&lt;-</span> <span class='st'>"181"</span>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='st'>"server.secutrial.com"</span>
+<span class='va'>instance</span> <span class='op'>&lt;-</span> <span class='st'>"ST21-setup-DataCapture"</span>
+<span class='va'>customer</span> <span class='op'>&lt;-</span> <span class='st'>"TES"</span>
+<span class='va'>project</span> <span class='op'>&lt;-</span> <span class='st'>"7036"</span>
+<span class='va'>docid</span> <span class='op'>&lt;-</span> <span class='st'>"181"</span>
 
-<span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>)
-</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>, <span class='kw'>instance</span>)
-</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>, <span class='kw'>instance</span>, <span class='kw'>customer</span>)
-</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>, <span class='kw'>instance</span>, <span class='kw'>customer</span>, <span class='kw'>project</span>)
-</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036"</div><div class='input'><span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>, <span class='kw'>instance</span>, <span class='kw'>customer</span>, <span class='kw'>project</span>, <span class='kw'>docid</span>)
+<span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/"</div><div class='input'><span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span>, <span class='va'>instance</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture"</div><div class='input'><span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span>, <span class='va'>instance</span>, <span class='va'>customer</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES"</div><div class='input'><span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span>, <span class='va'>instance</span>, <span class='va'>customer</span>, <span class='va'>project</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036"</div><div class='input'><span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span>, <span class='va'>instance</span>, <span class='va'>customer</span>, <span class='va'>project</span>, <span class='va'>docid</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=181"</div><div class='input'>
 <span class='co'># examples of docids (mnpdocid)</span>
-<span class='kw'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='va'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                     <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                    package = <span class='st'>"secuTrialR"</span>)
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(<span class='kw'>path</span>)
+                    package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
 #&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'>
 <span class='co'># return docids</span>
-<span class='kw'>docids</span> <span class='op'>&lt;-</span> <span class='kw'>sT_export</span><span class='op'>$</span><span class='kw'>ctu05baseline</span><span class='op'>$</span><span class='kw'>mnpdocid</span>
+<span class='va'>docids</span> <span class='op'>&lt;-</span> <span class='va'>sT_export</span><span class='op'>$</span><span class='va'>ctu05baseline</span><span class='op'>$</span><span class='va'>mnpdocid</span>
 
 <span class='co'># make several links with all docids</span>
-<span class='fu'>build_secuTrial_url</span>(<span class='kw'>server</span>, <span class='kw'>instance</span>, <span class='kw'>customer</span>, <span class='kw'>project</span>, <span class='kw'>docids</span>)
+<span class='fu'>build_secuTrial_url</span><span class='op'>(</span><span class='va'>server</span>, <span class='va'>instance</span>, <span class='va'>customer</span>, <span class='va'>project</span>, <span class='va'>docids</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=180"
 #&gt;  [2] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=184"
 #&gt;  [3] "https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES&amp;projectid=7036&amp;docid=187"
@@ -253,7 +253,7 @@ Thus, there are different scenarios:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

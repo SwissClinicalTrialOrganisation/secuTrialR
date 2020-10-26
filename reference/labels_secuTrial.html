@@ -133,17 +133,17 @@
              variables (and data.frames) which can then be queried via <code>label</code> or <code>units</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>labels_secuTrial</span>(<span class='kw'>object</span>, form = <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>labels_secuTrial</span><span class='op'>(</span><span class='va'>object</span>, form <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>label_secuTrial</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+<span class='fu'>label_secuTrial</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>label</span>(<span class='kw'>x</span>)
+<span class='fu'>label</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>units</span>(<span class='kw'>x</span>)
+<span class='fu'>units</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>label</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+<span class='fu'>label</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
-<span class='fu'>units</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
+<span class='fu'>units</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,38 +194,38 @@ and data.frames
     <pre class="examples"><div class='input'><span class='co'># APPROACH 1: labels_secuTrial</span>
 <span class='co'># ex. 1</span>
 <span class='co'># prepare path to example export</span>
-<span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
+<span class='va'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
                                <span class='st'>"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,
-                               package = <span class='st'>"secuTrialR"</span>)
+                               package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
 <span class='co'># load all export data</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(data_dir = <span class='kw'>export_location</span>)
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span><span class='op'>(</span>data_dir <span class='op'>=</span> <span class='va'>export_location</span><span class='op'>)</span>
 <span class='co'># get all labels</span>
-<span class='kw'>labels</span> <span class='op'>&lt;-</span> <span class='fu'>labels_secuTrial</span>(<span class='kw'>sT_export</span>)
-<span class='kw'>labels</span>[[<span class='st'>"age"</span>]]
+<span class='va'>labels</span> <span class='op'>&lt;-</span> <span class='fu'>labels_secuTrial</span><span class='op'>(</span><span class='va'>sT_export</span><span class='op'>)</span>
+<span class='va'>labels</span><span class='op'>[[</span><span class='st'>"age"</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; [1] "Age"</div><div class='input'>
 <span class='co'># ex. 2</span>
 <span class='co'># load export</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                             <span class='st'>"s_export_CSV-xls_CTU05_long_miss_en_utf8.zip"</span>,
-                                            package = <span class='st'>"secuTrialR"</span>))
+                                            package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># get labels for sae, treatment and surgeries forms</span>
-<span class='kw'>labels</span> <span class='op'>&lt;-</span> <span class='fu'>labels_secuTrial</span>(<span class='kw'>sT_export</span>, form = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sae"</span>, <span class='st'>"treatment"</span>, <span class='st'>"surgeries"</span>))
+<span class='va'>labels</span> <span class='op'>&lt;-</span> <span class='fu'>labels_secuTrial</span><span class='op'>(</span><span class='va'>sT_export</span>, form <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sae"</span>, <span class='st'>"treatment"</span>, <span class='st'>"surgeries"</span><span class='op'>)</span><span class='op'>)</span>
 
 
 <span class='co'># APPROACH 2: label_secuTrial</span>
 <span class='co'># load secuTrial export with separate reference table</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                             <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                                            package = <span class='st'>"secuTrialR"</span>))
+                                            package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># label the secuTrialdata object</span>
-<span class='kw'>sT_export_labelled</span> <span class='op'>&lt;-</span> <span class='fu'>label_secuTrial</span>(<span class='kw'>sT_export</span>)
+<span class='va'>sT_export_labelled</span> <span class='op'>&lt;-</span> <span class='fu'>label_secuTrial</span><span class='op'>(</span><span class='va'>sT_export</span><span class='op'>)</span>
 <span class='co'># form label</span>
-<span class='fu'>label</span>(<span class='kw'>sT_export_labelled</span><span class='op'>$</span><span class='kw'>ctu05baseline</span>)
+<span class='fu'>label</span><span class='op'>(</span><span class='va'>sT_export_labelled</span><span class='op'>$</span><span class='va'>ctu05baseline</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "General screen"</div><div class='input'><span class='co'># variable label</span>
-<span class='fu'>label</span>(<span class='kw'>sT_export_labelled</span><span class='op'>$</span><span class='kw'>ctu05baseline</span><span class='op'>$</span><span class='kw'>visit_date</span>)
+<span class='fu'>label</span><span class='op'>(</span><span class='va'>sT_export_labelled</span><span class='op'>$</span><span class='va'>ctu05baseline</span><span class='op'>$</span><span class='va'>visit_date</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Date of visit"</div><div class='input'><span class='co'># sampling units</span>
-<span class='fu'>units</span>(<span class='kw'>sT_export_labelled</span><span class='op'>$</span><span class='kw'>ctu05baseline</span><span class='op'>$</span><span class='kw'>height</span>)
+<span class='fu'>units</span><span class='op'>(</span><span class='va'>sT_export_labelled</span><span class='op'>$</span><span class='va'>ctu05baseline</span><span class='op'>$</span><span class='va'>height</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "cm"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -242,7 +242,7 @@ and data.frames
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

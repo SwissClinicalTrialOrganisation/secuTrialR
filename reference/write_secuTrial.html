@@ -131,13 +131,13 @@
              using the haven package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_secuTrial</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>write_secuTrial</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for secuTrialdata</span>
-<span class='fu'>write_secuTrial</span>(<span class='kw'>object</span>, format = <span class='st'>"dta"</span>, metadata = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)
+<span class='fu'>write_secuTrial</span><span class='op'>(</span><span class='va'>object</span>, format <span class='op'>=</span> <span class='st'>"dta"</span>, metadata <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>write_secuTrial</span>(<span class='kw'>df</span>, <span class='kw'>filename</span>, path = <span class='st'>""</span>, format = <span class='st'>"dta"</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>write_secuTrial</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>filename</span>, path <span class='op'>=</span> <span class='st'>""</span>, format <span class='op'>=</span> <span class='st'>"dta"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,79 +185,79 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
+<span class='va'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"lnames"</span>,
                                <span class='st'>"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                               package = <span class='st'>"secuTrialR"</span>)
+                               package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
 <span class='co'># load all export data</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span>(data_dir = <span class='kw'>export_location</span>)
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_secuTrial.html'>read_secuTrial</a></span><span class='op'>(</span>data_dir <span class='op'>=</span> <span class='va'>export_location</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Read export successfully.</span></div><div class='output co'>#&gt; <span class='message'>The following export options deviate from the suggested specifications:</span>
-#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='kw'>tdir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>()
-<span class='fu'>write_secuTrial</span>(<span class='kw'>sT_export</span>, format = <span class='st'>"dta"</span>, path = <span class='kw'>tdir</span>)
+#&gt; <span class='message'>Data from hidden fields is part of the export.</span></div><div class='input'><span class='va'>tdir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>write_secuTrial</span><span class='op'>(</span><span class='va'>sT_export</span>, format <span class='op'>=</span> <span class='st'>"dta"</span>, path <span class='op'>=</span> <span class='va'>tdir</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmiv.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmiv.dta"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05baseline.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05baseline.dta"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05baseline.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05baseline.dta"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05outcome.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05outcome.dta"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05outcome.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05outcome.dta"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05treatment.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05treatment.dta"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05treatment.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05treatment.dta"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05allmedi.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05allmedi.dta"
 #&gt; 
 #&gt; [[9]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05allmedi.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05allmedi.dta"
 #&gt; 
 #&gt; [[10]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05studyterminat.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05studyterminat.dta"
 #&gt; 
 #&gt; [[11]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05studyterminat.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05studyterminat.dta"
 #&gt; 
 #&gt; [[12]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05ae.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05ae.dta"
 #&gt; 
 #&gt; [[13]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05ae.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05ae.dta"
 #&gt; 
 #&gt; [[14]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/ctu05sae.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/ctu05sae.dta"
 #&gt; 
 #&gt; [[15]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atmnpctu05sae.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atmnpctu05sae.dta"
 #&gt; 
 #&gt; [[16]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/emnpctu05surgeries.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/emnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[17]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atemnpctu05surgeries.dta"
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atemnpctu05surgeries.dta"
 #&gt; 
 #&gt; [[18]]
-#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSGMWFn/atadverseevents.dta"
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='kw'>tdir</span>)
+#&gt; [1] "Saved to /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp7xOVuE/atadverseevents.dta"
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='va'>tdir</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "atadverseevents.dta"         "atemnpctu05surgeries.dta"   
 #&gt;  [3] "atmiv.dta"                   "atmnpctu05ae.dta"           
 #&gt;  [5] "atmnpctu05allmedi.dta"       "atmnpctu05baseline.dta"     
 #&gt;  [7] "atmnpctu05outcome.dta"       "atmnpctu05sae.dta"          
 #&gt;  [9] "atmnpctu05studyterminat.dta" "atmnpctu05treatment.dta"    
-#&gt; [11] "callr-env-1c5d4bd4a1b3"      "ctu05ae.dta"                
+#&gt; [11] "callr-env-bba23d8d59c"       "ctu05ae.dta"                
 #&gt; [13] "ctu05allmedi.dta"            "ctu05baseline.dta"          
 #&gt; [15] "ctu05outcome.dta"            "ctu05sae.dta"               
 #&gt; [17] "ctu05studyterminat.dta"      "ctu05treatment.dta"         
 #&gt; [19] "downlit"                     "emnpctu05surgeries.dta"     
-#&gt; [21] "file1c5d27092ea2"           </div><div class='input'>
+#&gt; [21] "filebbaf5ef7b6"             </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -274,7 +274,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

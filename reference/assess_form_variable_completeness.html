@@ -163,14 +163,14 @@ Please note that variable completeness for repetition forms should only be
 assessed for saved forms.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>assess_form_variable_completeness</span>(
-  <span class='kw'>form</span>,
-  <span class='kw'>casenodes_table</span>,
-  <span class='kw'>validation_overview</span>,
-  completeness = <span class='st'>"allforms"</span>,
-  occ_in_vp = <span class='fl'>1</span>,
-  omit_mnp = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>assess_form_variable_completeness</span><span class='op'>(</span>
+  <span class='va'>form</span>,
+  <span class='va'>casenodes_table</span>,
+  <span class='va'>validation_overview</span>,
+  completeness <span class='op'>=</span> <span class='st'>"allforms"</span>,
+  occ_in_vp <span class='op'>=</span> <span class='fl'>1</span>,
+  omit_mnp <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,25 +214,25 @@ or only for saved forms ('savedforms').</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># prepare path to example export</span>
-<span class='kw'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
+<span class='va'>export_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
                                <span class='st'>"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,
-                               package = <span class='st'>"secuTrialR"</span>)
+                               package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
 <span class='co'># read all export data</span>
-<span class='kw'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span>(data_dir = <span class='kw'>export_location</span>)
+<span class='va'>sT_export</span> <span class='op'>&lt;-</span> <span class='fu'><a href='secuTrialdata.html'>read_secuTrial_raw</a></span><span class='op'>(</span>data_dir <span class='op'>=</span> <span class='va'>export_location</span><span class='op'>)</span>
 
 <span class='co'># read validation overview</span>
-<span class='kw'>val_ovv_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
+<span class='va'>val_ovv_location</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"sT_exports"</span>, <span class='st'>"BMD"</span>,
                                 <span class='st'>"bmd_validation_overview.xlsx"</span>,
-                                package = <span class='st'>"secuTrialR"</span>)
-<span class='kw'>val_ovv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_validation_overview.html'>read_validation_overview</a></span>(data_dir = <span class='kw'>val_ovv_location</span>)
+                                package <span class='op'>=</span> <span class='st'>"secuTrialR"</span><span class='op'>)</span>
+<span class='va'>val_ovv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_validation_overview.html'>read_validation_overview</a></span><span class='op'>(</span>data_dir <span class='op'>=</span> <span class='va'>val_ovv_location</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>New names:</span>
 #&gt; <span class='message'>* `` -&gt; ...1</span>
 #&gt; <span class='message'>* `` -&gt; ...2</span></div><div class='input'>
-<span class='kw'>secuTrialR</span>:::<span class='fu'>assess_form_variable_completeness</span>(form = <span class='kw'>sT_export</span><span class='op'>$</span><span class='kw'>bmd</span>,
-                                               casenodes_table = <span class='kw'>sT_export</span><span class='op'>$</span><span class='kw'>cn</span>,
-                                               validation_overview = <span class='kw'>val_ovv</span>,
-                                               completeness = <span class='st'>"allforms"</span>,
-                                               occ_in_vp = <span class='fl'>5</span>)
+<span class='fu'>secuTrialR</span><span class='fu'>:::</span><span class='fu'>assess_form_variable_completeness</span><span class='op'>(</span>form <span class='op'>=</span> <span class='va'>sT_export</span><span class='op'>$</span><span class='va'>bmd</span>,
+                                               casenodes_table <span class='op'>=</span> <span class='va'>sT_export</span><span class='op'>$</span><span class='va'>cn</span>,
+                                               validation_overview <span class='op'>=</span> <span class='va'>val_ovv</span>,
+                                               completeness <span class='op'>=</span> <span class='st'>"allforms"</span>,
+                                               occ_in_vp <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   variable timesentered timesmissing completeness
 #&gt; 1      age          503           62    0.8902655
 #&gt; 2      bmd          502           63    0.8884956
@@ -253,7 +253,7 @@ or only for saved forms ('savedforms').</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
