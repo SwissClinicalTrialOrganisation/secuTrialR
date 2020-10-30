@@ -87,7 +87,7 @@ objects.
 # Availability
 
 `secuTrialR` is available on [GitHub](https://github.com/SwissClinicalTrialOrganisation/secuTrialR),
-[CRAN](https://cran.r-project.org/), [Anaconda Cloud](https://anaconda.org/conda-forge/r-secutrialr) and
+[CRAN](https://cran.r-project.org/package=secuTrialR), [Anaconda Cloud](https://anaconda.org/conda-forge/r-secutrialr) and
 should be functional on all major operating systems.
 
 # Dependencies
