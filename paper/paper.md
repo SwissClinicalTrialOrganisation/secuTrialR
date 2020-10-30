@@ -40,7 +40,7 @@ CDMS allow constraint based and version controlled data entry into a clinical tr
 integrity and quality of study data.  
 
 There is a vast market of heterogeneous CDMS solutions each with individual advantages and limitations [@kuchinke_etal_2010].
-One limitation can be the interaction with the data after it has been collected. Specifically, a CMDS may be
+One limitation can be the interaction with the data after it has been collected. Specifically, a CDMS may be
 tailored for optimal data capture while, at least to some extent, disregarding ease-of-use of study data after
 the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts is
 fast and seamless in order to avoid loss of valuable time due to technical overhead. This point has been prominently
@@ -58,6 +58,15 @@ to reduce the data preparation overhead and allow a swift transition into the an
 Furthermore, `secuTrialR` includes standard functionalities to
 show descriptive statistics such as study recruitment or completeness of entered data per case report form
 for secuTrial data exports.
+
+# Statement of need
+
+Due to the size and complexity of clinical trial and registry databases, technical friction during the initial interaction
+with data exported from secuTrial can be expected. Our own first hand experience has revealed that this overhead can sometimes
+significantly redirect scarce time and energy away from analysis and towards data management. However, if possible, the amount of time
+spent on data management should be as small as possible. The use of `secuTrialR` leads to a pronounced reduction of time
+necessary for data management, enables swift quantitative analyses through preimplemented functionalities and, most importantly,
+standardizes the interaction with data exports from secuTrial, thus allowing robust and reproducible science.
 
 # Design
 
