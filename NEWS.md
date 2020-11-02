@@ -1,3 +1,6 @@
+# secuTrialR 1.0.7
+* moved `tcltk` dependency to suggested
+
 # secuTrialR 1.0.6
 * added `skip` parameter to `read_validation_overview()` (#212)
 

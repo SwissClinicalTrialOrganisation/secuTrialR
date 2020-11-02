@@ -1,7 +1,7 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of Data from the Clinical Data Management System 'secuTrial'
-Version: 1.0.6
+Version: 1.0.7
 Authors@R:
     c(person(given = "Patrick R.",
              family = "Wright",
@@ -38,7 +38,6 @@ Imports:
     igraph,
     readr,
     readxl,
-    tcltk,
     stringr,
     tibble,
     magrittr,
@@ -56,5 +55,6 @@ Suggests:
     lintr,
     rmarkdown,
     testthat,
-    tufte
+    tufte,
+    tcltk
 VignetteBuilder: knitr
