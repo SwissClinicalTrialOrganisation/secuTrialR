@@ -14,8 +14,6 @@
 #' @note Note that where a form name is also a variable name, it is appended by \code{_form}
 #'       (igraph requires uniquely named nodes).
 #' @return a tcltk plot window.
-#' @import igraph
-#' @import tcltk
 #' @export
 #' @examples
 #' \donttest{
