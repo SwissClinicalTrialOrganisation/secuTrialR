@@ -35,7 +35,6 @@ Depends:
     R (>= 3.5)
 Imports:
     haven (>= 2.2.0),
-    igraph,
     readr,
     readxl,
     stringr,
@@ -56,5 +55,6 @@ Suggests:
     rmarkdown,
     testthat,
     tufte,
-    tcltk
+    tcltk,
+    igraph
 VignetteBuilder: knitr
