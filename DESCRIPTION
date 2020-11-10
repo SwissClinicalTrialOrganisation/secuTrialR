@@ -48,7 +48,7 @@ Imports:
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     lintr,
@@ -58,3 +58,5 @@ Suggests:
     tcltk,
     igraph
 VignetteBuilder: knitr
+URL: https://github.com/SwissClinicalTrialOrganisation/secuTrialR
+BugReports: https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues
