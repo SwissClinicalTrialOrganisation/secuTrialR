@@ -68,12 +68,12 @@ spent on data management should be as small as possible. The use of `secuTrialR`
 necessary for data management, enables swift quantitative analyses through preimplemented functionalities and, most importantly,
 standardizes the interaction with data exports from secuTrial, thus allowing robust and reproducible science.
 
-While some CDMSs provide APIs (e.g. REDCap [@Harris2009; @Harris2019]) or ODBC connections (e.g. 
-[2mt's WebSpirit](http://www.2mt-software.de)) to download data easily, using SecuTrial's SOAP API involves querying
+While some CDMS provide APIs (e.g. REDCap [@Harris2009; @Harris2019]) or Open Database Connectivity (ODBC) connections (e.g. 
+[2mt's WebSpirit](http://www.2mt-software.de)) to download data easily, using secuTrial's SOAP API involves querying
 individual datapoints. This results in an extraordinarily high number of 
 queries even to download a relatively small database, and high demand on servers. As such, approaches such as those 
-for REDCap (e.g. the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package which can interface to REDCaps REST 
-API and download all data in a single query, but does no data preparation) are not suitable for SecuTrial. 
+for REDCap (e.g. the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package which can interface to REDCap's REST 
+API and download all data in a single query, but does no data preparation) are not suitable for secuTrial. 
 Another approach is to parse data exported manually from websites (e.g. the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This latter approach is used in `secuTrialR`.
 
 # Design
