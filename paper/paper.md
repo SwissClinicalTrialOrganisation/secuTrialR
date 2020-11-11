@@ -74,7 +74,7 @@ individual datapoints. This results in an extraordinarily high number of
 queries even to download a relatively small database, and high demand on servers. As such, approaches such as those 
 for REDCap (e.g. the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package which can interface to REDCap's REST 
 API and download all data in a single query, but does no data preparation) are not suitable for secuTrial. 
-Another approach is to parse data exported manually from websites (e.g. the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This latter approach is used in `secuTrialR`.
+Another approach is to parse data exported manually from websites (e.g. the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This approach is used in `secuTrialR`.
 
 # Design
 
