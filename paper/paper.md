@@ -23,7 +23,7 @@ affiliations:
    index: 2
  - name: Data Management Platform of the Swiss Clinical Trial Organisation (SCTO)
    index: 3
- - name: Statistics Platform of the Swiss Clinical Trial Organisation (SCTO)
+ - name: Statistics and Methodology Platform of the Swiss Clinical Trial Organisation (SCTO)
    index: 4
 date: 14 April 2020
 bibliography: paper.bib
@@ -68,16 +68,25 @@ spent on data management should be as small as possible. The use of `secuTrialR`
 necessary for data management, enables swift quantitative analyses through preimplemented functionalities and, most importantly,
 standardizes the interaction with data exports from secuTrial, thus allowing robust and reproducible science.
 
+While some CDMS provide APIs (e.g. REDCap [@Harris2009; @Harris2019]) or Open Database Connectivity (ODBC) connections (e.g. 
+[2mt's WebSpirit](http://www.2mt-software.de)) to download data easily, using secuTrial's SOAP API involves querying
+individual datapoints. This results in an extraordinarily high number of 
+queries even to download a relatively small database, and high demand on servers. As such, approaches such as those 
+for REDCap (e.g. the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package which can interface to REDCap's REST 
+API and download all data in a single query, but does no data preparation) are not suitable for secuTrial. 
+Another approach is to parse data exported manually from websites (e.g. the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This approach is used in `secuTrialR`.
+
 # Design
 
 All secuTrial data exports share a certain common technical structure independent of the specific database at hand.
-In `secuTrialR` we make use of this information to build an S3 object of class `secuTrialdata` while the
+In `secuTrialR` we make use of this information to build an S3 object of class `secuTrialdata`, which is a list, while the
 data is being read into R. All downstream functions implemented in `secuTrialR` expect a `secuTrialdata` object as input
 but custom analyses with other compenents of R statistics are also an option (see Figure 1).
 While editing the `secuTrialdata` object is technically possible, this is not advisable.
 Rather it should be treated as raw data archive from which data can be extracted for analysis. However, if necessary,
 it is possible to extract subsets of `secuTrialdata` objects with the `subset_secuTrial()` function and return
-intact `secuTrialdata` objects.
+intact `secuTrialdata` objects. The individual elements of the secuTrialdata object can be accessed via regular list 
+access operations or the `as.data.frame()` method, which assigns all objects to an environment of choice.
 
 ![secuTrialR information flow](secuTrialR_information_flow.png)
 Figure 1: Information flow from secuTrial to R statistics and within R. Arrows indicate the 
@@ -108,7 +117,9 @@ iAS has read and approved this manuscript.
 The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
 Thomas Fabbro, Inessa Kraft, Arnaud Künzi, Daniel Lengwiler, Armando Lenz, Henry Owusu, Hans Rock, Claudia Rokitta,
 Marie Roumet, Constantin Sluka, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas,
-testing and constructive feedback on the `secuTrialR` package.
+testing and constructive feedback on the `secuTrialR` package. We also thank [Michael Sachs](https://github.com/sachsmc) 
+and [pacoramon](https://github.com/pacoramon) for kindly reviewing this manuscript and the R package and making additional 
+recommendations, and [Charlotte Soneson](https://github.com/csoneson) for acting as editor.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
 Science Foundation for the funding of this project and the Swiss Clinical Trial Organisation for its ongoing support.
 
