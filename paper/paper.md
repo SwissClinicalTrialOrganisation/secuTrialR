@@ -68,7 +68,7 @@ spent on data management should be as small as possible. The use of `secuTrialR`
 necessary for data management, enables swift quantitative analyses through preimplemented functionalities and, most importantly,
 standardizes the interaction with data exports from secuTrial, thus allowing robust and reproducible science.
 
-While some CDMSs provide APIs (e.g. REDCap ([@Harris2009; @Harris2019])) or ODBC connections (e.g. 
+While some CDMSs provide APIs (e.g. REDCap [@Harris2009; @Harris2019]) or ODBC connections (e.g. 
 [2mt's WebSpirit](http://www.2mt-software.de)) to download data easily, using SecuTrial's SOAP API involves querying
 individual datapoints. This results in an extraordinarily high number of 
 queries even to download a relatively small database, and high demand on servers. As such, approaches such as those 
