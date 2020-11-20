@@ -32,14 +32,14 @@ bibliography: paper.bib
 # Summary
 
 Elementary clinical trials have been conducted for hundreds of years [@meinert1986clinical]. The most famous early example
-is the proof that sailors scurvy can be cured by the consumption of citrus fruit [@lind_2014] performed by James Lind
-in the 18th century. Since these initial days of clinical research, trials have significantly evolved methodically, ethically
+is the proof that sailors' scurvy can be cured by the consumption of citrus fruit [@lind_2014] performed by James Lind
+in the 18th century. Since those initial days of clinical research, trials have significantly evolved methodically, ethically,
 and technologically. While it was viable and legitimate to collect clinical trials data in unversioned
-spread sheets in the past, this is no longer true and digital clinical data management systems (CDMS) have taken over.
-CDMS allow constraint based and version controlled data entry into a clinical trial database which ensures traceability, 
-integrity and quality of study data.  
+spreadsheets in the past, this is no longer true and digital clinical data management systems (CDMS) have taken over.
+CDMS allow constraint-based and version-controlled data entry into a clinical trial database, which ensures traceability, 
+integrity, and quality of study data.  
 
-There is a vast market of heterogeneous CDMS solutions each with individual advantages and limitations [@kuchinke_etal_2010].
+There is a vast market of heterogeneous CDMS solutions, each of which has individual advantages and limitations [@kuchinke_etal_2010].
 One limitation can be the interaction with the data after it has been collected. Specifically, a CDMS may be
 tailored for optimal data capture while, at least to some extent, disregarding ease-of-use of study data after
 the conclusion of data entry. It is, however, vital that the interaction between data sources and data analysts is
@@ -53,8 +53,8 @@ of technical friction between digital systems can be.
 To this end we have developed the open source R statistics [@r_citation] software package `secuTrialR`, which enables
 seamless interaction with data collected in the commercially available CDMS
 [secuTrial](https://www.secutrial.com) (vendor [interActive Systems Berlin](https://interactive-systems.de/)).
-Next to parsing and reading the data it performs data transformation for dates, date times and categorical data
-to reduce the data preparation overhead and allow a swift transition into the analytical phase.
+In addition to parsing and reading the data, it performs data transformation for dates, date times, and categorical data
+to reduce the data preparation overhead and to allow a swift transition into the analytical phase.
 Furthermore, `secuTrialR` includes standard functionalities to
 show descriptive statistics such as study recruitment or completeness of entered data per case report form
 for secuTrial data exports.
@@ -62,19 +62,19 @@ for secuTrial data exports.
 # Statement of need
 
 Due to the size and complexity of clinical trial and registry databases, technical friction during the initial interaction
-with data exported from secuTrial can be expected. Our own first hand experience has revealed that this overhead can sometimes
-significantly redirect scarce time and energy away from analysis and towards data management. However, if possible, the amount of time
+with data exported from secuTrial can be expected. Our own first-hand experience revealed that this overhead can sometimes
+significantly redirect scarce time and energy away from analysis and towards data management. The amount of time
 spent on data management should be as small as possible. The use of `secuTrialR` leads to a pronounced reduction of time
-necessary for data management, enables swift quantitative analyses through preimplemented functionalities and, most importantly,
+necessary for data management, enables swift quantitative analyses through preimplemented functionalities, and most importantly,
 standardizes the interaction with data exports from secuTrial, thus allowing robust and reproducible science.
 
-While some CDMS provide APIs (e.g. REDCap [@Harris2009; @Harris2019]) or Open Database Connectivity (ODBC) connections (e.g. 
+While some CDMS provide APIs (e.g., REDCap [@Harris2009; @Harris2019]) or Open Database Connectivity (ODBC) connections (e.g., 
 [2mt's WebSpirit](http://www.2mt-software.de)) to download data easily, using secuTrial's SOAP API involves querying
 individual datapoints. This results in an extraordinarily high number of 
 queries even to download a relatively small database, and high demand on servers. As such, approaches such as those 
-for REDCap (e.g. the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package which can interface to REDCap's REST 
+for REDCap (e.g., the [REDCapR](https://CRAN.R-project.org/package=REDCapR) package, which can interface to REDCap's REST 
 API and download all data in a single query, but does no data preparation) are not suitable for secuTrial. 
-Another approach is to parse data exported manually from websites (e.g. the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This approach is used in `secuTrialR`.
+Another approach is to parse data exported manually from websites (e.g., the [ox](https://github.com/acobos/ox) package for importing [OpenClinica](https://www.openclinica.com) exports into R). This approach is used in `secuTrialR`.
 
 # Design
 
@@ -83,7 +83,7 @@ In `secuTrialR` we make use of this information to build an S3 object of class `
 data is being read into R. All downstream functions implemented in `secuTrialR` expect a `secuTrialdata` object as input
 but custom analyses with other compenents of R statistics are also an option (see Figure 1).
 While editing the `secuTrialdata` object is technically possible, this is not advisable.
-Rather it should be treated as raw data archive from which data can be extracted for analysis. However, if necessary,
+Instead, it should be treated as raw data archive from which data can be extracted for analysis. However, if necessary,
 it is possible to extract subsets of `secuTrialdata` objects with the `subset_secuTrial()` function and return
 intact `secuTrialdata` objects. The individual elements of the secuTrialdata object can be accessed via regular list 
 access operations or the `as.data.frame()` method, which assigns all objects to an environment of choice.
@@ -96,7 +96,7 @@ objects.
 # Availability
 
 `secuTrialR` is available on [GitHub](https://github.com/SwissClinicalTrialOrganisation/secuTrialR),
-[CRAN](https://cran.r-project.org/package=secuTrialR), [Anaconda Cloud](https://anaconda.org/conda-forge/r-secutrialr) and
+[CRAN](https://cran.r-project.org/package=secuTrialR), [Anaconda Cloud](https://anaconda.org/conda-forge/r-secutrialr), and
 should be functional on all major operating systems.
 
 # Dependencies
@@ -116,8 +116,8 @@ iAS has read and approved this manuscript.
 
 The authors thank Pascal Benkert, Nicole Bruni, Gilles Dutilh, Olivia Ebner, Stefanie von Felten, 
 Thomas Fabbro, Inessa Kraft, Arnaud Künzi, Daniel Lengwiler, Armando Lenz, Pia Neuschwander, Henry Owusu, Hans Rock, Claudia Rokitta,
-Marie Roumet, Constantin Sluka, Klaus Steigmiller, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen and Thomas Zumbrunn for ideas,
-testing and constructive feedback on the `secuTrialR` package. We also thank [Michael Sachs](https://github.com/sachsmc) 
+Marie Roumet, Constantin Sluka, Klaus Steigmiller, Suvitha Subramaniam, Miriam Wegmann, Laura Werlen, and Thomas Zumbrunn for ideas,
+testing, and constructive feedback on the `secuTrialR` package. We also thank [Michael Sachs](https://github.com/sachsmc) 
 and [Francisco Estupiñán-Romero](https://github.com/pacoramon) for kindly reviewing this manuscript and the R package and making additional 
 recommendations, and [Charlotte Soneson](https://github.com/csoneson) for acting as editor.
 Furthermore, the authors thank the State Secretariat of Education, Research and Innovation and the Swiss National
