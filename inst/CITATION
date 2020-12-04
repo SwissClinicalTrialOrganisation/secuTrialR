@@ -1,0 +1,12 @@
+bibentry(
+  "Article",
+  title = "secuTrialR: Seamless interaction with clinical trial databases in R",
+  author = "Patrick R. Wright, Alan G. Haynes, Milica Markovic",
+  year = 2020,
+  journal = "Journal of Open Source Software",
+  volume = 5,
+  number = 55,
+  pages = 2816,
+  doi = "10.21105/joss.02816",
+  textVersion = "Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial databases in R. Journal of Open Source Software, 5(55), 2816, https://doi.org/10.21105/joss.02816"
+)
