@@ -2,6 +2,29 @@ context("factorize")
 
 skip_on_cran()
 
+## lookup table tests
+lookup_long_loc <- system.file("extdata", "sT_exports", "lnames",
+                               "s_export_CSV-xls_PLAYG_20201203-180930.zip",
+                               package = "secuTrialR")
+
+lookup_short_loc <- system.file("extdata", "sT_exports", "snames",
+                                "s_export_CSV-xls_PLAYG_20201204-122705.zip",
+                                package = "secuTrialR")
+
+test_that("lookup table factorization", {
+  # warnings are not related to the lookup but related to incomplete dates
+  expect_warning(sT_exp_lookup_long <- read_secuTrial(data_dir = lookup_long_loc))
+  expect_warning(sT_exp_lookup_short <- read_secuTrial(data_dir = lookup_short_loc))
+  expect_equal(sT_exp_lookup_long$emnpplaygtherapy_sub$therapy_first_lvl.factor,
+               sT_exp_lookup_short$etherapy_sub$therapy_first_lvl.factor)
+  expect_equal(sT_exp_lookup_long$emnpplaygtherapy_sub$therapy_second_lvl.factor,
+               sT_exp_lookup_short$etherapy_sub$therapy_second_lvl.factor)
+  expect_equal(levels(sT_exp_lookup_long$emnpplaygtherapy_sub$therapy_first_lvl.factor),
+               c("Bacterial infection therapy", "Pain therapy"))
+  expect_equal(levels(sT_exp_lookup_long$emnpplaygtherapy_sub$therapy_second_lvl.factor),
+               c("Ampicillin", "Paracetamol", "Penicillin", "Ibuprofen", "Flucloxacillin"))
+})
+
 # BMD
 short_export_location <- system.file("extdata", "sT_exports", "BMD",
                                      "s_export_CSV-xls_BMD_short_en_utf8.zip",
@@ -44,7 +67,6 @@ test_that("number of factors in AE form", {
   expect_equal(sum(w_s), 21)
 })
 
-# TODO: check levels in lookup table related variables
 test_that("Levels in liver cirrhosis", {
   expect_equal(levels(fact_ctu05_l$ctu05baseline$liver_cirrh_type.factor), c("C", "B", "A"))
   expect_equal(levels(fact_ctu05_s$baseline$liver_cirrh_type.factor), c("C", "B", "A"))
