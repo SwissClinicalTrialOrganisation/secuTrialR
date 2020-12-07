@@ -1,21 +1,21 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-secuTrialR [![DOI](https://joss.theoj.org/papers/10.21105/joss.02816/status.svg)](https://doi.org/10.21105/joss.02816)
-======================================================================================================================
+secuTrialR
+==========
 
 [![](https://img.shields.io/badge/dev%20version-1.0.8-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
-[![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)  
+[![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
 [![travis](https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master)](https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR)
 [![Actions
-Status](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions)  
+Status](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions)
 [![codecov](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg)](https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR)
 
 An R package to handle data from the clinical data management system
 (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
-Installing from github with devtools
+Installing from GitHub with devtools
 ------------------------------------
 
 Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
@@ -571,9 +571,10 @@ PR should not be the one merging it.
 A depiction of the core functionalities for loading can be found
 [here](inst/extdata/graphics/secuTrialR.png).
 
-### Citation
+### Citation [![DOI](https://joss.theoj.org/papers/10.21105/joss.02816/status.svg)](https://doi.org/10.21105/joss.02816)
 
-If you use and benefit from secuTrialR in your work please cite it as:  
+If you use and benefit from `secuTrialR` in your work please cite it
+as:  
 Wright et al., (2020). secuTrialR: Seamless interaction with clinical
 trial databases in R. Journal of Open Source Software, 5(55), 2816,
 <a href="https://doi.org/10.21105/joss.02816" class="uri">https://doi.org/10.21105/joss.02816</a>
