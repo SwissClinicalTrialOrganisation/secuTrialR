@@ -22,6 +22,14 @@ jobs:
       if: runner.os == 'macOS'
       run: brew install --cask xquartz
 
+    - name: Install harfbuzz on macOS
+      if: runner.os == 'macOS'
+      run: brew install --cask harfbuzz
+      
+    - name: Install fribidi on macOS
+      if: runner.os == 'macOS'
+      run: brew install --cask fribidi
+
     - name: Query dependencies
       run: |
         install.packages(c('remotes', 'devtools'))
