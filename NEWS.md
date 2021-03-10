@@ -1,3 +1,6 @@
+# secuTrialR 1.0.9
+* transferred the `Maintainer` tag to `Alan Haynes`
+
 # secuTrialR 1.0.8
 * reverted `factorize_secuTrial()` back to 1.0.3 version due to problems with lookup table factorization (#224)
 * added citation (doi: 10.21105/joss.02816)

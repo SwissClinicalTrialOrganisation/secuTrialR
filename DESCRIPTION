@@ -1,16 +1,16 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of Data from the Clinical Data Management System 'secuTrial'
-Version: 1.0.8
+Version: 1.0.9
 Authors@R:
-    c(person(given = "Patrick R.",
-             family = "Wright",
-             role = c("cre", "aut", "cph"),
-             email = "patrick.wright@usb.ch"),
-      person(given = "Alan G.",
+    c(person(given = "Alan G.",
              family = "Haynes",
-             role = c("aut", "cph"),
+             role = c("cre", "aut", "cph"),
              email = "alan.haynes@ctu.unibe.ch"),
+      person(given = "Patrick R.",
+             family = "Wright",
+             role = c("aut", "cph"),
+             email = "patrick.wright@usb.ch"),
       person(given = "Milica",
              family = "Markovic",
              role = c("aut", "cph"),
