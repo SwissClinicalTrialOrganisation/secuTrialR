@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -79,14 +79,13 @@
 
       
 
-      </header><script src="secuTrialR-package-vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="secuTrialR-package-vignette_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="secuTrialR-package-vignette_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="secuTrialR-package-vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>secuTrialR - a walkthrough</h1>
                         <h4 class="author">Patrick R. Wright, Milica Markovic, Alan G. Haynes</h4>
             
-            <h4 class="date">2020-12-07</h4>
+            <h4 class="date">2021-03-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.Rmd"><code>vignettes/secuTrialR-package-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -825,7 +824,7 @@
 <div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.0.3 (2020-10-10)</span>
+<span class="co">#&gt; R version 4.0.4 (2021-02-15)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
 <span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
@@ -840,21 +839,22 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] tidyr_1.1.2      secuTrialR_1.0.8</span>
+<span class="co">#&gt; [1] tidyr_1.1.3      secuTrialR_1.0.8</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.5        compiler_4.0.3    pillar_1.4.7      cellranger_1.1.0 </span>
-<span class="co">#&gt;  [5] forcats_0.5.0     tools_4.0.3       digest_0.6.27     lubridate_1.7.9.2</span>
-<span class="co">#&gt;  [9] evaluate_0.14     memoise_1.1.0     tibble_3.0.4      lifecycle_0.2.0  </span>
-<span class="co">#&gt; [13] pkgconfig_2.0.3   rlang_0.4.9       cli_2.2.0         yaml_2.2.1       </span>
-<span class="co">#&gt; [17] haven_2.3.1       pkgdown_1.6.1     xfun_0.19         stringr_1.4.0    </span>
-<span class="co">#&gt; [21] dplyr_1.0.2       knitr_1.30        desc_1.2.0        generics_0.1.0   </span>
-<span class="co">#&gt; [25] fs_1.5.0          vctrs_0.3.5       systemfonts_0.3.2 hms_0.5.3        </span>
-<span class="co">#&gt; [29] rprojroot_2.0.2   tidyselect_1.1.0  tufte_0.9         glue_1.4.2       </span>
-<span class="co">#&gt; [33] R6_2.5.0          textshaping_0.2.1 fansi_0.4.1       readxl_1.3.1     </span>
-<span class="co">#&gt; [37] rmarkdown_2.5     readr_1.4.0       purrr_0.3.4       magrittr_2.0.1   </span>
-<span class="co">#&gt; [41] htmltools_0.5.0   ellipsis_0.3.1    assertthat_0.2.1  ragg_0.4.0       </span>
-<span class="co">#&gt; [45] utf8_1.1.4        stringi_1.5.3     crayon_1.3.4</span></code></pre></div>
+<span class="co">#&gt;  [1] Rcpp_1.0.6        highr_0.8         cellranger_1.1.0  compiler_4.0.4   </span>
+<span class="co">#&gt;  [5] pillar_1.5.1      forcats_0.5.1     tools_4.0.4       digest_0.6.27    </span>
+<span class="co">#&gt;  [9] lubridate_1.7.10  evaluate_0.14     memoise_2.0.0     lifecycle_1.0.0  </span>
+<span class="co">#&gt; [13] tibble_3.1.0      pkgconfig_2.0.3   rlang_0.4.10      rstudioapi_0.13  </span>
+<span class="co">#&gt; [17] cli_2.3.1         yaml_2.2.1        haven_2.3.1       pkgdown_1.6.1    </span>
+<span class="co">#&gt; [21] xfun_0.21         fastmap_1.1.0     stringr_1.4.0     dplyr_1.0.5      </span>
+<span class="co">#&gt; [25] knitr_1.31        desc_1.3.0        generics_0.1.0    fs_1.5.0         </span>
+<span class="co">#&gt; [29] vctrs_0.3.6       systemfonts_1.0.1 hms_1.0.0         rprojroot_2.0.2  </span>
+<span class="co">#&gt; [33] tidyselect_1.1.0  tufte_0.9         glue_1.4.2        R6_2.5.0         </span>
+<span class="co">#&gt; [37] textshaping_0.3.2 fansi_0.4.2       readxl_1.3.1      rmarkdown_2.7    </span>
+<span class="co">#&gt; [41] purrr_0.3.4       readr_1.4.0       magrittr_2.0.1    ps_1.6.0         </span>
+<span class="co">#&gt; [45] htmltools_0.5.1.1 ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.1       </span>
+<span class="co">#&gt; [49] utf8_1.1.4        stringi_1.5.3     cachem_1.0.4      crayon_1.4.1</span></code></pre></div>
 
 <p><strong>Disclaimer</strong></p>
 <p>The descriptions of the secuTrial exports used in this vignette and other <code>secuTrialR</code> documentation correspond to our understanding of them and come with no warranty. For in depth details please refer to the original secuTrial manuals.</p>
