@@ -24,11 +24,11 @@ jobs:
 
     - name: Install harfbuzz on macOS
       if: runner.os == 'macOS'
-      run: brew install --cask harfbuzz
+      run: brew install harfbuzz
       
     - name: Install fribidi on macOS
       if: runner.os == 'macOS'
-      run: brew install --cask fribidi
+      run: brew install fribidi
 
     - name: Query dependencies
       run: |
