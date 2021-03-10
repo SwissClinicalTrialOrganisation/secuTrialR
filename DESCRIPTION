@@ -26,7 +26,7 @@ Authors@R:
              role = c("com"),
              email = "pascal.benkert@usb.ch")
              )
-Maintainer: Patrick R. Wright <patrick.wright@usb.ch>
+Maintainer: Alan G. Haynes <alan.haynes@ctu.unibe.ch>
 Description: Seamless and standardized interaction with data
     exported from the clinical data management system (CDMS)
     'secuTrial'<https://www.secutrial.com>.
