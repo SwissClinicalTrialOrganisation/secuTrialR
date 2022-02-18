@@ -17,6 +17,7 @@
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
+#' @param ... options passed to \code{read_export_table} (an internal function). Can be used for passing options to read.table
 #' @return \code{secuTrialdata} object containing a list of
 #'         export options and data.frames with all the data loaded from
 #'         the secuTrial export.
