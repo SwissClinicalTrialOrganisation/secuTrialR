@@ -71,7 +71,7 @@
 read_export_table <- function(data_dir, file_name, export_options,
                               add_pat_id = TRUE, add_centre = TRUE, add_visitname = TRUE,
                               casenodes_table, centre_table, visitplan_table,
-                              is_meta_table = FALSE) {
+                              is_meta_table = FALSE, sep = export_options$sep, ...) {
   ops <- options()
   on.exit(ops)
   options(stringsAsFactors = FALSE)
@@ -87,16 +87,16 @@ read_export_table <- function(data_dir, file_name, export_options,
     loaded_table <- read.table(file = archive_con,
                                header = TRUE,
                                na.strings = export_options$na.strings,
-                               sep = export_options$sep,
+                               sep = sep,
                                fill = TRUE,
-                               encoding = curr_encoding)
+                               encoding = curr_encoding, ...)
   } else if (export_options$is_zip == FALSE) {
     loaded_table <- read.table(file = paste0(data_dir, "/", file_name),
                                header = TRUE,
                                na.strings = export_options$na.strings,
-                               sep = export_options$sep,
+                               sep = sep,
                                fill = TRUE,
-                               encoding = curr_encoding)
+                               encoding = curr_encoding, ...)
   } else {
     stop(paste0("Could not load table ", file_name))
   }

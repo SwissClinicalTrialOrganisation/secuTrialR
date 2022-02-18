@@ -6,6 +6,7 @@
 #' @param factor logical - convert categorical variables to factor variables
 #'               (ignored when reference values are not in a separate table)
 #' @param dates  logical - convert date variables
+#' @param ...    options passed to \code{read_secuTrial_raw}. Can be used for passing options to read.table
 #'
 #' @return \code{secuTrialdata} object - a list with one data.frame for each file on the export
 #'         and a list containing the export options
@@ -21,7 +22,8 @@
 read_secuTrial <- function(data_dir,
                            labels = TRUE,
                            factor = TRUE,
-                           dates = TRUE) {
+                           dates = TRUE,
+                           ...) {
 
   # check for file existence
   if (! file.exists(data_dir)) {
@@ -31,7 +33,7 @@ read_secuTrial <- function(data_dir,
   # read raw export
   tryCatch(
     expr = {
-      d <- read_secuTrial_raw(data_dir = data_dir)
+      d <- read_secuTrial_raw(data_dir = data_dir, ...)
       message("Read export successfully.")
       check_export_options(d)
     },
