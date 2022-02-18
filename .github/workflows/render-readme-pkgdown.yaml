@@ -11,6 +11,8 @@ jobs:
   render:
     # The type of runner that the job will run on
     runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -25,7 +27,7 @@ jobs:
     - name: Install harfbuzz on macOS
       if: runner.os == 'macOS'
       run: brew install harfbuzz
-      
+
     - name: Install fribidi on macOS
       if: runner.os == 'macOS'
       run: brew install fribidi
