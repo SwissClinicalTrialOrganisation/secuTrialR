@@ -6,16 +6,16 @@
 \alias{print.secuTrialdata}
 \title{This function loads a secuTrial export}
 \usage{
-read_secuTrial_raw(data_dir)
+read_secuTrial_raw(data_dir, ...)
 
 \method{print}{secuTrialdata}(x, ...)
 }
 \arguments{
 \item{data_dir}{string The data_dir specifies the path to the secuTrial data export.}
 
-\item{x}{secuTrialdata object as returned by \code{read_secuTrial_raw}}
-
 \item{...}{further parameters}
+
+\item{x}{secuTrialdata object as returned by \code{read_secuTrial_raw}}
 }
 \value{
 \code{secuTrialdata} object containing a list of

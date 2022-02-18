@@ -4,7 +4,7 @@
 \alias{read_secuTrial}
 \title{Read secuTrial export}
 \usage{
-read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
+read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE, ...)
 }
 \arguments{
 \item{data_dir}{string - location of the export}
@@ -15,6 +15,8 @@ read_secuTrial(data_dir, labels = TRUE, factor = TRUE, dates = TRUE)
 (ignored when reference values are not in a separate table)}
 
 \item{dates}{logical - convert date variables}
+
+\item{...}{options passed to \code{read_secuTrial_raw}. Can be used for passing options to read.table}
 }
 \value{
 \code{secuTrialdata} object - a list with one data.frame for each file on the export
