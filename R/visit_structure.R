@@ -61,7 +61,7 @@ visit_structure <- function(x, sorted = TRUE) {
   # occurence and number of occurences.
   if (sorted) {
     # where does which form appear
-    z_input <- !is.na(as.matrix(ro[, -1]))
+    z_input <- !is.na(as.matrix(ro[, -(1:2)]))
     # how often is each form used
     n_uses <- apply(z_input, 1, sum)
     # which visit first?
