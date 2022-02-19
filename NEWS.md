@@ -1,4 +1,4 @@
-# secuTrialR 1.0.10
+# secuTrialR 1.1.0
 * `visit_structure` includes the `formtablename` variable for easier linking to dataframes in the secuTrialdata object
 * `dictionary_secuTrial` function added for info on variables in datasets
 * ability to pass extra options from `read_secuTrial` to `read.table`
