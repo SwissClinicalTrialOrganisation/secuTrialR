@@ -33,7 +33,7 @@ Authors@R:
              role = c("ctb")),
       person(given = "Constantin",
              family = "Sluka",
-             role = c("ctb")),
+             role = c("ctb"))
              )
 Maintainer: Alan G. Haynes <alan.haynes@ctu.unibe.ch>
 Description: Seamless and standardized interaction with data
