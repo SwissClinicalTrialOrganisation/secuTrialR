@@ -38,7 +38,7 @@ visit_structure <- function(x, sorted = TRUE) {
   }
   tmp <- merge(vp, vpf, by = "mnpvisid")
   tmp <- merge(tmp, f, by = "formid")
-  u <- unique(tmp[, c("mnpvislabel", "formname")])
+  u <- unique(tmp[, c("mnpvislabel", "formname", "formtablename")])
   u$tmpvar <- 1
   r <- reshape(u, direction = "wide",
                timevar = "mnpvislabel",
@@ -55,13 +55,13 @@ visit_structure <- function(x, sorted = TRUE) {
   rownames(r) <- r$formname
   names(r) <- gsub("tmpvar.", "", names(r))
 
-  ro <- r[form_order, c("formname", vis_order)]
+  ro <- r[form_order, c("formname", "formtablename", vis_order)]
 
   # By default (sorted = TRUE), forms are sorted by first visit of
   # occurence and number of occurences.
   if (sorted) {
     # where does which form appear
-    z_input <- !is.na(as.matrix(ro[, -1]))
+    z_input <- !is.na(as.matrix(ro[, -(1:2)]))
     # how often is each form used
     n_uses <- apply(z_input, 1, sum)
     # which visit first?
@@ -79,7 +79,7 @@ visit_structure <- function(x, sorted = TRUE) {
 #' @return plot of the visit plan
 plot.secuTrialvisit <- function(x, ...) {
   # construct the figure.
-  z <- !is.na(as.matrix(x[, -1]))
+  z <- !is.na(as.matrix(x[, -(1:2)]))
   names <- gsub("tmpvar.", "", names(x[, -1]))
   paropts <- par(no.readonly = TRUE)
   on.exit(par(paropts))
