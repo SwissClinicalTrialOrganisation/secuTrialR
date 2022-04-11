@@ -64,7 +64,9 @@ Load a dataset
 
     ## Read export successfully.
 
-    ## Input to read_secuTrial() appears to be incompatible. It should be in CSV format and not be rectangular.
+    ## The following export options deviate from the suggested specifications:
+    ## Data from hidden fields is part of the export.
+    ## Short names was not selected.
 
 This will load all sheets from the export into an object of class
 `secuTrialdata`, which is basically a list. It will always contain
