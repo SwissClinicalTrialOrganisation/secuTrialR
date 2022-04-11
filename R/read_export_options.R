@@ -150,7 +150,7 @@ read_export_options <- function(data_dir) {
     first_file_trunc <- gsub(".xls", "", first_file)
     file_tag <- gsub(meta_name_patterns, "", first_file_trunc)
   } else {
-    file_tag <- gsub(pattern = "ExportOptions|.html",
+    file_tag <- gsub(pattern = paste0("ExportOptions|(_",lang,"|).html"),
                      replacement = "",
                      files$Name[study_options_file_idx])
   }
