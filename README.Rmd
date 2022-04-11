@@ -249,13 +249,6 @@ plot(vs)
 ```
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 
-#### Data dictionary
-It can be difficult to find the variable you're looking for. secuTrialR provides the `dictionary_secuTrial` function to help:
-
-```{r}
-head(dictionary_secuTrial(ctu05))
-```
-
 
 #### Linking different forms
 
