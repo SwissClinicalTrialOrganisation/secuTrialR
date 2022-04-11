@@ -66,6 +66,9 @@ check_export_options <- function(dat) {
   if (! eo$structure) {
     warn_components <- paste0(warn_components, "Structure information is not part of the export.\n")
   }
+  if(! eo$shortnames) {
+    warn_components <- paste0(warn_components, "Short names was not selected.\n")
+  }
 
   if (str_length(warn_components)) {
     warn_start <- "The following export options deviate from the suggested specifications:\n"
