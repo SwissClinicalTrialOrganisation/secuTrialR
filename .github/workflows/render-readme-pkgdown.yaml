@@ -11,6 +11,7 @@ jobs:
   render:
     # The type of runner that the job will run on
     runs-on: macOS-latest
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -45,11 +46,9 @@ jobs:
         key: macOS-r-4.0-1-${{ hashFiles('.github/depends.Rds') }}
         restore-keys: macOS-r-4.0-1-
 
-    - name: Install dependencies
+    - name: Install dependencies, create helpfiles
       run: |
-        install.packages("remotes")
         remotes::install_deps(dependencies = TRUE)
-        remotes::install_dev("pkgdown")
         devtools::document()
       shell: Rscript {0}
 

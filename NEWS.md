@@ -3,6 +3,9 @@
 * `dictionary_secuTrial` function added for info on variables in datasets
 * ability to pass extra options from `read_secuTrial` to `read.table`
 
+# secuTrialR 1.0.10
+* adapt `read_export_options()` to work with exports from new secuTrial version (6.1.2.5 - 6.3.2.5) (#245)
+
 # secuTrialR 1.0.9
 * transferred the `Maintainer` tag to `Alan Haynes`
 
