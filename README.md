@@ -3,7 +3,7 @@
 secuTrialR
 ==========
 
-[![](https://img.shields.io/badge/dev%20version-1.0.9-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+[![](https://img.shields.io/badge/dev%20version-1.1.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
@@ -443,6 +443,28 @@ where the visit plan is fixed:
     plot(vs)
 
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
+
+#### Data dictionary
+
+It can be difficult to find the variable you’re looking for. secuTrialR
+provides the `dictionary_secuTrial` function to help:
+
+    head(dictionary_secuTrial(ctu05))
+
+    ##        formtablename       formname      ffcolname               itemtype
+    ## 1 emnpctu05surgeries      Surgeries  surgery_organ    Popup (Label Group)
+    ## 2 emnpctu05surgeries      Surgeries   surgery_type    Popup (Label Group)
+    ## 3         mnpctu05ae Adverse Events      ae_is_sae Horizontal Radiobutton
+    ## 4         mnpctu05ae Adverse Events    ae_end_time   Checked Time (hh:mm)
+    ## 5         mnpctu05ae Adverse Events ae_description          Textarea 9,60
+    ## 6         mnpctu05ae Adverse Events          notes          Textarea 9,60
+    ##                        fflabel unit     formfamily
+    ## 1                        Organ <NA>       Subforms
+    ## 2                         Type <NA>       Subforms
+    ## 3                    Is an SAE <NA> Adverse Events
+    ## 4                   Timepoints <NA> Adverse Events
+    ## 5 Description of Adverse Event <NA> Adverse Events
+    ## 6                        Notes <NA> Adverse Events
 
 #### Linking different forms
 
