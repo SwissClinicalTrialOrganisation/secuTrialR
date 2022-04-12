@@ -55,7 +55,8 @@ test_that("no fail with TES05", {
 
 vs <- visit_structure(dat)
 test_that("correct dims", {
-  expect_equal(dim(vs), c(3, 6))
+  expect_equal(dim(vs), c(3, 7))
+  expect_true("formtablename" %in% names(vs))
 })
 
 test_that("all forms included", {
@@ -65,12 +66,12 @@ test_that("all forms included", {
 
 test_that("all visits included", {
   expect_true(all(unique(as.character(dat$vp$mnpvislabel)) %in% names(vs)))
-  expect_true(all(names(vs)[-1] %in% unique(as.character(dat$vp$mnpvislabel))))
+  expect_true(all(names(vs)[-(1:2)] %in% unique(as.character(dat$vp$mnpvislabel))))
 })
 
 test_that("colsums, rowsums correct", {
-  cs <- colSums(vs[, -1], na.rm = TRUE)
+  cs <- colSums(vs[, -(1:2)], na.rm = TRUE)
   expect_equal(as.numeric(cs), c(1, 1, 1, 1, 2))
-  rs <- rowSums(vs[, -1], na.rm = TRUE)
+  rs <- rowSums(vs[, -(1:2)], na.rm = TRUE)
   expect_equal(as.numeric(rs), c(1, 4, 1))
 })

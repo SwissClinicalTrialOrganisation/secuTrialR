@@ -23,16 +23,18 @@ While the package strives to allow loading of as many types of secuTrial data ex
 as possible, there are certain export options which are less likely to cause issues.
 If possible it is suggested to export data which adheres to a suggested option set.
 Thus, we suggest to work with exports which:
-* are **zipped**
-* are **English**
-* have **reference values** stored **in a separate table**
-* contain **Add-IDs**, **centre information**, **structure information**,  **form status**, **project setup**
-* do **NOT** have the **meta data duplicated** into all tables
-* are **UTF-8** encoded
-* are **"CSV format"** or **"CSV format for MS Excel"**
-* do **NOT** contain form **data of hidden fields**
+- are **zipped**
+- are **English**
+- have **reference values** stored **in a separate table**
+- contain **Add-IDs**, **centre information**, **structure information**,  **form status**, **project setup**
+- do **NOT** have the **meta data duplicated** into all tables
+- are **UTF-8** encoded
+- are **"CSV format"** or **"CSV format for MS Excel"**
+- do **NOT** contain form **data of hidden fields**
 
 If you use `read_secuTrial()` to read your export then it will inform you regarding deviations.
+
+We also recommend using short names when exporting your data. Some users have reported issues importing data with long names, but the issues do not exist when using short names. That may (or may not) be related to upgarding SecuTrial.
 
 ## Basic usage
 
@@ -249,6 +251,12 @@ plot(vs)
 ```
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 
+#### Data dictionary
+It can be difficult to find the variable you're looking for. secuTrialR provides the `dictionary_secuTrial` function to help:
+
+```{r}
+head(dictionary_secuTrial(ctu05))
+```
 
 #### Linking different forms
 

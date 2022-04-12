@@ -17,6 +17,7 @@
 #' @name secuTrialdata
 #' @rdname secuTrialdata
 #' @param data_dir string The data_dir specifies the path to the secuTrial data export.
+#' @param ... options passed to \code{read_export_table} (an internal function). Can be used for passing options to read.table
 #' @return \code{secuTrialdata} object containing a list of
 #'         export options and data.frames with all the data loaded from
 #'         the secuTrial export.
@@ -31,7 +32,7 @@
 #' # read all export data
 #' sT_export <- read_secuTrial_raw(data_dir = export_location)
 #'
-read_secuTrial_raw <- function(data_dir) {
+read_secuTrial_raw <- function(data_dir, ...) {
 
   # check for file existence
   if (! file.exists(data_dir)) {
@@ -77,7 +78,8 @@ read_secuTrial_raw <- function(data_dir) {
     loaded_table <- read_export_table(data_dir = data_dir,
                                       file_name = file,
                                       export_options = export_options,
-                                      is_meta_table = TRUE)
+                                      is_meta_table = TRUE,
+                                      ...)
     # update name
     loaded_table <- setNames(list(loaded_table), name)
     # make add_id and lab_id entry in export_options
@@ -107,7 +109,8 @@ read_secuTrial_raw <- function(data_dir) {
                                       export_options = return_list$export_options,
                                       casenodes_table = return_list[[export_options$meta_names$casenodes]],
                                       centre_table = return_list[[export_options$meta_names$centres]],
-                                      visitplan_table = return_list[[export_options$meta_names$visitplan]])
+                                      visitplan_table = return_list[[export_options$meta_names$visitplan]],
+                                      ...)
 
     # update name
     loaded_table <- setNames(list(loaded_table), table_name[[1]])
