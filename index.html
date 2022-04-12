@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,23 +36,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.11</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -67,7 +63,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/">
+  <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -84,27 +80,28 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr" class="anchor"></a>secuTrialR</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="secutrialr">secuTrialR<a class="anchor" aria-label="anchor" href="#secutrialr"></a>
+</h1></div>
 
-<p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
-<div id="installing-from-github-with-devtools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-from-github-with-devtools" class="anchor"></a>Installing from GitHub with devtools</h2>
+<p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/" class="external-link">secuTrial</a>.</p>
+<div class="section level2">
+<h2 id="installing-from-github-with-devtools">Installing from GitHub with devtools<a class="anchor" aria-label="anchor" href="#installing-from-github-with-devtools"></a>
+</h2>
 <p>Please note that <code>R versions &gt;= 3.5</code> should be used to run <code>secuTrialR</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</span></code></pre></div>
 </div>
-<div id="recommended-export-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#recommended-export-options" class="anchor"></a>Recommended export options</h2>
-<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which: * are <strong>zipped</strong> * are <strong>English</strong> * have <strong>reference values</strong> stored <strong>in a separate table</strong> * contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong> * do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables * are <strong>UTF-8</strong> encoded * are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong> * do <strong>NOT</strong> contain form <strong>data of hidden fields</strong></p>
+<div class="section level2">
+<h2 id="recommended-export-options">Recommended export options<a class="anchor" aria-label="anchor" href="#recommended-export-options"></a>
+</h2>
+<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which: - are <strong>zipped</strong> - are <strong>English</strong> - have <strong>reference values</strong> stored <strong>in a separate table</strong> - contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong> - do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables - are <strong>UTF-8</strong> encoded - are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong> - do <strong>NOT</strong> contain form <strong>data of hidden fields</strong></p>
 <p>If you use <code><a href="reference/read_secuTrial.html">read_secuTrial()</a></code> to read your export then it will inform you regarding deviations.</p>
+<p>We also recommend using short names when exporting your data. Some users have reported issues importing data with long names, but the issues do not exist when using short names. That may (or may not) be related to upgarding SecuTrial.</p>
 </div>
-<div id="basic-usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#basic-usage" class="anchor"></a>Basic usage</h2>
-<p>An extensive applied manual/vignette is available <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf">here</a> and probably the best place to get started.</p>
+<div class="section level2">
+<h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h2>
+<p>An extensive applied manual/vignette is available <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf" class="external-link">here</a> and probably the best place to get started.</p>
 <p>Load the package</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(secuTrialR)</span></code></pre></div>
 <p>Load a dataset</p>
@@ -116,12 +113,13 @@
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">## Read export successfully.</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a></span>
 <span id="cb3-8"><a href="#cb3-8"></a><span class="co">## The following export options deviate from the suggested specifications:</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">## Data from hidden fields is part of the export.</span></span></code></pre></div>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">## Data from hidden fields is part of the export.</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">## Short names was not selected.</span></span></code></pre></div>
 <p>This will load all sheets from the export into an object of class <code>secuTrialdata</code>, which is basically a list. It will always contain <code>export_details</code> (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via <code>ctu05$export_options$data_names</code>. The function also adds <a href="#variable-labels">labels to variables</a> and data.frames, converts <a href="#prepare-factors">categorical variables to <code>factor</code>s</a> and ensures that <a href="#prepare-dates">dates are <code>Date</code>s and date-times are <code>POSIXct</code></a>. <code>read_secuTrial</code> is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary). Individual tables can be extracted from the <code>ctu05</code> object via <code>tab &lt;- ctu05$tab</code>, where <code>tab</code> is the table of interest.</p>
 <details><p><summary>Wrapped functions</summary></p>
-<div id="load-the-dataset" class="section level4">
-<h4 class="hasAnchor">
-<a href="#load-the-dataset" class="anchor"></a>Load the dataset</h4>
+<div class="section level4">
+<h4 id="load-the-dataset">Load the dataset<a class="anchor" aria-label="anchor" href="#load-the-dataset"></a>
+</h4>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># prepare path to example export</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>export_location &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
 <span id="cb4-3"><a href="#cb4-3"></a>                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span>
@@ -165,16 +163,16 @@
 <span id="cb5-19"><a href="#cb5-19"></a><span class="co">##  atbmd    0   28 FALSE     atbmd.xls</span></span></code></pre></div>
 <p>Individual tables can be extracted from the <code>bmd_export</code> object via <code>tab &lt;- bmd_export$tab</code>, where <code>tab</code> is the table of interest. <!-- accessor function? --></p>
 </div>
-<div id="variable-labels" class="section level4">
-<h4 class="hasAnchor">
-<a href="#variable-labels" class="anchor"></a>Variable labels</h4>
+<div class="section level4">
+<h4 id="variable-labels">Variable labels<a class="anchor" aria-label="anchor" href="#variable-labels"></a>
+</h4>
 <p>For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>labs &lt;-<span class="st"> </span><span class="kw">labels_secuTrial</span>(bmd_export)</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co"># query the list with the variable name of interest</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>labs[[<span class="st">"age"</span>]]</span>
 <span id="cb6-4"><a href="#cb6-4"></a></span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="co">## [1] "Age"</span></span></code></pre></div>
-<p>The attribute based approach adds labels as an attribute to a variable, which can then be accessed via <code><a href="reference/labels_secuTrial.html">label(var)</a></code>.</p>
+<p>The attribute based approach adds labels as an attribute to a variable, which can then be accessed via <code>label(var)</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>labelled &lt;-<span class="st"> </span><span class="kw">label_secuTrial</span>(bmd_export)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="kw">label</span>(labelled<span class="op">$</span>bmd<span class="op">$</span>age)</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
@@ -196,9 +194,9 @@
 <p>There is a drawback to the attribute based approach - labels will not be propagated if variables are derived and may be lost if variables are edited.</p>
 <p>Currently, <code>label_secuTrial</code> should be used prior to <code>dates_secuTrial</code> or <code>factorize_secuTrial</code> so that labels and units are propagated to factor and date variables.</p>
 </div>
-<div id="prepare-factors" class="section level4">
-<h4 class="hasAnchor">
-<a href="#prepare-factors" class="anchor"></a>Prepare factors</h4>
+<div class="section level4">
+<h4 id="prepare-factors">Prepare factors<a class="anchor" aria-label="anchor" href="#prepare-factors"></a>
+</h4>
 <p>It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>factors &lt;-<span class="st"> </span><span class="kw">factorize_secuTrial</span>(ctu05_raw)</span></code></pre></div>
 <p>This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with <code>.factor</code> appended (i.e. a new variable called <code>sex.factor</code> would be added to the relevant form).</p>
@@ -220,9 +218,9 @@
 <span id="cb11-16"><a href="#cb11-16"></a><span class="co">##        1    5      0</span></span>
 <span id="cb11-17"><a href="#cb11-17"></a><span class="co">##        2    0      5</span></span></code></pre></div>
 </div>
-<div id="prepare-dates" class="section level4">
-<h4 class="hasAnchor">
-<a href="#prepare-dates" class="anchor"></a>Prepare dates</h4>
+<div class="section level4">
+<h4 id="prepare-dates">Prepare dates<a class="anchor" aria-label="anchor" href="#prepare-dates"></a>
+</h4>
 <p>Date(time)s are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dates &lt;-<span class="st"> </span><span class="kw">dates_secuTrial</span>(ctu05_raw)</span></code></pre></div>
 <p>Date variables are converted to <code>Date</code> class, and datetimes are converted to <code>POSIXct</code> class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case <code>NA</code>s are accidentally created.</p>
@@ -233,12 +231,12 @@
 <span id="cb13-5"><a href="#cb13-5"></a><span class="co">## 1            NA               &lt;NA&gt; 201903052356 2019-03-05 23:56:00</span></span>
 <span id="cb13-6"><a href="#cb13-6"></a><span class="co">## 7      20060301         2006-03-01           NA                &lt;NA&gt;</span></span></code></pre></div>
 <p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
-<p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
-<p>Recommended literature on incomplete dates/date imputation:<br><a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf">Dubois and Hebert 2001</a><br><a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf">Bowman 2006</a></p>
+<p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
+<p>Recommended literature on incomplete dates/date imputation:<br><a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf" class="external-link">Dubois and Hebert 2001</a><br><a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf" class="external-link">Bowman 2006</a></p>
 </div>
-<div id="recommended-approach-if-not-using-read_secutrial" class="section level4">
-<h4 class="hasAnchor">
-<a href="#recommended-approach-if-not-using-read_secutrial" class="anchor"></a>Recommended approach if not using <code>read_secuTrial</code>
+<div class="section level4">
+<h4 id="recommended-approach-if-not-using-read_secutrial">Recommended approach if not using <code>read_secuTrial</code>
+<a class="anchor" aria-label="anchor" href="#recommended-approach-if-not-using-read_secutrial"></a>
 </h4>
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>f &lt;-<span class="st"> "PATH_TO_FILE"</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>d &lt;-<span class="st"> </span><span class="kw">read_secuTrial_raw</span>(f)</span>
@@ -256,13 +254,13 @@
 <span id="cb14-14"><a href="#cb14-14"></a><span class="st">  </span><span class="kw">dates_secuTrial</span>()</span></code></pre></div>
 
 </div>
-<div id="exploratory-helpers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#exploratory-helpers" class="anchor"></a>Exploratory helpers</h3>
+<div class="section level3">
+<h3 id="exploratory-helpers">Exploratory helpers<a class="anchor" aria-label="anchor" href="#exploratory-helpers"></a>
+</h3>
 <p><code>secuTrialR</code> has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.</p>
-<div id="asdataframe" class="section level4">
-<h4 class="hasAnchor">
-<a href="#asdataframe" class="anchor"></a>as.data.frame</h4>
+<div class="section level4">
+<h4 id="asdataframe">as.data.frame<a class="anchor" aria-label="anchor" href="#asdataframe"></a>
+</h4>
 <p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice. As a demonstration, we’ll create a new environment (<code>env</code>) and create the <code>data.frame</code>s in there. In practice, using <code>.GlobalEnv</code> would probably be more useful.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>env &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="kw">ls</span>(env)</span>
@@ -302,9 +300,9 @@
 <span id="cb15-36"><a href="#cb15-36"></a><span class="co">## [17] "ctu05treatment"          "emnpctu05surgeries"</span></span></code></pre></div>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
-<div id="recruitment-over-time" class="section level4">
-<h4 class="hasAnchor">
-<a href="#recruitment-over-time" class="anchor"></a>Recruitment over time</h4>
+<div class="section level4">
+<h4 id="recruitment-over-time">Recruitment over time<a class="anchor" aria-label="anchor" href="#recruitment-over-time"></a>
+</h4>
 <p>Recruitment is an important cornerstone for every clinical trial. <code>secuTrialR</code> allows for straigt forward visualizion of recuitment over time for a given export file.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># show plot</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="co"># note that there is no line for Universitätsspital </span></span>
@@ -356,9 +354,9 @@
 <span id="cb18-6"><a href="#cb18-6"></a><span class="co">## 3         Inselspital Bern     5    0    5</span></span>
 <span id="cb18-7"><a href="#cb18-7"></a><span class="co">## 4 Universitätsspital Basel     1    1    0</span></span></code></pre></div>
 </div>
-<div id="form-status-summary-statistics" class="section level4">
-<h4 class="hasAnchor">
-<a href="#form-status-summary-statistics" class="anchor"></a>Form status summary statistics</h4>
+<div class="section level4">
+<h4 id="form-status-summary-statistics">Form status summary statistics<a class="anchor" aria-label="anchor" href="#form-status-summary-statistics"></a>
+</h4>
 <p>If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms have been filled.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>count_summary &lt;-<span class="st"> </span><span class="kw">form_status_summary</span>(ctu05)</span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="kw">tail</span>(count_summary)</span>
@@ -388,117 +386,138 @@
 <div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">form_status_counts</span>(ctu05)</span></code></pre></div>
 <p>This will give you a count based overview per participant id and form. Please note that both <code>form_status_summary</code> and <code>form_status_counts</code> only work with saved forms since unsaved form data is not available in secuTrial exports.</p>
 </div>
-<div id="visit-plan" class="section level4">
-<h4 class="hasAnchor">
-<a href="#visit-plan" class="anchor"></a>Visit plan</h4>
+<div class="section level4">
+<h4 id="visit-plan">Visit plan<a class="anchor" aria-label="anchor" href="#visit-plan"></a>
+</h4>
 <p>secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>vs &lt;-<span class="st"> </span><span class="kw">visit_structure</span>(ctu05)</span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="kw">plot</span>(vs)</span></code></pre></div>
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 </div>
-<div id="linking-different-forms" class="section level4">
-<h4 class="hasAnchor">
-<a href="#linking-different-forms" class="anchor"></a>Linking different forms</h4>
+<div class="section level4">
+<h4 id="data-dictionary">Data dictionary<a class="anchor" aria-label="anchor" href="#data-dictionary"></a>
+</h4>
+<p>It can be difficult to find the variable you’re looking for. secuTrialR provides the <code>dictionary_secuTrial</code> function to help:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">head</span>(<span class="kw">dictionary_secuTrial</span>(ctu05))</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co">##        formtablename       formname      ffcolname               itemtype</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co">## 1 emnpctu05surgeries      Surgeries  surgery_organ    Popup (Label Group)</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co">## 2 emnpctu05surgeries      Surgeries   surgery_type    Popup (Label Group)</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co">## 3         mnpctu05ae Adverse Events      ae_is_sae Horizontal Radiobutton</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="co">## 4         mnpctu05ae Adverse Events    ae_end_time   Checked Time (hh:mm)</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co">## 5         mnpctu05ae Adverse Events ae_description          Textarea 9,60</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co">## 6         mnpctu05ae Adverse Events          notes          Textarea 9,60</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co">##                        fflabel unit     formfamily</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a><span class="co">## 1                        Organ &lt;NA&gt;       Subforms</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="co">## 2                         Type &lt;NA&gt;       Subforms</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co">## 3                    Is an SAE &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="co">## 4                   Timepoints &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co">## 5 Description of Adverse Event &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a><span class="co">## 6                        Notes &lt;NA&gt; Adverse Events</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="linking-different-forms">Linking different forms<a class="anchor" aria-label="anchor" href="#linking-different-forms"></a>
+</h4>
 <p>Linkages amongst forms can be explored with the <code>links_secuTrial</code> function. This relies on the <code>igraph</code> package to create a network. It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">links_secuTrial</span>(bmd_export)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">links_secuTrial</span>(bmd_export)</span></code></pre></div>
 <p><img src="inst/extdata/graphics/map.png"><!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG --></p>
 </div>
-<div id="sampling-random-participants" class="section level4">
-<h4 class="hasAnchor">
-<a href="#sampling-random-participants" class="anchor"></a>Sampling random participants</h4>
+<div class="section level4">
+<h4 id="sampling-random-participants">Sampling random participants<a class="anchor" aria-label="anchor" href="#sampling-random-participants"></a>
+</h4>
 <p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">return_random_participants</span>(ctu05, <span class="dt">percent =</span> <span class="fl">0.25</span>, <span class="dt">seed =</span> <span class="dv">1337</span>, <span class="dt">date =</span> <span class="st">"2019-03-18"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4"></a>                           <span class="dt">centres =</span> <span class="kw">c</span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</span>
-<span id="cb23-5"><a href="#cb23-5"></a></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="co">## $participants</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="co">##          mnpaid                   centre mnpvisstartdate</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="co">## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="co">## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="co">## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="co">## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03</span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="co">## </span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="co">## $rng_config</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="co">## [1] "Mersenne-Twister" "Inversion"        "Rejection"</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">return_random_participants</span>(ctu05, <span class="dt">percent =</span> <span class="fl">0.25</span>, <span class="dt">seed =</span> <span class="dv">1337</span>, <span class="dt">date =</span> <span class="st">"2019-03-18"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>                           <span class="dt">centres =</span> <span class="kw">c</span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co">## $participants</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">##          mnpaid                   centre mnpvisstartdate</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="co">## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="co">## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="co">## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co">## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co">## </span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co">## $rng_config</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a><span class="co">## [1] "Mersenne-Twister" "Inversion"        "Rejection"</span></span></code></pre></div>
 </div>
 </div>
 </details>
 </div>
-<div id="for-contributors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#for-contributors" class="anchor"></a>For contributors</h2>
-<div id="testing-with-devtools" class="section level3">
-<h3 class="hasAnchor">
-<a href="#testing-with-devtools" class="anchor"></a>Testing with devtools</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># run tests</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>devtools<span class="op">::</span><span class="kw">test</span>(<span class="st">"secuTrialR"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>ignore_words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5"></a>                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,</span>
-<span id="cb24-6"><a href="#cb24-6"></a>                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>, </span>
-<span id="cb24-7"><a href="#cb24-7"></a>                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)</span>
-<span id="cb24-8"><a href="#cb24-8"></a>devtools<span class="op">::</span><span class="kw">spell_check</span>(<span class="st">"secuTrialR"</span>, <span class="dt">ignore =</span> ignore_words)</span></code></pre></div>
+<div class="section level2">
+<h2 id="for-contributors">For contributors<a class="anchor" aria-label="anchor" href="#for-contributors"></a>
+</h2>
+<div class="section level3">
+<h3 id="testing-with-devtools">Testing with devtools<a class="anchor" aria-label="anchor" href="#testing-with-devtools"></a>
+</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># run tests</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>devtools<span class="op">::</span><span class="kw">test</span>(<span class="st">"secuTrialR"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>ignore_words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>, </span>
+<span id="cb25-7"><a href="#cb25-7"></a>                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)</span>
+<span id="cb25-8"><a href="#cb25-8"></a>devtools<span class="op">::</span><span class="kw">spell_check</span>(<span class="st">"secuTrialR"</span>, <span class="dt">ignore =</span> ignore_words)</span></code></pre></div>
 </div>
-<div id="linting-with-lintr" class="section level3">
-<h3 class="hasAnchor">
-<a href="#linting-with-lintr" class="anchor"></a>Linting with lintr</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># lint the package -&gt; should be clean</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">library</span>(lintr)</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="kw">lint_package</span>(<span class="st">"secuTrialR"</span>, <span class="dt">linters =</span> <span class="kw">with_defaults</span>(<span class="dt">camel_case_linter =</span> <span class="ot">NULL</span>,</span>
-<span id="cb25-4"><a href="#cb25-4"></a>                                                   <span class="dt">object_usage_linter =</span> <span class="ot">NULL</span>,</span>
-<span id="cb25-5"><a href="#cb25-5"></a>                                                   <span class="kw">line_length_linter</span>(<span class="dv">125</span>)))</span></code></pre></div>
+<div class="section level3">
+<h3 id="linting-with-lintr">Linting with lintr<a class="anchor" aria-label="anchor" href="#linting-with-lintr"></a>
+</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># lint the package -&gt; should be clean</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">library</span>(lintr)</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="kw">lint_package</span>(<span class="st">"secuTrialR"</span>, <span class="dt">linters =</span> <span class="kw">with_defaults</span>(<span class="dt">camel_case_linter =</span> <span class="ot">NULL</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>                                                   <span class="dt">object_usage_linter =</span> <span class="ot">NULL</span>,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>                                                   <span class="kw">line_length_linter</span>(<span class="dv">125</span>)))</span></code></pre></div>
 </div>
-<div id="building-the-vignette" class="section level3">
-<h3 class="hasAnchor">
-<a href="#building-the-vignette" class="anchor"></a>Building the vignette</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">library</span>(rmarkdown)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">render</span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>,</span>
-<span id="cb26-3"><a href="#cb26-3"></a>       <span class="dt">output_format=</span><span class="kw">c</span>(<span class="st">"pdf_document"</span>))</span></code></pre></div>
+<div class="section level3">
+<h3 id="building-the-vignette">Building the vignette<a class="anchor" aria-label="anchor" href="#building-the-vignette"></a>
+</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">library</span>(rmarkdown)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="kw">render</span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3"></a>       <span class="dt">output_format=</span><span class="kw">c</span>(<span class="st">"pdf_document"</span>))</span></code></pre></div>
 </div>
-<div id="generating-the-readme-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#generating-the-readme-file" class="anchor"></a>Generating the README file</h3>
+<div class="section level3">
+<h3 id="generating-the-readme-file">Generating the README file<a class="anchor" aria-label="anchor" href="#generating-the-readme-file"></a>
+</h3>
 <p>The README file is automatically generated on GitHub via a GitHub action.</p>
 </div>
-<div id="handling-dependencies" class="section level3">
-<h3 class="hasAnchor">
-<a href="#handling-dependencies" class="anchor"></a>Handling dependencies</h3>
+<div class="section level3">
+<h3 id="handling-dependencies">Handling dependencies<a class="anchor" aria-label="anchor" href="#handling-dependencies"></a>
+</h3>
 <p>Dependencies to other R packages are to be declared in the <code>DESCRIPTION</code> file under <code>Imports:</code> and in the specific <code>roxygen2</code> documentation of the functions relying on the dependency. It is suggested to be as explicit as possible. i.e. Just import functions that are needed and not entire packages.</p>
 <p>Example to import <code>str_match</code> <code>str_length</code> <code>str_wrap</code> from the <code>stringr</code> package (see <a href="R/read_secuTrial_raw.R">read_secuTrial_raw.R</a>):</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">#' @importFrom stringr str_match str_length str_wrap</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co">#' @importFrom stringr str_match str_length str_wrap</span></span></code></pre></div>
 </div>
-<div id="preparing-a-release-on-cran" class="section level3">
-<h3 class="hasAnchor">
-<a href="#preparing-a-release-on-cran" class="anchor"></a>Preparing a release on CRAN</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># build the package archive</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>R CMD build secuTrialR</span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># in this example for version 0.9.0</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>R CMD check secuTrialR_<span class="dv">0</span>.<span class="dv">9</span>.<span class="fl">0.</span>tar.gz</span></code></pre></div>
+<div class="section level3">
+<h3 id="preparing-a-release-on-cran">Preparing a release on CRAN<a class="anchor" aria-label="anchor" href="#preparing-a-release-on-cran"></a>
+</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># build the package archive</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>R CMD build secuTrialR</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># in this example for version 0.9.0</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>R CMD check secuTrialR_<span class="dv">0</span>.<span class="dv">9</span>.<span class="fl">0.</span>tar.gz</span></code></pre></div>
 </div>
-<div id="versioning-and-releases" class="section level3">
-<h3 class="hasAnchor">
-<a href="#versioning-and-releases" class="anchor"></a>Versioning and releases</h3>
+<div class="section level3">
+<h3 id="versioning-and-releases">Versioning and releases<a class="anchor" aria-label="anchor" href="#versioning-and-releases"></a>
+</h3>
 <p>The version number is made up of three digits. The first digit is reserved for major releases which may break backwards compatibility. The second and third digits are used for medium and minor changes respectively. Versions released on CRAN will be tagged and saved as releases on GitHub. The version released on CRAN is regarded as the stable version while the master branch on GitHub is regarded as the current development version.</p>
-<div id="release-checklist" class="section level4">
-<h4 class="hasAnchor">
-<a href="#release-checklist" class="anchor"></a>Release checklist</h4>
+<div class="section level4">
+<h4 id="release-checklist">Release checklist<a class="anchor" aria-label="anchor" href="#release-checklist"></a>
+</h4>
 <p>Compile/Update: * README.Rmd * vignette * pkgdown page * NEWS.md</p>
 </div>
 </div>
-<div id="guidelines-for-contributors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#guidelines-for-contributors" class="anchor"></a>Guidelines for contributors</h3>
-<p>Requests for new features and bug fixes should first be documented as an <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues">Issue</a> on GitHub. Subsequently, in order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
+<div class="section level3">
+<h3 id="guidelines-for-contributors">Guidelines for contributors<a class="anchor" aria-label="anchor" href="#guidelines-for-contributors"></a>
+</h3>
+<p>Requests for new features and bug fixes should first be documented as an <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues" class="external-link">Issue</a> on GitHub. Subsequently, in order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
 <p>A depiction of the core functionalities for loading can be found <a href="inst/extdata/graphics/secuTrialR.png">here</a>.</p>
 </div>
-<div id="citation-doi" class="section level3">
-<h3 class="hasAnchor">
-<a href="#citation-doi" class="anchor"></a>Citation <a href="https://doi.org/10.21105/joss.02816"><img src="https://joss.theoj.org/papers/10.21105/joss.02816/status.svg" alt="DOI"></a>
+<div class="section level3">
+<h3 id="citation-doi">Citation <a href="https://doi.org/10.21105/joss.02816" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.02816/status.svg" alt="DOI"></a>
+<a class="anchor" aria-label="anchor" href="#citation-doi"></a>
 </h3>
 <p>If you use and benefit from <code>secuTrialR</code> in your work please cite it as:<br>
-Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial databases in R. Journal of Open Source Software, 5(55), 2816, <a href="https://doi.org/10.21105/joss.02816" class="uri">https://doi.org/10.21105/joss.02816</a></p>
+Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial databases in R. Journal of Open Source Software, 5(55), 2816, <a href="https://doi.org/10.21105/joss.02816" class="external-link uri">https://doi.org/10.21105/joss.02816</a></p>
 </div>
 </div>
 </div>
@@ -506,60 +525,64 @@ Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial data
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=secuTrialR">https://​cloud.r-project.org/​package=secuTrialR</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/">https://​github.com/​SwissClinicalTrialOrganisation/​secuTrialR/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues">https://​github.com/​SwissClinicalTrialOrganisation/​secuTrialR/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=secuTrialR" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing secuTrialR</a></li>
+<li><a href="authors.html#citation">Citing secuTrialR</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Alan G. Haynes <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
 <li>Patrick R. Wright <br><small class="roles"> Author, copyright holder </small>  </li>
 <li>Milica Markovic <br><small class="roles"> Author, copyright holder </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/dev%20version-1.0.9-blue.svg"></a></li>
-<li><a href="https://cran.r-project.org/package=secuTrialR"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a></li>
-<li><a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a></li>
-<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
-<li><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://img.shields.io/badge/dev%20version-1.0.11-blue.svg"></a></li>
+<li><a href="https://cran.r-project.org/package=secuTrialR" class="external-link"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a></li>
+<li><a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions" class="external-link"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
+<li><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Alan G. Haynes, Patrick R. Wright, Milica Markovic.</p>
+  <p></p>
+<p>Developed by Alan G. Haynes, Patrick R. Wright, Milica Markovic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -567,6 +590,8 @@ Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial data
 
   
 
+
+  
 
   </body>
 </html>
