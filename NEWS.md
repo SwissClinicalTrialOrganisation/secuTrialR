@@ -1,8 +1,8 @@
 # secuTrialR 1.0.11
 * recommendation to export with short names (#238)
-* addition of arguments allowing passing other options to `read.table` (#240)
+* addition of arguments in `read_export_table` etc allowing passing other options to `read.table` (#240)
 * addition of `dictionary_secuTrial` function for easy access a data dictionary (#241)
-* form name added to the output of `visit_structure` for better reference between the table names and labels (#242)
+* `formtablename` added to the output of `visit_structure` for better reference between the table names and labels (#242)
 * addition of `export_date` and `export_datetime` for easier access to the export date (and time) (#246)
 
 # secuTrialR 1.0.10

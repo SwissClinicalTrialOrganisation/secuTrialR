@@ -56,6 +56,7 @@ test_that("no fail with TES05", {
 vs <- visit_structure(dat)
 test_that("correct dims", {
   expect_equal(dim(vs), c(3, 7))
+  expect_true("formtablename" %in% names(vs))
 })
 
 test_that("all forms included", {

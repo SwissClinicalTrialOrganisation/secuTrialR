@@ -129,3 +129,13 @@ test_that("Exceptions trigger as expected.", {
                                  centre_table = centre,
                                  visitplan_table = visitplan))
 })
+
+test_that("custom sep works", {
+  expect_error(read_export_table(data_dir = system.file("extdata", "sT_exports", "BMD",
+                                                        "s_export_CSV-xls_BMD_short_en_utf8",
+                                                        package = "secuTrialR"),
+                                 file_name = "cn.xls",
+                                 export_options = export_options_unzipped,
+                                 is_meta_table = TRUE,
+                                 sep = "\t"), NA)
+})
