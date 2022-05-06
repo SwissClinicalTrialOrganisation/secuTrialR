@@ -5,7 +5,8 @@
 #' \code{secuTrialdata} object anymore. Ie. they become regular \code{data.frame}s).
 #' @param x \code{secuTrialdata} object
 #' @param envir environment in which to put the data (e.g. \code{.GlobalEnv})
-#' @param data.frames character vector of data.frame names to turn into data.frames
+#' @param data.frames character vector of data.frame names to turn into data.frames.
+#' If the vector is named,data.frames will be renamed into the non-empty names(data.frames)
 #' @param meta logical should metadata be returned
 #' @param regex regex syntax to remove from names
 #' @param rep replacement for regex
@@ -31,6 +32,10 @@
 #' # the file names
 #' env2 <- new.env()
 #' as.data.frame(sT_export, regex = "ctu05", envir = env2)
+#' # add files to a new environment called env3, renaming files in data.frames
+#' env3 <- new.env()
+#' as.data.frame(sT_export, data.frames = c("allmedications" = "ctu05allmedi", "ctu05baseline"),
+#'               envir = env3)
 as.data.frame.secuTrialdata <- function(x,
                                         ...,
                                         envir,
@@ -47,11 +52,15 @@ as.data.frame.secuTrialdata <- function(x,
   datanames <- x$export_options$data_names
   datanames <- as.character(datanames)
   if (!all(data.frames %in% datanames)) stop("unrecognised data.frame specified")
-  if (!meta) {
+  if (meta & !is.null(data.frames)) warning("meta=TRUE ignored since data.frame specified")
+  if (!meta & is.null(data.frames)) {
     datanames <- datanames[!datanames %in% unlist(x$export_options$meta_names)]
   }
-  if (!is.null(data.frames)) datanames <- datanames[datanames %in% data.frames]
+  if (!is.null(data.frames)) datanames <- data.frames
   datanames2 <- datanames
+  if (!is.null(names(data.frames)) & !is.null(regex)) stop("named data.frames not compatible with regex unequal NULL")
+  if (!is.null(names(data.frames)) & any(duplicated(names(data.frames), incomparables = c(NA,"")))) stop("names of data.frames contain duplicates")
+  if (!is.null(names(data.frames))) datanames2[!is.na(names(data.frames)) & names(data.frames) != ""] <- names(data.frames)[!is.na(names(data.frames)) & names(data.frames) != ""]
   if (!is.null(regex)) datanames2 <- gsub(regex, rep, datanames)
 
   invisible(

@@ -1,3 +1,6 @@
+# secuTrialR 1.0.12
+* adapt `as.data.frame.secuTrialData()` to allow named character vectors as option `data.frames` to specify custom names for data.frames (#250) 
+
 # secuTrialR 1.0.11
 * recommendation to export with short names (#238)
 * addition of arguments in `read_export_table` etc allowing passing other options to `read.table` (#240)

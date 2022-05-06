@@ -25,7 +25,8 @@ another environment (e.g. place them in the global environment
 
 \item{envir}{environment in which to put the data (e.g. \code{.GlobalEnv})}
 
-\item{data.frames}{character vector of data.frame names to turn into data.frames}
+\item{data.frames}{character vector of data.frame names to turn into data.frames.
+If the vector is named,data.frames will be renamed into the non-empty names(data.frames)}
 
 \item{meta}{logical should metadata be returned}
 
@@ -63,4 +64,8 @@ as.data.frame(sT_export, envir = env1)
 # the file names
 env2 <- new.env()
 as.data.frame(sT_export, regex = "ctu05", envir = env2)
+# add files to a new environment called env3, renaming files in data.frames
+env3 <- new.env()
+as.data.frame(sT_export, data.frames = c("allmedications" = "ctu05allmedi", "ctu05baseline"),
+              envir = env3)
 }
