@@ -1,6 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# secuTrialR
+secuTrialR
+==========
 
 [![](https://img.shields.io/badge/dev%20version-1.0.12-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
@@ -14,7 +15,8 @@ Status](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R
 An R package to handle data from the clinical data management system
 (CDMS) [secuTrial](https://www.secutrial.com/en/).
 
-## Installing from GitHub with devtools
+Installing from GitHub with devtools
+------------------------------------
 
 Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
 
@@ -22,7 +24,8 @@ Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
 devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
 ```
 
-## Recommended export options
+Recommended export options
+--------------------------
 
 While the package strives to allow loading of as many types of secuTrial
 data exports as possible, there are certain export options which are
@@ -43,7 +46,8 @@ have reported issues importing data with long names, but the issues do
 not exist when using short names. That may (or may not) be related to
 upgarding SecuTrial.
 
-## Basic usage
+Basic usage
+-----------
 
 An extensive applied manual/vignette is available
 [here](https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf)
@@ -86,9 +90,8 @@ tables can be extracted from the `ctu05` object via `tab <- ctu05$tab`,
 where `tab` is the table of interest.
 
 <details>
-<summary>
-Wrapped functions
-</summary>
+
+<summary>Wrapped functions</summary>
 
 #### Load the dataset
 
@@ -136,8 +139,8 @@ bmd_export
 ```
 
     ## secuTrial data imported from:
-    ## C:/Users/dkf-home-01/R/win-library/4.1/secuTrialR/extdata/sT_exports/BMD/
-    ## s_export_CSV-xls_BMD_short_en_utf8.zip 
+    ## /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-
+    ## xls_BMD_short_en_utf8.zip 
     ##  table nrow ncol  meta original_name
     ##     vp    1   10  TRUE        vp.xls
     ##   vpfs    1    2  TRUE      vpfs.xls
@@ -563,7 +566,8 @@ return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-1
     ## $rng_config
     ## [1] "Mersenne-Twister" "Inversion"        "Rejection"
 
-## For contributors
+For contributors
+----------------
 
 ### Testing with devtools
 
@@ -610,7 +614,7 @@ explicit as possible. i.e. Just import functions that are needed and not
 entire packages.
 
 Example to import `str_match` `str_length` `str_wrap` from the `stringr`
-package (see [read_secuTrial_raw.R](R/read_secuTrial_raw.R)):
+package (see [read\_secuTrial\_raw.R](R/read_secuTrial_raw.R)):
 
 ``` r
 #' @importFrom stringr str_match str_length str_wrap
@@ -669,4 +673,4 @@ If you use and benefit from `secuTrialR` in your work please cite it
 as:  
 Wright et al., (2020). secuTrialR: Seamless interaction with clinical
 trial databases in R. Journal of Open Source Software, 5(55), 2816,
-<https://doi.org/10.21105/joss.02816>
+<a href="https://doi.org/10.21105/joss.02816" class="uri">https://doi.org/10.21105/joss.02816</a>
