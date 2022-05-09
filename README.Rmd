@@ -1,3 +1,10 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+  pdf_document: default
+  html_document: default
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -201,7 +208,7 @@ as.data.frame(ctu05, envir = env)
 ls(env)
 ```
 
-There are also options for selecting specific forms (option `data.frames`), changing names based on regex (options `regex` and `rep`) and specifying whether metadata objects should be returned (option `meta`).
+There are also options for selecting specific forms (option `data.frames`), changing names based on a named vector (option `data.frames`) or regex (options `regex` and `rep`), and specifying whether metadata objects should be returned (option `meta`).
 
 
 #### Recruitment over time

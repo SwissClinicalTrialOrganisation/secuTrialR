@@ -39,6 +39,10 @@ test_that("bmd", {
                              data.frames = c("dem00bmd")), regexp = NA)
   expect_true(exists("dem00bmd", envir = test))
 
+  expect_error(as.data.frame(bmd, envir = test,
+                             data.frames = c("patients"="casenodes", "centres")), regexp = NA)
+  expect_true(all(sapply(c("patients", "centres"), exists, envir = test)))
+
 })
 
 test_that("errors", {
@@ -61,5 +65,19 @@ test_that("errors", {
   expect_error(as.data.frame(bmd, envir = TRUE),
                regexp = "envir should be an environment")
 
+  expect_error(as.data.frame(bmd, data.frames = c("newbmd"="dem00bmd"),
+                             regex = c("dem00"), envir = .GlobalEnv),
+               regexp = "named data.frames not compatible with regex unequal NULL")
+
+  expect_error(as.data.frame(bmd, data.frames = c("newbmd"="dem00bmd", "newbmd"="casenodes"),
+                             envir = .GlobalEnv),
+               regexp = "names of data.frames contain duplicates")
+
+})
+
+test_that("warnings", {
+  expect_warning(as.data.frame(bmd, data.frames = c("dem00bmd"),
+                               meta = TRUE, envir = .GlobalEnv),
+                 regexp = "meta=TRUE ignored since data.frame specified")
 
 })

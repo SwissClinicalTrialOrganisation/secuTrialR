@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,18 +36,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.12</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -65,7 +61,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -77,438 +80,491 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="secutrialr-appveyor-build-status-travis-codecov" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#secutrialr-appveyor-build-status-travis-codecov" class="anchor"></a>secuTrialR <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://img.shields.io/badge/version-1.0.3-blue.svg"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="secutrialr">secuTrialR<a class="anchor" aria-label="anchor" href="#secutrialr"></a>
 </h1></div>
-<p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/">secuTrial</a>.</p>
-<div id="installing-from-github-with-devtools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-from-github-with-devtools" class="anchor"></a>Installing from github with devtools</h2>
+
+<p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/" class="external-link">secuTrial</a>.</p>
+<div class="section level2">
+<h2 id="installing-from-github-with-devtools">Installing from GitHub with devtools<a class="anchor" aria-label="anchor" href="#installing-from-github-with-devtools"></a>
+</h2>
 <p>Please note that <code>R versions &gt;= 3.5</code> should be used to run <code>secuTrialR</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SwissClinicalTrialOrganisation/secuTrialR"</span>)</span></code></pre></div>
 </div>
-<div id="recommended-export-options" class="section level2">
-<h2 class="hasAnchor">
-<a href="#recommended-export-options" class="anchor"></a>Recommended export options</h2>
-<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which:</p>
-<ul>
-<li>are <strong>zipped</strong>
-</li>
-<li>are <strong>English</strong>
-</li>
-<li>have <strong>reference values</strong> stored <strong>in a separate table</strong>
-</li>
-<li>contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong>
-</li>
-<li>do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables</li>
-<li>are <strong>UTF-8</strong> encoded</li>
-<li>are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong>
-</li>
-<li>do <strong>NOT</strong> contain form data of hidden fields</li>
-</ul>
+<div class="section level2">
+<h2 id="recommended-export-options">Recommended export options<a class="anchor" aria-label="anchor" href="#recommended-export-options"></a>
+</h2>
+<p>While the package strives to allow loading of as many types of secuTrial data exports as possible, there are certain export options which are less likely to cause issues. If possible it is suggested to export data which adheres to a suggested option set. Thus, we suggest to work with exports which: - are <strong>zipped</strong> - are <strong>English</strong> - have <strong>reference values</strong> stored <strong>in a separate table</strong> - contain <strong>Add-IDs</strong>, <strong>centre information</strong>, <strong>structure information</strong>, <strong>form status</strong>, <strong>project setup</strong> - do <strong>NOT</strong> have the <strong>meta data duplicated</strong> into all tables - are <strong>UTF-8</strong> encoded - are <strong>“CSV format”</strong> or <strong>“CSV format for MS Excel”</strong> - do <strong>NOT</strong> contain form <strong>data of hidden fields</strong></p>
 <p>If you use <code><a href="reference/read_secuTrial.html">read_secuTrial()</a></code> to read your export then it will inform you regarding deviations.</p>
+<p>We also recommend using short names when exporting your data. Some users have reported issues importing data with long names, but the issues do not exist when using short names. That may (or may not) be related to upgarding SecuTrial.</p>
 </div>
-<div id="basic-usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#basic-usage" class="anchor"></a>Basic usage</h2>
-<p>An extensive applied manual/vignette is available <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf">here</a> and probably the best place to get started.</p>
+<div class="section level2">
+<h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h2>
+<p>An extensive applied manual/vignette is available <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/master/vignettes/secuTrialR-package-vignette.pdf" class="external-link">here</a> and probably the best place to get started.</p>
 <p>Load the package</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">secuTrialR</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(secuTrialR)</span></code></pre></div>
 <p>Load a dataset</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">export_location</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,
-                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                               <span class="kw">package</span> <span class="kw">=</span> <span class="st">"secuTrialR"</span>)
-<span class="no">ctu05</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/read_secuTrial.html">read_secuTrial</a></span>(<span class="no">export_location</span>)</pre></div>
-<pre><code>## Read export successfully.</code></pre>
-<pre><code>## The following export options deviate from the suggested specifications:
-## Data from hidden fields is part of the export.</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>export_location <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">"secuTrialR"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ctu05 <span class="ot">&lt;-</span> <span class="fu">read_secuTrial</span>(export_location)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Read export successfully.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## The following export options deviate from the suggested specifications:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Data from hidden fields is part of the export.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Short names was not selected.</span></span></code></pre></div>
 <p>This will load all sheets from the export into an object of class <code>secuTrialdata</code>, which is basically a list. It will always contain <code>export_details</code> (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via <code>ctu05$export_options$data_names</code>. The function also adds <a href="#variable-labels">labels to variables</a> and data.frames, converts <a href="#prepare-factors">categorical variables to <code>factor</code>s</a> and ensures that <a href="#prepare-dates">dates are <code>Date</code>s and date-times are <code>POSIXct</code></a>. <code>read_secuTrial</code> is a wrapper for the functions described below, so it is possible to achieve more flexibility by using the individual functions (if necessary). Individual tables can be extracted from the <code>ctu05</code> object via <code>tab &lt;- ctu05$tab</code>, where <code>tab</code> is the table of interest.</p>
-<details><p><summary>Wrapped functions</summary></p>
-<div id="load-the-dataset" class="section level4">
-<h4 class="hasAnchor">
-<a href="#load-the-dataset" class="anchor"></a>Load the dataset</h4>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># prepare path to example export</span>
-<span class="no">export_location</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,
-                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,
-                               <span class="kw">package</span> <span class="kw">=</span> <span class="st">"secuTrialR"</span>)
-<span class="co"># load all export data</span>
-<span class="no">bmd_export</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="kw">data_dir</span> <span class="kw">=</span> <span class="no">export_location</span>)
-
-<span class="co"># load a second dataset</span>
-<span class="no">export_location</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,
-                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,
-                               <span class="kw">package</span> <span class="kw">=</span> <span class="st">"secuTrialR"</span>)
-<span class="no">ctu05_raw</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="no">export_location</span>)
-
-<span class="co"># View names of the bmd_export object</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">bmd_export</span>)</pre></div>
-<pre><code>##  [1] "export_options" "fs"             "cn"             "ctr"           
-##  [5] "is"             "qs"             "qac"            "vp"            
-##  [9] "vpfs"           "atcn"           "atcvp"          "cts"           
-## [13] "bmd"            "atbmd"</code></pre>
+<details><summary>Wrapped functions</summary><div class="section level4">
+<h4 id="load-the-dataset">Load the dataset<a class="anchor" aria-label="anchor" href="#load-the-dataset"></a>
+</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare path to example export</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>export_location <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">"secuTrialR"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load all export data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>bmd_export <span class="ot">&lt;-</span> <span class="fu">read_secuTrial_raw</span>(<span class="at">data_dir =</span> export_location)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load a second dataset</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>export_location <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">package =</span> <span class="st">"secuTrialR"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ctu05_raw <span class="ot">&lt;-</span> <span class="fu">read_secuTrial_raw</span>(export_location)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># View names of the bmd_export object</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bmd_export)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "export_options" "fs"             "cn"             "ctr"           </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] "is"             "qs"             "qac"            "vp"            </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] "vpfs"           "atcn"           "atcvp"          "cts"           </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] "bmd"            "atbmd"</span></span></code></pre></div>
 <p><code>read_secuTrial_raw</code> returns an object of class <code>secuTrialdata</code>, which is basically a list. It will always contain <code>export_details</code> (which are parsed from the HTML ExportOptions file that secuTrial generates). By default, it will also contain all other files in the dataset. secuTrialR automatically strips file names of dates. The new file names can be seen via <code>bmd_export$export_options$data_names</code>. <!-- DEDICATED ACCESSOR FUNCTION FOR DATA_NAMES? might already be implemented in the print method --></p>
 <p><code>bmd_export</code> is a list, with class <code>secuTrialdata</code>. To prevent it from printing all data to the console, a special print method returns some useful information about the objects within <code>bmd_export</code> instead. The information returned includes the original file name in the datafile, it’s name in the <code>secuTrialdata</code> object, together with the number of rows and columns and a column indicating whether the object is metadata or not:</p>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="no">bmd_export</span></pre></div>
-<pre><code>## secuTrial data imported from:
-## /home/wrightp/R/x86_64-pc-linux-gnu-library/3.6/secuTrialR/extdata/sT_exports/
-## BMD/s_export_CSV-xls_BMD_short_en_utf8.zip 
-##  table nrow ncol  meta original_name
-##     vp    1   10  TRUE        vp.xls
-##   vpfs    1    2  TRUE      vpfs.xls
-##     fs    1    7  TRUE        fs.xls
-##     qs    1    7  TRUE        qs.xls
-##     is    3    8  TRUE        is.xls
-##    ctr    1    3  TRUE       ctr.xls
-##     cn  113   13  TRUE        cn.xls
-##   atcn    0    6  TRUE      atcn.xls
-##  atcvp    0   11  TRUE     atcvp.xls
-##    qac    0   10  TRUE       qac.xls
-##    cts    0    8  TRUE       cts.xls
-##    bmd  504   27 FALSE       bmd.xls
-##  atbmd    0   28 FALSE     atbmd.xls</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bmd_export</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## secuTrial data imported from:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## xls_BMD_short_en_utf8.zip </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  table nrow ncol  meta original_name</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     vp    1   10  TRUE        vp.xls</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   vpfs    1    2  TRUE      vpfs.xls</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">##     fs    1    7  TRUE        fs.xls</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     qs    1    7  TRUE        qs.xls</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     is    3    8  TRUE        is.xls</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##    ctr    1    3  TRUE       ctr.xls</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">##     cn  113   13  TRUE        cn.xls</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">##   atcn    0    6  TRUE      atcn.xls</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  atcvp    0   11  TRUE     atcvp.xls</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    qac    0   10  TRUE       qac.xls</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">##    cts    0    8  TRUE       cts.xls</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="do">##    bmd  504   27 FALSE       bmd.xls</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  atbmd    0   28 FALSE     atbmd.xls</span></span></code></pre></div>
 <p>Individual tables can be extracted from the <code>bmd_export</code> object via <code>tab &lt;- bmd_export$tab</code>, where <code>tab</code> is the table of interest. <!-- accessor function? --></p>
 </div>
-<div id="variable-labels" class="section level4">
-<h4 class="hasAnchor">
-<a href="#variable-labels" class="anchor"></a>Variable labels</h4>
+<div class="section level4">
+<h4 id="variable-labels">Variable labels<a class="anchor" aria-label="anchor" href="#variable-labels"></a>
+</h4>
 <p>For creating tables, it is often useful to have access to variable labels. secuTrialR supports two main methods for handling them - a named list, or via variable attributes. The list approach works as follows.</p>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="no">labs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/labels_secuTrial.html">labels_secuTrial</a></span>(<span class="no">bmd_export</span>)
-<span class="co"># query the list with the variable name of interest</span>
-<span class="no">labs</span><span class="kw">[[</span><span class="st">"age"</span>]]</pre></div>
-<pre><code>## [1] "Age"</code></pre>
-<p>The attribute based approach adds labels as an attribute to a variable, which can then be accessed via <code><a href="reference/labels_secuTrial.html">label(var)</a></code>.</p>
-<div class="sourceCode" id="cb12"><pre class="r"><span class="no">labelled</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/labels_secuTrial.html">label_secuTrial</a></span>(<span class="no">bmd_export</span>)
-<span class="fu"><a href="reference/labels_secuTrial.html">label</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>)</pre></div>
-<pre><code>## [1] "Age"</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>labs <span class="ot">&lt;-</span> <span class="fu">labels_secuTrial</span>(bmd_export)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># query the list with the variable name of interest</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>labs[[<span class="st">"age"</span>]]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Age"</span></span></code></pre></div>
+<p>The attribute based approach adds labels as an attribute to a variable, which can then be accessed via <code>label(var)</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>labelled <span class="ot">&lt;-</span> <span class="fu">label_secuTrial</span>(bmd_export)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">label</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Age"</span></span></code></pre></div>
 <p>Labels can be added to new variables or changed via</p>
-<div class="sourceCode" id="cb14"><pre class="r"><span class="fu"><a href="reference/labels_secuTrial.html">label</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>) <span class="kw">&lt;-</span> <span class="st">"Age (years)"</span>
-<span class="fu"><a href="reference/labels_secuTrial.html">label</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>)</pre></div>
-<pre><code>## [1] "Age (years)"</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">label</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age) <span class="ot">&lt;-</span> <span class="st">"Age (years)"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">label</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Age (years)"</span></span></code></pre></div>
 <p>Where units have been defined in the SecuTrial database, they can be accessed or changed analogously (here, age had no unit assigned, but we can add one).</p>
-<div class="sourceCode" id="cb16"><pre class="r"><span class="fu"><a href="reference/labels_secuTrial.html">units</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>)</pre></div>
-<pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb18"><pre class="r"><span class="fu"><a href="reference/labels_secuTrial.html">units</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>) <span class="kw">&lt;-</span> <span class="st">"years"</span>
-<span class="fu"><a href="reference/labels_secuTrial.html">units</a></span>(<span class="no">labelled</span>$<span class="no">bmd</span>$<span class="no">age</span>)</pre></div>
-<pre><code>## [1] "years"</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age) <span class="ot">&lt;-</span> <span class="st">"years"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(labelled<span class="sc">$</span>bmd<span class="sc">$</span>age)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "years"</span></span></code></pre></div>
 <p>There is a drawback to the attribute based approach - labels will not be propagated if variables are derived and may be lost if variables are edited.</p>
 <p>Currently, <code>label_secuTrial</code> should be used prior to <code>dates_secuTrial</code> or <code>factorize_secuTrial</code> so that labels and units are propagated to factor and date variables.</p>
 </div>
-<div id="prepare-factors" class="section level4">
-<h4 class="hasAnchor">
-<a href="#prepare-factors" class="anchor"></a>Prepare factors</h4>
-<p>It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.</p>
-<div class="sourceCode" id="cb20"><pre class="r"><span class="no">factors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/factorize.html">factorize_secuTrial</a></span>(<span class="no">ctu05_raw</span>)</pre></div>
-<p>This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with <code>.factor</code> appended (i.e. a new variable called <code>sex.factor</code> would be added to the relevant form).</p>
-<div class="sourceCode" id="cb21"><pre class="r"><span class="co"># original variable</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">factors</span>$<span class="no">ctu05baseline</span>$<span class="no">gender</span>)</pre></div>
-<pre><code>##  int [1:17] 1 NA NA 2 1 2 1 NA NA 1 ...</code></pre>
-<div class="sourceCode" id="cb23"><pre class="r"><span class="co"># factor</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">factors</span>$<span class="no">ctu05baseline</span>$<span class="no">gender.factor</span>)</pre></div>
-<pre><code>##  Factor w/ 2 levels "male","female": 1 NA NA 2 1 2 1 NA NA 1 ...</code></pre>
-<div class="sourceCode" id="cb25"><pre class="r"><span class="co"># cross tabulation</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">original</span> <span class="kw">=</span> <span class="no">factors</span>$<span class="no">ctu05baseline</span>$<span class="no">gender</span>, <span class="kw">factor</span> <span class="kw">=</span> <span class="no">factors</span>$<span class="no">ctu05baseline</span>$<span class="no">gender.factor</span>)</pre></div>
-<pre><code>##         factor
-## original male female
-##        1    5      0
-##        2    0      5</code></pre>
-</div>
-<div id="prepare-dates" class="section level4">
-<h4 class="hasAnchor">
-<a href="#prepare-dates" class="anchor"></a>Prepare dates</h4>
-<p>Date(time)s are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:</p>
-<div class="sourceCode" id="cb27"><pre class="r"><span class="no">dates</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/dates_secuTrial.html">dates_secuTrial</a></span>(<span class="no">ctu05_raw</span>)</pre></div>
-<p>Date variables are converted to <code>Date</code> class, and datetimes are converted to <code>POSIXct</code> class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case <code>NA</code>s are accidentally created.</p>
-<div class="sourceCode" id="cb28"><pre class="r"><span class="no">dates</span>$<span class="no">ctu05baseline</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">7</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"aspirin_start"</span>, <span class="st">"aspirin_start.date"</span>,
-                              <span class="st">"hiv_date"</span>, <span class="st">"hiv_date.datetime"</span>)]</pre></div>
-<pre><code>##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
-## 1            NA               &lt;NA&gt; 201903052356 2019-03-05 23:56:00
-## 7      20060301         2006-03-01           NA                &lt;NA&gt;</code></pre>
-<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
-<p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
-<p>Recommended literature on incomplete dates/date imputation:\ <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf">Dubois and Hebert 2001</a> \ <a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf">Bowman 2006</a> \</p>
-</div>
-<div id="recommended-approach-if-not-using-read_secutrial" class="section level4">
-<h4 class="hasAnchor">
-<a href="#recommended-approach-if-not-using-read_secutrial" class="anchor"></a>Recommended approach if not using <code>read_secuTrial</code>
+<div class="section level4">
+<h4 id="prepare-factors">Prepare factors<a class="anchor" aria-label="anchor" href="#prepare-factors"></a>
 </h4>
-<div class="sourceCode" id="cb30"><pre class="r"><span class="no">f</span> <span class="kw">&lt;-</span> <span class="st">"PATH_TO_FILE"</span>
-<span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="no">f</span>)
-<span class="no">l</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/labels_secuTrial.html">label_secuTrial</a></span>(<span class="no">d</span>)
-<span class="no">fa</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/factorize.html">factorize_secuTrial</a></span>(<span class="no">l</span>)
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/dates_secuTrial.html">dates_secuTrial</a></span>(<span class="no">fa</span>)
-
-<span class="co"># or, if you like pipes</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>)
-<span class="no">f</span> <span class="kw">&lt;-</span> <span class="st">"PATH_TO_FILE"</span>
-<span class="no">d</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/secuTrialdata.html">read_secuTrial_raw</a></span>(<span class="no">f</span>)
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="no">d</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/labels_secuTrial.html">label_secuTrial</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/factorize.html">factorize_secuTrial</a></span>() <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/dates_secuTrial.html">dates_secuTrial</a></span>()</pre></div>
-
+<p>It is often useful to have categorical variables as factors (R knows how to handle factors). secuTrialR can prepare factors easily.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>factors <span class="ot">&lt;-</span> <span class="fu">factorize_secuTrial</span>(ctu05_raw)</span></code></pre></div>
+<p>This functions loops through each table of the dataset, creating new factor variables where necessary. The new variables are the same as the original but with <code>.factor</code> appended (i.e. a new variable called <code>sex.factor</code> would be added to the relevant form).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original variable</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(factors<span class="sc">$</span>ctu05baseline<span class="sc">$</span>gender)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  int [1:17] 1 NA NA 2 1 2 1 NA NA 1 ...</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># factor</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(factors<span class="sc">$</span>ctu05baseline<span class="sc">$</span>gender.factor)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  Factor w/ 2 levels "male","female": 1 NA NA 2 1 2 1 NA NA 1 ...</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># cross tabulation</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">original =</span> factors<span class="sc">$</span>ctu05baseline<span class="sc">$</span>gender, <span class="at">factor =</span> factors<span class="sc">$</span>ctu05baseline<span class="sc">$</span>gender.factor)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="do">##         factor</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="do">## original male female</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="do">##        1    5      0</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="do">##        2    0      5</span></span></code></pre></div>
 </div>
-<div id="exploratory-helpers" class="section level3">
-<h3 class="hasAnchor">
-<a href="#exploratory-helpers" class="anchor"></a>Exploratory helpers</h3>
+<div class="section level4">
+<h4 id="prepare-dates">Prepare dates<a class="anchor" aria-label="anchor" href="#prepare-dates"></a>
+</h4>
+<p>Date(time)s are a very common data type. They cannot be easily used though in their export format. This is also easily rectified in secuTrialR:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">dates_secuTrial</span>(ctu05_raw)</span></code></pre></div>
+<p>Date variables are converted to <code>Date</code> class, and datetimes are converted to <code>POSIXct</code> class. Rather than overwriting the original variable, new variables are added with the new class. This is a safetly mechanism in case <code>NA</code>s are accidentally created.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dates<span class="sc">$</span>ctu05baseline[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="fu">c</span>(<span class="st">"aspirin_start"</span>, <span class="st">"aspirin_start.date"</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"hiv_date"</span>, <span class="st">"hiv_date.datetime"</span>)]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 1            NA               &lt;NA&gt; 201903052356 2019-03-05 23:56:00</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 7      20060301         2006-03-01           NA                &lt;NA&gt;</span></span></code></pre></div>
+<p>secuTrial exports containing date variables sometimes include incomplete dates. e.g. the day or the month may be missing. During date conversion (i.e. <code><a href="reference/dates_secuTrial.html">dates_secuTrial()</a></code>) <code>secuTrialR</code> currently creates <code>NA</code>s from such incomplete date entries.</p>
+<p>Incomplete dates are not approximated to exact dates, since this can lead to false conclusions and biases. Users are, however, informed about this behaviour with a <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning()</a></code>. Subsequent approximation of incomplete dates can be manually performed.</p>
+<p>Recommended literature on incomplete dates/date imputation:<br><a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/F50311F9FFAB56176CDDC9FFBF66F655/S1041610202008025a.pdf/imputation_of_missing_dates_of_death_or_institutionalization_for_timetoevent_analyses_in_the_canadian_study_of_health_and_aging.pdf" class="external-link">Dubois and Hebert 2001</a><br><a href="https://www.lexjansen.com/phuse/2006/po/PO11.pdf" class="external-link">Bowman 2006</a></p>
+</div>
+<div class="section level4">
+<h4 id="recommended-approach-if-not-using-read_secutrial">Recommended approach if not using <code>read_secuTrial</code>
+<a class="anchor" aria-label="anchor" href="#recommended-approach-if-not-using-read_secutrial"></a>
+</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"PATH_TO_FILE"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_secuTrial_raw</span>(f)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">label_secuTrial</span>(d)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fa <span class="ot">&lt;-</span> <span class="fu">factorize_secuTrial</span>(l)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">dates_secuTrial</span>(fa)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or, if you like pipes</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="st">"PATH_TO_FILE"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_secuTrial_raw</span>(f)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_secuTrial</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factorize_secuTrial</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dates_secuTrial</span>()</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="exploratory-helpers">Exploratory helpers<a class="anchor" aria-label="anchor" href="#exploratory-helpers"></a>
+</h3>
 <p><code>secuTrialR</code> has a couple of functions to help get to grips with a secuTrial data export. They are intended to be used in an exploratory manner only.</p>
-<div id="as-data-frame" class="section level4">
-<h4 class="hasAnchor">
-<a href="#as-data-frame" class="anchor"></a>as.data.frame</h4>
+<div class="section level4">
+<h4 id="asdataframe">as.data.frame<a class="anchor" aria-label="anchor" href="#asdataframe"></a>
+</h4>
 <p>Working with a list can be tiresome so <code>secuTrialR</code> provides a <code>as.data.frame</code> method to save the <code>data.frames</code> in the list to an environment of your choice. As a demonstration, we’ll create a new environment (<code>env</code>) and create the <code>data.frame</code>s in there. In practice, using <code>.GlobalEnv</code> would probably be more useful.</p>
-<div class="sourceCode" id="cb31"><pre class="r"><span class="no">env</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">new.env</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
-<pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb33"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ctu05</span>)</pre></div>
-<pre><code>##  [1] "export_options"          "forms"                  
-##  [3] "casenodes"               "centres"                
-##  [5] "items"                   "questions"              
-##  [7] "queries"                 "visitplan"              
-##  [9] "visitplanforms"          "atcasenodes"            
-## [11] "atcasevisitplans"        "comments"               
-## [13] "miv"                     "cl"                     
-## [15] "atmiv"                   "ctu05baseline"          
-## [17] "atmnpctu05baseline"      "ctu05outcome"           
-## [19] "atmnpctu05outcome"       "ctu05treatment"         
-## [21] "atmnpctu05treatment"     "ctu05allmedi"           
-## [23] "atmnpctu05allmedi"       "ctu05studyterminat"     
-## [25] "atmnpctu05studyterminat" "ctu05ae"                
-## [27] "atmnpctu05ae"            "ctu05sae"               
-## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
-## [31] "atemnpctu05surgeries"    "atadverseevents"</code></pre>
-<div class="sourceCode" id="cb35"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">ctu05</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="no">env</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="no">env</span>)</pre></div>
-<pre><code>##  [1] "atadverseevents"         "atemnpctu05surgeries"   
-##  [3] "atmiv"                   "atmnpctu05ae"           
-##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     
-##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          
-##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    
-## [11] "ctu05ae"                 "ctu05allmedi"           
-## [13] "ctu05baseline"           "ctu05outcome"           
-## [15] "ctu05sae"                "ctu05studyterminat"     
-## [17] "ctu05treatment"          "emnpctu05surgeries"</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">new.env</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(env)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## character(0)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ctu05)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "export_options"          "forms"                  </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] "casenodes"               "centres"                </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] "items"                   "questions"              </span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] "queries"                 "visitplan"              </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] "visitplanforms"          "atcasenodes"            </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] "atcasevisitplans"        "comments"               </span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] "miv"                     "cl"                     </span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] "atmiv"                   "ctu05baseline"          </span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] "atmnpctu05baseline"      "ctu05outcome"           </span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] "atmnpctu05outcome"       "ctu05treatment"         </span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [21] "atmnpctu05treatment"     "ctu05allmedi"           </span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [23] "atmnpctu05allmedi"       "ctu05studyterminat"     </span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [25] "atmnpctu05studyterminat" "ctu05ae"                </span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [27] "atmnpctu05ae"            "ctu05sae"               </span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="do">## [29] "atmnpctu05sae"           "emnpctu05surgeries"     </span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [31] "atemnpctu05surgeries"    "atadverseevents"</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(ctu05, <span class="at">envir =</span> env)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(env)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "atadverseevents"         "atemnpctu05surgeries"   </span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] "atmiv"                   "atmnpctu05ae"           </span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="do">##  [5] "atmnpctu05allmedi"       "atmnpctu05baseline"     </span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="do">##  [7] "atmnpctu05outcome"       "atmnpctu05sae"          </span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="do">##  [9] "atmnpctu05studyterminat" "atmnpctu05treatment"    </span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] "ctu05ae"                 "ctu05allmedi"           </span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [13] "ctu05baseline"           "ctu05outcome"           </span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="do">## [15] "ctu05sae"                "ctu05studyterminat"     </span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="do">## [17] "ctu05treatment"          "emnpctu05surgeries"</span></span></code></pre></div>
 <p>There are also options for selecting specific forms (option <code>data.frames</code>), changing names based on regex (options <code>regex</code> and <code>rep</code>) and specifying whether metadata objects should be returned (option <code>meta</code>).</p>
 </div>
-<div id="recruitment-over-time" class="section level4">
-<h4 class="hasAnchor">
-<a href="#recruitment-over-time" class="anchor"></a>Recruitment over time</h4>
+<div class="section level4">
+<h4 id="recruitment-over-time">Recruitment over time<a class="anchor" aria-label="anchor" href="#recruitment-over-time"></a>
+</h4>
 <p>Recruitment is an important cornerstone for every clinical trial. <code>secuTrialR</code> allows for straigt forward visualizion of recuitment over time for a given export file.</p>
-<div class="sourceCode" id="cb37"><pre class="r"><span class="co"># show plot</span>
-<span class="co"># note that there is no line for Universitätsspital </span>
-<span class="co"># Basel because only one participant is registered for this centre</span>
-<span class="fu"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)</pre></div>
-<p><img src="figure/unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16"></p>
-<div class="sourceCode" id="cb38"><pre class="r"><span class="co"># return the plot data</span>
-<span class="fu"><a href="reference/plot_recruitment.html">plot_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">return_data</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
-<pre><code>## [[1]]
-##          date centre_id pat_count                      centre_name
-## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)
-## 1  2019-04-01       462         2           Charité Berlin (RPACK)
-## 2  2019-04-02       462         3           Charité Berlin (RPACK)
-## 3  2019-04-03       462         4           Charité Berlin (RPACK)
-## 4  2019-04-04       462         5           Charité Berlin (RPACK)
-## 5  2019-04-05       462         6           Charité Berlin (RPACK)
-## 6  2019-04-11       461         7         Inselspital Bern (RPACK)
-## 7  2019-04-12       461         8         Inselspital Bern (RPACK)
-## 8  2019-04-13       461         9         Inselspital Bern (RPACK)
-## 9  2019-04-14       461        10         Inselspital Bern (RPACK)
-## 10 2019-04-15       461        11         Inselspital Bern (RPACK)
-## 
-## [[2]]
-##         date centre_id pat_count            centre_name
-## 1 2019-04-01       462         1 Charité Berlin (RPACK)
-## 2 2019-04-02       462         2 Charité Berlin (RPACK)
-## 3 2019-04-03       462         3 Charité Berlin (RPACK)
-## 4 2019-04-04       462         4 Charité Berlin (RPACK)
-## 5 2019-04-05       462         5 Charité Berlin (RPACK)
-## 
-## [[3]]
-##          date centre_id pat_count              centre_name
-## 6  2019-04-11       461         1 Inselspital Bern (RPACK)
-## 7  2019-04-12       461         2 Inselspital Bern (RPACK)
-## 8  2019-04-13       461         3 Inselspital Bern (RPACK)
-## 9  2019-04-14       461         4 Inselspital Bern (RPACK)
-## 10 2019-04-15       461         5 Inselspital Bern (RPACK)
-## 
-## [[4]]
-##          date centre_id pat_count                      centre_name
-## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show plot</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note that there is no line for Universitätsspital </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basel because only one participant is registered for this centre</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_recruitment</span>(ctu05, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">rm_regex =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)$"</span>)</span></code></pre></div>
+<p><img src="README_files/figure-markdown_strict/unnamed-chunk-16-1.png"></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return the plot data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_recruitment</span>(ctu05, <span class="at">return_data =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">##          date centre_id pat_count                      centre_name</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1  2019-04-01       462         2           Charité Berlin (RPACK)</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  2019-04-02       462         3           Charité Berlin (RPACK)</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 3  2019-04-03       462         4           Charité Berlin (RPACK)</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 4  2019-04-04       462         5           Charité Berlin (RPACK)</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 5  2019-04-05       462         6           Charité Berlin (RPACK)</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 6  2019-04-11       461         7         Inselspital Bern (RPACK)</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 7  2019-04-12       461         8         Inselspital Bern (RPACK)</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 8  2019-04-13       461         9         Inselspital Bern (RPACK)</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 9  2019-04-14       461        10         Inselspital Bern (RPACK)</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 2019-04-15       461        11         Inselspital Bern (RPACK)</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [[2]]</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="do">##         date centre_id pat_count            centre_name</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2019-04-01       462         1 Charité Berlin (RPACK)</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 2019-04-02       462         2 Charité Berlin (RPACK)</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 2019-04-03       462         3 Charité Berlin (RPACK)</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 2019-04-04       462         4 Charité Berlin (RPACK)</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 2019-04-05       462         5 Charité Berlin (RPACK)</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [[3]]</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="do">##          date centre_id pat_count              centre_name</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 6  2019-04-11       461         1 Inselspital Bern (RPACK)</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="do">## 7  2019-04-12       461         2 Inselspital Bern (RPACK)</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="do">## 8  2019-04-13       461         3 Inselspital Bern (RPACK)</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="do">## 9  2019-04-14       461         4 Inselspital Bern (RPACK)</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 2019-04-15       461         5 Inselspital Bern (RPACK)</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="do">## [[4]]</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="do">##          date centre_id pat_count                      centre_name</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="do">## 11 2018-05-01       441         1 Universitätsspital Basel (RPACK)</span></span></code></pre></div>
 <p>Furthermore, recruitment per year and center can be returned.</p>
-<div class="sourceCode" id="cb40"><pre class="r"><span class="fu"><a href="reference/annual_recruitment.html">annual_recruitment</a></span>(<span class="no">ctu05</span>, <span class="kw">rm_regex</span> <span class="kw">=</span> <span class="st">"\\(.*\\)$"</span>)</pre></div>
-<pre><code>##                     Center Total 2018 2019
-## 1                      All    11    1   10
-## 2           Charité Berlin     5    0    5
-## 3         Inselspital Bern     5    0    5
-## 4 Universitätsspital Basel     1    1    0</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">annual_recruitment</span>(ctu05, <span class="at">rm_regex =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)$"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">##                     Center Total 2018 2019</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1                      All    11    1   10</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2           Charité Berlin     5    0    5</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3         Inselspital Bern     5    0    5</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 Universitätsspital Basel     1    1    0</span></span></code></pre></div>
 </div>
-<div id="form-status-summary-statistics" class="section level4">
-<h4 class="hasAnchor">
-<a href="#form-status-summary-statistics" class="anchor"></a>Form status summary statistics</h4>
+<div class="section level4">
+<h4 id="form-status-summary-statistics">Form status summary statistics<a class="anchor" aria-label="anchor" href="#form-status-summary-statistics"></a>
+</h4>
 <p>If you are not sure about how complete the data in you export is, it may be useful to get a quick overview of how well the forms have been filled.</p>
-<div class="sourceCode" id="cb42"><pre class="r"><span class="no">count_summary</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/form_status_summary.html">form_status_summary</a></span>(<span class="no">ctu05</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">count_summary</span>)</pre></div>
-<pre><code>##             form_name partly_filled completely_filled empty with_warnings
-## 5        ctu05allmedi             1                16     0             0
-## 6       ctu05baseline             3                14     0             0
-## 7        ctu05outcome             1                12     0             0
-## 8            ctu05sae             0                 2     0             0
-## 9  ctu05studyterminat             0                10     0             0
-## 10     ctu05treatment             0                11     0             0
-##    with_errors partly_filled.percent completely_filled.percent
-## 5            0            0.05882353                 0.9411765
-## 6            0            0.17647059                 0.8235294
-## 7            0            0.07692308                 0.9230769
-## 8            0            0.00000000                 1.0000000
-## 9            0            0.00000000                 1.0000000
-## 10           0            0.00000000                 1.0000000
-##    empty.percent with_warnings.percent with_errors.percent form_count
-## 5              0                     0                   0         17
-## 6              0                     0                   0         17
-## 7              0                     0                   0         13
-## 8              0                     0                   0          2
-## 9              0                     0                   0         10
-## 10             0                     0                   0         11</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>count_summary <span class="ot">&lt;-</span> <span class="fu">form_status_summary</span>(ctu05)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(count_summary)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="do">##             form_name partly_filled completely_filled empty with_warnings</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 5        ctu05allmedi             1                16     0             0</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 6       ctu05baseline             3                14     0             0</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 7        ctu05outcome             1                12     0             0</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 8            ctu05sae             0                 2     0             0</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 9  ctu05studyterminat             0                10     0             0</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 10     ctu05treatment             0                11     0             0</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">##    with_errors partly_filled.percent completely_filled.percent empty.percent</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 5            0            0.05882353                 0.9411765             0</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 6            0            0.17647059                 0.8235294             0</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 7            0            0.07692308                 0.9230769             0</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 8            0            0.00000000                 1.0000000             0</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 9            0            0.00000000                 1.0000000             0</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10           0            0.00000000                 1.0000000             0</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="do">##    with_warnings.percent with_errors.percent form_count</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 5                      0                   0         17</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 6                      0                   0         17</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 7                      0                   0         13</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 8                      0                   0          2</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 9                      0                   0         10</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 10                     0                   0         11</span></span></code></pre></div>
 <p>As you can see, the majority of forms has been completeley filled. None of the forms were saved empty, with warnings or with errors. For a more participant id centered statistic you can perform the following.</p>
-<div class="sourceCode" id="cb44"><pre class="r"><span class="fu"><a href="reference/form_status_counts.html">form_status_counts</a></span>(<span class="no">ctu05</span>)</pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">form_status_counts</span>(ctu05)</span></code></pre></div>
 <p>This will give you a count based overview per participant id and form. Please note that both <code>form_status_summary</code> and <code>form_status_counts</code> only work with saved forms since unsaved form data is not available in secuTrial exports.</p>
 </div>
-<div id="visit-plan" class="section level4">
-<h4 class="hasAnchor">
-<a href="#visit-plan" class="anchor"></a>Visit plan</h4>
+<div class="section level4">
+<h4 id="visit-plan">Visit plan<a class="anchor" aria-label="anchor" href="#visit-plan"></a>
+</h4>
 <p>secuTrialR can provide a depiction of the visit structure, although only where the visit plan is fixed:</p>
-<div class="sourceCode" id="cb45"><pre class="r"><span class="no">vs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/visit_structure.html">visit_structure</a></span>(<span class="no">ctu05</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">vs</span>)</pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vs <span class="ot">&lt;-</span> <span class="fu">visit_structure</span>(ctu05)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vs)</span></code></pre></div>
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 </div>
-<div id="linking-different-forms" class="section level4">
-<h4 class="hasAnchor">
-<a href="#linking-different-forms" class="anchor"></a>Linking different forms</h4>
+<div class="section level4">
+<h4 id="data-dictionary">Data dictionary<a class="anchor" aria-label="anchor" href="#data-dictionary"></a>
+</h4>
+<p>It can be difficult to find the variable you’re looking for. secuTrialR provides the <code>dictionary_secuTrial</code> function to help:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">dictionary_secuTrial</span>(ctu05))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">##        formtablename       formname      ffcolname               itemtype</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 emnpctu05surgeries      Surgeries  surgery_organ    Popup (Label Group)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 emnpctu05surgeries      Surgeries   surgery_type    Popup (Label Group)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3         mnpctu05ae Adverse Events      ae_is_sae Horizontal Radiobutton</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4         mnpctu05ae Adverse Events    ae_end_time   Checked Time (hh:mm)</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 5         mnpctu05ae Adverse Events ae_description          Textarea 9,60</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6         mnpctu05ae Adverse Events          notes          Textarea 9,60</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="do">##                        fflabel unit     formfamily</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 1                        Organ &lt;NA&gt;       Subforms</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 2                         Type &lt;NA&gt;       Subforms</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 3                    Is an SAE &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 4                   Timepoints &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 Description of Adverse Event &lt;NA&gt; Adverse Events</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 6                        Notes &lt;NA&gt; Adverse Events</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="linking-different-forms">Linking different forms<a class="anchor" aria-label="anchor" href="#linking-different-forms"></a>
+</h4>
 <p>Linkages amongst forms can be explored with the <code>links_secuTrial</code> function. This relies on the <code>igraph</code> package to create a network. It is possible to interact with the network, e.g. move nodes around in order to read the labels better. The device ID is returned to the console, but can be ignored. Forms are plotted in deep yellow, variables in light blue.</p>
-<div class="sourceCode" id="cb46"><pre class="r"><span class="fu"><a href="reference/links_secuTrial.html">links_secuTrial</a></span>(<span class="no">bmd_export</span>)</pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">links_secuTrial</span>(bmd_export)</span></code></pre></div>
 <p><img src="inst/extdata/graphics/map.png"><!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG --></p>
 </div>
-<div id="sampling-random-participants" class="section level4">
-<h4 class="hasAnchor">
-<a href="#sampling-random-participants" class="anchor"></a>Sampling random participants</h4>
+<div class="section level4">
+<h4 id="sampling-random-participants">Sampling random participants<a class="anchor" aria-label="anchor" href="#sampling-random-participants"></a>
+</h4>
 <p>During study monitoring it is common practice to check random participants from a study database. These participants should be retrieved in a reproducible fashion. The below function allows this for a loaded secuTrial data export.</p>
-<div class="sourceCode" id="cb47"><pre class="r"><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span>
-<span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span>
-<span class="fu"><a href="reference/return_random_participants.html">return_random_participants</a></span>(<span class="no">ctu05</span>, <span class="kw">percent</span> <span class="kw">=</span> <span class="fl">0.25</span>, <span class="kw">seed</span> <span class="kw">=</span> <span class="fl">1337</span>, <span class="kw">date</span> <span class="kw">=</span> <span class="st">"2019-03-18"</span>,
-                           <span class="kw">centres</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</pre></div>
-<pre><code>## $participants
-##          mnpaid                   centre mnpvisstartdate
-## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12
-## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14
-## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05
-## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03
-## 
-## $rng_config
-## [1] "Mersenne-Twister" "Inversion"        "Rejection"</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve at least 25 percent of participants recorded after March 18th 2019 </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return_random_participants</span>(ctu05, <span class="at">percent =</span> <span class="fl">0.25</span>, <span class="at">seed =</span> <span class="dv">1337</span>, <span class="at">date =</span> <span class="st">"2019-03-18"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">centres =</span> <span class="fu">c</span>(<span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span>))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="do">## $participants</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="do">##          mnpaid                   centre mnpvisstartdate</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 RPACK-INS-014 Inselspital Bern (RPACK)      2019-04-14</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 RPACK-CBE-005   Charité Berlin (RPACK)      2019-04-05</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 RPACK-CBE-003   Charité Berlin (RPACK)      2019-04-03</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="do">## $rng_config</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Mersenne-Twister" "Inversion"        "Rejection"</span></span></code></pre></div>
 </div>
+</div></details>
 </div>
-</details>
+<div class="section level2">
+<h2 id="for-contributors">For contributors<a class="anchor" aria-label="anchor" href="#for-contributors"></a>
+</h2>
+<div class="section level3">
+<h3 id="testing-with-devtools">Testing with devtools<a class="anchor" aria-label="anchor" href="#testing-with-devtools"></a>
+</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run tests</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>(<span class="st">"secuTrialR"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>ignore_words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>, </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">spell_check</span>(<span class="st">"secuTrialR"</span>, <span class="at">ignore =</span> ignore_words)</span></code></pre></div>
 </div>
-<div id="for-contributors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#for-contributors" class="anchor"></a>For contributors</h2>
-<div id="testing-with-devtools" class="section level3">
-<h3 class="hasAnchor">
-<a href="#testing-with-devtools" class="anchor"></a>Testing with devtools</h3>
-<div class="sourceCode" id="cb49"><pre class="r"><span class="co"># run tests</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/test.html">test</a></span>(<span class="st">"secuTrialR"</span>)
-<span class="co"># spell check -&gt; will contain some technical terms beyond the below list which is fine</span>
-<span class="no">ignore_words</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AdminTool"</span>, <span class="st">"allforms"</span>, <span class="st">"casenodes"</span>, <span class="st">"CDMS"</span>, <span class="st">"codebook"</span>,
-                  <span class="st">"codebooks"</span>, <span class="st">"datetime"</span> ,<span class="st">"dir"</span> ,<span class="st">"Hmisc"</span> ,<span class="st">"igraph"</span>,
-                  <span class="st">"labelled"</span>, <span class="st">"mnp"</span>, <span class="st">"savedforms"</span>, <span class="st">"secutrial"</span>, <span class="st">"secuTrial"</span>,
-                  <span class="st">"secuTrialdata"</span>, <span class="st">"tcltk"</span>, <span class="st">"tibble"</span>)
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/spell_check.html">spell_check</a></span>(<span class="st">"secuTrialR"</span>, <span class="kw">ignore</span> <span class="kw">=</span> <span class="no">ignore_words</span>)</pre></div>
+<div class="section level3">
+<h3 id="linting-with-lintr">Linting with lintr<a class="anchor" aria-label="anchor" href="#linting-with-lintr"></a>
+</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lint the package -&gt; should be clean</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lintr)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lint_package</span>(<span class="st">"secuTrialR"</span>, <span class="at">linters =</span> <span class="fu">with_defaults</span>(<span class="at">camel_case_linter =</span> <span class="cn">NULL</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                                                   <span class="at">object_usage_linter =</span> <span class="cn">NULL</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                                                   <span class="fu">line_length_linter</span>(<span class="dv">125</span>)))</span></code></pre></div>
 </div>
-<div id="linting-with-lintr" class="section level3">
-<h3 class="hasAnchor">
-<a href="#linting-with-lintr" class="anchor"></a>Linting with lintr</h3>
-<div class="sourceCode" id="cb50"><pre class="r"><span class="co"># lint the package -&gt; should be clean</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">lintr</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/lintr/man/lint_package.html">lint_package</a></span>(<span class="st">"secuTrialR"</span>, <span class="kw">linters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lintr/man/with_defaults.html">with_defaults</a></span>(<span class="kw">camel_case_linter</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-                                                   <span class="kw">object_usage_linter</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-                                                   <span class="fu"><a href="https://rdrr.io/pkg/lintr/man/linters.html">line_length_linter</a></span>(<span class="fl">125</span>)))</pre></div>
+<div class="section level3">
+<h3 id="building-the-vignette">Building the vignette<a class="anchor" aria-label="anchor" href="#building-the-vignette"></a>
+</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">output_format=</span><span class="fu">c</span>(<span class="st">"pdf_document"</span>))</span></code></pre></div>
 </div>
-<div id="building-the-vignette" class="section level3">
-<h3 class="hasAnchor">
-<a href="#building-the-vignette" class="anchor"></a>Building the vignette</h3>
-<div class="sourceCode" id="cb51"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rmarkdown</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(<span class="st">"vignettes/secuTrialR-package-vignette.Rmd"</span>,
-       <span class="kw">output_format</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pdf_document"</span>))</pre></div>
+<div class="section level3">
+<h3 id="generating-the-readme-file">Generating the README file<a class="anchor" aria-label="anchor" href="#generating-the-readme-file"></a>
+</h3>
+<p>The README file is automatically generated on GitHub via a GitHub action.</p>
 </div>
-<div id="generating-the-readme-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#generating-the-readme-file" class="anchor"></a>Generating the README file</h3>
-<p>The README file contains both standard text and interpreted R code. It must therefore be compiled. Changes should be made in the <code>README.Rmd</code> file and the file “knited” with R. This is easiest with RStudio, but other methods are available.</p>
-<div class="sourceCode" id="cb52"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">knitr</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span>(<span class="st">"README.Rmd"</span>)</pre></div>
-</div>
-<div id="building-the-pkgdown-site" class="section level3">
-<h3 class="hasAnchor">
-<a href="#building-the-pkgdown-site" class="anchor"></a>Building the <code>pkgdown</code> site</h3>
-<div class="sourceCode" id="cb53"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pkgdown</span>)
-<span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span>()</pre></div>
-</div>
-<div id="handling-dependencies" class="section level3">
-<h3 class="hasAnchor">
-<a href="#handling-dependencies" class="anchor"></a>Handling dependencies</h3>
+<div class="section level3">
+<h3 id="handling-dependencies">Handling dependencies<a class="anchor" aria-label="anchor" href="#handling-dependencies"></a>
+</h3>
 <p>Dependencies to other R packages are to be declared in the <code>DESCRIPTION</code> file under <code>Imports:</code> and in the specific <code>roxygen2</code> documentation of the functions relying on the dependency. It is suggested to be as explicit as possible. i.e. Just import functions that are needed and not entire packages.</p>
 <p>Example to import <code>str_match</code> <code>str_length</code> <code>str_wrap</code> from the <code>stringr</code> package (see <a href="R/read_secuTrial_raw.R">read_secuTrial_raw.R</a>):</p>
-<div class="sourceCode" id="cb54"><pre class="r">#' @importFrom stringr str_match str_length str_wrap</pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom stringr str_match str_length str_wrap</span></span></code></pre></div>
 </div>
-<div id="preparing-a-release-on-cran" class="section level3">
-<h3 class="hasAnchor">
-<a href="#preparing-a-release-on-cran" class="anchor"></a>Preparing a release on CRAN</h3>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># build the package archive</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="ex">R</span> CMD build secuTrialR</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></a>
-<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co"># in this example for version 0.9.0</span></a>
-<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="ex">R</span> CMD check secuTrialR_0.9.0.tar.gz</a></code></pre></div>
+<div class="section level3">
+<h3 id="preparing-a-release-on-cran">Preparing a release on CRAN<a class="anchor" aria-label="anchor" href="#preparing-a-release-on-cran"></a>
+</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># build the package archive</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>R CMD build secuTrialR</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the archive (should return "Status: OK", no WARNINGs, no NOTEs)</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># in this example for version 0.9.0</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>R CMD check secuTrialR_0.<span class="dv">9</span>.<span class="fl">0.</span>tar.gz</span></code></pre></div>
 </div>
-<div id="versioning-and-releases" class="section level3">
-<h3 class="hasAnchor">
-<a href="#versioning-and-releases" class="anchor"></a>Versioning and releases</h3>
+<div class="section level3">
+<h3 id="versioning-and-releases">Versioning and releases<a class="anchor" aria-label="anchor" href="#versioning-and-releases"></a>
+</h3>
 <p>The version number is made up of three digits. The first digit is reserved for major releases which may break backwards compatibility. The second and third digits are used for medium and minor changes respectively. Versions released on CRAN will be tagged and saved as releases on GitHub. The version released on CRAN is regarded as the stable version while the master branch on GitHub is regarded as the current development version.</p>
-<div id="release-checklist" class="section level4">
-<h4 class="hasAnchor">
-<a href="#release-checklist" class="anchor"></a>Release checklist</h4>
-<p>Compile/Update:</p>
-<ul>
-<li>README.Rmd</li>
-<li>vignette</li>
-<li>pkgdown page</li>
-<li>NEWS.md</li>
-</ul>
+<div class="section level4">
+<h4 id="release-checklist">Release checklist<a class="anchor" aria-label="anchor" href="#release-checklist"></a>
+</h4>
+<p>Compile/Update: * README.Rmd * vignette * pkgdown page * NEWS.md</p>
 </div>
 </div>
-<div id="guidelines-for-contributors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#guidelines-for-contributors" class="anchor"></a>Guidelines for contributors</h3>
-<p>Requests for new features and bug fixes should first be documented as an <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues">Issue</a> on GitHub. Subsequently, in order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
+<div class="section level3">
+<h3 id="guidelines-for-contributors">Guidelines for contributors<a class="anchor" aria-label="anchor" href="#guidelines-for-contributors"></a>
+</h3>
+<p>Requests for new features and bug fixes should first be documented as an <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues" class="external-link">Issue</a> on GitHub. Subsequently, in order to contribute to this R package you should fork the main repository. After you have made your changes please run the <a href="README.md#testing-with-devtools">tests</a> and <a href="README.md#linting-with-lintr">lint</a> your code as indicated above. Please also increment the version number and recompile the <code>README.md</code> to increment the dev-version badge (requires installing the package after editing the <code>DESCRIPTION</code> file). If all tests pass and linting confirms that your coding style conforms you can send a pull request (PR). Changes should also be mentioned in the <code>NEWS</code> file. The PR should have a description to help the reviewer understand what has been added/changed. New functionalities must be thoroughly documented, have examples and should be accompanied by at least one <a href="tests/testthat/">test</a> to ensure long term robustness. The PR will only be reviewed if all travis checks are successful. The person sending the PR should not be the one merging it.</p>
 <p>A depiction of the core functionalities for loading can be found <a href="inst/extdata/graphics/secuTrialR.png">here</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="citation-doi">Citation <a href="https://doi.org/10.21105/joss.02816" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.02816/status.svg" alt="DOI"></a>
+<a class="anchor" aria-label="anchor" href="#citation-doi"></a>
+</h3>
+<p>If you use and benefit from <code>secuTrialR</code> in your work please cite it as:<br>
+Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial databases in R. Journal of Open Source Software, 5(55), 2816, <a href="https://doi.org/10.21105/joss.02816" class="external-link uri">https://doi.org/10.21105/joss.02816</a></p>
 </div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
-<h2>License</h2>
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><a href="https://cloud.r-project.org/package=secuTrialR" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>Patrick R. Wright <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
-<li>Alan G. Haynes <br><small class="roles"> Author, copyright holder </small>  </li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+</ul>
+</div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing secuTrialR</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Alan G. Haynes <br><small class="roles"> Maintainer, author, copyright holder </small>  </li>
+<li>Patrick R. Wright <br><small class="roles"> Author, copyright holder </small>  </li>
 <li>Milica Markovic <br><small class="roles"> Author, copyright holder </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://img.shields.io/badge/dev%20version-1.0.11-blue.svg"></a></li>
+<li><a href="https://cran.r-project.org/package=secuTrialR" class="external-link"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a></li>
+<li><a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a></li>
+<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions" class="external-link"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
+<li><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
 
@@ -517,11 +573,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Patrick R. Wright, Alan G. Haynes, Milica Markovic.</p>
+  <p></p>
+<p>Developed by Alan G. Haynes, Patrick R. Wright, Milica Markovic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -529,6 +587,8 @@
 
   
 
+
+  
 
   </body>
 </html>

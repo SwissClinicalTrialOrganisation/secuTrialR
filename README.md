@@ -3,7 +3,7 @@
 secuTrialR
 ==========
 
-[![](https://img.shields.io/badge/dev%20version-1.0.11-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+[![](https://img.shields.io/badge/dev%20version-1.0.12-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)
@@ -20,7 +20,9 @@ Installing from GitHub with devtools
 
 Please note that `R versions >= 3.5` should be used to run `secuTrialR`.
 
-    devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
+``` r
+devtools::install_github("SwissClinicalTrialOrganisation/secuTrialR")
+```
 
 Recommended export options
 --------------------------
@@ -53,14 +55,18 @@ and probably the best place to get started.
 
 Load the package
 
-    library(secuTrialR)
+``` r
+library(secuTrialR)
+```
 
 Load a dataset
 
-    export_location <- system.file("extdata", "sT_exports", "lnames",
-                                   "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                                   package = "secuTrialR")
-    ctu05 <- read_secuTrial(export_location)
+``` r
+export_location <- system.file("extdata", "sT_exports", "lnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+                               package = "secuTrialR")
+ctu05 <- read_secuTrial(export_location)
+```
 
     ## Read export successfully.
 
@@ -89,21 +95,23 @@ where `tab` is the table of interest.
 
 #### Load the dataset
 
-    # prepare path to example export
-    export_location <- system.file("extdata", "sT_exports", "BMD",
-                                   "s_export_CSV-xls_BMD_short_en_utf8.zip",
-                                   package = "secuTrialR")
-    # load all export data
-    bmd_export <- read_secuTrial_raw(data_dir = export_location)
+``` r
+# prepare path to example export
+export_location <- system.file("extdata", "sT_exports", "BMD",
+                               "s_export_CSV-xls_BMD_short_en_utf8.zip",
+                               package = "secuTrialR")
+# load all export data
+bmd_export <- read_secuTrial_raw(data_dir = export_location)
 
-    # load a second dataset
-    export_location <- system.file("extdata", "sT_exports", "lnames",
-                                   "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
-                                   package = "secuTrialR")
-    ctu05_raw <- read_secuTrial_raw(export_location)
+# load a second dataset
+export_location <- system.file("extdata", "sT_exports", "lnames",
+                               "s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip",
+                               package = "secuTrialR")
+ctu05_raw <- read_secuTrial_raw(export_location)
 
-    # View names of the bmd_export object
-    names(bmd_export)
+# View names of the bmd_export object
+names(bmd_export)
+```
 
     ##  [1] "export_options" "fs"             "cn"             "ctr"           
     ##  [5] "is"             "qs"             "qac"            "vp"            
@@ -126,7 +134,9 @@ it’s name in the `secuTrialdata` object, together with the number of
 rows and columns and a column indicating whether the object is metadata
 or not:
 
-    bmd_export
+``` r
+bmd_export
+```
 
     ## secuTrial data imported from:
     ## /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-
@@ -156,24 +166,30 @@ For creating tables, it is often useful to have access to variable
 labels. secuTrialR supports two main methods for handling them - a named
 list, or via variable attributes. The list approach works as follows.
 
-    labs <- labels_secuTrial(bmd_export)
-    # query the list with the variable name of interest
-    labs[["age"]]
+``` r
+labs <- labels_secuTrial(bmd_export)
+# query the list with the variable name of interest
+labs[["age"]]
+```
 
     ## [1] "Age"
 
 The attribute based approach adds labels as an attribute to a variable,
 which can then be accessed via `label(var)`.
 
-    labelled <- label_secuTrial(bmd_export)
-    label(labelled$bmd$age)
+``` r
+labelled <- label_secuTrial(bmd_export)
+label(labelled$bmd$age)
+```
 
     ## [1] "Age"
 
 Labels can be added to new variables or changed via
 
-    label(labelled$bmd$age) <- "Age (years)"
-    label(labelled$bmd$age)
+``` r
+label(labelled$bmd$age) <- "Age (years)"
+label(labelled$bmd$age)
+```
 
     ## [1] "Age (years)"
 
@@ -181,12 +197,16 @@ Where units have been defined in the SecuTrial database, they can be
 accessed or changed analogously (here, age had no unit assigned, but we
 can add one).
 
-    units(labelled$bmd$age)
+``` r
+units(labelled$bmd$age)
+```
 
     ## NULL
 
-    units(labelled$bmd$age) <- "years"
-    units(labelled$bmd$age)
+``` r
+units(labelled$bmd$age) <- "years"
+units(labelled$bmd$age)
+```
 
     ## [1] "years"
 
@@ -203,25 +223,33 @@ factor and date variables.
 It is often useful to have categorical variables as factors (R knows how
 to handle factors). secuTrialR can prepare factors easily.
 
-    factors <- factorize_secuTrial(ctu05_raw)
+``` r
+factors <- factorize_secuTrial(ctu05_raw)
+```
 
 This functions loops through each table of the dataset, creating new
 factor variables where necessary. The new variables are the same as the
 original but with `.factor` appended (i.e. a new variable called
 `sex.factor` would be added to the relevant form).
 
-    # original variable
-    str(factors$ctu05baseline$gender)
+``` r
+# original variable
+str(factors$ctu05baseline$gender)
+```
 
     ##  int [1:17] 1 NA NA 2 1 2 1 NA NA 1 ...
 
-    # factor
-    str(factors$ctu05baseline$gender.factor)
+``` r
+# factor
+str(factors$ctu05baseline$gender.factor)
+```
 
     ##  Factor w/ 2 levels "male","female": 1 NA NA 2 1 2 1 NA NA 1 ...
 
-    # cross tabulation
-    table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$gender.factor)
+``` r
+# cross tabulation
+table(original = factors$ctu05baseline$gender, factor = factors$ctu05baseline$gender.factor)
+```
 
     ##         factor
     ## original male female
@@ -234,15 +262,19 @@ Date(time)s are a very common data type. They cannot be easily used
 though in their export format. This is also easily rectified in
 secuTrialR:
 
-    dates <- dates_secuTrial(ctu05_raw)
+``` r
+dates <- dates_secuTrial(ctu05_raw)
+```
 
 Date variables are converted to `Date` class, and datetimes are
 converted to `POSIXct` class. Rather than overwriting the original
 variable, new variables are added with the new class. This is a safetly
 mechanism in case `NA`s are accidentally created.
 
-    dates$ctu05baseline[c(1, 7), c("aspirin_start", "aspirin_start.date",
-                                  "hiv_date", "hiv_date.datetime")]
+``` r
+dates$ctu05baseline[c(1, 7), c("aspirin_start", "aspirin_start.date",
+                              "hiv_date", "hiv_date.datetime")]
+```
 
     ##   aspirin_start aspirin_start.date     hiv_date   hiv_date.datetime
     ## 1            NA               <NA> 201903052356 2019-03-05 23:56:00
@@ -265,20 +297,22 @@ Recommended literature on incomplete dates/date imputation:
 
 #### Recommended approach if not using `read_secuTrial`
 
-    f <- "PATH_TO_FILE"
-    d <- read_secuTrial_raw(f)
-    l <- label_secuTrial(d)
-    fa <- factorize_secuTrial(l)
-    dat <- dates_secuTrial(fa)
+``` r
+f <- "PATH_TO_FILE"
+d <- read_secuTrial_raw(f)
+l <- label_secuTrial(d)
+fa <- factorize_secuTrial(l)
+dat <- dates_secuTrial(fa)
 
-    # or, if you like pipes
-    library(magrittr)
-    f <- "PATH_TO_FILE"
-    d <- read_secuTrial_raw(f)
-    dat <- d %>% 
-      label_secuTrial() %>%
-      factorize_secuTrial() %>%
-      dates_secuTrial()
+# or, if you like pipes
+library(magrittr)
+f <- "PATH_TO_FILE"
+d <- read_secuTrial_raw(f)
+dat <- d %>% 
+  label_secuTrial() %>%
+  factorize_secuTrial() %>%
+  dates_secuTrial()
+```
 
 </details>
 
@@ -296,12 +330,16 @@ environment of your choice. As a demonstration, we’ll create a new
 environment (`env`) and create the `data.frame`s in there. In practice,
 using `.GlobalEnv` would probably be more useful.
 
-    env <- new.env()
-    ls(env)
+``` r
+env <- new.env()
+ls(env)
+```
 
     ## character(0)
 
-    names(ctu05)
+``` r
+names(ctu05)
+```
 
     ##  [1] "export_options"          "forms"                  
     ##  [3] "casenodes"               "centres"                
@@ -320,8 +358,10 @@ using `.GlobalEnv` would probably be more useful.
     ## [29] "atmnpctu05sae"           "emnpctu05surgeries"     
     ## [31] "atemnpctu05surgeries"    "atadverseevents"
 
-    as.data.frame(ctu05, envir = env)
-    ls(env)
+``` r
+as.data.frame(ctu05, envir = env)
+ls(env)
+```
 
     ##  [1] "atadverseevents"         "atemnpctu05surgeries"   
     ##  [3] "atmiv"                   "atmnpctu05ae"           
@@ -334,9 +374,9 @@ using `.GlobalEnv` would probably be more useful.
     ## [17] "ctu05treatment"          "emnpctu05surgeries"
 
 There are also options for selecting specific forms (option
-`data.frames`), changing names based on regex (options `regex` and
-`rep`) and specifying whether metadata objects should be returned
-(option `meta`).
+`data.frames`), changing names based on a named vector (option
+`data.frames`) or regex (options `regex` and `rep`), and specifying
+whether metadata objects should be returned (option `meta`).
 
 #### Recruitment over time
 
@@ -344,15 +384,19 @@ Recruitment is an important cornerstone for every clinical trial.
 `secuTrialR` allows for straigt forward visualizion of recuitment over
 time for a given export file.
 
-    # show plot
-    # note that there is no line for Universitätsspital 
-    # Basel because only one participant is registered for this centre
-    plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
+``` r
+# show plot
+# note that there is no line for Universitätsspital 
+# Basel because only one participant is registered for this centre
+plot_recruitment(ctu05, cex = 1.5, rm_regex = "\\(.*\\)$")
+```
 
-![](README_files/figure-markdown_strict/unnamed-chunk-16-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
-    # return the plot data
-    plot_recruitment(ctu05, return_data = TRUE)
+``` r
+# return the plot data
+plot_recruitment(ctu05, return_data = TRUE)
+```
 
     ## [[1]]
     ##          date centre_id pat_count                      centre_name
@@ -390,7 +434,9 @@ time for a given export file.
 
 Furthermore, recruitment per year and center can be returned.
 
-    annual_recruitment(ctu05, rm_regex = "\\(.*\\)$")
+``` r
+annual_recruitment(ctu05, rm_regex = "\\(.*\\)$")
+```
 
     ##                     Center Total 2018 2019
     ## 1                      All    11    1   10
@@ -404,8 +450,10 @@ If you are not sure about how complete the data in you export is, it may
 be useful to get a quick overview of how well the forms have been
 filled.
 
-    count_summary <- form_status_summary(ctu05)
-    tail(count_summary)
+``` r
+count_summary <- form_status_summary(ctu05)
+tail(count_summary)
+```
 
     ##             form_name partly_filled completely_filled empty with_warnings
     ## 5        ctu05allmedi             1                16     0             0
@@ -433,7 +481,9 @@ As you can see, the majority of forms has been completeley filled. None
 of the forms were saved empty, with warnings or with errors. For a more
 participant id centered statistic you can perform the following.
 
-    form_status_counts(ctu05)
+``` r
+form_status_counts(ctu05)
+```
 
 This will give you a count based overview per participant id and form.
 Please note that both `form_status_summary` and `form_status_counts`
@@ -445,8 +495,10 @@ secuTrial exports.
 secuTrialR can provide a depiction of the visit structure, although only
 where the visit plan is fixed:
 
-    vs <- visit_structure(ctu05)
-    plot(vs)
+``` r
+vs <- visit_structure(ctu05)
+plot(vs)
+```
 
 <!-- PLOT METHOD DIRECTLY FOR secuTrialdata objects? -->
 
@@ -455,7 +507,9 @@ where the visit plan is fixed:
 It can be difficult to find the variable you’re looking for. secuTrialR
 provides the `dictionary_secuTrial` function to help:
 
-    head(dictionary_secuTrial(ctu05))
+``` r
+head(dictionary_secuTrial(ctu05))
+```
 
     ##        formtablename       formname      ffcolname               itemtype
     ## 1 emnpctu05surgeries      Surgeries  surgery_organ    Popup (Label Group)
@@ -481,7 +535,9 @@ to read the labels better. The device ID is returned to the console, but
 can be ignored. Forms are plotted in deep yellow, variables in light
 blue.
 
-    links_secuTrial(bmd_export)
+``` r
+links_secuTrial(bmd_export)
+```
 
 ![](inst/extdata/graphics/map.png)
 <!-- Figure has to be generated outside of the Rmd file - resize the window and select view/"fit to screen", export it to a PDF and then convert it to a PNG -->
@@ -493,10 +549,12 @@ participants from a study database. These participants should be
 retrieved in a reproducible fashion. The below function allows this for
 a loaded secuTrial data export.
 
-    # retrieve at least 25 percent of participants recorded after March 18th 2019 
-    # from the centres "Inselspital Bern" and "Charité Berlin"
-    return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
-                               centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+``` r
+# retrieve at least 25 percent of participants recorded after March 18th 2019 
+# from the centres "Inselspital Bern" and "Charité Berlin"
+return_random_participants(ctu05, percent = 0.25, seed = 1337, date = "2019-03-18",
+                           centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
+```
 
     ## $participants
     ##          mnpaid                   centre mnpvisstartdate
@@ -513,28 +571,34 @@ For contributors
 
 ### Testing with devtools
 
-    # run tests
-    devtools::test("secuTrialR")
-    # spell check -> will contain some technical terms beyond the below list which is fine
-    ignore_words <- c("AdminTool", "allforms", "casenodes", "CDMS", "codebook",
-                      "codebooks", "datetime" ,"dir" ,"Hmisc" ,"igraph",
-                      "labelled", "mnp", "savedforms", "secutrial", "secuTrial", 
-                      "secuTrialdata", "tcltk", "tibble")
-    devtools::spell_check("secuTrialR", ignore = ignore_words)
+``` r
+# run tests
+devtools::test("secuTrialR")
+# spell check -> will contain some technical terms beyond the below list which is fine
+ignore_words <- c("AdminTool", "allforms", "casenodes", "CDMS", "codebook",
+                  "codebooks", "datetime" ,"dir" ,"Hmisc" ,"igraph",
+                  "labelled", "mnp", "savedforms", "secutrial", "secuTrial", 
+                  "secuTrialdata", "tcltk", "tibble")
+devtools::spell_check("secuTrialR", ignore = ignore_words)
+```
 
 ### Linting with lintr
 
-    # lint the package -> should be clean
-    library(lintr)
-    lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
-                                                       object_usage_linter = NULL,
-                                                       line_length_linter(125)))
+``` r
+# lint the package -> should be clean
+library(lintr)
+lint_package("secuTrialR", linters = with_defaults(camel_case_linter = NULL,
+                                                   object_usage_linter = NULL,
+                                                   line_length_linter(125)))
+```
 
 ### Building the vignette
 
-    library(rmarkdown)
-    render("vignettes/secuTrialR-package-vignette.Rmd",
-           output_format=c("pdf_document"))
+``` r
+library(rmarkdown)
+render("vignettes/secuTrialR-package-vignette.Rmd",
+       output_format=c("pdf_document"))
+```
 
 ### Generating the README file
 
@@ -552,15 +616,19 @@ entire packages.
 Example to import `str_match` `str_length` `str_wrap` from the `stringr`
 package (see [read\_secuTrial\_raw.R](R/read_secuTrial_raw.R)):
 
-    #' @importFrom stringr str_match str_length str_wrap
+``` r
+#' @importFrom stringr str_match str_length str_wrap
+```
 
 ### Preparing a release on CRAN
 
-    # build the package archive
-    R CMD build secuTrialR
-    # check the archive (should return "Status: OK", no WARNINGs, no NOTEs)
-    # in this example for version 0.9.0
-    R CMD check secuTrialR_0.9.0.tar.gz
+``` bash
+# build the package archive
+R CMD build secuTrialR
+# check the archive (should return "Status: OK", no WARNINGs, no NOTEs)
+# in this example for version 0.9.0
+R CMD check secuTrialR_0.9.0.tar.gz
+```
 
 ### Versioning and releases
 
