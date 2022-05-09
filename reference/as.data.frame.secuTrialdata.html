@@ -29,7 +29,7 @@ secuTrialdata object anymore. Ie. they become regular data.frames)."><!-- mathja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.12</span>
       </span>
     </div>
 
@@ -104,7 +104,8 @@ another environment (e.g. place them in the global environment
 <dt>envir</dt>
 <dd><p>environment in which to put the data (e.g. <code>.GlobalEnv</code>)</p></dd>
 <dt>data.frames</dt>
-<dd><p>character vector of data.frame names to turn into data.frames</p></dd>
+<dd><p>character vector of data.frame names to turn into data.frames.
+If the vector is named,data.frames will be renamed into the non-empty names(data.frames)</p></dd>
 <dt>meta</dt>
 <dd><p>logical should metadata be returned</p></dd>
 <dt>regex</dt>
@@ -139,6 +140,10 @@ environment would still entail referring to that environment).</p>
 <span class="r-in"><span class="co"># the file names</span></span>
 <span class="r-in"><span class="va">env2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">new.env</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sT_export</span>, regex <span class="op">=</span> <span class="st">"ctu05"</span>, envir <span class="op">=</span> <span class="va">env2</span><span class="op">)</span></span>
+<span class="r-in"><span class="co"># add files to a new environment called env3, renaming files in data.frames</span></span>
+<span class="r-in"><span class="va">env3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">new.env</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sT_export</span>, data.frames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"allmedications"</span> <span class="op">=</span> <span class="st">"ctu05allmedi"</span>, <span class="st">"ctu05baseline"</span><span class="op">)</span>,</span>
+<span class="r-in">              envir <span class="op">=</span> <span class="va">env3</span><span class="op">)</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -153,7 +158,7 @@ environment would still entail referring to that environment).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
