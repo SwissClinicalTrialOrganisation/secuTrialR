@@ -99,14 +99,14 @@ assessed for saved forms.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">assess_form_variable_completeness</span><span class="op">(</span>
-  <span class="va">form</span>,
-  <span class="va">casenodes_table</span>,
-  <span class="va">validation_overview</span>,
-  completeness <span class="op">=</span> <span class="st">"allforms"</span>,
-  occ_in_vp <span class="op">=</span> <span class="fl">1</span>,
-  omit_mnp <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assess_form_variable_completeness</span><span class="op">(</span></span>
+<span>  <span class="va">form</span>,</span>
+<span>  <span class="va">casenodes_table</span>,</span>
+<span>  <span class="va">validation_overview</span>,</span>
+<span>  completeness <span class="op">=</span> <span class="st">"allforms"</span>,</span>
+<span>  occ_in_vp <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  omit_mnp <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -114,23 +114,36 @@ assessed for saved forms.</p>
     <dl><dt>form</dt>
 <dd><p>data.frame Form for which to assess variable completeness
 (i.e. a list element returned by read_secuTrial_raw).</p></dd>
+
+
 <dt>casenodes_table</dt>
 <dd><p>data.frame The central casenodes record file
 (i.e. 'casenodes' from the list returned by read_secuTrial_raw).</p></dd>
+
+
 <dt>validation_overview</dt>
 <dd><p>tibble returned by read_validation_overview.</p></dd>
+
+
 <dt>completeness</dt>
 <dd><p>string Specifies if completeness is assessed for all forms ('allforms')
 or only for saved forms ('savedforms').</p></dd>
+
+
 <dt>occ_in_vp</dt>
 <dd><p>integer Specifies how often the form occurs in the visit plan
 (only relevant if completeness = 'allforms' is set).</p></dd>
+
+
 <dt>omit_mnp</dt>
 <dd><p>boolean Removes variable names from the result table that start with mnp.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame showing percent completeness per variable.</p>
+    
+
+<p>data.frame showing percent completeness per variable.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -139,32 +152,32 @@ or only for saved forms ('savedforms').</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># prepare path to example export</span></span>
-<span class="r-in"><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
-<span class="r-in">                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span>
-<span class="r-in">                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># read all export data</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># read validation overview</span></span>
-<span class="r-in"><span class="va">val_ovv_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
-<span class="r-in">                                <span class="st">"bmd_validation_overview.xlsx"</span>,</span>
-<span class="r-in">                                package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">val_ovv</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_validation_overview.html">read_validation_overview</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">val_ovv_location</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># prepare path to example export</span></span></span>
+<span class="r-in"><span><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span></span>
+<span class="r-in"><span>                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># read all export data</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># read validation overview</span></span></span>
+<span class="r-in"><span><span class="va">val_ovv_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span></span>
+<span class="r-in"><span>                                <span class="st">"bmd_validation_overview.xlsx"</span>,</span></span>
+<span class="r-in"><span>                                package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">val_ovv</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_validation_overview.html">read_validation_overview</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">val_ovv_location</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> New names:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> `` -&gt; `...1`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> `` -&gt; `...2`</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">secuTrialR</span><span class="fu">:::</span><span class="fu">assess_form_variable_completeness</span><span class="op">(</span>form <span class="op">=</span> <span class="va">sT_export</span><span class="op">$</span><span class="va">bmd</span>,</span>
-<span class="r-in">                                               casenodes_table <span class="op">=</span> <span class="va">sT_export</span><span class="op">$</span><span class="va">cn</span>,</span>
-<span class="r-in">                                               validation_overview <span class="op">=</span> <span class="va">val_ovv</span>,</span>
-<span class="r-in">                                               completeness <span class="op">=</span> <span class="st">"allforms"</span>,</span>
-<span class="r-in">                                               occ_in_vp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">secuTrialR</span><span class="fu">:::</span><span class="fu">assess_form_variable_completeness</span><span class="op">(</span>form <span class="op">=</span> <span class="va">sT_export</span><span class="op">$</span><span class="va">bmd</span>,</span></span>
+<span class="r-in"><span>                                               casenodes_table <span class="op">=</span> <span class="va">sT_export</span><span class="op">$</span><span class="va">cn</span>,</span></span>
+<span class="r-in"><span>                                               validation_overview <span class="op">=</span> <span class="va">val_ovv</span>,</span></span>
+<span class="r-in"><span>                                               completeness <span class="op">=</span> <span class="st">"allforms"</span>,</span></span>
+<span class="r-in"><span>                                               occ_in_vp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   variable timesentered timesmissing completeness</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      age          503           62    0.8902655</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      bmd          502           63    0.8884956</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 grouping          502           63    0.8884956</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -179,7 +192,7 @@ or only for saved forms ('savedforms').</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

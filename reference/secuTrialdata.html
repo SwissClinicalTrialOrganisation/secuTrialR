@@ -65,44 +65,53 @@ The export options are also loaded and written into export_options.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">read_secuTrial_raw</span><span class="op">(</span><span class="va">data_dir</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for secuTrialdata</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_secuTrial_raw</span><span class="op">(</span><span class="va">data_dir</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for secuTrialdata</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data_dir</dt>
 <dd><p>string The data_dir specifies the path to the secuTrial data export.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>further parameters</p></dd>
+
+
 <dt>x</dt>
 <dd><p>secuTrialdata object as returned by <code>read_secuTrial_raw</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>secuTrialdata</code> object containing a list of
+    
+
+<p><code>secuTrialdata</code> object containing a list of
         export options and data.frames with all the data loaded from
         the secuTrial export.
         The list will contain at least the metadata data.frames and
-        export_options list.
-data.frame with a row for each table in the export. For each table it
+        export_options list.</p>
+
+
+<p>data.frame with a row for each table in the export. For each table it
         contains the name, number of rows and columns, an indicator for
         whether the table is a metadata table and the files original name.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># prepare path to example export</span></span>
-<span class="r-in"><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
-<span class="r-in">                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span>
-<span class="r-in">                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># read all export data</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu">read_secuTrial_raw</span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Print method</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># prepare path to example export</span></span></span>
+<span class="r-in"><span><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span></span>
+<span class="r-in"><span>                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># read all export data</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu">read_secuTrial_raw</span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Print method</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> secuTrial data imported from:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> xls_BMD_short_en_utf8.zip </span>
@@ -120,8 +129,8 @@ data.frame with a row for each table in the export. For each table it
 <span class="r-out co"><span class="r-pr">#&gt;</span>    cts    0    8  TRUE       cts.xls</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    bmd  504   27 FALSE       bmd.xls</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  atbmd    0   28 FALSE     atbmd.xls</span>
-<span class="r-in"><span class="co"># or</span></span>
-<span class="r-in"><span class="va">sT_export</span></span>
+<span class="r-in"><span><span class="co"># or</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> secuTrial data imported from:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> xls_BMD_short_en_utf8.zip </span>
@@ -153,7 +162,7 @@ data.frame with a row for each table in the export. For each table it
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

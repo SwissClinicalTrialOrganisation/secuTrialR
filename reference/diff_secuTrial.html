@@ -79,45 +79,50 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">diff_secuTrial</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">diff_secuTrial</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a <code>secuTrialdata</code> object (the older export)</p></dd>
+
+
 <dt>y</dt>
 <dd><p>a <code>secuTrialdata</code> object (the newer export)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If there are differences, <code>diff_secuTrial()</code> will produce a list of vectors.
+    
+
+<p>If there are differences, <code>diff_secuTrial()</code> will produce a list of vectors.
         The fist vector informs about new forms and the second vector informs about
         new variables.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># read exports</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># v1 is essentially a clone of the CTU05 setup</span></span>
-<span class="r-in"><span class="va">ctu06_v1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span>
-<span class="r-in">                                       <span class="st">"s_export_CSV-xls_CTU06_version1.zip"</span>,</span>
-<span class="r-in">                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># read exports</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># v1 is essentially a clone of the CTU05 setup</span></span></span>
+<span class="r-in"><span><span class="va">ctu06_v1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span></span>
+<span class="r-in"><span>                                       <span class="st">"s_export_CSV-xls_CTU06_version1.zip"</span>,</span></span>
+<span class="r-in"><span>                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Short names was not selected.</span>
-<span class="r-in"><span class="co"># v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform) and</span></span>
-<span class="r-in"><span class="co"># 2 additional variables (new_item_in_fu, new_item_in_new_form)</span></span>
-<span class="r-in"><span class="va">ctu06_v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span>
-<span class="r-in">                                       <span class="st">"s_export_CSV-xls_CTU06_version2.zip"</span>,</span>
-<span class="r-in">                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># v2 contains 2 additional forms (mnpctu06anewform, mnpctu06anothernewform) and</span></span></span>
+<span class="r-in"><span><span class="co"># 2 additional variables (new_item_in_fu, new_item_in_new_form)</span></span></span>
+<span class="r-in"><span><span class="va">ctu06_v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span></span>
+<span class="r-in"><span>                                       <span class="st">"s_export_CSV-xls_CTU06_version2.zip"</span>,</span></span>
+<span class="r-in"><span>                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
-<span class="r-in"><span class="co"># return diff</span></span>
-<span class="r-in"><span class="fu">diff_secuTrial</span><span class="op">(</span><span class="va">ctu06_v1</span>, <span class="va">ctu06_v2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># return diff</span></span></span>
+<span class="r-in"><span><span class="fu">diff_secuTrial</span><span class="op">(</span><span class="va">ctu06_v1</span>, <span class="va">ctu06_v2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $new_forms</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mnpctu06anewform"       "mnpctu06anothernewform"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -130,7 +135,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $removed_variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -145,7 +150,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

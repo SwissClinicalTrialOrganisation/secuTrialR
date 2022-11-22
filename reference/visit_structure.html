@@ -63,25 +63,34 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">visit_structure</span><span class="op">(</span><span class="va">x</span>, sorted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co"># S3 method for secuTrialvisit</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">visit_structure</span><span class="op">(</span><span class="va">x</span>, sorted <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for secuTrialvisit</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a <code>secuTrialdata</code> object</p></dd>
+
+
 <dt>sorted</dt>
 <dd><p>logical if TRUE sorted by first visit</p></dd>
+
+
 <dt>...</dt>
 <dd><p>further parameters</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)
-plot of the visit plan</p>
+    
+
+<p>data.frame with 1 for whether a form (rows) was collected during a particular visit (columns)</p>
+
+
+<p>plot of the visit plan</p>
     </div>
     <div id="note">
     <h2>Note</h2>
@@ -91,19 +100,19 @@ plot of the visit plan</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
-<span class="r-in">                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
-<span class="r-in">                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># read all export data</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span></span>
+<span class="r-in"><span>                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># read all export data</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Short names was not selected.</span>
-<span class="r-in"><span class="co"># get visit structure</span></span>
-<span class="r-in"><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu">visit_structure</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># plot</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># get visit structure</span></span></span>
+<span class="r-in"><span><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu">visit_structure</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="visit_structure-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -119,7 +128,7 @@ plot of the visit plan</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

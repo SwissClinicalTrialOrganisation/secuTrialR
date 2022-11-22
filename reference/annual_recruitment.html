@@ -67,20 +67,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">x</span>, rm_regex <span class="op">=</span> <span class="st">""</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">x</span>, rm_regex <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a <code>secuTrialdata</code> object</p></dd>
+
+
 <dt>rm_regex</dt>
 <dd><p>character - specifies a regular expression to be removed from the centre names in the legend.
 e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a data.frame showing the annual recruitment counts per center</p>
+    
+
+<p>a data.frame showing the annual recruitment counts per center</p>
     </div>
     <div id="note">
     <h2>Note</h2>
@@ -89,33 +94,33 @@ e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.</p
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># export location</span></span>
-<span class="r-in"><span class="va">expot_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
-<span class="r-in">                         <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
-<span class="r-in">                         package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># read export</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">expot_loc</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># export location</span></span></span>
+<span class="r-in"><span><span class="va">expot_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                         package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># read export</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">expot_loc</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Short names was not selected.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># plot recruitment</span></span>
-<span class="r-in"><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot recruitment</span></span></span>
+<span class="r-in"><span><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             Center Total 2018 2019</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                              All    11    1   10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2           Charité Berlin (RPACK)     5    0    5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3         Inselspital Bern (RPACK)     5    0    5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 Universitätsspital Basel (RPACK)     1    1    0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># show without trailing bracket</span></span>
-<span class="r-in"><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">sT_export</span>, rm_regex <span class="op">=</span> <span class="st">"\\(.*\\)$"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># show without trailing bracket</span></span></span>
+<span class="r-in"><span><span class="fu">annual_recruitment</span><span class="op">(</span><span class="va">sT_export</span>, rm_regex <span class="op">=</span> <span class="st">"\\(.*\\)$"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     Center Total 2018 2019</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                      All    11    1   10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2           Charité Berlin     5    0    5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3         Inselspital Bern     5    0    5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 Universitätsspital Basel     1    1    0</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -130,7 +135,7 @@ e.g. rm_regex = "\\(.*\\)$" will remove trailing brackets and their contents.</p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

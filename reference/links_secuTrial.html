@@ -67,31 +67,42 @@ with common variables.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">links_secuTrial</span><span class="op">(</span>
-  <span class="va">object</span>,
-  forms <span class="op">=</span> <span class="cn">NULL</span>,
-  formcol <span class="op">=</span> <span class="st">"#d8b365"</span>,
-  varcol <span class="op">=</span> <span class="st">"#e5f5f9"</span>,
-  plot <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">links_secuTrial</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  forms <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  formcol <span class="op">=</span> <span class="st">"#d8b365"</span>,</span>
+<span>  varcol <span class="op">=</span> <span class="st">"#e5f5f9"</span>,</span>
+<span>  plot <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p><code>secuTrialdata</code> object</p></dd>
+
+
 <dt>forms</dt>
 <dd><p>a regular expression for which forms should be included</p></dd>
+
+
 <dt>formcol</dt>
 <dd><p>color for form name circles</p></dd>
+
+
 <dt>varcol</dt>
 <dd><p>color for variable name circles</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>boolean specifies if the plot should be shown</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a tcltk plot window.</p>
+    
+
+<p>a tcltk plot window.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -106,30 +117,30 @@ with common variables.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co"># ex. 1</span></span>
-<span class="r-in"><span class="co"># prepare path to example export</span></span>
-<span class="r-in"><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span>
-<span class="r-in">                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span>
-<span class="r-in">                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># load all export data</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># plot links</span></span>
-<span class="r-in"><span class="fu">links_secuTrial</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># ex. 1</span></span></span>
+<span class="r-in"><span><span class="co"># prepare path to example export</span></span></span>
+<span class="r-in"><span><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"BMD"</span>,</span></span>
+<span class="r-in"><span>                               <span class="st">"s_export_CSV-xls_BMD_short_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># load all export data</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot links</span></span></span>
+<span class="r-in"><span><span class="fu">links_secuTrial</span><span class="op">(</span><span class="va">sT_export</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no display name and no $DISPLAY environment variable</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in structure(.External(.C_dotTclObjv, objv), class = "tclObj"):</span> [tcl] invalid command name "font".</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># ex. 2</span></span>
-<span class="r-in"><span class="co"># prepare path to example export</span></span>
-<span class="r-in"><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
-<span class="r-in">                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
-<span class="r-in">                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># load all export data</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># plot links for form names starting with "ctu05"</span></span>
-<span class="r-in"><span class="fu">links_secuTrial</span><span class="op">(</span><span class="va">sT_export</span>, forms <span class="op">=</span> <span class="st">"^ctu05"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ex. 2</span></span></span>
+<span class="r-in"><span><span class="co"># prepare path to example export</span></span></span>
+<span class="r-in"><span><span class="va">export_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span></span>
+<span class="r-in"><span>                               <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                               package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># load all export data</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="secuTrialdata.html">read_secuTrial_raw</a></span><span class="op">(</span>data_dir <span class="op">=</span> <span class="va">export_location</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># plot links for form names starting with "ctu05"</span></span></span>
+<span class="r-in"><span><span class="fu">links_secuTrial</span><span class="op">(</span><span class="va">sT_export</span>, forms <span class="op">=</span> <span class="st">"^ctu05"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in structure(.External(.C_dotTclObjv, objv), class = "tclObj"):</span> [tcl] invalid command name "font".</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -144,7 +155,7 @@ with common variables.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

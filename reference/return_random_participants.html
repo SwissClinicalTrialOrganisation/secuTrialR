@@ -65,35 +65,46 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">return_random_participants</span><span class="op">(</span>
-  <span class="va">x</span>,
-  centres <span class="op">=</span> <span class="st">"all"</span>,
-  percent <span class="op">=</span> <span class="fl">0.1</span>,
-  date <span class="op">=</span> <span class="st">"1900-01-01"</span>,
-  seed <span class="op">=</span> <span class="fl">1</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">return_random_participants</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  centres <span class="op">=</span> <span class="st">"all"</span>,</span>
+<span>  percent <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  date <span class="op">=</span> <span class="st">"1900-01-01"</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a <code>secuTrialdata</code> object</p></dd>
+
+
 <dt>centres</dt>
 <dd><p>A character vector of centres for which participants should be returned. If left
 unspecified it will return participants for every study centre.</p></dd>
+
+
 <dt>percent</dt>
 <dd><p>A number greater than 0 and smaller than 1 specifying the approximate percentage
 of participants to be returned per centre.</p></dd>
+
+
 <dt>date</dt>
 <dd><p>If only participants after a specific date should be considered this can be entered here.
 Format should be "YYYY-MM-DD" (e.g. "2011-03-26" for March 26th 2011).
 This date is checked against mnpvisstartdate in the casenodes table.</p></dd>
+
+
 <dt>seed</dt>
 <dd><p>Allows to configure a seed for id sampling. Every centre will use a small variation of this seed.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list of two elements. First, a data.frame that contains the
+    
+
+<p>list of two elements. First, a data.frame that contains the
          random participants from each specified centre. This is performed based on a specified seed to retain
          reproducibilty. Second, the configuration of the randomization (i.e. result of <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">RNGkind()</a></code>).
          If the percentage does not yield an integer for a centre the number is tranformed into an integer
@@ -102,20 +113,20 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># export location</span></span>
-<span class="r-in"><span class="va">expot_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span>
-<span class="r-in">                         <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span>
-<span class="r-in">                         package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># read export</span></span>
-<span class="r-in"><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">expot_loc</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># export location</span></span></span>
+<span class="r-in"><span><span class="va">expot_loc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"lnames"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"s_export_CSV-xls_CTU05_long_ref_miss_en_utf8.zip"</span>,</span></span>
+<span class="r-in"><span>                         package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># read export</span></span></span>
+<span class="r-in"><span><span class="va">sT_export</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">expot_loc</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Short names was not selected.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># return random participants</span></span>
-<span class="r-in"><span class="fu">return_random_participants</span><span class="op">(</span><span class="va">sT_export</span>, percent <span class="op">=</span> <span class="fl">0.25</span>, seed <span class="op">=</span> <span class="fl">1337</span>, date <span class="op">=</span> <span class="st">"2019-03-18"</span>,</span>
-<span class="r-in">                           centres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># return random participants</span></span></span>
+<span class="r-in"><span><span class="fu">return_random_participants</span><span class="op">(</span><span class="va">sT_export</span>, percent <span class="op">=</span> <span class="fl">0.25</span>, seed <span class="op">=</span> <span class="fl">1337</span>, date <span class="op">=</span> <span class="st">"2019-03-18"</span>,</span></span>
+<span class="r-in"><span>                           centres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Charité Berlin (RPACK)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $participants</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          mnpaid                   centre mnpvisstartdate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 RPACK-INS-012 Inselspital Bern (RPACK)      2019-04-12</span>
@@ -126,7 +137,7 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $rng_config</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Mersenne-Twister" "Inversion"        "Rejection"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +152,7 @@ This date is checked against mnpvisstartdate in the casenodes table.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

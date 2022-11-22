@@ -71,23 +71,32 @@ In order to subset based on centres, centre information must be included in the 
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">subset_secuTrial</span><span class="op">(</span><span class="va">dat</span>, participant <span class="op">=</span> <span class="cn">NULL</span>, centre <span class="op">=</span> <span class="cn">NULL</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">subset_secuTrial</span><span class="op">(</span><span class="va">dat</span>, participant <span class="op">=</span> <span class="cn">NULL</span>, centre <span class="op">=</span> <span class="cn">NULL</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dat</dt>
 <dd><p><code>secuTrialdata</code> object containing participant IDs and centre information</p></dd>
+
+
 <dt>participant</dt>
 <dd><p>character vector with a selection of participant IDs (mnpaid) used for subsetting</p></dd>
+
+
 <dt>centre</dt>
 <dd><p>character vector with a selection of centre names (mnpctrname) used for subsetting</p></dd>
+
+
 <dt>exclude</dt>
 <dd><p>boolean which if true excludes participants and centres from dat</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>secuTrialdata</code> object containing only those participants that meet the selection criteria.</p>
+    
+
+<p><code>secuTrialdata</code> object containing only those participants that meet the selection criteria.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -100,19 +109,19 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"exp_opt"</span>,</span>
-<span class="r-in">                    <span class="st">"s_export_CSV-xls_CTU05_all_info.zip"</span>,</span>
-<span class="r-in">                    package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sT</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"exp_opt"</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">"s_export_CSV-xls_CTU05_all_info.zip"</span>,</span></span>
+<span class="r-in"><span>                    package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sT</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Read export successfully.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following export options deviate from the suggested specifications:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Data from hidden fields is part of the export.</span>
-<span class="r-in"><span class="va">participants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RPACK-INS-011"</span>, <span class="st">"RPACK-INS-014"</span>, <span class="st">"RPACK-INS-015"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">centres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Universitätsspital Basel (RPACK)"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># show all participants</span></span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">participants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RPACK-INS-011"</span>, <span class="st">"RPACK-INS-014"</span>, <span class="st">"RPACK-INS-015"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">centres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Universitätsspital Basel (RPACK)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># show all participants</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mnppid        mnpaid mnpctrid                       mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    1204 RPACK-CBE-001      462           Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    1205 RPACK-CBE-002      462           Charité Berlin (RPACK)</span>
@@ -125,18 +134,18 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9    1212 RPACK-INS-014      461         Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10   1213 RPACK-INS-015      461         Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11   1214 RPACK-USB-123      441 Universitätsspital Basel (RPACK)</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># subset sT_export</span></span>
-<span class="r-in"><span class="va">sT_subset1</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subset sT_export</span></span></span>
+<span class="r-in"><span><span class="va">sT_subset1</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mnppid        mnpaid mnpctrid               mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1209 RPACK-INS-011      461 Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   1212 RPACK-INS-014      461 Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   1213 RPACK-INS-015      461 Inselspital Bern (RPACK)</span>
-<span class="r-in"><span class="va">sT_subset2</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">sT_subset2</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mnppid        mnpaid mnpctrid                       mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1204 RPACK-CBE-001      462           Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   1205 RPACK-CBE-002      462           Charité Berlin (RPACK)</span>
@@ -146,30 +155,30 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   1210 RPACK-INS-012      461         Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7   1211 RPACK-INS-013      461         Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8   1214 RPACK-USB-123      441 Universitätsspital Basel (RPACK)</span>
-<span class="r-in"><span class="va">sT_subset3</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, centre <span class="op">=</span> <span class="va">centres</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">sT_subset3</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, centre <span class="op">=</span> <span class="va">centres</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mnppid        mnpaid mnpctrid             mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1204 RPACK-CBE-001      462 Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   1205 RPACK-CBE-002      462 Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   1206 RPACK-CBE-003      462 Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4   1207 RPACK-CBE-004      462 Charité Berlin (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5   1208 RPACK-CBE-005      462 Charité Berlin (RPACK)</span>
-<span class="r-in"><span class="va">sT_subset4</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>,</span>
-<span class="r-in">                               centre <span class="op">=</span> <span class="va">centres</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">sT_subset4</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>,</span></span>
+<span class="r-in"><span>                               centre <span class="op">=</span> <span class="va">centres</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset4</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   mnppid        mnpaid mnpctrid               mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1209 RPACK-INS-011      461 Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   1212 RPACK-INS-014      461 Inselspital Bern (RPACK)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   1213 RPACK-INS-015      461 Inselspital Bern (RPACK)</span>
-<span class="r-in"><span class="va">sT_subset5</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>,</span>
-<span class="r-in">                               centre <span class="op">=</span> <span class="va">centres</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">sT_subset5</span> <span class="op">&lt;-</span> <span class="fu">subset_secuTrial</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">sT</span>, participant <span class="op">=</span> <span class="va">participants</span>,</span></span>
+<span class="r-in"><span>                               centre <span class="op">=</span> <span class="va">centres</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, exclude <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span>
-<span class="r-in"><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset5</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">sT_subset5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] mnppid     mnpaid     mnpctrid   mnpctrname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -184,7 +193,7 @@ If exclude = TRUE, a complement of union of participant and centre sets is retur
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
