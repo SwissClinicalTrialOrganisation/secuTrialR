@@ -1,3 +1,6 @@
+# secuTrialR 1.1.0
+* warning regarding overwritten `pat_id` variable 
+
 # secuTrialR 1.0.12
 * adapt `as.data.frame.secuTrialData()` to allow named character vectors as option `data.frames` to specify custom names for data.frames (#250) 
 

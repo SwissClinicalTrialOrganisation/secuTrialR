@@ -118,6 +118,9 @@ read_export_table <- function(data_dir, file_name, export_options,
   # adding pat_id (only possible if Add-ID was exported in ExportSearchTool)
   if (add_pat_id & ("mnppid" %in% names(loaded_table))) {
     if (export_options$add_id) {
+      if("pat_id" %in% names(loaded_table)){
+        warning("variable 'pat_id' replaced with the additional id")
+      }
       loaded_table <- add_pat_id_col(table = loaded_table,
                                      id = "pat_id",
                                      casenodes_table = casenodes_table)
