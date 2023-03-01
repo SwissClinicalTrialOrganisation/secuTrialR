@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
 <div class="section level1">
 <div class="page-header"><h1 id="secutrialr">secuTrialR<a class="anchor" aria-label="anchor" href="#secutrialr"></a>
 </h1></div>
-
+<p><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://img.shields.io/badge/dev%20version-1.1.0-blue.svg"></a> <a href="https://cran.r-project.org/package=secuTrialR" class="external-link"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a> <a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a> <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions" class="external-link"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a> <a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></p>
 <p>An R package to handle data from the clinical data management system (CDMS) <a href="https://www.secutrial.com/en/" class="external-link">secuTrial</a>.</p>
 <div class="section level2">
 <h2 id="installing-from-github-with-devtools">Installing from GitHub with devtools<a class="anchor" aria-label="anchor" href="#installing-from-github-with-devtools"></a>
@@ -148,22 +148,21 @@ Wrapped functions
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bmd_export</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## secuTrial data imported from:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## xls_BMD_short_en_utf8.zip </span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  table nrow ncol  meta original_name</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     vp    1   10  TRUE        vp.xls</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   vpfs    1    2  TRUE      vpfs.xls</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     fs    1    7  TRUE        fs.xls</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     qs    1    7  TRUE        qs.xls</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">##     is    3    8  TRUE        is.xls</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    ctr    1    3  TRUE       ctr.xls</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     cn  113   13  TRUE        cn.xls</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">##   atcn    0    6  TRUE      atcn.xls</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  atcvp    0   11  TRUE     atcvp.xls</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">##    qac    0   10  TRUE       qac.xls</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">##    cts    0    8  TRUE       cts.xls</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    bmd  504   27 FALSE       bmd.xls</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  atbmd    0   28 FALSE     atbmd.xls</span></span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## /Users/runner/work/_temp/Library/secuTrialR/extdata/sT_exports/BMD/s_export_CSV-xls_BMD_short_en_utf8.zip </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  table nrow ncol  meta original_name</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">##     vp    1   10  TRUE        vp.xls</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   vpfs    1    2  TRUE      vpfs.xls</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">##     fs    1    7  TRUE        fs.xls</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     qs    1    7  TRUE        qs.xls</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     is    3    8  TRUE        is.xls</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">##    ctr    1    3  TRUE       ctr.xls</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     cn  113   13  TRUE        cn.xls</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   atcn    0    6  TRUE      atcn.xls</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  atcvp    0   11  TRUE     atcvp.xls</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    qac    0   10  TRUE       qac.xls</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">##    cts    0    8  TRUE       cts.xls</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">##    bmd  504   27 FALSE       bmd.xls</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  atbmd    0   28 FALSE     atbmd.xls</span></span></code></pre></div>
 <p>Individual tables can be extracted from the <code>bmd_export</code> object via <code>tab &lt;- bmd_export$tab</code>, where <code>tab</code> is the table of interest. <!-- accessor function? --></p>
 </div>
 <div class="section level4">
@@ -568,17 +567,7 @@ Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial data
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://img.shields.io/badge/dev%20version-1.0.12-blue.svg"></a></li>
-<li><a href="https://cran.r-project.org/package=secuTrialR" class="external-link"><img src="https://www.r-pkg.org/badges/version/secuTrialR?color=green"></a></li>
-<li><a href="https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://travis-ci.com/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://api.travis-ci.com/SwissClinicalTrialOrganisation/secuTrialR.svg?branch=master" alt="travis"></a></li>
-<li><a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/actions" class="external-link"><img src="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/workflows/R-CMD-check/badge.svg" alt="Actions Status"></a></li>
-<li><a href="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR" class="external-link"><img src="https://codecov.io/github/SwissClinicalTrialOrganisation/secuTrialR/branch/master/graphs/badge.svg" alt="codecov"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -591,7 +580,7 @@ Wright et al., (2020). secuTrialR: Seamless interaction with clinical trial data
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
