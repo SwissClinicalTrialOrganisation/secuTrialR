@@ -31,7 +31,7 @@
 #' plot_recruitment(sT_export, rm_regex = "\\(.*\\)$")
 #'
 plot_recruitment <- function(x, return_data = FALSE, show_centres = TRUE, cex = 1, rm_regex = "") {
-  if (class(x) == "secuTrialdata") {
+  if (inherits(x, "secuTrialdata")) {
 
     # check for meta data Structure available
     if (! x$export_options$structure) {

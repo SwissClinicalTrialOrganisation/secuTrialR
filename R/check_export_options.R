@@ -28,7 +28,7 @@
 #'
 #' secuTrialR:::check_export_options(sT_export)
 check_export_options <- function(dat) {
-  if (class(dat) != "secuTrialdata") {
+  if (!inherits(dat, "secuTrialdata")) {
     stop("check_export_options requires objects of the class 'secuTrialdata' as input.")
   }
   eo <- dat$export_options

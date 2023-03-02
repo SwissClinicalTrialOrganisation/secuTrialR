@@ -20,7 +20,7 @@
 #' participants <- get_participants(sT_export)
 #'
 get_participants <- function(dat) {
-  if (class(dat) != "secuTrialdata") {
+  if (!inherits(dat, "secuTrialdata")) {
     stop("get_participants requires objects of the class 'secuTrialdata' as input.")
   }
 

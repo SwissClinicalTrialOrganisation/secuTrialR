@@ -31,7 +31,7 @@
 #' diff_secuTrial(ctu06_v1, ctu06_v2)
 #'
 diff_secuTrial <- function(x, y) {
-  if (class(x) == "secuTrialdata" & class(y) == "secuTrialdata") {
+  if (inherits(x, "secuTrialdata") & inherits(y, "secuTrialdata")) {
 
     # comparisons are only possible if the project setup was exported
     if (! x$export_options$proj_setup & y$export_options$proj_setup) {

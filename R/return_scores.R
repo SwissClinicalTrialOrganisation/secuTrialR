@@ -19,7 +19,7 @@
 #' return_scores(sT_export)
 #'
 return_scores <- function(x) {
-  if (class(x) == "secuTrialdata") {
+  if (inherits(x, "secuTrialdata")) {
     curr_items <- x[[x$export_options$meta_names$items]]
     scores <- curr_items[grep("calculated|berechnet", curr_items$itemtype), ]
     scores_relevant_col <- scores[, c("ffcolname", "itemtype", "fflabel")]

@@ -47,7 +47,7 @@
 #' get_participants(sT_subset5)
 #'
 subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = FALSE) {
-  if (class(dat) != "secuTrialdata") {
+  if (!inherits(dat, "secuTrialdata")) {
     stop("subset_secuTrial() requires objects of the class 'secuTrialdata' as input parameter 'dat'.")
   }
   if (!is.null(participant) & !dat$export_options$add_id) {
@@ -88,7 +88,7 @@ subset_secuTrial <- function(dat, participant = NULL, centre = NULL, exclude = F
   participant_sel <- new_dat[[meta["casenodes"]]][["mnppid"]]
 
   for (tab in names(new_dat)) {
-    if (class(new_dat[[tab]]) != "data.frame") {
+    if (!inherits(new_dat[[tab]], "data.frame")) {
       next
     }
     if ("mnppid" %in% names(new_dat[[tab]])) {
