@@ -29,7 +29,7 @@
 #' annual_recruitment(sT_export, rm_regex = "\\(.*\\)$")
 #'
 annual_recruitment <- function(x, rm_regex = "") {
-  if (class(x) == "secuTrialdata") {
+  if (inherits(x, "secuTrialdata")) {
     # wrap plot_recruitment to retrieve data
     recruitment_data <- plot_recruitment(x, return_data = TRUE)
     # construct header

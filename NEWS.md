@@ -1,3 +1,6 @@
+# secuTrialR 1.1.1
+* fix CRAN notes - remove codecov badge, check class via inherits
+
 # secuTrialR 1.1.0
 * warning regarding overwritten `pat_id` variable 
 

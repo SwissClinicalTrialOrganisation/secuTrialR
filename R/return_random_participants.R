@@ -32,7 +32,7 @@
 #'                            centres = c("Inselspital Bern (RPACK)", "Charité Berlin (RPACK)"))
 #'
 return_random_participants <- function(x, centres = "all", percent = 0.1, date = "1900-01-01", seed = 1) {
-  if (class(x) == "secuTrialdata") {
+  if (inherits(x, "secuTrialdata")) {
 
      # check for meta data Structure available
      if (! x$export_options$structure) {
