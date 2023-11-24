@@ -1,4 +1,7 @@
-* `write_secuTrial()` no longer allows `format = "sas"` due to deprecation of write_sas in `haven` (version 2.5.2)
+# secuTrialR 1.2.0
+
+* `write_secuTrial()` no longer allows `format = "sas"` due to deprecation of write_sas in `haven` (version 2.5.2).
+* `read_secuTrial_raw` now produces a more explicit warning when ISO-8859 encoding is used. Recent changes in R seem to have reduced compatibility with this encoding.
 
 # secuTrialR 1.1.1
 * fix CRAN notes - remove codecov badge, check class via inherits
