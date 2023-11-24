@@ -81,6 +81,7 @@ read_export_table <- function(data_dir, file_name, export_options,
   curr_encoding <- export_options$encoding
   if (curr_encoding == "ISO-8859-1" | curr_encoding == "ISO-8859-15") {
     curr_encoding <- "latin1"
+    warning("ISO-8859-1 encoding detected. Strings may not be interpreted correctly")
   }
 
   if (export_options$is_zip) {

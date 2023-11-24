@@ -220,7 +220,7 @@ path <- system.file("extdata", "sT_exports", "encodings",
                     "s_export_CSV-xls_TES05_short_ref_en_iso8859-15.zip",
                     package = "secuTrialR")
 
-tes05_raw <- read_secuTrial_raw(path)
+tes05_raw <- suppressWarnings(read_secuTrial_raw(path))
 
 test_that("loading data: TES05 incomplete dates (warn)", {
   expect_warning(f <- dates_secuTrial(tes05_raw, warn = TRUE))

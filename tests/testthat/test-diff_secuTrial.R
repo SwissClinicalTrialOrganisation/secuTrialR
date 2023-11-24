@@ -14,9 +14,10 @@ ctu05_en_2 <- read_secuTrial(system.file("extdata", "sT_exports", "snames",
 #> ctu05_en_2$export_options$project_version
 #[1] "(20.06.2019 - 11:22:04 (CEST))"
 
-ctu05_fr <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
-                                       "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-1.zip",
-                                       package = "secuTrialR"))
+ctu05_fr <- suppressWarnings(
+  read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+                             "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-1.zip",
+                             package = "secuTrialR")))
 #> ctu05_fr$export_options$project_version
 #[1] "(20.06.2019 - 11:22:04 (CEST))"
 
@@ -70,3 +71,4 @@ test_that("Different version and changes", {
   expect_equal(length(v2_vs_v3$new_forms), 0)
   expect_equal(v2_vs_v3$new_variables, "yet_another_item")
 })
+
