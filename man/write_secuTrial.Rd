@@ -17,7 +17,7 @@ write_secuTrial(object, ...)
 
 \item{...}{further parameters}
 
-\item{format}{format in which to save the export (one of "dta", "sas", "sav", "xpt")}
+\item{format}{format in which to save the export (one of "dta", "sav", "xpt")}
 
 \item{metadata}{if TRUE then metadate files will also be written}
 
@@ -32,7 +32,7 @@ a list of filenames
 }
 \description{
 Convert the export prepared in R and export it to
-             SPSS (sav), Stata (dta) or SAS (sas, xpt version 8)
+             SPSS (sav), Stata (dta) or SAS (xpt version 8)
              using the haven package.
 }
 \details{
