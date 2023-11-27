@@ -1,6 +1,6 @@
 #' Write secuTrial exports to other formats
 #' @description Convert the export prepared in R and export it to
-#'              SPSS (sav), Stata (dta) or SAS (sas, xpt version 8)
+#'              SPSS (sav), Stata (dta) or SAS (xpt version 8)
 #'              using the haven package.
 #' @name write_secuTrial
 #' @param object \code{secuTrialdata} object
@@ -27,12 +27,12 @@
 write_secuTrial <- function(object, ...) UseMethod("write_secuTrial", object)
 #' @export
 #' @name write_secuTrial
-#' @param format format in which to save the export (one of "dta", "sas", "sav", "xpt")
+#' @param format format in which to save the export (one of "dta", "sav", "xpt")
 #' @param metadata if TRUE then metadate files will also be written
 write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FALSE, ...) {
 
-  if (! format %in% c("dta", "sas", "sav", "xpt")) {
-    stop(paste0("format must be one of 'dta', 'sas', 'sav', 'xpt'. You specified: ", format))
+  if (! format %in% c("dta", "sav", "xpt")) {
+    stop(paste0("format must be one of 'dta', 'sav', 'xpt'. You specified: ", format))
   }
   x <- object$export_options$data_names
   names(x) <- NULL
@@ -51,11 +51,9 @@ write_secuTrial.secuTrialdata <- function(object, format = "dta", metadata = FAL
 write_secuTrial.data.frame <- function(df, filename, path = "", format = "dta", ...) {
   df <- convertnames(df, format)
   format2 <- format
-  if (format == "sas") format2 <- "sas7bdat"
   out <- file.path(path, paste0(filename, ".", format2))
   if (format == "dta") haven::write_dta(df, out, ...)
   if (format == "sav") haven::write_sav(df, out, ...)
-  if (format == "sas") haven::write_sas(df, out, ...)
   if (format == "xpt") haven::write_xpt(df, out, version = 8, ...)
   paste("Saved to", out)
 }

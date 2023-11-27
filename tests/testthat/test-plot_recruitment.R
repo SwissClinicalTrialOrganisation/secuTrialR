@@ -12,9 +12,9 @@ ldat <- read_secuTrial(system.file("extdata", "sT_exports", "lnames",
 ctu05_utf8_french <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                                 "s_export_CSV-xls_CTU05_short_ref_miss_fr_utf8.zip",
                                                 package = "secuTrialR"))
-ctu05_iso15_french <- read_secuTrial(system.file("extdata", "sT_exports", "encodings",
+ctu05_iso15_french <- suppressWarnings(read_secuTrial(system.file("extdata", "sT_exports", "encodings",
                                                  "s_export_CSV-xls_CTU05_short_ref_miss_fr_iso8859-15.zip",
-                                                 package = "secuTrialR"))
+                                                 package = "secuTrialR")))
 
 only_col_names_export_location <- system.file("extdata", "sT_exports", "exp_opt",
                                               "s_export_CSV-xls_CTU05_only_column_names.zip",

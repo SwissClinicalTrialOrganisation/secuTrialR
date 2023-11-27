@@ -2,7 +2,7 @@
 
 # secuTrialR
 
-[![](https://img.shields.io/badge/dev%20version-1.1.1-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
+[![](https://img.shields.io/badge/dev%20version-1.2.0-blue.svg)](https://github.com/SwissClinicalTrialOrganisation/secuTrialR)
 [![](https://www.r-pkg.org/badges/version/secuTrialR?color=green)](https://cran.r-project.org/package=secuTrialR)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/SwissClinicalTrialOrganisation/secuTrialR?branch=master&svg=true)](https://ci.appveyor.com/project/SwissClinicalTrialOrganisation/secuTrialR)

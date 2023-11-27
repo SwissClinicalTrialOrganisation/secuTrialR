@@ -25,9 +25,11 @@ exp_opt_ctu05_iso1_loc <- system.file("extdata", "sT_exports", "encodings",
 # utf8
 exp_opt_ctu05_utf8_eo <- read_export_options(exp_opt_ctu05_utf8_loc)
 # ISO-8859-15
-exp_opt_ctu05_iso15_eo <- read_export_options(exp_opt_ctu05_iso15_loc)
+exp_opt_ctu05_iso15_eo <- suppressWarnings(
+  read_export_options(exp_opt_ctu05_iso15_loc))
 # ISO-8859-1
-exp_opt_ctu05_iso1_eo <- read_export_options(exp_opt_ctu05_iso1_loc)
+exp_opt_ctu05_iso1_eo <- suppressWarnings(
+  read_export_options(exp_opt_ctu05_iso1_loc))
 
 # test encoding parser
 test_that("encodings parsed as expected", {
@@ -53,9 +55,9 @@ test_that("all export options outputs are equal", {
 # utf8
 exp_opt_ctu05_utf8_export <- read_secuTrial_raw(exp_opt_ctu05_utf8_loc)
 # ISO-8859-15
-exp_opt_ctu05_iso15_export <- read_secuTrial_raw(exp_opt_ctu05_iso15_loc)
+exp_opt_ctu05_iso15_export <- suppressWarnings(read_secuTrial_raw(exp_opt_ctu05_iso15_loc))
 # ISO-8859-1
-exp_opt_ctu05_iso1_export <- read_secuTrial_raw(exp_opt_ctu05_iso1_loc)
+exp_opt_ctu05_iso1_export <- suppressWarnings(read_secuTrial_raw(exp_opt_ctu05_iso1_loc))
 
 # nolint end
 
@@ -80,9 +82,12 @@ test_that("UTF-8 + BOM is not supported", {
 # macroman
 # the parsed options are incorrect thus we disallow MacRoman
 test_that("MacRoman is not supported", {
-  expect_error(read_export_options(system.file("extdata", "sT_exports", "encodings",
-                                               "s_export_CSV-xls_CTU05_short_ref_miss_fr_macroman.zip",
-                                               package = "secuTrialR"))
+  expect_error(
+    suppressWarnings(
+      read_export_options(system.file("extdata", "sT_exports", "encodings",
+                                      "s_export_CSV-xls_CTU05_short_ref_miss_fr_macroman.zip",
+                                      package = "secuTrialR"))
+    )
   )
 })
 
