@@ -18,7 +18,7 @@ this function composes a URL to a specific secuTrial instance, customer or form.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">secuTrialR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
       </span>
     </div>
 
@@ -70,7 +70,8 @@ this function composes a URL to a specific secuTrial instance, customer or form.
 <span>  instance <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  customer <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  projid <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  docid <span class="op">=</span> <span class="cn">NA</span></span>
+<span>  docid <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  prefix <span class="op">=</span> <span class="st">"apps/WebObjects/"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -95,6 +96,10 @@ this function composes a URL to a specific secuTrial instance, customer or form.
 <dt>docid</dt>
 <dd><p>(optional) secuTrial document/form identifer</p></dd>
 
+
+<dt>prefix</dt>
+<dd><p>(optional) string containing the URL prefix to the WebObjects application (default: "apps/WebObjects/")</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -110,6 +115,7 @@ you usually use to log in. For example in:</p>
 <p><em>https://server.secutrial.com/apps/WebObjects/ST21-setup-DataCapture.woa/wa/choose?customer=TES</em></p>
 <ul><li><p>server id is: <strong>server.secutrial.com</strong></p></li>
 <li><p>instance id is: <strong>ST21-setup-DataCapture</strong></p></li>
+<li><p>url prefix is: <strong>apps/WebObjects/</strong></p></li>
 <li><p>you can find the customer id at the end of the link i.e <strong>TES</strong></p>
 <p>Alternatively it can be found in the
       CustomerAdminTool -&gt; click "Kunden" -&gt; Value in DB column of table on login page.</p></li>
