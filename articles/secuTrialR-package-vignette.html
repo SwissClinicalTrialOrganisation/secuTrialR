@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>secuTrialR - a walkthrough • secuTrialR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -82,7 +82,7 @@
                         <h4 data-toc-skip class="author">Patrick R.
 Wright, Milica Markovic, Alan G. Haynes</h4>
             
-            <h4 data-toc-skip class="date">2023-11-30</h4>
+            <h4 data-toc-skip class="date">2024-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/SwissClinicalTrialOrganisation/secuTrialR/blob/HEAD/vignettes/secuTrialR-package-vignette.Rmd" class="external-link"><code>vignettes/secuTrialR-package-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>secuTrialR-package-vignette.Rmd</code></div>
@@ -322,8 +322,9 @@ other medication were entered in <code>allmedi</code>. </p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">treatment</span><span class="op">$</span><span class="va">rando_treatment</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Placebo   Verum </span></span>
-<span><span class="co">#&gt;       8       3</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">allmedi</span><span class="op">$</span><span class="va">med_product</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       8       3</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">allmedi</span><span class="op">$</span><span class="va">med_product</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Amoxicillin Doxycycline    Importal </span></span>
 <span><span class="co">#&gt;           2           1           3</span></span></code></pre></div>
@@ -339,27 +340,30 @@ during the reading process and becomes accessible via
 <code>gender.factor</code>. Thus, data is not overwritten but added with
 the <code>.factor</code> extension. If there are issues during
 factorization a <code><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning()</a></code> will inform you of this. </p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># raw gender data</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">gender</span></span>
 <span><span class="co">#&gt;  [1]  1 NA NA  2  1  2  1 NA NA  1  2 NA NA  1  2  2 NA</span></span>
 <span><span class="co">#&gt; attr(,"label")</span></span>
-<span><span class="co">#&gt; [1] "Gender"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "Gender"</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># transformed gender data</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">gender.factor</span></span>
 <span><span class="co">#&gt;  [1] male   &lt;NA&gt;   &lt;NA&gt;   female male   female male   &lt;NA&gt;   &lt;NA&gt;   male  </span></span>
 <span><span class="co">#&gt; [11] female &lt;NA&gt;   &lt;NA&gt;   male   female female &lt;NA&gt;  </span></span>
 <span><span class="co">#&gt; attr(,"label")</span></span>
 <span><span class="co">#&gt; [1] Gender</span></span>
-<span><span class="co">#&gt; Levels: male female</span></span>
-<span></span>
+<span><span class="co">#&gt; Levels: male female</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># raw more meds</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">allmedi</span><span class="op">$</span><span class="va">no_more_meds</span></span>
 <span><span class="co">#&gt;  [1] 1 1 0 1 1 1 0 0 0 1 0 0 1 1 1 1 0</span></span>
 <span><span class="co">#&gt; attr(,"label")</span></span>
-<span><span class="co">#&gt; [1] "No further medication"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "No further medication"</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># transformed more meds</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">allmedi</span><span class="op">$</span><span class="va">no_more_meds.factor</span></span>
 <span><span class="co">#&gt;  [1] yes yes no  yes yes yes no  no  no  yes no  no  yes yes yes yes no </span></span>
@@ -368,51 +372,60 @@ factorization a <code><a href="https://rdrr.io/r/base/warning.html" class="exter
 <span><span class="co">#&gt; Levels: no yes</span></span></code></pre></div>
 <p>Note that descriptive labels have also been automatically added to
 the data. </p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/labels_secuTrial.html">label</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">allmedi</span><span class="op">$</span><span class="va">no_more_meds.factor</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "No further medication"</span></span>
-<span><span class="fu"><a href="../reference/labels_secuTrial.html">label</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">gender.factor</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Gender"</span></span>
-<span><span class="fu"><a href="../reference/labels_secuTrial.html">label</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">esurgeries</span><span class="op">$</span><span class="va">surgery_organ.factor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "No further medication"</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/labels_secuTrial.html">label</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">gender.factor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Gender"</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/labels_secuTrial.html">label</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">esurgeries</span><span class="op">$</span><span class="va">surgery_organ.factor</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Organ"</span></span></code></pre></div>
 <p>Datetime data is also transformed and similarly to the factorization
 process the names are concatenated with <code>.date</code> or
 <code>.datetime</code>. </p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># raw</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">visit_date</span></span>
 <span><span class="co">#&gt;  [1] 20190401 20190402 20190403 20190402 20190403 20190404 20190405 20190406</span></span>
 <span><span class="co">#&gt;  [9] 20190407 20190411 20190412 20190413 20190414 20190413 20190414 20190415</span></span>
 <span><span class="co">#&gt; [17] 20180501</span></span>
 <span><span class="co">#&gt; attr(,"label")</span></span>
-<span><span class="co">#&gt; [1] "Date of visit"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "Date of visit"</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># processed</span></span>
 <span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">visit_date.date</span></span>
 <span><span class="co">#&gt;  [1] "2019-04-01" "2019-04-02" "2019-04-03" "2019-04-02" "2019-04-03"</span></span>
 <span><span class="co">#&gt;  [6] "2019-04-04" "2019-04-05" "2019-04-06" "2019-04-07" "2019-04-11"</span></span>
 <span><span class="co">#&gt; [11] "2019-04-12" "2019-04-13" "2019-04-14" "2019-04-13" "2019-04-14"</span></span>
-<span><span class="co">#&gt; [16] "2019-04-15" "2018-05-01"</span></span>
-<span></span>
+<span><span class="co">#&gt; [16] "2019-04-15" "2018-05-01"</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># raw only head</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 201903052356           NA           NA           NA           NA</span></span>
-<span><span class="co">#&gt; [6]           NA</span></span>
-<span></span>
+<span><span class="co">#&gt; [6]           NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># processed only head</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date.datetime</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2019-03-05 23:56:00 UTC" NA                       </span></span>
 <span><span class="co">#&gt; [3] NA                        NA                       </span></span>
-<span><span class="co">#&gt; [5] NA                        NA</span></span>
-<span></span>
+<span><span class="co">#&gt; [5] NA                        NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># classes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">visit_date</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "integer"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">visit_date.date</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Date"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "numeric"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date.datetime</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "integer"</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">visit_date.date</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Date"</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "numeric"</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">hiv_date.datetime</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "POSIXct" "POSIXt"</span></span></code></pre></div>
 <p>Depending on the setup, incomplete dates can be valid entries in a
 secuTrial database. Thus they will also occasionally appear in your
@@ -427,7 +440,7 @@ so-called date imputation.</p>
 </h3>
 <p>The <code>secuTrialdata</code> object also contains information on
 the export options. </p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">export_options</span></span>
 <span><span class="co">#&gt; secuTrial version: 5.5.1.10 </span></span>
 <span><span class="co">#&gt; Time of export on server: 03.10.2019 - 14:43:49 (CEST) </span></span>
@@ -457,15 +470,16 @@ the export options. </p>
 interested in more information than is printed you can also access it.
 Let’s assume you would like to know the <code>project_name</code> and
 <code>encoding</code>. </p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">export_options</span><span class="op">$</span><span class="va">project_name</span></span>
-<span><span class="co">#&gt; [1] "secuTrialR example CDMA"</span></span>
-<span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">export_options</span><span class="op">$</span><span class="va">encoding</span></span>
+<span><span class="co">#&gt; [1] "secuTrialR example CDMA"</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">export_options</span><span class="op">$</span><span class="va">encoding</span></span>
 <span><span class="co">#&gt; [1] "UTF-8"</span></span></code></pre></div>
 <p>Much more information is stored in the elements of
 <code>export_options</code>. The names of the elements should be
 descriptive enough to infer the contents. </p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">export_options</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "sep"                "date_format"        "datetime_format"   </span></span>
 <span><span class="co">#&gt;  [4] "date_format_meta"   "na.strings"         "short_names"       </span></span>
@@ -492,7 +506,7 @@ class.</p>
 <h3 id="show-the-study-participants">Show the study participants<a class="anchor" aria-label="anchor" href="#show-the-study-participants"></a>
 </h3>
 <p>First off you may be interested in a table of participants. </p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_participants.html">get_participants</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mnppid        mnpaid mnpctrid                       mnpctrname</span></span>
 <span><span class="co">#&gt; 1    1204 RPACK-CBE-001      462           Charité Berlin (RPACK)</span></span>
@@ -516,7 +530,7 @@ corresponds to the <code>pat_id</code> column in other tables.</p>
 <p>You can extract information about participant recruitment per centre
 and year by applying <code><a href="../reference/annual_recruitment.html">annual_recruitment()</a></code> on a
 <code>secuTrialdata</code> object. </p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/annual_recruitment.html">annual_recruitment</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                             Center Total 2018 2019</span></span>
 <span><span class="co">#&gt; 1                              All    11    1   10</span></span>
@@ -528,7 +542,7 @@ and year by applying <code><a href="../reference/annual_recruitment.html">annual
 centre descriptions via regular expressions (i.e. <code>rm_regex</code>
 argument). In this case the regular expression removes trailing
 parentheses and everything they enclose. </p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/annual_recruitment.html">annual_recruitment</a></span><span class="op">(</span><span class="va">ctu05_data</span>, rm_regex <span class="op">=</span> <span class="st">"\\(.*\\)$"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     Center Total 2018 2019</span></span>
 <span><span class="co">#&gt; 1                      All    11    1   10</span></span>
@@ -536,7 +550,7 @@ parentheses and everything they enclose. </p>
 <span><span class="co">#&gt; 3         Inselspital Bern     5    0    5</span></span>
 <span><span class="co">#&gt; 4 Universitätsspital Basel     1    1    0</span></span></code></pre></div>
 <p>It is also possible to plot the recruitment over time. </p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_recruitment.html">plot_recruitment</a></span><span class="op">(</span><span class="va">ctu05_data</span>, cex <span class="op">=</span> <span class="fl">1.2</span>, rm_regex <span class="op">=</span> <span class="st">"\\(.*\\)$"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-20-1.png" width="768"></p>
 <div style="page-break-after: always;"></div>
@@ -548,7 +562,7 @@ parentheses and everything they enclose. </p>
 structure, although only where the visit plan is fixed. Black rectangles
 in the grid represent a form to be filled (x) during one of the visits
 (y). </p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/visit_structure.html">visit_structure</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vs</span><span class="op">)</span></span></code></pre></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-21-1.png" width="374.4"></p>
@@ -560,7 +574,7 @@ in the grid represent a form to be filled (x) during one of the visits
 may be useful to get a quick overview of how well the forms have been
 filled. The below table shows both absolute and relative numbers for a
 few forms. </p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/form_status_summary.html">form_status_summary</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">fss</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        form_name partly_filled completely_filled empty with_warnings</span></span>
@@ -589,7 +603,7 @@ generic way. Hence, high completeness on form basis implies high
 completeness on variable basis but <strong>NOT</strong> vice versa.</p>
 <p>If you would rather retrieve information on form completeness for
 each participant individually you can perform the following. </p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fsc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/form_status_counts.html">form_status_counts</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="co"># show the top</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fsc</span><span class="op">)</span></span>
@@ -618,7 +632,7 @@ interact with the network, e.g. move nodes around in order to read the
 labels better. The R graphics device ID is returned to the console, but
 can be ignored. Forms are plotted in deep yellow, variables in light
 blue. </p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/links_secuTrial.html">links_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span></code></pre></div>
 <p>The output can not be shown within this vignette but you should give
 it a try. Please note that the linkage plot is likely most useful
@@ -633,7 +647,7 @@ participants from a study database. These participants should be
 retrieved in a reproducible fashion, which can be achieved by setting a
 so-called seed. The below function allows reproducible retrieval for a
 loaded secuTrial data export. </p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># randomly retrieve at least 25 percent of participants recorded after March 18th 2019</span></span>
 <span><span class="co"># from the centres "Inselspital Bern" and "Charité Berlin"</span></span>
 <span><span class="fu"><a href="../reference/return_random_participants.html">return_random_participants</a></span><span class="op">(</span><span class="va">ctu05_data</span>,</span>
@@ -670,7 +684,7 @@ data analysis. A rule of thumb: The more complex a score is and the more
 data from different forms is necessary for its calculation the more
 likely its value should be recalculated. The below function will allow
 you to detect which variables this concerns. </p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/return_scores.html">return_scores</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   name                  itemtype label</span></span>
 <span><span class="co">#&gt; 1  age Years y (calculated only)   Age</span></span></code></pre></div>
@@ -682,7 +696,7 @@ you to detect which variables this concerns. </p>
 should no longer be entered into them. If this is the case and the data
 of these fields is part of your export is likely good to know about it.
 In this case nothing is hidden. </p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/return_hidden_items.html">return_hidden_items</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] name     itemtype label   </span></span>
 <span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
@@ -706,22 +720,24 @@ FormBuilder as a new secuTrial project (CTU06). From this, we created a
 data export (v1) and then made a few minor changes and exported again
 (v2). If this sounds confusing, never mind. CTU06 v1 is simply a copy of
 CTU05. CTU06 v2 is a slighly altered version of CTU06 v1. </p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ctu06_v1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span>
 <span>                                       <span class="st">"s_export_CSV-xls_CTU06_version1.zip"</span>,</span>
 <span>                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Read export successfully.</span></span>
 <span><span class="co">#&gt; The following export options deviate from the suggested specifications:</span></span>
 <span><span class="co">#&gt; Data from hidden fields is part of the export.</span></span>
-<span><span class="co">#&gt; Short names was not selected.</span></span>
-<span></span>
+<span><span class="co">#&gt; Short names was not selected.</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">ctu06_v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_secuTrial.html">read_secuTrial</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sT_exports"</span>, <span class="st">"change_tracking"</span>,</span>
 <span>                                       <span class="st">"s_export_CSV-xls_CTU06_version2.zip"</span>,</span>
 <span>                                       package <span class="op">=</span> <span class="st">"secuTrialR"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Read export successfully.</span></span>
 <span><span class="co">#&gt; The following export options deviate from the suggested specifications:</span></span>
-<span><span class="co">#&gt; Data from hidden fields is part of the export.</span></span>
-<span></span>
+<span><span class="co">#&gt; Data from hidden fields is part of the export.</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/diff_secuTrial.html">diff_secuTrial</a></span><span class="op">(</span><span class="va">ctu06_v1</span>, <span class="va">ctu06_v2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $new_forms</span></span>
 <span><span class="co">#&gt; [1] "mnpctu06anewform"       "mnpctu06anothernewform"</span></span>
@@ -753,7 +769,7 @@ R is not restrictive in this respect, but other software can be.
 <code>secuTrialR</code> does not truncate names, prefering to leave this
 to the user, which can cause <code><a href="../reference/write_secuTrial.html">write_secuTrial()</a></code> to fail with
 an error. </p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># retrieve path to a temporary directory</span></span>
 <span><span class="va">tdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># write spss</span></span>
@@ -770,36 +786,42 @@ will truncate your <code>secuTrialdata</code> object and return a new
 <code>secuTrialdata</code> object which is a subset of the original
 data. It is possible to subset by including or excluding specific
 participant ids or centres. </p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># initialize some subset identifiers</span></span>
 <span><span class="va">participants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RPACK-INS-011"</span>, <span class="st">"RPACK-INS-014"</span>, <span class="st">"RPACK-INS-015"</span><span class="op">)</span></span>
 <span><span class="va">centres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>, <span class="st">"Universitätsspital Basel (RPACK)"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># exclude Bern and Basel</span></span>
 <span><span class="va">ctu05_data_berlin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span>, centre <span class="op">=</span> <span class="va">centres</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span>
-<span><span class="co"># exclude Berlin</span></span>
+<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># exclude Berlin</span></span>
 <span><span class="va">ctu05_data_bern_basel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span>, centre <span class="op">=</span> <span class="va">centres</span><span class="op">)</span></span>
-<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span>
-<span><span class="co"># keep only subset of participants</span></span>
+<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># keep only subset of participants</span></span>
 <span><span class="va">ctu05_data_pids</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span>, participant <span class="op">=</span> <span class="va">participants</span><span class="op">)</span></span>
-<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span>
-<span></span>
+<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data_berlin</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "secuTrialdata"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data_bern_basel</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "secuTrialdata"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data_pids</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "secuTrialdata"</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data_bern_basel</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "secuTrialdata"</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ctu05_data_pids</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "secuTrialdata"</span></span></code></pre></div>
 <p>If you subset based on centres all traces of deleted centres will be
 removed. If you remove based on participant ids all traces of deleted
 participants will be removed. </p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># only Berlin remains</span></span>
 <span><span class="va">ctu05_data_berlin</span><span class="op">$</span><span class="va">ctr</span></span>
 <span><span class="co">#&gt;   mnpctrid             mnpctrname mnpcname</span></span>
-<span><span class="co">#&gt; 1      462 Charité Berlin (RPACK)       NA</span></span>
-<span></span>
+<span><span class="co">#&gt; 1      462 Charité Berlin (RPACK)       NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># all centres remain even though all three participant ids are from Bern</span></span>
 <span><span class="va">ctu05_data_pids</span><span class="op">$</span><span class="va">ctr</span></span>
 <span><span class="co">#&gt;   mnpctrid                       mnpctrname mnpcname</span></span>
@@ -811,21 +833,23 @@ participants will be removed. </p>
 (i.e. <code>secuTrialdata</code>) you can still use the generic
 functions on it. Let’s say you would only like to look at the
 recruitment plot for Bern alone. </p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># keep only Bern</span></span>
 <span><span class="va">ctu05_data_bern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span>, centre <span class="op">=</span> <span class="st">"Inselspital Bern (RPACK)"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span>
-<span><span class="co"># plot</span></span>
+<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot</span></span>
 <span><span class="fu"><a href="../reference/plot_recruitment.html">plot_recruitment</a></span><span class="op">(</span><span class="va">ctu05_data_bern</span><span class="op">)</span></span></code></pre></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-32-1.png" width="768"></p>
 <p>… or Bern and Berlin. </p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># keep only Bern and Berlin</span></span>
 <span><span class="va">ctu05_data_bern_berlin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset_secuTrial.html">subset_secuTrial</a></span><span class="op">(</span><span class="va">ctu05_data</span>,</span>
 <span>                                           centre <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Inselspital Bern (RPACK)"</span>,</span>
 <span>                                                      <span class="st">"Charité Berlin (RPACK)"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span>
-<span><span class="co"># plot</span></span>
+<span><span class="co">#&gt; If you changed any labels in the secuTrialdata object manually these will be reset to their original state.</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot</span></span>
 <span><span class="fu"><a href="../reference/plot_recruitment.html">plot_recruitment</a></span><span class="op">(</span><span class="va">ctu05_data_bern_berlin</span><span class="op">)</span></span></code></pre></div>
 <p><img src="secuTrialR-package-vignette_files/figure-html/unnamed-chunk-33-1.png" width="768"></p>
 </div>
@@ -844,16 +868,17 @@ you regarding the information for the <code>server</code>,
 parameters. The <code>docid</code>, however, is included in your export
 data in the non-meta data tables of the <code>secuTrialdata</code>
 object and can be found in the <code>mnpdocid</code> columns.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">treatment</span><span class="op">$</span><span class="va">mnpdocid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 181 193 200 205 213 224</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">mnpdocid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 181 193 200 205 213 224</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">mnpdocid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 180 184 187 191 199 203</span></span></code></pre></div>
 <p>To demsonstrate <code>build_secuTrial_url</code> we will use
 imaginary data for the <code>server</code>, <code>instance</code>,
 <code>customer</code> and <code>project</code> parameters. The real
 counterparts on your server will likely look structurally similar.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="st">"server.secutrial.com"</span></span>
 <span><span class="va">instance</span> <span class="op">&lt;-</span> <span class="st">"ST21-setup-DataCapture"</span></span>
 <span><span class="va">customer</span> <span class="op">&lt;-</span> <span class="st">"TES"</span></span>
@@ -881,15 +906,15 @@ environment of your choice.</p>
 <p>As an example, we will create an environment called <code>env</code>
 and check that it’s empty before running <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>…
 </p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">new.env</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span></span>
 <span><span class="co">#&gt; character(0)</span></span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># add files to env</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">ctu05_data</span>, envir <span class="op">=</span> <span class="va">env</span><span class="op">)</span></span></code></pre></div>
 <p>… and afterwards. </p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "ae"              "allmedi"         "atae"            "atae1"          </span></span>
 <span><span class="co">#&gt;  [5] "atallmedi"       "atbaseline"      "atesurgeries"    "atmiv"          </span></span>
@@ -982,27 +1007,28 @@ form. For this we can use the <code>mnpcvpid</code> which uniquely
 identifies each participant visit. Since we are only interested in the
 <code>rando_treatment</code> variable we will shrink the data in the
 <code>treatment</code> form prior to merging.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">treatment_shrink</span> <span class="op">&lt;-</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">treatment</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mnpcvpid"</span>, <span class="st">"rando_treatment"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <p>Because we do not want to drop non-matching rows from
 <code>baseline</code> we set <code>all.x = TRUE</code>. As you can see
 from the <code><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim()</a></code> calls, one column has been added after the
 merge. This corresponds to the <code>rando_treatment</code>
 variable.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bl_treat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span>, y <span class="op">=</span> <span class="va">treatment_shrink</span>,</span>
 <span>                  by <span class="op">=</span> <span class="st">"mnpcvpid"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># check dimensions</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  17 107</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">bl_treat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  17 107</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">bl_treat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  17 108</span></span></code></pre></div>
 <p>Another common task may be to merge repetition form data to its
 parent form. In our case <code>esurgeries</code> can be naively merged
 with <code>baseline</code> via the <code>mnpdocid</code> (from the
 secuTrial manual: “Each eCRF document record has a unique document
 identifier.”):</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bl_surg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span>, y <span class="op">=</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">esurgeries</span>, by <span class="op">=</span> <span class="st">"mnpdocid"</span><span class="op">)</span></span></code></pre></div>
 <p>Please note, that such naive merging can cause duplication of data if
 the ids that the merge is directed by are not unique. This also happened
@@ -1011,7 +1037,7 @@ Participant “RPACK-INS-012” exhibits the <code>mnpdocid</code> 234 twice
 in the <code>esurgeries</code> repetition form which causes a
 duplication of the <code>baseline</code> data matching
 <code>mnpdocid</code> 234.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">esurgeries</span><span class="op">$</span><span class="va">mnpdocid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 180 184 187 191 199 203 211 216 220 222 230 234 238 243 249 255 265 </span></span>
@@ -1019,13 +1045,14 @@ duplication of the <code>baseline</code> data matching
 <p>Lets briefly illustrate the consequences by looking at a
 <code><a href="https://rdrr.io/r/base/table.html" class="external-link">table()</a></code> of the <code>height</code> variable from the
 <code>baseline</code> form before and after merging.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># before merge</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 110.1   150 150.1   160 167.9 170.3 170.4   180 180.1 190.2 </span></span>
-<span><span class="co">#&gt;     1     1     1     1     1     1     1     3     3     1</span></span>
-<span></span>
+<span><span class="co">#&gt;     1     1     1     1     1     1     1     3     3     1</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># after merge</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">bl_surg</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1040,7 +1067,7 @@ this you need to investigate which data you would like to merge and
 design an appropriate stategy. In our example case we are interested in
 the <code>surgery_organ</code>. Of course we also need to drag the
 <code>mnpdocid</code> along to perform the actual merge.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># write a temporary object</span></span>
 <span><span class="va">surg</span> <span class="op">&lt;-</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">esurgeries</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mnpdocid"</span>, <span class="st">"surgery_organ.factor"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co"># only retain non NA rows</span></span>
@@ -1053,7 +1080,7 @@ the <code>surgery_organ</code>. Of course we also need to drag the
 <div style="page-break-after: always;"></div>
 <p>In order to prevent duplication we can restructure the data before
 merging.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span> <span class="co"># pivot_wider</span></span>
 <span><span class="co"># add a count</span></span>
 <span><span class="va">surg</span><span class="op">$</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
@@ -1061,8 +1088,9 @@ merging.</p>
 <span><span class="va">surg</span></span>
 <span><span class="co">#&gt;    mnpdocid surgery_organ.factor count</span></span>
 <span><span class="co">#&gt; 12      234              Stomach     1</span></span>
-<span><span class="co">#&gt; 13      234                Other     1</span></span>
-<span></span>
+<span><span class="co">#&gt; 13      234                Other     1</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># make it wide</span></span>
 <span><span class="va">surg_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span><span class="va">surg</span>, names_from <span class="op">=</span> <span class="va">surgery_organ.factor</span>, values_from <span class="op">=</span> <span class="va">count</span><span class="op">)</span></span>
 <span><span class="co"># show the wide data</span></span>
@@ -1077,17 +1105,19 @@ data added from the <code>esurgeries</code> repetition form
 (i.e. <code>Stomach</code> and <code>Other</code>). Also, as expected,
 the <code><a href="https://rdrr.io/r/base/table.html" class="external-link">table()</a></code> of the height variable returns the expected
 result (i.e. 180 is present three not four times).</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># merge</span></span>
 <span><span class="va">bl_surg_no_dup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span>, y <span class="op">=</span> <span class="va">surg_wide</span>,</span>
 <span>                        by <span class="op">=</span> <span class="st">"mnpdocid"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># compare dimensions</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">bl_surg_no_dup</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  17 109</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  17 107</span></span>
-<span></span>
+<span><span class="co">#&gt; [1]  17 109</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ctu05_data</span><span class="op">$</span><span class="va">baseline</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  17 107</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># check the height variable</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">bl_surg_no_dup</span><span class="op">$</span><span class="va">height</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1109,15 +1139,15 @@ Explaining them all is beyond the scope of this vignette. For detailed
 explanations, please refer to the secuTrial “Export Formats” user
 manual.</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.3.2 (2023-10-31)</span></span>
-<span><span class="co">#&gt; Platform: x86_64-apple-darwin20 (64-bit)</span></span>
-<span><span class="co">#&gt; Running under: macOS Monterey 12.6.9</span></span>
+<span><span class="co">#&gt; R version 4.4.0 (2024-04-24)</span></span>
+<span><span class="co">#&gt; Platform: aarch64-apple-darwin20</span></span>
+<span><span class="co">#&gt; Running under: macOS Sonoma 14.4.1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib </span></span>
-<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0</span></span>
+<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib </span></span>
+<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
 <span><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
@@ -1129,24 +1159,24 @@ manual.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] tidyr_1.3.0      secuTrialR_1.2.0</span></span>
+<span><span class="co">#&gt; [1] tidyr_1.3.1      secuTrialR_1.2.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] sass_0.4.7        utf8_1.2.4        generics_0.1.3    stringi_1.8.2    </span></span>
-<span><span class="co">#&gt;  [5] hms_1.1.3         digest_0.6.33     magrittr_2.0.3    evaluate_0.23    </span></span>
-<span><span class="co">#&gt;  [9] timechange_0.2.0  fastmap_1.1.1     cellranger_1.1.0  rprojroot_2.0.4  </span></span>
-<span><span class="co">#&gt; [13] jsonlite_1.8.7    purrr_1.0.2       fansi_1.0.5       textshaping_0.3.7</span></span>
-<span><span class="co">#&gt; [17] jquerylib_0.1.4   cli_3.6.1         crayon_1.5.2      rlang_1.1.2      </span></span>
-<span><span class="co">#&gt; [21] bit64_4.0.5       withr_2.5.2       cachem_1.0.8      yaml_2.3.7       </span></span>
-<span><span class="co">#&gt; [25] parallel_4.3.2    tools_4.3.2       tzdb_0.4.0        memoise_2.0.1    </span></span>
-<span><span class="co">#&gt; [29] dplyr_1.1.4       forcats_1.0.0     vctrs_0.6.4       R6_2.5.1         </span></span>
-<span><span class="co">#&gt; [33] lifecycle_1.0.4   lubridate_1.9.3   stringr_1.5.1     bit_4.0.5        </span></span>
-<span><span class="co">#&gt; [37] fs_1.6.3          vroom_1.6.4       ragg_1.2.6        pkgconfig_2.0.3  </span></span>
-<span><span class="co">#&gt; [41] desc_1.4.2        pkgdown_2.0.7     pillar_1.9.0      bslib_0.6.0      </span></span>
-<span><span class="co">#&gt; [45] glue_1.6.2        systemfonts_1.0.5 highr_0.10        haven_2.5.3      </span></span>
-<span><span class="co">#&gt; [49] xfun_0.41         tibble_3.2.1      tidyselect_1.2.0  tufte_0.13       </span></span>
-<span><span class="co">#&gt; [53] knitr_1.45        htmltools_0.5.7   rmarkdown_2.25    readr_2.1.4      </span></span>
-<span><span class="co">#&gt; [57] compiler_4.3.2    readxl_1.4.3</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] sass_0.4.9        utf8_1.2.4        generics_0.1.3    stringi_1.8.4    </span></span>
+<span><span class="co">#&gt;  [5] hms_1.1.3         digest_0.6.35     magrittr_2.0.3    evaluate_0.23    </span></span>
+<span><span class="co">#&gt;  [9] timechange_0.3.0  fastmap_1.2.0     cellranger_1.1.0  jsonlite_1.8.8   </span></span>
+<span><span class="co">#&gt; [13] purrr_1.0.2       fansi_1.0.6       textshaping_0.3.7 jquerylib_0.1.4  </span></span>
+<span><span class="co">#&gt; [17] cli_3.6.2         rlang_1.1.3       crayon_1.5.2      bit64_4.0.5      </span></span>
+<span><span class="co">#&gt; [21] withr_3.0.0       cachem_1.0.8      yaml_2.3.8        tools_4.4.0      </span></span>
+<span><span class="co">#&gt; [25] parallel_4.4.0    tzdb_0.4.0        memoise_2.0.1     dplyr_1.1.4      </span></span>
+<span><span class="co">#&gt; [29] forcats_1.0.0     vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.4  </span></span>
+<span><span class="co">#&gt; [33] lubridate_1.9.3   stringr_1.5.1     fs_1.6.4          htmlwidgets_1.6.4</span></span>
+<span><span class="co">#&gt; [37] bit_4.0.5         vroom_1.6.5       ragg_1.3.2        pkgconfig_2.0.3  </span></span>
+<span><span class="co">#&gt; [41] desc_1.4.3        pkgdown_2.0.9     pillar_1.9.0      bslib_0.7.0      </span></span>
+<span><span class="co">#&gt; [45] glue_1.7.0        systemfonts_1.1.0 highr_0.10        haven_2.5.4      </span></span>
+<span><span class="co">#&gt; [49] xfun_0.44         tibble_3.2.1      tidyselect_1.2.1  tufte_0.13       </span></span>
+<span><span class="co">#&gt; [53] knitr_1.46        htmltools_0.5.8.1 rmarkdown_2.26    readr_2.1.5      </span></span>
+<span><span class="co">#&gt; [57] compiler_4.4.0    readxl_1.4.3</span></span></code></pre></div>
 <p><strong>Disclaimer</strong></p>
 <p>The descriptions of the secuTrial exports used in this vignette and
 other <code>secuTrialR</code> documentation correspond to our
@@ -1172,7 +1202,7 @@ please refer to the original secuTrial manuals.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
