@@ -38,7 +38,7 @@ read_secuTrial <- function(data_dir,
       check_export_options(d)
     },
     error = function(e) {
-      message("Input to read_secuTrial() appears to be incompatible. It should be in CSV format and not be rectangular.")
+      message("Input to read_secuTrial() appears to be incompatible. It should be in CSV format and not be rectangular.\n  ", e)
     }
   )
   # label

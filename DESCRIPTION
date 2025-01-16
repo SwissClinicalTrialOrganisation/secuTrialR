@@ -1,7 +1,7 @@
 Package: secuTrialR
 Type: Package
 Title: Handling of Data from the Clinical Data Management System 'secuTrial'
-Version: 1.3.3
+Version: 1.3.4
 Authors@R:
     c(person(given = "Alan G.",
              family = "Haynes",

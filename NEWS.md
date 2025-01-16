@@ -1,3 +1,8 @@
+# secuTrialR 1.3.4
+
+* `read_export_options` gives a more useful error message if there are multiple ExportOptions files in the export (which is [a bug in secuTrial itself](https://www.secutrial.com/ticketsystem/view.php?id=12860), observed in at least some 6.4.1 versions, as well as [6.5.1.13](#268))
+* `read_export` returns error messages from `read_export_options` rather than swallowing them, which should help users more than the previous error message.
+
 # secuTrialR 1.3.2 and 1.3.3
 
 * clear some notes and warnings in preparation for CRAN submission (#265)

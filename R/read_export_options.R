@@ -25,6 +25,7 @@ read_export_options <- function(data_dir) {
   if (is_zip) {
     files <- unzip(data_dir, list = TRUE)
     study_options_file_idx <- grep("ExportOptions", files$Name)
+    if(length(study_options_file_idx) != 1) stop("Exports should contain a single ExportOptions html file")
     file_con <- unz(data_dir, files$Name[study_options_file_idx])
     parsed_export <- readLines(file_con)
     close(file_con)
@@ -32,6 +33,7 @@ read_export_options <- function(data_dir) {
     files <- data.frame(Name = list.files(data_dir))
     files$Name <- as.character(files$Name)
     study_options_file_idx <- grep("ExportOptions", files$Name)
+    if(length(study_options_file_idx) != 1) stop("Exports should contain a single ExportOptions html file")
     parsed_export <- readLines(file.path(data_dir, files$Name[study_options_file_idx]))
   }
 
